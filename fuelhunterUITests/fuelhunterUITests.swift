@@ -3,7 +3,7 @@
 //  fuelhunterUITests
 //
 //  Created by Guntis on 29/05/2019.
-//  Copyright © 2019 myEmerg. All rights reserved.
+//  Copyright © 2019 . All rights reserved.
 //
 
 import XCTest
