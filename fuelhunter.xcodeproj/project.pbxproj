@@ -51,6 +51,20 @@
 		5C22F63822C55824000EF339 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62822C55824000EF339 /* SettingsViewController.swift */; };
 		5C22F63922C55824000EF339 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62822C55824000EF339 /* SettingsViewController.swift */; };
 		5C22F63A22C55824000EF339 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62822C55824000EF339 /* SettingsViewController.swift */; };
+		5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
+		5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
+		5C22F63D22C622F6000EF339 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABED22C382E300213D46 /* Price.swift */; };
+		5C22F63E22C622F6000EF339 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABED22C382E300213D46 /* Price.swift */; };
+		5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B07022A4DCA700DA3E9B /* AppFonts.swift */; };
+		5C22F64022C622F9000EF339 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B07022A4DCA700DA3E9B /* AppFonts.swift */; };
+		5C22F64122C622FB000EF339 /* PriceWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABEF22C3A07000213D46 /* PriceWorker.swift */; };
+		5C22F64222C622FC000EF339 /* PriceWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABEF22C3A07000213D46 /* PriceWorker.swift */; };
+		5C22F64322C62303000EF339 /* PricesMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABF122C3FE0100213D46 /* PricesMemoryStore.swift */; };
+		5C22F64422C62304000EF339 /* PricesMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABF122C3FE0100213D46 /* PricesMemoryStore.swift */; };
+		5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
+		5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
+		5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
+		5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
 		5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
 		5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
@@ -457,6 +471,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */,
+				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +480,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */,
+				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,12 +629,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C22F60522C557B5000EF339 /* MainFuelListModels.swift in Sources */,
+				5C22F63D22C622F6000EF339 /* Price.swift in Sources */,
 				5C22F5F922C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C11F093229EF4FC00EC7CEC /* fuelhunterTests.swift in Sources */,
 				5C22F63922C55824000EF339 /* SettingsViewController.swift in Sources */,
 				5C22F63622C55824000EF339 /* SettingsPresenter.swift in Sources */,
+				5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */,
 				5C22F5FF22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
 				5C22F60222C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
+				5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */,
+				5C22F64322C62303000EF339 /* PricesMemoryStore.swift in Sources */,
+				5C22F64122C622FB000EF339 /* PriceWorker.swift in Sources */,
 				5C22F60822C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
 				5C22F62A22C55824000EF339 /* SettingsModels.swift in Sources */,
 				5C22F62D22C55824000EF339 /* SettingsRouter.swift in Sources */,
@@ -631,12 +654,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C22F60622C557B5000EF339 /* MainFuelListModels.swift in Sources */,
+				5C22F63E22C622F6000EF339 /* Price.swift in Sources */,
 				5C22F5FA22C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C11F09E229EF4FC00EC7CEC /* fuelhunterUITests.swift in Sources */,
 				5C22F63A22C55824000EF339 /* SettingsViewController.swift in Sources */,
 				5C22F63722C55824000EF339 /* SettingsPresenter.swift in Sources */,
+				5C22F64022C622F9000EF339 /* AppFonts.swift in Sources */,
 				5C22F60022C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
 				5C22F60322C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
+				5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */,
+				5C22F64422C62304000EF339 /* PricesMemoryStore.swift in Sources */,
+				5C22F64222C622FC000EF339 /* PriceWorker.swift in Sources */,
 				5C22F60922C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
 				5C22F62B22C55824000EF339 /* SettingsModels.swift in Sources */,
 				5C22F62E22C55824000EF339 /* SettingsRouter.swift in Sources */,
