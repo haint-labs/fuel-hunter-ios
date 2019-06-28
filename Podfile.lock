@@ -1,0 +1,37 @@
+PODS:
+  - Mixpanel-swift (2.6.2):
+    - Mixpanel-swift/Complete (= 2.6.2)
+  - Mixpanel-swift/Complete (2.6.2)
+  - Sentry (4.3.1):
+    - Sentry/Core (= 4.3.1)
+  - Sentry/Core (4.3.1)
+  - SwiftLint (0.32.0)
+
+DEPENDENCIES:
+  - Mixpanel-swift (= 2.6.2)
+  - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `4.3.1`)
+  - SwiftLint (= 0.32.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Mixpanel-swift
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 4.3.1
+
+CHECKOUT OPTIONS:
+  Sentry:
+    :git: https://github.com/getsentry/sentry-cocoa.git
+    :tag: 4.3.1
+
+SPEC CHECKSUMS:
+  Mixpanel-swift: eea98bb65fd80e992a9ecb3a0a421eca542ea72f
+  Sentry: 5267d493a398663538317e4dcc438c12c66202ed
+  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+
+PODFILE CHECKSUM: ed4ffd032484c8f56c5c785f9cd00447c7c629df
+
+COCOAPODS: 1.6.1
