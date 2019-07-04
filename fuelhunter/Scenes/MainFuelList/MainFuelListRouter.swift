@@ -13,8 +13,7 @@
 import UIKit
 
 @objc protocol MainFuelListRoutingLogic {
-	//func routeToSomewhere(segue: UIStoryboardSegue?)
-	@objc func routeToSettings(sender: UIBarButtonItem?)
+	@objc func routeToSettings()
 }
 
 protocol MainFuelListDataPassing {
@@ -25,31 +24,19 @@ class MainFuelListRouter: NSObject, MainFuelListRoutingLogic, MainFuelListDataPa
 	weak var viewController: MainFuelListViewController?
 	var dataStore: MainFuelListDataStore?
 
-  // MARK: Routing
+  	// MARK: Routing
 
-  @objc func routeToSettings(sender: UIBarButtonItem?)
-  {
-//    if let segue = segue {
-//      let destinationVC = segue.destination as! SettingsViewController
-//      var destinationDS = destinationVC.router!.dataStore!
-////      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//    } else {
-//      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//      let destinationVC = storyboard.instantiateViewController(withIdentifier:
-//   "SomewhereViewController") as! SomewhereViewController
-//      var destinationDS = destinationVC.router!.dataStore!
-//      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//      navigateToSomewhere(source: viewController!, destination: destinationVC)
-//    }
-  }
-  // MARK: Navigation  
-  //func navigateToSomewhere(source: MainFuelListViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  // MARK: Passing data
-  //func passDataToSomewhere(source: MainFuelListDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+	@objc func routeToSettings()
+  	{
+  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! SettingsViewController
+  		navigateToSettings(source: viewController!, destination: destinationVC)
+  	}
+  	
+  	// MARK: Navigation  
+	func navigateToSettings(source: MainFuelListViewController, destination: SettingsViewController)
+  	{
+		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		source.show(destination, sender: nil)
+  	}
 }

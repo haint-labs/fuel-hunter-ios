@@ -14,13 +14,35 @@ import UIKit
 
 enum Settings {
   	// MARK: Use cases
-
-	enum Something {
+	
+	enum SettingsListCellType {
+		case fuelCompanyCell
+		case fuelTypeCell
+		case gpsCell
+		case pushNotifCell
+		case appLanguageCell
+		case aboutAppCell
+	}
+	
+	enum SettingsList {
 		struct Request {
 		}
 		struct Response {
+			let companyNames: String
+			let fuelTypeNames: String
+			let gpsIsEnabledStatus: Bool
+			let pushNotifIsEnabledStatus: Bool
 		}
 		struct ViewModel {
+			struct DisplayedSettingsCell: Equatable {
+				var settingsListCellType: SettingsListCellType
+				var title: String
+				var description: String
+				var shouldShowToggle: Bool
+				var shouldShowAccessory: Bool
+				var toggleStatus: Bool = false
+			}
+			var displayedSettingsCells: [DisplayedSettingsCell]
 		}
   	}
 }

@@ -101,7 +101,7 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		getData()
 
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image:
-			UIImage.init(named: "Settings_icon"), style: .plain, target: self.router, action:nil)
+			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
 		self.title = "Fuel Hunter"
 		self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
     	self.navigationController!.navigationBar.shadowImage = UIImage()

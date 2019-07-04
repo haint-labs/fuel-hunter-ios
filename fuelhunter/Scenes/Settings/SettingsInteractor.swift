@@ -13,7 +13,7 @@
 import UIKit
 
 protocol SettingsBusinessLogic {
-  	func doSomething(request: Settings.Something.Request)
+  	func getSettingsCellsData(request: Settings.SettingsList.Request)
 }
 
 protocol SettingsDataStore {
@@ -22,16 +22,14 @@ protocol SettingsDataStore {
 
 class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	var presenter: SettingsPresentationLogic?
-  	var worker: SettingsWorker?
+  	var worker = SettingsWorker()
   	//var name: String = ""
 
   	// MARK: Do something
 
-  	func doSomething(request: Settings.Something.Request) {
-    	worker = SettingsWorker()
-    	worker?.doSomeWork()
+  	func getSettingsCellsData(request: Settings.SettingsList.Request) {
+    	let response = worker.returnSettingsCellsDataArray()
 
-    	let response = Settings.Something.Response()
-    	presenter?.presentSomething(response: response)
+    	presenter?.presentSettingsListWithData(response: response)
   	}
 }

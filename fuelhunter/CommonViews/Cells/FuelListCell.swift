@@ -8,19 +8,10 @@
 
 import UIKit
 
-
-enum cellBgType: Int {
-	case top = 0
-	case middle = 1
-	case bottom = 2
-	case single = 3
-}
-
-
 class FuelListCell: UITableViewCell {
 
 
-	public var cellBgType: cellBgType = .single
+	public var cellBgType: cellBackgroundType = .single
 	
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var iconImageView: UIImageView!
@@ -40,17 +31,13 @@ class FuelListCell: UITableViewCell {
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-//        contentView.clipsToBounds = false
-//        self.clipsToBounds = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         addressesLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
-
 
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
@@ -112,7 +99,7 @@ class FuelListCell: UITableViewCell {
 		iconImageView.image = UIImage.init(named: "virshi_logo")
     }
 
-	func setAsCellType(cellType: cellBgType) {
+	func setAsCellType(cellType: cellBackgroundType) {
 		switch cellType {
 			case .top:
 				self.bgViewTopAnchorConstraint?.constant = 4
@@ -120,6 +107,7 @@ class FuelListCell: UITableViewCell {
 				self.addressBarBottomAnchorConstraint?.constant = -6.5
 				self.priceBottomAnchorConstraint?.constant = -6.5
 				self.topSeparatorView.isHidden = true
+				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 0

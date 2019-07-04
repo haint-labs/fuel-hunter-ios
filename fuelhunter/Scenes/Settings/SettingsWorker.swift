@@ -13,6 +13,21 @@
 import UIKit
 
 class SettingsWorker {
-  	func doSomeWork() {
+  	func returnSettingsCellsDataArray() -> Settings.SettingsList.Response {
+		
+		let companyNames = "NESTE"
+		let fuelTypeNames = "DD"
+		let gpsIsEnabledStatus = true
+		let pushNotifIsEnabledStatus = false
+		
+		return Settings.SettingsList.Response.init(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: pushNotifIsEnabledStatus)
   	}
+  	
+//  	func returnSettingsCellPressedResponse(fromId id: String) -> Settings.SettingsCellPressed.Response {
+//  		if id == "0" {
+//  			Settings.SettingsCellPressed.Response.init()
+//  		} else {
+//  		
+//  		}
+//  	}
 }

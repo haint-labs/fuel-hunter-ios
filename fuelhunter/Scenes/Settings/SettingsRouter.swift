@@ -13,7 +13,10 @@
 import UIKit
 
 @objc protocol SettingsRoutingLogic {
-  	//func routeToSomewhere(segue: UIStoryboardSegue?)
+  	@objc func routeToCompanyChooseScene()
+  	@objc func routeToFuelTypeScene()
+  	@objc func routeToLanguageChooseScene()
+  	@objc func routeToAboutScene()
 }
 
 protocol SettingsDataPassing {
@@ -26,29 +29,28 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 
 	// MARK: Routing
 
-	//func routeToSomewhere(segue: UIStoryboardSegue?)
-	//{
-	//  if let segue = segue {
-	//    let destinationVC = segue.destination as! SomewhereViewController
-	//    var destinationDS = destinationVC.router!.dataStore!
-	//    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-	//  } else {
-	//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-	//    let destinationVC = storyboard.instantiateViewController(withIdentifier:
-	//   "SomewhereViewController") as! SomewhereViewController
-	//    var destinationDS = destinationVC.router!.dataStore!
-	//    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-	//    navigateToSomewhere(source: viewController!, destination: destinationVC)
-	//  }
-	//}
-	// MARK: Navigation
-	//func navigateToSomewhere(source: SettingsViewController, destination: SomewhereViewController)
-	//{
-	//  source.show(destination, sender: nil)
-	//}  
-	// MARK: Passing data
-	//func passDataToSomewhere(source: SettingsDataStore, destination: inout SomewhereDataStore)
-	//{
-	//  destination.name = source.name
-	//}
+	@objc func routeToCompanyChooseScene() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "companiesChooseViewController") as! CompaniesChooseListViewController
+  		navigateToScene(source: viewController!, destination: destinationVC)
+  	}
+	
+  	@objc func routeToFuelTypeScene() {
+  	
+  	}
+  	
+  	@objc func routeToLanguageChooseScene() {
+  	
+  	}
+  	
+  	@objc func routeToAboutScene() {
+  	
+  	}
+  	
+	// MARK: Navigation  
+	func navigateToScene(source: UIViewController, destination: UIViewController)
+  	{
+		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		source.show(destination, sender: nil)
+  	}  
 }

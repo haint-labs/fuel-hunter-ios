@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3BC9B30A2A29F3E5DB901B4B /* Pods_fuelhunterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5F516AD4B302A8D0C02462 /* Pods_fuelhunterUITests.framework */; };
+		5C0240B122CA530A000ABDCB /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
+		5C0240B222CA530A000ABDCB /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
+		5C0240B322CA530A000ABDCB /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
+		5C0240B422CA530A000ABDCB /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */; };
 		5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B07022A4DCA700DA3E9B /* AppFonts.swift */; };
 		5C11F083229EF4FB00EC7CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
@@ -65,6 +69,33 @@
 		5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
 		5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
 		5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
+		5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */; };
+		5C45BDCA22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */; };
+		5C45BDCB22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */; };
+		5C45BDCC22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */; };
+		5C45BDCD22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */; };
+		5C45BDCE22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */; };
+		5C45BDD022CD40B300FE53D6 /* CellBackgroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */; };
+		5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */; };
+		5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */; };
+		5C45BDF222CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */; };
+		5C45BDF322CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */; };
+		5C45BDF422CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */; };
+		5C45BDF522CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */; };
+		5C45BDF622CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */; };
+		5C45BDF722CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */; };
+		5C45BDF822CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */; };
+		5C45BDF922CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */; };
+		5C45BDFA22CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */; };
+		5C45BDFB22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */; };
+		5C45BDFC22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */; };
+		5C45BDFD22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */; };
+		5C45BDFE22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */; };
+		5C45BDFF22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */; };
+		5C45BE0022CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */; };
+		5C45BE0122CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
+		5C45BE0222CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
+		5C45BE0322CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
 		5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
 		5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
@@ -122,6 +153,15 @@
 		5C22F62622C55824000EF339 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		5C22F62722C55824000EF339 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		5C22F62822C55824000EF339 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListCell.swift; sourceTree = "<group>"; };
+		5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsListCell.xib; sourceTree = "<group>"; };
+		5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBackgroundType.swift; sourceTree = "<group>"; };
+		5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListPresenter.swift; sourceTree = "<group>"; };
+		5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListInteractor.swift; sourceTree = "<group>"; };
+		5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListWorker.swift; sourceTree = "<group>"; };
+		5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListRouter.swift; sourceTree = "<group>"; };
+		5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListModels.swift; sourceTree = "<group>"; };
+		5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListViewController.swift; sourceTree = "<group>"; };
 		5C84440122A7B4BD003A8752 /* InlineAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InlineAlertView.xib; sourceTree = "<group>"; };
 		5C84440322A7B508003A8752 /* InlineAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineAlertView.swift; sourceTree = "<group>"; };
 		5C84444A22ACDF70003A8752 /* FuelListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelListCell.xib; sourceTree = "<group>"; };
@@ -195,6 +235,7 @@
 			children = (
 				5C07B07022A4DCA700DA3E9B /* AppFonts.swift */,
 				5CFBABED22C382E300213D46 /* Price.swift */,
+				5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +252,8 @@
 		5C07B08122A4E07400DA3E9B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */,
+				5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */,
 				5C84444A22ACDF70003A8752 /* FuelListCell.xib */,
 				5C84444C22ACE59D003A8752 /* FuelListCell.swift */,
 			);
@@ -287,6 +330,7 @@
 		5C22F5F022C557B5000EF339 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5C45BDEB22CE079B00FE53D6 /* CompaniesChooseList */,
 				5C22F62222C55824000EF339 /* Settings */,
 				5C22F5F122C557B5000EF339 /* MainFuelList */,
 			);
@@ -317,6 +361,19 @@
 				5C22F62422C55824000EF339 /* SettingsRouter.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		5C45BDEB22CE079B00FE53D6 /* CompaniesChooseList */ = {
+			isa = PBXGroup;
+			children = (
+				5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */,
+				5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */,
+				5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */,
+				5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */,
+				5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */,
+				5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */,
+			);
+			path = CompaniesChooseList;
 			sourceTree = "<group>";
 		};
 		A06D9252C43D3E2E4CB0455A /* Frameworks */ = {
@@ -459,6 +516,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C45BDCC22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */,
 				5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
@@ -472,6 +530,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */,
+				5C0240B122CA530A000ABDCB /* InlineAlertView.xib in Resources */,
+				5C45BDCD22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +541,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */,
+				5C0240B322CA530A000ABDCB /* InlineAlertView.xib in Resources */,
+				5C45BDCE22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,25 +664,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C45BDF822CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */,
 				5C22F60422C557B5000EF339 /* MainFuelListModels.swift in Sources */,
 				5C22F60722C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
 				5C22F62C22C55824000EF339 /* SettingsRouter.swift in Sources */,
 				5CFBABF022C3A07000213D46 /* PriceWorker.swift in Sources */,
+				5C45BDF522CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
+				5C45BDFB22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
 				5C22F62922C55824000EF339 /* SettingsModels.swift in Sources */,
 				5CFBABF222C3FE0100213D46 /* PricesMemoryStore.swift in Sources */,
 				5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */,
 				5C22F63822C55824000EF339 /* SettingsViewController.swift in Sources */,
 				5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */,
 				5C22F60122C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
+				5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5C22F63522C55824000EF339 /* SettingsPresenter.swift in Sources */,
 				5C22F62F22C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5C45BDFE22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */,
 				5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */,
 				5C22F5FB22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
+				5C45BE0122CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */,
 				5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */,
 				5C22F5F822C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C22F5FE22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
+				5C45BDD022CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5CFBABEE22C382E400213D46 /* Price.swift in Sources */,
 				5C22F63222C55824000EF339 /* SettingsInteractor.swift in Sources */,
+				5C45BDF222CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,24 +698,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C45BDF922CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */,
 				5C22F60522C557B5000EF339 /* MainFuelListModels.swift in Sources */,
 				5C22F63D22C622F6000EF339 /* Price.swift in Sources */,
 				5C22F5F922C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C11F093229EF4FC00EC7CEC /* fuelhunterTests.swift in Sources */,
+				5C45BDF622CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
+				5C45BDFC22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
 				5C22F63922C55824000EF339 /* SettingsViewController.swift in Sources */,
 				5C22F63622C55824000EF339 /* SettingsPresenter.swift in Sources */,
 				5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */,
 				5C22F5FF22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
 				5C22F60222C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */,
+				5C45BDCA22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5C22F64322C62303000EF339 /* PricesMemoryStore.swift in Sources */,
+				5C0240B222CA530A000ABDCB /* InlineAlertView.swift in Sources */,
+				5C45BDFF22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */,
 				5C22F64122C622FB000EF339 /* PriceWorker.swift in Sources */,
 				5C22F60822C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
+				5C45BE0222CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */,
 				5C22F62A22C55824000EF339 /* SettingsModels.swift in Sources */,
 				5C22F62D22C55824000EF339 /* SettingsRouter.swift in Sources */,
 				5C22F63022C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C22F63322C55824000EF339 /* SettingsInteractor.swift in Sources */,
 				5C22F5FC22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
+				5C45BDF322CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,24 +732,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C45BDFA22CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */,
 				5C22F60622C557B5000EF339 /* MainFuelListModels.swift in Sources */,
 				5C22F63E22C622F6000EF339 /* Price.swift in Sources */,
 				5C22F5FA22C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C11F09E229EF4FC00EC7CEC /* fuelhunterUITests.swift in Sources */,
+				5C45BDF722CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
+				5C45BDFD22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
 				5C22F63A22C55824000EF339 /* SettingsViewController.swift in Sources */,
 				5C22F63722C55824000EF339 /* SettingsPresenter.swift in Sources */,
 				5C22F64022C622F9000EF339 /* AppFonts.swift in Sources */,
 				5C22F60022C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
 				5C22F60322C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */,
+				5C45BDCB22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5C22F64422C62304000EF339 /* PricesMemoryStore.swift in Sources */,
+				5C0240B422CA530A000ABDCB /* InlineAlertView.swift in Sources */,
+				5C45BE0022CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */,
 				5C22F64222C622FC000EF339 /* PriceWorker.swift in Sources */,
 				5C22F60922C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
+				5C45BE0322CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */,
 				5C22F62B22C55824000EF339 /* SettingsModels.swift in Sources */,
 				5C22F62E22C55824000EF339 /* SettingsRouter.swift in Sources */,
 				5C22F63122C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C22F63422C55824000EF339 /* SettingsInteractor.swift in Sources */,
 				5C22F5FD22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
+				5C45BDF422CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
