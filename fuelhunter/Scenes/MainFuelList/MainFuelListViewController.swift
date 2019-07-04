@@ -26,6 +26,7 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	@IBOutlet weak var inlineAlertView: InlineAlertView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
+	@IBOutlet weak var tableViewBottomShadow: UIImageView!
 	// MARK: Object lifecycle
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -172,10 +173,19 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	}
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-		let alfa = min(100, max(0, scrollView.contentOffset.y-15))/100.0
+		adjustVisibilityOfShadowLines()
+	}
+	
+	func adjustVisibilityOfShadowLines() {
+		let alfa = min(100, max(0, tableView.contentOffset.y-15))/50.0
 		
 		navBarBottomShadow.alpha = alfa
+		
+		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
+
+		let alfa2 = min(100, max(0, tableView.contentSize.height-value+10))/50.0
+		
+		tableViewBottomShadow.alpha = alfa2
 	}
 	
 	// MARK: Do something
@@ -186,9 +196,9 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	}
 
 	func displaySomething(viewModel: MainFuelList.FetchPrices.ViewModel) {
-		//nameTextField.text = viewModel.name
 		data = viewModel.displayedPrices
 		tableView.reloadData()
-		
+		tableView.layoutIfNeeded()
+		adjustVisibilityOfShadowLines()
 	}
 }

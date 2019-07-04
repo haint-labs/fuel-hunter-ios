@@ -23,6 +23,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
   	
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
+	@IBOutlet weak var tableViewBottomShadow: UIImageView!
 	
   	// MARK: Object lifecycle
 
@@ -131,7 +132,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 		return 0
 	}
 
-
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		let aData = self.data[indexPath.row]
@@ -159,15 +159,22 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-		let alfa = min(100, max(0, scrollView.contentOffset.y+25))/100.0
-		
-		navBarBottomShadow.alpha = alfa
+		adjustVisibilityOfShadowLines()
 	}
 	
+	func adjustVisibilityOfShadowLines() {
+		let alfa = min(100, max(0, tableView.contentOffset.y+20))/50.0
+		
+		navBarBottomShadow.alpha = alfa
+		
+		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
+
+		let alfa2 = min(100, max(0, tableView.contentSize.height-value+10))/50.0
+		
+		tableViewBottomShadow.alpha = alfa2
+	}
   	// MARK: Do something
-
-  	//@IBOutlet weak var nameTextField: UITextField!
-
+  	
   	func getSettingsCellsData() {
     	let request = Settings.SettingsList.Request()
     	interactor?.getSettingsCellsData(request: request)
@@ -175,7 +182,8 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
   		data = viewModel.displayedSettingsCells
-    	//nameTextField.text = viewModel.name
     	tableView.reloadData()
+		tableView.layoutIfNeeded()
+		adjustVisibilityOfShadowLines()
   	}
 }

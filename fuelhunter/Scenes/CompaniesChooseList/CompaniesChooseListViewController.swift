@@ -24,6 +24,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
+	@IBOutlet weak var tableViewBottomShadow: UIImageView!
 	
 	// MARK: Object lifecycle
 
@@ -75,7 +76,6 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 		tableView.delegate = self
     	tableView.dataSource = self
     	tableView.separatorColor = .clear
-//    	tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
     	let nib = UINib.init(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
@@ -159,23 +159,31 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 	
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-		let alfa = min(100, max(0, scrollView.contentOffset.y+5))/100.0
+		adjustVisibilityOfShadowLines()
+	}
+	
+	func adjustVisibilityOfShadowLines() {
+		let alfa = min(100, max(0, tableView.contentOffset.y))/50.0
 		
 		navBarBottomShadow.alpha = alfa
+		
+		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
+
+		let alfa2 = min(100, max(0, tableView.contentSize.height-value+10))/50.0
+		
+		tableViewBottomShadow.alpha = alfa2
 	}
 
   	// MARK: Do something
-
-  	//@IBOutlet weak var nameTextField: UITextField!
-
   	func getCompaniesListData() {
     	let request = CompaniesChooseList.CompanyCells.Request()
     	interactor?.getCompaniesListData(request: request)
   	}
 
   	func displayListWithData(viewModel: CompaniesChooseList.CompanyCells.ViewModel) {
-    	//nameTextField.text = viewModel.name
     	data = viewModel.displayedCompanyCellItems
     	tableView.reloadData()
+		tableView.layoutIfNeeded()
+		adjustVisibilityOfShadowLines()
   	}
 }
