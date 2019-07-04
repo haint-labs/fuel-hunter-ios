@@ -96,6 +96,15 @@
 		5C45BE0122CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
 		5C45BE0222CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
 		5C45BE0322CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
+		5C45BE0622CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */; };
+		5C45BE0722CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */; };
+		5C45BE0822CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */; };
+		5C45BE0922CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE0522CE29EB00FE53D6 /* FuelCompanyListCell.xib */; };
+		5C45BE0A22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE0522CE29EB00FE53D6 /* FuelCompanyListCell.xib */; };
+		5C45BE0B22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE0522CE29EB00FE53D6 /* FuelCompanyListCell.xib */; };
+		5C45BE0D22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */; };
+		5C45BE0E22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */; };
+		5C45BE0F22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */; };
 		5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
 		5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
@@ -162,6 +171,9 @@
 		5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListRouter.swift; sourceTree = "<group>"; };
 		5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListModels.swift; sourceTree = "<group>"; };
 		5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListViewController.swift; sourceTree = "<group>"; };
+		5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelCompanyListCell.swift; sourceTree = "<group>"; };
+		5C45BE0522CE29EB00FE53D6 /* FuelCompanyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelCompanyListCell.xib; sourceTree = "<group>"; };
+		5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSizeExtension.swift; sourceTree = "<group>"; };
 		5C84440122A7B4BD003A8752 /* InlineAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InlineAlertView.xib; sourceTree = "<group>"; };
 		5C84440322A7B508003A8752 /* InlineAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineAlertView.swift; sourceTree = "<group>"; };
 		5C84444A22ACDF70003A8752 /* FuelListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelListCell.xib; sourceTree = "<group>"; };
@@ -236,6 +248,7 @@
 				5C07B07022A4DCA700DA3E9B /* AppFonts.swift */,
 				5CFBABED22C382E300213D46 /* Price.swift */,
 				5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */,
+				5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +265,8 @@
 		5C07B08122A4E07400DA3E9B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5C45BE0522CE29EB00FE53D6 /* FuelCompanyListCell.xib */,
+				5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */,
 				5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */,
 				5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */,
 				5C84444A22ACDF70003A8752 /* FuelListCell.xib */,
@@ -520,6 +535,7 @@
 				5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */,
 				5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
+				5C45BE0922CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 				5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */,
 				5C11F083229EF4FB00EC7CEC /* Main.storyboard in Resources */,
 			);
@@ -533,6 +549,7 @@
 				5C0240B122CA530A000ABDCB /* InlineAlertView.xib in Resources */,
 				5C45BDCD22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
+				5C45BE0A22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +561,7 @@
 				5C0240B322CA530A000ABDCB /* InlineAlertView.xib in Resources */,
 				5C45BDCE22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
+				5C45BE0B22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +705,8 @@
 				5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */,
 				5C22F5F822C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C22F5FE22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
+				5C45BE0622CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
+				5C45BE0D22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD022CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5CFBABEE22C382E400213D46 /* Price.swift in Sources */,
 				5C22F63222C55824000EF339 /* SettingsInteractor.swift in Sources */,
@@ -721,6 +741,8 @@
 				5C22F62A22C55824000EF339 /* SettingsModels.swift in Sources */,
 				5C22F62D22C55824000EF339 /* SettingsRouter.swift in Sources */,
 				5C22F63022C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5C45BE0722CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
+				5C45BE0E22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C22F63322C55824000EF339 /* SettingsInteractor.swift in Sources */,
 				5C22F5FC22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
@@ -755,6 +777,8 @@
 				5C22F62B22C55824000EF339 /* SettingsModels.swift in Sources */,
 				5C22F62E22C55824000EF339 /* SettingsRouter.swift in Sources */,
 				5C22F63122C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5C45BE0822CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
+				5C45BE0F22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C22F63422C55824000EF339 /* SettingsInteractor.swift in Sources */,
 				5C22F5FD22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,

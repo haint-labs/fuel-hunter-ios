@@ -12,6 +12,7 @@
 
 import UIKit
 
+
 protocol MainFuelListDisplayLogic: class {
 	func displaySomething(viewModel: MainFuelList.FetchPrices.ViewModel)
 }
@@ -35,12 +36,6 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
-
-//		let image = UIImage.init(named: "nav_bar_blur")
-//		self.navigationController!.navigationBar.setBackgroundImage(image?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch), for: .default)
-//    self.navigationController!.navigationBar.shadowImage = UIImage()
-//		self.navigationController!.navigationBar.isTranslucent = true
-
 	}
 	// MARK: Setup
 
@@ -55,31 +50,6 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		presenter.viewController = viewController
 		router.viewController = viewController
 		router.dataStore = interactor
-//		data.append([["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a", "virshi_logo", "1.213", "TitleColor"]])
-//		data.append([["Circle K", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a", "circlek_logo", "1.213", "TitleColor"],
-//		["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a", "virshi_logo", "1.213", "CheapPriceColor"]])
-//		data.append([["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a", "virshi_logo", "1.213", "CheapPriceColor"], 
-//		["Circle K", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a", "circlek_logo", "1.213", "TitleColor"],
-//		["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a", "virshi_logo", "1.213", "TitleColor"]])
-//		
-//		data.append([["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4", "virshi_logo", "1.213", "TitleColor"]])
-//		data.append([["Circle K", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4", "circlek_logo", "1.213", "TitleColor"],
-//		["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4", "virshi_logo", "1.213", "CheapPriceColor"]])
-//		data.append([["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4", "virshi_logo", "1.213", "CheapPriceColor"], 
-//		["Circle K", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4", "circlek_logo", "1.213", "TitleColor"],
-//		["Virši", "Rīga - Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4", "virshi_logo", "1.213", "TitleColor"]])
-//		
-//		data.append([["Virši", "Rīga - Senču iela 2b", "virshi_logo", "1.213", "TitleColor"]])
-//		data.append([["Circle K", "Rīga - Senču iela 23b", "circlek_logo", "1.213", "TitleColor"]])
-//		data.append([["Circle K", "Rīga - Senču iela 3b", "circlek_logo", "1.213", "TitleColor"],
-//		["Virši", "Rīga - Senču iela 2b", "virshi_logo", "1.213", "CheapPriceColor"]])
-//		
-//		data.append([["Circle K", "Rīga - Senču iela 2b", "circlek_logo", "1.213", "TitleColor"],
-//		["Circle K", "Rīga - Senču iela 2c", "circlek_logo", "1.213", "TitleColor"]])
-//		
-//		data.append([["Virši", "Rīga - Senču iela 2b", "virshi_logo", "1.213", "CheapPriceColor"], 
-//		["Circle K", "Rīga - Senču iela 2b", "circlek_logo", "1.213", "TitleColor"],
-//		["Virši", "Rīga - Senču iela 2b", "virshi_logo", "1.213", "TitleColor"]])
 	}
 
 	// MARK: Routing
@@ -172,19 +142,29 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 			
 		let baseView: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 60))
 		
-		let label: UILabel = UILabel.init(frame: CGRect.init(x: 14, y: 20, width: self.view.frame.width-28, height: 36))
+		let label: UILabel = UILabel()
 		label.text = aData.gasType.rawValue
 		label.font = Font.init(.medium, size: .size3).font
 		label.textColor = UIColor.init(red: 66/255.0, green: 93/255.0, blue: 146/255.0, alpha: 1.0)
+		
+		let height = aData.gasType.rawValue.height(withConstrainedWidth: self.view.frame.width-26, font: Font.init(.medium, size: .size3).font)
+		
+		label.frame = CGRect.init(x: 12, y: 20, width: self.view.frame.width-26, height: height+6)
+		
 		baseView.addSubview(label)
-
+		
+		print(label)
+		
 		return baseView
 	}
-
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 56
-	}
 	
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		
+		let aData = self.data[section].first!
+		let height = aData.gasType.rawValue.height(withConstrainedWidth: self.view.frame.width-26, font: Font.init(.medium, size: .size3).font)
+		
+		return height + 26
+	}
 	
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
 	

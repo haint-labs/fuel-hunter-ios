@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		UINavigationBar.appearance().titleTextAttributes =
 			[NSAttributedString.Key.foregroundColor: UIColor.init(named: "TitleColor")!,
-			NSAttributedString.Key.font: Font.init(.normal, size: .size2).font]
+			NSAttributedString.Key.font: Font.init(.normal, size: .size1).font]
 
 		return true
 	}

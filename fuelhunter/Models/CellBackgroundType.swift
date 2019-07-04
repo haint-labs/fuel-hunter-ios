@@ -3,7 +3,7 @@
 //  fuelhunter
 //
 //  Created by Guntis on 03/07/2019.
-//  Copyright © 2019 myEmerg. All rights reserved.
+//  Copyright © 2019 . All rights reserved.
 //
 
 enum cellBackgroundType: Int {

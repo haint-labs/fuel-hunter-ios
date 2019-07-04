@@ -41,28 +41,23 @@ class FuelListCell: UITableViewCell {
 
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
-		
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
-		
 		bgViewTopAnchorConstraint?.isActive = true
-		
 		bgViewBottomAnchorConstraint?.isActive = true
 			
 			
-		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
+		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 9).isActive = true
 		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10+4).isActive = true
 		iconImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
 		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
 		
 		
-		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
+		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6+2).isActive = true
 		
-		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
+		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
-//		addressesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).isActive = true
-
 		addressBarBottomAnchorConstraint = addressesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
 		addressBarBottomAnchorConstraint?.isActive = true
 		
@@ -71,17 +66,16 @@ class FuelListCell: UITableViewCell {
 		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: addressesLabel.rightAnchor, constant: 6).isActive = true
 		priceLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -18).isActive = true
 		priceLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6+2).isActive = true
-		
-		
 		priceBottomAnchorConstraint = priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
 		priceBottomAnchorConstraint?.isActive = true
+		
 		
 		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 		topSeparatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1).isActive = true
 		topSeparatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13).isActive = true
 		topSeparatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12.5).isActive = true
 		
-		//Calculate width of normal price, and provide it as minimum
+		//TODO: Calculate width of normal price, and provide it as minimum
 		priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
 
 
@@ -130,7 +124,6 @@ class FuelListCell: UITableViewCell {
 				self.topSeparatorView.isHidden = true
 		}
 	}
-
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

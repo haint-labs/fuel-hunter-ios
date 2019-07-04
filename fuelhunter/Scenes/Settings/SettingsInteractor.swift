@@ -30,6 +30,7 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
     	let response = worker.returnSettingsCellsDataArray()
 
+	
     	presenter?.presentSettingsListWithData(response: response)
   	}
 }

@@ -1,39 +1,50 @@
 //
-//  SettingsListCell.swift
+//  FuelCompanyListCell.swift
 //  fuelhunter
 //
-//  Created by Guntis on 03/07/2019.
+//  Created by Guntis on 04/07/2019.
 //  Copyright © 2019 . All rights reserved.
 //
 
 import UIKit
 
-class SettingsListCell: UITableViewCell {
+class FuelCompanyListCell: UITableViewCell {
+
 
 	public var cellBgType: cellBackgroundType = .single
 	
+	@IBOutlet weak var iconImageView: UIImageView!
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var aSwitch: UISwitch!
-	@IBOutlet weak var accessoryIconImageView: UIImageView!
 	@IBOutlet weak var topSeparatorView: UIView!
 	
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
 	
+	var titleLeftImageAnchorConstraint: NSLayoutConstraint?
+	
+	var titleLeftCellAnchorConstraint: NSLayoutConstraint?
+	
+	var titleTopAnchorConstraint: NSLayoutConstraint?
+	
+	var titleBottomAnchorConstraint: NSLayoutConstraint?
+	
 	var descriptionBottomAnchorConstraint: NSLayoutConstraint?
+	
+	var switchYAnchorConstraint: NSLayoutConstraint?
 	
 	
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         aSwitch.translatesAutoresizingMaskIntoConstraints = false
-        accessoryIconImageView.translatesAutoresizingMaskIntoConstraints = false
         topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
@@ -44,25 +55,30 @@ class SettingsListCell: UITableViewCell {
 		bgViewBottomAnchorConstraint?.isActive = true
 		
 		
-		titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
-		titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6+2).isActive = true
-		titleLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: -9).isActive = true
-
+		iconImageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
+		iconImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
+		iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
+		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 13).isActive = true
+		
+		
+		titleLeftImageAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
+		titleLeftCellAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25)
+		titleLeftImageAnchorConstraint?.isActive = true
+		titleTopAnchorConstraint = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9)
+		titleTopAnchorConstraint?.isActive = true
+		titleLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: 10).isActive = true
+		titleBottomAnchorConstraint = titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
 		
 		descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		descriptionLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: -9).isActive = true
 		descriptionBottomAnchorConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
-		descriptionBottomAnchorConstraint?.isActive = true
 		
 		
 		aSwitch.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
-		aSwitch.centerYAnchor.constraint(equalTo: contentView.superview!.centerYAnchor).isActive = true
+		switchYAnchorConstraint = aSwitch.centerYAnchor.constraint(equalTo: contentView.superview!.centerYAnchor, constant: 1)
+		switchYAnchorConstraint?.isActive = true
 		
-		
-		accessoryIconImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
-		accessoryIconImageView.widthAnchor.constraint(equalToConstant: 10).isActive = true
-		accessoryIconImageView.centerYAnchor.constraint(equalTo: contentView.superview!.centerYAnchor).isActive = true
 		
 		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 		topSeparatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1).isActive = true
@@ -79,34 +95,70 @@ class SettingsListCell: UITableViewCell {
 		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 
+	func setIconImageFromImageName(imageName: String!) {
+		if imageName.count == 0 {
+			self.iconImageView.image = nil
+			self.iconImageView.isHidden = true
+			self.titleLeftImageAnchorConstraint?.isActive = false
+			self.titleLeftCellAnchorConstraint?.isActive = true
+		} else {
+			self.iconImageView.image = UIImage.init(named: imageName)
+			self.iconImageView.isHidden = false
+			self.titleLeftImageAnchorConstraint?.isActive = true
+			self.titleLeftCellAnchorConstraint?.isActive = false
+		}
+	}
+	
+	func setDescriptionText(descriptionText: String!) {
+		if descriptionText.count == 0 {
+			self.titleTopAnchorConstraint?.constant = 12
+			self.descriptionLabel.text = ""
+			self.titleBottomAnchorConstraint?.isActive = true
+			self.descriptionBottomAnchorConstraint?.isActive = false
+		} else {
+			self.titleTopAnchorConstraint?.constant = 9
+			self.descriptionLabel.text = descriptionText
+			self.titleBottomAnchorConstraint?.isActive = false
+			self.descriptionBottomAnchorConstraint?.isActive = true
+		}
+	}
+	
 	func setAsCellType(cellType: cellBackgroundType) {
 		switch cellType {
 			case .top:
 				self.bgViewTopAnchorConstraint?.constant = 4
 				self.bgViewBottomAnchorConstraint?.constant = 20
+				self.titleBottomAnchorConstraint?.constant = -8
 				self.descriptionBottomAnchorConstraint?.constant = -6.5
 				self.topSeparatorView.isHidden = true
+				self.switchYAnchorConstraint?.constant = 1
 				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 0
-				self.descriptionBottomAnchorConstraint?.constant = -11
+				self.titleBottomAnchorConstraint?.constant = -15
+				self.descriptionBottomAnchorConstraint?.constant = -13
 				self.topSeparatorView.isHidden = false
+				self.switchYAnchorConstraint?.constant = -1
 				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 20
-				self.descriptionBottomAnchorConstraint?.constant = -6
+				self.titleBottomAnchorConstraint?.constant = -10
+				self.descriptionBottomAnchorConstraint?.constant = -10
 				self.topSeparatorView.isHidden = false
+				self.switchYAnchorConstraint?.constant = 1
 				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
-				self.descriptionBottomAnchorConstraint?.constant = -11
+				self.titleBottomAnchorConstraint?.constant = -13
+				self.descriptionBottomAnchorConstraint?.constant = -13
 				self.topSeparatorView.isHidden = true
+				self.switchYAnchorConstraint?.constant = -1
 		}
 	}
-	
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
