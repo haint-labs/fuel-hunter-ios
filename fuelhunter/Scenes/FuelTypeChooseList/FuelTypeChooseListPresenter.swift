@@ -20,16 +20,17 @@ class FuelTypeChooseListPresenter: FuelTypeChooseListPresentationLogic {
   	weak var viewController: FuelTypeChooseListDisplayLogic?
 
   	// MARK: Do something
-
-	let array =  [
-			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "DD | Dīzeļdegviela", toggleStatus: true),
-			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "DD | Pro Dīzeļdegviela", toggleStatus: false),
-			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "95 | Benzīns", toggleStatus: false),
-			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "98 | Benzīns", toggleStatus: false),
-			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "Auto Gāze", toggleStatus: false)
+		
+  	func displayListWithData(response: FuelTypeChooseList.FuelCells.Response) {
+  	
+  		let array =  [
+			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "DD | Dīzeļdegviela", toggleStatus: response.statusOfDD),
+			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "DD | Pro Dīzeļdegviela", toggleStatus: response.statusOfProDD),
+			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "95 | Benzīns", toggleStatus: response.statusOf95),
+			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "98 | Benzīns", toggleStatus: response.statusOf98),
+			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(title: "Auto Gāze", toggleStatus: response.statusOfGas)
 			]
 			
-  	func displayListWithData(response: FuelTypeChooseList.FuelCells.Response) {
     	let viewModel = FuelTypeChooseList.FuelCells.ViewModel.init(displayedFuelCellItems: array)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}

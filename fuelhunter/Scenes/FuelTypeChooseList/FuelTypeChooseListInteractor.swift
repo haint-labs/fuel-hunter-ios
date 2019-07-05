@@ -22,17 +22,13 @@ protocol FuelTypeChooseListDataStore {
 
 class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeChooseListDataStore {
   	var presenter: FuelTypeChooseListPresentationLogic?
-  	var worker: FuelTypeChooseListWorker?
+  	var worker = FuelTypeChooseListWorker()
   	//var name: String = ""
 
   	// MARK: Do something
 
   	func getFuelTypesListData(request: FuelTypeChooseList.FuelCells.Request) {
-    	worker = FuelTypeChooseListWorker()
-    	// Get selected status from worker.
-    	worker?.doSomeWork()
-
-    	let response = FuelTypeChooseList.FuelCells.Response()
-    	presenter?.displayListWithData(response: response)
+    	let response = worker.getStatusOfEnabledFuelTypes()
+		presenter?.displayListWithData(response: response)
   	}
 }

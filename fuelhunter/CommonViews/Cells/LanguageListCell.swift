@@ -1,29 +1,30 @@
 //
-//  FuelTypeListCell.swift
+//  LanguageListCell.swift
 //  fuelhunter
 //
 //  Created by Guntis on 05/07/2019.
-//  Copyright © 2019 . All rights reserved.
+//  Copyright © 2019 myEmerg. All rights reserved.
 //
 
 import UIKit
 
-class FuelTypeListCell: UITableViewCell {
+class LanguageListCell: UITableViewCell {
 
     public var cellBgType: cellBackgroundType = .single
 	
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var aSwitch: UISwitch!
+	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var topSeparatorView: UIView!
+	@IBOutlet weak var checkBoxImageView: UIImageView!
 	
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
 	
-	var titleBottomAnchorConstraint: NSLayoutConstraint?
+	var descriptionBottomAnchorConstraint: NSLayoutConstraint?
 	
-	var switchYAnchorConstraint: NSLayoutConstraint?
+	var checkboxYCenterAnchorConstraint: NSLayoutConstraint?
 	
 	
     override func awakeFromNib() {
@@ -31,9 +32,11 @@ class FuelTypeListCell: UITableViewCell {
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		aSwitch.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
-
+		checkBoxImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
@@ -42,15 +45,23 @@ class FuelTypeListCell: UITableViewCell {
 		bgViewBottomAnchorConstraint?.isActive = true
 		
 		
+		titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8).isActive = true
 		titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
-		titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).isActive = true
-		titleLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: 10).isActive = true
-		titleBottomAnchorConstraint = titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
-		titleBottomAnchorConstraint?.isActive = true
+		titleLabel.rightAnchor.constraint(equalTo: checkBoxImageView.leftAnchor, constant: 10).isActive = true
+	
 		
-		aSwitch.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
-		switchYAnchorConstraint = aSwitch.centerYAnchor.constraint(equalTo: contentView.superview!.centerYAnchor, constant: 1)
-		switchYAnchorConstraint?.isActive = true
+		descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
+		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
+		descriptionLabel.rightAnchor.constraint(equalTo: checkBoxImageView.leftAnchor, constant: -9).isActive = true
+		descriptionBottomAnchorConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+		descriptionBottomAnchorConstraint?.isActive = true
+		
+		
+		checkBoxImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+		checkBoxImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+		checkBoxImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -25).isActive = true
+		checkboxYCenterAnchorConstraint = checkBoxImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+		checkboxYCenterAnchorConstraint?.isActive = true
 		
 		
 		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -62,6 +73,9 @@ class FuelTypeListCell: UITableViewCell {
 		titleLabel.textColor = UIColor.init(named: "TitleColor")
 		titleLabel.font = Font.init(.medium, size: .size2).font
 		
+		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
+		descriptionLabel.font = Font.init(.normal, size: .size4).font
+		
 		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
@@ -70,30 +84,30 @@ class FuelTypeListCell: UITableViewCell {
 			case .top:
 				self.bgViewTopAnchorConstraint?.constant = 4
 				self.bgViewBottomAnchorConstraint?.constant = 20
-				self.titleBottomAnchorConstraint?.constant = -8
+				self.descriptionBottomAnchorConstraint?.constant = -6.5
 				self.topSeparatorView.isHidden = true
-				self.switchYAnchorConstraint?.constant = 1
+				self.checkboxYCenterAnchorConstraint?.constant = 1
 				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 0
-				self.titleBottomAnchorConstraint?.constant = -15
+				self.descriptionBottomAnchorConstraint?.constant = -11
 				self.topSeparatorView.isHidden = false
-				self.switchYAnchorConstraint?.constant = -1
+				self.checkboxYCenterAnchorConstraint?.constant = -1
 				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 20
-				self.titleBottomAnchorConstraint?.constant = -10
+				self.descriptionBottomAnchorConstraint?.constant = -6
 				self.topSeparatorView.isHidden = false
-				self.switchYAnchorConstraint?.constant = 1
+				self.checkboxYCenterAnchorConstraint?.constant = 1
 				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
-				self.titleBottomAnchorConstraint?.constant = -13
+				self.descriptionBottomAnchorConstraint?.constant = -11
 				self.topSeparatorView.isHidden = true
-				self.switchYAnchorConstraint?.constant = -1
+				self.checkboxYCenterAnchorConstraint?.constant = -1
 		}
 	}
 

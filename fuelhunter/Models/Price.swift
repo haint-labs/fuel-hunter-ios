@@ -19,10 +19,13 @@ struct Price: Equatable, Codable {
 	var address: [Address]
 	var addressDescription: String {
 		var fullAddress = "\(city) - "
+		if self.address.count == 0 {
+			return "\(city)"
+		}
 		for address in self.address {
 			fullAddress.append("\(address.name), ")
 		}
-		return String(fullAddress.dropLast())
+		return String(fullAddress.dropLast().dropLast())
 	}
 	
 	static func == (lhs: Price, rhs: Price) -> Bool {

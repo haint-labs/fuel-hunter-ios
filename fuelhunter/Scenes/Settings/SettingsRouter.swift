@@ -42,7 +42,9 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
   	}
   	
   	@objc func routeToLanguageChooseScene() {
-  	
+  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appLanguageViewController") as! AppLanguageViewController
+  		navigateToScene(source: viewController!, destination: destinationVC)
   	}
   	
   	@objc func routeToAboutScene() {

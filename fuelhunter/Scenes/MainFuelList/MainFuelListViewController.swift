@@ -22,7 +22,8 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	var interactor: MainFuelListBusinessLogic?
 	var router: (NSObjectProtocol & MainFuelListRoutingLogic & MainFuelListDataPassing)?
 	var data = [[MainFuelList.FetchPrices.ViewModel.DisplayedPrice]]()
-	 
+	var activateShadowUpdates = false
+	
 	@IBOutlet weak var inlineAlertView: InlineAlertView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
@@ -58,8 +59,6 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		getData()
-
 		self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image:
 			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
 		self.title = "Fuel Hunter"
@@ -75,6 +74,13 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
     	tableView.contentInset = UIEdgeInsets.init(top: -6, left: 0, bottom: -9, right: 0)
     	let nib = UINib.init(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	
+		getData()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		activateShadowUpdates = true
 	}
 
 	// MARK: Table view
@@ -166,13 +172,13 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	}
 	
 	func adjustVisibilityOfShadowLines() {
-		let alfa = min(100, max(0, tableView.contentOffset.y-15))/50.0
+		let alfa = min(50, max(0, tableView.contentOffset.y-15))/50.0
 		
 		navBarBottomShadow.alpha = alfa
 		
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
 
-		let alfa2 = min(100, max(0, tableView.contentSize.height-value+10))/50.0
+		let alfa2 = min(50, max(0, tableView.contentSize.height-value+10))/50.0
 		
 		tableViewBottomShadow.alpha = alfa2
 	}

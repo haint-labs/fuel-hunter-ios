@@ -24,6 +24,7 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
 	@IBOutlet weak var tableViewBottomShadow: UIImageView!
 	var data = [FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem]()
+  	var activateShadowUpdates = false
   	
   	// MARK: Object lifecycle
 
@@ -64,6 +65,7 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 		tableView.delegate = self
     	tableView.dataSource = self
     	tableView.separatorColor = .clear
+    	tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
     	let nib = UINib.init(nibName: "FuelTypeListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
@@ -71,7 +73,12 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
     	
     	getCompaniesListData()
   	}
-  	
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		activateShadowUpdates = true
+	}
+	 	
   	func setUpTableViewHeader() {
   		let headerView = UIView()
 		
@@ -144,18 +151,19 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 	}
 	
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-		adjustVisibilityOfShadowLines()
+		if activateShadowUpdates == true {
+			adjustVisibilityOfShadowLines()
+		}
 	}
 	
 	func adjustVisibilityOfShadowLines() {
-		let alfa = min(100, max(0, tableView.contentOffset.y))/50.0
+		let alfa = min(50, max(0, tableView.contentOffset.y))/50.0
 		
 		navBarBottomShadow.alpha = alfa
 		
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
 
-		let alfa2 = min(100, max(0, tableView.contentSize.height-value+10))/50.0
+		let alfa2 = min(50, max(0, tableView.contentSize.height-value))/50.0
 		
 		tableViewBottomShadow.alpha = alfa2
 	}

@@ -114,7 +114,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C96-Rv-ivj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="C96-Rv-ivj">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aH0-Lk-b32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="795" y="-149"/>
+            <point key="canvasLocation" x="713" y="-202"/>
         </scene>
         <!--Companies Choose List View Controller-->
         <scene sceneID="mQ7-ma-Syc">
@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mnB-9m-fiz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="mnB-9m-fiz">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lNf-n4-iIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="-449"/>
+            <point key="canvasLocation" x="1462" y="-480"/>
         </scene>
         <!--Fuel Type Choose List View Controller-->
         <scene sceneID="UeE-wi-9Cb">
@@ -220,7 +220,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gLV-t3-vgh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gLV-t3-vgh">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,7 +263,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhD-Nx-XZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="-449"/>
+            <point key="canvasLocation" x="1464" y="213"/>
+        </scene>
+        <!--App Languages View Controller-->
+        <scene sceneID="M8k-aH-uAC">
+            <objects>
+                <viewController storyboardIdentifier="appLanguageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HX9-8m-bNN" userLabel="App Languages View Controller" customClass="AppLanguageViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mkk-16-VbC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bBy-4V-5Tu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="TOD-IU-MOR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="Rik-gp-bRE"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_tableView_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="fwH-9i-iC4">
+                                <rect key="frame" x="0.0" y="859" width="414" height="3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="Egu-Ae-6Na"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bBy-4V-5Tu" firstAttribute="leading" secondItem="NbL-1c-iv0" secondAttribute="leading" id="BiJ-k4-qsp"/>
+                            <constraint firstAttribute="trailing" secondItem="TOD-IU-MOR" secondAttribute="trailing" id="EBR-Om-KWP"/>
+                            <constraint firstItem="fwH-9i-iC4" firstAttribute="leading" secondItem="mkk-16-VbC" secondAttribute="leading" id="NJJ-H2-jhu"/>
+                            <constraint firstItem="NbL-1c-iv0" firstAttribute="bottom" secondItem="fwH-9i-iC4" secondAttribute="bottom" id="Q37-F7-J4q"/>
+                            <constraint firstItem="TOD-IU-MOR" firstAttribute="leading" secondItem="mkk-16-VbC" secondAttribute="leading" id="aCe-ul-IOx"/>
+                            <constraint firstItem="bBy-4V-5Tu" firstAttribute="top" secondItem="NbL-1c-iv0" secondAttribute="top" id="cr6-x5-9fn"/>
+                            <constraint firstItem="NbL-1c-iv0" firstAttribute="trailing" secondItem="bBy-4V-5Tu" secondAttribute="trailing" id="dGE-JF-juI"/>
+                            <constraint firstAttribute="trailing" secondItem="fwH-9i-iC4" secondAttribute="trailing" id="e2o-2F-LaX"/>
+                            <constraint firstItem="TOD-IU-MOR" firstAttribute="top" secondItem="NbL-1c-iv0" secondAttribute="top" id="ghC-qc-SjA"/>
+                            <constraint firstItem="NbL-1c-iv0" firstAttribute="bottom" secondItem="bBy-4V-5Tu" secondAttribute="bottom" id="qaL-zC-q89"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NbL-1c-iv0"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBarBottomShadow" destination="TOD-IU-MOR" id="xKR-kN-UCZ"/>
+                        <outlet property="tableView" destination="bBy-4V-5Tu" id="Wud-TL-QSJ"/>
+                        <outlet property="tableViewBottomShadow" destination="fwH-9i-iC4" id="DPz-Pa-vfH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CdY-PC-sjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="909"/>
         </scene>
     </scenes>
     <resources>

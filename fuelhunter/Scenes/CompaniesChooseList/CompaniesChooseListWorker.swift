@@ -13,6 +13,20 @@
 import UIKit
 
 class CompaniesChooseListWorker {
-  	func doSomeWork() {
+  	func getStatusOfEnabledCompanies() -> CompaniesChooseList.CompanyCells.Response {
+  	
+		let statusOfCheapestCompany = false
+		let statusOfNeste = true
+		let statusOfCircleK = true
+		let statusOfKool = true
+		let statusOfLatvijasNafta = false
+		let statusOfViada = false
+		let statusOfVirsi = false
+		let statusOfGotika = false
+		let statusOfAstarte = false
+		let statusOfDinaz = false
+		let statusOfLatvijasPropanaGaze = false
+		
+		return CompaniesChooseList.CompanyCells.Response.init(companyCheapestStatus: statusOfCheapestCompany, companyNesteStatus: statusOfNeste, companyCircleKStatus: statusOfCircleK, companyKoolStatus: statusOfKool, companyLatvijasNaftaStatus: statusOfLatvijasNafta, companyViadaStatus: statusOfViada, companyVirsiStatus: statusOfVirsi, companyGotikaStatus: statusOfGotika, companyAstarteStatus: statusOfAstarte, companyDinazStatus: statusOfDinaz, companyLatvijasPropanaGazeStatus: statusOfLatvijasPropanaGaze)
   	}
 }

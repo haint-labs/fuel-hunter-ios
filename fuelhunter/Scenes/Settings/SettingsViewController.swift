@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
   	var interactor: SettingsBusinessLogic?
   	var router: (NSObjectProtocol & SettingsRoutingLogic & SettingsDataPassing)?
   	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
+  	var activateShadowUpdates = false
   	
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
@@ -58,18 +59,22 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
     	super.viewDidLoad()
     	self.title = "Iestatījumi"
     	
-    	
     	self.view.backgroundColor = .white
 		tableView.delegate = self
     	tableView.dataSource = self
     	tableView.separatorColor = .clear
-    	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 0, right: 0)
+    	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 10, right: 0)
     	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
     	getSettingsCellsData()
   	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		activateShadowUpdates = true
+	}
+		
 	// MARK: Table view
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -146,21 +151,23 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 	}
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-		adjustVisibilityOfShadowLines()
+		if activateShadowUpdates == true {
+			adjustVisibilityOfShadowLines()
+		}
 	}
 	
 	func adjustVisibilityOfShadowLines() {
-		let alfa = min(100, max(0, tableView.contentOffset.y+20))/50.0
+		let alfa = min(50, max(0, tableView.contentOffset.y+20))/50.0
 		
 		navBarBottomShadow.alpha = alfa
 		
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
 
-		let alfa2 = min(100, max(0, tableView.contentSize.height-value+10))/50.0
+		let alfa2 = min(50, max(0, tableView.contentSize.height-value-22))/50.0
 		
 		tableViewBottomShadow.alpha = alfa2
 	}
+	
   	// MARK: Do something
   	
   	func getSettingsCellsData() {
@@ -171,7 +178,8 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
   		data = viewModel.displayedSettingsCells
     	tableView.reloadData()
-		tableView.layoutIfNeeded()
+		tableView.layoutSubviews()
+		
 		adjustVisibilityOfShadowLines()
   	}
 }

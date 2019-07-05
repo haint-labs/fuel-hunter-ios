@@ -22,18 +22,14 @@ protocol CompaniesChooseListDataStore {
 
 class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, CompaniesChooseListDataStore {
   	var presenter: CompaniesChooseListPresentationLogic?
-//  	var worker: CompaniesChooseListWorker?
+  	var worker = CompaniesChooseListWorker()
   	//var name: String = ""
 
   	// MARK: Do something
 
   	func getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request) {
-//    	worker = CompaniesChooseListWorker()
-//    	worker?.doSomeWork()
+    	let response = worker.getStatusOfEnabledCompanies()
 
-		// Get selected status from worker
-		
-    	let response = CompaniesChooseList.CompanyCells.Response()
     	presenter?.presentSomething(response: response)
   	}
 }

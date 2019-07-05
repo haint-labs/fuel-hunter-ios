@@ -13,6 +13,14 @@
 import UIKit
 
 class FuelTypeChooseListWorker {
-  	func doSomeWork() {
+  	func getStatusOfEnabledFuelTypes() -> FuelTypeChooseList.FuelCells.Response {
+  	
+		let statusOfDD = false
+		let statusOfProDD = true
+		let statusOf95 = true
+		let statusOf98 = true
+		let statusOfGas = false
+		
+		return FuelTypeChooseList.FuelCells.Response.init(statusOfDD: statusOfDD, statusOfProDD: statusOfProDD, statusOf95: statusOf95, statusOf98: statusOf98, statusOfGas: statusOfGas)
   	}
 }

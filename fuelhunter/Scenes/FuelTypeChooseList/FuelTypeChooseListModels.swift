@@ -16,9 +16,15 @@ enum FuelTypeChooseList {
   	// MARK: Use cases
 
 	enum FuelCells {
+	
 		struct Request {
 		}
 		struct Response {
+			var statusOfDD: Bool
+			var statusOfProDD: Bool
+			var statusOf95: Bool
+			var statusOf98: Bool
+			var statusOfGas: Bool
 		}
 		struct ViewModel {
 			struct DisplayedFuelCellItem: Equatable {

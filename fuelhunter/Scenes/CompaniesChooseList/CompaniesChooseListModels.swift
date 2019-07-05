@@ -14,11 +14,22 @@ import UIKit
 
 enum CompaniesChooseList {
   	// MARK: Use cases
-
+	
 	enum CompanyCells {
 		struct Request {
 		}
 		struct Response {
+			var companyCheapestStatus: Bool
+			var companyNesteStatus: Bool
+			var companyCircleKStatus: Bool
+			var companyKoolStatus: Bool
+			var companyLatvijasNaftaStatus: Bool
+			var companyViadaStatus: Bool
+			var companyVirsiStatus: Bool
+			var companyGotikaStatus: Bool
+			var companyAstarteStatus: Bool
+			var companyDinazStatus: Bool
+			var companyLatvijasPropanaGazeStatus: Bool
 		}
 		struct ViewModel {
 			struct DisplayedCompanyCellItem: Equatable {
