@@ -36,7 +36,9 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
   	}
 	
   	@objc func routeToFuelTypeScene() {
-  	
+  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "fuelTypeChooseViewController") as! FuelTypeChooseListViewController
+  		navigateToScene(source: viewController!, destination: destinationVC)
   	}
   	
   	@objc func routeToLanguageChooseScene() {

@@ -46,7 +46,7 @@ enum GasType: String, Codable {
 	case type95 = "95 | Benzīns"
 	case type98 = "98 | Benzīns"
 	case typeDD = "DD | Dīzeļdegviela"
-	case typeDDPro = "DD Pro | Dīzeļdegviela"
-	case typeGas = "Gāze"
+	case typeDDPro = "DD | Pro Dīzeļdegviela"
+	case typeGas = "Auto gāze"
 }
 

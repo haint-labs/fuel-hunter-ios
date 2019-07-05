@@ -31,6 +31,7 @@ class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, Companies
 //    	worker = CompaniesChooseListWorker()
 //    	worker?.doSomeWork()
 
+		// Get selected status from worker
 		
     	let response = CompaniesChooseList.CompanyCells.Response()
     	presenter?.presentSomething(response: response)

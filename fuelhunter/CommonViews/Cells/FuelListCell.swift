@@ -47,16 +47,16 @@ class FuelListCell: UITableViewCell {
 		bgViewBottomAnchorConstraint?.isActive = true
 			
 			
-		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 9).isActive = true
-		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10+4).isActive = true
+		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 8.5).isActive = true
+		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10+3).isActive = true
 		iconImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
 		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
 		
 		
-		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9).isActive = true
+		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9.5).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6+2).isActive = true
 		
-		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9).isActive = true
+		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 9.5).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		addressBarBottomAnchorConstraint = addressesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
 		addressBarBottomAnchorConstraint?.isActive = true
