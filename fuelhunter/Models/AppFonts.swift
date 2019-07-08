@@ -68,9 +68,9 @@ struct Font {
 class Utility {
 	class func doit() {
 
-		let aab = Font(.bold, size: .size5).font
+//		let aab = Font(.bold, size: .size5).font
 
-		print("font \(aab)")
+//		print("font \(aab)")
 	}
 //	/// Logs all available fonts from iOS SDK and installed custom font
 //	class func logAllAvailableFonts() {

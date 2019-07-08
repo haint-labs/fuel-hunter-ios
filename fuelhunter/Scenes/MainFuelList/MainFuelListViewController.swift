@@ -149,8 +149,6 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		
 		baseView.addSubview(label)
 		
-		print(label)
-		
 		return baseView
 	}
 	
@@ -168,7 +166,9 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	}
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		adjustVisibilityOfShadowLines()
+		if activateShadowUpdates == true {
+			adjustVisibilityOfShadowLines()
+		}
 	}
 	
 	func adjustVisibilityOfShadowLines() {

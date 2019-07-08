@@ -89,8 +89,6 @@ class FuelListCell: UITableViewCell {
 		addressesLabel.font = Font.init(.normal, size: .size4).font
 		
 		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
-		
-		iconImageView.image = UIImage.init(named: "virshi_logo")
     }
 
 	func setAsCellType(cellType: cellBackgroundType) {

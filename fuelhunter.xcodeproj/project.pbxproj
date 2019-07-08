@@ -153,6 +153,48 @@
 		5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */; };
 		5C45BE9822CF793500FE53D6 /* LanguageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */; };
 		5C45BE9922CF793500FE53D6 /* LanguageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */; };
+		5C45BEB922D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */; };
+		5C45BEBA22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */; };
+		5C45BEBB22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */; };
+		5C45BEBC22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */; };
+		5C45BEBD22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */; };
+		5C45BEBE22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */; };
+		5C45BEBF22D26FB700FE53D6 /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */; };
+		5C45BEC022D26FB700FE53D6 /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */; };
+		5C45BEC122D26FB700FE53D6 /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */; };
+		5C45BEC222D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */; };
+		5C45BEC322D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */; };
+		5C45BEC422D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */; };
+		5C45BEC522D26FB700FE53D6 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */; };
+		5C45BEC622D26FB700FE53D6 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */; };
+		5C45BEC722D26FB700FE53D6 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */; };
+		5C45BEC822D26FB700FE53D6 /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */; };
+		5C45BEC922D26FB700FE53D6 /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */; };
+		5C45BECA22D26FB700FE53D6 /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */; };
+		5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */; };
+		5C45BECE22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */; };
+		5C45BECF22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */; };
+		5C45BED022D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BECC22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib */; };
+		5C45BED122D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BECC22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib */; };
+		5C45BED222D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BECC22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib */; };
+		5C45BED922D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BED722D2807200FE53D6 /* AboutAppTableHeaderView.swift */; };
+		5C45BEDA22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BED722D2807200FE53D6 /* AboutAppTableHeaderView.swift */; };
+		5C45BEDB22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BED722D2807200FE53D6 /* AboutAppTableHeaderView.swift */; };
+		5C45BEDC22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BED822D2807200FE53D6 /* AboutAppTableHeaderView.xib */; };
+		5C45BEDD22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BED822D2807200FE53D6 /* AboutAppTableHeaderView.xib */; };
+		5C45BEDE22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BED822D2807200FE53D6 /* AboutAppTableHeaderView.xib */; };
+		5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEDF22D31C6100FE53D6 /* NotifPhoneAnimationView.swift */; };
+		5C45BEE222D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEDF22D31C6100FE53D6 /* NotifPhoneAnimationView.swift */; };
+		5C45BEE322D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEDF22D31C6100FE53D6 /* NotifPhoneAnimationView.swift */; };
+		5C45BEE422D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */; };
+		5C45BEE522D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */; };
+		5C45BEE622D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */; };
+		5C45BEE922D3506800FE53D6 /* MapAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */; };
+		5C45BEEA22D3506800FE53D6 /* MapAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */; };
+		5C45BEEB22D3506800FE53D6 /* MapAnimationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */; };
+		5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
+		5C45BEED22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
+		5C45BEEE22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
 		5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
 		5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
@@ -238,6 +280,20 @@
 		5C45BE7F22CF723200FE53D6 /* AppLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageViewController.swift; sourceTree = "<group>"; };
 		5C45BE9222CF793500FE53D6 /* LanguageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageListCell.swift; sourceTree = "<group>"; };
 		5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageListCell.xib; sourceTree = "<group>"; };
+		5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppInteractor.swift; sourceTree = "<group>"; };
+		5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppWorker.swift; sourceTree = "<group>"; };
+		5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppPresenter.swift; sourceTree = "<group>"; };
+		5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppRouter.swift; sourceTree = "<group>"; };
+		5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppModels.swift; sourceTree = "<group>"; };
+		5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppFuelCompanyCell.swift; sourceTree = "<group>"; };
+		5C45BECC22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutAppFuelCompanyCell.xib; sourceTree = "<group>"; };
+		5C45BED722D2807200FE53D6 /* AboutAppTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppTableHeaderView.swift; sourceTree = "<group>"; };
+		5C45BED822D2807200FE53D6 /* AboutAppTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppTableHeaderView.xib; sourceTree = "<group>"; };
+		5C45BEDF22D31C6100FE53D6 /* NotifPhoneAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifPhoneAnimationView.swift; sourceTree = "<group>"; };
+		5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotifPhoneAnimationView.xib; sourceTree = "<group>"; };
+		5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAnimationView.xib; sourceTree = "<group>"; };
+		5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnimationView.swift; sourceTree = "<group>"; };
 		5C84440122A7B4BD003A8752 /* InlineAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InlineAlertView.xib; sourceTree = "<group>"; };
 		5C84440322A7B508003A8752 /* InlineAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineAlertView.swift; sourceTree = "<group>"; };
 		5C84444A22ACDF70003A8752 /* FuelListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelListCell.xib; sourceTree = "<group>"; };
@@ -329,6 +385,8 @@
 		5C07B08122A4E07400DA3E9B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				5C45BECC22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib */,
+				5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */,
 				5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */,
 				5C45BE9222CF793500FE53D6 /* LanguageListCell.swift */,
 				5C45BE4222CF56A200FE53D6 /* FuelTypeListCell.xib */,
@@ -346,6 +404,12 @@
 		5C07B08222A4E07400DA3E9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */,
+				5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */,
+				5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */,
+				5C45BEDF22D31C6100FE53D6 /* NotifPhoneAnimationView.swift */,
+				5C45BED822D2807200FE53D6 /* AboutAppTableHeaderView.xib */,
+				5C45BED722D2807200FE53D6 /* AboutAppTableHeaderView.swift */,
 				5C84440122A7B4BD003A8752 /* InlineAlertView.xib */,
 				5C84440322A7B508003A8752 /* InlineAlertView.swift */,
 			);
@@ -413,6 +477,7 @@
 		5C22F5F022C557B5000EF339 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5C45BEB222D26FB700FE53D6 /* AboutApp */,
 				5C45BE7922CF723200FE53D6 /* AppLanguage */,
 				5C45BE2822CF50DD00FE53D6 /* FuelTypeChooseList */,
 				5C45BDEB22CE079B00FE53D6 /* CompaniesChooseList */,
@@ -485,6 +550,19 @@
 				5C45BE7D22CF723200FE53D6 /* AppLanguageRouter.swift */,
 			);
 			path = AppLanguage;
+			sourceTree = "<group>";
+		};
+		5C45BEB222D26FB700FE53D6 /* AboutApp */ = {
+			isa = PBXGroup;
+			children = (
+				5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */,
+				5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */,
+				5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */,
+				5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */,
+				5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */,
+				5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */,
+			);
+			path = AboutApp;
 			sourceTree = "<group>";
 		};
 		A06D9252C43D3E2E4CB0455A /* Frameworks */ = {
@@ -630,11 +708,15 @@
 				5C45BDCC22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */,
 				5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */,
+				5C45BED022D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
+				5C45BEDC22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
 				5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */,
 				5C45BE0922CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 				5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */,
+				5C45BEE422D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5C11F083229EF4FB00EC7CEC /* Main.storyboard in Resources */,
+				5C45BEE922D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5C45BE4622CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,8 +728,12 @@
 				5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */,
 				5C45BE4722CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 				5C0240B122CA530A000ABDCB /* InlineAlertView.xib in Resources */,
+				5C45BED122D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
+				5C45BEEA22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
+				5C45BEDD22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
 				5C45BE9822CF793500FE53D6 /* LanguageListCell.xib in Resources */,
 				5C45BDCD22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
+				5C45BEE522D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
 				5C45BE0A22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 			);
@@ -660,8 +746,12 @@
 				5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */,
 				5C45BE4822CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 				5C0240B322CA530A000ABDCB /* InlineAlertView.xib in Resources */,
+				5C45BED222D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
+				5C45BEEB22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
+				5C45BEDE22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
 				5C45BE9922CF793500FE53D6 /* LanguageListCell.xib in Resources */,
 				5C45BDCE22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
+				5C45BEE622D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
 				5C45BE0B22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 			);
@@ -791,10 +881,12 @@
 				5C22F60722C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
 				5C22F62C22C55824000EF339 /* SettingsRouter.swift in Sources */,
 				5C45BE3B22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */,
+				5C45BEBF22D26FB700FE53D6 /* AboutAppWorker.swift in Sources */,
 				5CFBABF022C3A07000213D46 /* PriceWorker.swift in Sources */,
 				5C45BDF522CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
 				5C45BDFB22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
 				5C22F62922C55824000EF339 /* SettingsModels.swift in Sources */,
+				5C45BEC522D26FB700FE53D6 /* AboutAppRouter.swift in Sources */,
 				5CFBABF222C3FE0100213D46 /* PricesMemoryStore.swift in Sources */,
 				5C45BE4322CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
 				5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */,
@@ -804,10 +896,15 @@
 				5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */,
 				5C22F60122C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C45BE3822CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */,
+				5C45BEC822D26FB700FE53D6 /* AboutAppModels.swift in Sources */,
+				5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
 				5C45BE2F22CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */,
+				5C45BED922D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
 				5C45BE8F22CF723200FE53D6 /* AppLanguageViewController.swift in Sources */,
 				5C45BE3E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */,
 				5C45BE8C22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */,
+				5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5C45BE8622CF723200FE53D6 /* AppLanguageWorker.swift in Sources */,
 				5C22F63522C55824000EF339 /* SettingsPresenter.swift in Sources */,
@@ -822,11 +919,14 @@
 				5C45BE8322CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */,
 				5C22F5FE22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
 				5C45BE0622CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
+				5C45BEBC22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */,
 				5C45BE0D22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD022CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5CFBABEE22C382E400213D46 /* Price.swift in Sources */,
 				5C22F63222C55824000EF339 /* SettingsInteractor.swift in Sources */,
+				5C45BEB922D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */,
 				5C45BDF222CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
+				5C45BEC222D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,10 +941,12 @@
 				5C22F63D22C622F6000EF339 /* Price.swift in Sources */,
 				5C22F5F922C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C45BE3C22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */,
+				5C45BEC022D26FB700FE53D6 /* AboutAppWorker.swift in Sources */,
 				5C11F093229EF4FC00EC7CEC /* fuelhunterTests.swift in Sources */,
 				5C45BDF622CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
 				5C45BDFC22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
 				5C22F63922C55824000EF339 /* SettingsViewController.swift in Sources */,
+				5C45BEC622D26FB700FE53D6 /* AboutAppRouter.swift in Sources */,
 				5C22F63622C55824000EF339 /* SettingsPresenter.swift in Sources */,
 				5C45BE4422CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
 				5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */,
@@ -854,10 +956,15 @@
 				5C22F60222C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */,
 				5C45BE3922CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */,
+				5C45BEC922D26FB700FE53D6 /* AboutAppModels.swift in Sources */,
+				5C45BECE22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
 				5C45BE3022CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */,
+				5C45BEDA22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
 				5C45BE9022CF723200FE53D6 /* AppLanguageViewController.swift in Sources */,
 				5C45BE3F22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */,
 				5C45BE8D22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */,
+				5C45BEED22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5C45BEE222D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5C45BDCA22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5C45BE8722CF723200FE53D6 /* AppLanguageWorker.swift in Sources */,
 				5C22F64322C62303000EF339 /* PricesMemoryStore.swift in Sources */,
@@ -872,11 +979,14 @@
 				5C45BE8422CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */,
 				5C22F63022C55824000EF339 /* SettingsWorker.swift in Sources */,
 				5C45BE0722CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
+				5C45BEBD22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */,
 				5C45BE0E22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C22F63322C55824000EF339 /* SettingsInteractor.swift in Sources */,
 				5C22F5FC22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
+				5C45BEBA22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */,
 				5C45BDF322CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
+				5C45BEC322D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,10 +1001,12 @@
 				5C22F63E22C622F6000EF339 /* Price.swift in Sources */,
 				5C22F5FA22C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
 				5C45BE3D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */,
+				5C45BEC122D26FB700FE53D6 /* AboutAppWorker.swift in Sources */,
 				5C11F09E229EF4FC00EC7CEC /* fuelhunterUITests.swift in Sources */,
 				5C45BDF722CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
 				5C45BDFD22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
 				5C22F63A22C55824000EF339 /* SettingsViewController.swift in Sources */,
+				5C45BEC722D26FB700FE53D6 /* AboutAppRouter.swift in Sources */,
 				5C22F63722C55824000EF339 /* SettingsPresenter.swift in Sources */,
 				5C45BE4522CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
 				5C22F64022C622F9000EF339 /* AppFonts.swift in Sources */,
@@ -904,10 +1016,15 @@
 				5C22F60322C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */,
 				5C45BE3A22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */,
+				5C45BECA22D26FB700FE53D6 /* AboutAppModels.swift in Sources */,
+				5C45BECF22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
 				5C45BE3122CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */,
+				5C45BEDB22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
 				5C45BE9122CF723200FE53D6 /* AppLanguageViewController.swift in Sources */,
 				5C45BE4022CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */,
 				5C45BE8E22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */,
+				5C45BEEE22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5C45BEE322D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5C45BDCB22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5C45BE8822CF723200FE53D6 /* AppLanguageWorker.swift in Sources */,
 				5C22F64422C62304000EF339 /* PricesMemoryStore.swift in Sources */,
@@ -922,11 +1039,14 @@
 				5C45BE8522CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */,
 				5C22F63122C55824000EF339 /* SettingsWorker.swift in Sources */,
 				5C45BE0822CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
+				5C45BEBE22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */,
 				5C45BE0F22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C22F63422C55824000EF339 /* SettingsInteractor.swift in Sources */,
 				5C22F5FD22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
+				5C45BEBB22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */,
 				5C45BDF422CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
+				5C45BEC422D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
