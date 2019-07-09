@@ -54,18 +54,18 @@ class FuelListCell: UITableViewCell {
 		
 		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
-		addressesLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -12).isActive = true
+		addressesLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
 		
 		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: titleLabel.rightAnchor, constant: 6).isActive = true
 		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: addressesLabel.rightAnchor, constant: 6).isActive = true
-		priceLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -18).isActive = true
+		priceLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		priceLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor).isActive = true
 		priceLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor).isActive = true
 		
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
-		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 		
 		//TODO: Calculate width of normal price, and provide it as minimum
 		priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true

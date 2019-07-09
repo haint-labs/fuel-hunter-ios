@@ -51,21 +51,21 @@ class SettingsListCell: UITableViewCell {
 		descriptionRightAnchorConstraint = descriptionLabel.rightAnchor.constraint(equalTo: accessoryIconImageView.leftAnchor, constant: -10)
 		descriptionRightAnchorConstraint?.isActive = true
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
-		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -10).isActive = true
+		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
 		
 		
 		aSwitch.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
-		aSwitch.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+		aSwitch.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
 		
 		
 		accessoryIconImageView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		accessoryIconImageView.widthAnchor.constraint(equalToConstant: 10).isActive = true
-		accessoryIconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+		accessoryIconImageView.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
 		
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
-		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 		
 		
 		titleLabel.textColor = UIColor.init(named: "TitleColor")

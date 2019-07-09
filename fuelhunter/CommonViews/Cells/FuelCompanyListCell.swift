@@ -34,8 +34,6 @@ class FuelCompanyListCell: UITableViewCell {
 	
 	var descriptionBottomAnchorConstraint: NSLayoutConstraint?
 	
-	var switchYAnchorConstraint: NSLayoutConstraint?
-	
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,37 +51,35 @@ class FuelCompanyListCell: UITableViewCell {
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
 		bgViewTopAnchorConstraint?.isActive = true
 		bgViewBottomAnchorConstraint?.isActive = true
-		backgroundImageView.backgroundColor = .red
 		
 		iconImageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
 		iconImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
-		iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 26).isActive = true
-		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 11).isActive = true
+		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
+		iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 10).isActive = true
 		
 		
 		titleLeftImageAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
-		titleLeftCellAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25)
+		titleLeftCellAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10)
 		titleLeftImageAnchorConstraint?.isActive = true
-		titleTopAnchorConstraint = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9)
+		titleTopAnchorConstraint = titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6)
 		titleTopAnchorConstraint?.isActive = true
 		titleLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: 10).isActive = true
-		titleBottomAnchorConstraint = titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+		titleBottomAnchorConstraint = titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -12)
 		
-		descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
+		descriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		descriptionLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: -9).isActive = true
-		descriptionBottomAnchorConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
 		
 		
-		aSwitch.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -24).isActive = true
-		switchYAnchorConstraint = aSwitch.centerYAnchor.constraint(equalTo: contentView.superview!.centerYAnchor, constant: 1)
-		switchYAnchorConstraint?.isActive = true
+		aSwitch.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
+		aSwitch.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
 		
 		
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
-		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 		
 		
 		titleLabel.textColor = UIColor.init(named: "TitleColor")
@@ -111,12 +107,12 @@ class FuelCompanyListCell: UITableViewCell {
 	
 	func setDescriptionText(descriptionText: String!) {
 		if descriptionText.count == 0 {
-			self.titleTopAnchorConstraint?.constant = 10
+			self.titleTopAnchorConstraint?.constant = 8
 			self.descriptionLabel.text = ""
 			self.titleBottomAnchorConstraint?.isActive = true
 			self.descriptionBottomAnchorConstraint?.isActive = false
 		} else {
-			self.titleTopAnchorConstraint?.constant = 7
+			self.titleTopAnchorConstraint?.constant = 6
 			self.descriptionLabel.text = descriptionText
 			self.titleBottomAnchorConstraint?.isActive = false
 			self.descriptionBottomAnchorConstraint?.isActive = true
