@@ -62,7 +62,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
     	self.view.backgroundColor = .white
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.separatorColor = .clear
+		tableView.separatorStyle = .none
     	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 10, right: 0)
     	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -94,15 +94,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 			cell.titleLabel.text = aData.title
 			cell.descriptionLabel.text = aData.description
 			cell.aSwitch.isOn = aData.toggleStatus
-			
-			cell.aSwitch.isHidden = true
-			cell.accessoryIconImageView.isHidden = true
-			
-			if aData.shouldShowToggle {
-				cell.aSwitch.isHidden = false
-			} else {
-				cell.accessoryIconImageView.isHidden = false
-			}
+			cell.setSwitch(asVisible: aData.shouldShowToggle)
 			
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)

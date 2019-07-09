@@ -18,10 +18,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="591" height="211.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_bg" translatesAutoresizingMaskIntoConstraints="NO" id="IpK-MR-XfM">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUA-kO-mRJ" userLabel="cell_bg">
                         <rect key="frame" x="20" y="21" width="551" height="168"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <rect key="contentStretch" x="0.29999999999999999" y="0.20000000000000001" width="0.65000000000000002" height="0.69999999999999996"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iMu-pw-bTh">
                         <rect key="frame" x="42" y="43" width="33" height="33"/>
@@ -52,7 +51,7 @@ Lugažu 6, Brīvības iela 82a</string>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQ9-d6-3uf" userLabel="Top Separator View">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQ9-d6-3uf" userLabel="Separator View">
                         <rect key="frame" x="92" y="28" width="479" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,16 +60,13 @@ Lugažu 6, Brīvības iela 82a</string>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressesLabel" destination="qtW-Mw-vgv" id="jPJ-oH-FpE"/>
-                <outlet property="backgroundImageView" destination="IpK-MR-XfM" id="Yoz-1j-eLA"/>
+                <outlet property="backgroundImageView" destination="KUA-kO-mRJ" id="Ib2-Li-iRS"/>
                 <outlet property="iconImageView" destination="iMu-pw-bTh" id="nZd-1L-s3U"/>
                 <outlet property="priceLabel" destination="hf6-5o-FvF" id="l5B-Yh-VBt"/>
+                <outlet property="separatorView" destination="RQ9-d6-3uf" id="Mkm-2O-OKE"/>
                 <outlet property="titleLabel" destination="lg1-Ui-ago" id="rNx-sg-pya"/>
-                <outlet property="topSeparatorView" destination="RQ9-d6-3uf" id="jZw-ML-IT2"/>
             </connections>
             <point key="canvasLocation" x="-612.31884057971024" y="-406.47321428571428"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="cell_bg" width="30" height="31"/>
-    </resources>
 </document>

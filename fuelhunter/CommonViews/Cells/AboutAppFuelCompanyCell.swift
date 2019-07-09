@@ -16,7 +16,8 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
-	@IBOutlet weak var topSeparatorView: UIView!
+
+	@IBOutlet weak var separatorView: UIView!
 	
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	
@@ -33,7 +34,7 @@ class AboutAppFuelCompanyCell: UITableViewCell {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
 
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
@@ -59,10 +60,10 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 		descriptionBottomAnchorConstraint = descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
 		descriptionBottomAnchorConstraint?.isActive = true
 		
-		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		topSeparatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1).isActive = true
-		topSeparatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13).isActive = true
-		topSeparatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12.5).isActive = true
+		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		
 		
 		titleLabel.textColor = UIColor.init(named: "TitleColor")
@@ -71,7 +72,7 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
 		
-		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
+		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
 	func setAsCellType(cellType: cellBackgroundType) {
@@ -80,25 +81,25 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 				self.bgViewTopAnchorConstraint?.constant = 4
 				self.bgViewBottomAnchorConstraint?.constant = 20
 				self.descriptionBottomAnchorConstraint?.constant = -6.5
-				self.topSeparatorView.isHidden = true
+				self.separatorView.isHidden = true
 				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.descriptionBottomAnchorConstraint?.constant = -11
-				self.topSeparatorView.isHidden = false
+				self.separatorView.isHidden = false
 				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 20
 				self.descriptionBottomAnchorConstraint?.constant = -6
-				self.topSeparatorView.isHidden = false
+				self.separatorView.isHidden = false
 				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.descriptionBottomAnchorConstraint?.constant = -11
-				self.topSeparatorView.isHidden = true
+				self.separatorView.isHidden = true
 			}
 	}
 

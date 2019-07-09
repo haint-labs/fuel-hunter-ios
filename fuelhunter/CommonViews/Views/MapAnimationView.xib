@@ -38,7 +38,7 @@
         </view>
     </objects>
     <resources>
-        <image name="big_map_preview" width="733" height="832"/>
+        <image name="big_map_preview" width="763" height="1173"/>
         <image name="clear_map_preview" width="256" height="169.5"/>
     </resources>
 </document>

@@ -19,10 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="434" height="140.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_bg" translatesAutoresizingMaskIntoConstraints="NO" id="TOI-Dz-FMI">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOI-Dz-FMI">
                         <rect key="frame" x="15" y="39" width="404" height="83"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <rect key="contentStretch" x="0.29999999999999999" y="0.20000000000000001" width="0.65000000000000002" height="0.69999999999999996"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DD | Dīzeļdegviela" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEH-Cz-tsU" userLabel="Title">
                         <rect key="frame" x="30" y="68" width="286" height="21"/>
@@ -35,7 +34,7 @@
                         <rect key="frame" x="348" y="68" width="51" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </switch>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1f1-cv-rnu" userLabel="Top Separator View">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1f1-cv-rnu" userLabel="Separator View">
                         <rect key="frame" x="20" y="19" width="414" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,13 +45,10 @@
             <connections>
                 <outlet property="aSwitch" destination="vRm-FP-Fu1" id="YwW-EH-ep6"/>
                 <outlet property="backgroundImageView" destination="TOI-Dz-FMI" id="Za9-Yn-Xxi"/>
+                <outlet property="separatorView" destination="1f1-cv-rnu" id="zpW-EA-OnH"/>
                 <outlet property="titleLabel" destination="VEH-Cz-tsU" id="kAV-T4-lb9"/>
-                <outlet property="topSeparatorView" destination="1f1-cv-rnu" id="Jx3-KV-SFz"/>
             </connections>
             <point key="canvasLocation" x="-173.91304347826087" y="69.977678571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="cell_bg" width="30" height="31"/>
-    </resources>
 </document>

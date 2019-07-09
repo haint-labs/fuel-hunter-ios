@@ -15,8 +15,9 @@ class LanguageListCell: UITableViewCell {
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
-	@IBOutlet weak var topSeparatorView: UIView!
 	@IBOutlet weak var checkBoxImageView: UIImageView!
+	
+	@IBOutlet weak var separatorView: UIView!
 	
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	
@@ -33,7 +34,7 @@ class LanguageListCell: UITableViewCell {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
 		checkBoxImageView.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -64,10 +65,10 @@ class LanguageListCell: UITableViewCell {
 		checkboxYCenterAnchorConstraint?.isActive = true
 		
 		
-		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		topSeparatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1).isActive = true
-		topSeparatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13).isActive = true
-		topSeparatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12.5).isActive = true
+		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		
 		
 		titleLabel.textColor = UIColor.init(named: "TitleColor")
@@ -76,7 +77,7 @@ class LanguageListCell: UITableViewCell {
 		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
 		
-		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
+		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
 	func setAsCellType(cellType: cellBackgroundType) {
@@ -85,28 +86,28 @@ class LanguageListCell: UITableViewCell {
 				self.bgViewTopAnchorConstraint?.constant = 4
 				self.bgViewBottomAnchorConstraint?.constant = 20
 				self.descriptionBottomAnchorConstraint?.constant = -6.5
-				self.topSeparatorView.isHidden = true
+				self.separatorView.isHidden = true
 				self.checkboxYCenterAnchorConstraint?.constant = 1
 				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.descriptionBottomAnchorConstraint?.constant = -11
-				self.topSeparatorView.isHidden = false
+				self.separatorView.isHidden = false
 				self.checkboxYCenterAnchorConstraint?.constant = -1
 				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 20
 				self.descriptionBottomAnchorConstraint?.constant = -6
-				self.topSeparatorView.isHidden = false
+				self.separatorView.isHidden = false
 				self.checkboxYCenterAnchorConstraint?.constant = 1
 				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.descriptionBottomAnchorConstraint?.constant = -11
-				self.topSeparatorView.isHidden = true
+				self.separatorView.isHidden = true
 				self.checkboxYCenterAnchorConstraint?.constant = -1
 		}
 	}

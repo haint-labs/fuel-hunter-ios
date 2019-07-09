@@ -64,7 +64,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
     	self.view.backgroundColor = .white
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.separatorColor = .clear
+		tableView.separatorStyle = .none
     	tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
     	let nib = UINib.init(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -86,7 +86,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 		label.numberOfLines = 0
 		label.textAlignment = .center
 		label.font = Font.init(.normal, size: .size2).font
-		label.textColor = UIColor.init(red: 66/255.0, green: 93/255.0, blue: 146/255.0, alpha: 1.0)
+		label.textColor = UIColor.init(named: "TitleColor")
 		
 		let text = "Atzīmē kuras uzpildes kompānijas vēlies redzēt sarakstā"
 		let height = text.height(withConstrainedWidth: self.view.frame.width-26, font: Font.init(.normal, size: .size2).font)

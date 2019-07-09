@@ -19,10 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="466" height="113.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_bg" translatesAutoresizingMaskIntoConstraints="NO" id="NyE-oo-KtN">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NyE-oo-KtN">
                         <rect key="frame" x="15" y="18" width="439" height="83"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <rect key="contentStretch" x="0.29999999999999999" y="0.20000000000000001" width="0.65000000000000002" height="0.69999999999999996"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NESTE" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Uo-q5-aUk" userLabel="Title">
                         <rect key="frame" x="89" y="30" width="286" height="21"/>
@@ -42,7 +41,7 @@
                         <rect key="frame" x="383" y="41" width="51" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </switch>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olg-Xb-RO1" userLabel="Top Separator View">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olg-Xb-RO1" userLabel="Separator View">
                         <rect key="frame" x="-6" y="8" width="479" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,13 +58,10 @@
                 <outlet property="backgroundImageView" destination="NyE-oo-KtN" id="EOh-PD-pNs"/>
                 <outlet property="descriptionLabel" destination="s00-eI-pMs" id="H8a-o1-b5g"/>
                 <outlet property="iconImageView" destination="F5S-oL-ffq" id="r8t-KU-bVT"/>
+                <outlet property="separatorView" destination="olg-Xb-RO1" id="eor-xI-bz2"/>
                 <outlet property="titleLabel" destination="6Uo-q5-aUk" id="Kba-Wp-jFR"/>
-                <outlet property="topSeparatorView" destination="olg-Xb-RO1" id="97b-eo-m8p"/>
             </connections>
             <point key="canvasLocation" x="130.43478260869566" y="121.20535714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="cell_bg" width="30" height="31"/>
-    </resources>
 </document>

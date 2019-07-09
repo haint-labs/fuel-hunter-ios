@@ -67,10 +67,10 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		self.navigationController!.navigationBar.isTranslucent = true
 
     	self.view.backgroundColor = .white
-
+		tableView.separatorStyle = .none
     	tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.separatorColor = .clear
+	
     	tableView.contentInset = UIEdgeInsets.init(top: -6, left: 0, bottom: -9, right: 0)
     	let nib = UINib.init(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
@@ -141,11 +141,11 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		let label: UILabel = UILabel()
 		label.text = aData.gasType.rawValue
 		label.font = Font.init(.medium, size: .size3).font
-		label.textColor = UIColor.init(red: 66/255.0, green: 93/255.0, blue: 146/255.0, alpha: 1.0)
+		label.textColor = UIColor.init(named: "TitleColor")
 		
-		let height = aData.gasType.rawValue.height(withConstrainedWidth: self.view.frame.width-26, font: Font.init(.medium, size: .size3).font)
+		let height = aData.gasType.rawValue.height(withConstrainedWidth: self.view.frame.width-32, font: Font.init(.medium, size: .size3).font)
 		
-		label.frame = CGRect.init(x: 12, y: 20, width: self.view.frame.width-26, height: height+6)
+		label.frame = CGRect.init(x: 16, y: 20, width: self.view.frame.width-32, height: height+6)
 		
 		baseView.addSubview(label)
 		
@@ -155,7 +155,7 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		
 		let aData = self.data[section].first!
-		let height = aData.gasType.rawValue.height(withConstrainedWidth: self.view.frame.width-26, font: Font.init(.medium, size: .size3).font)
+		let height = aData.gasType.rawValue.height(withConstrainedWidth: self.view.frame.width-32, font: Font.init(.medium, size: .size3).font)
 		
 		return height + 26
 	}

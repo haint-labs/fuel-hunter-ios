@@ -19,10 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="457" height="132.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_bg" translatesAutoresizingMaskIntoConstraints="NO" id="4EB-5j-Uqm">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4EB-5j-Uqm">
                         <rect key="frame" x="14.5" y="34.5" width="439" height="83"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <rect key="contentStretch" x="0.29999999999999999" y="0.20000000000000001" width="0.65000000000000002" height="0.69999999999999996"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaU-r9-ZjS">
                         <rect key="frame" x="28" y="40" width="56" height="57"/>
@@ -42,7 +41,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o4k-UC-q1w" userLabel="Top Separator View">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o4k-UC-q1w" userLabel="Separator View">
                         <rect key="frame" x="16" y="19" width="437" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -54,13 +53,10 @@
                 <outlet property="backgroundImageView" destination="4EB-5j-Uqm" id="1Gl-F7-Myy"/>
                 <outlet property="descriptionLabel" destination="2co-Nf-mSX" id="1gw-oK-lON"/>
                 <outlet property="iconImageView" destination="EaU-r9-ZjS" id="0xl-dA-exj"/>
+                <outlet property="separatorView" destination="o4k-UC-q1w" id="f7T-bi-LJc"/>
                 <outlet property="titleLabel" destination="Czo-qu-EmI" id="QBE-QA-NwU"/>
-                <outlet property="topSeparatorView" destination="o4k-UC-q1w" id="RDZ-VM-dQw"/>
             </connections>
             <point key="canvasLocation" x="128.2608695652174" y="63.950892857142854"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="cell_bg" width="30" height="31"/>
-    </resources>
 </document>

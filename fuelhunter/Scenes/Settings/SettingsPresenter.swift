@@ -34,7 +34,8 @@ class SettingsPresenter: SettingsPresentationLogic {
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .gpsCell, title: "GPS", description: "Izmantot GPS, lai attēlotu lētākās cenas Tavas lokācijas tuvumā", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "Paziņojumi", description: "Saņemt paziņojumu telefonā, kad samazinās degvielas cena par 1 centu", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "Aplikācijas valoda", description: "Izmaini aplikācijas valodu", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)]
+			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+			]
   	
   	
     	let viewModel = Settings.SettingsList.ViewModel(displayedSettingsCells: array)

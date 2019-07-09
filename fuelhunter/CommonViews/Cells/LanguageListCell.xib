@@ -19,10 +19,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="439" height="105.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Ngz-Vu-jwy">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ngz-Vu-jwy">
                         <rect key="frame" x="0.0" y="11" width="439" height="83"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <rect key="contentStretch" x="0.29999999999999999" y="0.20000000000000001" width="0.65000000000000002" height="0.69999999999999996"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Latviešu" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOH-Ty-MPW" userLabel="Description">
                         <rect key="frame" x="20" y="55" width="286" height="51"/>
@@ -31,7 +30,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVM-kH-dw0" userLabel="Top Separator View">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVM-kH-dw0" userLabel="Separator View">
                         <rect key="frame" x="-20" y="10" width="479" height="7"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -54,14 +53,13 @@
                 <outlet property="backgroundImageView" destination="Ngz-Vu-jwy" id="vjh-nA-yok"/>
                 <outlet property="checkBoxImageView" destination="sFc-lg-ABZ" id="sNn-Sv-ZEE"/>
                 <outlet property="descriptionLabel" destination="bOH-Ty-MPW" id="fVE-OK-by4"/>
+                <outlet property="separatorView" destination="YVM-kH-dw0" id="tG0-PJ-V9M"/>
                 <outlet property="titleLabel" destination="P1E-zA-Jd3" id="2g8-gw-9NF"/>
-                <outlet property="topSeparatorView" destination="YVM-kH-dw0" id="lnm-LQ-Dzd"/>
             </connections>
             <point key="canvasLocation" x="218.11594202898553" y="124.55357142857142"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cell_bg" width="30" height="31"/>
         <image name="check_icon" width="16" height="12"/>
     </resources>
 </document>

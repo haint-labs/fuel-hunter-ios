@@ -18,8 +18,8 @@ class FuelCompanyListCell: UITableViewCell {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var aSwitch: UISwitch!
-	@IBOutlet weak var topSeparatorView: UIView!
 	
+	@IBOutlet weak var separatorView: UIView!
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
@@ -45,20 +45,20 @@ class FuelCompanyListCell: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         aSwitch.translatesAutoresizingMaskIntoConstraints = false
-        topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
 
-		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
-		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
+		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
 		bgViewTopAnchorConstraint?.isActive = true
 		bgViewBottomAnchorConstraint?.isActive = true
-		
+		backgroundImageView.backgroundColor = .red
 		
 		iconImageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
 		iconImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
-		iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 25).isActive = true
-		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 13).isActive = true
+		iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 26).isActive = true
+		iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 11).isActive = true
 		
 		
 		titleLeftImageAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
@@ -80,10 +80,10 @@ class FuelCompanyListCell: UITableViewCell {
 		switchYAnchorConstraint?.isActive = true
 		
 		
-		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		topSeparatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1).isActive = true
-		topSeparatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13).isActive = true
-		topSeparatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12.5).isActive = true
+		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		
 		
 		titleLabel.textColor = UIColor.init(named: "TitleColor")
@@ -92,7 +92,7 @@ class FuelCompanyListCell: UITableViewCell {
 		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
 		
-		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
+		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 
 	func setIconImageFromImageName(imageName: String!) {
@@ -111,12 +111,12 @@ class FuelCompanyListCell: UITableViewCell {
 	
 	func setDescriptionText(descriptionText: String!) {
 		if descriptionText.count == 0 {
-			self.titleTopAnchorConstraint?.constant = 12
+			self.titleTopAnchorConstraint?.constant = 10
 			self.descriptionLabel.text = ""
 			self.titleBottomAnchorConstraint?.isActive = true
 			self.descriptionBottomAnchorConstraint?.isActive = false
 		} else {
-			self.titleTopAnchorConstraint?.constant = 9
+			self.titleTopAnchorConstraint?.constant = 7
 			self.descriptionLabel.text = descriptionText
 			self.titleBottomAnchorConstraint?.isActive = false
 			self.descriptionBottomAnchorConstraint?.isActive = true
@@ -126,36 +126,28 @@ class FuelCompanyListCell: UITableViewCell {
 	func setAsCellType(cellType: cellBackgroundType) {
 		switch cellType {
 			case .top:
-				self.bgViewTopAnchorConstraint?.constant = 4
-				self.bgViewBottomAnchorConstraint?.constant = 20
-				self.titleBottomAnchorConstraint?.constant = -8
-				self.descriptionBottomAnchorConstraint?.constant = -6.5
-				self.topSeparatorView.isHidden = true
-				self.switchYAnchorConstraint?.constant = 1
+				self.bgViewTopAnchorConstraint?.constant = 5
+				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.separatorView.isHidden = false
+				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
 				break
 			case .bottom:
-				self.bgViewTopAnchorConstraint?.constant = -20
-				self.bgViewBottomAnchorConstraint?.constant = 0
-				self.titleBottomAnchorConstraint?.constant = -15
-				self.descriptionBottomAnchorConstraint?.constant = -13
-				self.topSeparatorView.isHidden = false
-				self.switchYAnchorConstraint?.constant = -1
+				self.bgViewTopAnchorConstraint?.constant = 0
+				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.separatorView.isHidden = true
+				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
 				break
 			case .middle:
-				self.bgViewTopAnchorConstraint?.constant = -20
-				self.bgViewBottomAnchorConstraint?.constant = 20
-				self.titleBottomAnchorConstraint?.constant = -10
-				self.descriptionBottomAnchorConstraint?.constant = -10
-				self.topSeparatorView.isHidden = false
-				self.switchYAnchorConstraint?.constant = 1
+				self.bgViewTopAnchorConstraint?.constant = 0
+				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.separatorView.isHidden = false
+				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
 				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = 0
-				self.titleBottomAnchorConstraint?.constant = -13
-				self.descriptionBottomAnchorConstraint?.constant = -13
-				self.topSeparatorView.isHidden = true
-				self.switchYAnchorConstraint?.constant = -1
+				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.separatorView.isHidden = true
+				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
 		}
 	}
 

@@ -63,7 +63,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, UITa
     	self.view.backgroundColor = .white
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.separatorColor = .clear
+		tableView.separatorStyle = .none
     	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 10, right: 0)
     	let nib = UINib.init(nibName: "LanguageListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")

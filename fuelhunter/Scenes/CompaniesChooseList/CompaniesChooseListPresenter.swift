@@ -24,17 +24,19 @@ class CompaniesChooseListPresenter: CompaniesChooseListPresentationLogic {
   	func presentSomething(response:  CompaniesChooseList.CompanyCells.Response) {
   		
 		let array =  [
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Lētākā", description: "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Latvijā ir lētākā degviela attiecīgajā brīdī", imageName: "", toggleStatus: response.companyCheapestStatus),
+			
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Neste", description: "", imageName: "neste_tiny_logo", toggleStatus: response.companyNesteStatus),
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Circle K", description: "", imageName: "circle_k_tiny_logo", toggleStatus: response.companyCircleKStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Kool", description: "", imageName: "kool_tiny_logo", toggleStatus: response.companyKoolStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Nafta", description: "", imageName: "ln_tiny_logo", toggleStatus: response.companyLatvijasNaftaStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Viada", description: "", imageName: "viada_tiny_logo", toggleStatus: response.companyViadaStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Virši", description: "", imageName: "virshi_tiny_logo", toggleStatus: response.companyVirsiStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Gotika Auto", description: "", imageName: "gotika_tiny_logo", toggleStatus: response.companyGotikaStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Astarte", description: "", imageName: "astarte_tiny_logo", toggleStatus: response.companyAstarteStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Dinaz", description: "", imageName: "dinaz_tiny_logo", toggleStatus: response.companyDinazStatus),
-			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Propāna Gāze", description: "", imageName: "lpg_tiny_logo", toggleStatus: response.companyLatvijasPropanaGazeStatus)
+			
+			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Lētākā", description: "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Latvijā ir lētākā degviela attiecīgajā brīdī", imageName: "", toggleStatus: response.companyCheapestStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Kool", description: "", imageName: "kool_tiny_logo", toggleStatus: response.companyKoolStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Nafta", description: "", imageName: "ln_tiny_logo", toggleStatus: response.companyLatvijasNaftaStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Viada", description: "", imageName: "viada_tiny_logo", toggleStatus: response.companyViadaStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Virši", description: "", imageName: "virshi_tiny_logo", toggleStatus: response.companyVirsiStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Gotika Auto", description: "", imageName: "gotika_tiny_logo", toggleStatus: response.companyGotikaStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Astarte", description: "", imageName: "astarte_tiny_logo", toggleStatus: response.companyAstarteStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Dinaz", description: "", imageName: "dinaz_tiny_logo", toggleStatus: response.companyDinazStatus),
+//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Propāna Gāze", description: "", imageName: "lpg_tiny_logo", toggleStatus: response.companyLatvijasPropanaGazeStatus)
 			]
   	
   	

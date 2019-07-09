@@ -15,7 +15,8 @@ class FuelTypeListCell: UITableViewCell {
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var aSwitch: UISwitch!
-	@IBOutlet weak var topSeparatorView: UIView!
+	
+	@IBOutlet weak var separatorView: UIView!
 	
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	
@@ -32,7 +33,7 @@ class FuelTypeListCell: UITableViewCell {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		aSwitch.translatesAutoresizingMaskIntoConstraints = false
-        topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
 
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
@@ -53,16 +54,16 @@ class FuelTypeListCell: UITableViewCell {
 		switchYAnchorConstraint?.isActive = true
 		
 		
-		topSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-		topSeparatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 1).isActive = true
-		topSeparatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -13).isActive = true
-		topSeparatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12.5).isActive = true
+		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+		separatorView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1).isActive = true
+		separatorView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+		separatorView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		
 		
 		titleLabel.textColor = UIColor.init(named: "TitleColor")
 		titleLabel.font = Font.init(.medium, size: .size2).font
 		
-		topSeparatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
+		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
 	func setAsCellType(cellType: cellBackgroundType) {
@@ -71,28 +72,28 @@ class FuelTypeListCell: UITableViewCell {
 				self.bgViewTopAnchorConstraint?.constant = 4
 				self.bgViewBottomAnchorConstraint?.constant = 20
 				self.titleBottomAnchorConstraint?.constant = -8
-				self.topSeparatorView.isHidden = true
+				self.separatorView.isHidden = true
 				self.switchYAnchorConstraint?.constant = 1
 				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.titleBottomAnchorConstraint?.constant = -15
-				self.topSeparatorView.isHidden = false
+				self.separatorView.isHidden = false
 				self.switchYAnchorConstraint?.constant = -1
 				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = -20
 				self.bgViewBottomAnchorConstraint?.constant = 20
 				self.titleBottomAnchorConstraint?.constant = -10
-				self.topSeparatorView.isHidden = false
+				self.separatorView.isHidden = false
 				self.switchYAnchorConstraint?.constant = 1
 				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.titleBottomAnchorConstraint?.constant = -13
-				self.topSeparatorView.isHidden = true
+				self.separatorView.isHidden = true
 				self.switchYAnchorConstraint?.constant = -1
 		}
 	}
