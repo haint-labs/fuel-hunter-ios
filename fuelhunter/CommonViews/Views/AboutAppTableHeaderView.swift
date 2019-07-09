@@ -11,17 +11,11 @@ import UIKit
 class AboutAppTableHeaderView: UIView {
 	
 	@IBOutlet weak var baseView: UIView!
-	
 	@IBOutlet weak var mapPreviewView: MapAnimationView!
-	
 	@IBOutlet weak var mapLabel: UILabel!
-	
 	@IBOutlet weak var notifPhoneAnimationView: NotifPhoneAnimationView!
-	
 	@IBOutlet weak var notifLabel: UILabel!
-	
 	@IBOutlet weak var separatorView: UIView!
-	
 	@IBOutlet weak var descriptionLabel: UILabel!
 	
 	override init(frame: CGRect) {
@@ -50,7 +44,6 @@ class AboutAppTableHeaderView: UIView {
 		
 		mapPreviewView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 		mapPreviewView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-
 		
 		mapLabel.topAnchor.constraint(equalTo: mapPreviewView.bottomAnchor, constant: 10).isActive = true
 		mapLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16).isActive = true

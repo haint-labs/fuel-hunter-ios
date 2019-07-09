@@ -59,8 +59,8 @@ class NotifPhoneAnimationView: UIView {
 
 		topImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 		
-		notifImageView.alpha = 0
-		activeBgImageView.alpha = 0
+		notifImageView.alpha = 1
+		activeBgImageView.alpha = 1
 		
 		self.layoutIfNeeded()
   	}
@@ -68,7 +68,7 @@ class NotifPhoneAnimationView: UIView {
 	//MARK: functions for animating
 	
 	func startAnimating() {
-		revealNotif()
+		hideNotif()
 	}
 	
 	func shakeAnimation() {

@@ -34,23 +34,32 @@
         "mode" : "9-part",
         "center" : {
           "mode" : "tile",
-          "width" : 2,
+          "width" : 1,
           "height" : 1
         },
         "cap-insets" : {
           "bottom" : 45,
           "top" : 44,
-          "right" : 45,
-          "left" : 42
+          "right" : 43,
+          "left" : 45
         }
       },
       "idiom" : "universal",
       "filename" : "cell_bg@3x.png",
+      "alignment-insets" : {
+        "top" : 15,
+        "left" : 15,
+        "bottom" : 0,
+        "right" : 0
+      },
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "auto-scaling" : "auto"
   }
 }

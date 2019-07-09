@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="455" height="409"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map_preview" translatesAutoresizingMaskIntoConstraints="NO" id="QgB-MX-vVH" userLabel="MapImageView">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="big_map_preview" translatesAutoresizingMaskIntoConstraints="NO" id="QgB-MX-vVH" userLabel="MapImageView">
                     <rect key="frame" x="73" y="20" width="352" height="310"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -38,7 +38,7 @@
         </view>
     </objects>
     <resources>
+        <image name="big_map_preview" width="733" height="832"/>
         <image name="clear_map_preview" width="256" height="169.5"/>
-        <image name="map_preview" width="500" height="527"/>
     </resources>
 </document>

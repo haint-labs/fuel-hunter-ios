@@ -38,7 +38,7 @@ class FuelListCell: UITableViewCell {
         addressesLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
-
+//backgroundImageView.backgroundColor = .red
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)

@@ -36,9 +36,9 @@ class MapAnimationView: UIView {
 		mapImageView.translatesAutoresizingMaskIntoConstraints = false
 		topImageView.translatesAutoresizingMaskIntoConstraints = false
 		
-		mapImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: -100).isActive = true
+		mapImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: -250).isActive = true
 		mapImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-		mapImageView.widthAnchor.constraint(equalToConstant: (topImageView.image?.size.width)!+60).isActive = true
+		mapImageView.widthAnchor.constraint(equalToConstant: (topImageView.image?.size.width)!+250).isActive = true
 		mapImageView.heightAnchor.constraint(equalTo: mapImageView.widthAnchor).isActive = true
 
 		topImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -46,7 +46,7 @@ class MapAnimationView: UIView {
 		topImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
 
 		topImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		self.backgroundColor = .red
+		
 		self.layoutIfNeeded()
 		self.clipsToBounds = true
   	}
@@ -54,12 +54,15 @@ class MapAnimationView: UIView {
 	//MARK: functions for animating
 	
 	func startAnimating() {
-		firstMove()
+		self.mapImageView.transform = CGAffineTransform(translationX: -20, y: 0)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+			self.firstMove()
+		}
 	}
 	
 	func firstMove() {
-		UIView.animate(withDuration: 1.5, delay: 0.5, options: [], animations: {
-			self.mapImageView.transform = CGAffineTransform(translationX: 15, y: 30)
+		UIView.animate(withDuration: 1.6, delay: 0.7, options: [], animations: {
+			self.mapImageView.transform = CGAffineTransform(translationX: 45, y: 130)
 		}, completion: { (finished: Bool) in 
 			if finished {
 				self.secondMove()
@@ -68,8 +71,8 @@ class MapAnimationView: UIView {
 	}
 	
 	func secondMove() {
-		UIView.animate(withDuration: 1.5, delay: 0.5, options: [], animations: {
-			self.mapImageView.transform = CGAffineTransform(translationX: -20, y: 40)
+		UIView.animate(withDuration: 1.6, delay: 0.7, options: [], animations: {
+			self.mapImageView.transform = CGAffineTransform(translationX: -30, y: 250)
 		}, completion: { (finished: Bool) in 
 			if finished {
 				self.thirdMove()
@@ -78,8 +81,8 @@ class MapAnimationView: UIView {
 	}
 	
 	func thirdMove() {
-		UIView.animate(withDuration: 1.5, delay: 0.5, options: [], animations: {
-			self.mapImageView.transform = .identity
+		UIView.animate(withDuration: 1.8, delay: 0.7, options: [], animations: {
+			self.mapImageView.transform = CGAffineTransform(translationX: -20, y: 0)
 		}, completion: { (finished: Bool) in 
 			if finished {
 				self.firstMove()

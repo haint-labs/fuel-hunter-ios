@@ -68,6 +68,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
     	getSettingsCellsData()
+    	
   	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -151,9 +152,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 	}
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
+//		if activateShadowUpdates == true {
 			adjustVisibilityOfShadowLines()
-		}
+//		}
 	}
 	
 	func adjustVisibilityOfShadowLines() {
@@ -178,8 +179,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
   		data = viewModel.displayedSettingsCells
     	tableView.reloadData()
-		tableView.layoutSubviews()
-		
+		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines()
   	}
 }
