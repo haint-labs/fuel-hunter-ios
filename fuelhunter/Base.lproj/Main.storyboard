@@ -68,7 +68,7 @@
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="oG0-kZ-X8g">
-                                <rect key="frame" x="0.0" y="144" width="414" height="3"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="Dlh-dc-HFU"/>
@@ -97,7 +97,7 @@
                             <constraint firstItem="O7k-ul-qbH" firstAttribute="centerY" secondItem="Pb3-TT-K6l" secondAttribute="centerY" id="A0o-6A-nj9"/>
                             <constraint firstItem="oG0-kZ-X8g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CXN-P9-Elq"/>
                             <constraint firstItem="UVT-SI-nMw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="G6M-Oj-buF"/>
-                            <constraint firstItem="oG0-kZ-X8g" firstAttribute="top" secondItem="Aif-Xo-hQj" secondAttribute="top" id="HPt-Hj-goW"/>
+                            <constraint firstItem="oG0-kZ-X8g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HPt-Hj-goW"/>
                             <constraint firstItem="io6-8W-LGc" firstAttribute="centerY" secondItem="Phf-pn-7Jh" secondAttribute="centerY" id="LFh-oV-GrJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oG0-kZ-X8g" secondAttribute="trailing" id="Rr0-Ed-mc8"/>
                             <constraint firstItem="Phf-pn-7Jh" firstAttribute="top" secondItem="Pb3-TT-K6l" secondAttribute="bottom" constant="15" id="ThK-XB-Qev"/>
