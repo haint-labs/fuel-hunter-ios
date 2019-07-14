@@ -14,9 +14,10 @@ import UIKit
 
 protocol SettingsDisplayLogic: class {
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel)
+  	func updateData()
 }
 
-class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableViewDelegate, UITableViewDataSource, SettingsCellSwitchLogic {
   	var interactor: SettingsBusinessLogic?
   	var router: (NSObjectProtocol & SettingsRoutingLogic & SettingsDataPassing)?
   	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
@@ -37,7 +38,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
     	super.init(coder: aDecoder)
     	setup()
   	}
-
+	
   	// MARK: Setup
 
   	private func setup() {
@@ -49,6 +50,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 		viewController.router = router
 		interactor.presenter = presenter
 		presenter.viewController = viewController
+		presenter.router = router
 		router.viewController = viewController
 		router.dataStore = interactor
   	}
@@ -91,11 +93,11 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 		
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
+			cell.controller = self
 			cell.titleLabel.text = aData.title
 			cell.descriptionLabel.text = aData.description
 			cell.aSwitch.isOn = aData.toggleStatus
 			cell.setSwitch(asVisible: aData.shouldShowToggle)
-			
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
 			} else {
@@ -115,7 +117,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 	}
 	
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-	
 		return 0
 	}
 
@@ -144,9 +145,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 	}
 
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//		if activateShadowUpdates == true {
+		if activateShadowUpdates == true {
 			adjustVisibilityOfShadowLines()
-//		}
+		}
 	}
 	
 	func adjustVisibilityOfShadowLines() {
@@ -161,8 +162,24 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 		tableViewBottomShadow.alpha = alfa2
 	}
 	
+	// MARK: SettingsCellSwitchLogic 
+	func switchWasPressedOnTableViewCell(cell: UITableViewCell) {
+		let indexPath = tableView.indexPath(for: cell)
+		let aData = self.data[indexPath!.row]
+		
+		if aData.settingsListCellType == .gpsCell {
+			interactor?.userPressedOnGpsSwitch()
+		}
+		else if aData.settingsListCellType == .pushNotifCell {
+			interactor?.userPressedOnNotifSwitch()
+		}
+	}
   	// MARK: Do something
   	
+	func updateData() {
+		getSettingsCellsData()
+	}
+	
   	func getSettingsCellsData() {
     	let request = Settings.SettingsList.Request()
     	interactor?.getSettingsCellsData(request: request)

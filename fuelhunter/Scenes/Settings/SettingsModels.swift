@@ -24,6 +24,16 @@ enum Settings {
 		case aboutAppCell
 	}
 	
+	enum PushNotif {
+		struct Request {
+		}
+		struct Response {
+			let storedNotifCentsCount: Int
+		}
+		struct ViewModel {
+		}
+	}
+	
 	enum SettingsList {
 		struct Request {
 		}
@@ -32,6 +42,7 @@ enum Settings {
 			let fuelTypeNames: String
 			let gpsIsEnabledStatus: Bool
 			let pushNotifIsEnabledStatus: Bool
+			let notifCentsValue: Int
 		}
 		struct ViewModel {
 			struct DisplayedSettingsCell: Equatable {

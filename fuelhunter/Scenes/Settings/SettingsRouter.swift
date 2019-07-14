@@ -12,11 +12,12 @@
 
 import UIKit
 
-@objc protocol SettingsRoutingLogic {
-  	@objc func routeToCompanyChooseScene()
-  	@objc func routeToFuelTypeScene()
-  	@objc func routeToLanguageChooseScene()
-  	@objc func routeToAboutScene()
+protocol SettingsRoutingLogic {
+  	func routeToCompanyChooseScene()
+  	func routeToFuelTypeScene()
+  	func routeToLanguageChooseScene()
+  	func routeToAboutScene()
+  	func presentNotifSetUpScene(response: Settings.PushNotif.Response)
 }
 
 protocol SettingsDataPassing {
@@ -29,33 +30,41 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 
 	// MARK: Routing
 
-	@objc func routeToCompanyChooseScene() {
+	func routeToCompanyChooseScene() {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
   		let destinationVC = storyboard.instantiateViewController(withIdentifier: "companiesChooseViewController") as! CompaniesChooseListViewController
   		navigateToScene(source: viewController!, destination: destinationVC)
   	}
 	
-  	@objc func routeToFuelTypeScene() {
+  	func routeToFuelTypeScene() {
   		let storyboard = UIStoryboard(name: "Main", bundle: nil)
   		let destinationVC = storyboard.instantiateViewController(withIdentifier: "fuelTypeChooseViewController") as! FuelTypeChooseListViewController
   		navigateToScene(source: viewController!, destination: destinationVC)
   	}
   	
-  	@objc func routeToLanguageChooseScene() {
+  	func routeToLanguageChooseScene() {
   		let storyboard = UIStoryboard(name: "Main", bundle: nil)
   		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appLanguageViewController") as! AppLanguageViewController
   		navigateToScene(source: viewController!, destination: destinationVC)
   	}
   	
-  	@objc func routeToAboutScene() {
+  	func routeToAboutScene() {
   		let storyboard = UIStoryboard(name: "Main", bundle: nil)
   		let destinationVC = storyboard.instantiateViewController(withIdentifier: "aboutAppViewController") as! AboutAppViewController
   		navigateToScene(source: viewController!, destination: destinationVC)
   	}
   	
-	// MARK: Navigation  
-	func navigateToScene(source: UIViewController, destination: UIViewController)
-  	{
+  	func presentNotifSetUpScene(response: Settings.PushNotif.Response) {
+  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "pushNotifSetupViewController") as! PushNotifSetupViewController
+  		destinationVC.router?.previousViewController = viewController!
+  		destinationVC.providesPresentationContextTransitionStyle = true
+		destinationVC.definesPresentationContext = true
+		destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
+		viewController!.present(destinationVC, animated: true) { }
+  	}
+  	
+	func navigateToScene(source: UIViewController, destination: UIViewController) {
 		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		source.show(destination, sender: nil)
   	}  

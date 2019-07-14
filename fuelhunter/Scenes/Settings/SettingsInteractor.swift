@@ -14,6 +14,8 @@ import UIKit
 
 protocol SettingsBusinessLogic {
   	func getSettingsCellsData(request: Settings.SettingsList.Request)
+  	func userPressedOnNotifSwitch()
+  	func userPressedOnGpsSwitch()
 }
 
 protocol SettingsDataStore {
@@ -23,14 +25,43 @@ protocol SettingsDataStore {
 class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	var presenter: SettingsPresentationLogic?
   	var worker = SettingsWorker()
-  	//var name: String = ""
-
-  	// MARK: Do something
+  	var appSettingsWorker = AppSettingsWorker()
+  	
 
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
-    	let response = worker.returnSettingsCellsDataArray()
-
-	
-    	presenter?.presentSettingsListWithData(response: response)
+  		
+		let gpsIsEnabledStatus = appSettingsWorker.getGPSIsEnabled()
+		let notifIsEnabledStatus = appSettingsWorker.getNotifIsEnabled()
+		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
+		
+    	let response = worker.returnSettingsCellsDataArray(gpsIsEnabled: gpsIsEnabledStatus, notifIsEnabled: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
+		presenter?.presentSettingsListWithData(response: response)
+  	}
+  	
+  	func userPressedOnNotifSwitch() {
+  		appSettingsWorker.notifSwitchWasPressed { result in
+  			switch result {
+  				case .success(let data):
+  					// All good. UI was probably up to date.
+					print(data)
+					break
+				case .needsSetUp:
+					let storedCentsCount = self.appSettingsWorker.getStoredNotifCentsCount()
+					let response = Settings.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount)
+					self.presenter?.showNotifSetUp(response: response)
+					break
+  				case .failure(let error):
+  					// Error. Update UI. Show error.
+  					let request = Settings.SettingsList.Request()
+  					self.getSettingsCellsData(request: request)
+  					print(error)
+  				break
+  			}
+		}
+  	}
+  	
+  	// MARK: TODO.
+  	func userPressedOnGpsSwitch() {
+  		appSettingsWorker.gpsSwitchWasPressed { result in }
   	}
 }

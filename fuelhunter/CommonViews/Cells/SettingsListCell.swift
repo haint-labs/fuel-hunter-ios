@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SettingsCellSwitchLogic {
+	func switchWasPressedOnTableViewCell(cell: UITableViewCell)
+}
+
 class SettingsListCell: UITableViewCell {
 
+	weak var controller: SettingsViewController? 
 	public var cellBgType: cellBackgroundType = .single
 	
 	@IBOutlet weak var backgroundImageView: UIImageView!
@@ -28,6 +33,8 @@ class SettingsListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        aSwitch.addTarget(self, action: NSSelectorFromString("aSwitchWasPressed:"), for: .valueChanged)
+	
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -117,6 +124,10 @@ class SettingsListCell: UITableViewCell {
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
 		}
+	}
+	
+	@objc func aSwitchWasPressed(_ aSwitch: UISwitch) {
+		controller?.switchWasPressedOnTableViewCell(cell: self)	
 	}
 	
     override func setSelected(_ selected: Bool, animated: Bool) {

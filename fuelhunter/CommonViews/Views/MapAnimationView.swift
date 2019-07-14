@@ -55,7 +55,7 @@ class MapAnimationView: UIView {
 	
 	func startAnimating() {
 		self.mapImageView.transform = CGAffineTransform(translationX: -20, y: 0)
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			self.firstMove()
 		}
 	}

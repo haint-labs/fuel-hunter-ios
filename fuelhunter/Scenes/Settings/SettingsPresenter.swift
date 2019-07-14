@@ -14,25 +14,37 @@ import UIKit
 
 protocol SettingsPresentationLogic {
   	func presentSettingsListWithData(response: Settings.SettingsList.Response)
+  	func showNotifSetUp(response: Settings.PushNotif.Response)
 }
 
 class SettingsPresenter: SettingsPresentationLogic {
   	weak var viewController: SettingsDisplayLogic?
-
+	weak var router: SettingsRouter?
   	// MARK: Do something
 
+	func showNotifSetUp(response: Settings.PushNotif.Response) {
+		router?.presentNotifSetUpScene(response: response)
+	} 
+	
   	func presentSettingsListWithData(response: Settings.SettingsList.Response) {
   	
   		let companyNames = response.companyNames
 		let fuelTypeNames = response.fuelTypeNames
 		let gpsIsEnabledStatus = response.gpsIsEnabledStatus
 		let pushNotifIsEnabledStatus = response.pushNotifIsEnabledStatus
-		
+		var descriptionString = "Saņemt paziņojumus, kad degvielas cena samazinās par "
+  		
+  		if response.notifCentsValue == 1 {
+  			descriptionString.append("1 centu.")
+  		} else {
+  			descriptionString.append("\(response.notifCentsValue) centiem.")
+  		}
+  		
 		let array =  [
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "Atzīmē, kuras uzpildes kompānijas vēlies redzēt sarakstā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "Aktuālais degvielas veids", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .gpsCell, title: "GPS", description: "Izmantot GPS, lai attēlotu lētākās cenas Tavas lokācijas tuvumā", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "Paziņojumi", description: "Saņemt paziņojumu telefonā, kad samazinās degvielas cena par 1 centu", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus),
+			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "Paziņojumi", description: descriptionString, shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "Aplikācijas valoda", description: "Izmaini aplikācijas valodu", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 			]

@@ -8,8 +8,8 @@
 
 import UIKit
 
-//https://graphemica.com/➊
-
+//https://graphemica.com/➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓
+ 
 struct Font {
     enum FontType: String {
         case normal = "HelveticaNeue"

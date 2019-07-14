@@ -53,12 +53,6 @@
                                     <constraint firstAttribute="height" constant="3" id="ehO-BL-bcl"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_blur" translatesAutoresizingMaskIntoConstraints="NO" id="fcv-DX-TTY">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="qh2-7L-sfI"/>
-                                </constraints>
-                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVT-SI-nMw" customClass="InlineAlertView" customModule="fuelhunter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,14 +63,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fcv-DX-TTY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3tD-Vm-NqC"/>
                             <constraint firstItem="oG0-kZ-X8g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CXN-P9-Elq"/>
                             <constraint firstItem="UVT-SI-nMw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="G6M-Oj-buF"/>
                             <constraint firstItem="oG0-kZ-X8g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HPt-Hj-goW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zDU-Ad-Wmg" secondAttribute="bottom" id="MMt-ES-Gqt"/>
-                            <constraint firstItem="fcv-DX-TTY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RDz-B7-Txs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oG0-kZ-X8g" secondAttribute="trailing" id="Rr0-Ed-mc8"/>
-                            <constraint firstItem="fcv-DX-TTY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="T01-Xp-SJj"/>
                             <constraint firstAttribute="trailing" secondItem="zDU-Ad-Wmg" secondAttribute="trailing" id="V9o-oA-dBi"/>
                             <constraint firstItem="Aif-Xo-hQj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fzX-hT-ZSZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Aif-Xo-hQj" secondAttribute="bottom" id="o9s-rh-kx4"/>
@@ -87,11 +78,6 @@
                             <constraint firstItem="UVT-SI-nMw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zjT-HK-cAS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="fcv-DX-TTY"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="KNB-HA-VUr"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -371,10 +357,80 @@
             </objects>
             <point key="canvasLocation" x="1461" y="909"/>
         </scene>
+        <!--Push Notif Setup View Controller-->
+        <scene sceneID="FkE-Oj-AZw">
+            <objects>
+                <viewController storyboardIdentifier="pushNotifSetupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dmT-lL-3R1" userLabel="Push Notif Setup View Controller" customClass="PushNotifSetupViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0yy-jO-ezF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSF-9K-SFG" userLabel="Background View">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIA-uf-mwg" userLabel="Base View">
+                                <rect key="frame" x="57" y="77" width="300" height="700"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4P-9I-nwi" customClass="NotifPhoneAnimationView" customModule="fuelhunter" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="68" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paziņojumi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-iz-Qfx">
+                                        <rect key="frame" x="107.13182674200561" y="252" width="83.000000000000227" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saņemt paziņojumus.." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5Q-2w-fe7">
+                                        <rect key="frame" x="71" y="340" width="169" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dW3-cJ-eIp">
+                                        <rect key="frame" x="109" y="411" width="94" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </stepper>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbT-Gt-E8c">
+                                        <rect key="frame" x="8" y="508" width="63" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Aktivizēt"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyQ-7J-9Q7">
+                                        <rect key="frame" x="264" y="508" width="40" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <state key="normal" title="Atcelt"/>
+                                    </button>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5aB-z7-DZh"/>
+                    </view>
+                    <connections>
+                        <outlet property="activateButton" destination="rbT-Gt-E8c" id="s8v-pF-NPI"/>
+                        <outlet property="backgroundView" destination="GSF-9K-SFG" id="WJs-eb-59Y"/>
+                        <outlet property="baseView" destination="fIA-uf-mwg" id="Gko-l5-R9T"/>
+                        <outlet property="cancelButton" destination="QyQ-7J-9Q7" id="C4k-2Y-hfC"/>
+                        <outlet property="descriptionLabel" destination="N5Q-2w-fe7" id="6eL-c9-iHG"/>
+                        <outlet property="notifAnimationView" destination="T4P-9I-nwi" id="9FO-6H-afv"/>
+                        <outlet property="stepper" destination="dW3-cJ-eIp" id="7oj-B0-gaP"/>
+                        <outlet property="titleLabel" destination="jU5-iz-Qfx" id="nOc-ys-hRz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kmH-Qf-ml7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2215.9420289855075" y="731.91964285714278"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bottom_tableView_shadow" width="15" height="3"/>
-        <image name="nav_bar_blur" width="750" height="264"/>
         <image name="nav_bar_shadow" width="15" height="3"/>
     </resources>
 </document>

@@ -95,11 +95,11 @@ class NotifPhoneAnimationView: UIView {
 			self.shakeAnimation()
 		}
 		
-		UIView.animate(withDuration: 0.3, delay: 1, options: [], animations: {
+		UIView.animate(withDuration: 0.3, delay: 1.3, options: [], animations: {
 			self.activeBgImageView.alpha = 1
 		}, completion: { (finished: Bool) in })
 		
-		UIView.animate(withDuration: 0.3, delay: 1.2, options: [], animations: {
+		UIView.animate(withDuration: 0.3, delay: 1.5, options: [], animations: {
 			self.notifImageView.alpha = 1
 		}, completion: { (finished: Bool) in
 			if finished {
@@ -109,7 +109,7 @@ class NotifPhoneAnimationView: UIView {
 	}
 	
 	func hideNotif() {
-		UIView.animate(withDuration: 0.3, delay: 2.5, options: [], animations: {
+		UIView.animate(withDuration: 0.3, delay: 2.2, options: [], animations: {
 			self.activeBgImageView.alpha = 0
 			self.notifImageView.alpha = 0
 		}, completion: { (finished: Bool) in
