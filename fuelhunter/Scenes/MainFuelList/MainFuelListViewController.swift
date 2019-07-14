@@ -28,6 +28,12 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var navBarBottomShadow: UIImageView!
 	@IBOutlet weak var tableViewBottomShadow: UIImageView!
+	
+	@IBOutlet weak var savingsIconButton: UIButton!
+	@IBOutlet weak var savingsLabelButton: UIButton!
+	
+	@IBOutlet weak var accuracyIconButton: UIButton!
+	@IBOutlet weak var accuracyLabelButton: UIButton!
 	// MARK: Object lifecycle
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -75,6 +81,19 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
     	let nib = UINib.init(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
+    	savingsLabelButton.setTitle("Ietaupījums", for: .normal)
+    	accuracyLabelButton.setTitle("Degvielas cenu precizitāte", for: .normal)
+    	savingsLabelButton.setTitleColor(UIColor.init(named: "TitleColor"), for: .normal)
+    	accuracyLabelButton.setTitleColor(UIColor.init(named: "TitleColor"), for: .normal)
+    	
+    	savingsLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
+		accuracyLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
+		
+		savingsIconButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
+		accuracyIconButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
+		savingsLabelButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
+		accuracyLabelButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
+		
 		getData()
 	}
 	
@@ -184,7 +203,16 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	}
 	
 	// MARK: Do something
-
+	
+	@objc func savingsButtonPressed() {
+	
+	}
+	
+	@objc func accuracyButtonPressed() {
+	
+	}
+	
+	
 	func getData() {
 		let request = MainFuelList.FetchPrices.Request()
 		interactor?.fetchPrices(request: request)
