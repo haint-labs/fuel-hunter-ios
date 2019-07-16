@@ -82,11 +82,18 @@ class AboutAppTableHeaderView: UIView {
 		
 		descriptionLabel.textColor = UIColor.init(named: "TitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size3).font
-		
-		
-		mapPreviewView.startAnimating()
+		startAnimations()
+  	}
+  	
+  	func startAnimations() {
+  		mapPreviewView.startAnimating()
 		notifPhoneAnimationView.startAnimating()
-		
-		self.layoutIfNeeded()
+  	}
+  	
+  	func stopAnimations() {
+		mapPreviewView.layer.removeAllAnimations()
+		mapPreviewView.layoutIfNeeded()
+		notifPhoneAnimationView.layer.removeAllAnimations()
+		notifPhoneAnimationView.layoutIfNeeded()
   	}
 }

@@ -57,17 +57,6 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 		router.dataStore = interactor
   	}
 
-  	// MARK: Routing
-
-  	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    	if let scene = segue.identifier {
-      		let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      		if let router = router, router.responds(to: selector) {
-        		router.perform(selector, with: segue)
-      		}
-		}
-  	}
-
   	// MARK: View lifecycle
 
   	override func viewDidLoad() {
@@ -81,6 +70,15 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 		super.viewDidAppear(animated)
 		
   		notifAnimationView.startAnimating()
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.removeObserver(self)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -170,7 +168,16 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
   	}
 
   	// MARK: Functions
+
+	@objc func appMovedToForeground() {
+		notifAnimationView.startAnimating()
+	}
 	
+	@objc func appMovedToBackground() {
+		notifAnimationView.layer.removeAllAnimations()
+		notifAnimationView.layoutIfNeeded()
+	}
+		
 	@objc func activateButtonPressed() {
   		interactor?.activateButtonPressed()
   	}

@@ -19,6 +19,7 @@ protocol AboutAppDisplayLogic: class {
 class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableViewDelegate, UITableViewDataSource {
   	var interactor: AboutAppBusinessLogic?
   	var router: (NSObjectProtocol & AboutAppRoutingLogic & AboutAppDataPassing)?
+  	var header: AboutAppTableHeaderView!
 	var data = [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
   	var activateShadowUpdates = false
   	
@@ -67,14 +68,24 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableVie
     	let nib = UINib.init(nibName: "AboutAppFuelCompanyCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
-    	getLanaguageListData()
+    	getListData()
     	
     	setUpTableViewHeader()
+    	
   	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		activateShadowUpdates = true
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.removeObserver(self)
 	}
 		
 	// MARK: Table view
@@ -142,22 +153,25 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableVie
 	}
 
 	func setUpTableViewHeader() {
-		let header = AboutAppTableHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
-		
+		header = AboutAppTableHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		header.translatesAutoresizingMaskIntoConstraints = false
-
 		self.tableView.tableHeaderView = header
-		
 		header.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
-
 		header.layoutIfNeeded()
-		
 		tableView.tableHeaderView = header
+	}
+	
+	@objc func appMovedToForeground() {
+		header.startAnimations()
+	}
+	
+	@objc func appMovedToBackground() {
+		header.stopAnimations()
 	}
 	
   	// MARK: Do something
 
-  	func getLanaguageListData() {
+  	func getListData() {
     	let request = AboutApp.CompanyCells.Request()
     	interactor?.getListData(request: request)
   	}

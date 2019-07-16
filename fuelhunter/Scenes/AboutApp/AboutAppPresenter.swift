@@ -26,7 +26,7 @@ class AboutAppPresenter: AboutAppPresentationLogic {
 		let array =  [
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Neste", description: "Lētākā Degviela Rīgā.", imageName: "neste_logo"),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Circle K", description: "Lētākā Degviela Rīgā.", imageName: "circle_k_logo"),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Kool", description: "Zemākās cenas DUS tīklā Latvijā", imageName: "kool_logo"),
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Kool", description: "Zemākās cenas DUS tīklā Latvijā.", imageName: "kool_logo"),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Nafta", description: "Zemākās cenas DUS tīklā Latvijā, pa reģioniem (Rīgas rajons, Liepājas rajons, Ventspils rajons, Zemgale, Vidzeme, Latgale).", imageName: "ln_logo"),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Viada", description: "Patreiz nav pieejamas cenas.", imageName: "viada_logo"),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Virši", description: "Lētākā degviela Rīgā un Pierīgā.", imageName: "virshi_logo"),

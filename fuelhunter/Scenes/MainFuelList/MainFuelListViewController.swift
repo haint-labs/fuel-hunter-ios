@@ -83,8 +83,6 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
     	
     	savingsLabelButton.setTitle("Ietaupījums", for: .normal)
     	accuracyLabelButton.setTitle("Degvielas cenu precizitāte", for: .normal)
-    	savingsLabelButton.setTitleColor(UIColor.init(named: "TitleColor"), for: .normal)
-    	accuracyLabelButton.setTitleColor(UIColor.init(named: "TitleColor"), for: .normal)
     	
     	savingsLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
 		accuracyLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
@@ -205,11 +203,11 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 	// MARK: Do something
 	
 	@objc func savingsButtonPressed() {
-	
+		router?.routeToAppSavingsInfo()
 	}
 	
 	@objc func accuracyButtonPressed() {
-	
+		router?.routeToAppAccuracyInfo()
 	}
 	
 	

@@ -14,6 +14,8 @@ import UIKit
 
 @objc protocol MainFuelListRoutingLogic {
 	@objc func routeToSettings()
+	func routeToAppAccuracyInfo()
+	func routeToAppSavingsInfo()
 }
 
 protocol MainFuelListDataPassing {
@@ -26,16 +28,26 @@ class MainFuelListRouter: NSObject, MainFuelListRoutingLogic, MainFuelListDataPa
 
   	// MARK: Routing
 
-	@objc func routeToSettings()
-  	{
+	@objc func routeToSettings() {
   		let storyboard = UIStoryboard(name: "Main", bundle: nil)
   		let destinationVC = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! SettingsViewController
   		navigateToSettings(source: viewController!, destination: destinationVC)
   	}
   	
+  	func routeToAppAccuracyInfo() {
+  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appAccuracyInfoViewController") as! AppAccuracyInfoViewController
+  		navigateToSettings(source: viewController!, destination: destinationVC)
+  	}
+
+	func routeToAppSavingsInfo() {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appSavingsInfoViewController") as! AppSavingsInfoViewController
+  		navigateToSettings(source: viewController!, destination: destinationVC)
+	}
+  	
   	// MARK: Navigation  
-	func navigateToSettings(source: MainFuelListViewController, destination: SettingsViewController)
-  	{
+	func navigateToSettings(source: MainFuelListViewController, destination: UIViewController) {
 		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		source.show(destination, sender: nil)
   	}
