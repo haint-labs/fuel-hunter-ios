@@ -6,7 +6,7 @@
 //  Copyright © 2019 . All rights reserved.
 //
 
-enum cellBackgroundType: Int {
+enum CellBackgroundType: Int {
 	case top = 0
 	case middle = 1
 	case bottom = 2

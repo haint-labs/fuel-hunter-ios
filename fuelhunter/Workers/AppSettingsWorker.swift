@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class AppSettingsWorker {
+ 
+ class AppSettingsWorker {
   	
   	// MARK: GPS
   	func gpsSwitchWasPressed(_ handler: @escaping (SettingsToggleResult<Bool>) -> Void) {
@@ -30,6 +30,7 @@ class AppSettingsWorker {
 	
 	// MARK: Notif
   	func notifSwitchWasPressed(_ handler: @escaping (SettingsToggleResult<Bool>) -> Void) {
+  		
   		var notifIsEnabledStatus = self.getNotifIsEnabled()
   		
   		if notifIsEnabledStatus == false {
@@ -43,6 +44,9 @@ class AppSettingsWorker {
   	}
 
 	func getNotifIsEnabled() -> Bool {
+//		UNUserNotificationCenter.current().getNotificationSettings(){ (settings) in
+//			settings.sou
+//		}
 		return  UserDefaults.standard.bool(forKey: "notif_is_enabled")
 	}
 	
@@ -78,5 +82,25 @@ class AppSettingsWorker {
 			case 10: return "➓"
 			default: return "0"
 		}
+	}
+	
+	// MARK: Stored Companies
+	func getCompanyToggleStatus() -> AllCompaniesToogleStatus {
+		return UserDefaults.standard.structData(AllCompaniesToogleStatus.self, forKey: "AllCompaniesToogleStatus") ?? AllCompaniesToogleStatus.init()
+	}
+	
+	func setCompanyToggleStatus(allCompanies: AllCompaniesToogleStatus) {
+		UserDefaults.standard.setStruct(allCompanies, forKey: "AllCompaniesToogleStatus")
+		UserDefaults.standard.synchronize()
+	}
+	
+	// MARK: Stored Fuel Types
+	func getFuelTypeToggleStatus() -> AllFuelTypesToogleStatus {
+		return UserDefaults.standard.structData(AllFuelTypesToogleStatus.self, forKey: "AllFuelTypesToogleStatus") ?? AllFuelTypesToogleStatus.init()
+	}
+	
+	func setFuelTypeToggleStatus(allFuelTypes: AllFuelTypesToogleStatus) {
+		UserDefaults.standard.setStruct(allFuelTypes, forKey: "AllFuelTypesToogleStatus")
+		UserDefaults.standard.synchronize()
 	}
 }

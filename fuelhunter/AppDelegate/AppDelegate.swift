@@ -12,15 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions
 		launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		Utility.doit()
-
+//		Utility.doit()
+		
+		ScenesManager.shared.resetState()
+				
+		ScenesManager.shared.window = window
+		ScenesManager.shared.setRootViewController(animated: false)
+		
 		
 		UINavigationBar.appearance().tintColor = UIColor.init(named: "TitleColor")!
-
 		UINavigationBar.appearance().titleTextAttributes =
 			[NSAttributedString.Key.foregroundColor: UIColor.init(named: "TitleColor")!,
 			NSAttributedString.Key.font: Font.init(.normal, size: .size1).font]
@@ -41,5 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
+	}
+	
+	//MARK: Token
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+		print(deviceTokenString)
+	}
+	
+	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+	    print("i am not available in simulator \(error)")
 	}
 }

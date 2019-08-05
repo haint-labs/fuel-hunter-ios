@@ -17,6 +17,7 @@ struct Font {
         case bold   = "HelveticaNeue-Bold"
     }
     enum FontSize: Int {
+    	case size0 = 33
         case size1 = 21
         case size2 = 19
         case size3 = 17

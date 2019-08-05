@@ -19,42 +19,6 @@
 		5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F086229EF4FC00EC7CEC /* LaunchScreen.storyboard */; };
 		5C11F093229EF4FC00EC7CEC /* fuelhunterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11F092229EF4FC00EC7CEC /* fuelhunterTests.swift */; };
 		5C11F09E229EF4FC00EC7CEC /* fuelhunterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11F09D229EF4FC00EC7CEC /* fuelhunterUITests.swift */; };
-		5C22F5F822C557B5000EF339 /* MainFuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F222C557B5000EF339 /* MainFuelListViewController.swift */; };
-		5C22F5F922C557B5000EF339 /* MainFuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F222C557B5000EF339 /* MainFuelListViewController.swift */; };
-		5C22F5FA22C557B5000EF339 /* MainFuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F222C557B5000EF339 /* MainFuelListViewController.swift */; };
-		5C22F5FB22C557B5000EF339 /* MainFuelListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F322C557B5000EF339 /* MainFuelListRouter.swift */; };
-		5C22F5FC22C557B5000EF339 /* MainFuelListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F322C557B5000EF339 /* MainFuelListRouter.swift */; };
-		5C22F5FD22C557B5000EF339 /* MainFuelListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F322C557B5000EF339 /* MainFuelListRouter.swift */; };
-		5C22F5FE22C557B5000EF339 /* MainFuelListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F422C557B5000EF339 /* MainFuelListWorker.swift */; };
-		5C22F5FF22C557B5000EF339 /* MainFuelListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F422C557B5000EF339 /* MainFuelListWorker.swift */; };
-		5C22F60022C557B5000EF339 /* MainFuelListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F422C557B5000EF339 /* MainFuelListWorker.swift */; };
-		5C22F60122C557B5000EF339 /* MainFuelListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F522C557B5000EF339 /* MainFuelListPresenter.swift */; };
-		5C22F60222C557B5000EF339 /* MainFuelListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F522C557B5000EF339 /* MainFuelListPresenter.swift */; };
-		5C22F60322C557B5000EF339 /* MainFuelListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F522C557B5000EF339 /* MainFuelListPresenter.swift */; };
-		5C22F60422C557B5000EF339 /* MainFuelListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F622C557B5000EF339 /* MainFuelListModels.swift */; };
-		5C22F60522C557B5000EF339 /* MainFuelListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F622C557B5000EF339 /* MainFuelListModels.swift */; };
-		5C22F60622C557B5000EF339 /* MainFuelListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F622C557B5000EF339 /* MainFuelListModels.swift */; };
-		5C22F60722C557B5000EF339 /* MainFuelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F722C557B5000EF339 /* MainFuelListInteractor.swift */; };
-		5C22F60822C557B5000EF339 /* MainFuelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F722C557B5000EF339 /* MainFuelListInteractor.swift */; };
-		5C22F60922C557B5000EF339 /* MainFuelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F5F722C557B5000EF339 /* MainFuelListInteractor.swift */; };
-		5C22F62922C55824000EF339 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62322C55824000EF339 /* SettingsModels.swift */; };
-		5C22F62A22C55824000EF339 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62322C55824000EF339 /* SettingsModels.swift */; };
-		5C22F62B22C55824000EF339 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62322C55824000EF339 /* SettingsModels.swift */; };
-		5C22F62C22C55824000EF339 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62422C55824000EF339 /* SettingsRouter.swift */; };
-		5C22F62D22C55824000EF339 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62422C55824000EF339 /* SettingsRouter.swift */; };
-		5C22F62E22C55824000EF339 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62422C55824000EF339 /* SettingsRouter.swift */; };
-		5C22F62F22C55824000EF339 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62522C55824000EF339 /* SettingsWorker.swift */; };
-		5C22F63022C55824000EF339 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62522C55824000EF339 /* SettingsWorker.swift */; };
-		5C22F63122C55824000EF339 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62522C55824000EF339 /* SettingsWorker.swift */; };
-		5C22F63222C55824000EF339 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62622C55824000EF339 /* SettingsInteractor.swift */; };
-		5C22F63322C55824000EF339 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62622C55824000EF339 /* SettingsInteractor.swift */; };
-		5C22F63422C55824000EF339 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62622C55824000EF339 /* SettingsInteractor.swift */; };
-		5C22F63522C55824000EF339 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62722C55824000EF339 /* SettingsPresenter.swift */; };
-		5C22F63622C55824000EF339 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62722C55824000EF339 /* SettingsPresenter.swift */; };
-		5C22F63722C55824000EF339 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62722C55824000EF339 /* SettingsPresenter.swift */; };
-		5C22F63822C55824000EF339 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62822C55824000EF339 /* SettingsViewController.swift */; };
-		5C22F63922C55824000EF339 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62822C55824000EF339 /* SettingsViewController.swift */; };
-		5C22F63A22C55824000EF339 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C22F62822C55824000EF339 /* SettingsViewController.swift */; };
 		5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
 		5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
 		5C22F63D22C622F6000EF339 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABED22C382E300213D46 /* Price.swift */; };
@@ -69,27 +33,6 @@
 		5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
 		5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
 		5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
-		5C2E664422DC800100FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663722DC800000FC71AD /* AppSavingsInfoModels.swift */; };
-		5C2E664522DC800100FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663722DC800000FC71AD /* AppSavingsInfoModels.swift */; };
-		5C2E664622DC800100FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663722DC800000FC71AD /* AppSavingsInfoModels.swift */; };
-		5C2E664722DC800100FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663822DC800000FC71AD /* AppSavingsInfoViewController.swift */; };
-		5C2E664822DC800100FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663822DC800000FC71AD /* AppSavingsInfoViewController.swift */; };
-		5C2E664922DC800100FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663822DC800000FC71AD /* AppSavingsInfoViewController.swift */; };
-		5C2E664A22DC800100FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663922DC800000FC71AD /* AppSavingsInfoWorker.swift */; };
-		5C2E664B22DC800100FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663922DC800000FC71AD /* AppSavingsInfoWorker.swift */; };
-		5C2E664C22DC800100FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663922DC800000FC71AD /* AppSavingsInfoWorker.swift */; };
-		5C2E664D22DC800100FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663A22DC800000FC71AD /* AppSavingsInfoPresenter.swift */; };
-		5C2E664E22DC800100FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663A22DC800000FC71AD /* AppSavingsInfoPresenter.swift */; };
-		5C2E664F22DC800100FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663A22DC800000FC71AD /* AppSavingsInfoPresenter.swift */; };
-		5C2E665022DC800100FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663B22DC800000FC71AD /* AppSavingsInfoRouter.swift */; };
-		5C2E665122DC800100FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663B22DC800000FC71AD /* AppSavingsInfoRouter.swift */; };
-		5C2E665222DC800100FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663B22DC800000FC71AD /* AppSavingsInfoRouter.swift */; };
-		5C2E665322DC800100FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663C22DC800000FC71AD /* AppSavingsInfoInteractor.swift */; };
-		5C2E665422DC800100FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663C22DC800000FC71AD /* AppSavingsInfoInteractor.swift */; };
-		5C2E665522DC800100FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E663C22DC800000FC71AD /* AppSavingsInfoInteractor.swift */; };
-		5C2E665F22DC800100FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E664122DC800100FC71AD /* AppAccuracyInfoViewController.swift */; };
-		5C2E666022DC800100FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E664122DC800100FC71AD /* AppAccuracyInfoViewController.swift */; };
-		5C2E666122DC800100FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E664122DC800100FC71AD /* AppAccuracyInfoViewController.swift */; };
 		5C2E666A22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E666822DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift */; };
 		5C2E666B22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E666822DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift */; };
 		5C2E666C22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E666822DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift */; };
@@ -102,6 +45,184 @@
 		5C2E667522DCD1CE00FC71AD /* AppSavingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667122DCD1CE00FC71AD /* AppSavingsView.swift */; };
 		5C2E667622DCD1CE00FC71AD /* AppSavingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667122DCD1CE00FC71AD /* AppSavingsView.swift */; };
 		5C2E667722DCD1CE00FC71AD /* AppSavingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667122DCD1CE00FC71AD /* AppSavingsView.swift */; };
+		5C2E66B622DD941D00FC71AD /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667B22DD941D00FC71AD /* SettingsModels.swift */; };
+		5C2E66B722DD941D00FC71AD /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667B22DD941D00FC71AD /* SettingsModels.swift */; };
+		5C2E66B822DD941D00FC71AD /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667B22DD941D00FC71AD /* SettingsModels.swift */; };
+		5C2E66B922DD941D00FC71AD /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667C22DD941D00FC71AD /* SettingsRouter.swift */; };
+		5C2E66BA22DD941D00FC71AD /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667C22DD941D00FC71AD /* SettingsRouter.swift */; };
+		5C2E66BB22DD941D00FC71AD /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667C22DD941D00FC71AD /* SettingsRouter.swift */; };
+		5C2E66BC22DD941D00FC71AD /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667D22DD941D00FC71AD /* SettingsWorker.swift */; };
+		5C2E66BD22DD941D00FC71AD /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667D22DD941D00FC71AD /* SettingsWorker.swift */; };
+		5C2E66BE22DD941D00FC71AD /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667D22DD941D00FC71AD /* SettingsWorker.swift */; };
+		5C2E66BF22DD941D00FC71AD /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667E22DD941D00FC71AD /* SettingsInteractor.swift */; };
+		5C2E66C022DD941D00FC71AD /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667E22DD941D00FC71AD /* SettingsInteractor.swift */; };
+		5C2E66C122DD941D00FC71AD /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667E22DD941D00FC71AD /* SettingsInteractor.swift */; };
+		5C2E66C222DD941D00FC71AD /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667F22DD941D00FC71AD /* SettingsPresenter.swift */; };
+		5C2E66C322DD941D00FC71AD /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667F22DD941D00FC71AD /* SettingsPresenter.swift */; };
+		5C2E66C422DD941D00FC71AD /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E667F22DD941D00FC71AD /* SettingsPresenter.swift */; };
+		5C2E66C522DD941D00FC71AD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668022DD941D00FC71AD /* SettingsViewController.swift */; };
+		5C2E66C622DD941D00FC71AD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668022DD941D00FC71AD /* SettingsViewController.swift */; };
+		5C2E66C722DD941D00FC71AD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668022DD941D00FC71AD /* SettingsViewController.swift */; };
+		5C2E66C822DD941D00FC71AD /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */; };
+		5C2E66C922DD941D00FC71AD /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */; };
+		5C2E66CA22DD941D00FC71AD /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */; };
+		5C2E66CB22DD941D00FC71AD /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668322DD941D00FC71AD /* AboutAppViewController.swift */; };
+		5C2E66CC22DD941D00FC71AD /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668322DD941D00FC71AD /* AboutAppViewController.swift */; };
+		5C2E66CD22DD941D00FC71AD /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668322DD941D00FC71AD /* AboutAppViewController.swift */; };
+		5C2E66CE22DD941D00FC71AD /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */; };
+		5C2E66CF22DD941D00FC71AD /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */; };
+		5C2E66D022DD941D00FC71AD /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */; };
+		5C2E66D122DD941D00FC71AD /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668522DD941D00FC71AD /* AboutAppPresenter.swift */; };
+		5C2E66D222DD941D00FC71AD /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668522DD941D00FC71AD /* AboutAppPresenter.swift */; };
+		5C2E66D322DD941D00FC71AD /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668522DD941D00FC71AD /* AboutAppPresenter.swift */; };
+		5C2E66D422DD941D00FC71AD /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */; };
+		5C2E66D522DD941D00FC71AD /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */; };
+		5C2E66D622DD941D00FC71AD /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */; };
+		5C2E66D722DD941D00FC71AD /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668722DD941D00FC71AD /* AboutAppModels.swift */; };
+		5C2E66D822DD941D00FC71AD /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668722DD941D00FC71AD /* AboutAppModels.swift */; };
+		5C2E66D922DD941D00FC71AD /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668722DD941D00FC71AD /* AboutAppModels.swift */; };
+		5C2E66DA22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668922DD941D00FC71AD /* CompaniesChooseListPresenter.swift */; };
+		5C2E66DB22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668922DD941D00FC71AD /* CompaniesChooseListPresenter.swift */; };
+		5C2E66DC22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668922DD941D00FC71AD /* CompaniesChooseListPresenter.swift */; };
+		5C2E66DD22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668A22DD941D00FC71AD /* CompaniesChooseListInteractor.swift */; };
+		5C2E66DE22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668A22DD941D00FC71AD /* CompaniesChooseListInteractor.swift */; };
+		5C2E66DF22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668A22DD941D00FC71AD /* CompaniesChooseListInteractor.swift */; };
+		5C2E66E022DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668B22DD941D00FC71AD /* CompaniesChooseListWorker.swift */; };
+		5C2E66E122DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668B22DD941D00FC71AD /* CompaniesChooseListWorker.swift */; };
+		5C2E66E222DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668B22DD941D00FC71AD /* CompaniesChooseListWorker.swift */; };
+		5C2E66E322DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668C22DD941D00FC71AD /* CompaniesChooseListRouter.swift */; };
+		5C2E66E422DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668C22DD941D00FC71AD /* CompaniesChooseListRouter.swift */; };
+		5C2E66E522DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668C22DD941D00FC71AD /* CompaniesChooseListRouter.swift */; };
+		5C2E66E622DD941D00FC71AD /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668D22DD941D00FC71AD /* CompaniesChooseListModels.swift */; };
+		5C2E66E722DD941D00FC71AD /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668D22DD941D00FC71AD /* CompaniesChooseListModels.swift */; };
+		5C2E66E822DD941D00FC71AD /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668D22DD941D00FC71AD /* CompaniesChooseListModels.swift */; };
+		5C2E66E922DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668E22DD941D00FC71AD /* CompaniesChooseListViewController.swift */; };
+		5C2E66EA22DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668E22DD941D00FC71AD /* CompaniesChooseListViewController.swift */; };
+		5C2E66EB22DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E668E22DD941D00FC71AD /* CompaniesChooseListViewController.swift */; };
+		5C2E66EC22DD941D00FC71AD /* PushNotifSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669022DD941D00FC71AD /* PushNotifSetupInteractor.swift */; };
+		5C2E66ED22DD941D00FC71AD /* PushNotifSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669022DD941D00FC71AD /* PushNotifSetupInteractor.swift */; };
+		5C2E66EE22DD941D00FC71AD /* PushNotifSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669022DD941D00FC71AD /* PushNotifSetupInteractor.swift */; };
+		5C2E66EF22DD941D00FC71AD /* PushNotifSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669122DD941D00FC71AD /* PushNotifSetupPresenter.swift */; };
+		5C2E66F022DD941D00FC71AD /* PushNotifSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669122DD941D00FC71AD /* PushNotifSetupPresenter.swift */; };
+		5C2E66F122DD941D00FC71AD /* PushNotifSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669122DD941D00FC71AD /* PushNotifSetupPresenter.swift */; };
+		5C2E66F222DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669222DD941D00FC71AD /* PushNotifSetupModels.swift */; };
+		5C2E66F322DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669222DD941D00FC71AD /* PushNotifSetupModels.swift */; };
+		5C2E66F422DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669222DD941D00FC71AD /* PushNotifSetupModels.swift */; };
+		5C2E66F522DD941D00FC71AD /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669322DD941D00FC71AD /* PushNotifSetupViewController.swift */; };
+		5C2E66F622DD941D00FC71AD /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669322DD941D00FC71AD /* PushNotifSetupViewController.swift */; };
+		5C2E66F722DD941D00FC71AD /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669322DD941D00FC71AD /* PushNotifSetupViewController.swift */; };
+		5C2E66F822DD941D00FC71AD /* PushNotifSetupWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669422DD941D00FC71AD /* PushNotifSetupWorker.swift */; };
+		5C2E66F922DD941D00FC71AD /* PushNotifSetupWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669422DD941D00FC71AD /* PushNotifSetupWorker.swift */; };
+		5C2E66FA22DD941D00FC71AD /* PushNotifSetupWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669422DD941D00FC71AD /* PushNotifSetupWorker.swift */; };
+		5C2E66FB22DD941D00FC71AD /* PushNotifSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669522DD941D00FC71AD /* PushNotifSetupRouter.swift */; };
+		5C2E66FC22DD941D00FC71AD /* PushNotifSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669522DD941D00FC71AD /* PushNotifSetupRouter.swift */; };
+		5C2E66FD22DD941D00FC71AD /* PushNotifSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669522DD941D00FC71AD /* PushNotifSetupRouter.swift */; };
+		5C2E66FE22DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669722DD941D00FC71AD /* FuelTypeChooseListRouter.swift */; };
+		5C2E66FF22DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669722DD941D00FC71AD /* FuelTypeChooseListRouter.swift */; };
+		5C2E670022DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669722DD941D00FC71AD /* FuelTypeChooseListRouter.swift */; };
+		5C2E670122DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669822DD941D00FC71AD /* FuelTypeChooseListWorker.swift */; };
+		5C2E670222DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669822DD941D00FC71AD /* FuelTypeChooseListWorker.swift */; };
+		5C2E670322DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669822DD941D00FC71AD /* FuelTypeChooseListWorker.swift */; };
+		5C2E670422DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669922DD941D00FC71AD /* FuelTypeChooseListViewController.swift */; };
+		5C2E670522DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669922DD941D00FC71AD /* FuelTypeChooseListViewController.swift */; };
+		5C2E670622DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669922DD941D00FC71AD /* FuelTypeChooseListViewController.swift */; };
+		5C2E670722DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669A22DD941D00FC71AD /* FuelTypeChooseListModels.swift */; };
+		5C2E670822DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669A22DD941D00FC71AD /* FuelTypeChooseListModels.swift */; };
+		5C2E670922DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669A22DD941D00FC71AD /* FuelTypeChooseListModels.swift */; };
+		5C2E670A22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift */; };
+		5C2E670B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift */; };
+		5C2E670C22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift */; };
+		5C2E670D22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669C22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift */; };
+		5C2E670E22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669C22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift */; };
+		5C2E670F22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669C22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift */; };
+		5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669E22DD941D00FC71AD /* AppLanguageModels.swift */; };
+		5C2E671122DD941D00FC71AD /* AppLanguageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669E22DD941D00FC71AD /* AppLanguageModels.swift */; };
+		5C2E671222DD941D00FC71AD /* AppLanguageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669E22DD941D00FC71AD /* AppLanguageModels.swift */; };
+		5C2E671322DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669F22DD941D00FC71AD /* AppLanguageInteractor.swift */; };
+		5C2E671422DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669F22DD941D00FC71AD /* AppLanguageInteractor.swift */; };
+		5C2E671522DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E669F22DD941D00FC71AD /* AppLanguageInteractor.swift */; };
+		5C2E671622DD941D00FC71AD /* AppLanguageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A022DD941D00FC71AD /* AppLanguageWorker.swift */; };
+		5C2E671722DD941D00FC71AD /* AppLanguageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A022DD941D00FC71AD /* AppLanguageWorker.swift */; };
+		5C2E671822DD941D00FC71AD /* AppLanguageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A022DD941D00FC71AD /* AppLanguageWorker.swift */; };
+		5C2E671922DD941D00FC71AD /* AppLanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A122DD941D00FC71AD /* AppLanguageRouter.swift */; };
+		5C2E671A22DD941D00FC71AD /* AppLanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A122DD941D00FC71AD /* AppLanguageRouter.swift */; };
+		5C2E671B22DD941D00FC71AD /* AppLanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A122DD941D00FC71AD /* AppLanguageRouter.swift */; };
+		5C2E671C22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */; };
+		5C2E671D22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */; };
+		5C2E671E22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */; };
+		5C2E671F22DD941D00FC71AD /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */; };
+		5C2E672022DD941D00FC71AD /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */; };
+		5C2E672122DD941D00FC71AD /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */; };
+		5C2E672222DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */; };
+		5C2E672322DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */; };
+		5C2E672422DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */; };
+		5C2E672522DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */; };
+		5C2E672622DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */; };
+		5C2E672722DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */; };
+		5C2E672822DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */; };
+		5C2E672922DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */; };
+		5C2E672A22DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */; };
+		5C2E672B22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */; };
+		5C2E672C22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */; };
+		5C2E672D22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */; };
+		5C2E672E22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */; };
+		5C2E672F22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */; };
+		5C2E673022DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */; };
+		5C2E673122DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */; };
+		5C2E673222DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */; };
+		5C2E673322DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */; };
+		5C2E673422DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */; };
+		5C2E673522DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */; };
+		5C2E673622DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */; };
+		5C2E678422DDA33800FC71AD /* MainFuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E677E22DDA33800FC71AD /* MainFuelListViewController.swift */; };
+		5C2E678522DDA33800FC71AD /* MainFuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E677E22DDA33800FC71AD /* MainFuelListViewController.swift */; };
+		5C2E678622DDA33800FC71AD /* MainFuelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E677E22DDA33800FC71AD /* MainFuelListViewController.swift */; };
+		5C2E678722DDA33800FC71AD /* MainFuelListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E677F22DDA33800FC71AD /* MainFuelListRouter.swift */; };
+		5C2E678822DDA33800FC71AD /* MainFuelListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E677F22DDA33800FC71AD /* MainFuelListRouter.swift */; };
+		5C2E678922DDA33800FC71AD /* MainFuelListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E677F22DDA33800FC71AD /* MainFuelListRouter.swift */; };
+		5C2E678A22DDA33800FC71AD /* MainFuelListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678022DDA33800FC71AD /* MainFuelListWorker.swift */; };
+		5C2E678B22DDA33800FC71AD /* MainFuelListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678022DDA33800FC71AD /* MainFuelListWorker.swift */; };
+		5C2E678C22DDA33800FC71AD /* MainFuelListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678022DDA33800FC71AD /* MainFuelListWorker.swift */; };
+		5C2E678D22DDA33800FC71AD /* MainFuelListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678122DDA33800FC71AD /* MainFuelListPresenter.swift */; };
+		5C2E678E22DDA33800FC71AD /* MainFuelListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678122DDA33800FC71AD /* MainFuelListPresenter.swift */; };
+		5C2E678F22DDA33800FC71AD /* MainFuelListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678122DDA33800FC71AD /* MainFuelListPresenter.swift */; };
+		5C2E679022DDA33800FC71AD /* MainFuelListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678222DDA33800FC71AD /* MainFuelListModels.swift */; };
+		5C2E679122DDA33800FC71AD /* MainFuelListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678222DDA33800FC71AD /* MainFuelListModels.swift */; };
+		5C2E679222DDA33800FC71AD /* MainFuelListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678222DDA33800FC71AD /* MainFuelListModels.swift */; };
+		5C2E679322DDA33800FC71AD /* MainFuelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678322DDA33800FC71AD /* MainFuelListInteractor.swift */; };
+		5C2E679422DDA33800FC71AD /* MainFuelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678322DDA33800FC71AD /* MainFuelListInteractor.swift */; };
+		5C2E679522DDA33800FC71AD /* MainFuelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E678322DDA33800FC71AD /* MainFuelListInteractor.swift */; };
+		5C2E679722DE1D9E00FC71AD /* ScenesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */; };
+		5C2E679822DE1D9E00FC71AD /* ScenesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */; };
+		5C2E679922DE1D9E00FC71AD /* ScenesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */; };
+		5C2E67A322DE60E500FC71AD /* IntroPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */; };
+		5C2E67A422DE60E500FC71AD /* IntroPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */; };
+		5C2E67A522DE60E500FC71AD /* IntroPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */; };
+		5C2E67A622DE60E500FC71AD /* IntroPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */; };
+		5C2E67A722DE60E500FC71AD /* IntroPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */; };
+		5C2E67A822DE60E500FC71AD /* IntroPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */; };
+		5C2E67A922DE60E500FC71AD /* IntroPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */; };
+		5C2E67AA22DE60E500FC71AD /* IntroPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */; };
+		5C2E67AB22DE60E500FC71AD /* IntroPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */; };
+		5C2E67AC22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */; };
+		5C2E67AD22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */; };
+		5C2E67AE22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */; };
+		5C2E67AF22DE60E500FC71AD /* IntroPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */; };
+		5C2E67B022DE60E500FC71AD /* IntroPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */; };
+		5C2E67B122DE60E500FC71AD /* IntroPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */; };
+		5C2E67B222DE60E500FC71AD /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */; };
+		5C2E67B322DE60E500FC71AD /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */; };
+		5C2E67B422DE60E500FC71AD /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */; };
+		5C2E67C122E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */; };
+		5C2E67C222E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */; };
+		5C2E67C322E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */; };
+		5C2E67C422E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */; };
+		5C2E67C522E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */; };
+		5C2E67C622E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */; };
+		5C2E67D622E1938900FC71AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */; };
+		5C2E67D722E1938A00FC71AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */; };
+		5C2E67E822E193AB00FC71AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F084229EF4FC00EC7CEC /* Assets.xcassets */; };
+		5C2E67E922E193AB00FC71AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F084229EF4FC00EC7CEC /* Assets.xcassets */; };
 		5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */; };
 		5C45BDCA22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */; };
 		5C45BDCB22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */; };
@@ -111,24 +232,6 @@
 		5C45BDD022CD40B300FE53D6 /* CellBackgroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */; };
 		5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */; };
 		5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */; };
-		5C45BDF222CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */; };
-		5C45BDF322CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */; };
-		5C45BDF422CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */; };
-		5C45BDF522CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */; };
-		5C45BDF622CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */; };
-		5C45BDF722CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */; };
-		5C45BDF822CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */; };
-		5C45BDF922CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */; };
-		5C45BDFA22CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */; };
-		5C45BDFB22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */; };
-		5C45BDFC22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */; };
-		5C45BDFD22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */; };
-		5C45BDFE22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */; };
-		5C45BDFF22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */; };
-		5C45BE0022CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */; };
-		5C45BE0122CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
-		5C45BE0222CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
-		5C45BE0322CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */; };
 		5C45BE0622CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */; };
 		5C45BE0722CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */; };
 		5C45BE0822CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */; };
@@ -138,72 +241,18 @@
 		5C45BE0D22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */; };
 		5C45BE0E22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */; };
 		5C45BE0F22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */; };
-		5C45BE2F22CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2922CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift */; };
-		5C45BE3022CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2922CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift */; };
-		5C45BE3122CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2922CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift */; };
-		5C45BE3222CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2A22CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift */; };
-		5C45BE3322CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2A22CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift */; };
-		5C45BE3422CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2A22CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift */; };
-		5C45BE3522CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2B22CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift */; };
-		5C45BE3622CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2B22CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift */; };
-		5C45BE3722CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2B22CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift */; };
-		5C45BE3822CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2C22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift */; };
-		5C45BE3922CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2C22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift */; };
-		5C45BE3A22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2C22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift */; };
-		5C45BE3B22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift */; };
-		5C45BE3C22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift */; };
-		5C45BE3D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift */; };
-		5C45BE3E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift */; };
-		5C45BE3F22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift */; };
-		5C45BE4022CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE2E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift */; };
 		5C45BE4322CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE4122CF56A200FE53D6 /* FuelTypeListCell.swift */; };
 		5C45BE4422CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE4122CF56A200FE53D6 /* FuelTypeListCell.swift */; };
 		5C45BE4522CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE4122CF56A200FE53D6 /* FuelTypeListCell.swift */; };
 		5C45BE4622CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE4222CF56A200FE53D6 /* FuelTypeListCell.xib */; };
 		5C45BE4722CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE4222CF56A200FE53D6 /* FuelTypeListCell.xib */; };
 		5C45BE4822CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE4222CF56A200FE53D6 /* FuelTypeListCell.xib */; };
-		5C45BE8022CF723200FE53D6 /* AppLanguageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7A22CF723200FE53D6 /* AppLanguageModels.swift */; };
-		5C45BE8122CF723200FE53D6 /* AppLanguageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7A22CF723200FE53D6 /* AppLanguageModels.swift */; };
-		5C45BE8222CF723200FE53D6 /* AppLanguageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7A22CF723200FE53D6 /* AppLanguageModels.swift */; };
-		5C45BE8322CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7B22CF723200FE53D6 /* AppLanguageInteractor.swift */; };
-		5C45BE8422CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7B22CF723200FE53D6 /* AppLanguageInteractor.swift */; };
-		5C45BE8522CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7B22CF723200FE53D6 /* AppLanguageInteractor.swift */; };
-		5C45BE8622CF723200FE53D6 /* AppLanguageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7C22CF723200FE53D6 /* AppLanguageWorker.swift */; };
-		5C45BE8722CF723200FE53D6 /* AppLanguageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7C22CF723200FE53D6 /* AppLanguageWorker.swift */; };
-		5C45BE8822CF723200FE53D6 /* AppLanguageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7C22CF723200FE53D6 /* AppLanguageWorker.swift */; };
-		5C45BE8922CF723200FE53D6 /* AppLanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7D22CF723200FE53D6 /* AppLanguageRouter.swift */; };
-		5C45BE8A22CF723200FE53D6 /* AppLanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7D22CF723200FE53D6 /* AppLanguageRouter.swift */; };
-		5C45BE8B22CF723200FE53D6 /* AppLanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7D22CF723200FE53D6 /* AppLanguageRouter.swift */; };
-		5C45BE8C22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7E22CF723200FE53D6 /* AppLanguagePresenter.swift */; };
-		5C45BE8D22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7E22CF723200FE53D6 /* AppLanguagePresenter.swift */; };
-		5C45BE8E22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7E22CF723200FE53D6 /* AppLanguagePresenter.swift */; };
-		5C45BE8F22CF723200FE53D6 /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7F22CF723200FE53D6 /* AppLanguageViewController.swift */; };
-		5C45BE9022CF723200FE53D6 /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7F22CF723200FE53D6 /* AppLanguageViewController.swift */; };
-		5C45BE9122CF723200FE53D6 /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE7F22CF723200FE53D6 /* AppLanguageViewController.swift */; };
 		5C45BE9422CF793500FE53D6 /* LanguageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE9222CF793500FE53D6 /* LanguageListCell.swift */; };
 		5C45BE9522CF793500FE53D6 /* LanguageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE9222CF793500FE53D6 /* LanguageListCell.swift */; };
 		5C45BE9622CF793500FE53D6 /* LanguageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BE9222CF793500FE53D6 /* LanguageListCell.swift */; };
 		5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */; };
 		5C45BE9822CF793500FE53D6 /* LanguageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */; };
 		5C45BE9922CF793500FE53D6 /* LanguageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */; };
-		5C45BEB922D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */; };
-		5C45BEBA22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */; };
-		5C45BEBB22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */; };
-		5C45BEBC22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */; };
-		5C45BEBD22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */; };
-		5C45BEBE22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */; };
-		5C45BEBF22D26FB700FE53D6 /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */; };
-		5C45BEC022D26FB700FE53D6 /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */; };
-		5C45BEC122D26FB700FE53D6 /* AboutAppWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */; };
-		5C45BEC222D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */; };
-		5C45BEC322D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */; };
-		5C45BEC422D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */; };
-		5C45BEC522D26FB700FE53D6 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */; };
-		5C45BEC622D26FB700FE53D6 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */; };
-		5C45BEC722D26FB700FE53D6 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */; };
-		5C45BEC822D26FB700FE53D6 /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */; };
-		5C45BEC922D26FB700FE53D6 /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */; };
-		5C45BECA22D26FB700FE53D6 /* AboutAppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */; };
 		5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */; };
 		5C45BECE22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */; };
 		5C45BECF22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */; };
@@ -228,28 +277,118 @@
 		5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
 		5C45BEED22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
 		5C45BEEE22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
-		5C45BF3022D62F8500FE53D6 /* PushNotifSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2A22D62F8500FE53D6 /* PushNotifSetupInteractor.swift */; };
-		5C45BF3122D62F8500FE53D6 /* PushNotifSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2A22D62F8500FE53D6 /* PushNotifSetupInteractor.swift */; };
-		5C45BF3222D62F8500FE53D6 /* PushNotifSetupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2A22D62F8500FE53D6 /* PushNotifSetupInteractor.swift */; };
-		5C45BF3322D62F8500FE53D6 /* PushNotifSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2B22D62F8500FE53D6 /* PushNotifSetupPresenter.swift */; };
-		5C45BF3422D62F8500FE53D6 /* PushNotifSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2B22D62F8500FE53D6 /* PushNotifSetupPresenter.swift */; };
-		5C45BF3522D62F8500FE53D6 /* PushNotifSetupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2B22D62F8500FE53D6 /* PushNotifSetupPresenter.swift */; };
-		5C45BF3622D62F8500FE53D6 /* PushNotifSetupModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2C22D62F8500FE53D6 /* PushNotifSetupModels.swift */; };
-		5C45BF3722D62F8500FE53D6 /* PushNotifSetupModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2C22D62F8500FE53D6 /* PushNotifSetupModels.swift */; };
-		5C45BF3822D62F8500FE53D6 /* PushNotifSetupModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2C22D62F8500FE53D6 /* PushNotifSetupModels.swift */; };
-		5C45BF3922D62F8500FE53D6 /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2D22D62F8500FE53D6 /* PushNotifSetupViewController.swift */; };
-		5C45BF3A22D62F8500FE53D6 /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2D22D62F8500FE53D6 /* PushNotifSetupViewController.swift */; };
-		5C45BF3B22D62F8500FE53D6 /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2D22D62F8500FE53D6 /* PushNotifSetupViewController.swift */; };
-		5C45BF3C22D62F8500FE53D6 /* PushNotifSetupWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2E22D62F8500FE53D6 /* PushNotifSetupWorker.swift */; };
-		5C45BF3D22D62F8500FE53D6 /* PushNotifSetupWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2E22D62F8500FE53D6 /* PushNotifSetupWorker.swift */; };
-		5C45BF3E22D62F8500FE53D6 /* PushNotifSetupWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2E22D62F8500FE53D6 /* PushNotifSetupWorker.swift */; };
-		5C45BF3F22D62F8500FE53D6 /* PushNotifSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2F22D62F8500FE53D6 /* PushNotifSetupRouter.swift */; };
-		5C45BF4022D62F8500FE53D6 /* PushNotifSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2F22D62F8500FE53D6 /* PushNotifSetupRouter.swift */; };
-		5C45BF4122D62F8500FE53D6 /* PushNotifSetupRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BF2F22D62F8500FE53D6 /* PushNotifSetupRouter.swift */; };
+		5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
+		5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
+		5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
+		5C80669222F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */; };
+		5C80669322F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */; };
+		5C80669422F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */; };
+		5C80669B22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */; };
+		5C80669C22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */; };
+		5C80669D22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */; };
+		5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */; };
+		5C80669F22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */; };
+		5C8066A022F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */; };
+		5C8066A122F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */; };
+		5C8066A222F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */; };
+		5C8066A322F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */; };
+		5C8066A422F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */; };
+		5C8066A522F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */; };
+		5C8066A622F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */; };
+		5C8066A722F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */; };
+		5C8066A822F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */; };
+		5C8066A922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */; };
+		5C8066AA22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */; };
+		5C8066AB22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */; };
+		5C8066AC22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */; };
 		5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
 		5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
 		5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
+		5CB8EC3422E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC2E22E1C510008EA53C /* IntroChooseCompanyPresenter.swift */; };
+		5CB8EC3522E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC2E22E1C510008EA53C /* IntroChooseCompanyPresenter.swift */; };
+		5CB8EC3622E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC2E22E1C510008EA53C /* IntroChooseCompanyPresenter.swift */; };
+		5CB8EC3722E1C510008EA53C /* IntroChooseCompanyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC2F22E1C510008EA53C /* IntroChooseCompanyWorker.swift */; };
+		5CB8EC3822E1C510008EA53C /* IntroChooseCompanyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC2F22E1C510008EA53C /* IntroChooseCompanyWorker.swift */; };
+		5CB8EC3922E1C510008EA53C /* IntroChooseCompanyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC2F22E1C510008EA53C /* IntroChooseCompanyWorker.swift */; };
+		5CB8EC3A22E1C510008EA53C /* IntroChooseCompanyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3022E1C510008EA53C /* IntroChooseCompanyRouter.swift */; };
+		5CB8EC3B22E1C510008EA53C /* IntroChooseCompanyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3022E1C510008EA53C /* IntroChooseCompanyRouter.swift */; };
+		5CB8EC3C22E1C510008EA53C /* IntroChooseCompanyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3022E1C510008EA53C /* IntroChooseCompanyRouter.swift */; };
+		5CB8EC3D22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3122E1C510008EA53C /* IntroChooseCompanyModels.swift */; };
+		5CB8EC3E22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3122E1C510008EA53C /* IntroChooseCompanyModels.swift */; };
+		5CB8EC3F22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3122E1C510008EA53C /* IntroChooseCompanyModels.swift */; };
+		5CB8EC4022E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3222E1C510008EA53C /* IntroChooseCompanyViewController.swift */; };
+		5CB8EC4122E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3222E1C510008EA53C /* IntroChooseCompanyViewController.swift */; };
+		5CB8EC4222E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3222E1C510008EA53C /* IntroChooseCompanyViewController.swift */; };
+		5CB8EC4322E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */; };
+		5CB8EC4422E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */; };
+		5CB8EC4522E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */; };
+		5CB8EC4822E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */; };
+		5CB8EC4922E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */; };
+		5CB8EC4A22E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */; };
+		5CB8EC4B22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */; };
+		5CB8EC4C22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */; };
+		5CB8EC4D22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */; };
+		5CB8EC4F22E6DBD7008EA53C /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */; };
+		5CB8EC5022E6DBD7008EA53C /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */; };
+		5CB8EC5122E6DBD7008EA53C /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */; };
+		5CB8EC5322E96794008EA53C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5222E96794008EA53C /* Company.swift */; };
+		5CB8EC5422E96794008EA53C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5222E96794008EA53C /* Company.swift */; };
+		5CB8EC5522E96794008EA53C /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5222E96794008EA53C /* Company.swift */; };
+		5CB8EC5722E967DC008EA53C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5622E967DC008EA53C /* Address.swift */; };
+		5CB8EC5822E967DC008EA53C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5622E967DC008EA53C /* Address.swift */; };
+		5CB8EC5922E967DC008EA53C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5622E967DC008EA53C /* Address.swift */; };
+		5CB8EC5B22E967FB008EA53C /* Fuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5A22E967FB008EA53C /* Fuel.swift */; };
+		5CB8EC5C22E967FB008EA53C /* Fuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5A22E967FB008EA53C /* Fuel.swift */; };
+		5CB8EC5D22E967FB008EA53C /* Fuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5A22E967FB008EA53C /* Fuel.swift */; };
+		5CB8EC6522E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */; };
+		5CB8EC6622E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */; };
+		5CB8EC6722E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */; };
+		5CB8EC6822E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */; };
+		5CB8EC6922E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */; };
+		5CB8EC6A22E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */; };
+		5CB8EC6B22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6122E96B44008EA53C /* IntroChooseFuelTypeRouter.swift */; };
+		5CB8EC6C22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6122E96B44008EA53C /* IntroChooseFuelTypeRouter.swift */; };
+		5CB8EC6D22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6122E96B44008EA53C /* IntroChooseFuelTypeRouter.swift */; };
+		5CB8EC6E22E96B44008EA53C /* IntroChooseFuelTypeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6222E96B44008EA53C /* IntroChooseFuelTypeModels.swift */; };
+		5CB8EC6F22E96B44008EA53C /* IntroChooseFuelTypeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6222E96B44008EA53C /* IntroChooseFuelTypeModels.swift */; };
+		5CB8EC7022E96B44008EA53C /* IntroChooseFuelTypeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6222E96B44008EA53C /* IntroChooseFuelTypeModels.swift */; };
+		5CB8EC7122E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift */; };
+		5CB8EC7222E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift */; };
+		5CB8EC7322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift */; };
+		5CB8EC7422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift */; };
+		5CB8EC7522E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift */; };
+		5CB8EC7622E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift */; };
+		5CB8EC7922E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC7722E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift */; };
+		5CB8EC7A22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC7722E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift */; };
+		5CB8EC7B22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC7722E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift */; };
+		5CB8EC7C22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC7822E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib */; };
+		5CB8EC7D22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC7822E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib */; };
+		5CB8EC7E22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC7822E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib */; };
+		5CB8EC8622E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8022E98A54008EA53C /* IntroNotifSetUpPresenter.swift */; };
+		5CB8EC8722E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8022E98A54008EA53C /* IntroNotifSetUpPresenter.swift */; };
+		5CB8EC8822E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8022E98A54008EA53C /* IntroNotifSetUpPresenter.swift */; };
+		5CB8EC8922E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8122E98A54008EA53C /* IntroNotifSetUpWorker.swift */; };
+		5CB8EC8A22E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8122E98A54008EA53C /* IntroNotifSetUpWorker.swift */; };
+		5CB8EC8B22E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8122E98A54008EA53C /* IntroNotifSetUpWorker.swift */; };
+		5CB8EC8C22E98A54008EA53C /* IntroNotifSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8222E98A54008EA53C /* IntroNotifSetUpRouter.swift */; };
+		5CB8EC8D22E98A54008EA53C /* IntroNotifSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8222E98A54008EA53C /* IntroNotifSetUpRouter.swift */; };
+		5CB8EC8E22E98A54008EA53C /* IntroNotifSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8222E98A54008EA53C /* IntroNotifSetUpRouter.swift */; };
+		5CB8EC8F22E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8322E98A54008EA53C /* IntroNotifSetUpModels.swift */; };
+		5CB8EC9022E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8322E98A54008EA53C /* IntroNotifSetUpModels.swift */; };
+		5CB8EC9122E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8322E98A54008EA53C /* IntroNotifSetUpModels.swift */; };
+		5CB8EC9222E98A54008EA53C /* IntroNotifSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8422E98A54008EA53C /* IntroNotifSetUpViewController.swift */; };
+		5CB8EC9322E98A54008EA53C /* IntroNotifSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8422E98A54008EA53C /* IntroNotifSetUpViewController.swift */; };
+		5CB8EC9422E98A54008EA53C /* IntroNotifSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8422E98A54008EA53C /* IntroNotifSetUpViewController.swift */; };
+		5CB8EC9522E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8522E98A54008EA53C /* IntroNotifSetUpInteractor.swift */; };
+		5CB8EC9622E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8522E98A54008EA53C /* IntroNotifSetUpInteractor.swift */; };
+		5CB8EC9722E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC8522E98A54008EA53C /* IntroNotifSetUpInteractor.swift */; };
+		5CB8EC9A22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC9822E98ACD008EA53C /* IntroNotifSetUpLayoutView.xib */; };
+		5CB8EC9B22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC9822E98ACD008EA53C /* IntroNotifSetUpLayoutView.xib */; };
+		5CB8EC9C22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC9822E98ACD008EA53C /* IntroNotifSetUpLayoutView.xib */; };
+		5CB8EC9D22E98ACE008EA53C /* IntroNotifSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */; };
+		5CB8EC9E22E98ACE008EA53C /* IntroNotifSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */; };
+		5CB8EC9F22E98ACE008EA53C /* IntroNotifSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */; };
 		5CB9F6A722D8DA9500F47F6B /* SettingsToggleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */; };
 		5CB9F6A922DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
 		5CB9F6AA22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
@@ -295,63 +434,80 @@
 		5C11F09D229EF4FC00EC7CEC /* fuelhunterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fuelhunterUITests.swift; sourceTree = "<group>"; };
 		5C11F09F229EF4FC00EC7CEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C11F0AB229F03DA00EC7CEC /* fuelhunter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fuelhunter.entitlements; sourceTree = "<group>"; };
-		5C22F5F222C557B5000EF339 /* MainFuelListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListViewController.swift; sourceTree = "<group>"; };
-		5C22F5F322C557B5000EF339 /* MainFuelListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListRouter.swift; sourceTree = "<group>"; };
-		5C22F5F422C557B5000EF339 /* MainFuelListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListWorker.swift; sourceTree = "<group>"; };
-		5C22F5F522C557B5000EF339 /* MainFuelListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListPresenter.swift; sourceTree = "<group>"; };
-		5C22F5F622C557B5000EF339 /* MainFuelListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListModels.swift; sourceTree = "<group>"; };
-		5C22F5F722C557B5000EF339 /* MainFuelListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListInteractor.swift; sourceTree = "<group>"; };
-		5C22F62322C55824000EF339 /* SettingsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
-		5C22F62422C55824000EF339 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
-		5C22F62522C55824000EF339 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
-		5C22F62622C55824000EF339 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
-		5C22F62722C55824000EF339 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
-		5C22F62822C55824000EF339 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		5C2E663722DC800000FC71AD /* AppSavingsInfoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoModels.swift; sourceTree = "<group>"; };
-		5C2E663822DC800000FC71AD /* AppSavingsInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoViewController.swift; sourceTree = "<group>"; };
-		5C2E663922DC800000FC71AD /* AppSavingsInfoWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoWorker.swift; sourceTree = "<group>"; };
-		5C2E663A22DC800000FC71AD /* AppSavingsInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoPresenter.swift; sourceTree = "<group>"; };
-		5C2E663B22DC800000FC71AD /* AppSavingsInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoRouter.swift; sourceTree = "<group>"; };
-		5C2E663C22DC800000FC71AD /* AppSavingsInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoInteractor.swift; sourceTree = "<group>"; };
-		5C2E664122DC800100FC71AD /* AppAccuracyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAccuracyInfoViewController.swift; sourceTree = "<group>"; };
 		5C2E666822DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAccuracyInfoTableHeaderView.swift; sourceTree = "<group>"; };
 		5C2E666922DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppAccuracyInfoTableHeaderView.xib; sourceTree = "<group>"; };
 		5C2E667022DCD1CE00FC71AD /* AppSavingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppSavingsView.xib; sourceTree = "<group>"; };
 		5C2E667122DCD1CE00FC71AD /* AppSavingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsView.swift; sourceTree = "<group>"; };
+		5C2E667B22DD941D00FC71AD /* SettingsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
+		5C2E667C22DD941D00FC71AD /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		5C2E667D22DD941D00FC71AD /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
+		5C2E667E22DD941D00FC71AD /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		5C2E667F22DD941D00FC71AD /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		5C2E668022DD941D00FC71AD /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppInteractor.swift; sourceTree = "<group>"; };
+		5C2E668322DD941D00FC71AD /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppWorker.swift; sourceTree = "<group>"; };
+		5C2E668522DD941D00FC71AD /* AboutAppPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppPresenter.swift; sourceTree = "<group>"; };
+		5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppRouter.swift; sourceTree = "<group>"; };
+		5C2E668722DD941D00FC71AD /* AboutAppModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppModels.swift; sourceTree = "<group>"; };
+		5C2E668922DD941D00FC71AD /* CompaniesChooseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListPresenter.swift; sourceTree = "<group>"; };
+		5C2E668A22DD941D00FC71AD /* CompaniesChooseListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListInteractor.swift; sourceTree = "<group>"; };
+		5C2E668B22DD941D00FC71AD /* CompaniesChooseListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListWorker.swift; sourceTree = "<group>"; };
+		5C2E668C22DD941D00FC71AD /* CompaniesChooseListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListRouter.swift; sourceTree = "<group>"; };
+		5C2E668D22DD941D00FC71AD /* CompaniesChooseListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListModels.swift; sourceTree = "<group>"; };
+		5C2E668E22DD941D00FC71AD /* CompaniesChooseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListViewController.swift; sourceTree = "<group>"; };
+		5C2E669022DD941D00FC71AD /* PushNotifSetupInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupInteractor.swift; sourceTree = "<group>"; };
+		5C2E669122DD941D00FC71AD /* PushNotifSetupPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupPresenter.swift; sourceTree = "<group>"; };
+		5C2E669222DD941D00FC71AD /* PushNotifSetupModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupModels.swift; sourceTree = "<group>"; };
+		5C2E669322DD941D00FC71AD /* PushNotifSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupViewController.swift; sourceTree = "<group>"; };
+		5C2E669422DD941D00FC71AD /* PushNotifSetupWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupWorker.swift; sourceTree = "<group>"; };
+		5C2E669522DD941D00FC71AD /* PushNotifSetupRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupRouter.swift; sourceTree = "<group>"; };
+		5C2E669722DD941D00FC71AD /* FuelTypeChooseListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListRouter.swift; sourceTree = "<group>"; };
+		5C2E669822DD941D00FC71AD /* FuelTypeChooseListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListWorker.swift; sourceTree = "<group>"; };
+		5C2E669922DD941D00FC71AD /* FuelTypeChooseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListViewController.swift; sourceTree = "<group>"; };
+		5C2E669A22DD941D00FC71AD /* FuelTypeChooseListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListModels.swift; sourceTree = "<group>"; };
+		5C2E669B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListPresenter.swift; sourceTree = "<group>"; };
+		5C2E669C22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListInteractor.swift; sourceTree = "<group>"; };
+		5C2E669E22DD941D00FC71AD /* AppLanguageModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageModels.swift; sourceTree = "<group>"; };
+		5C2E669F22DD941D00FC71AD /* AppLanguageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageInteractor.swift; sourceTree = "<group>"; };
+		5C2E66A022DD941D00FC71AD /* AppLanguageWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageWorker.swift; sourceTree = "<group>"; };
+		5C2E66A122DD941D00FC71AD /* AppLanguageRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageRouter.swift; sourceTree = "<group>"; };
+		5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguagePresenter.swift; sourceTree = "<group>"; };
+		5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageViewController.swift; sourceTree = "<group>"; };
+		5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAccuracyInfoViewController.swift; sourceTree = "<group>"; };
+		5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoModels.swift; sourceTree = "<group>"; };
+		5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoViewController.swift; sourceTree = "<group>"; };
+		5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoWorker.swift; sourceTree = "<group>"; };
+		5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoPresenter.swift; sourceTree = "<group>"; };
+		5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoRouter.swift; sourceTree = "<group>"; };
+		5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoInteractor.swift; sourceTree = "<group>"; };
+		5C2E677E22DDA33800FC71AD /* MainFuelListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListViewController.swift; sourceTree = "<group>"; };
+		5C2E677F22DDA33800FC71AD /* MainFuelListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListRouter.swift; sourceTree = "<group>"; };
+		5C2E678022DDA33800FC71AD /* MainFuelListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListWorker.swift; sourceTree = "<group>"; };
+		5C2E678122DDA33800FC71AD /* MainFuelListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListPresenter.swift; sourceTree = "<group>"; };
+		5C2E678222DDA33800FC71AD /* MainFuelListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListModels.swift; sourceTree = "<group>"; };
+		5C2E678322DDA33800FC71AD /* MainFuelListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFuelListInteractor.swift; sourceTree = "<group>"; };
+		5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesManager.swift; sourceTree = "<group>"; };
+		5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageInteractor.swift; sourceTree = "<group>"; };
+		5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageWorker.swift; sourceTree = "<group>"; };
+		5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageRouter.swift; sourceTree = "<group>"; };
+		5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPagePresenter.swift; sourceTree = "<group>"; };
+		5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageModels.swift; sourceTree = "<group>"; };
+		5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
+		5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageLayoutView.swift; sourceTree = "<group>"; };
+		5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPageLayoutView.xib; sourceTree = "<group>"; };
+		5C2E67CF22E1937600FC71AD /* FuelHunterUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuelHunterUI.h; sourceTree = "<group>"; };
+		5C2E67D022E1937600FC71AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C45BDC722CD3F2000FE53D6 /* SettingsListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListCell.swift; sourceTree = "<group>"; };
 		5C45BDC822CD3F2000FE53D6 /* SettingsListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsListCell.xib; sourceTree = "<group>"; };
 		5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellBackgroundType.swift; sourceTree = "<group>"; };
-		5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListPresenter.swift; sourceTree = "<group>"; };
-		5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListInteractor.swift; sourceTree = "<group>"; };
-		5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListWorker.swift; sourceTree = "<group>"; };
-		5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListRouter.swift; sourceTree = "<group>"; };
-		5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListModels.swift; sourceTree = "<group>"; };
-		5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListViewController.swift; sourceTree = "<group>"; };
 		5C45BE0422CE29EB00FE53D6 /* FuelCompanyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelCompanyListCell.swift; sourceTree = "<group>"; };
 		5C45BE0522CE29EB00FE53D6 /* FuelCompanyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelCompanyListCell.xib; sourceTree = "<group>"; };
 		5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSizeExtension.swift; sourceTree = "<group>"; };
-		5C45BE2922CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListRouter.swift; sourceTree = "<group>"; };
-		5C45BE2A22CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListWorker.swift; sourceTree = "<group>"; };
-		5C45BE2B22CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListViewController.swift; sourceTree = "<group>"; };
-		5C45BE2C22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListModels.swift; sourceTree = "<group>"; };
-		5C45BE2D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListPresenter.swift; sourceTree = "<group>"; };
-		5C45BE2E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListInteractor.swift; sourceTree = "<group>"; };
 		5C45BE4122CF56A200FE53D6 /* FuelTypeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelTypeListCell.swift; sourceTree = "<group>"; };
 		5C45BE4222CF56A200FE53D6 /* FuelTypeListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelTypeListCell.xib; sourceTree = "<group>"; };
-		5C45BE7A22CF723200FE53D6 /* AppLanguageModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageModels.swift; sourceTree = "<group>"; };
-		5C45BE7B22CF723200FE53D6 /* AppLanguageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageInteractor.swift; sourceTree = "<group>"; };
-		5C45BE7C22CF723200FE53D6 /* AppLanguageWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageWorker.swift; sourceTree = "<group>"; };
-		5C45BE7D22CF723200FE53D6 /* AppLanguageRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageRouter.swift; sourceTree = "<group>"; };
-		5C45BE7E22CF723200FE53D6 /* AppLanguagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguagePresenter.swift; sourceTree = "<group>"; };
-		5C45BE7F22CF723200FE53D6 /* AppLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageViewController.swift; sourceTree = "<group>"; };
 		5C45BE9222CF793500FE53D6 /* LanguageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageListCell.swift; sourceTree = "<group>"; };
 		5C45BE9322CF793500FE53D6 /* LanguageListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageListCell.xib; sourceTree = "<group>"; };
-		5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppInteractor.swift; sourceTree = "<group>"; };
-		5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
-		5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppWorker.swift; sourceTree = "<group>"; };
-		5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppPresenter.swift; sourceTree = "<group>"; };
-		5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppRouter.swift; sourceTree = "<group>"; };
-		5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppModels.swift; sourceTree = "<group>"; };
 		5C45BECB22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppFuelCompanyCell.swift; sourceTree = "<group>"; };
 		5C45BECC22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutAppFuelCompanyCell.xib; sourceTree = "<group>"; };
 		5C45BED722D2807200FE53D6 /* AboutAppTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppTableHeaderView.swift; sourceTree = "<group>"; };
@@ -360,16 +516,46 @@
 		5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotifPhoneAnimationView.xib; sourceTree = "<group>"; };
 		5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAnimationView.xib; sourceTree = "<group>"; };
 		5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnimationView.swift; sourceTree = "<group>"; };
-		5C45BF2A22D62F8500FE53D6 /* PushNotifSetupInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupInteractor.swift; sourceTree = "<group>"; };
-		5C45BF2B22D62F8500FE53D6 /* PushNotifSetupPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupPresenter.swift; sourceTree = "<group>"; };
-		5C45BF2C22D62F8500FE53D6 /* PushNotifSetupModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupModels.swift; sourceTree = "<group>"; };
-		5C45BF2D22D62F8500FE53D6 /* PushNotifSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupViewController.swift; sourceTree = "<group>"; };
-		5C45BF2E22D62F8500FE53D6 /* PushNotifSetupWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupWorker.swift; sourceTree = "<group>"; };
-		5C45BF2F22D62F8500FE53D6 /* PushNotifSetupRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupRouter.swift; sourceTree = "<group>"; };
+		5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroGPSSetUpLayoutView.xib; sourceTree = "<group>"; };
+		5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpLayoutView.swift; sourceTree = "<group>"; };
+		5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpPresenter.swift; sourceTree = "<group>"; };
+		5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpWorker.swift; sourceTree = "<group>"; };
+		5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpRouter.swift; sourceTree = "<group>"; };
+		5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpModels.swift; sourceTree = "<group>"; };
+		5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpViewController.swift; sourceTree = "<group>"; };
+		5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpInteractor.swift; sourceTree = "<group>"; };
 		5C84440122A7B4BD003A8752 /* InlineAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InlineAlertView.xib; sourceTree = "<group>"; };
 		5C84440322A7B508003A8752 /* InlineAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineAlertView.swift; sourceTree = "<group>"; };
 		5C84444A22ACDF70003A8752 /* FuelListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelListCell.xib; sourceTree = "<group>"; };
 		5C84444C22ACE59D003A8752 /* FuelListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListCell.swift; sourceTree = "<group>"; };
+		5CB8EC2E22E1C510008EA53C /* IntroChooseCompanyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyPresenter.swift; sourceTree = "<group>"; };
+		5CB8EC2F22E1C510008EA53C /* IntroChooseCompanyWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyWorker.swift; sourceTree = "<group>"; };
+		5CB8EC3022E1C510008EA53C /* IntroChooseCompanyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyRouter.swift; sourceTree = "<group>"; };
+		5CB8EC3122E1C510008EA53C /* IntroChooseCompanyModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyModels.swift; sourceTree = "<group>"; };
+		5CB8EC3222E1C510008EA53C /* IntroChooseCompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyViewController.swift; sourceTree = "<group>"; };
+		5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyInteractor.swift; sourceTree = "<group>"; };
+		5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyLayoutView.swift; sourceTree = "<group>"; };
+		5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroChooseCompanyLayoutView.xib; sourceTree = "<group>"; };
+		5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		5CB8EC5222E96794008EA53C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		5CB8EC5622E967DC008EA53C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		5CB8EC5A22E967FB008EA53C /* Fuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel.swift; sourceTree = "<group>"; };
+		5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypePresenter.swift; sourceTree = "<group>"; };
+		5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeWorker.swift; sourceTree = "<group>"; };
+		5CB8EC6122E96B44008EA53C /* IntroChooseFuelTypeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeRouter.swift; sourceTree = "<group>"; };
+		5CB8EC6222E96B44008EA53C /* IntroChooseFuelTypeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeModels.swift; sourceTree = "<group>"; };
+		5CB8EC6322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeViewController.swift; sourceTree = "<group>"; };
+		5CB8EC6422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeInteractor.swift; sourceTree = "<group>"; };
+		5CB8EC7722E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeLayoutView.swift; sourceTree = "<group>"; };
+		5CB8EC7822E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroChooseFuelTypeLayoutView.xib; sourceTree = "<group>"; };
+		5CB8EC8022E98A54008EA53C /* IntroNotifSetUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpPresenter.swift; sourceTree = "<group>"; };
+		5CB8EC8122E98A54008EA53C /* IntroNotifSetUpWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpWorker.swift; sourceTree = "<group>"; };
+		5CB8EC8222E98A54008EA53C /* IntroNotifSetUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpRouter.swift; sourceTree = "<group>"; };
+		5CB8EC8322E98A54008EA53C /* IntroNotifSetUpModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpModels.swift; sourceTree = "<group>"; };
+		5CB8EC8422E98A54008EA53C /* IntroNotifSetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpViewController.swift; sourceTree = "<group>"; };
+		5CB8EC8522E98A54008EA53C /* IntroNotifSetUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpInteractor.swift; sourceTree = "<group>"; };
+		5CB8EC9822E98ACD008EA53C /* IntroNotifSetUpLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroNotifSetUpLayoutView.xib; sourceTree = "<group>"; };
+		5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpLayoutView.swift; sourceTree = "<group>"; };
 		5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleStatus.swift; sourceTree = "<group>"; };
 		5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsWorker.swift; sourceTree = "<group>"; };
 		5CFBABED22C382E300213D46 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
@@ -442,9 +628,13 @@
 			children = (
 				5C07B07022A4DCA700DA3E9B /* AppFonts.swift */,
 				5CFBABED22C382E300213D46 /* Price.swift */,
+				5CB8EC5222E96794008EA53C /* Company.swift */,
+				5CB8EC5A22E967FB008EA53C /* Fuel.swift */,
+				5CB8EC5622E967DC008EA53C /* Address.swift */,
 				5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */,
 				5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */,
 				5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */,
+				5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -502,6 +692,7 @@
 				5C11F07C229EF4FB00EC7CEC /* fuelhunter */,
 				5C11F091229EF4FC00EC7CEC /* fuelhunterTests */,
 				5C11F09C229EF4FC00EC7CEC /* fuelhunterUITests */,
+				5C2E67CE22E1937600FC71AD /* FuelHunterUI */,
 				5C11F07B229EF4FB00EC7CEC /* Products */,
 				B2EE4EF6F9BDA262DAE6E157 /* Pods */,
 				A06D9252C43D3E2E4CB0455A /* Frameworks */,
@@ -528,7 +719,7 @@
 				5C07B06F22A4DCA700DA3E9B /* Models */,
 				5C07B06B22A4DCA700DA3E9B /* Services */,
 				5C07B06E22A4DCA700DA3E9B /* Workers */,
-				5C22F5F022C557B5000EF339 /* Scenes */,
+				5C2E667822DD941D00FC71AD /* Scenes */,
 				5C07B08022A4E07400DA3E9B /* CommonViews */,
 				5C11F084229EF4FC00EC7CEC /* Assets.xcassets */,
 				5C11F089229EF4FC00EC7CEC /* Info.plist */,
@@ -554,132 +745,246 @@
 			path = fuelhunterUITests;
 			sourceTree = "<group>";
 		};
-		5C22F5F022C557B5000EF339 /* Scenes */ = {
+		5C2E667822DD941D00FC71AD /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				5C2E663D22DC800100FC71AD /* AppAccuracyInfo */,
-				5C2E663622DC800000FC71AD /* AppSavingsInfo */,
-				5C45BF2922D62F8500FE53D6 /* PushNotifSetup */,
-				5C45BEB222D26FB700FE53D6 /* AboutApp */,
-				5C45BE7922CF723200FE53D6 /* AppLanguage */,
-				5C45BE2822CF50DD00FE53D6 /* FuelTypeChooseList */,
-				5C45BDEB22CE079B00FE53D6 /* CompaniesChooseList */,
-				5C22F62222C55824000EF339 /* Settings */,
-				5C22F5F122C557B5000EF339 /* MainFuelList */,
+				5C2E667922DD941D00FC71AD /* Settings */,
+				5C2E66A422DD941D00FC71AD /* SetUp */,
+				5C2E66A522DD941D00FC71AD /* Main */,
+				5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		5C22F5F122C557B5000EF339 /* MainFuelList */ = {
+		5C2E667922DD941D00FC71AD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				5C22F5F222C557B5000EF339 /* MainFuelListViewController.swift */,
-				5C22F5F722C557B5000EF339 /* MainFuelListInteractor.swift */,
-				5C22F5F522C557B5000EF339 /* MainFuelListPresenter.swift */,
-				5C22F5F622C557B5000EF339 /* MainFuelListModels.swift */,
-				5C22F5F422C557B5000EF339 /* MainFuelListWorker.swift */,
-				5C22F5F322C557B5000EF339 /* MainFuelListRouter.swift */,
-			);
-			path = MainFuelList;
-			sourceTree = "<group>";
-		};
-		5C22F62222C55824000EF339 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				5C22F62822C55824000EF339 /* SettingsViewController.swift */,
-				5C22F62622C55824000EF339 /* SettingsInteractor.swift */,
-				5C22F62722C55824000EF339 /* SettingsPresenter.swift */,
-				5C22F62322C55824000EF339 /* SettingsModels.swift */,
-				5C22F62522C55824000EF339 /* SettingsWorker.swift */,
-				5C22F62422C55824000EF339 /* SettingsRouter.swift */,
+				5C2E667A22DD941D00FC71AD /* Settings */,
+				5C2E668122DD941D00FC71AD /* AboutApp */,
+				5C2E668822DD941D00FC71AD /* CompaniesChooseList */,
+				5C2E668F22DD941D00FC71AD /* PushNotifSetup */,
+				5C2E669622DD941D00FC71AD /* FuelTypeChooseList */,
+				5C2E669D22DD941D00FC71AD /* AppLanguage */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		5C2E663622DC800000FC71AD /* AppSavingsInfo */ = {
+		5C2E667A22DD941D00FC71AD /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				5C2E663822DC800000FC71AD /* AppSavingsInfoViewController.swift */,
-				5C2E663C22DC800000FC71AD /* AppSavingsInfoInteractor.swift */,
-				5C2E663A22DC800000FC71AD /* AppSavingsInfoPresenter.swift */,
-				5C2E663922DC800000FC71AD /* AppSavingsInfoWorker.swift */,
-				5C2E663722DC800000FC71AD /* AppSavingsInfoModels.swift */,
-				5C2E663B22DC800000FC71AD /* AppSavingsInfoRouter.swift */,
+				5C2E668022DD941D00FC71AD /* SettingsViewController.swift */,
+				5C2E667E22DD941D00FC71AD /* SettingsInteractor.swift */,
+				5C2E667F22DD941D00FC71AD /* SettingsPresenter.swift */,
+				5C2E667B22DD941D00FC71AD /* SettingsModels.swift */,
+				5C2E667D22DD941D00FC71AD /* SettingsWorker.swift */,
+				5C2E667C22DD941D00FC71AD /* SettingsRouter.swift */,
 			);
-			path = AppSavingsInfo;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		5C2E663D22DC800100FC71AD /* AppAccuracyInfo */ = {
+		5C2E668122DD941D00FC71AD /* AboutApp */ = {
 			isa = PBXGroup;
 			children = (
-				5C2E664122DC800100FC71AD /* AppAccuracyInfoViewController.swift */,
-			);
-			path = AppAccuracyInfo;
-			sourceTree = "<group>";
-		};
-		5C45BDEB22CE079B00FE53D6 /* CompaniesChooseList */ = {
-			isa = PBXGroup;
-			children = (
-				5C45BDF122CE079B00FE53D6 /* CompaniesChooseListViewController.swift */,
-				5C45BDED22CE079B00FE53D6 /* CompaniesChooseListInteractor.swift */,
-				5C45BDEC22CE079B00FE53D6 /* CompaniesChooseListPresenter.swift */,
-				5C45BDF022CE079B00FE53D6 /* CompaniesChooseListModels.swift */,
-				5C45BDEE22CE079B00FE53D6 /* CompaniesChooseListWorker.swift */,
-				5C45BDEF22CE079B00FE53D6 /* CompaniesChooseListRouter.swift */,
-			);
-			path = CompaniesChooseList;
-			sourceTree = "<group>";
-		};
-		5C45BE2822CF50DD00FE53D6 /* FuelTypeChooseList */ = {
-			isa = PBXGroup;
-			children = (
-				5C45BE2B22CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift */,
-				5C45BE2E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift */,
-				5C45BE2D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift */,
-				5C45BE2C22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift */,
-				5C45BE2A22CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift */,
-				5C45BE2922CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift */,
-			);
-			path = FuelTypeChooseList;
-			sourceTree = "<group>";
-		};
-		5C45BE7922CF723200FE53D6 /* AppLanguage */ = {
-			isa = PBXGroup;
-			children = (
-				5C45BE7F22CF723200FE53D6 /* AppLanguageViewController.swift */,
-				5C45BE7B22CF723200FE53D6 /* AppLanguageInteractor.swift */,
-				5C45BE7E22CF723200FE53D6 /* AppLanguagePresenter.swift */,
-				5C45BE7A22CF723200FE53D6 /* AppLanguageModels.swift */,
-				5C45BE7C22CF723200FE53D6 /* AppLanguageWorker.swift */,
-				5C45BE7D22CF723200FE53D6 /* AppLanguageRouter.swift */,
-			);
-			path = AppLanguage;
-			sourceTree = "<group>";
-		};
-		5C45BEB222D26FB700FE53D6 /* AboutApp */ = {
-			isa = PBXGroup;
-			children = (
-				5C45BEB422D26FB700FE53D6 /* AboutAppViewController.swift */,
-				5C45BEB322D26FB700FE53D6 /* AboutAppInteractor.swift */,
-				5C45BEB622D26FB700FE53D6 /* AboutAppPresenter.swift */,
-				5C45BEB522D26FB700FE53D6 /* AboutAppWorker.swift */,
-				5C45BEB822D26FB700FE53D6 /* AboutAppModels.swift */,
-				5C45BEB722D26FB700FE53D6 /* AboutAppRouter.swift */,
+				5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */,
+				5C2E668322DD941D00FC71AD /* AboutAppViewController.swift */,
+				5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */,
+				5C2E668522DD941D00FC71AD /* AboutAppPresenter.swift */,
+				5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */,
+				5C2E668722DD941D00FC71AD /* AboutAppModels.swift */,
 			);
 			path = AboutApp;
 			sourceTree = "<group>";
 		};
-		5C45BF2922D62F8500FE53D6 /* PushNotifSetup */ = {
+		5C2E668822DD941D00FC71AD /* CompaniesChooseList */ = {
 			isa = PBXGroup;
 			children = (
-				5C45BF2D22D62F8500FE53D6 /* PushNotifSetupViewController.swift */,
-				5C45BF2A22D62F8500FE53D6 /* PushNotifSetupInteractor.swift */,
-				5C45BF2B22D62F8500FE53D6 /* PushNotifSetupPresenter.swift */,
-				5C45BF2E22D62F8500FE53D6 /* PushNotifSetupWorker.swift */,
-				5C45BF2C22D62F8500FE53D6 /* PushNotifSetupModels.swift */,
-				5C45BF2F22D62F8500FE53D6 /* PushNotifSetupRouter.swift */,
+				5C2E668E22DD941D00FC71AD /* CompaniesChooseListViewController.swift */,
+				5C2E668A22DD941D00FC71AD /* CompaniesChooseListInteractor.swift */,
+				5C2E668922DD941D00FC71AD /* CompaniesChooseListPresenter.swift */,
+				5C2E668B22DD941D00FC71AD /* CompaniesChooseListWorker.swift */,
+				5C2E668D22DD941D00FC71AD /* CompaniesChooseListModels.swift */,
+				5C2E668C22DD941D00FC71AD /* CompaniesChooseListRouter.swift */,
+			);
+			path = CompaniesChooseList;
+			sourceTree = "<group>";
+		};
+		5C2E668F22DD941D00FC71AD /* PushNotifSetup */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E669322DD941D00FC71AD /* PushNotifSetupViewController.swift */,
+				5C2E669022DD941D00FC71AD /* PushNotifSetupInteractor.swift */,
+				5C2E669122DD941D00FC71AD /* PushNotifSetupPresenter.swift */,
+				5C2E669222DD941D00FC71AD /* PushNotifSetupModels.swift */,
+				5C2E669422DD941D00FC71AD /* PushNotifSetupWorker.swift */,
+				5C2E669522DD941D00FC71AD /* PushNotifSetupRouter.swift */,
 			);
 			path = PushNotifSetup;
+			sourceTree = "<group>";
+		};
+		5C2E669622DD941D00FC71AD /* FuelTypeChooseList */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E669922DD941D00FC71AD /* FuelTypeChooseListViewController.swift */,
+				5C2E669C22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift */,
+				5C2E669B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift */,
+				5C2E669A22DD941D00FC71AD /* FuelTypeChooseListModels.swift */,
+				5C2E669822DD941D00FC71AD /* FuelTypeChooseListWorker.swift */,
+				5C2E669722DD941D00FC71AD /* FuelTypeChooseListRouter.swift */,
+			);
+			path = FuelTypeChooseList;
+			sourceTree = "<group>";
+		};
+		5C2E669D22DD941D00FC71AD /* AppLanguage */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E669E22DD941D00FC71AD /* AppLanguageModels.swift */,
+				5C2E669F22DD941D00FC71AD /* AppLanguageInteractor.swift */,
+				5C2E66A022DD941D00FC71AD /* AppLanguageWorker.swift */,
+				5C2E66A122DD941D00FC71AD /* AppLanguageRouter.swift */,
+				5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */,
+				5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */,
+			);
+			path = AppLanguage;
+			sourceTree = "<group>";
+		};
+		5C2E66A422DD941D00FC71AD /* SetUp */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E679A22DE60E500FC71AD /* Intro */,
+				5CB8EC2D22E1B7BC008EA53C /* IntroChooseCompany */,
+				5CB8EC5E22E96B22008EA53C /* IntroChooseFuelType */,
+				5CB8EC7F22E989FE008EA53C /* IntroNotifSetUp */,
+				5C80668C22F3FD8A00BD33B4 /* IntroGPSSetUp */,
+			);
+			path = SetUp;
+			sourceTree = "<group>";
+		};
+		5C2E66A522DD941D00FC71AD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E677D22DDA33800FC71AD /* MainFuelList */,
+				5C2E66A622DD941D00FC71AD /* AppAccuracyInfo */,
+				5C2E66A822DD941D00FC71AD /* AppSavingsInfo */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5C2E66A622DD941D00FC71AD /* AppAccuracyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */,
+			);
+			path = AppAccuracyInfo;
+			sourceTree = "<group>";
+		};
+		5C2E66A822DD941D00FC71AD /* AppSavingsInfo */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */,
+				5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */,
+				5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */,
+				5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */,
+				5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */,
+				5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */,
+			);
+			path = AppSavingsInfo;
+			sourceTree = "<group>";
+		};
+		5C2E677D22DDA33800FC71AD /* MainFuelList */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E677E22DDA33800FC71AD /* MainFuelListViewController.swift */,
+				5C2E678322DDA33800FC71AD /* MainFuelListInteractor.swift */,
+				5C2E678122DDA33800FC71AD /* MainFuelListPresenter.swift */,
+				5C2E678022DDA33800FC71AD /* MainFuelListWorker.swift */,
+				5C2E678222DDA33800FC71AD /* MainFuelListModels.swift */,
+				5C2E677F22DDA33800FC71AD /* MainFuelListRouter.swift */,
+			);
+			path = MainFuelList;
+			sourceTree = "<group>";
+		};
+		5C2E679A22DE60E500FC71AD /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */,
+				5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */,
+				5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */,
+				5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */,
+				5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */,
+				5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */,
+				5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */,
+				5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		5C2E67CE22E1937600FC71AD /* FuelHunterUI */ = {
+			isa = PBXGroup;
+			children = (
+				5C2E67CF22E1937600FC71AD /* FuelHunterUI.h */,
+				5C2E67D022E1937600FC71AD /* Info.plist */,
+			);
+			path = FuelHunterUI;
+			sourceTree = "<group>";
+		};
+		5C80668C22F3FD8A00BD33B4 /* IntroGPSSetUp */ = {
+			isa = PBXGroup;
+			children = (
+				5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */,
+				5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */,
+				5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */,
+				5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */,
+				5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */,
+				5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */,
+				5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */,
+				5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */,
+			);
+			path = IntroGPSSetUp;
+			sourceTree = "<group>";
+		};
+		5CB8EC2D22E1B7BC008EA53C /* IntroChooseCompany */ = {
+			isa = PBXGroup;
+			children = (
+				5CB8EC3222E1C510008EA53C /* IntroChooseCompanyViewController.swift */,
+				5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */,
+				5CB8EC2E22E1C510008EA53C /* IntroChooseCompanyPresenter.swift */,
+				5CB8EC2F22E1C510008EA53C /* IntroChooseCompanyWorker.swift */,
+				5CB8EC3122E1C510008EA53C /* IntroChooseCompanyModels.swift */,
+				5CB8EC3022E1C510008EA53C /* IntroChooseCompanyRouter.swift */,
+				5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */,
+				5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */,
+			);
+			path = IntroChooseCompany;
+			sourceTree = "<group>";
+		};
+		5CB8EC5E22E96B22008EA53C /* IntroChooseFuelType */ = {
+			isa = PBXGroup;
+			children = (
+				5CB8EC6322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift */,
+				5CB8EC6422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift */,
+				5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */,
+				5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */,
+				5CB8EC6222E96B44008EA53C /* IntroChooseFuelTypeModels.swift */,
+				5CB8EC6122E96B44008EA53C /* IntroChooseFuelTypeRouter.swift */,
+				5CB8EC7722E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift */,
+				5CB8EC7822E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib */,
+			);
+			path = IntroChooseFuelType;
+			sourceTree = "<group>";
+		};
+		5CB8EC7F22E989FE008EA53C /* IntroNotifSetUp */ = {
+			isa = PBXGroup;
+			children = (
+				5CB8EC8422E98A54008EA53C /* IntroNotifSetUpViewController.swift */,
+				5CB8EC8522E98A54008EA53C /* IntroNotifSetUpInteractor.swift */,
+				5CB8EC8022E98A54008EA53C /* IntroNotifSetUpPresenter.swift */,
+				5CB8EC8122E98A54008EA53C /* IntroNotifSetUpWorker.swift */,
+				5CB8EC8322E98A54008EA53C /* IntroNotifSetUpModels.swift */,
+				5CB8EC8222E98A54008EA53C /* IntroNotifSetUpRouter.swift */,
+				5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */,
+				5CB8EC9822E98ACD008EA53C /* IntroNotifSetUpLayoutView.xib */,
+			);
+			path = IntroNotifSetUp;
 			sourceTree = "<group>";
 		};
 		A06D9252C43D3E2E4CB0455A /* Frameworks */ = {
@@ -824,16 +1129,21 @@
 			files = (
 				5C45BDCC22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */,
+				5CB8EC7C22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */,
 				5C45BED022D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
+				5CB8EC9A22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
 				5C45BEDC22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
+				5CB8EC4B22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
 				5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */,
 				5C2E666D22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib in Resources */,
 				5C45BE0922CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 				5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */,
+				5C2E67C422E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5C2E667222DCD1CE00FC71AD /* AppSavingsView.xib in Resources */,
 				5C45BEE422D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
+				5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
 				5C11F083229EF4FB00EC7CEC /* Main.storyboard in Resources */,
 				5C45BEE922D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5C45BE4622CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
@@ -846,16 +1156,22 @@
 			files = (
 				5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */,
 				5C45BE4722CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
+				5CB8EC9B22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
 				5C0240B122CA530A000ABDCB /* InlineAlertView.xib in Resources */,
 				5C2E667322DCD1CE00FC71AD /* AppSavingsView.xib in Resources */,
+				5C2E67E822E193AB00FC71AD /* Assets.xcassets in Resources */,
 				5C2E666E22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib in Resources */,
 				5C45BED122D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
 				5C45BEEA22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
+				5CB8EC7D22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
+				5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
 				5C45BEDD22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
 				5C45BE9822CF793500FE53D6 /* LanguageListCell.xib in Resources */,
 				5C45BDCD22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C45BEE522D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
+				5CB8EC4C22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
+				5C2E67C522E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5C45BE0A22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,16 +1182,22 @@
 			files = (
 				5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */,
 				5C45BE4822CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
+				5CB8EC9C22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
 				5C0240B322CA530A000ABDCB /* InlineAlertView.xib in Resources */,
 				5C2E667422DCD1CE00FC71AD /* AppSavingsView.xib in Resources */,
+				5C2E67E922E193AB00FC71AD /* Assets.xcassets in Resources */,
 				5C2E666F22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib in Resources */,
 				5C45BED222D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
 				5C45BEEB22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
+				5CB8EC7E22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
+				5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
 				5C45BEDE22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
 				5C45BE9922CF793500FE53D6 /* LanguageListCell.xib in Resources */,
 				5C45BDCE22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C45BEE622D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
+				5CB8EC4D22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
+				5C2E67C622E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5C45BE0B22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -997,76 +1319,116 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C45BE8922CF723200FE53D6 /* AppLanguageRouter.swift in Sources */,
-				5C45BDF822CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */,
-				5C45BF3622D62F8500FE53D6 /* PushNotifSetupModels.swift in Sources */,
-				5C22F60422C557B5000EF339 /* MainFuelListModels.swift in Sources */,
-				5C45BE3222CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift in Sources */,
-				5C22F60722C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
-				5C22F62C22C55824000EF339 /* SettingsRouter.swift in Sources */,
-				5C45BE3B22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */,
-				5C2E664D22DC800100FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
-				5C45BF3022D62F8500FE53D6 /* PushNotifSetupInteractor.swift in Sources */,
-				5C45BEBF22D26FB700FE53D6 /* AboutAppWorker.swift in Sources */,
-				5C45BF3F22D62F8500FE53D6 /* PushNotifSetupRouter.swift in Sources */,
+				5CB8EC9222E98A54008EA53C /* IntroNotifSetUpViewController.swift in Sources */,
 				5CFBABF022C3A07000213D46 /* PriceWorker.swift in Sources */,
-				5C2E665322DC800100FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5CB8EC6E22E96B44008EA53C /* IntroChooseFuelTypeModels.swift in Sources */,
+				5CB8EC7922E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */,
+				5C2E67AF22DE60E500FC71AD /* IntroPageModels.swift in Sources */,
+				5C2E670722DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */,
+				5CB8EC3D22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */,
+				5C2E66E922DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */,
+				5C2E66F222DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */,
+				5C2E671322DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
+				5C2E672222DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
+				5CB8EC6522E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */,
+				5CB8EC8922E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */,
+				5CB8EC6822E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */,
+				5C8066AA22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */,
 				5CB9F6A922DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */,
-				5C45BDF522CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
-				5C45BDFB22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
-				5C22F62922C55824000EF339 /* SettingsModels.swift in Sources */,
-				5C45BEC522D26FB700FE53D6 /* AboutAppRouter.swift in Sources */,
-				5C2E664422DC800100FC71AD /* AppSavingsInfoModels.swift in Sources */,
+				5C2E66EF22DD941D00FC71AD /* PushNotifSetupPresenter.swift in Sources */,
+				5C80669B22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */,
 				5CFBABF222C3FE0100213D46 /* PricesMemoryStore.swift in Sources */,
-				5C45BF3922D62F8500FE53D6 /* PushNotifSetupViewController.swift in Sources */,
+				5C2E67AC22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */,
+				5C2E66BF22DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
+				5C2E66E622DD941D00FC71AD /* CompaniesChooseListModels.swift in Sources */,
+				5C2E66F822DD941D00FC71AD /* PushNotifSetupWorker.swift in Sources */,
+				5CB8EC5B22E967FB008EA53C /* Fuel.swift in Sources */,
 				5C45BE4322CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
+				5C2E679022DDA33800FC71AD /* MainFuelListModels.swift in Sources */,
 				5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */,
-				5C45BE3522CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift in Sources */,
+				5C2E66D722DD941D00FC71AD /* AboutAppModels.swift in Sources */,
+				5CB8EC6B22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */,
 				5C45BE9422CF793500FE53D6 /* LanguageListCell.swift in Sources */,
-				5C2E665F22DC800100FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
-				5C22F63822C55824000EF339 /* SettingsViewController.swift in Sources */,
+				5C2E671622DD941D00FC71AD /* AppLanguageWorker.swift in Sources */,
+				5C2E679722DE1D9E00FC71AD /* ScenesManager.swift in Sources */,
+				5CB8EC4822E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */,
+				5C2E66C222DD941D00FC71AD /* SettingsPresenter.swift in Sources */,
+				5C80669222F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */,
+				5C2E66CB22DD941D00FC71AD /* AboutAppViewController.swift in Sources */,
+				5CB8EC7122E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */,
+				5CB8EC3722E1C510008EA53C /* IntroChooseCompanyWorker.swift in Sources */,
+				5C2E671C22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */,
+				5C2E66FB22DD941D00FC71AD /* PushNotifSetupRouter.swift in Sources */,
+				5CB8EC8C22E98A54008EA53C /* IntroNotifSetUpRouter.swift in Sources */,
+				5C2E66E322DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */,
+				5C2E67A322DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
+				5C8066A122F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */,
 				5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */,
-				5C22F60122C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
-				5C45BE3822CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */,
-				5C45BEC822D26FB700FE53D6 /* AboutAppModels.swift in Sources */,
+				5CB8EC3422E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
-				5C45BE2F22CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */,
+				5C2E672E22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
+				5C2E66E022DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
+				5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
+				5C2E66C822DD941D00FC71AD /* AboutAppInteractor.swift in Sources */,
+				5C2E66D422DD941D00FC71AD /* AboutAppRouter.swift in Sources */,
+				5C2E673422DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5C2E678422DDA33800FC71AD /* MainFuelListViewController.swift in Sources */,
+				5C2E66B622DD941D00FC71AD /* SettingsModels.swift in Sources */,
+				5C2E67A922DE60E500FC71AD /* IntroPageRouter.swift in Sources */,
 				5C45BED922D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
-				5C45BE8F22CF723200FE53D6 /* AppLanguageViewController.swift in Sources */,
-				5C45BE3E22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */,
-				5C45BE8C22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */,
+				5CB8EC8F22E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */,
+				5CB8EC4F22E6DBD7008EA53C /* UserDefaultsExtension.swift in Sources */,
+				5C2E66BC22DD941D00FC71AD /* SettingsWorker.swift in Sources */,
+				5C2E66EC22DD941D00FC71AD /* PushNotifSetupInteractor.swift in Sources */,
+				5CB8EC7422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */,
+				5C2E672522DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */,
+				5C2E66DA22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */,
+				5C2E678D22DDA33800FC71AD /* MainFuelListPresenter.swift in Sources */,
+				5C2E671922DD941D00FC71AD /* AppLanguageRouter.swift in Sources */,
+				5C2E670422DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */,
+				5CB8EC5322E96794008EA53C /* Company.swift in Sources */,
 				5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5C2E678722DDA33800FC71AD /* MainFuelListRouter.swift in Sources */,
 				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
+				5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
 				5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
-				5C2E664722DC800100FC71AD /* AppSavingsInfoViewController.swift in Sources */,
+				5CB8EC8622E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
+				5C2E66DD22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */,
+				5CB8EC3A22E1C510008EA53C /* IntroChooseCompanyRouter.swift in Sources */,
+				5C2E670D22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift in Sources */,
+				5C2E678A22DDA33800FC71AD /* MainFuelListWorker.swift in Sources */,
+				5C2E66FE22DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */,
 				5C2E667522DCD1CE00FC71AD /* AppSavingsView.swift in Sources */,
 				5CB9F6A722D8DA9500F47F6B /* SettingsToggleStatus.swift in Sources */,
-				5C45BE8622CF723200FE53D6 /* AppLanguageWorker.swift in Sources */,
-				5C22F63522C55824000EF339 /* SettingsPresenter.swift in Sources */,
-				5C22F62F22C55824000EF339 /* SettingsWorker.swift in Sources */,
-				5C45BDFE22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */,
+				5C2E67B222DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
+				5C8066A722F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */,
+				5C2E66F522DD941D00FC71AD /* PushNotifSetupViewController.swift in Sources */,
+				5CB8EC4022E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */,
 				5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */,
-				5C22F5FB22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
-				5C45BE0122CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */,
-				5C45BE8022CF723200FE53D6 /* AppLanguageModels.swift in Sources */,
 				5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */,
-				5C22F5F822C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
-				5C45BE8322CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */,
-				5C22F5FE22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
 				5C45BE0622CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
-				5C45BF3322D62F8500FE53D6 /* PushNotifSetupPresenter.swift in Sources */,
-				5C45BEBC22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */,
-				5C2E665022DC800100FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5C2E666A22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */,
-				5C2E664A22DC800100FC71AD /* AppSavingsInfoWorker.swift in Sources */,
+				5C2E67C122E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
+				5CB8EC4322E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */,
+				5C2E672B22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */,
+				5CB8EC9522E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */,
 				5C45BE0D22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
 				5C45BDD022CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
+				5C2E670A22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift in Sources */,
+				5C2E671F22DD941D00FC71AD /* AppLanguageViewController.swift in Sources */,
+				5CB8EC9D22E98ACE008EA53C /* IntroNotifSetUpLayoutView.swift in Sources */,
+				5C2E679322DDA33800FC71AD /* MainFuelListInteractor.swift in Sources */,
+				5C2E66B922DD941D00FC71AD /* SettingsRouter.swift in Sources */,
+				5C2E66CE22DD941D00FC71AD /* AboutAppWorker.swift in Sources */,
 				5CFBABEE22C382E400213D46 /* Price.swift in Sources */,
-				5C22F63222C55824000EF339 /* SettingsInteractor.swift in Sources */,
-				5C45BEB922D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */,
-				5C45BDF222CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
-				5C45BF3C22D62F8500FE53D6 /* PushNotifSetupWorker.swift in Sources */,
-				5C45BEC222D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */,
+				5C2E672822DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
+				5C2E67A622DE60E500FC71AD /* IntroPageWorker.swift in Sources */,
+				5C2E673122DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
+				5C2E66D122DD941D00FC71AD /* AboutAppPresenter.swift in Sources */,
+				5C2E670122DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */,
+				5CB8EC5722E967DC008EA53C /* Address.swift in Sources */,
+				5C2E66C522DD941D00FC71AD /* SettingsViewController.swift in Sources */,
+				5C8066A422F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,75 +1436,116 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C45BE8A22CF723200FE53D6 /* AppLanguageRouter.swift in Sources */,
-				5C45BDF922CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */,
-				5C45BF3722D62F8500FE53D6 /* PushNotifSetupModels.swift in Sources */,
-				5C22F60522C557B5000EF339 /* MainFuelListModels.swift in Sources */,
-				5C45BE3322CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift in Sources */,
+				5CB8EC9322E98A54008EA53C /* IntroNotifSetUpViewController.swift in Sources */,
 				5C22F63D22C622F6000EF339 /* Price.swift in Sources */,
-				5C22F5F922C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
-				5C45BE3C22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */,
-				5C45BF3122D62F8500FE53D6 /* PushNotifSetupInteractor.swift in Sources */,
-				5C45BEC022D26FB700FE53D6 /* AboutAppWorker.swift in Sources */,
-				5C45BF4022D62F8500FE53D6 /* PushNotifSetupRouter.swift in Sources */,
+				5CB8EC6F22E96B44008EA53C /* IntroChooseFuelTypeModels.swift in Sources */,
+				5CB8EC7A22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */,
+				5C2E66F622DD941D00FC71AD /* PushNotifSetupViewController.swift in Sources */,
+				5C2E67B022DE60E500FC71AD /* IntroPageModels.swift in Sources */,
+				5CB8EC3E22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */,
+				5C2E679122DDA33800FC71AD /* MainFuelListModels.swift in Sources */,
+				5C2E67A722DE60E500FC71AD /* IntroPageWorker.swift in Sources */,
+				5C2E66F022DD941D00FC71AD /* PushNotifSetupPresenter.swift in Sources */,
+				5C2E670E22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift in Sources */,
+				5CB8EC6622E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */,
+				5CB8EC8A22E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */,
+				5CB8EC6922E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */,
+				5C8066AB22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */,
+				5C2E673522DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5C2E66B722DD941D00FC71AD /* SettingsModels.swift in Sources */,
+				5C80669C22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */,
+				5C2E670B22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift in Sources */,
+				5C2E672022DD941D00FC71AD /* AppLanguageViewController.swift in Sources */,
+				5C2E672322DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
+				5C2E673222DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
+				5C2E66BD22DD941D00FC71AD /* SettingsWorker.swift in Sources */,
+				5CB8EC5C22E967FB008EA53C /* Fuel.swift in Sources */,
 				5C11F093229EF4FC00EC7CEC /* fuelhunterTests.swift in Sources */,
-				5C45BDF622CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
-				5C45BDFC22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
-				5C22F63922C55824000EF339 /* SettingsViewController.swift in Sources */,
-				5C45BEC622D26FB700FE53D6 /* AboutAppRouter.swift in Sources */,
-				5C22F63622C55824000EF339 /* SettingsPresenter.swift in Sources */,
-				5C45BF3A22D62F8500FE53D6 /* PushNotifSetupViewController.swift in Sources */,
-				5C2E664522DC800100FC71AD /* AppSavingsInfoModels.swift in Sources */,
+				5C2E66D222DD941D00FC71AD /* AboutAppPresenter.swift in Sources */,
+				5C2E678522DDA33800FC71AD /* MainFuelListViewController.swift in Sources */,
+				5C2E672C22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */,
+				5CB8EC6C22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */,
+				5C2E66E722DD941D00FC71AD /* CompaniesChooseListModels.swift in Sources */,
+				5C2E671A22DD941D00FC71AD /* AppLanguageRouter.swift in Sources */,
+				5C2E66C322DD941D00FC71AD /* SettingsPresenter.swift in Sources */,
+				5CB8EC4922E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */,
+				5C2E66CF22DD941D00FC71AD /* AboutAppWorker.swift in Sources */,
+				5C80669322F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */,
+				5C2E672922DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
+				5CB8EC7222E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */,
+				5CB8EC3822E1C510008EA53C /* IntroChooseCompanyWorker.swift in Sources */,
 				5CB9F6AA22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */,
+				5C2E678822DDA33800FC71AD /* MainFuelListRouter.swift in Sources */,
+				5CB8EC8D22E98A54008EA53C /* IntroNotifSetUpRouter.swift in Sources */,
+				5C2E66EA22DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */,
+				5C2E66ED22DD941D00FC71AD /* PushNotifSetupInteractor.swift in Sources */,
+				5C8066A222F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */,
+				5C2E66FF22DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */,
+				5CB8EC3522E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BE4422CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
 				5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */,
-				5C45BE3622CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift in Sources */,
+				5C2E671422DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
+				5C80669F22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E667622DCD1CE00FC71AD /* AppSavingsView.swift in Sources */,
 				5C45BE9522CF793500FE53D6 /* LanguageListCell.swift in Sources */,
-				5C22F5FF22C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
-				5C22F60222C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */,
+				5C2E672622DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */,
 				5C2E666B22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */,
-				5C45BE3922CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */,
-				5C2E666022DC800100FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
-				5C45BEC922D26FB700FE53D6 /* AboutAppModels.swift in Sources */,
+				5C2E66D522DD941D00FC71AD /* AboutAppRouter.swift in Sources */,
+				5C2E678E22DDA33800FC71AD /* MainFuelListPresenter.swift in Sources */,
+				5CB8EC9022E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */,
+				5CB8EC5022E6DBD7008EA53C /* UserDefaultsExtension.swift in Sources */,
+				5C2E671122DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
+				5C2E679822DE1D9E00FC71AD /* ScenesManager.swift in Sources */,
+				5CB8EC7522E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */,
+				5C2E66DE22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */,
+				5C2E66F922DD941D00FC71AD /* PushNotifSetupWorker.swift in Sources */,
+				5C2E66D822DD941D00FC71AD /* AboutAppModels.swift in Sources */,
+				5C2E670822DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */,
+				5C2E670222DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */,
+				5CB8EC5422E96794008EA53C /* Company.swift in Sources */,
+				5C2E66F322DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */,
 				5C45BECE22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
-				5C45BE3022CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */,
 				5C45BEDA22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
-				5C45BE9022CF723200FE53D6 /* AppLanguageViewController.swift in Sources */,
-				5C45BE3F22CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */,
-				5C45BE8D22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */,
+				5C2E670522DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */,
+				5C2E66CC22DD941D00FC71AD /* AboutAppViewController.swift in Sources */,
+				5CB8EC8722E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
+				5C2E66C922DD941D00FC71AD /* AboutAppInteractor.swift in Sources */,
+				5CB8EC3B22E1C510008EA53C /* IntroChooseCompanyRouter.swift in Sources */,
 				5C45BEED22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5C2E671722DD941D00FC71AD /* AppLanguageWorker.swift in Sources */,
 				5C45BEE222D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5C45BDCA22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
-				5C45BE8722CF723200FE53D6 /* AppLanguageWorker.swift in Sources */,
+				5C2E66FC22DD941D00FC71AD /* PushNotifSetupRouter.swift in Sources */,
+				5C2E66BA22DD941D00FC71AD /* SettingsRouter.swift in Sources */,
+				5C8066A822F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */,
+				5C2E672F22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
+				5CB8EC4122E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */,
 				5C22F64322C62303000EF339 /* PricesMemoryStore.swift in Sources */,
-				5C2E665122DC800100FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5C0240B222CA530A000ABDCB /* InlineAlertView.swift in Sources */,
-				5C2E664B22DC800100FC71AD /* AppSavingsInfoWorker.swift in Sources */,
-				5C45BDFF22CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */,
+				5C2E67D722E1938A00FC71AD /* AppDelegate.swift in Sources */,
+				5C2E67B322DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
+				5C2E678B22DDA33800FC71AD /* MainFuelListWorker.swift in Sources */,
+				5CB8EC4422E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */,
 				5C22F64122C622FB000EF339 /* PriceWorker.swift in Sources */,
-				5C22F60822C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
-				5C45BE0222CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */,
-				5C45BE8122CF723200FE53D6 /* AppLanguageModels.swift in Sources */,
-				5C22F62A22C55824000EF339 /* SettingsModels.swift in Sources */,
-				5C22F62D22C55824000EF339 /* SettingsRouter.swift in Sources */,
-				5C45BE8422CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */,
-				5C22F63022C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5CB8EC9622E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */,
 				5C45BE0722CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
-				5C45BF3422D62F8500FE53D6 /* PushNotifSetupPresenter.swift in Sources */,
-				5C45BEBD22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */,
+				5C2E67AD22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */,
+				5C2E671D22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */,
 				5C45BE0E22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
-				5C2E664822DC800100FC71AD /* AppSavingsInfoViewController.swift in Sources */,
-				5C2E664E22DC800100FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
-				5C2E665422DC800100FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5CB8EC9E22E98ACE008EA53C /* IntroNotifSetUpLayoutView.swift in Sources */,
+				5C2E67C222E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
+				5C2E67A422DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
+				5C2E67AA22DE60E500FC71AD /* IntroPageRouter.swift in Sources */,
+				5C2E66C622DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
-				5C22F63322C55824000EF339 /* SettingsInteractor.swift in Sources */,
-				5C22F5FC22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
-				5C45BEBA22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */,
-				5C45BDF322CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
-				5C45BF3D22D62F8500FE53D6 /* PushNotifSetupWorker.swift in Sources */,
-				5C45BEC322D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */,
+				5C2E66C022DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
+				5C2E679422DDA33800FC71AD /* MainFuelListInteractor.swift in Sources */,
+				5C2E66E122DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
+				5C2E66DB22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */,
+				5CB8EC5822E967DC008EA53C /* Address.swift in Sources */,
+				5C2E66E422DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */,
+				5C8066A522F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,75 +1553,116 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C45BE8B22CF723200FE53D6 /* AppLanguageRouter.swift in Sources */,
-				5C45BDFA22CE079B00FE53D6 /* CompaniesChooseListWorker.swift in Sources */,
-				5C45BF3822D62F8500FE53D6 /* PushNotifSetupModels.swift in Sources */,
-				5C22F60622C557B5000EF339 /* MainFuelListModels.swift in Sources */,
-				5C45BE3422CF50DD00FE53D6 /* FuelTypeChooseListWorker.swift in Sources */,
+				5CB8EC9422E98A54008EA53C /* IntroNotifSetUpViewController.swift in Sources */,
 				5C22F63E22C622F6000EF339 /* Price.swift in Sources */,
-				5C22F5FA22C557B5000EF339 /* MainFuelListViewController.swift in Sources */,
-				5C45BE3D22CF50DD00FE53D6 /* FuelTypeChooseListPresenter.swift in Sources */,
-				5C45BF3222D62F8500FE53D6 /* PushNotifSetupInteractor.swift in Sources */,
-				5C45BEC122D26FB700FE53D6 /* AboutAppWorker.swift in Sources */,
-				5C45BF4122D62F8500FE53D6 /* PushNotifSetupRouter.swift in Sources */,
+				5CB8EC7022E96B44008EA53C /* IntroChooseFuelTypeModels.swift in Sources */,
+				5CB8EC7B22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */,
+				5C2E66F722DD941D00FC71AD /* PushNotifSetupViewController.swift in Sources */,
+				5C2E67B122DE60E500FC71AD /* IntroPageModels.swift in Sources */,
+				5CB8EC3F22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */,
+				5C2E679222DDA33800FC71AD /* MainFuelListModels.swift in Sources */,
+				5C2E67A822DE60E500FC71AD /* IntroPageWorker.swift in Sources */,
+				5C2E66F122DD941D00FC71AD /* PushNotifSetupPresenter.swift in Sources */,
+				5C2E670F22DD941D00FC71AD /* FuelTypeChooseListInteractor.swift in Sources */,
+				5CB8EC6722E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */,
+				5CB8EC8B22E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */,
+				5CB8EC6A22E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */,
+				5C8066AC22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */,
+				5C2E673622DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5C2E66B822DD941D00FC71AD /* SettingsModels.swift in Sources */,
+				5C80669D22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */,
+				5C2E670C22DD941D00FC71AD /* FuelTypeChooseListPresenter.swift in Sources */,
+				5C2E672122DD941D00FC71AD /* AppLanguageViewController.swift in Sources */,
+				5C2E672422DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
+				5C2E673322DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
+				5C2E66BE22DD941D00FC71AD /* SettingsWorker.swift in Sources */,
+				5CB8EC5D22E967FB008EA53C /* Fuel.swift in Sources */,
 				5C11F09E229EF4FC00EC7CEC /* fuelhunterUITests.swift in Sources */,
-				5C45BDF722CE079B00FE53D6 /* CompaniesChooseListInteractor.swift in Sources */,
-				5C45BDFD22CE079B00FE53D6 /* CompaniesChooseListRouter.swift in Sources */,
-				5C22F63A22C55824000EF339 /* SettingsViewController.swift in Sources */,
-				5C45BEC722D26FB700FE53D6 /* AboutAppRouter.swift in Sources */,
-				5C22F63722C55824000EF339 /* SettingsPresenter.swift in Sources */,
-				5C45BF3B22D62F8500FE53D6 /* PushNotifSetupViewController.swift in Sources */,
-				5C2E664622DC800100FC71AD /* AppSavingsInfoModels.swift in Sources */,
+				5C2E66D322DD941D00FC71AD /* AboutAppPresenter.swift in Sources */,
+				5C2E678622DDA33800FC71AD /* MainFuelListViewController.swift in Sources */,
+				5C2E672D22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */,
+				5CB8EC6D22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */,
+				5C2E66E822DD941D00FC71AD /* CompaniesChooseListModels.swift in Sources */,
+				5C2E671B22DD941D00FC71AD /* AppLanguageRouter.swift in Sources */,
+				5C2E66C422DD941D00FC71AD /* SettingsPresenter.swift in Sources */,
+				5CB8EC4A22E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */,
+				5C2E66D022DD941D00FC71AD /* AboutAppWorker.swift in Sources */,
+				5C80669422F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */,
+				5C2E672A22DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
+				5CB8EC7322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */,
+				5CB8EC3922E1C510008EA53C /* IntroChooseCompanyWorker.swift in Sources */,
 				5CB9F6AB22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */,
+				5C2E678922DDA33800FC71AD /* MainFuelListRouter.swift in Sources */,
+				5CB8EC8E22E98A54008EA53C /* IntroNotifSetUpRouter.swift in Sources */,
+				5C2E66EB22DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */,
+				5C2E66EE22DD941D00FC71AD /* PushNotifSetupInteractor.swift in Sources */,
+				5C8066A322F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */,
+				5C2E670022DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */,
+				5CB8EC3622E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BE4522CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
 				5C22F64022C622F9000EF339 /* AppFonts.swift in Sources */,
-				5C45BE3722CF50DD00FE53D6 /* FuelTypeChooseListViewController.swift in Sources */,
+				5C2E671522DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
+				5C8066A022F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E667722DCD1CE00FC71AD /* AppSavingsView.swift in Sources */,
 				5C45BE9622CF793500FE53D6 /* LanguageListCell.swift in Sources */,
-				5C22F60022C557B5000EF339 /* MainFuelListWorker.swift in Sources */,
-				5C22F60322C557B5000EF339 /* MainFuelListPresenter.swift in Sources */,
 				5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */,
+				5C2E672722DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */,
 				5C2E666C22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */,
-				5C45BE3A22CF50DD00FE53D6 /* FuelTypeChooseListModels.swift in Sources */,
-				5C2E666122DC800100FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
-				5C45BECA22D26FB700FE53D6 /* AboutAppModels.swift in Sources */,
+				5C2E66D622DD941D00FC71AD /* AboutAppRouter.swift in Sources */,
+				5C2E678F22DDA33800FC71AD /* MainFuelListPresenter.swift in Sources */,
+				5CB8EC9122E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */,
+				5CB8EC5122E6DBD7008EA53C /* UserDefaultsExtension.swift in Sources */,
+				5C2E671222DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
+				5C2E679922DE1D9E00FC71AD /* ScenesManager.swift in Sources */,
+				5CB8EC7622E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */,
+				5C2E66DF22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */,
+				5C2E66FA22DD941D00FC71AD /* PushNotifSetupWorker.swift in Sources */,
+				5C2E66D922DD941D00FC71AD /* AboutAppModels.swift in Sources */,
+				5C2E670922DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */,
+				5C2E670322DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */,
+				5CB8EC5522E96794008EA53C /* Company.swift in Sources */,
+				5C2E66F422DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */,
 				5C45BECF22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
-				5C45BE3122CF50DD00FE53D6 /* FuelTypeChooseListRouter.swift in Sources */,
 				5C45BEDB22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
-				5C45BE9122CF723200FE53D6 /* AppLanguageViewController.swift in Sources */,
-				5C45BE4022CF50DD00FE53D6 /* FuelTypeChooseListInteractor.swift in Sources */,
-				5C45BE8E22CF723200FE53D6 /* AppLanguagePresenter.swift in Sources */,
+				5C2E670622DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */,
+				5C2E66CD22DD941D00FC71AD /* AboutAppViewController.swift in Sources */,
+				5CB8EC8822E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
+				5C2E66CA22DD941D00FC71AD /* AboutAppInteractor.swift in Sources */,
+				5CB8EC3C22E1C510008EA53C /* IntroChooseCompanyRouter.swift in Sources */,
 				5C45BEEE22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5C2E671822DD941D00FC71AD /* AppLanguageWorker.swift in Sources */,
 				5C45BEE322D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5C45BDCB22CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
-				5C45BE8822CF723200FE53D6 /* AppLanguageWorker.swift in Sources */,
+				5C2E66FD22DD941D00FC71AD /* PushNotifSetupRouter.swift in Sources */,
+				5C2E66BB22DD941D00FC71AD /* SettingsRouter.swift in Sources */,
+				5C8066A922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */,
+				5C2E673022DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
+				5CB8EC4222E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */,
 				5C22F64422C62304000EF339 /* PricesMemoryStore.swift in Sources */,
-				5C2E665222DC800100FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5C0240B422CA530A000ABDCB /* InlineAlertView.swift in Sources */,
-				5C2E664C22DC800100FC71AD /* AppSavingsInfoWorker.swift in Sources */,
-				5C45BE0022CE079B00FE53D6 /* CompaniesChooseListModels.swift in Sources */,
+				5C2E67D622E1938900FC71AD /* AppDelegate.swift in Sources */,
+				5C2E67B422DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
+				5C2E678C22DDA33800FC71AD /* MainFuelListWorker.swift in Sources */,
+				5CB8EC4522E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */,
 				5C22F64222C622FC000EF339 /* PriceWorker.swift in Sources */,
-				5C22F60922C557B5000EF339 /* MainFuelListInteractor.swift in Sources */,
-				5C45BE0322CE079B00FE53D6 /* CompaniesChooseListViewController.swift in Sources */,
-				5C45BE8222CF723200FE53D6 /* AppLanguageModels.swift in Sources */,
-				5C22F62B22C55824000EF339 /* SettingsModels.swift in Sources */,
-				5C22F62E22C55824000EF339 /* SettingsRouter.swift in Sources */,
-				5C45BE8522CF723200FE53D6 /* AppLanguageInteractor.swift in Sources */,
-				5C22F63122C55824000EF339 /* SettingsWorker.swift in Sources */,
+				5CB8EC9722E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */,
 				5C45BE0822CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
-				5C45BF3522D62F8500FE53D6 /* PushNotifSetupPresenter.swift in Sources */,
-				5C45BEBE22D26FB700FE53D6 /* AboutAppViewController.swift in Sources */,
+				5C2E67AE22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */,
+				5C2E671E22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */,
 				5C45BE0F22CE46DA00FE53D6 /* StringSizeExtension.swift in Sources */,
-				5C2E664922DC800100FC71AD /* AppSavingsInfoViewController.swift in Sources */,
-				5C2E664F22DC800100FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
-				5C2E665522DC800100FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5CB8EC9F22E98ACE008EA53C /* IntroNotifSetUpLayoutView.swift in Sources */,
+				5C2E67C322E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
+				5C2E67A522DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
+				5C2E67AB22DE60E500FC71AD /* IntroPageRouter.swift in Sources */,
+				5C2E66C722DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
-				5C22F63422C55824000EF339 /* SettingsInteractor.swift in Sources */,
-				5C22F5FD22C557B5000EF339 /* MainFuelListRouter.swift in Sources */,
-				5C45BEBB22D26FB700FE53D6 /* AboutAppInteractor.swift in Sources */,
-				5C45BDF422CE079B00FE53D6 /* CompaniesChooseListPresenter.swift in Sources */,
-				5C45BF3E22D62F8500FE53D6 /* PushNotifSetupWorker.swift in Sources */,
-				5C45BEC422D26FB700FE53D6 /* AboutAppPresenter.swift in Sources */,
+				5C2E66C122DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
+				5C2E679522DDA33800FC71AD /* MainFuelListInteractor.swift in Sources */,
+				5C2E66E222DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
+				5C2E66DC22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */,
+				5CB8EC5922E967DC008EA53C /* Address.swift in Sources */,
+				5C2E66E522DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */,
+				5C8066A622F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

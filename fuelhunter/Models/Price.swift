@@ -8,14 +8,14 @@
 
 import Foundation
 
+
 struct Price: Equatable, Codable {
 	var id: String
-	var companyName: String
-	var companyLogoName: String
+	var company: Company
 	var city: String
 	var price: String
 	var isPriceCheapest: Bool
-	var gasType: GasType
+	var fuelType: FuelType
 	var address: [Address]
 	var addressDescription: String {
 		var fullAddress = "\(city) - "
@@ -30,26 +30,11 @@ struct Price: Equatable, Codable {
 	
 	static func == (lhs: Price, rhs: Price) -> Bool {
 		return lhs.id == rhs.id
-			&& lhs.companyName == rhs.companyName
+			&& lhs.company == rhs.company
 			&& lhs.city == rhs.city
 			&& lhs.price == rhs.price
 			&& lhs.isPriceCheapest == rhs.isPriceCheapest
-			&& lhs.gasType == rhs.gasType
+			&& lhs.fuelType == rhs.fuelType
 			&& lhs.addressDescription == rhs.addressDescription
 	}
 }
-
-struct Address: Codable {
-	var name: String
-	var latitude: Double
-	var longitude: Double
-}
-
-enum GasType: String, Codable {
-	case type95 = "95 | Benzīns"
-	case type98 = "98 | Benzīns"
-	case typeDD = "DD | Dīzeļdegviela"
-	case typeDDPro = "DD | Pro Dīzeļdegviela"
-	case typeGas = "Auto gāze"
-}
-

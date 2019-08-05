@@ -25,17 +25,28 @@ class InlineAlertView: UIView {
 		super.init(coder: aDecoder)
     	setup()
 	}
+	
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		if expanded {
+			self.heightConstraint.constant = textLabel.frame.height+10
+		} else { 
+			self.heightConstraint.constant = 0
+		}
+	}
 
 	func setup() {
 		Bundle.main.loadNibNamed("InlineAlertView", owner: self, options: nil)
 		addSubview(inlineAlertView)
 		inlineAlertView.frame = self.bounds
-		self.heightConstraint.constant = textLabel.frame.height+10
-		self.layoutIfNeeded()
+		expanded = true
+//		self.heightConstraint.constant = textLabel.frame.height+10
+//		self.layoutIfNeeded()
   	}
 
 	@IBAction func inlineAlertWasPressed(_ sender: Any) {
 		print("inlineAlertWasPressed")
+		expanded = false
 		UIView.animate(withDuration: 0.3) {
 			self.heightConstraint.constant = 0
 				self.layoutIfNeeded()

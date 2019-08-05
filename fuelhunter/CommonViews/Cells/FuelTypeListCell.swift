@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol FuelTypeListCellSwitchLogic: class {
+	func switchWasPressedOnTableViewCell(cell: FuelTypeListCell, withState state: Bool)
+}
+
 class FuelTypeListCell: UITableViewCell {
 
-    public var cellBgType: cellBackgroundType = .single
+	weak var controller: FuelTypeListCellSwitchLogic? 
+    public var cellBgType: CellBackgroundType = .single
 	
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
@@ -22,6 +27,8 @@ class FuelTypeListCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        aSwitch.addTarget(self, action: NSSelectorFromString("aSwitchWasPressed:"), for: .valueChanged)
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -49,32 +56,29 @@ class FuelTypeListCell: UITableViewCell {
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 		
-		titleLabel.textColor = UIColor.init(named: "TitleColor")
+//		titleLabel.textColor = UIColor.init(named: "TitleColor")
 		titleLabel.font = Font.init(.medium, size: .size2).font
 		
 		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
-	func setAsCellType(cellType: cellBackgroundType) {
+	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
-				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
-				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
-				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = -5
@@ -82,7 +86,11 @@ class FuelTypeListCell: UITableViewCell {
 				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
 		}
 	}
-
+	
+	@objc func aSwitchWasPressed(_ aSwitch: UISwitch) {
+		controller?.switchWasPressedOnTableViewCell(cell: self, withState: aSwitch.isOn)	
+	}
+	
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

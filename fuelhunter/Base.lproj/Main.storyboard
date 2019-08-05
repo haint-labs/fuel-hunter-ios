@@ -11,6 +11,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="vuz-2c-0dE">
+            <objects>
+                <viewController id="Y0Z-nB-59r" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zae-VY-Kdg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2A1-WY-7TE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="emG-FA-T4e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1m-I0-1PI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1190" y="-601"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fid-wa-RqC">
             <objects>
@@ -20,17 +36,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="VWH-sC-xtW"/>
+                        <segue destination="Y0Z-nB-59r" kind="relationship" relationship="rootViewController" id="S9i-Xu-zMX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2RL-J2-I3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-899" y="-166"/>
+            <point key="canvasLocation" x="-2084" y="-601"/>
         </scene>
         <!--Main Fuel List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainFuelListViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainFuelListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MainFuelListViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -432,14 +448,14 @@
                                         <rect key="frame" x="107.13182674200561" y="252" width="83.000000000000227" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TitleColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saņemt paziņojumus.." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5Q-2w-fe7">
                                         <rect key="frame" x="71" y="340" width="169" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="TitleColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dW3-cJ-eIp">
@@ -449,12 +465,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbT-Gt-E8c">
                                         <rect key="frame" x="8" y="508" width="63" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Aktivizēt"/>
+                                        <state key="normal" title="Aktivizēt">
+                                            <color key="titleColor" name="TitleColor"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyQ-7J-9Q7">
                                         <rect key="frame" x="264" y="508" width="40" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <state key="normal" title="Atcelt"/>
+                                        <state key="normal" title="Atcelt">
+                                            <color key="titleColor" name="CancelButtonColor"/>
+                                        </state>
                                     </button>
                                 </subviews>
                             </view>
@@ -587,6 +607,9 @@
         <image name="bottom_tableView_shadow" width="15" height="3"/>
         <image name="ietaupijums_icon" width="24" height="25"/>
         <image name="nav_bar_shadow" width="15" height="3"/>
+        <namedColor name="CancelButtonColor">
+            <color red="0.76078431372549016" green="0.21568627450980393" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="TitleColor">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

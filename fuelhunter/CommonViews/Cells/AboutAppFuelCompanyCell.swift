@@ -10,7 +10,7 @@ import UIKit
 
 class AboutAppFuelCompanyCell: UITableViewCell {
 
-    public var cellBgType: cellBackgroundType = .single
+    public var cellBgType: CellBackgroundType = .single
 	
 	@IBOutlet weak var iconImageView: UIImageView!
 	@IBOutlet weak var backgroundImageView: UIImageView!
@@ -59,35 +59,32 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 		
 		
-		titleLabel.textColor = UIColor.init(named: "TitleColor")
+//		titleLabel.textColor = UIColor.init(named: "TitleColor")
 		titleLabel.font = Font.init(.medium, size: .size2).font
 		
-		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
+//		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
 		
 		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
-	func setAsCellType(cellType: cellBackgroundType) {
+	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
-				break
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
-				break
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
-				break
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = -5
