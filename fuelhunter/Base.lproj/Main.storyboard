@@ -316,59 +316,6 @@
             </objects>
             <point key="canvasLocation" x="1461" y="909"/>
         </scene>
-        <!--About App View Controller-->
-        <scene sceneID="iLX-tA-zeg">
-            <objects>
-                <viewController storyboardIdentifier="aboutAppViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VGT-GB-B78" userLabel="About App View Controller" customClass="AboutAppViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kvl-kn-8vl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="KoH-JL-p3O">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="mIw-pf-QdY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="RZi-J8-aUr"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_tableView_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="6EK-um-xMO">
-                                <rect key="frame" x="0.0" y="859" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="Gd3-nq-KyN"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="dyg-Rc-SxF" firstAttribute="trailing" secondItem="KoH-JL-p3O" secondAttribute="trailing" id="3kH-T4-Fgd"/>
-                            <constraint firstItem="6EK-um-xMO" firstAttribute="leading" secondItem="Kvl-kn-8vl" secondAttribute="leading" id="9JZ-a9-rcU"/>
-                            <constraint firstAttribute="trailing" secondItem="mIw-pf-QdY" secondAttribute="trailing" id="K1r-R3-YNN"/>
-                            <constraint firstItem="mIw-pf-QdY" firstAttribute="top" secondItem="dyg-Rc-SxF" secondAttribute="top" id="MSm-ZT-mgr"/>
-                            <constraint firstItem="mIw-pf-QdY" firstAttribute="leading" secondItem="Kvl-kn-8vl" secondAttribute="leading" id="SJo-XB-IIz"/>
-                            <constraint firstAttribute="trailing" secondItem="6EK-um-xMO" secondAttribute="trailing" id="Wav-1R-7to"/>
-                            <constraint firstItem="KoH-JL-p3O" firstAttribute="leading" secondItem="dyg-Rc-SxF" secondAttribute="leading" id="dfp-nI-O2L"/>
-                            <constraint firstItem="dyg-Rc-SxF" firstAttribute="bottom" secondItem="6EK-um-xMO" secondAttribute="bottom" id="ihG-g7-khi"/>
-                            <constraint firstItem="dyg-Rc-SxF" firstAttribute="bottom" secondItem="KoH-JL-p3O" secondAttribute="bottom" id="mUa-bX-AeI"/>
-                            <constraint firstItem="KoH-JL-p3O" firstAttribute="top" secondItem="dyg-Rc-SxF" secondAttribute="top" id="zCl-FK-4u3"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="dyg-Rc-SxF"/>
-                    </view>
-                    <connections>
-                        <outlet property="navBarBottomShadow" destination="mIw-pf-QdY" id="pVB-66-OAl"/>
-                        <outlet property="tableView" destination="KoH-JL-p3O" id="VdC-R5-eTC"/>
-                        <outlet property="tableViewBottomShadow" destination="6EK-um-xMO" id="KjR-NB-NGm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="keC-zY-h9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1461" y="909"/>
-        </scene>
         <!--Push Notif Setup View Controller-->
         <scene sceneID="FkE-Oj-AZw">
             <objects>
@@ -494,59 +441,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic7-oY-vf3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-39.130434782608695" y="550.44642857142856"/>
-        </scene>
-        <!--App Accuracy Info View Controller-->
-        <scene sceneID="4K4-lk-1gh">
-            <objects>
-                <viewController storyboardIdentifier="appAccuracyInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FfA-dh-zPk" userLabel="App Accuracy Info View Controller" customClass="AppAccuracyInfoViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zgo-Mk-RYq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="QkU-AH-O9x">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="pwp-z3-gzg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="0fs-e6-kza"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_tableView_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="3e7-FE-eF3">
-                                <rect key="frame" x="0.0" y="859" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="LVC-hL-PiV"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="82b-4W-CrO" firstAttribute="bottom" secondItem="QkU-AH-O9x" secondAttribute="bottom" id="21w-y6-hJv"/>
-                            <constraint firstItem="QkU-AH-O9x" firstAttribute="leading" secondItem="82b-4W-CrO" secondAttribute="leading" id="CzY-v5-tCa"/>
-                            <constraint firstItem="pwp-z3-gzg" firstAttribute="leading" secondItem="Zgo-Mk-RYq" secondAttribute="leading" id="OiT-pk-TYw"/>
-                            <constraint firstItem="pwp-z3-gzg" firstAttribute="top" secondItem="QkU-AH-O9x" secondAttribute="top" id="TJc-WD-57d"/>
-                            <constraint firstAttribute="trailing" secondItem="3e7-FE-eF3" secondAttribute="trailing" id="U1e-hI-HkU"/>
-                            <constraint firstItem="3e7-FE-eF3" firstAttribute="leading" secondItem="Zgo-Mk-RYq" secondAttribute="leading" id="VOM-q9-TId"/>
-                            <constraint firstItem="QkU-AH-O9x" firstAttribute="top" secondItem="82b-4W-CrO" secondAttribute="top" id="Z9S-bY-y5o"/>
-                            <constraint firstItem="QkU-AH-O9x" firstAttribute="bottom" secondItem="3e7-FE-eF3" secondAttribute="bottom" id="bON-zG-75X"/>
-                            <constraint firstAttribute="trailing" secondItem="pwp-z3-gzg" secondAttribute="trailing" id="fhb-vf-Ny3"/>
-                            <constraint firstItem="82b-4W-CrO" firstAttribute="trailing" secondItem="QkU-AH-O9x" secondAttribute="trailing" id="jKR-p7-7LI"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="82b-4W-CrO"/>
-                    </view>
-                    <connections>
-                        <outlet property="navBarBottomShadow" destination="pwp-z3-gzg" id="kmz-a0-4ua"/>
-                        <outlet property="tableView" destination="QkU-AH-O9x" id="wOQ-WE-SR6"/>
-                        <outlet property="tableViewBottomShadow" destination="3e7-FE-eF3" id="4MY-uR-ckK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JTn-CW-aco" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-39" y="1287"/>
         </scene>
     </scenes>
     <resources>

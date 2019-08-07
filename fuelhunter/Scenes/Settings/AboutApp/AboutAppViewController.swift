@@ -16,16 +16,11 @@ protocol AboutAppDisplayLogic: class {
   	func displayData(viewModel: AboutApp.CompanyCells.ViewModel)
 }
 
-class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableViewDelegate, UITableViewDataSource {
+class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
   	var interactor: AboutAppBusinessLogic?
   	var router: (NSObjectProtocol & AboutAppRoutingLogic & AboutAppDataPassing)?
-  	var header: AboutAppTableHeaderView!
-	var data = [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
-  	var activateShadowUpdates = false
+  	var layoutView: AboutAppLayoutView!
   	
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var navBarBottomShadow: UIImageView!
-	@IBOutlet weak var tableViewBottomShadow: UIImageView!
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -59,24 +54,25 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableVie
     	super.viewDidLoad()
     	self.title = "Par aplikāciju"
     	
-    	
     	self.view.backgroundColor = .white
-		tableView.delegate = self
-    	tableView.dataSource = self
-		tableView.separatorStyle = .none
-    	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 10, right: 0)
-    	let nib = UINib.init(nibName: "AboutAppFuelCompanyCell", bundle: nil)
-    	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	
+    	setUpView()
     	
     	getListData()
     	
-    	setUpTableViewHeader()
-    	
   	}
+	
+	func setUpView() {
+		layoutView = AboutAppLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		activateShadowUpdates = true
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -87,86 +83,13 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableVie
 		let notificationCenter = NotificationCenter.default
 		notificationCenter.removeObserver(self)
 	}
-		
-	// MARK: Table view
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return data.count
-	}
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-		if let cell = tableView.dequeueReusableCell(
-		   withIdentifier: "cell",
-		   for: indexPath
-		) as? AboutAppFuelCompanyCell {
-		
-			let aData = self.data[indexPath.row]
-			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description
-			cell.iconImageView.image = UIImage.init(named: aData.imageName)
-			
-			if self.data.count == 1 {
-				cell.setAsCellType(cellType: .single)
-			} else {
-				if self.data.first == aData {
-					cell.setAsCellType(cellType: .top)
-				} else if self.data.last == aData {
-					cell.setAsCellType(cellType: .bottom)
-				} else {
-					cell.setAsCellType(cellType: .middle)
-				}
-			}
-			return cell
-		} else {
-			// Problem
-			return UITableViewCell.init()
-		}
-	}
-	
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-	
-		return 0
-	}
-
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-	}
-
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
-			adjustVisibilityOfShadowLines()
-		}
-	}
-	
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y+20))/50.0
-		
-		navBarBottomShadow.alpha = alfa
-		
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value-22))/50.0
-		
-		tableViewBottomShadow.alpha = alfa2
-	}
-
-	func setUpTableViewHeader() {
-		header = AboutAppTableHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
-		header.translatesAutoresizingMaskIntoConstraints = false
-		self.tableView.tableHeaderView = header
-		header.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
-		header.layoutIfNeeded()
-		tableView.tableHeaderView = header
-	}
-	
 	@objc func appMovedToForeground() {
-		header.startAnimations()
+		layoutView.appMovedToForeground()
 	}
 	
 	@objc func appMovedToBackground() {
-		header.stopAnimations()
+		layoutView.appMovedToBackground()
 	}
 	
   	// MARK: Do something
@@ -177,9 +100,8 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic, UITableVie
   	}
 
   	func displayData(viewModel: AboutApp.CompanyCells.ViewModel) {
-    	data = viewModel.displayedCompanyCellItems
-    	tableView.reloadData()
-		tableView.layoutIfNeeded()
-		adjustVisibilityOfShadowLines()
+    	layoutView.data = viewModel.displayedCompanyCellItems
+    	layoutView.tableView.reloadData()
+		layoutView.tableView.layoutIfNeeded()
   	}
 }

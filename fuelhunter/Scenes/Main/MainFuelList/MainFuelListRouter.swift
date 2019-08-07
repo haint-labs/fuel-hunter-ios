@@ -29,15 +29,11 @@ class MainFuelListRouter: NSObject, MainFuelListRoutingLogic, MainFuelListDataPa
   	// MARK: Routing
 
 	@objc func routeToSettings() {
-//  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! SettingsViewController
   		navigateToSettings(source: viewController!, destination: SettingsViewController())
   	}
   	
   	func routeToAppAccuracyInfo() {
-  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appAccuracyInfoViewController") as! AppAccuracyInfoViewController
-  		navigateToSettings(source: viewController!, destination: destinationVC)
+  		navigateToSettings(source: viewController!, destination: AppAccuracyInfoViewController())
   	}
 
 	func routeToAppSavingsInfo() {

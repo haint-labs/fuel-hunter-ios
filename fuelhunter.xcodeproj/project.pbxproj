@@ -283,6 +283,15 @@
 		5C731FA022F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
 		5C731FA122F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
 		5C731FA222F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
+		5C731FA522FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */; };
+		5C731FA622FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */; };
+		5C731FA722FB260000793DAF /* AboutAppLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */; };
+		5C731FA822FB260000793DAF /* AboutAppLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FA422FB25FF00793DAF /* AboutAppLayoutView.swift */; };
+		5C731FA922FB260000793DAF /* AboutAppLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FA422FB25FF00793DAF /* AboutAppLayoutView.swift */; };
+		5C731FAA22FB260000793DAF /* AboutAppLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FA422FB25FF00793DAF /* AboutAppLayoutView.swift */; };
+		5C731FAC22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */; };
+		5C731FAD22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */; };
+		5C731FAE22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */; };
 		5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
@@ -524,6 +533,9 @@
 		5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnimationView.swift; sourceTree = "<group>"; };
 		5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewLayoutView.swift; sourceTree = "<group>"; };
 		5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewLayoutView.xib; sourceTree = "<group>"; };
+		5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppLayoutView.xib; sourceTree = "<group>"; };
+		5C731FA422FB25FF00793DAF /* AboutAppLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppLayoutView.swift; sourceTree = "<group>"; };
+		5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAccuracyInfoLayoutView.swift; sourceTree = "<group>"; };
 		5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroGPSSetUpLayoutView.xib; sourceTree = "<group>"; };
 		5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpLayoutView.swift; sourceTree = "<group>"; };
 		5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpPresenter.swift; sourceTree = "<group>"; };
@@ -795,12 +807,14 @@
 		5C2E668122DD941D00FC71AD /* AboutApp */ = {
 			isa = PBXGroup;
 			children = (
-				5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */,
 				5C2E668322DD941D00FC71AD /* AboutAppViewController.swift */,
-				5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */,
+				5C2E668222DD941D00FC71AD /* AboutAppInteractor.swift */,
 				5C2E668522DD941D00FC71AD /* AboutAppPresenter.swift */,
-				5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */,
 				5C2E668722DD941D00FC71AD /* AboutAppModels.swift */,
+				5C2E668422DD941D00FC71AD /* AboutAppWorker.swift */,
+				5C2E668622DD941D00FC71AD /* AboutAppRouter.swift */,
+				5C731FA422FB25FF00793DAF /* AboutAppLayoutView.swift */,
+				5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */,
 			);
 			path = AboutApp;
 			sourceTree = "<group>";
@@ -883,6 +897,7 @@
 			isa = PBXGroup;
 			children = (
 				5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */,
+				5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */,
 			);
 			path = AppAccuracyInfo;
 			sourceTree = "<group>";
@@ -1145,6 +1160,7 @@
 				5CB8EC9A22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
 				5C45BEDC22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
 				5C731FA022F945D500793DAF /* SettingsViewLayoutView.xib in Resources */,
+				5C731FA522FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */,
 				5CB8EC4B22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
 				5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */,
@@ -1182,6 +1198,7 @@
 				5C45BDCD22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C45BEE522D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5CB8EC4C22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
+				5C731FA622FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */,
 				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
 				5C2E67C522E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5C45BE0A22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
@@ -1209,6 +1226,7 @@
 				5C45BDCE22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
 				5C45BEE622D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5CB8EC4D22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
+				5C731FA722FB260000793DAF /* AboutAppLayoutView.xib in Resources */,
 				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
 				5C2E67C622E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5C45BE0B22CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
@@ -1384,6 +1402,7 @@
 				5C2E66E022DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
 				5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E66C822DD941D00FC71AD /* AboutAppInteractor.swift in Sources */,
+				5C731FAC22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */,
 				5C2E66D422DD941D00FC71AD /* AboutAppRouter.swift in Sources */,
 				5C2E673422DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
 				5C2E678422DDA33800FC71AD /* MainFuelListViewController.swift in Sources */,
@@ -1404,6 +1423,7 @@
 				5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
 				5C2E678722DDA33800FC71AD /* MainFuelListRouter.swift in Sources */,
 				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
+				5C731FA822FB260000793DAF /* AboutAppLayoutView.swift in Sources */,
 				5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
 				5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5CB8EC8622E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
@@ -1502,6 +1522,7 @@
 				5C2E671422DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
 				5C80669F22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E667622DCD1CE00FC71AD /* AppSavingsView.swift in Sources */,
+				5C731FAD22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */,
 				5C45BE9522CF793500FE53D6 /* LanguageListCell.swift in Sources */,
 				5C22F64622C62307000EF339 /* FuelListCell.swift in Sources */,
 				5C2E672622DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */,
@@ -1522,6 +1543,7 @@
 				5C2E66F322DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */,
 				5C45BECE22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
 				5C45BEDA22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
+				5C731FA922FB260000793DAF /* AboutAppLayoutView.swift in Sources */,
 				5C2E670522DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */,
 				5C2E66CC22DD941D00FC71AD /* AboutAppViewController.swift in Sources */,
 				5CB8EC8722E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
@@ -1620,6 +1642,7 @@
 				5C2E671522DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
 				5C8066A022F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E667722DCD1CE00FC71AD /* AppSavingsView.swift in Sources */,
+				5C731FAE22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */,
 				5C45BE9622CF793500FE53D6 /* LanguageListCell.swift in Sources */,
 				5C22F64822C62307000EF339 /* FuelListCell.swift in Sources */,
 				5C2E672722DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */,
@@ -1640,6 +1663,7 @@
 				5C2E66F422DD941D00FC71AD /* PushNotifSetupModels.swift in Sources */,
 				5C45BECF22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
 				5C45BEDB22D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
+				5C731FAA22FB260000793DAF /* AboutAppLayoutView.swift in Sources */,
 				5C2E670622DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */,
 				5C2E66CD22DD941D00FC71AD /* AboutAppViewController.swift in Sources */,
 				5CB8EC8822E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,

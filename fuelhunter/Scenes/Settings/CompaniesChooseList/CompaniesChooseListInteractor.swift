@@ -47,10 +47,6 @@ class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, Companies
   		if request.companyType == .typeLN { companies.typeLn = request.state }
   		if request.companyType == .typeVirsi { companies.typeVirsi = request.state }
   		if request.companyType == .typeGotikaAuto { companies.typeGotikaAuto = request.state }
-//  		if request.companyType == .typeViada { companies.viada = request.state }
-//  		if request.companyType == .typeAstarte { companies.astarte = request.state }
-//  		if request.companyType == .typeDinaz { companies.dinaz = request.state }
-//  		if request.companyType == .typeLPG { companies.lpg = request.state }
   		
   		appSettingsWorker.setCompanyToggleStatus(allCompanies: companies)
   		

@@ -31,10 +31,6 @@ class CompaniesChooseListPresenter: CompaniesChooseListPresentationLogic {
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeLN, title: "Latvijas Nafta", description: "", imageName: "ln_tiny_logo", toggleStatus: response.companyLatvijasNaftaStatus),
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeVirsi, title: "Virši", description: "", imageName: "virshi_tiny_logo", toggleStatus: response.companyVirsiStatus),
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeGotikaAuto, title: "Gotika Auto", description: "", imageName: "gotika_tiny_logo", toggleStatus: response.companyGotikaStatus)
-//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeViada, title: "Viada", description: "", imageName: "viada_tiny_logo", toggleStatus: response.companyViadaStatus, enabled: false),
-//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeAstarte, title: "Astarte", description: "", imageName: "astarte_tiny_logo", toggleStatus: response.companyAstarteStatus, enabled: false),
-//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeDinaz, title: "Dinaz", description: "", imageName: "dinaz_tiny_logo", toggleStatus: response.companyDinazStatus, enabled: false),
-//			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeLPG, title: "Latvijas Propāna Gāze", description: "", imageName: "lpg_tiny_logo", toggleStatus: response.companyLatvijasPropanaGazeStatus, enabled: false)
 			]
   	
   	

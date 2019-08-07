@@ -49,9 +49,7 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
   	}
   	
   	func routeToAboutScene() {
-  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "aboutAppViewController") as! AboutAppViewController
-  		navigateToScene(source: viewController!, destination: destinationVC)
+  		navigateToScene(source: viewController!, destination: AboutAppViewController())
   	}
   	
   	func presentNotifSetUpScene(response: Settings.PushNotif.Response) {

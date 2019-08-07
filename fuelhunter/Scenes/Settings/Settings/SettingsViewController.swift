@@ -24,6 +24,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
   	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
   	
   	// MARK: Object lifecycle
+  	
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     	super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     	setup()
@@ -35,6 +36,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
   	}
 	
   	// MARK: Setup
+  	
 	private func setup() {
 		let viewController = self
 		let interactor = SettingsInteractor()
@@ -50,10 +52,10 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
   	}
 
   	// MARK: View lifecycle
+  	
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.title = "Iestatījumi"
-    	
     	self.view.backgroundColor = .white
     	setUpView()
   	}
