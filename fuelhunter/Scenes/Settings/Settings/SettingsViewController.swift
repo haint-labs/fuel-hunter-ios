@@ -16,19 +16,15 @@ protocol SettingsDisplayLogic: class {
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel)
 }
 
-class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableViewDelegate, UITableViewDataSource, SettingsCellSwitchLogic, PushNotifReturnUpdateDataLogic {
+class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifReturnUpdateDataLogic, SettingsViewLayoutViewLogic {
+	
   	var interactor: SettingsBusinessLogic?
   	var router: (NSObjectProtocol & SettingsRoutingLogic & SettingsDataPassing)?
+  	var layoutView: SettingsViewLayoutView!
   	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
-  	var activateShadowUpdates = false
   	
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var navBarBottomShadow: UIImageView!
-	@IBOutlet weak var tableViewBottomShadow: UIImageView!
-	
   	// MARK: Object lifecycle
-
-  	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     	super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     	setup()
   	}
@@ -39,8 +35,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
   	}
 	
   	// MARK: Setup
-
-  	private func setup() {
+	private func setup() {
 		let viewController = self
 		let interactor = SettingsInteractor()
 		let presenter = SettingsPresenter()
@@ -55,79 +50,32 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
   	}
 
   	// MARK: View lifecycle
-
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.title = "Iestatījumi"
     	
     	self.view.backgroundColor = .white
-		tableView.delegate = self
-    	tableView.dataSource = self
-		tableView.separatorStyle = .none
-    	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 10, right: 0)
-    	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
-    	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	setUpView()
   	}
+	
+	func setUpView() {
+		layoutView = SettingsViewLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		layoutView.controller = self
+	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
 		getSettingsCellsData()
 	}
 	
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		activateShadowUpdates = true
-	}
-		
-	// MARK: Table view
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return data.count
-	}
-
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-		if let cell = tableView.dequeueReusableCell(
-		   withIdentifier: "cell",
-		   for: indexPath
-		) as? SettingsListCell {
-		
-			let aData = self.data[indexPath.row]
-			cell.selectionStyle = .none
-			cell.controller = self
-			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description
-			cell.aSwitch.isOn = aData.toggleStatus
-			cell.setSwitch(asVisible: aData.shouldShowToggle)
-			if self.data.count == 1 {
-				cell.setAsCellType(cellType: .single)
-			} else {
-				if self.data.first == aData {
-					cell.setAsCellType(cellType: .top)
-				} else if self.data.last == aData {
-					cell.setAsCellType(cellType: .bottom)
-				} else {
-					cell.setAsCellType(cellType: .middle)
-				}
-			}
-			return cell
-		} else {
-			// Problem
-			return UITableViewCell.init()
-		}
-	}
-	
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		return 0
-	}
-
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		let aData = self.data[indexPath.row]
-		
-		switch aData.settingsListCellType {
+	// MARK: ExtendedSettingsCellSwitchLogic
+	func userPressedOnCellType(cellType: Settings.SettingsListCellType) {
+		switch cellType {
 			case .fuelCompanyCell: 
 				router?.routeToCompanyChooseScene()
 			case .fuelTypeCell:
@@ -136,54 +84,22 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, UITableVie
 				router?.routeToLanguageChooseScene()
 			case .aboutAppCell:
 				router?.routeToAboutScene()
-			default:
-				break
-		}
-	}
-
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
-			adjustVisibilityOfShadowLines()
+			case .gpsCell:
+				interactor?.userPressedOnGpsSwitch()
+			case .pushNotifCell:
+				interactor?.userPressedOnNotifSwitch()
 		}
 	}
 	
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y+20))/50.0
-		
-		navBarBottomShadow.alpha = alfa
-		
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value-22))/50.0
-		
-		tableViewBottomShadow.alpha = alfa2
-	}
-	
-	// MARK: SettingsCellSwitchLogic 
-	func switchWasPressedOnTableViewCell(cell: SettingsListCell) {
-		let indexPath = tableView.indexPath(for: cell)
-		let aData = self.data[indexPath!.row]
-		
-		if aData.settingsListCellType == .gpsCell {
-			interactor?.userPressedOnGpsSwitch()
-		}
-		else if aData.settingsListCellType == .pushNotifCell {
-			interactor?.userPressedOnNotifSwitch()
-		}
-	}
   	// MARK: Do something
-  	
-	
   	func getSettingsCellsData() {
     	let request = Settings.SettingsList.Request()
     	interactor?.getSettingsCellsData(request: request)
   	}
 
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
-  		data = viewModel.displayedSettingsCells
-    	tableView.reloadData()
-		tableView.layoutIfNeeded()
-		adjustVisibilityOfShadowLines()
+  		layoutView.data = viewModel.displayedSettingsCells
+  		layoutView?.tableView.reloadData()
   	}
   	
   	// MARK: PushNotifReturnUpdateDataLogic

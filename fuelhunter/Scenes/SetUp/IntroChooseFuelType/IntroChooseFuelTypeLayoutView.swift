@@ -75,8 +75,8 @@ class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewD
 		
 		nextButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		nextButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		nextButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 30).isActive = true
-		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30).isActive = true
+		nextButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
+		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
 
 
 

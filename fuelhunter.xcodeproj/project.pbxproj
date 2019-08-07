@@ -277,6 +277,12 @@
 		5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
 		5C45BEED22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
 		5C45BEEE22D3506800FE53D6 /* MapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */; };
+		5C731F9D22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */; };
+		5C731F9E22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */; };
+		5C731F9F22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */; };
+		5C731FA022F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
+		5C731FA122F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
+		5C731FA222F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
 		5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
@@ -516,6 +522,8 @@
 		5C45BEE022D31C6100FE53D6 /* NotifPhoneAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotifPhoneAnimationView.xib; sourceTree = "<group>"; };
 		5C45BEE722D3506800FE53D6 /* MapAnimationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAnimationView.xib; sourceTree = "<group>"; };
 		5C45BEE822D3506800FE53D6 /* MapAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnimationView.swift; sourceTree = "<group>"; };
+		5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewLayoutView.swift; sourceTree = "<group>"; };
+		5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewLayoutView.xib; sourceTree = "<group>"; };
 		5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroGPSSetUpLayoutView.xib; sourceTree = "<group>"; };
 		5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpLayoutView.swift; sourceTree = "<group>"; };
 		5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpPresenter.swift; sourceTree = "<group>"; };
@@ -778,6 +786,8 @@
 				5C2E667B22DD941D00FC71AD /* SettingsModels.swift */,
 				5C2E667D22DD941D00FC71AD /* SettingsWorker.swift */,
 				5C2E667C22DD941D00FC71AD /* SettingsRouter.swift */,
+				5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */,
+				5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1134,6 +1144,7 @@
 				5C45BED022D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
 				5CB8EC9A22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
 				5C45BEDC22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
+				5C731FA022F945D500793DAF /* SettingsViewLayoutView.xib in Resources */,
 				5CB8EC4B22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
 				5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */,
@@ -1162,6 +1173,7 @@
 				5C2E67E822E193AB00FC71AD /* Assets.xcassets in Resources */,
 				5C2E666E22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib in Resources */,
 				5C45BED122D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
+				5C731FA122F945D500793DAF /* SettingsViewLayoutView.xib in Resources */,
 				5C45BEEA22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CB8EC7D22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
@@ -1188,6 +1200,7 @@
 				5C2E67E922E193AB00FC71AD /* Assets.xcassets in Resources */,
 				5C2E666F22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib in Resources */,
 				5C45BED222D27A0D00FE53D6 /* AboutAppFuelCompanyCell.xib in Resources */,
+				5C731FA222F945D500793DAF /* SettingsViewLayoutView.xib in Resources */,
 				5C45BEEB22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CB8EC7E22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
@@ -1366,6 +1379,7 @@
 				5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */,
 				5CB8EC3422E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
+				5C731F9D22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */,
 				5C2E672E22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
 				5C2E66E022DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
 				5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
@@ -1483,6 +1497,7 @@
 				5C2E66FF22DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */,
 				5CB8EC3522E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BE4422CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
+				5C731F9E22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */,
 				5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */,
 				5C2E671422DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
 				5C80669F22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
@@ -1600,6 +1615,7 @@
 				5C2E670022DD941D00FC71AD /* FuelTypeChooseListRouter.swift in Sources */,
 				5CB8EC3622E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BE4522CF56A200FE53D6 /* FuelTypeListCell.swift in Sources */,
+				5C731F9F22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */,
 				5C22F64022C622F9000EF339 /* AppFonts.swift in Sources */,
 				5C2E671522DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
 				5C8066A022F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,

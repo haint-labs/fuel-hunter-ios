@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol SettingsCellSwitchLogic {
+protocol SettingsCellSwitchLogic: class {
 	func switchWasPressedOnTableViewCell(cell: SettingsListCell)
 }
 
 class SettingsListCell: UITableViewCell {
 
-	weak var controller: SettingsViewController? 
+	weak var controller: SettingsCellSwitchLogic? 
 	public var cellBgType: CellBackgroundType = .single
 	
 	@IBOutlet weak var backgroundImageView: UIImageView!

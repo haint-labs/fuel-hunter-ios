@@ -51,14 +51,14 @@ class IntroNotifSetUpLayoutView: UIView {
 		
 		let space1 = UILayoutGuide()
 		self.addLayoutGuide(space1)
-		let space1HeightAnchor = space1.heightAnchor.constraint(equalToConstant: 40)
+		let space1HeightAnchor = space1.heightAnchor.constraint(equalToConstant: 120)
 		space1HeightAnchor.priority = .init(rawValue: 500)
 		space1HeightAnchor.isActive = true
 		
 		
 		let space2 = UILayoutGuide()
 		self.addLayoutGuide(space2)
-		let space2HeightAnchor = space2.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 1.25)
+		let space2HeightAnchor = space2.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 1)
 		space2HeightAnchor.priority = .init(rawValue: 500)
 		space2HeightAnchor.isActive = true
 		
@@ -79,13 +79,13 @@ class IntroNotifSetUpLayoutView: UIView {
 		
 		let space5 = UILayoutGuide()
 		self.addLayoutGuide(space5)
-		let space5HeightAnchor = space5.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 2.5)
+		let space5HeightAnchor = space5.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 3)
 		space5HeightAnchor.priority = .init(rawValue: 500)
 		space5HeightAnchor.isActive = true
 		
 		let space6 = UILayoutGuide()
 		self.addLayoutGuide(space6)
-		let space6HeightAnchor = space6.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 1.25)
+		let space6HeightAnchor = space6.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 2)
 		space6HeightAnchor.priority = .init(rawValue: 1)
 		space6HeightAnchor.isActive = true
 		
@@ -94,6 +94,7 @@ class IntroNotifSetUpLayoutView: UIView {
 		let space7HeightAnchor = space7.heightAnchor.constraint(equalTo: space1.heightAnchor, multiplier: 1.25)
 		space7HeightAnchor.priority = .init(rawValue: 500)
 		space7HeightAnchor.isActive = true
+		
 		
 		
 		space1.topAnchor.constraint(equalTo: topAnchor).isActive = true

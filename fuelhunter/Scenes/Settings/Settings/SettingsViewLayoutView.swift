@@ -1,5 +1,5 @@
 //
-//  IntroChooseCompanyLayoutView.swift
+//  SettingsViewLayoutView.swift
 //  fuelhunter
 //
 //  Created by Guntis on 05/06/2019.
@@ -8,22 +8,21 @@
 
 import UIKit
 
-protocol IntroChooseCompanyLayoutViewLogic {
-	func nextButtonWasPressed()
+protocol SettingsViewLayoutViewLogic: class {
+	func userPressedOnCellType(cellType: Settings.SettingsListCellType)
 }
 
-class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDelegate {
+class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, SettingsCellSwitchLogic {
 	
+	weak var controller: SettingsViewLayoutViewLogic? 
 	
-	weak var controller: IntroChooseCompanyViewController? 
+	@IBOutlet var baseView: UIView!
+	@IBOutlet var tableView: UITableView!
+	@IBOutlet var tableViewTopShadow: UIImageView!
+	@IBOutlet var tableViewBottomShadow: UIImageView!
 	
-	@IBOutlet weak var baseView: UIView!
-	@IBOutlet weak var topTitleLabel: UILabel!
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var tableViewTopShadow: UIImageView!
-	@IBOutlet weak var tableViewBottomShadow: UIImageView!
-	@IBOutlet weak var nextButton: UIButton!
-	var data = [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
+	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
+	
 	
 	override init(frame: CGRect) {
    	super.init(frame: frame)
@@ -40,27 +39,21 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 	}
 	
 	func setup() {
-		Bundle.main.loadNibNamed("IntroChooseCompanyLayoutView", owner: self, options: nil)
+		Bundle.main.loadNibNamed("SettingsViewLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
 		
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
-		topTitleLabel.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
-		nextButton.translatesAutoresizingMaskIntoConstraints = false
-		
-		
-		topTitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
-		topTitleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
-		topTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
 		
 		
 		tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		tableView.topAnchor.constraint(equalTo: topTitleLabel.bottomAnchor, constant: 10).isActive = true
+		tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 		
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -73,22 +66,6 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		tableViewBottomShadow.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 1).isActive = true
 		
 		
-		nextButton.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-		nextButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		nextButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
-		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
-
-
-
-		topTitleLabel.text = "Atzīmē degvielas kompānijas, kurās uzpildies."
-		nextButton.setTitle("Tālāk", for: .normal)
-
-		topTitleLabel.font = Font.init(.normal, size: .size2).font
-		
-		nextButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-		
-		nextButton.addTarget(self, action:NSSelectorFromString("nextButtonPressed"), for: .touchUpInside)
-		
 		baseView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
 		baseView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 		
@@ -96,7 +73,7 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
     	tableView.dataSource = self
 		tableView.separatorStyle = .none
     	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "FuelCompanyListCell", bundle: nil)
+    	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
   	}
   	
@@ -112,16 +89,15 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		if let cell = tableView.dequeueReusableCell(
 		   withIdentifier: "cell",
 		   for: indexPath
-		) as? FuelCompanyListCell {
+		) as? SettingsListCell {
 		
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
+			cell.controller = self
 			cell.titleLabel.text = aData.title
+			cell.descriptionLabel.text = aData.description
 			cell.aSwitch.isOn = aData.toggleStatus
-			cell.setIconImageFromImageName(imageName: aData.imageName)
-			cell.setDescriptionText(descriptionText: aData.description)
-			cell.controller = controller
-			
+			cell.setSwitch(asVisible: aData.shouldShowToggle)
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
 			} else {
@@ -133,7 +109,6 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 					cell.setAsCellType(cellType: .middle)
 				}
 			}
-		
 			return cell
 		} else {
 			// Problem
@@ -141,18 +116,14 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		}
 	}
 	
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-	
-		return 0
-	}
-
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-	
 		return 0
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
+		let aData = self.data[indexPath.row]
+		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
 	}
 	
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -164,17 +135,18 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		
 		tableViewTopShadow.alpha = alfa
 		
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
+		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top
 
 		let alfa2 = min(50, max(0, tableView.contentSize.height-value-15))/50.0
 		
 		tableViewBottomShadow.alpha = alfa2
+	}	
+	
+	// MARK: SettingsCellSwitchLogic 
+	func switchWasPressedOnTableViewCell(cell: SettingsListCell) {
+		let indexPath = tableView.indexPath(for: cell)
+		let aData = self.data[indexPath!.row]
+		
+		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
 	}
-	
-	
-  	
-  	// MARK: functions
-  	@objc func nextButtonPressed() {
-		controller?.nextButtonWasPressed()
-  	}
 }
