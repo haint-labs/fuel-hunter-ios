@@ -155,113 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39.130434782608695" y="-166.07142857142856"/>
-        </scene>
-        <!--Companies Choose List View Controller-->
-        <scene sceneID="mQ7-ma-Syc">
-            <objects>
-                <viewController storyboardIdentifier="companiesChooseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zfT-b2-fO3" customClass="CompaniesChooseListViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="71t-x0-wQr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="mnB-9m-fiz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="tvx-5W-t6D">
-                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="g1d-sy-7EO"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_tableView_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="utU-2D-5Yi">
-                                <rect key="frame" x="0.0" y="859" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="qMd-w9-RTg"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="tvx-5W-t6D" firstAttribute="leading" secondItem="71t-x0-wQr" secondAttribute="leading" id="0RU-Z2-ykH"/>
-                            <constraint firstItem="tvx-5W-t6D" firstAttribute="top" secondItem="Xye-kx-7y8" secondAttribute="top" id="9Ch-Og-IWU"/>
-                            <constraint firstAttribute="trailing" secondItem="utU-2D-5Yi" secondAttribute="trailing" id="9Lb-M9-m2r"/>
-                            <constraint firstAttribute="trailing" secondItem="tvx-5W-t6D" secondAttribute="trailing" id="VKE-bg-tP8"/>
-                            <constraint firstItem="utU-2D-5Yi" firstAttribute="leading" secondItem="71t-x0-wQr" secondAttribute="leading" id="bUN-r3-Ljk"/>
-                            <constraint firstItem="Xye-kx-7y8" firstAttribute="bottom" secondItem="utU-2D-5Yi" secondAttribute="bottom" id="bgS-X8-wDu"/>
-                            <constraint firstItem="Xye-kx-7y8" firstAttribute="trailing" secondItem="mnB-9m-fiz" secondAttribute="trailing" id="dlX-sZ-QaE"/>
-                            <constraint firstItem="mnB-9m-fiz" firstAttribute="leading" secondItem="Xye-kx-7y8" secondAttribute="leading" id="eYd-hH-caZ"/>
-                            <constraint firstItem="Xye-kx-7y8" firstAttribute="bottom" secondItem="mnB-9m-fiz" secondAttribute="bottom" id="fX0-Rz-Tuw"/>
-                            <constraint firstItem="mnB-9m-fiz" firstAttribute="top" secondItem="Xye-kx-7y8" secondAttribute="top" id="iiC-uK-UHC"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Xye-kx-7y8"/>
-                    </view>
-                    <connections>
-                        <outlet property="navBarBottomShadow" destination="tvx-5W-t6D" id="CAw-NI-Hru"/>
-                        <outlet property="tableView" destination="mnB-9m-fiz" id="Ouc-75-P75"/>
-                        <outlet property="tableViewBottomShadow" destination="utU-2D-5Yi" id="ZVs-u1-ris"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lNf-n4-iIw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1462" y="-480"/>
-        </scene>
-        <!--Fuel Type Choose List View Controller-->
-        <scene sceneID="UeE-wi-9Cb">
-            <objects>
-                <viewController storyboardIdentifier="fuelTypeChooseViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jlz-u0-VFZ" userLabel="Fuel Type Choose List View Controller" customClass="FuelTypeChooseListViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lgz-ZD-7PC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gLV-t3-vgh">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="p6x-cf-Nb0">
-                                <rect key="frame" x="0.0" y="44" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="wBa-H1-Nga"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottom_tableView_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="lb8-0q-U3T">
-                                <rect key="frame" x="0.0" y="859" width="414" height="3"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="3" id="M6M-um-Rm6"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="J7O-dk-KdB" firstAttribute="bottom" secondItem="lb8-0q-U3T" secondAttribute="bottom" id="2tv-Lh-IOM"/>
-                            <constraint firstItem="J7O-dk-KdB" firstAttribute="bottom" secondItem="gLV-t3-vgh" secondAttribute="bottom" id="5Z1-2d-eZR"/>
-                            <constraint firstItem="p6x-cf-Nb0" firstAttribute="leading" secondItem="Lgz-ZD-7PC" secondAttribute="leading" id="89N-dp-nku"/>
-                            <constraint firstAttribute="trailing" secondItem="p6x-cf-Nb0" secondAttribute="trailing" id="9WZ-1g-E0E"/>
-                            <constraint firstAttribute="trailing" secondItem="lb8-0q-U3T" secondAttribute="trailing" id="AOV-cM-h5L"/>
-                            <constraint firstItem="gLV-t3-vgh" firstAttribute="top" secondItem="J7O-dk-KdB" secondAttribute="top" id="QZl-1I-vh6"/>
-                            <constraint firstItem="lb8-0q-U3T" firstAttribute="leading" secondItem="Lgz-ZD-7PC" secondAttribute="leading" id="WZE-YX-OaC"/>
-                            <constraint firstItem="p6x-cf-Nb0" firstAttribute="top" secondItem="J7O-dk-KdB" secondAttribute="top" id="XOG-7E-vvq"/>
-                            <constraint firstItem="gLV-t3-vgh" firstAttribute="leading" secondItem="J7O-dk-KdB" secondAttribute="leading" id="uKe-Cp-AqI"/>
-                            <constraint firstItem="J7O-dk-KdB" firstAttribute="trailing" secondItem="gLV-t3-vgh" secondAttribute="trailing" id="xl4-8O-TZf"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="J7O-dk-KdB"/>
-                    </view>
-                    <connections>
-                        <outlet property="navBarBottomShadow" destination="p6x-cf-Nb0" id="zOz-BA-FUz"/>
-                        <outlet property="tableView" destination="gLV-t3-vgh" id="cxc-EG-jAy"/>
-                        <outlet property="tableViewBottomShadow" destination="lb8-0q-U3T" id="AKx-wg-eUi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bhD-Nx-XZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1464" y="213"/>
+            <point key="canvasLocation" x="-214" y="-601"/>
         </scene>
         <!--App Languages View Controller-->
         <scene sceneID="M8k-aH-uAC">
@@ -314,82 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CdY-PC-sjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1461" y="909"/>
-        </scene>
-        <!--Push Notif Setup View Controller-->
-        <scene sceneID="FkE-Oj-AZw">
-            <objects>
-                <viewController storyboardIdentifier="pushNotifSetupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dmT-lL-3R1" userLabel="Push Notif Setup View Controller" customClass="PushNotifSetupViewController" customModule="fuelhunter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0yy-jO-ezF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSF-9K-SFG" userLabel="Background View">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIA-uf-mwg" userLabel="Base View">
-                                <rect key="frame" x="57" y="77" width="300" height="700"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4P-9I-nwi" customClass="NotifPhoneAnimationView" customModule="fuelhunter" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="68" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paziņojumi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jU5-iz-Qfx">
-                                        <rect key="frame" x="107.13182674200561" y="252" width="83.000000000000227" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" name="TitleColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saņemt paziņojumus.." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5Q-2w-fe7">
-                                        <rect key="frame" x="71" y="340" width="169" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" name="TitleColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dW3-cJ-eIp">
-                                        <rect key="frame" x="109" y="411" width="94" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </stepper>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbT-Gt-E8c">
-                                        <rect key="frame" x="8" y="508" width="63" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Aktivizēt">
-                                            <color key="titleColor" name="TitleColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyQ-7J-9Q7">
-                                        <rect key="frame" x="264" y="508" width="40" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <state key="normal" title="Atcelt">
-                                            <color key="titleColor" name="CancelButtonColor"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="5aB-z7-DZh"/>
-                    </view>
-                    <connections>
-                        <outlet property="activateButton" destination="rbT-Gt-E8c" id="s8v-pF-NPI"/>
-                        <outlet property="backgroundView" destination="GSF-9K-SFG" id="WJs-eb-59Y"/>
-                        <outlet property="baseView" destination="fIA-uf-mwg" id="Gko-l5-R9T"/>
-                        <outlet property="cancelButton" destination="QyQ-7J-9Q7" id="C4k-2Y-hfC"/>
-                        <outlet property="descriptionLabel" destination="N5Q-2w-fe7" id="6eL-c9-iHG"/>
-                        <outlet property="notifAnimationView" destination="T4P-9I-nwi" id="9FO-6H-afv"/>
-                        <outlet property="stepper" destination="dW3-cJ-eIp" id="7oj-B0-gaP"/>
-                        <outlet property="titleLabel" destination="jU5-iz-Qfx" id="nOc-ys-hRz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kmH-Qf-ml7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2215.9420289855075" y="731.91964285714278"/>
+            <point key="canvasLocation" x="819" y="-281"/>
         </scene>
         <!--App Savings Info View Controller-->
         <scene sceneID="ZLc-60-3o1">
@@ -440,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic7-oY-vf3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39.130434782608695" y="550.44642857142856"/>
+            <point key="canvasLocation" x="-214" y="149"/>
         </scene>
     </scenes>
     <resources>
@@ -448,9 +267,6 @@
         <image name="bottom_tableView_shadow" width="15" height="3"/>
         <image name="ietaupijums_icon" width="24" height="25"/>
         <image name="nav_bar_shadow" width="15" height="3"/>
-        <namedColor name="CancelButtonColor">
-            <color red="0.76078431372549016" green="0.21568627450980393" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="TitleColor">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -27,8 +27,7 @@ class IntroNotifSetUpRouter: NSObject, IntroNotifSetUpRoutingLogic, IntroNotifSe
 	
 	
 	func presentNotifSetUpScene(response: IntroNotifSetUp.PushNotif.Response) {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "pushNotifSetupViewController") as! PushNotifSetupViewController
+		let destinationVC = PushNotifSetupViewController()
   		destinationVC.router?.previousViewController = viewController!
   		destinationVC.providesPresentationContextTransitionStyle = true
 		destinationVC.definesPresentationContext = true

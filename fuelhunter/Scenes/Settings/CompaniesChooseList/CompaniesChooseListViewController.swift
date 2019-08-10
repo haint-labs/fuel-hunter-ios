@@ -16,15 +16,10 @@ protocol CompaniesChooseListDisplayLogic: class {
   	func displayListWithData(viewModel: CompaniesChooseList.CompanyCells.ViewModel)
 }
 
-class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDisplayLogic, UITableViewDelegate, UITableViewDataSource, FuelCompanyListCellSwitchLogic {
+class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDisplayLogic, CompaniesChooseListLayoutViewLogic {
   	var interactor: CompaniesChooseListBusinessLogic?
   	var router: (NSObjectProtocol & CompaniesChooseListRoutingLogic & CompaniesChooseListDataPassing)?
-	var data = [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
-  	var activateShadowUpdates = false
-
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var navBarBottomShadow: UIImageView!
-	@IBOutlet weak var tableViewBottomShadow: UIImageView!
+	var layoutView: CompaniesChooseListLayoutView!
 	
 	// MARK: Object lifecycle
 
@@ -57,117 +52,22 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-    	
 		self.title = "Uzpildes kompānijas"
-    	
     	self.view.backgroundColor = .white
-		tableView.delegate = self
-    	tableView.dataSource = self
-		tableView.separatorStyle = .none
-    	tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
-    	let nib = UINib.init(nibName: "FuelCompanyListCell", bundle: nil)
-    	tableView.register(nib, forCellReuseIdentifier: "cell")
-    	
-    	setUpTableViewHeader()
+		setUpView()
     	getCompaniesListData()
   	}
-  	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		activateShadowUpdates = true
-	}
-	
-  	func setUpTableViewHeader() {
-  		let headerView = UIView()
-		
-		let label = UILabel()
-		label.numberOfLines = 0
-		label.textAlignment = .center
-		label.font = Font.init(.normal, size: .size2).font
-		label.textColor = UIColor.init(named: "TitleColor")
-		
-		let text = "Atzīmē kuras uzpildes kompānijas vēlies redzēt sarakstā"
-		let height = text.height(withConstrainedWidth: self.view.frame.width-26, font: Font.init(.normal, size: .size2).font)
-		
-		label.text = text
-		label.frame = CGRect.init(x: 12, y: 10, width: self.view.frame.width-26, height: height+6)
-		
-		headerView.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: height+26)
-		
-		headerView.addSubview(label)
-		tableView.tableHeaderView = headerView
-  	}
-  	
-  	// MARK: Table view
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return data.count
-	}
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-		if let cell = tableView.dequeueReusableCell(
-		   withIdentifier: "cell",
-		   for: indexPath
-		) as? FuelCompanyListCell {
-		
-			let aData = self.data[indexPath.row]
-			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.title
-			cell.aSwitch.isOn = aData.toggleStatus
-			cell.setIconImageFromImageName(imageName: aData.imageName)
-			cell.setDescriptionText(descriptionText: aData.description)
-			cell.controller = self
-			if self.data.count == 1 {
-				cell.setAsCellType(cellType: .single)
-			} else {
-				if self.data.first == aData {
-					cell.setAsCellType(cellType: .top)
-				} else if self.data.last == aData {
-					cell.setAsCellType(cellType: .bottom)
-				} else {
-					cell.setAsCellType(cellType: .middle)
-				}
-			}
-			return cell
-		} else {
-			// Problem
-			return UITableViewCell.init()
-		}
+	func setUpView() {
+		layoutView = CompaniesChooseListLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		layoutView.controller = self
 	}
 	
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-	
-		return 0
-	}
-
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-	
-		return 0
-	}
-
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-	}
-	
-  	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
-			adjustVisibilityOfShadowLines()
-		}
-	}
-	
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y))/50.0
-		
-		navBarBottomShadow.alpha = alfa
-		
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value))/50.0
-		
-		tableViewBottomShadow.alpha = alfa2
-	}
-
   	// MARK: Do something
   	func getCompaniesListData() {
     	let request = CompaniesChooseList.CompanyCells.Request()
@@ -175,34 +75,28 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
   	}
 
   	func displayListWithData(viewModel: CompaniesChooseList.CompanyCells.ViewModel) {
-    	if data.count == 0 {
-			data = viewModel.displayedCompanyCellItems
-			tableView.reloadData()
+    	if layoutView.data.count == 0 {
+			layoutView.data = viewModel.displayedCompanyCellItems
+			layoutView.tableView.reloadData()
 		} else {
-			data = viewModel.displayedCompanyCellItems
+			layoutView.data = viewModel.displayedCompanyCellItems
 			
-			if data.count > 0 {
-				guard let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? FuelCompanyListCell else { return }
-				if data.first?.toggleStatus != cell.aSwitch.isOn {
+			if layoutView.data.count > 0 {
+				guard let cell = layoutView.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? FuelCompanyListCell else { return }
+				if layoutView.data.first?.toggleStatus != cell.aSwitch.isOn {
 					// Without this - tableview jumps.
 					UIView.setAnimationsEnabled(false)
-					tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
+					layoutView.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
 					UIView.setAnimationsEnabled(true)
 				}
 			}
 		}
-		
-		tableView.layoutIfNeeded()
-		adjustVisibilityOfShadowLines()
   	}
   	
-  	// MARK: FuelCompanyListCellSwitchLogic
-  	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool) {
-		let indexPath = tableView.indexPath(for: cell)
-		let aData = data[indexPath!.row] as CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem
-		
-		let request = CompaniesChooseList.SwitchToggled.Request.init(companyType: aData.companyType, state: state)
-		
+  	// MARK: CompaniesChooseListLayoutViewLogic
+  	
+  	func switchWasPressedFor(companyType: CompanyType, withState state: Bool) {
+		let request = CompaniesChooseList.SwitchToggled.Request.init(companyType: companyType, state: state)
 		interactor?.userToggledCompanyType(request: request)
 	}
 }

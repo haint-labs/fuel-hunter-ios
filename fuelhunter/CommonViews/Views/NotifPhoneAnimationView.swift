@@ -71,6 +71,11 @@ class NotifPhoneAnimationView: UIView {
 		hideNotif()
 	}
 	
+	func stopAnimating() {
+		self.layer.removeAllAnimations()
+		self.layoutIfNeeded()
+  	}
+	
 	func shakeAnimation() {
 		let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)

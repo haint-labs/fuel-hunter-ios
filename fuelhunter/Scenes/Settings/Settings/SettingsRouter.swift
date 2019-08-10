@@ -31,15 +31,11 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 	// MARK: Routing
 
 	func routeToCompanyChooseScene() {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "companiesChooseViewController") as! CompaniesChooseListViewController
-  		navigateToScene(source: viewController!, destination: destinationVC)
+  		navigateToScene(source: viewController!, destination: CompaniesChooseListViewController())
   	}
 	
   	func routeToFuelTypeScene() {
-  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "fuelTypeChooseViewController") as! FuelTypeChooseListViewController
-  		navigateToScene(source: viewController!, destination: destinationVC)
+  		navigateToScene(source: viewController!, destination: FuelTypeChooseListViewController())
   	}
   	
   	func routeToLanguageChooseScene() {
@@ -53,8 +49,7 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
   	}
   	
   	func presentNotifSetUpScene(response: Settings.PushNotif.Response) {
-  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "pushNotifSetupViewController") as! PushNotifSetupViewController
+  		let destinationVC = PushNotifSetupViewController()
   		destinationVC.router?.previousViewController = viewController!
   		destinationVC.providesPresentationContextTransitionStyle = true
 		destinationVC.definesPresentationContext = true

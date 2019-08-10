@@ -16,18 +16,10 @@ protocol PushNotifSetupDisplayLogic: class {
   	func updateData(viewModel: PushNotifSetup.SetUp.ViewModel)
 }
 
-class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic {
+class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic, PushNotifSetupLayoutViewLogic {
   	var interactor: PushNotifSetupBusinessLogic?
   	var router: (NSObjectProtocol & PushNotifSetupRoutingLogic & PushNotifSetupDataPassing)?
-
-	@IBOutlet weak var backgroundView: UIView!
-	@IBOutlet weak var baseView: UIView!
-	@IBOutlet weak var notifAnimationView: NotifPhoneAnimationView!
-	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var descriptionLabel: UILabel!
-	@IBOutlet weak var stepper: UIStepper!
-	@IBOutlet weak var activateButton: UIButton!
-	@IBOutlet weak var cancelButton: UIButton!
+	var layoutView: PushNotifSetupLayoutView!
 	
   	// MARK: Object lifecycle
 
@@ -62,14 +54,14 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.view.backgroundColor = .clear
-    	doViewSetUp()
+    	setUpView()
 		getData()
   	}
   	
   	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-  		notifAnimationView.startAnimating()
+		layoutView.appMovedToForeground()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -83,114 +75,52 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
-		UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-			self.backgroundView.backgroundColor = UIColor.init(red: 46/255.0, green: 63/255.0, blue: 97/255.0, alpha: 0.3)
-		}, completion: { (finished: Bool) in })
+		layoutView.animateBackgroundImageColorToState(visible: true)
+//		UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
+//			self.backgroundView.backgroundColor = UIColor.init(red: 46/255.0, green: 63/255.0, blue: 97/255.0, alpha: 0.3)
+//		}, completion: { (finished: Bool) in })
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		
-		UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-			self.backgroundView.backgroundColor = .clear
-		}, completion: { (finished: Bool) in })
+		layoutView.animateBackgroundImageColorToState(visible: false)
+//		UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
+//			self.backgroundView.backgroundColor = .clear
+//		}, completion: { (finished: Bool) in })
 	}
   	
-  	func doViewSetUp() {
-  		backgroundView.translatesAutoresizingMaskIntoConstraints = false
-  		baseView.translatesAutoresizingMaskIntoConstraints = false
-  		notifAnimationView.translatesAutoresizingMaskIntoConstraints = false
-  		titleLabel.translatesAutoresizingMaskIntoConstraints = false
-  		descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-  		stepper.translatesAutoresizingMaskIntoConstraints = false
-  		activateButton.translatesAutoresizingMaskIntoConstraints = false
-  		cancelButton.translatesAutoresizingMaskIntoConstraints = false
-  		
-  		backgroundView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-  		backgroundView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 2).isActive = true
-  		backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -self.view.frame.size.height).isActive = true
-  		
-  		notifAnimationView.topAnchor.constraint(equalTo: baseView.topAnchor, constant: 20).isActive = true
-  		notifAnimationView.leftAnchor.constraint(equalTo: baseView.leftAnchor, constant: 20).isActive = true
-  		notifAnimationView.rightAnchor.constraint(equalTo: baseView.rightAnchor, constant: -20).isActive = true
-  		
-  		titleLabel.topAnchor.constraint(equalTo: notifAnimationView.bottomAnchor, constant: 10).isActive = true
-  		titleLabel.leftAnchor.constraint(equalTo: baseView.leftAnchor, constant: 30).isActive = true
-  		titleLabel.rightAnchor.constraint(equalTo: baseView.rightAnchor, constant: -30).isActive = true
-  		
-  		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
-  		descriptionLabel.leftAnchor.constraint(equalTo: baseView.leftAnchor, constant: 30).isActive = true
-  		descriptionLabel.rightAnchor.constraint(equalTo: baseView.rightAnchor, constant: -30).isActive = true
-  		
-  		stepper.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 30).isActive = true
-  		stepper.centerXAnchor.constraint(equalTo: baseView.centerXAnchor).isActive = true
-  		
-  		
-  		activateButton.topAnchor.constraint(equalTo: stepper.bottomAnchor, constant: 30).isActive = true
-  		activateButton.leftAnchor.constraint(equalTo: baseView.leftAnchor, constant: 40).isActive = true
-  		activateButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: -20).isActive = true
-  		
-  		cancelButton.topAnchor.constraint(equalTo: stepper.bottomAnchor, constant: 30).isActive = true
-  		cancelButton.rightAnchor.constraint(equalTo: baseView.rightAnchor, constant: -40).isActive = true
-  		cancelButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor, constant: -20).isActive = true
-
-		baseView.topAnchor.constraint(greaterThanOrEqualTo: self.view.topAnchor, constant: 20).isActive = true
-  		let yconstraint = baseView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -50)
-		yconstraint.priority = .defaultLow
-		yconstraint.isActive = true
-  		baseView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
-  		baseView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20).isActive = true
-  		
-  		baseView.backgroundColor = .white
-  		baseView.layer.cornerRadius = 10
-  		baseView.layer.shadowColor = UIColor.init(red: 66/255.0, green: 93/255.0, blue: 146/255.0, alpha: 0.44).cgColor
-  		baseView.layer.shadowOpacity = 1
-  		baseView.layer.shadowRadius = 8
-  		
-  		
-//  		titleLabel.textColor = UIColor.init(named: "TitleColor")
-  		titleLabel.font = Font.init(.medium, size: .size1).font
-  		
-//  		descriptionLabel.textColor = UIColor.init(named: "TitleColor")
-  		descriptionLabel.font = Font.init(.normal, size: .size2).font
-  		
-  		activateButton.setTitle("Aktivizēt", for: .normal)
-//  		activateButton.setTitleColor(UIColor.init(named: "TitleColor"), for: .normal)
-  		activateButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-  		
-  		cancelButton.setTitle("Atcelt", for: .normal)
-//  		cancelButton.setTitleColor(UIColor.init(named: "CancelButtonColor"), for: .normal)
-  		cancelButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-  		
-  		backgroundView.backgroundColor = .clear
-  		
-  		activateButton.addTarget(self, action: NSSelectorFromString("activateButtonPressed"), for: .touchUpInside)
-  		cancelButton.addTarget(self, action: NSSelectorFromString("cancelButtonPressed"), for: .touchUpInside)
-  		stepper.addTarget(self, action:NSSelectorFromString("stepperPressed"), for: .valueChanged)
-  	}
+  	func setUpView() {
+		layoutView = PushNotifSetupLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		layoutView.controller = self
+	}
 
   	// MARK: Functions
 
 	@objc func appMovedToForeground() {
-		notifAnimationView.startAnimating()
+		layoutView.appMovedToForeground()
 	}
 	
 	@objc func appMovedToBackground() {
-		notifAnimationView.layer.removeAllAnimations()
-		notifAnimationView.layoutIfNeeded()
+		layoutView.appMovedToBackground()
 	}
-		
-	@objc func activateButtonPressed() {
+	
+	// MARK: PushNotifSetupLayoutView
+	
+	func activateButtonPressed() {
   		interactor?.activateButtonPressed()
   	}
   	
-  	@objc func cancelButtonPressed() {
+  	func cancelButtonPressed() {
   		interactor?.cancelButtonPressed()
   	}
   	
-  	@objc func stepperPressed() {
-  		interactor?.stepperValueChangedTo(value: Int(stepper.value))
+  	func stepperPressed(value: Int) {
+  		interactor?.stepperValueChangedTo(value: value)
   	}
   	
   	func getData() {
@@ -199,9 +129,9 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
   	}
 
   	func updateData(viewModel: PushNotifSetup.SetUp.ViewModel) {
-  		descriptionLabel.text = viewModel.displayedItem.description
-  		stepper.minimumValue = Double(viewModel.displayedItem.minValue)
-  		stepper.maximumValue = Double(viewModel.displayedItem.maxValue)
-  		stepper.value = Double(viewModel.displayedItem.value)
+  		layoutView.descriptionLabel.text = viewModel.displayedItem.description
+  		layoutView.stepper.minimumValue = Double(viewModel.displayedItem.minValue)
+  		layoutView.stepper.maximumValue = Double(viewModel.displayedItem.maxValue)
+  		layoutView.stepper.value = Double(viewModel.displayedItem.value)
   	}
 }

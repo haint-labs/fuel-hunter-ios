@@ -1,5 +1,5 @@
 //
-//  SettingsViewLayoutView.swift
+//  CompaniesChooseListLayoutView.swift
 //  fuelhunter
 //
 //  Created by Guntis on 05/06/2019.
@@ -8,20 +8,22 @@
 
 import UIKit
 
-protocol SettingsViewLayoutViewLogic: class {
-	func userPressedOnCellType(cellType: Settings.SettingsListCellType)
+protocol FuelTypeChooseListLayoutViewLogic: class {
+	func switchWasPressedFor(fuelType: FuelType, withState state: Bool)
 }
 
-class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, SettingsCellSwitchLogic {
+class FuelTypeChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelTypeListCellSwitchLogic {
 	
-	weak var controller: SettingsViewLayoutViewLogic? 
+	weak var controller: FuelTypeChooseListLayoutViewLogic? 
 	
 	@IBOutlet var baseView: UIView!
 	@IBOutlet var tableView: UITableView!
 	@IBOutlet var tableViewTopShadow: UIImageView!
 	@IBOutlet var tableViewBottomShadow: UIImageView!
 	
-	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
+  	var header: UIView!
+  	
+	var data = [FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem]()
 	
 	
 	override init(frame: CGRect) {
@@ -39,7 +41,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	}
 	
 	func setup() {
-		Bundle.main.loadNibNamed("SettingsViewLayoutView", owner: self, options: nil)
+		Bundle.main.loadNibNamed("FuelTypeChooseListLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
 		
@@ -73,10 +75,32 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
     	tableView.dataSource = self
 		tableView.separatorStyle = .none
     	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
+    	let nib = UINib.init(nibName: "FuelTypeListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	
+    	setUpTableViewHeader()
   	}
   	
+  	func setUpTableViewHeader() {
+		header = UIView()
+		
+		let label = UILabel()
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.font = Font.init(.normal, size: .size2).font
+		label.textColor = UIColor.init(named: "TitleColor")
+		
+		let text = "Atzīmē degvielas veidus, kuru cenas Tevi interesē"
+		let height = text.height(withConstrainedWidth: self.frame.width-26, font: label.font)
+		
+		label.text = text
+		label.frame = CGRect.init(x: 12, y: 10, width: self.frame.width-26, height: height+6)
+		
+		header.frame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: height+26)
+		
+		header.addSubview(label)
+		tableView.tableHeaderView = header
+	}
   	
   	// MARK: Table view
 	
@@ -89,15 +113,13 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 		if let cell = tableView.dequeueReusableCell(
 		   withIdentifier: "cell",
 		   for: indexPath
-		) as? SettingsListCell {
+		) as? FuelTypeListCell {
 		
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.controller = self
 			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description
 			cell.aSwitch.isOn = aData.toggleStatus
-			cell.setSwitch(asVisible: aData.shouldShowToggle)
+			cell.controller = self
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
 			} else {
@@ -121,16 +143,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		// Let nothing happen when we press gps or notif cell.
-		let aData = self.data[indexPath.row]
-		switch aData.settingsListCellType {
-			case .gpsCell:
-				break
-			case .pushNotifCell:
-				break
-			default:
-				controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
-		}
+	
 	}
 	
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -147,13 +160,14 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 		let alfa2 = min(50, max(0, tableView.contentSize.height-value-15))/50.0
 		
 		tableViewBottomShadow.alpha = alfa2
-	}	
+	}
 	
-	// MARK: SettingsCellSwitchLogic 
-	func switchWasPressedOnTableViewCell(cell: SettingsListCell) {
+	// MARK: FuelTypeListCellSwitchLogic
+	
+  	func switchWasPressedOnTableViewCell(cell: FuelTypeListCell, withState state: Bool) {
 		let indexPath = tableView.indexPath(for: cell)
-		let aData = self.data[indexPath!.row]
+		let aData = data[indexPath!.row] as FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem
 		
-		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
+		controller?.switchWasPressedFor(fuelType: aData.fuelType, withState: state)
 	}
 }
