@@ -13,13 +13,4 @@
 import UIKit
 
 class SettingsWorker {
-//  	func returnSettingsCellsDataArray(gpsIsEnabled: Bool, notifIsEnabled: Bool, notifCentsValue: Int) -> Settings.SettingsList.Response {
-//		
-//		let companyNames = "Neste, Circle K, Kool"
-//		let fuelTypeNames = "DD Pro, 95, 98"
-//		let gpsIsEnabledStatus = gpsIsEnabled
-//		let notifIsEnabledStatus = notifIsEnabled
-//		
-//		return Settings.SettingsList.Response.init(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
-//  	}
 }

@@ -16,12 +16,12 @@ protocol IntroChooseFuelTypeDisplayLogic: class {
   	func displayListWithData(viewModel: IntroChooseFuelType.FuelCells.ViewModel)
 }
 
-class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDisplayLogic, IntroChooseFuelTypeLayoutViewLogic, FuelTypeListCellSwitchLogic {
-	
-	
+class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDisplayLogic, IntroChooseFuelTypeLayoutViewLogic {
+
   	var interactor: IntroChooseFuelTypeBusinessLogic?
   	var router: (NSObjectProtocol & IntroChooseFuelTypeRoutingLogic & IntroChooseFuelTypeDataPassing)?
 	var layoutView: IntroChooseFuelTypeLayoutView!
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -34,9 +34,18 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.view.backgroundColor = .white
+		setUpView()
+    	getData()
+  	}
+
+	// MARK: Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = IntroChooseFuelTypeInteractor()
 		let presenter = IntroChooseFuelTypePresenter()
@@ -49,15 +58,6 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.view.backgroundColor = .white
-		setUpView()
-    	getData()
-  	}
-	
 	func setUpView() {
 		layoutView = IntroChooseFuelTypeLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -67,8 +67,8 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-	
-  	// MARK: Do something
+
+  	// MARK: Functions
 
   	func getData() {
     	let request = IntroChooseFuelType.FuelCells.Request()
@@ -76,27 +76,18 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
   	}
 
   	func displayListWithData(viewModel: IntroChooseFuelType.FuelCells.ViewModel) {
-    	if (layoutView?.data.count)! == 0 {
-			layoutView?.data = viewModel.displayedFuelCellItems
-			layoutView?.tableView.reloadData()
-		} else {
-			layoutView?.data = viewModel.displayedFuelCellItems
-		}
-		
-		layoutView?.nextButton.isEnabled = viewModel.nextButtonIsEnabled
+    	layoutView.updateData(data: viewModel.displayedFuelCellItems)
+    	layoutView.setNextButtonAsEnabled(viewModel.nextButtonIsEnabled)
   	}
-  	
+
   	// MARK: IntroChooseFuelTypeLayoutViewLogic
+
+	func switchWasPressedFor(fuelType: FuelType, withState state: Bool) {
+		let request = IntroChooseFuelType.SwitchToggled.Request.init(fuelType: fuelType, state: state)
+		interactor?.userToggledFuelType(request: request)
+	}
+	
   	func nextButtonWasPressed() {
   		ScenesManager.shared.advanceAppSceneState()
   	}
-  	
-  	// MARK: FuelTypeListCellSwitchLogic
-  	func switchWasPressedOnTableViewCell(cell: FuelTypeListCell, withState state: Bool) {
-		let indexPath = layoutView.tableView.indexPath(for: cell)
-		let aData = layoutView.data[indexPath!.row] as IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem
-		
-		let request = IntroChooseFuelType.SwitchToggled.Request.init(fuelType: aData.fuelType, state: state)
-		interactor?.userToggledFuelType(request: request)
-	}
 }

@@ -14,7 +14,6 @@ import UIKit
 
 enum IntroPage {
   	// MARK: Use cases
-
 	enum Something {
 		struct Request {
 		}

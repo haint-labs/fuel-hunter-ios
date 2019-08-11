@@ -16,14 +16,11 @@ protocol AppSavingsInfoDisplayLogic: class {
   	func displaySomething(viewModel: AppSavingsInfo.Something.ViewModel)
 }
 
-class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic, UIScrollViewDelegate {
+class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic {
   	var interactor: AppSavingsInfoBusinessLogic?
   	var router: (NSObjectProtocol & AppSavingsInfoRoutingLogic & AppSavingsInfoDataPassing)?
+	var layoutView: AppSavingsInfoLayoutView!
 
-	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var topShadowImageView: UIImageView!
-	@IBOutlet weak var bottomShadowImageView: UIImageView!
-	var activateShadowUpdates = false
 	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -36,9 +33,18 @@ class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.title = "Ietaupījums"
+    	self.view.backgroundColor = .white
+    	setUpView()
+  	}
+
+	// Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = AppSavingsInfoInteractor()
 		let presenter = AppSavingsInfoPresenter()
@@ -51,65 +57,17 @@ class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.title = "Ietaupījums"
-    	
-    	
-    	self.view.backgroundColor = .white
-		scrollView.delegate = self
-		scrollView.alwaysBounceVertical = true
-    	getData()
-    	
-    	setUpView()
-  	}
-
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		activateShadowUpdates = true
-	}
-	
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
-			adjustVisibilityOfShadowLines()
-		}
-	}
-	
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, scrollView.contentOffset.y))/50.0
-		
-		topShadowImageView.alpha = alfa
-		
-		let value = scrollView.contentOffset.y+scrollView.frame.size.height-scrollView.contentInset.bottom-scrollView.contentInset.top
-
-		let alfa2 = min(50, max(0, scrollView.contentSize.height-value))/50.0
-		
-		bottomShadowImageView.alpha = alfa2
+  	func setUpView() {
+		layoutView = AppSavingsInfoLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
 
-	func setUpView() {
-		let view = AppSavingsView.init(frame: CGRect.init(x: 0, y: 10, width: self.view.frame.width, height: 100))
-		scrollView.addSubview(view)
-		view.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
-		view.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor).isActive = true
-		view.layoutIfNeeded()
-		scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: view.frame.size.height+30)
-		adjustVisibilityOfShadowLines()
-	}
-	
-  	// MARK: Do something
-
-  	func getData() {
-//    	let request = AboutApp.CompanyCells.Request()
-//    	interactor?.getData(request: request)
-  	}
+  	// MARK: Functions
 
   	func displaySomething(viewModel: AppSavingsInfo.Something.ViewModel) {
-//    	data = viewModel.displayedCompanyCellItems
-//    	tableView.reloadData()
-//		tableView.layoutIfNeeded()
-//		adjustVisibilityOfShadowLines()
   	}
 }

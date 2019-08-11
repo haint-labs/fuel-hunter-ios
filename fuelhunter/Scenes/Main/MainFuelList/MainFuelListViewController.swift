@@ -17,23 +17,11 @@ protocol MainFuelListDisplayLogic: class {
 	func displaySomething(viewModel: MainFuelList.FetchPrices.ViewModel)
 }
 
-class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UITableViewDelegate, UITableViewDataSource {
-	
+class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, MainFuelListLayoutViewLogic {
 	var interactor: MainFuelListBusinessLogic?
 	var router: (NSObjectProtocol & MainFuelListRoutingLogic & MainFuelListDataPassing)?
-	var data = [[MainFuelList.FetchPrices.ViewModel.DisplayedPrice]]()
-	var activateShadowUpdates = false
-	
-	@IBOutlet weak var inlineAlertView: InlineAlertView!
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var navBarBottomShadow: UIImageView!
-	@IBOutlet weak var tableViewBottomShadow: UIImageView!
-	
-	@IBOutlet weak var savingsIconButton: UIButton!
-	@IBOutlet weak var savingsLabelButton: UIButton!
-	
-	@IBOutlet weak var accuracyIconButton: UIButton!
-	@IBOutlet weak var accuracyLabelButton: UIButton!
+	var layoutView: MainFuelListLayoutView!
+
 	// MARK: Object lifecycle
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -45,7 +33,23 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		super.init(coder: aDecoder)
 		setup()
 	}
-	// MARK: Setup
+
+	// MARK: View lifecycle
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		self.navigationController!.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem.init(image:
+			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
+		self.navigationController!.navigationBar.topItem?.title = "Fuel Hunter"
+		self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    	self.navigationController!.navigationBar.shadowImage = UIImage()
+		self.navigationController!.navigationBar.isTranslucent = true
+    	self.view.backgroundColor = .white
+		setUpView()
+		getData()
+	}
+
+	// Set up
 
 	private func setup() {
 		let viewController = self
@@ -60,173 +64,34 @@ class MainFuelListViewController: UIViewController, MainFuelListDisplayLogic, UI
 		router.dataStore = interactor
 	}
 
-	// MARK: View lifecycle
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-		// Old way. 
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image:
-			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
-		self.title = "Fuel Hunter"
-		
-		// New way
-		self.navigationController!.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem.init(image:
-			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
-		self.navigationController!.navigationBar.topItem?.title = "Fuel Hunter"
-				
-		self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    	self.navigationController!.navigationBar.shadowImage = UIImage()
-		self.navigationController!.navigationBar.isTranslucent = true
-
-    	self.view.backgroundColor = .white
-		tableView.separatorStyle = .none
-    	tableView.delegate = self
-    	tableView.dataSource = self
-	
-    	tableView.contentInset = UIEdgeInsets.init(top: -6, left: 0, bottom: -9, right: 0)
-    	let nib = UINib.init(nibName: "FuelListCell", bundle: nil)
-    	tableView.register(nib, forCellReuseIdentifier: "cell")
-    	
-    	savingsLabelButton.setTitle("Ietaupījums", for: .normal)
-    	accuracyLabelButton.setTitle("Degvielas cenu precizitāte", for: .normal)
-    	
-    	savingsLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
-		accuracyLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
-		
-		savingsIconButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
-		accuracyIconButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
-		savingsLabelButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
-		accuracyLabelButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
-		
-		getData()
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		activateShadowUpdates = true
+	func setUpView() {
+		layoutView = MainFuelListLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		layoutView.controller = self
 	}
 
-	// MARK: Table view
-	
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return data.count
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return data[section].count
-	}
+	// MARK: Functions
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-		if let cell = tableView.dequeueReusableCell(
-		   withIdentifier: "cell",
-		   for: indexPath
-		) as? FuelListCell {
-		
-			let aData = self.data[indexPath.section][indexPath.row]
-			
-			cell.titleLabel.text = aData.companyName
-			cell.addressesLabel.text = aData.addressDescription
-			cell.iconImageView.image = UIImage.init(named: aData.companyLogoName)
-			cell.priceLabel.text = aData.price
-			
-			if aData.isPriceCheapest == true {
-				cell.priceLabel.textColor = UIColor.init(named: "CheapPriceColor") 
-			} else {
-				cell.priceLabel.textColor = UIColor.init(named: "TitleColor")
-			}
-			
-			cell.selectionStyle = .none
-				
-			if self.data[indexPath.section].count == 1 {
-				cell.setAsCellType(cellType: .single)
-			} else {
-				if self.data[indexPath.section].first == aData {
-					cell.setAsCellType(cellType: .top)
-				} else if self.data[indexPath.section].last == aData {
-					cell.setAsCellType(cellType: .bottom)
-				} else {
-					cell.setAsCellType(cellType: .middle)
-				}
-			}
-			return cell
-		} else {
-			// Problem
-			return UITableViewCell.init()
-		}
-	}
-
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let aData = self.data[section].first!
-			
-		let baseView: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 60))
-		
-		let label: UILabel = UILabel()
-		label.text = aData.fuelType.rawValue
-		label.font = Font.init(.medium, size: .size3).font
-		label.textColor = UIColor.init(named: "TitleColor")
-		
-		let height = aData.fuelType.rawValue.height(withConstrainedWidth: self.view.frame.width-32, font: Font.init(.medium, size: .size3).font)
-		
-		label.frame = CGRect.init(x: 16, y: 20, width: self.view.frame.width-32, height: height+6)
-		
-		baseView.addSubview(label)
-		
-		return baseView
-	}
-	
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		
-		let aData = self.data[section].first!
-		let height = aData.fuelType.rawValue.height(withConstrainedWidth: self.view.frame.width-32, font: Font.init(.medium, size: .size3).font)
-		
-		return height + 26
-	}
-	
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-	
-		return 0
-	}
-
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
-			adjustVisibilityOfShadowLines()
-		}
-	}
-	
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y-15))/50.0
-		
-		navBarBottomShadow.alpha = alfa
-		
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value+5))/50.0
-		
-		tableViewBottomShadow.alpha = alfa2
-	}
-	
-	// MARK: Do something
-	
-	@objc func savingsButtonPressed() {
-		router?.routeToAppSavingsInfo()
-	}
-	
-	@objc func accuracyButtonPressed() {
-		router?.routeToAppAccuracyInfo()
-	}
-	
-	
 	func getData() {
 		let request = MainFuelList.FetchPrices.Request()
 		interactor?.fetchPrices(request: request)
 	}
 
 	func displaySomething(viewModel: MainFuelList.FetchPrices.ViewModel) {
-		data = viewModel.displayedPrices
-		tableView.reloadData()
-		tableView.layoutIfNeeded()
-		adjustVisibilityOfShadowLines()
+		layoutView.updateData(data: viewModel.displayedPrices)
+	}
+
+	// MARK: MainFuelListLayoutViewLogic
+
+	func savingsButtonPressed() {
+		router?.routeToAppSavingsInfo()
+	}
+
+	func accuracyButtonPressed() {
+		router?.routeToAppAccuracyInfo()
 	}
 }

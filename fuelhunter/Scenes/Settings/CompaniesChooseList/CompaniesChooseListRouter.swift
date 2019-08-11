@@ -13,7 +13,6 @@
 import UIKit
 
 protocol CompaniesChooseListRoutingLogic {
-  	
 }
 
 protocol CompaniesChooseListDataPassing {

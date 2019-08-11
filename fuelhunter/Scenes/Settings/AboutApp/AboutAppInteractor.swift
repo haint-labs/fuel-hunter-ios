@@ -22,11 +22,10 @@ protocol AboutAppDataStore {
 
 class AboutAppInteractor: AboutAppBusinessLogic, AboutAppDataStore {
   	var presenter: AboutAppPresentationLogic?
-  
-  	// MARK: Do something
+
+  	// MARK: AboutAppBusinessLogic
 
   	func getListData(request: AboutApp.CompanyCells.Request) {
-
     	let response = AboutApp.CompanyCells.Response()
     	presenter?.presentSomething(response: response)
   	}

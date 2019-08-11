@@ -18,11 +18,11 @@ protocol CompaniesChooseListPresentationLogic {
 
 class CompaniesChooseListPresenter: CompaniesChooseListPresentationLogic {
   	weak var viewController: CompaniesChooseListDisplayLogic?
-
-  	// MARK: Do something
+  	
+  	// MARK: CompaniesChooseListPresentationLogic
 
   	func presentSomething(response:  CompaniesChooseList.CompanyCells.Response) {
-  		
+
 		let array =  [
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeCheapest, title: "Lētākā", description: "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Latvijā ir lētākā degviela attiecīgajā brīdī", imageName: "", toggleStatus: response.companyCheapestStatus),
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeNeste, title: "Neste", description: "", imageName: "neste_tiny_logo", toggleStatus: response.companyNesteStatus),
@@ -32,8 +32,7 @@ class CompaniesChooseListPresenter: CompaniesChooseListPresentationLogic {
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeVirsi, title: "Virši", description: "", imageName: "virshi_tiny_logo", toggleStatus: response.companyVirsiStatus),
 			CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeGotikaAuto, title: "Gotika Auto", description: "", imageName: "gotika_tiny_logo", toggleStatus: response.companyGotikaStatus)
 			]
-  	
-  	
+
     	let viewModel = CompaniesChooseList.CompanyCells.ViewModel.init(displayedCompanyCellItems: array)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}

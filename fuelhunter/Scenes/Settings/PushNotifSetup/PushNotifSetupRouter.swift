@@ -29,9 +29,9 @@ class PushNotifSetupRouter: NSObject, PushNotifSetupRoutingLogic, PushNotifSetup
 	weak var viewController: PushNotifSetupViewController?
   	var dataStore: PushNotifSetupDataStore?
 	var previousViewController: PushNotifReturnUpdateDataLogic?
-	
+
 	// MARK: Routing
-	
+
 	func dismissCurrentViewController() {
 		previousViewController?.updateData()
 		viewController?.dismiss(animated: true, completion: { })

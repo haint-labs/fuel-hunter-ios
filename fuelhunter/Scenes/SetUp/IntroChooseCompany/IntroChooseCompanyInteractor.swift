@@ -24,23 +24,19 @@ protocol IntroChooseCompanyDataStore {
 class IntroChooseCompanyInteractor: IntroChooseCompanyBusinessLogic, IntroChooseCompanyDataStore {
   	var presenter: IntroChooseCompanyPresentationLogic?
   	var appSettingsWorker = AppSettingsWorker()
-  	
   	//var name: String = ""
 
-  	// MARK: Do something
+  	// MARK: IntroChooseCompanyBusinessLogic
 
   	func getCompaniesListData(request: IntroChooseCompany.CompanyCells.Request) {
-  	
   		let companies = appSettingsWorker.getCompanyToggleStatus()
-		
 		let response = IntroChooseCompany.CompanyCells.Response.init(companyCheapestStatus: companies.typeCheapest, companyNesteStatus: companies.typeNeste, companyCircleKStatus: companies.typeCircleK, companyKoolStatus: companies.typeKool, companyLatvijasNaftaStatus: companies.typeLn, companyVirsiStatus: companies.typeVirsi, companyGotikaStatus: companies.typeGotikaAuto)
-		
     	presenter?.presentData(response: response)
   	}
-  	
+
   	func userToggledCompanyType(request: IntroChooseCompany.SwitchToggled.Request) {
   		var companies = appSettingsWorker.getCompanyToggleStatus()
-  		
+
   		if request.companyType == .typeCheapest { companies.typeCheapest = request.state }
   		if request.companyType == .typeNeste { companies.typeNeste = request.state }
   		if request.companyType == .typeCircleK { companies.typeCircleK = request.state }
@@ -48,13 +44,9 @@ class IntroChooseCompanyInteractor: IntroChooseCompanyBusinessLogic, IntroChoose
   		if request.companyType == .typeLN { companies.typeLn = request.state }
   		if request.companyType == .typeVirsi { companies.typeVirsi = request.state }
   		if request.companyType == .typeGotikaAuto { companies.typeGotikaAuto = request.state }
-//  		if request.companyType == .typeViada { companies.viada = request.state }
-//  		if request.companyType == .typeAstarte { companies.astarte = request.state }
-//  		if request.companyType == .typeDinaz { companies.dinaz = request.state }
-//  		if request.companyType == .typeLPG { companies.lpg = request.state }
-//  		
+
   		appSettingsWorker.setCompanyToggleStatus(allCompanies: companies)
-  		
+
   		let request = IntroChooseCompany.CompanyCells.Request()
     	getCompaniesListData(request: request)
   	}

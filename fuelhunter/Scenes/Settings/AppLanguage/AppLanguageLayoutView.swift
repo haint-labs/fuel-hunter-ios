@@ -1,5 +1,5 @@
 //
-//  SettingsViewLayoutView.swift
+//  AppLanguageLayoutView.swift
 //  fuelhunter
 //
 //  Created by Guntis on 05/06/2019.
@@ -8,24 +8,20 @@
 
 import UIKit
 
-protocol SettingsViewLayoutViewLogic: class {
-	func userPressedOnCellType(cellType: Settings.SettingsListCellType)
+protocol AppLanguageLayoutViewDataLogic: class {
+	func updateData(data: [AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem])
 }
 
-protocol SettingsViewLayoutViewDataLogic: class {
-	func updateData(data: [Settings.SettingsList.ViewModel.DisplayedSettingsCell])
-}
-
-class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, SettingsCellSwitchLogic, SettingsViewLayoutViewDataLogic {
-
-	weak var controller: SettingsViewLayoutViewLogic? 
-
+class AppLanguageLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, AppLanguageLayoutViewDataLogic {
+	
 	@IBOutlet var baseView: UIView!
 	@IBOutlet var tableView: UITableView!
 	@IBOutlet var tableViewTopShadow: UIImageView!
 	@IBOutlet var tableViewBottomShadow: UIImageView!
 
-	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
+  	var header: UIView!
+
+	var data = [AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem]()
 
 	// MARK: View lifecycle
 
@@ -40,10 +36,10 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	}
 
 	func setup() {
-		Bundle.main.loadNibNamed("SettingsViewLayoutView", owner: self, options: nil)
+		Bundle.main.loadNibNamed("AppLanguageLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
-		
+
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +67,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 		tableView.delegate = self
     	tableView.dataSource = self
     	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
+    	let nib = UINib.init(nibName: "LanguageListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
   	}
 
@@ -82,18 +78,21 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
 		if let cell = tableView.dequeueReusableCell(
 		   withIdentifier: "cell",
 		   for: indexPath
-		) as? SettingsListCell {
+		) as? LanguageListCell {
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.controller = self
-			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description
-			cell.aSwitch.isOn = aData.toggleStatus
-			cell.setSwitch(asVisible: aData.shouldShowToggle)
+			cell.titleLabel.text = aData.languageName
+			cell.descriptionLabel.text = aData.languageNameTranslated
+			
+			if aData.currentlyActive == true {
+				cell.checkBoxImageView.isHidden = false
+			} else {
+				cell.checkBoxImageView.isHidden = true
+			}
+
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
 			} else {
@@ -117,16 +116,6 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		// Let nothing happen when we press gps or notif cell.
-		let aData = self.data[indexPath.row]
-		switch aData.settingsListCellType {
-			case .gpsCell:
-				break
-			case .pushNotifCell:
-				break
-			default:
-				controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
-		}
 	}
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -141,21 +130,14 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top
 		let alfa2 = min(50, max(0, tableView.contentSize.height-value-15))/50.0
 		tableViewBottomShadow.alpha = alfa2
-	}	
-
-	// MARK: SettingsCellSwitchLogic 
-
-	func switchWasPressedOnTableViewCell(cell: SettingsListCell) {
-		let indexPath = tableView.indexPath(for: cell)
-		let aData = self.data[indexPath!.row]
-
-		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
 	}
+	
+	// MARK: AppLanguageLayoutViewDataLogic
 
-	// MARK: SettingsViewLayoutViewDataLogic
-
-	func updateData(data: [Settings.SettingsList.ViewModel.DisplayedSettingsCell]) {
+	func updateData(data: [AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem]) {
 		self.data = data
-  		tableView.reloadData()
+		tableView.reloadData()
+		tableView.layoutIfNeeded()
+		adjustVisibilityOfShadowLines() 
 	}
 }

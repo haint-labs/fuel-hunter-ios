@@ -31,10 +31,6 @@ enum IntroChooseCompany {
 			var companyLatvijasNaftaStatus: Bool
 			var companyVirsiStatus: Bool
 			var companyGotikaStatus: Bool
-//			var companyViadaStatus: Bool
-//			var companyAstarteStatus: Bool
-//			var companyDinazStatus: Bool
-//			var companyLatvijasPropanaGazeStatus: Bool
 		}
 		struct ViewModel {
 			struct DisplayedCompanyCellItem: Equatable {

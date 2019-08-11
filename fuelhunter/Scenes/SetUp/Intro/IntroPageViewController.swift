@@ -17,8 +17,7 @@ protocol IntroPageDisplayLogic: class {
 }
 
 class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPageLayoutViewLogic {
-	
-	
+
   	var interactor: IntroPageBusinessLogic?
   	var router: (NSObjectProtocol & IntroPageRoutingLogic & IntroPageDataPassing)?
 
@@ -34,9 +33,18 @@ class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPag
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.view.backgroundColor = .white
+    	setUpView()
+    	doSomething()
+  	}
+
+	// MARK: Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = IntroPageInteractor()
 		let presenter = IntroPagePresenter()
@@ -49,15 +57,6 @@ class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPag
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.view.backgroundColor = .white
-    	setUpView()
-    	doSomething()
-  	}
-
 	func setUpView() {
 		let view = IntroPageLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(view)
@@ -66,12 +65,13 @@ class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPag
 		view.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		view.controller = self
 	}
-	
+
   	// MARK: Functions
+
 	func nextButtonWasPressed() {
 		ScenesManager.shared.advanceAppSceneState()
 	}
-	
+
   	func doSomething() {
     	let request = IntroPage.Something.Request()
     	interactor?.doSomething(request: request)

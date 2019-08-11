@@ -13,14 +13,14 @@
 import UIKit
 
 protocol IntroGPSSetUpDisplayLogic: class {
-  	func displaySomething(viewModel: IntroGPSSetUp.Something.ViewModel)
+  	func displayData(viewModel: IntroGPSSetUp.Something.ViewModel)
 }
 
 class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, IntroGPSSetUpLayoutViewLogic {
   	var interactor: IntroGPSSetUpBusinessLogic?
   	var router: (NSObjectProtocol & IntroGPSSetUpRoutingLogic & IntroGPSSetUpDataPassing)?
 	var layoutView: IntroGPSSetUpLayoutView!
-	
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -33,9 +33,18 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.view.backgroundColor = .white
+    	setUpView()
+    	loadData()
+  	}
+
+  	// MARK: Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = IntroGPSSetUpInteractor()
 		let presenter = IntroGPSSetUpPresenter()
@@ -48,17 +57,6 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.view.backgroundColor = .white
-    	setUpView()
-    	doSomething()
-  	}
-
-  	// MARK: Do something
-
 	func setUpView() {
 		layoutView = IntroGPSSetUpLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -68,22 +66,25 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-	
-  	func doSomething() {
+
+	// MARK: Functions
+
+  	func loadData() {
     	let request = IntroGPSSetUp.Something.Request()
-    	interactor?.doSomething(request: request)
+    	interactor?.loadData(request: request)
   	}
 
-  	func displaySomething(viewModel: IntroGPSSetUp.Something.ViewModel) {
+  	func displayData(viewModel: IntroGPSSetUp.Something.ViewModel) {
     	//nameTextField.text = viewModel.name
   	}
-  	
+
   	// MARK: IntroNotifSetUpLayoutViewLogic
+
   	func giveAccessButtonPressed() {
 		let request = IntroGPSSetUp.Something.Request()
 		interactor?.userAskedForGPSAccess(request: request)
   	}
-  	
+
   	func laterButtonPressed() {
   		ScenesManager.shared.advanceAppSceneState()
   	}

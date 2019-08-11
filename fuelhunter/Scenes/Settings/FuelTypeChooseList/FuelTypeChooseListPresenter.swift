@@ -19,10 +19,9 @@ protocol FuelTypeChooseListPresentationLogic {
 class FuelTypeChooseListPresenter: FuelTypeChooseListPresentationLogic {
   	weak var viewController: FuelTypeChooseListDisplayLogic?
 
-  	// MARK: Do something
-		
+  	// MARK: FuelTypeChooseListPresentationLogic
+
   	func presentData(response: FuelTypeChooseList.FuelCells.Response) {
-  	
   		let array =  [
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeDD, title: "DD | Dīzeļdegviela", toggleStatus: response.statusOfDD),
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeDDPro, title: "DD | Pro Dīzeļdegviela", toggleStatus: response.statusOfProDD),
@@ -30,7 +29,7 @@ class FuelTypeChooseListPresenter: FuelTypeChooseListPresentationLogic {
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .type98, title: "98 | Benzīns", toggleStatus: response.statusOf98),
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeGas, title: "Auto Gāze", toggleStatus: response.statusOfGas)
 			]
-			
+
     	let viewModel = FuelTypeChooseList.FuelCells.ViewModel.init(displayedFuelCellItems: array)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}

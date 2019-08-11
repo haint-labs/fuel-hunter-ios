@@ -20,26 +20,27 @@ protocol SettingsPresentationLogic {
 class SettingsPresenter: SettingsPresentationLogic {
   	weak var viewController: SettingsDisplayLogic?
 	weak var router: SettingsRouter?
-  	// MARK: Do something
 
+  	// MARK: SettingsPresentationLogic
+  	
 	func showNotifSetUp(response: Settings.PushNotif.Response) {
 		router?.presentNotifSetUpScene(response: response)
 	} 
-	
+
   	func presentSettingsListWithData(response: Settings.SettingsList.Response) {
-  	
+
   		let companyNames = response.companyNames
 		let fuelTypeNames = response.fuelTypeNames
 		let gpsIsEnabledStatus = response.gpsIsEnabledStatus
 		let pushNotifIsEnabledStatus = response.pushNotifIsEnabledStatus
 		var descriptionString = "Saņemt paziņojumus, kad degvielas cena samazinās par "
-  		
+
   		if response.notifCentsValue == 1 {
   			descriptionString.append("1 centu.")
   		} else {
   			descriptionString.append("\(response.notifCentsValue) centiem.")
   		}
-  		
+
 		let array =  [
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "Atzīmē, kuras uzpildes kompānijas vēlies redzēt sarakstā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "Aktuālais degvielas veids", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
@@ -48,10 +49,8 @@ class SettingsPresenter: SettingsPresentationLogic {
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "Aplikācijas valoda", description: "Izmaini aplikācijas valodu", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
 			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 			]
-  	
-  	
+
     	let viewModel = Settings.SettingsList.ViewModel(displayedSettingsCells: array)
     	viewController?.displaySettingsList(viewModel: viewModel)
-    	
   	}
 }

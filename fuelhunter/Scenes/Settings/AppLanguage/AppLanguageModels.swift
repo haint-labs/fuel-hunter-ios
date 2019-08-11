@@ -14,13 +14,11 @@ import UIKit
 
 enum AppLanguage {
   	// MARK: Use cases
-	
 	enum LanguageType {
 		case languageLatvian
 		case languageRussian
 		case languageEnglish
 	}
-	
 	enum GetLanguage {
 		struct Request {
 		}

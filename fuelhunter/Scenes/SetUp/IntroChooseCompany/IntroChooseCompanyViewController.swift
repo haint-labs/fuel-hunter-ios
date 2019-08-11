@@ -16,11 +16,12 @@ protocol IntroChooseCompanyDisplayLogic: class {
   	func displayListWithData(viewModel: IntroChooseCompany.CompanyCells.ViewModel)
 }
 
-class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisplayLogic, IntroChooseCompanyLayoutViewLogic, FuelCompanyListCellSwitchLogic {
-	
+class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisplayLogic, IntroChooseCompanyLayoutViewLogic {
+
   	var interactor: IntroChooseCompanyBusinessLogic?
   	var router: (NSObjectProtocol & IntroChooseCompanyRoutingLogic & IntroChooseCompanyDataPassing)?
 	var layoutView: IntroChooseCompanyLayoutView!
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -33,7 +34,16 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
+
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.view.backgroundColor = .white
+    	setUpView()
+    	getData()
+  	}
+
+  	// MARK: Set up
 
   	private func setup() {
 		let viewController = self
@@ -48,16 +58,6 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.view.backgroundColor = .white
-    	setUpView()
-    	getData()
-  	}
-
-  	
   	func setUpView() {
 		layoutView = IntroChooseCompanyLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -67,44 +67,26 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-	
+
   	// MARK: Functions
-  	
+
   	func getData() {
     	let request = IntroChooseCompany.CompanyCells.Request()
     	interactor?.getCompaniesListData(request: request)
   	}
 
   	func displayListWithData(viewModel: IntroChooseCompany.CompanyCells.ViewModel) {
-  		if (layoutView?.data.count)! == 0 {
-			layoutView?.data = viewModel.displayedCompanyCellItems
-			layoutView?.tableView.reloadData()
-		} else {
-			layoutView?.data = viewModel.displayedCompanyCellItems
-			
-			if (layoutView?.data.count)! > 0 {
-				guard let cell = layoutView?.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? FuelCompanyListCell else { return } 
-				if layoutView?.data.first?.toggleStatus != cell.aSwitch.isOn {
-					// Without this - table view jumps.
-					UIView.setAnimationsEnabled(false)
-					self.layoutView?.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
-					UIView.setAnimationsEnabled(true)
-				}
-			}
-		}
+  		layoutView.updateData(data: viewModel.displayedCompanyCellItems)
   	}
-  	
+
   	// MARK: IntroChooseCompanyLayoutViewLogic
+
+	func switchWasPressedFor(companyType: CompanyType, withState state: Bool) {
+		let request = IntroChooseCompany.SwitchToggled.Request.init(companyType: companyType, state: state)
+		interactor?.userToggledCompanyType(request: request)
+	}
+
   	func nextButtonWasPressed() {
   		ScenesManager.shared.advanceAppSceneState()
   	}
-  	
-  	// MARK: FuelCompanyListCellSwitchLogic
-  	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool) {
-		let indexPath = layoutView.tableView.indexPath(for: cell)
-		let aData = layoutView.data[indexPath!.row] as IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem
-		
-		let request = IntroChooseCompany.SwitchToggled.Request.init(companyType: aData.companyType, state: state)
-		interactor?.userToggledCompanyType(request: request)
-	}
 }

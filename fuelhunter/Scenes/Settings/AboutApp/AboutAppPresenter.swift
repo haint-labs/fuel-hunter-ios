@@ -19,10 +19,10 @@ protocol AboutAppPresentationLogic {
 class AboutAppPresenter: AboutAppPresentationLogic {
   	weak var viewController: AboutAppDisplayLogic?
 
-  	// MARK: Do something
+  	// MARK: AboutAppPresentationLogic
 
   	func presentSomething(response:  AboutApp.CompanyCells.Response) {
-  		
+
 		let array =  [
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Neste", description: "Lētākā Degviela Rīgā.", imageName: "neste_logo", enabled: true),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Circle K", description: "Lētākā Degviela Rīgā.", imageName: "circle_k_logo", enabled: true),
@@ -30,13 +30,8 @@ class AboutAppPresenter: AboutAppPresentationLogic {
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Nafta", description: "Zemākās cenas DUS tīklā Latvijā, pa reģioniem (Rīgas rajons, Liepājas rajons, Ventspils rajons, Zemgale, Vidzeme, Latgale).", imageName: "ln_logo", enabled: true),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Virši", description: "Lētākā degviela Rīgā un Pierīgā.", imageName: "virshi_logo", enabled: true),
 			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Gotika auto", description: "Zemākās cenas DUS tīklā Latvijā.", imageName: "gotika_logo", enabled: true)
-//			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Viada", description: "Patreiz nav pieejamas cenas.", imageName: "viada_logo", enabled: false),
-//			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Astarte", description: "Patreiz nav pieejamas cenas.", imageName: "astarte_logo", enabled: false),
-//			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Dinaz", description: "Patreiz nav pieejamas cenas.", imageName: "dinaz_logo", enabled: false),
-//			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Propāna Gāze", description: "Patreiz nav pieejamas cenas.", imageName: "lpg_logo", enabled: false)
 			]
-  	
-  	
+
     	let viewModel = AboutApp.CompanyCells.ViewModel.init(displayedCompanyCellItems: array)
     	viewController?.displayData(viewModel: viewModel)
   	}

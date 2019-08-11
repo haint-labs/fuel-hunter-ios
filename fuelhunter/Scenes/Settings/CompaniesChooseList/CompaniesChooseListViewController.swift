@@ -20,7 +20,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
   	var interactor: CompaniesChooseListBusinessLogic?
   	var router: (NSObjectProtocol & CompaniesChooseListRoutingLogic & CompaniesChooseListDataPassing)?
 	var layoutView: CompaniesChooseListLayoutView!
-	
+
 	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -31,21 +31,6 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
   	required init?(coder aDecoder: NSCoder) {
     	super.init(coder: aDecoder)
     	setup()
-  	}
-	
-  	// MARK: Setup
-
-  	private func setup() {
-		let viewController = self
-		let interactor = CompaniesChooseListInteractor()
-		let presenter = CompaniesChooseListPresenter()
-		let router = CompaniesChooseListRouter()
-		viewController.interactor = interactor
-		viewController.router = router
-		interactor.presenter = presenter
-		presenter.viewController = viewController
-		router.viewController = viewController
-		router.dataStore = interactor
   	}
 
   	// MARK: View lifecycle
@@ -58,6 +43,21 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
     	getCompaniesListData()
   	}
 
+	// MARK: Set up
+
+	private func setup() {
+		let viewController = self
+		let interactor = CompaniesChooseListInteractor()
+		let presenter = CompaniesChooseListPresenter()
+		let router = CompaniesChooseListRouter()
+		viewController.interactor = interactor
+		viewController.router = router
+		interactor.presenter = presenter
+		presenter.viewController = viewController
+		router.viewController = viewController
+		router.dataStore = interactor
+  	}
+
 	func setUpView() {
 		layoutView = CompaniesChooseListLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -68,33 +68,19 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 		layoutView.controller = self
 	}
 	
-  	// MARK: Do something
+  	// MARK: Functions
+
   	func getCompaniesListData() {
     	let request = CompaniesChooseList.CompanyCells.Request()
     	interactor?.getCompaniesListData(request: request)
   	}
 
   	func displayListWithData(viewModel: CompaniesChooseList.CompanyCells.ViewModel) {
-    	if layoutView.data.count == 0 {
-			layoutView.data = viewModel.displayedCompanyCellItems
-			layoutView.tableView.reloadData()
-		} else {
-			layoutView.data = viewModel.displayedCompanyCellItems
-			
-			if layoutView.data.count > 0 {
-				guard let cell = layoutView.tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? FuelCompanyListCell else { return }
-				if layoutView.data.first?.toggleStatus != cell.aSwitch.isOn {
-					// Without this - tableview jumps.
-					UIView.setAnimationsEnabled(false)
-					layoutView.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
-					UIView.setAnimationsEnabled(true)
-				}
-			}
-		}
+    	layoutView.updateData(data: viewModel.displayedCompanyCellItems)
   	}
-  	
+
   	// MARK: CompaniesChooseListLayoutViewLogic
-  	
+
   	func switchWasPressedFor(companyType: CompanyType, withState state: Bool) {
 		let request = CompaniesChooseList.SwitchToggled.Request.init(companyType: companyType, state: state)
 		interactor?.userToggledCompanyType(request: request)

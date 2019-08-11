@@ -19,10 +19,9 @@ protocol IntroChooseCompanyPresentationLogic {
 class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
   	weak var viewController: IntroChooseCompanyDisplayLogic?
 
-  	// MARK: Do something
+  	// MARK: IntroChooseCompanyPresentationLogic
 
   	func presentData(response:  IntroChooseCompany.CompanyCells.Response) {
-  		
 		let array =  [
 			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeCheapest, title: "Lētākā", description: "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Latvijā ir lētākā degviela attiecīgajā brīdī", imageName: "", toggleStatus: response.companyCheapestStatus),
 			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeNeste, title: "Neste", description: "", imageName: "neste_tiny_logo", toggleStatus: response.companyNesteStatus),
@@ -31,13 +30,8 @@ class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
 			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeLN, title: "Latvijas Nafta", description: "", imageName: "ln_tiny_logo", toggleStatus: response.companyLatvijasNaftaStatus),
 			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeVirsi, title: "Virši", description: "", imageName: "virshi_tiny_logo", toggleStatus: response.companyVirsiStatus),
 			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(companyType: .typeGotikaAuto, title: "Gotika Auto", description: "", imageName: "gotika_tiny_logo", toggleStatus: response.companyGotikaStatus)
-//			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeViada, title: "Viada", description: "", imageName: "viada_tiny_logo", toggleStatus: response.companyViadaStatus, enabled: false),
-//			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeAstarte, title: "Astarte", description: "", imageName: "astarte_tiny_logo", toggleStatus: response.companyAstarteStatus, enabled: false),
-//			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeDinaz, title: "Dinaz", description: "", imageName: "dinaz_tiny_logo", toggleStatus: response.companyDinazStatus, enabled: false),
-//			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(type: .typeLPG, title: "Latvijas Propāna Gāze ", description: "", imageName: "lpg_tiny_logo", toggleStatus: response.companyLatvijasPropanaGazeStatus, enabled: false)
 			]
-  	
-  	
+
     	let viewModel = IntroChooseCompany.CompanyCells.ViewModel.init(displayedCompanyCellItems: array)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}

@@ -21,7 +21,6 @@ enum FuelTypeChooseList {
 		}
 	}
 	enum FuelCells {
-	
 		struct Request {
 		}
 		struct Response {

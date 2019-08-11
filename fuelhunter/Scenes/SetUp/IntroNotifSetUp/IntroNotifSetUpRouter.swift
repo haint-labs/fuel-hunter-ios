@@ -13,7 +13,6 @@
 import UIKit
 
 protocol IntroNotifSetUpRoutingLogic {
-  	//func routeToSomewhere(segue: UIStoryboardSegue?)
   	func presentNotifSetUpScene(response: IntroNotifSetUp.PushNotif.Response)
 }
 
@@ -24,8 +23,7 @@ protocol IntroNotifSetUpDataPassing {
 class IntroNotifSetUpRouter: NSObject, IntroNotifSetUpRoutingLogic, IntroNotifSetUpDataPassing {
   	weak var viewController: IntroNotifSetUpViewController?
   	var dataStore: IntroNotifSetUpDataStore?
-	
-	
+
 	func presentNotifSetUpScene(response: IntroNotifSetUp.PushNotif.Response) {
 		let destinationVC = PushNotifSetupViewController()
   		destinationVC.router?.previousViewController = viewController!

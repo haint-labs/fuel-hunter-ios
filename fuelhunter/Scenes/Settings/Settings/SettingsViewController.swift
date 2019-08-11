@@ -17,14 +17,14 @@ protocol SettingsDisplayLogic: class {
 }
 
 class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifReturnUpdateDataLogic, SettingsViewLayoutViewLogic {
-	
+
   	var interactor: SettingsBusinessLogic?
   	var router: (NSObjectProtocol & SettingsRoutingLogic & SettingsDataPassing)?
   	var layoutView: SettingsViewLayoutView!
   	var data = [Settings.SettingsList.ViewModel.DisplayedSettingsCell]()
-  	
+
   	// MARK: Object lifecycle
-  	
+
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     	super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     	setup()
@@ -34,9 +34,23 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
     	super.init(coder: aDecoder)
     	setup()
   	}
-	
-  	// MARK: Setup
-  	
+
+  	// MARK: View lifecycle
+
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.title = "Iestatījumi"
+    	self.view.backgroundColor = .white
+    	setUpView()
+  	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		getSettingsCellsData()
+	}
+
+	// MARK: Set up
+
 	private func setup() {
 		let viewController = self
 		let interactor = SettingsInteractor()
@@ -51,15 +65,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-  	
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.title = "Iestatījumi"
-    	self.view.backgroundColor = .white
-    	setUpView()
-  	}
-	
 	func setUpView() {
 		layoutView = SettingsViewLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -69,13 +74,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		getSettingsCellsData()
-	}
-	
+
 	// MARK: ExtendedSettingsCellSwitchLogic
+
 	func userPressedOnCellType(cellType: Settings.SettingsListCellType) {
 		switch cellType {
 			case .fuelCompanyCell: 
@@ -92,19 +93,20 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 				interactor?.userPressedOnNotifSwitch()
 		}
 	}
-	
-  	// MARK: Do something
+
+  	// MARK: Functions
+
   	func getSettingsCellsData() {
     	let request = Settings.SettingsList.Request()
     	interactor?.getSettingsCellsData(request: request)
   	}
 
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
-  		layoutView.data = viewModel.displayedSettingsCells
-  		layoutView?.tableView.reloadData()
+  		layoutView.updateData(data: viewModel.displayedSettingsCells)
   	}
-  	
+
   	// MARK: PushNotifReturnUpdateDataLogic
+
 	func updateData() {
 		getSettingsCellsData()
 	}

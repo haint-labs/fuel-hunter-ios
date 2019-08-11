@@ -13,8 +13,9 @@
 import UIKit
 
 enum Settings {
+
   	// MARK: Use cases
-	
+
 	enum SettingsListCellType {
 		case fuelCompanyCell
 		case fuelTypeCell
@@ -23,7 +24,7 @@ enum Settings {
 		case appLanguageCell
 		case aboutAppCell
 	}
-	
+
 	enum PushNotif {
 		struct Request {
 		}
@@ -33,7 +34,7 @@ enum Settings {
 		struct ViewModel {
 		}
 	}
-	
+
 	enum SettingsList {
 		struct Request {
 		}

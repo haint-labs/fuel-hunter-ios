@@ -25,7 +25,7 @@ class AppLanguageInteractor: AppLanguageBusinessLogic, AppLanguageDataStore {
   	var worker = AppLanguageWorker()
   	//var name: String = ""
 
-  	// MARK: Do something
+  	// MARK: AppLanguageBusinessLogic
 
   	func getLanaguageListData(request: AppLanguage.GetLanguage.Request) {
     	let response = worker.getStatusOfEnabledFuelTypes()

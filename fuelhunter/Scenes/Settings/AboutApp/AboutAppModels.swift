@@ -14,7 +14,6 @@ import UIKit
 
 enum AboutApp {
   	// MARK: Use cases
-
 	enum CompanyCells {
 		struct Request {
 		}

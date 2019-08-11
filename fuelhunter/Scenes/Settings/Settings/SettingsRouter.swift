@@ -33,21 +33,19 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 	func routeToCompanyChooseScene() {
   		navigateToScene(source: viewController!, destination: CompaniesChooseListViewController())
   	}
-	
+
   	func routeToFuelTypeScene() {
   		navigateToScene(source: viewController!, destination: FuelTypeChooseListViewController())
   	}
-  	
+
   	func routeToLanguageChooseScene() {
-  		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appLanguageViewController") as! AppLanguageViewController
-  		navigateToScene(source: viewController!, destination: destinationVC)
+  		navigateToScene(source: viewController!, destination: AppLanguageViewController())
   	}
-  	
+
   	func routeToAboutScene() {
   		navigateToScene(source: viewController!, destination: AboutAppViewController())
   	}
-  	
+
   	func presentNotifSetUpScene(response: Settings.PushNotif.Response) {
   		let destinationVC = PushNotifSetupViewController()
   		destinationVC.router?.previousViewController = viewController!
@@ -56,7 +54,7 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 		destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
 		viewController!.present(destinationVC, animated: true) { }
   	}
-  	
+
 	func navigateToScene(source: UIViewController, destination: UIViewController) {
 		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		source.show(destination, sender: nil)

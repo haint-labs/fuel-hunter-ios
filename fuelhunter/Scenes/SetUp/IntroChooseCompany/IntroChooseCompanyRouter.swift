@@ -23,32 +23,4 @@ protocol IntroChooseCompanyDataPassing {
 class IntroChooseCompanyRouter: NSObject, IntroChooseCompanyRoutingLogic, IntroChooseCompanyDataPassing {
   	weak var viewController: IntroChooseCompanyViewController?
   	var dataStore: IntroChooseCompanyDataStore?
-
-	// MARK: Routing
-
-	//func routeToSomewhere(segue: UIStoryboardSegue?)
-	//{
-	//  if let segue = segue {
-	//    let destinationVC = segue.destination as! SomewhereViewController
-	//    var destinationDS = destinationVC.router!.dataStore!
-	//    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-	//  } else {
-	//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-	//    let destinationVC = storyboard.instantiateViewController(withIdentifier:
-	//   "SomewhereViewController") as! SomewhereViewController
-	//    var destinationDS = destinationVC.router!.dataStore!
-	//    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-	//    navigateToSomewhere(source: viewController!, destination: destinationVC)
-	//  }
-	//}
-	// MARK: Navigation
-	//func navigateToSomewhere(source: IntroChooseCompanyViewController, destination: SomewhereViewController)
-	//{
-	//  source.show(destination, sender: nil)
-	//}  
-	// MARK: Passing data
-	//func passDataToSomewhere(source: IntroChooseCompanyDataStore, destination: inout SomewhereDataStore)
-	//{
-	//  destination.name = source.name
-	//}
 }

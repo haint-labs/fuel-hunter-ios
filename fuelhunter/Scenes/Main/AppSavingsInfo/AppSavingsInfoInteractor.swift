@@ -25,7 +25,7 @@ class AppSavingsInfoInteractor: AppSavingsInfoBusinessLogic, AppSavingsInfoDataS
   	var worker: AppSavingsInfoWorker?
   	//var name: String = ""
 
-  	// MARK: Do something
+  	// MARK: AppSavingsInfoBusinessLogic
 
   	func doSomething(request: AppSavingsInfo.Something.Request) {
     	worker = AppSavingsInfoWorker()

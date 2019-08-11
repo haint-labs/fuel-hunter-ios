@@ -12,16 +12,17 @@
 
 import UIKit
 
-
 class AppAccuracyInfoViewController: AboutAppViewController {
-  	
+
   	// MARK: View lifecycle
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.title = "Degvielas cenu precizitāte"
     }	
-	
+
+	// MARK: Set up
+
 	override func setUpView() {
 		layoutView = AppAccuracyInfoLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -30,13 +31,4 @@ class AppAccuracyInfoViewController: AboutAppViewController {
         layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
-	
-//	override func setUpTableViewHeader() {
-//		let header = AppAccuracyInfoTableHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
-//		header.translatesAutoresizingMaskIntoConstraints = false
-//		self.tableView.tableHeaderView = header
-//		header.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
-//		header.layoutIfNeeded()
-//		tableView.tableHeaderView = header
-//	}
 }

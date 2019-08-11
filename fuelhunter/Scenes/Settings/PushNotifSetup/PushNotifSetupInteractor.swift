@@ -27,34 +27,33 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
   	var presenter: PushNotifSetupPresentationLogic?
   	var appSettingsWorker = AppSettingsWorker()
 	var centsValue: Int = 0
-	
-  	func getDataToShow(request: PushNotifSetup.SetUp.Request) {
 
+	// MARK: PushNotifSetupBusinessLogic
+
+  	func getDataToShow(request: PushNotifSetup.SetUp.Request) {
 		let minimumValue = AppSettingsWorker.minimumNotifCents
 		let maximumValue = AppSettingsWorker.maximumNotifCents
 		centsValue = appSettingsWorker.getStoredNotifCentsCount()
 		let convertedValue = appSettingsWorker.getCentsSymbolBasedOnValue(value: centsValue)
-		
     	let response = PushNotifSetup.SetUp.Response(value: centsValue, convertedValue: convertedValue, minValue: minimumValue, maxValue: maximumValue)
     	presenter?.presentData(response: response)
   	}
-  	
+
   	func activateButtonPressed() {
   		appSettingsWorker.setNotifEnabled(enabled: true)
   		appSettingsWorker.setStoredNotifCentsCount(count: centsValue)
   		presenter?.returnBackToPreviousViewController()
   	}
-  	
+
   	func cancelButtonPressed() {
   		presenter?.returnBackToPreviousViewController()
   	}
-  	
+
   	func stepperValueChangedTo(value: Int) {
   		let minimumValue = AppSettingsWorker.minimumNotifCents
 		let maximumValue = AppSettingsWorker.maximumNotifCents
 		centsValue = value
 		let convertedValue = appSettingsWorker.getCentsSymbolBasedOnValue(value: centsValue)
-		
     	let response = PushNotifSetup.SetUp.Response(value: centsValue, convertedValue: convertedValue, minValue: minimumValue, maxValue: maximumValue)
     	presenter?.presentData(response: response)
   	}

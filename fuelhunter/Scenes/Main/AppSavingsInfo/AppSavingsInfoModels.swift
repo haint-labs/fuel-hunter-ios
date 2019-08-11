@@ -14,7 +14,6 @@ import UIKit
 
 enum AppSavingsInfo {
   	// MARK: Use cases
-
 	enum Something {
 		struct Request {
 		}

@@ -19,7 +19,7 @@ protocol IntroPagePresentationLogic {
 public class IntroPagePresenter: IntroPagePresentationLogic {
   	weak var viewController: IntroPageDisplayLogic?
 
-  	// MARK: Do something
+  	// MARK: IntroPagePresentationLogic
 
   	func presentSomething(response: IntroPage.Something.Response) {
     	let viewModel = IntroPage.Something.ViewModel()

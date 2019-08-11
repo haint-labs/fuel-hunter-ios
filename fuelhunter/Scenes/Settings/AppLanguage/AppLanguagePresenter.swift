@@ -19,18 +19,15 @@ protocol AppLanguagePresentationLogic {
 class AppLanguagePresenter: AppLanguagePresentationLogic {
   	weak var viewController: AppLanguageDisplayLogic?
 
-  	// MARK: Do something
+  	// MARK: AppLanguagePresentationLogic
 
   	func presentLanguageList(response: AppLanguage.GetLanguage.Response) {
-  		
   		let currentlyActiveLanguage = response.activeLanguage
-  		
   		let array =  [
 			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem.init(currentlyActive: currentlyActiveLanguage == .languageLatvian, languageName: "Latviski", languageNameTranslated: "Latviski"),
 			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem.init(currentlyActive: currentlyActiveLanguage == .languageEnglish, languageName: "English", languageNameTranslated: "Angliski"),
 			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem.init(currentlyActive: currentlyActiveLanguage == .languageRussian, languageName: "Русский", languageNameTranslated: "Krieviski")
 			]
-			
     	let viewModel = AppLanguage.GetLanguage.ViewModel(displayedLanguageCellItems: array)
     	viewController?.presentLanguageList(viewModel: viewModel)
   	}

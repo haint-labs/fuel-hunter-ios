@@ -24,7 +24,6 @@ class ScenesManager: NSObject {
 	weak var window: UIWindow?
 	
 	func setRootViewController(animated: Bool) {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		var destinationVC: UIViewController?
   		
   		let sceneState = ScenesManager.shared.getAppSceneState()
@@ -41,7 +40,7 @@ class ScenesManager: NSObject {
 			case .introPageNotifAccessAsking:
 				destinationVC = IntroNotifSetUpViewController()
 			default:
-				destinationVC = storyboard.instantiateViewController(withIdentifier: "mainFuelListViewController") as! MainFuelListViewController
+				destinationVC = MainFuelListViewController()
 		}
 		
   		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController  		

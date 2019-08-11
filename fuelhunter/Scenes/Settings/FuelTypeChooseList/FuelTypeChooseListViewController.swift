@@ -17,11 +17,11 @@ protocol FuelTypeChooseListDisplayLogic: class {
 }
 
 class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisplayLogic, FuelTypeChooseListLayoutViewLogic {
-	
+
   	var interactor: FuelTypeChooseListBusinessLogic?
   	var router: (NSObjectProtocol & FuelTypeChooseListRoutingLogic & FuelTypeChooseListDataPassing)?
 	var layoutView: FuelTypeChooseListLayoutView!
-  	
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -34,9 +34,28 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+		self.title = "Degvielas veids"
+    	self.view.backgroundColor = .white
+		setUpView()
+    	getFuelTypesListData()
+  	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		interactor?.reCheckFuelTypes()
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+	}
+
+	// MARK: Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = FuelTypeChooseListInteractor()
 		let presenter = FuelTypeChooseListPresenter()
@@ -49,27 +68,6 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	
-		self.title = "Degvielas veids"
-    	self.view.backgroundColor = .white
-		setUpView()
-    	getFuelTypesListData()
-  	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		interactor?.reCheckFuelTypes()
-	}
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-	}
-	
-	// MARK: Set up
-	
 	func setUpView() {
 		layoutView = FuelTypeChooseListLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -79,18 +77,16 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-	
-  	// MARK: Do something
-  	
+
+  	// MARK: Functions
+
   	func getFuelTypesListData() {
     	let request = FuelTypeChooseList.FuelCells.Request()
     	interactor?.getFuelTypesListData(request: request)
   	}
 
   	func displayListWithData(viewModel: FuelTypeChooseList.FuelCells.ViewModel) {
-    	layoutView.data = viewModel.displayedFuelCellItems
-    	layoutView.tableView.reloadData()
-		layoutView.tableView.layoutIfNeeded()
+  		layoutView.updateData(data: viewModel.displayedFuelCellItems)
   	}
 
 	// MARK: FuelTypeChooseListLayoutViewLogic 

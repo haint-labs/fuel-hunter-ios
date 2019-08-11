@@ -20,7 +20,7 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
   	var interactor: AboutAppBusinessLogic?
   	var router: (NSObjectProtocol & AboutAppRoutingLogic & AboutAppDataPassing)?
   	var layoutView: AboutAppLayoutView!
-  	
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -33,7 +33,30 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
+
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.title = "Par aplikāciju"
+    	self.view.backgroundColor = .white
+    	setUpView()
+    	getListData()
+  	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.removeObserver(self)
+	}
+
+	// MARK: Set up
 
   	private func setup() {
 		let viewController = self
@@ -48,20 +71,6 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.title = "Par aplikāciju"
-    	
-    	self.view.backgroundColor = .white
-    	
-    	setUpView()
-    	
-    	getListData()
-    	
-  	}
-	
 	func setUpView() {
 		layoutView = AboutAppLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -71,28 +80,15 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-	}
-	
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-		let notificationCenter = NotificationCenter.default
-		notificationCenter.removeObserver(self)
-	}
+  	// MARK: Functions
 
 	@objc func appMovedToForeground() {
 		layoutView.appMovedToForeground()
 	}
-	
+
 	@objc func appMovedToBackground() {
 		layoutView.appMovedToBackground()
 	}
-	
-  	// MARK: Do something
 
   	func getListData() {
     	let request = AboutApp.CompanyCells.Request()
@@ -100,8 +96,6 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
   	}
 
   	func displayData(viewModel: AboutApp.CompanyCells.ViewModel) {
-    	layoutView.data = viewModel.displayedCompanyCellItems
-    	layoutView.tableView.reloadData()
-		layoutView.tableView.layoutIfNeeded()
+    	layoutView.updateData(data: viewModel.displayedCompanyCellItems)
   	}
 }

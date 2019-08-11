@@ -14,7 +14,6 @@ import UIKit
 
 enum PushNotifSetup {
   	// MARK: Use cases
-
 	enum SetUp {
 		struct Request {
 		}

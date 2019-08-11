@@ -20,24 +20,21 @@ protocol PushNotifSetupPresentationLogic {
 class PushNotifSetupPresenter: PushNotifSetupPresentationLogic {
   	weak var viewController: PushNotifSetupDisplayLogic?
 	weak var router: PushNotifSetupRouter?
-  	// MARK: Do something
+
+  	// MARK: PushNotifSetupPresentationLogic
 
   	func presentData(response: PushNotifSetup.SetUp.Response) {
-  	
   		var descriptionString = "Saņemt paziņojumus, kad degvielas cena samazinās par "
-  		
   		if response.value == 1 {
   			descriptionString.append("\(response.convertedValue) centu.")
   		} else {
   			descriptionString.append("\(response.convertedValue) centiem.")
   		}
-  		
   		let displayItem = PushNotifSetup.SetUp.ViewModel.DisplayedItem.init(description: descriptionString, value: response.value, minValue: response.minValue, maxValue: response.maxValue)
-  		
     	let viewModel = PushNotifSetup.SetUp.ViewModel.init(displayedItem: displayItem)
     	viewController?.updateData(viewModel: viewModel)
   	}
-  	
+
   	func returnBackToPreviousViewController() {
   		router?.dismissCurrentViewController()
   	}

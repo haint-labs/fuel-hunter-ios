@@ -13,7 +13,7 @@
 import UIKit
 
 protocol IntroGPSSetUpPresentationLogic {
-  	func presentSomething(response: IntroGPSSetUp.Something.Response)
+  	func presentData(response: IntroGPSSetUp.Something.Response)
 }
 
 class IntroGPSSetUpPresenter: IntroGPSSetUpPresentationLogic {
@@ -21,8 +21,8 @@ class IntroGPSSetUpPresenter: IntroGPSSetUpPresentationLogic {
 
   	// MARK: Do something
 
-  	func presentSomething(response: IntroGPSSetUp.Something.Response) {
+  	func presentData(response: IntroGPSSetUp.Something.Response) {
     	let viewModel = IntroGPSSetUp.Something.ViewModel()
-    	viewController?.displaySomething(viewModel: viewModel)
+    	viewController?.displayData(viewModel: viewModel)
   	}
 }

@@ -14,7 +14,6 @@ import UIKit
 
 enum IntroNotifSetUp {
   	// MARK: Use cases
-	
 	enum PushNotif {
 		struct Request {
 		}
@@ -24,7 +23,6 @@ enum IntroNotifSetUp {
 		struct ViewModel {
 		}
 	}
-	
 	enum Something {
 		struct Request {
 		}

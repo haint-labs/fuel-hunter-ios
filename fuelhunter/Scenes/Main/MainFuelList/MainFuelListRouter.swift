@@ -26,24 +26,22 @@ class MainFuelListRouter: NSObject, MainFuelListRoutingLogic, MainFuelListDataPa
 	weak var viewController: MainFuelListViewController?
 	var dataStore: MainFuelListDataStore?
 
-  	// MARK: Routing
+  	// MARK: MainFuelListRoutingLogic
 
 	@objc func routeToSettings() {
-  		navigateToSettings(source: viewController!, destination: SettingsViewController())
+  		navigateTo(source: viewController!, destination: SettingsViewController())
   	}
   	
   	func routeToAppAccuracyInfo() {
-  		navigateToSettings(source: viewController!, destination: AppAccuracyInfoViewController())
+  		navigateTo(source: viewController!, destination: AppAccuracyInfoViewController())
   	}
 
 	func routeToAppSavingsInfo() {
-		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  		let destinationVC = storyboard.instantiateViewController(withIdentifier: "appSavingsInfoViewController") as! AppSavingsInfoViewController
-  		navigateToSettings(source: viewController!, destination: destinationVC)
+  		navigateTo(source: viewController!, destination: AppSavingsInfoViewController())
 	}
   	
   	// MARK: Navigation  
-	func navigateToSettings(source: MainFuelListViewController, destination: UIViewController) {
+	func navigateTo(source: MainFuelListViewController, destination: UIViewController) {
 		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		source.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		source.show(destination, sender: nil)

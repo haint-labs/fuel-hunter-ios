@@ -26,37 +26,35 @@ class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeCho
   	var presenter: FuelTypeChooseListPresentationLogic?
   	var appSettingsWorker = AppSettingsWorker()
   	//var name: String = ""
-	
-  	// MARK: Do something
-	
+
+  	// MARK: FuelTypeChooseListBusinessLogic
+
   	func getFuelTypesListData(request: FuelTypeChooseList.FuelCells.Request) {
-    	
     	let fuelTypes = appSettingsWorker.getFuelTypeToggleStatus()
-		
     	let response = FuelTypeChooseList.FuelCells.Response.init(statusOfDD: fuelTypes.typeDD, statusOfProDD: fuelTypes.typeDDPro, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas)
     	presenter?.presentData(response: response)
   	}
-  	
+
   	func userToggledFuelType(request: FuelTypeChooseList.SwitchToggled.Request) {
   		var fuelTypes = appSettingsWorker.getFuelTypeToggleStatus()
-  		
+
   		if request.fuelType == .type95 { fuelTypes.type95 = request.state }
   		if request.fuelType == .type98 { fuelTypes.type98 = request.state }
   		if request.fuelType == .typeDD { fuelTypes.typeDD = request.state }
   		if request.fuelType == .typeDDPro { fuelTypes.typeDDPro = request.state }
   		if request.fuelType == .typeGas { fuelTypes.typeGas = request.state }
-  		
+
   		appSettingsWorker.setFuelTypeToggleStatus(allFuelTypes: fuelTypes)
-  		
+
   		let request = FuelTypeChooseList.FuelCells.Request()
     	getFuelTypesListData(request: request)
   	}
-  	
+
   	func reCheckFuelTypes() {
 		// This should happen when User moves out of fuel type choose list view, in settings.
 		// Check if there is any fuel type enabled. If not, enable all. Or Diesel.
 		var fuelTypes = appSettingsWorker.getFuelTypeToggleStatus()
-		
+
 		if !fuelTypes.isAtLeastOneTypeEnabled() {
 			fuelTypes.setToDefault()
 			appSettingsWorker.setFuelTypeToggleStatus(allFuelTypes: fuelTypes)

@@ -13,20 +13,21 @@
 import UIKit
 
 protocol IntroNotifSetUpPresentationLogic {
-  	func presentSomething(response: IntroNotifSetUp.Something.Response)
+  	func presentData(response: IntroNotifSetUp.Something.Response)
   	func showNotifSetUp(response: IntroNotifSetUp.PushNotif.Response)
 }
 
 class IntroNotifSetUpPresenter: IntroNotifSetUpPresentationLogic {
   	weak var viewController: IntroNotifSetUpDisplayLogic?
 	weak var router: IntroNotifSetUpRouter?
-  	// MARK: Do something
+	
+  	// MARK: IntroNotifSetUpPresentationLogic
 
-  	func presentSomething(response: IntroNotifSetUp.Something.Response) {
+  	func presentData(response: IntroNotifSetUp.Something.Response) {
     	let viewModel = IntroNotifSetUp.Something.ViewModel()
-    	viewController?.displaySomething(viewModel: viewModel)
+    	viewController?.displayData(viewModel: viewModel)
   	}
-  	
+
   	func showNotifSetUp(response: IntroNotifSetUp.PushNotif.Response) {
   		router?.presentNotifSetUpScene(response: response)
   	}

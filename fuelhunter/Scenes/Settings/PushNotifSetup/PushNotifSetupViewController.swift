@@ -20,7 +20,7 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
   	var interactor: PushNotifSetupBusinessLogic?
   	var router: (NSObjectProtocol & PushNotifSetupRoutingLogic & PushNotifSetupDataPassing)?
 	var layoutView: PushNotifSetupLayoutView!
-	
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -33,7 +33,39 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
+
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.view.backgroundColor = .clear
+    	setUpView()
+		getData()
+  	}
+
+  	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		layoutView.appMovedToForeground()
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		let notificationCenter = NotificationCenter.default
+		notificationCenter.removeObserver(self)
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		layoutView.animateBackgroundImageColorToState(visible: true)
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		layoutView.animateBackgroundImageColorToState(visible: false)
+	}
+
+	// MARK: Set up
 
   	private func setup() {
 		let viewController = self
@@ -49,46 +81,6 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.view.backgroundColor = .clear
-    	setUpView()
-		getData()
-  	}
-  	
-  	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		layoutView.appMovedToForeground()
-		
-		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-	}
-	
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(animated)
-		let notificationCenter = NotificationCenter.default
-		notificationCenter.removeObserver(self)
-	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		layoutView.animateBackgroundImageColorToState(visible: true)
-//		UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-//			self.backgroundView.backgroundColor = UIColor.init(red: 46/255.0, green: 63/255.0, blue: 97/255.0, alpha: 0.3)
-//		}, completion: { (finished: Bool) in })
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		layoutView.animateBackgroundImageColorToState(visible: false)
-//		UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-//			self.backgroundView.backgroundColor = .clear
-//		}, completion: { (finished: Bool) in })
-	}
-  	
   	func setUpView() {
 		layoutView = PushNotifSetupLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -104,34 +96,31 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 	@objc func appMovedToForeground() {
 		layoutView.appMovedToForeground()
 	}
-	
+
 	@objc func appMovedToBackground() {
 		layoutView.appMovedToBackground()
 	}
-	
-	// MARK: PushNotifSetupLayoutView
-	
-	func activateButtonPressed() {
-  		interactor?.activateButtonPressed()
-  	}
-  	
-  	func cancelButtonPressed() {
-  		interactor?.cancelButtonPressed()
-  	}
-  	
-  	func stepperPressed(value: Int) {
-  		interactor?.stepperValueChangedTo(value: value)
-  	}
-  	
-  	func getData() {
+
+	func getData() {
     	let request = PushNotifSetup.SetUp.Request()
     	interactor?.getDataToShow(request: request)
   	}
 
   	func updateData(viewModel: PushNotifSetup.SetUp.ViewModel) {
-  		layoutView.descriptionLabel.text = viewModel.displayedItem.description
-  		layoutView.stepper.minimumValue = Double(viewModel.displayedItem.minValue)
-  		layoutView.stepper.maximumValue = Double(viewModel.displayedItem.maxValue)
-  		layoutView.stepper.value = Double(viewModel.displayedItem.value)
+  		layoutView.updateData(data: viewModel)
+  	}
+
+	// MARK: PushNotifSetupLayoutView
+
+	func activateButtonPressed() {
+  		interactor?.activateButtonPressed()
+  	}
+
+  	func cancelButtonPressed() {
+  		interactor?.cancelButtonPressed()
+  	}
+
+  	func stepperPressed(value: Int) {
+  		interactor?.stepperValueChangedTo(value: value)
   	}
 }

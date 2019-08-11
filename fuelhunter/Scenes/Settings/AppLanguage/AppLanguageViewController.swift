@@ -16,16 +16,11 @@ protocol AppLanguageDisplayLogic: class {
   	func presentLanguageList(viewModel: AppLanguage.GetLanguage.ViewModel)
 }
 
-class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, UITableViewDataSource, UITableViewDelegate {
+class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic {
   	var interactor: AppLanguageBusinessLogic?
   	var router: (NSObjectProtocol & AppLanguageRoutingLogic & AppLanguageDataPassing)?
-	var data = [AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem]()
-  	var activateShadowUpdates = false
-  	
-	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var navBarBottomShadow: UIImageView!
-	@IBOutlet weak var tableViewBottomShadow: UIImageView!
-	
+	var layoutView: AppLanguageLayoutView!
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -38,9 +33,23 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, UITa
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.title = "Aplikācijas valoda"
+    	self.view.backgroundColor = .white
+		setUpView()
+    	getLanaguageListData()
+  	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+	}
+	
+	// MARK: Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = AppLanguageInteractor()
 		let presenter = AppLanguagePresenter()
@@ -53,99 +62,16 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, UITa
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.title = "Aplikācijas valoda"
-    	
-    	
-    	self.view.backgroundColor = .white
-		tableView.delegate = self
-    	tableView.dataSource = self
-		tableView.separatorStyle = .none
-    	tableView.contentInset = UIEdgeInsets.init(top: 22, left: 0, bottom: 10, right: 0)
-    	let nib = UINib.init(nibName: "LanguageListCell", bundle: nil)
-    	tableView.register(nib, forCellReuseIdentifier: "cell")
-    	
-    	getLanaguageListData()
-  	}
-
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		activateShadowUpdates = true
-	}
-		
-	// MARK: Table view
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return data.count
+	func setUpView() {
+		layoutView = AppLanguageLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		self.view.addSubview(layoutView)
+		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-		if let cell = tableView.dequeueReusableCell(
-		   withIdentifier: "cell",
-		   for: indexPath
-		) as? LanguageListCell {
-		
-			let aData = self.data[indexPath.row]
-			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.languageName
-			cell.descriptionLabel.text = aData.languageNameTranslated
-			
-			if aData.currentlyActive == true {
-				cell.checkBoxImageView.isHidden = false
-			} else {
-				cell.checkBoxImageView.isHidden = true
-			}
-			
-			if self.data.count == 1 {
-				cell.setAsCellType(cellType: .single)
-			} else {
-				if self.data.first == aData {
-					cell.setAsCellType(cellType: .top)
-				} else if self.data.last == aData {
-					cell.setAsCellType(cellType: .bottom)
-				} else {
-					cell.setAsCellType(cellType: .middle)
-				}
-			}
-			return cell
-		} else {
-			// Problem
-			return UITableViewCell.init()
-		}
-	}
-	
-	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-	
-		return 0
-	}
-
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-	}
-
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if activateShadowUpdates == true {
-			adjustVisibilityOfShadowLines()
-		}
-	}
-	
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y+20))/50.0
-		
-		navBarBottomShadow.alpha = alfa
-		
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value-22))/50.0
-		
-		tableViewBottomShadow.alpha = alfa2
-	}
-
-  	// MARK: Do something
+  	// MARK: Functions
 
   	func getLanaguageListData() {
     	let request = AppLanguage.GetLanguage.Request()
@@ -153,9 +79,6 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, UITa
   	}
 
   	func presentLanguageList(viewModel: AppLanguage.GetLanguage.ViewModel) {
-    	data = viewModel.displayedLanguageCellItems
-    	tableView.reloadData()
-		tableView.layoutIfNeeded()
-		adjustVisibilityOfShadowLines()
+  		layoutView.updateData(data: viewModel.displayedLanguageCellItems)
   	}
 }

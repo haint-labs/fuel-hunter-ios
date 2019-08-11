@@ -25,12 +25,11 @@ public class IntroPageInteractor: IntroPageBusinessLogic, IntroPageDataStore {
   	var worker: IntroPageWorker?
   	//var name: String = ""
 
-  	// MARK: Do something
+  	// MARK: IntroPageBusinessLogic
 
   	func doSomething(request: IntroPage.Something.Request) {
     	worker = IntroPageWorker()
     	worker?.doSomeWork()
-
     	let response = IntroPage.Something.Response()
     	presenter?.presentSomething(response: response)
   	}

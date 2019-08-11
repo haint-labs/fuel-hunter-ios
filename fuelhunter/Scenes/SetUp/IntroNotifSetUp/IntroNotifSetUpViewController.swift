@@ -13,14 +13,14 @@
 import UIKit
 
 protocol IntroNotifSetUpDisplayLogic: class {
-  	func displaySomething(viewModel: IntroNotifSetUp.Something.ViewModel)
+  	func displayData(viewModel: IntroNotifSetUp.Something.ViewModel)
 }
 
 class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLogic, IntroNotifSetUpLayoutViewLogic, PushNotifReturnUpdateDataLogic {
   	var interactor: IntroNotifSetUpBusinessLogic?
   	var router: (NSObjectProtocol & IntroNotifSetUpRoutingLogic & IntroNotifSetUpDataPassing)?
 	var layoutView: IntroNotifSetUpLayoutView!
-  	
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -33,9 +33,18 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
     	setup()
   	}
 
-  	// MARK: Setup
+  	// MARK: View lifecycle
 
-  	private func setup() {
+  	override func viewDidLoad() {
+    	super.viewDidLoad()
+    	self.view.backgroundColor = .white
+    	setUpView()
+    	loadData()
+  	}
+
+  	// MARK: Set up
+
+	private func setup() {
 		let viewController = self
 		let interactor = IntroNotifSetUpInteractor()
 		let presenter = IntroNotifSetUpPresenter()
@@ -49,17 +58,6 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
 		router.dataStore = interactor
   	}
 
-  	// MARK: View lifecycle
-
-  	override func viewDidLoad() {
-    	super.viewDidLoad()
-    	self.view.backgroundColor = .white
-    	setUpView()
-    	doSomething()
-  	}
-
-  	// MARK: Do something
-
 	func setUpView() {
 		layoutView = IntroNotifSetUpLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -69,28 +67,31 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-	
-  	func doSomething() {
+
+	// MARK: Functions
+
+  	func loadData() {
     	let request = IntroNotifSetUp.Something.Request()
-    	interactor?.doSomething(request: request)
+    	interactor?.loadData(request: request)
   	}
 
-  	func displaySomething(viewModel: IntroNotifSetUp.Something.ViewModel) {
+  	func displayData(viewModel: IntroNotifSetUp.Something.ViewModel) {
     	//nameTextField.text = viewModel.name
   	}
-  	
+
   	// MARK: IntroNotifSetUpLayoutViewLogic
+
   	func giveAccessButtonPressed() {
 		let request = IntroNotifSetUp.Something.Request()
 		interactor?.userAskedForNotifAccess(request: request)
   	}
-  	
+
   	func laterButtonPressed() {
   		ScenesManager.shared.advanceAppSceneState()
   	}
-  	
-  	
+
   	// MARK: PushNotifReturnUpdateDataLogic
+
 	func updateData() {
 		ScenesManager.shared.advanceAppSceneState()
 	}

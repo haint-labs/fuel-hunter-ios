@@ -13,7 +13,7 @@
 import UIKit
 
 protocol IntroNotifSetUpBusinessLogic {
-  	func doSomething(request: IntroNotifSetUp.Something.Request)
+  	func loadData(request: IntroNotifSetUp.Something.Request)
   	func userAskedForNotifAccess(request: IntroNotifSetUp.Something.Request)
 }
 
@@ -27,16 +27,16 @@ class IntroNotifSetUpInteractor: IntroNotifSetUpBusinessLogic, IntroNotifSetUpDa
   	var appSettingsWorker = AppSettingsWorker()
   	//var name: String = ""
 
-  	// MARK: Do something
+  	// MARK: IntroNotifSetUpBusinessLogic
 
-  	func doSomething(request: IntroNotifSetUp.Something.Request) {
+  	func loadData(request: IntroNotifSetUp.Something.Request) {
     	worker = IntroNotifSetUpWorker()
     	worker?.doSomeWork()
 
     	let response = IntroNotifSetUp.Something.Response()
-    	presenter?.presentSomething(response: response)
+    	presenter?.presentData(response: response)
   	}
-  	
+
   	func userAskedForNotifAccess(request: IntroNotifSetUp.Something.Request) {
 			appSettingsWorker.notifSwitchWasPressed { result in 
 				switch result {

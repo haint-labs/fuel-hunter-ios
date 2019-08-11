@@ -14,7 +14,6 @@ import UIKit
 
 enum IntroGPSSetUp {
   	// MARK: Use cases
-
 	enum Something {
 		struct Request {
 		}

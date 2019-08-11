@@ -26,22 +26,19 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	var presenter: SettingsPresentationLogic?
   	var worker = SettingsWorker()
   	var appSettingsWorker = AppSettingsWorker()
-  	
+
+	// MARK: SettingsBusinessLogic
 
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
-  		
 		let gpsIsEnabledStatus = appSettingsWorker.getGPSIsEnabled()
 		let notifIsEnabledStatus = appSettingsWorker.getNotifIsEnabled()
 		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
-		
 		let companyNames = appSettingsWorker.getCompanyToggleStatus().description
 		let fuelTypeNames = appSettingsWorker.getFuelTypeToggleStatus().description
-		
 		let response = Settings.SettingsList.Response.init(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
-		
 		presenter?.presentSettingsListWithData(response: response)
   	}
-  	
+
   	func userPressedOnNotifSwitch() {
   		appSettingsWorker.notifSwitchWasPressed { result in
   			switch result {
@@ -60,7 +57,7 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   			}
 		}
   	}
-  	
+
   	// MARK: TODO.
   	func userPressedOnGpsSwitch() {
   		appSettingsWorker.gpsSwitchWasPressed { result in }
