@@ -95,25 +95,11 @@ class AppSavingsView: UIView {
 		
 		descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 		
-		
-		separatorView.backgroundColor = UIColor.init(named: "TitleColor")
-		
-		savingsLabel1.textColor = UIColor.init(named: "TitleColor")
 		savingsLabel1.font = Font.init(.normal, size: .size3).font
-		
-		savingsLabel2.textColor = UIColor.init(named: "TitleColor")
 		savingsLabel2.font = Font.init(.normal, size: .size3).font
-		
-		savingsLabel3.textColor = UIColor.init(named: "TitleColor")
 		savingsLabel3.font = Font.init(.normal, size: .size3).font
-		
-		savingsLabel4.textColor = UIColor.init(named: "TitleColor")
 		savingsLabel4.font = Font.init(.normal, size: .size3).font
-		
-		descriptionLabel.textColor = UIColor.init(named: "TitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size3).font
-		
-		
 		
 		savingsLabel1.text = "Parasts autobraucējs, uzpildās degvielas uzpildes stacijā, kas viņam ir pa ceļam starp mājām un darbu, un brīdī kad bāka ir gandrīz tukša."
 		savingsLabel2.text = "Lietojot šo aplikāciju, autobraucējs uzzinās par kādu, iespējams, netālu uzpildes staciju, kur cena ir lētāka par 1-5 centiem, nekā stacijā, kur pirms tam uzpildījās."

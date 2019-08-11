@@ -28,6 +28,8 @@ class FuelCompanyListCell: UITableViewCell {
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
 	var titleLeftImageAnchorConstraint: NSLayoutConstraint?
 	var titleLeftCellAnchorConstraint: NSLayoutConstraint?
+	var descriptionLeftImageAnchorConstraint: NSLayoutConstraint?
+	var descriptionLeftCellAnchorConstraint: NSLayoutConstraint?
 	var titleTopAnchorConstraint: NSLayoutConstraint?
 	var titleBottomAnchorConstraint: NSLayoutConstraint?
 	var descriptionBottomAnchorConstraint: NSLayoutConstraint?
@@ -55,21 +57,22 @@ class FuelCompanyListCell: UITableViewCell {
 		bgViewTopAnchorConstraint?.isActive = true
 		bgViewBottomAnchorConstraint?.isActive = true
 		
-		iconImageView.widthAnchor.constraint(equalToConstant: 22).isActive = true
-		iconImageView.heightAnchor.constraint(equalToConstant: 22).isActive = true
+		iconImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
+		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
 		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 10).isActive = true
 		
 		
 		titleLeftImageAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
 		titleLeftCellAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10)
-		titleLeftImageAnchorConstraint?.isActive = true
 		titleTopAnchorConstraint = titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6)
 		titleTopAnchorConstraint?.isActive = true
 
 		titleBottomAnchorConstraint = titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -12)
 		
-		descriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
+		
+		descriptionLeftImageAnchorConstraint = descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
+		descriptionLeftCellAnchorConstraint = descriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10)
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
 		
@@ -99,11 +102,15 @@ class FuelCompanyListCell: UITableViewCell {
 			self.iconImageView.isHidden = true
 			self.titleLeftImageAnchorConstraint?.isActive = false
 			self.titleLeftCellAnchorConstraint?.isActive = true
+			self.descriptionLeftImageAnchorConstraint?.isActive = false
+			self.descriptionLeftCellAnchorConstraint?.isActive = true
 		} else {
 			self.iconImageView.image = UIImage.init(named: imageName)
 			self.iconImageView.isHidden = false
 			self.titleLeftCellAnchorConstraint?.isActive = false
 			self.titleLeftImageAnchorConstraint?.isActive = true
+			self.descriptionLeftCellAnchorConstraint?.isActive = false
+			self.descriptionLeftImageAnchorConstraint?.isActive = true
 		}
 	}
 	

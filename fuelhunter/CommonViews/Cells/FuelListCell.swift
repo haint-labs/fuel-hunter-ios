@@ -70,17 +70,9 @@ class FuelListCell: UITableViewCell {
 		//TODO: Calculate width of normal price, and provide it as minimum
 		priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
 
-
-//		titleLabel.textColor = UIColor.init(named: "TitleColor")
 		titleLabel.font = Font.init(.medium, size: .size2).font
-		
-//		priceLabel.textColor = UIColor.init(named: "TitleColor")
 		priceLabel.font = Font.init(.bold, size: .size1).font
-		
-//		addressesLabel.textColor = UIColor.init(named: "SubTitleColor")
 		addressesLabel.font = Font.init(.normal, size: .size4).font
-		
-		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 
 	func setAsCellType(cellType: CellBackgroundType) {

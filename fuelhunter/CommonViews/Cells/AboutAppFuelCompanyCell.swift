@@ -11,19 +11,19 @@ import UIKit
 class AboutAppFuelCompanyCell: UITableViewCell {
 
     public var cellBgType: CellBackgroundType = .single
-	
+
 	@IBOutlet weak var iconImageView: UIImageView!
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var separatorView: UIView!
-	
+
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
-	
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -36,36 +36,28 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
 		bgViewTopAnchorConstraint?.isActive = true
 		bgViewBottomAnchorConstraint?.isActive = true
-		
-		
+
 		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 11).isActive = true
 		iconImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
 		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
-		
-		
+
 		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 		titleLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
-		
+
 		descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		descriptionLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9).isActive = true
-		
+
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
-		
-		
-//		titleLabel.textColor = UIColor.init(named: "TitleColor")
+
 		titleLabel.font = Font.init(.medium, size: .size2).font
-		
-//		descriptionLabel.textColor = UIColor.init(named: "SubTitleColor")
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
-		
-		separatorView.backgroundColor = UIColor.init(named: "CellSeparatorColor")
     }
 	
 	func setAsCellType(cellType: CellBackgroundType) {

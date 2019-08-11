@@ -20,14 +20,14 @@ enum AppSceneState: Int {
 class ScenesManager: NSObject {
 
 	static let shared = ScenesManager()
-	
+
 	weak var window: UIWindow?
-	
+
 	func setRootViewController(animated: Bool) {
 		var destinationVC: UIViewController?
-  		
+
   		let sceneState = ScenesManager.shared.getAppSceneState()
-		
+
   		switch sceneState {
 			case .introPageFirstView:
 				destinationVC = IntroPageViewController()
@@ -42,7 +42,7 @@ class ScenesManager: NSObject {
 			default:
 				destinationVC = MainFuelListViewController()
 		}
-		
+
   		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController  		
   		rootVc.setViewControllers([destinationVC!], animated: animated)
 
@@ -53,10 +53,10 @@ class ScenesManager: NSObject {
 				rootVc.setNavigationBarHidden(true, animated: animated)
 		}
 	}
-	
+
 	func advanceAppSceneState() {
 		var sceneState = ScenesManager.shared.getAppSceneState()
-		
+
 		if sceneState != .mainList {
 			sceneState = AppSceneState(rawValue: sceneState.rawValue+1)!
 			ScenesManager.storeAppSceneState(state: sceneState)
@@ -66,16 +66,16 @@ class ScenesManager: NSObject {
 			print("This should not happen. Scene is already max")
 		}
 	}
-	
+
 	// For debug //
 	func resetState() {
 		ScenesManager.storeAppSceneState(state: .introPageFirstView)
 	}
-	
+
 	private func getAppSceneState() -> AppSceneState {
 		return AppSceneState(rawValue: UserDefaults.standard.integer(forKey: "app_scene_state")) ?? AppSceneState.introPageFirstView
 	}
-	
+
 	private class func storeAppSceneState(state: AppSceneState) {
 		UserDefaults.standard.set(state.rawValue, forKey: "app_scene_state")
 		UserDefaults.standard.synchronize()

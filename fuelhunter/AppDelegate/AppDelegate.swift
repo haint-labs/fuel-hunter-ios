@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 //		Utility.doit()
 		
-//		ScenesManager.shared.resetState()
+		ScenesManager.shared.resetState()
 				
 		ScenesManager.shared.window = window
 		ScenesManager.shared.setRootViewController(animated: false)
