@@ -9,12 +9,13 @@
 import UIKit
 
 class InlineAlertView: UIView {
-	var expanded = false
+
 	@IBOutlet weak var inlineAlertView: UIView!
-
 	@IBOutlet weak var textLabel: UILabel!
-
 	@IBOutlet weak var heightConstraint: NSLayoutConstraint!
+	var expanded = false
+
+	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
    	super.init(frame: frame)
@@ -25,7 +26,7 @@ class InlineAlertView: UIView {
 		super.init(coder: aDecoder)
     	setup()
 	}
-	
+
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		if expanded {
@@ -40,25 +41,16 @@ class InlineAlertView: UIView {
 		addSubview(inlineAlertView)
 		inlineAlertView.frame = self.bounds
 		expanded = true
-//		self.heightConstraint.constant = textLabel.frame.height+10
-//		self.layoutIfNeeded()
   	}
 
+	// Functions
+
 	@IBAction func inlineAlertWasPressed(_ sender: Any) {
-		print("inlineAlertWasPressed")
 		expanded = false
 		UIView.animate(withDuration: 0.3) {
 			self.heightConstraint.constant = 0
 				self.layoutIfNeeded()
 				self.superview?.layoutIfNeeded()
 		}
-
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-//			UIView.animate(withDuration: 0.3) {
-//				self.heightConstraint.constant = self.textLabel.frame.height+10
-//				self.layoutIfNeeded()
-//				self.superview?.layoutIfNeeded()
-//			}
-//		}
 	}
 }

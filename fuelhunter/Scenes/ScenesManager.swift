@@ -40,7 +40,7 @@ class ScenesManager: NSObject {
 			case .introPageNotifAccessAsking:
 				destinationVC = IntroNotifSetUpViewController()
 			default:
-				destinationVC = MainFuelListViewController()
+				destinationVC = FuelListViewController()
 		}
 
   		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController  		

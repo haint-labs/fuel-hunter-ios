@@ -9,14 +9,15 @@
 import UIKit
 
 class NotifPhoneAnimationView: UIView {
-	
+
 	@IBOutlet weak var baseView: UIView!
-	
 	@IBOutlet weak var inactiveBgImageView: UIImageView!
 	@IBOutlet weak var activeBgImageView: UIImageView!
 	@IBOutlet weak var topImageView: UIImageView!
 	@IBOutlet weak var notifImageView: UIImageView!
-	
+
+	// MARK: View lifecycle
+
 	override init(frame: CGRect) {
    	super.init(frame: frame)
 		setup()
@@ -26,28 +27,28 @@ class NotifPhoneAnimationView: UIView {
 		super.init(coder: aDecoder)
     	setup()
 	}
-	
+
 	func setup() {
 		Bundle.main.loadNibNamed("NotifPhoneAnimationView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
 		self.layoutIfNeeded()
-		
+
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
 		inactiveBgImageView.translatesAutoresizingMaskIntoConstraints = false
 		activeBgImageView.translatesAutoresizingMaskIntoConstraints = false
 		topImageView.translatesAutoresizingMaskIntoConstraints = false
 		notifImageView.translatesAutoresizingMaskIntoConstraints = false
-		
+
 		inactiveBgImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 		inactiveBgImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
 		inactiveBgImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-		
+
 		activeBgImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 		activeBgImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
 		activeBgImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-		
+
 		topImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 		topImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
 		topImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
@@ -55,27 +56,26 @@ class NotifPhoneAnimationView: UIView {
 		notifImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
 		notifImageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
 		notifImageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-//		notifImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6472).isActive = true
 
 		topImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-		
+
 		notifImageView.alpha = 1
 		activeBgImageView.alpha = 1
-		
+
 		self.layoutIfNeeded()
   	}
 
-	//MARK: functions for animating
-	
+	// MARK: Functions for animating
+
 	func startAnimating() {
 		hideNotif()
 	}
-	
+
 	func stopAnimating() {
 		self.layer.removeAllAnimations()
 		self.layoutIfNeeded()
   	}
-	
+
 	func shakeAnimation() {
 		let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
@@ -93,17 +93,16 @@ class NotifPhoneAnimationView: UIView {
         animation2.values = [0.02, -0.02]
         layer.add(animation2, forKey: "shake2")
 	}
-	
-	
+
 	func revealNotif() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 			self.shakeAnimation()
 		}
-		
+
 		UIView.animate(withDuration: 0.3, delay: 1.3, options: [], animations: {
 			self.activeBgImageView.alpha = 1
 		}, completion: { (finished: Bool) in })
-		
+
 		UIView.animate(withDuration: 0.3, delay: 1.5, options: [], animations: {
 			self.notifImageView.alpha = 1
 		}, completion: { (finished: Bool) in
@@ -112,7 +111,7 @@ class NotifPhoneAnimationView: UIView {
 			}
 		})
 	}
-	
+
 	func hideNotif() {
 		UIView.animate(withDuration: 0.3, delay: 2.2, options: [], animations: {
 			self.activeBgImageView.alpha = 0

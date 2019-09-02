@@ -41,7 +41,13 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		super.init(coder: aDecoder)
     	setup()
 	}
-
+	
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		tableView.layoutSubviews()
+		adjustVisibilityOfShadowLines()
+	}
+	
 	func setup() {
 		Bundle.main.loadNibNamed("IntroChooseCompanyLayoutView", owner: self, options: nil)
 		addSubview(baseView)

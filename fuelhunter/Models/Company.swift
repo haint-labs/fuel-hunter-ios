@@ -12,6 +12,8 @@ struct Company: Equatable, Codable {
 	var companyType: CompanyType
 	var name: String
 	var logoName: String
+	var largeLogoName: String
+	var smallLogoName: String
 }
 enum CompanyType: String, Codable {
 	case typeCheapest = "Lētākā"
@@ -21,10 +23,6 @@ enum CompanyType: String, Codable {
 	case typeLN = "Latvijas Nafta"
 	case typeVirsi = "Virsi"
 	case typeGotikaAuto = "Gotika Auto"
-//	case typeViada = "Viada"
-//	case typeAstarte = "Astarte"
-//	case typeDinaz = "Dinaz"
-//	case typeLPG = "Latvijas Propāna Gāze"
 }
 
 // Using this to easier calculate used companies name.
@@ -36,16 +34,11 @@ struct AllCompaniesToogleStatus: Encodable, Decodable {
 	var typeLn: Bool = false { didSet { updateAllValues() } }
 	var typeVirsi: Bool = false { didSet { updateAllValues() } }
 	var typeGotikaAuto: Bool = false { didSet { updateAllValues() } }
-//	var viada: Bool = false { didSet { updateAllValues() } }
-//	var astarte: Bool = false { didSet { updateAllValues() } }
-//	var dinaz: Bool = false { didSet { updateAllValues() } }
-//	var lpg: Bool = false { didSet { updateAllValues() } }
 	
 	// This is needed so that cheapest is always on, if all others are off
 	mutating func updateAllValues() {
 		if !typeCheapest && !typeNeste && !typeCircleK && !typeKool && !typeLn && !typeVirsi 
 			&& !typeGotikaAuto 
-//			&& !viada && !astarte && !dinaz && !lpg 
 			{
 			typeCheapest = true
 		}

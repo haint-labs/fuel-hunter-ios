@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 //		Utility.doit()
 		
-		ScenesManager.shared.resetState()
-				
+		//ScenesManager.shared.resetState()
+		window?.backgroundColor = .white		
 		ScenesManager.shared.window = window
 		ScenesManager.shared.setRootViewController(animated: false)
 		
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 	}
 	
-	//MARK: Token
+	// MARK: Token
 	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
 		print(deviceTokenString)

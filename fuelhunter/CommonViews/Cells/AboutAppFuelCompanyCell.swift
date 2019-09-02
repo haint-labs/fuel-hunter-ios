@@ -59,7 +59,9 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 		titleLabel.font = Font.init(.medium, size: .size2).font
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
     }
-	
+
+	// MARK: Functions
+
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
@@ -87,7 +89,6 @@ class AboutAppFuelCompanyCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }    
 }

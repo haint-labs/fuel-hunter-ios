@@ -16,25 +16,24 @@ class SettingsListCell: UITableViewCell {
 
 	weak var controller: SettingsCellSwitchLogic? 
 	public var cellBgType: CellBackgroundType = .single
-	
+
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var aSwitch: UISwitch!
 	@IBOutlet weak var accessoryIconImageView: UIImageView!
 	@IBOutlet weak var separatorView: UIView!
-	
+
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
 	var titleRightAnchorConstraint: NSLayoutConstraint?
 	var descriptionRightAnchorConstraint: NSLayoutConstraint?
 	
-	
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         aSwitch.addTarget(self, action: NSSelectorFromString("aSwitchWasPressed:"), for: .valueChanged)
-	
+
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +47,7 @@ class SettingsListCell: UITableViewCell {
 		bgViewBottomAnchorConstraint?.isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
 		bgViewTopAnchorConstraint?.isActive = true
-		
+
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 		titleRightAnchorConstraint = titleLabel.rightAnchor.constraint(equalTo: accessoryIconImageView.leftAnchor, constant: -10)
@@ -59,25 +58,23 @@ class SettingsListCell: UITableViewCell {
 		descriptionRightAnchorConstraint?.isActive = true
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
-		
-		
+
 		aSwitch.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		aSwitch.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
-		
-		
+
 		accessoryIconImageView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		accessoryIconImageView.widthAnchor.constraint(equalToConstant: 10).isActive = true
 		accessoryIconImageView.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
-		
+
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
-		
+
 		titleLabel.font = Font.init(.medium, size: .size2).font
 		descriptionLabel.font = Font.init(.normal, size: .size4).font
     }
-	
+
 	func setSwitch(asVisible switchIsVisible: Bool) {
 		if switchIsVisible {
 			self.aSwitch.isHidden = false
@@ -91,7 +88,7 @@ class SettingsListCell: UITableViewCell {
 			descriptionRightAnchorConstraint?.constant = -10
 		}
 	}
-	
+
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
@@ -116,15 +113,13 @@ class SettingsListCell: UITableViewCell {
 				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
 		}
 	}
-	
+
 	@objc func aSwitchWasPressed(_ aSwitch: UISwitch) {
 		controller?.switchWasPressedOnTableViewCell(cell: self)	
 	}
-	
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-    
 }

@@ -15,7 +15,7 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 	@IBOutlet weak var topShadowImageView: UIImageView!
 	@IBOutlet weak var bottomShadowImageView: UIImageView!
 	var savingsView: AppSavingsView!
-	
+
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
@@ -29,7 +29,9 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 	}
 	
 	override func layoutSubviews() {
+		super.layoutSubviews()
 		scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: savingsView.frame.size.height + 30)
+		scrollView.layoutSubviews()
 		adjustVisibilityOfShadowLines()
 	}
 

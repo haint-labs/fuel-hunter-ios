@@ -1,4 +1,5 @@
 PODS:
+  - ActiveLabel (1.1.0)
   - Mixpanel-swift (2.6.2):
     - Mixpanel-swift/Complete (= 2.6.2)
   - Mixpanel-swift/Complete (2.6.2)
@@ -8,12 +9,14 @@ PODS:
   - SwiftLint (0.32.0)
 
 DEPENDENCIES:
+  - ActiveLabel (= 1.1.0)
   - Mixpanel-swift (= 2.6.2)
   - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `4.3.1`)
   - SwiftLint (= 0.32.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ActiveLabel
     - Mixpanel-swift
     - SwiftLint
 
@@ -28,10 +31,11 @@ CHECKOUT OPTIONS:
     :tag: 4.3.1
 
 SPEC CHECKSUMS:
+  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Mixpanel-swift: eea98bb65fd80e992a9ecb3a0a421eca542ea72f
   Sentry: 5267d493a398663538317e4dcc438c12c66202ed
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
 
-PODFILE CHECKSUM: ed4ffd032484c8f56c5c785f9cd00447c7c629df
+PODFILE CHECKSUM: f92e5de4c8e265e87752d9e82cc20a24f56599b5
 
 COCOAPODS: 1.6.1

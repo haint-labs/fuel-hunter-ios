@@ -42,11 +42,11 @@ struct AllFuelTypesToogleStatus: Encodable, Decodable {
 	}
 	
 	mutating func setToDefault() {
-			type95 = true
-			type98 = true
-			typeDD = true
-			typeDDPro = true
-			typeGas = true
+		type95 = true
+		type98 = true
+		typeDD = true
+		typeDDPro = true
+		typeGas = true
 	}
 	
 	var description: String {
