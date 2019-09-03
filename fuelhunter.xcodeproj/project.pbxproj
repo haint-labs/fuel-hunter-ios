@@ -1213,6 +1213,7 @@
 				5C11F08A229EF4FC00EC7CEC /* Sources */,
 				5C11F08B229EF4FC00EC7CEC /* Frameworks */,
 				5C11F08C229EF4FC00EC7CEC /* Resources */,
+				58F548125FE33D14AA537779 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1232,6 +1233,7 @@
 				5C11F095229EF4FC00EC7CEC /* Sources */,
 				5C11F096229EF4FC00EC7CEC /* Frameworks */,
 				5C11F097229EF4FC00EC7CEC /* Resources */,
+				ECA7A615073860E238A22359 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1430,6 +1432,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		58F548125FE33D14AA537779 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fuelhunterTests/Pods-fuelhunterTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActiveLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fuelhunterTests/Pods-fuelhunterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5C11F0C422A1747500EC7CEC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1515,6 +1539,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECA7A615073860E238A22359 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fuelhunterUITests/Pods-fuelhunterUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActiveLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fuelhunterUITests/Pods-fuelhunterUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2127,7 +2173,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3A306EB5B5D64E029E98CED /* Pods-fuelhunterTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 355GY66FJT;
@@ -2149,7 +2194,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F0F2AB8B7FBC91B21CF703A1 /* Pods-fuelhunterTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 355GY66FJT;
@@ -2171,7 +2215,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9A3BEA166D6D0F4322FD733 /* Pods-fuelhunterUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 355GY66FJT;
 				INFOPLIST_FILE = fuelhunterUITests/Info.plist;
@@ -2192,7 +2235,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D4E955A8C51BF9427883E438 /* Pods-fuelhunterUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 355GY66FJT;
 				INFOPLIST_FILE = fuelhunterUITests/Info.plist;

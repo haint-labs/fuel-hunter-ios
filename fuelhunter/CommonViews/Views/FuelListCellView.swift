@@ -46,7 +46,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	@IBOutlet var extendedBackgroundImageView: UIImageView!
 	@IBOutlet var extendedTitleLabel: UILabel!
 	@IBOutlet var extendedAddressLabel: UILabel!
-	@IBOutlet var mapInfoContainerView: UIView!
 	@IBOutlet var mapInfoPriceView: MapInfoButtonView!
 	@IBOutlet var mapInfoDistanceView: MapInfoButtonView!
 	@IBOutlet var extendedDescriptionLabel: ActiveLabel!
@@ -97,7 +96,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
         extendedTitleLabel.translatesAutoresizingMaskIntoConstraints = false
        	extendedDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         extendedAddressLabel.translatesAutoresizingMaskIntoConstraints = false
-        mapInfoContainerView.translatesAutoresizingMaskIntoConstraints = false
         mapInfoPriceView.translatesAutoresizingMaskIntoConstraints = false
         mapInfoDistanceView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -161,22 +159,38 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		extendedAddressLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor).isActive = true
 		extendedAddressLabel.topAnchor.constraint(equalTo: extendedTitleLabel.bottomAnchor, constant: 9).isActive = true
 		
-		mapInfoContainerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-		mapInfoContainerView.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
-		mapInfoContainerView.heightAnchor.constraint(equalTo: mapInfoPriceView.heightAnchor).isActive = true
 		
-		let space1 = UILayoutGuide()
-		mapInfoContainerView.addLayoutGuide(space1)
-		space1.widthAnchor.constraint(equalToConstant: 20).isActive = true
-		space1.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
-		mapInfoPriceView.rightAnchor.constraint(equalTo: space1.leftAnchor).isActive = true
-		mapInfoPriceView.leftAnchor.constraint(equalTo: mapInfoContainerView.leftAnchor).isActive = true
-		mapInfoDistanceView.leftAnchor.constraint(equalTo: space1.rightAnchor).isActive = true
-		mapInfoDistanceView.rightAnchor.constraint(equalTo: mapInfoContainerView.rightAnchor).isActive = true
+		let infoSpaceLeft = UILayoutGuide()
+		self.addLayoutGuide(infoSpaceLeft)
+		let infoSpaceRight = UILayoutGuide()
+		self.addLayoutGuide(infoSpaceRight)
+		let infoSpaceMiddle = UILayoutGuide()
+		self.addLayoutGuide(infoSpaceMiddle)
+		
+		let infoSpaceLeftWidthConstraint = infoSpaceLeft.widthAnchor.constraint(equalToConstant: 1)
+		let infoSpaceRightWidthConstraint = infoSpaceRight.widthAnchor.constraint(equalTo: infoSpaceLeft.widthAnchor)
+		infoSpaceLeftWidthConstraint.priority = .defaultLow
+		infoSpaceRightWidthConstraint.priority = .defaultLow 
+		infoSpaceLeftWidthConstraint.isActive = true
+		infoSpaceRightWidthConstraint.isActive = true
+		infoSpaceMiddle.widthAnchor.constraint(equalToConstant: 20).isActive = true
+		infoSpaceLeft.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
+		infoSpaceRight.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
+		infoSpaceMiddle.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
+		mapInfoPriceView.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
+		mapInfoDistanceView.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
+		
+		infoSpaceLeft.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+		mapInfoPriceView.leftAnchor.constraint(equalTo: infoSpaceLeft.rightAnchor).isActive = true
+		infoSpaceMiddle.leftAnchor.constraint(equalTo: mapInfoPriceView.rightAnchor).isActive = true
+		mapInfoDistanceView.leftAnchor.constraint(equalTo: infoSpaceMiddle.rightAnchor).isActive = true
+		infoSpaceRight.leftAnchor.constraint(equalTo: mapInfoDistanceView.rightAnchor).isActive = true
+		infoSpaceRight.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+		
 		
 		extendedDescriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		extendedDescriptionLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
-		extendedDescriptionLabel.topAnchor.constraint(equalTo: mapInfoContainerView.bottomAnchor, constant: 10).isActive = true
+		extendedDescriptionLabel.topAnchor.constraint(equalTo: mapInfoPriceView.bottomAnchor, constant: 10).isActive = true
 		extendedDescriptionLabelBottomConstraint = extendedDescriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor)
 		//===
 		

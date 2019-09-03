@@ -17,6 +17,7 @@ target 'fuelhunter' do
     # Pods for testing
 
     pod 'SwiftLint' => '0.32.0'
+    pod 'ActiveLabel' => '1.1.0'
   end
 
   target 'fuelhunterUITests' do
@@ -24,7 +25,7 @@ target 'fuelhunter' do
     # Pods for testing
 
     pod 'SwiftLint' => '0.32.0'
-
+    pod 'ActiveLabel' => '1.1.0'
   end
 
 end

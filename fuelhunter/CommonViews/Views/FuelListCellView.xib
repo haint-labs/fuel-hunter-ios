@@ -21,7 +21,6 @@
                 <outlet property="extendedDescriptionLabel" destination="vXS-lq-nyY" id="IA4-Fb-iZa"/>
                 <outlet property="extendedTitleLabel" destination="Rw8-Dq-mQn" id="4aF-OT-Ywo"/>
                 <outlet property="iconImageView" destination="wQA-Vl-L7Z" id="QUS-Vg-VL2"/>
-                <outlet property="mapInfoContainerView" destination="x7p-oe-xO6" id="Kx9-0D-IMr"/>
                 <outlet property="mapInfoDistanceView" destination="z5l-4R-r4I" id="KTZ-9C-Z2A"/>
                 <outlet property="mapInfoPriceView" destination="LBi-Zb-pQd" id="cgb-Gi-pq8"/>
                 <outlet property="priceLabel" destination="it9-ue-YHt" id="b5d-Kg-bte"/>
@@ -90,24 +89,17 @@ Lugažu 6, Brīvības iela 82a</string>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" name="CellSeparatorColor"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7p-oe-xO6" userLabel="MapInfoContainer">
-                    <rect key="frame" x="469" y="467" width="240" height="128"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z5l-4R-r4I" customClass="MapInfoButtonView" customModule="fuelhunter" customModuleProvider="target">
+                    <rect key="frame" x="476" y="458" width="227" height="146"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z5l-4R-r4I" customClass="MapInfoButtonView" customModule="fuelhunter" customModuleProvider="target">
-                            <rect key="frame" x="6" y="-9" width="227" height="146"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <viewLayoutGuide key="safeArea" id="GCy-z2-wZ5"/>
-                        </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LBi-Zb-pQd" customClass="MapInfoButtonView" customModule="fuelhunter" customModuleProvider="target">
-                            <rect key="frame" x="6" y="-9" width="227" height="146"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <viewLayoutGuide key="safeArea" id="WDn-ea-r7k"/>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="GCy-z2-wZ5"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LBi-Zb-pQd" customClass="MapInfoButtonView" customModule="fuelhunter" customModuleProvider="target">
+                    <rect key="frame" x="476" y="458" width="227" height="146"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="WDn-ea-r7k"/>
                 </view>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXS-lq-nyY" userLabel="Extended Description Label" customClass="ActiveLabel" customModule="ActiveLabel">
                     <rect key="frame" x="122" y="630" width="407" height="64"/>
@@ -125,7 +117,7 @@ Lugažu 6, Brīvības iela 82a</string>
         </view>
     </objects>
     <resources>
-        <image name="map_pop_up_base" width="31" height="31"/>
+        <image name="map_pop_up_base" width="24.5" height="17.5"/>
         <namedColor name="CellSeparatorColor">
             <color red="0.84313725490196079" green="0.8666666666666667" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
