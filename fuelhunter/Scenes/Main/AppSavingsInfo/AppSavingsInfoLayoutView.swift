@@ -30,8 +30,8 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: savingsView.frame.size.height + 30)
 		scrollView.layoutSubviews()
+		scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: savingsView.frame.size.height + 30)
 		adjustVisibilityOfShadowLines()
 	}
 

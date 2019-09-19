@@ -274,6 +274,7 @@
 		5C731FAC22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */; };
 		5C731FAD22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */; };
 		5C731FAE22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */; };
+		5C772327233346D4008CC861 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
@@ -607,6 +608,7 @@
 		5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppLayoutView.xib; sourceTree = "<group>"; };
 		5C731FA422FB25FF00793DAF /* AboutAppLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppLayoutView.swift; sourceTree = "<group>"; };
 		5C731FAB22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAccuracyInfoLayoutView.swift; sourceTree = "<group>"; };
+		5C772326233346D4008CC861 /* MapPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroGPSSetUpLayoutView.xib; sourceTree = "<group>"; };
 		5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpLayoutView.swift; sourceTree = "<group>"; };
 		5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpPresenter.swift; sourceTree = "<group>"; };
@@ -1125,11 +1127,12 @@
 				5CCC38EE230A945A008D3512 /* MapViewController.swift */,
 				5CCC38ED230A945A008D3512 /* MapInteractor.swift */,
 				5CCC38EC230A945A008D3512 /* MapPresenter.swift */,
-				5CCC38E9230A945A008D3512 /* MapModels.swift */,
 				5CCC38EA230A945A008D3512 /* MapWorker.swift */,
 				5CCC38EB230A945A008D3512 /* MapRouter.swift */,
+				5CCC38E9230A945A008D3512 /* MapModels.swift */,
 				5CCC38F0230A945A008D3512 /* MapLayoutView.swift */,
 				5CCC38EF230A945A008D3512 /* MapLayoutView.xib */,
+				5C772326233346D4008CC861 /* MapPoint.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -1153,8 +1156,8 @@
 			isa = PBXGroup;
 			children = (
 				5CCC392B230A9470008D3512 /* FuelListToMapViewTransitionCoordinator.swift */,
-				5CCC392C230A9470008D3512 /* FuelListToMapViewPopTransitionAnimator.swift */,
 				5CCC392D230A9470008D3512 /* FuelListToMapViewPushTransitionAnimator.swift */,
+				5CCC392C230A9470008D3512 /* FuelListToMapViewPopTransitionAnimator.swift */,
 			);
 			path = FuelListToMapViewTransition;
 			sourceTree = "<group>";
@@ -1635,6 +1638,7 @@
 				5C2E66E022DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
 				5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E66C822DD941D00FC71AD /* AboutAppInteractor.swift in Sources */,
+				5C772327233346D4008CC861 /* MapPoint.swift in Sources */,
 				5CCC38F7230A945A008D3512 /* MapRouter.swift in Sources */,
 				5C731FAC22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */,
 				5C2E66D422DD941D00FC71AD /* AboutAppRouter.swift in Sources */,

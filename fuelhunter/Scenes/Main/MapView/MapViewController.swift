@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MapDisplayLogic: class {
-  	func displaySomething(viewModel: Map.Something.ViewModel)
+  	func displaySomething(viewModel: Map.MapData.ViewModel)
 }
 
 class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPushTransitionAnimatorHelperProtocol, FuelListToMapViewPopTransitionAnimatorHelperProtocol {
@@ -112,7 +112,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	// MARK: Functions
 
   	func doSomething() {
-    	let request = Map.Something.Request()
+    	let request = Map.MapData.Request()
     	interactor?.doSomething(request: request)
   	}
 
@@ -132,49 +132,57 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		}
 	}
 	
-  	func displaySomething(viewModel: Map.Something.ViewModel) {
-    	
+  	func displaySomething(viewModel: Map.MapData.ViewModel) {
+    	self.layoutView.updateMapView(with: viewModel.mapPoints)
   	}
   	
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol
   	
-  	func reveal() {
-  		UIView.animate(withDuration: 0.2) {
+  	func reveal(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
+
+  		if let location = router?.dataStore?.yLocation {
+			yOffSetConstraint.constant = location
+		}
+		self.view.layoutIfNeeded()
+
+  		UIView.animate(withDuration: duration) {
 			self.layoutView.alpha = 1
 			self.view.layoutIfNeeded()
 		}
 		
-		UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
+		UIView.animate(withDuration: duration*2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
 			self.fuelCellView.setUpConstraintsAsBottomView()
 			self.view.layoutIfNeeded()
 			self.yOffSetConstraint.constant = self.view.frame.height-self.fuelCellView.frame.height
 			self.view.layoutIfNeeded()
-		}, completion: { (finished: Bool) in 
+		}, completion: { (finished: Bool) in
+			completionHandler(.success)
 		})
   	}
   	
   	// MARK: FuelListToMapViewPopTransitionAnimatorHelperProtocol
   	
-  	func hide() {
+  	func hide(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
   		tempYOffset = self.yOffSetConstraint.constant
   		
-		UIView.animate(withDuration: 0.2) {
+		UIView.animate(withDuration: duration/2) {
 			self.layoutView.alpha = 0
 			self.view.layoutIfNeeded()
 		}
 		
-		UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
+		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
 			if let location = self.router?.dataStore?.yLocation {
 				self.yOffSetConstraint.constant = location
 				self.fuelCellView.setUpConstraintsAsCell()
 			}
 			self.view.layoutIfNeeded()
-		}, completion: { (finished: Bool) in 
+		}, completion: { (finished: Bool) in
+			completionHandler(.success)
 		})
 	}
 	
   	func reset() {
-  		self.yOffSetConstraint.constant =  tempYOffset
+  		self.yOffSetConstraint.constant = tempYOffset
   		self.fuelCellView.setUpConstraintsAsBottomView()
   	}
 }

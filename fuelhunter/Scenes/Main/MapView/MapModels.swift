@@ -15,12 +15,27 @@ import UIKit
 enum Map {
   	// MARK: Use cases
 
-	enum Something {
+	enum MapData {
 		struct Request {
 		}
 		struct Response {
+			var displayedPoints: [MapData.ViewModel.DisplayedMapPoint]
 		}
 		struct ViewModel {
+			struct DisplayedMapPoint: Equatable {
+				var id: String   // this is the price ID
+				var subId: String // this is the sub-ID -  which is id + address
+				var companyName: String
+				var companyBigLogoName: String
+				var price: String
+				var isPriceCheapest: Bool
+				var latitude: Double
+				var longitude: Double
+				var addressName: String
+				var distanceInKm: Double
+			}
+			var displayedPoints: [DisplayedMapPoint]
+			var mapPoints: [MapPoint]
 		}
   	}
 }

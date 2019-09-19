@@ -8,20 +8,23 @@
 
 import UIKit
 
-protocol FuelListToMapViewPopTransitionAnimatorHelperProtocol {
-	func hide()
+protocol FuelListToMapViewPopTransitionAnimatorHelperProtocol: class {
+	// Use this to animate necessary stuff. Return completionHandler when done.
+	func hide(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void))
+
+	// Used when user manually swipes back, but cancels it.
 	func reset()
 }
 
-protocol FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol {
+protocol FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol: class {
+	// Called on toViewController - to finalise any tasks (like, unhide item)
 	func customTransitionWasFinished()
 }
 
-final class FuelListToMapViewPopTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class FuelListToMapViewPopTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	
 	weak var context: UIViewControllerContextTransitioning?
-	
-	weak var fromViewController: UIViewController? 
+	weak var fromViewController: FuelListToMapViewPopTransitionAnimatorHelperProtocol?
 	
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
@@ -29,42 +32,39 @@ final class FuelListToMapViewPopTransitionAnimator: NSObject, UIViewControllerAn
 	
 	func animationEnded(_ transitionCompleted: Bool) {
 		if !transitionCompleted {
-			(self.fromViewController as? MapViewController)?.reset()
+			self.fromViewController?.reset()
 		}
 	}
 	
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     	context = transitionContext
-    
-        guard let fromView = transitionContext.view(forKey: .from) else { return }
-        guard let toView = transitionContext.view(forKey: .to) else { return }
-		
-		guard let toViewController = transitionContext.viewController(forKey: .to) else { return }
-		guard let fromViewController = transitionContext.viewController(forKey: .from) else { return }
+
+    	guard let fromView = transitionContext.view(forKey: .from),
+			  let toView = transitionContext.view(forKey: .to),
+			  let toViewController = transitionContext.viewController(forKey: .to) as? FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol,
+			  let fromViewController = transitionContext.viewController(forKey: .from) as? FuelListToMapViewPopTransitionAnimatorHelperProtocol else { return }
+
 
         self.fromViewController = fromViewController
-        (fromViewController as? MapViewController)?.hide()
-		
+
         let duration = transitionDuration(using: transitionContext)
 
         let container = transitionContext.containerView
         container.insertSubview(toView, belowSubview: fromView)
-        
-		toView.alpha = 0
+        toView.alpha = 0
 
-        let animations = {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-            	toView.alpha = 1
-            }
-        }
-	
-        UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeCubic, 
-        	animations: animations, completion: { finished in
+        // This is just a tiny extra animation, to un-hide view that will appear - to appear faster.
+		UIView.animate(withDuration: duration/2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2,
+			options: [.curveEaseInOut], animations: {
+			toView.alpha = 1
+		})
+
+		fromViewController.hide(withDuration: duration) { status in
 			if !transitionContext.transitionWasCancelled {
-				(toViewController as? FuelListViewController)?.customTransitionWasFinished()
-				container.addSubview(toView)	
-			} 
+				toViewController.customTransitionWasFinished()
+				container.addSubview(toView)
+			}
 			transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        })
+		}
     }
 }

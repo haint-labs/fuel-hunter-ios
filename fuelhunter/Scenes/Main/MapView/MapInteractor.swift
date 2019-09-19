@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MapBusinessLogic {
-  	func doSomething(request: Map.Something.Request)
+  	func doSomething(request: Map.MapData.Request)
 }
 
 protocol MapDataStore {
@@ -35,11 +35,11 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
   	// MARK: Do something
 
-  	func doSomething(request: Map.Something.Request) {
+  	func doSomething(request: Map.MapData.Request) {
     	worker = MapWorker()
-    	worker?.doSomeWork()
+    	let usableDataArray = worker!.createUsableDataArray(from: dataArray)
 
-    	let response = Map.Something.Response()
+    	let response = Map.MapData.Response.init(displayedPoints: usableDataArray)
     	presenter?.presentSomething(response: response)
   	}
 }

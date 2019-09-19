@@ -12,11 +12,11 @@ class PricesMemoryStore: PricesStoreProtocol, PricesStoreUtilityProtocol {
 	// MARK: - Data
 	//  Senču iela 2b, \nKatoļu 4, Kurzemes prospekts 4, \nLugažu 6, Brīvības iela 82a
 	
-	static var address1 = Address.init(name: "Senču iela 2b", latitude: 0, longitude: 0)
-	static var address2 = Address.init(name: "Katoļu 4", latitude: 0, longitude: 0)
-	static var address3 = Address.init(name: "Kurzemes prospekts 4", latitude: 0, longitude: 0)
-	static var address4 = Address.init(name: "Lugažu 6", latitude: 0, longitude: 0)
-	static var address5 = Address.init(name: "Brīvības iela 82a", latitude: 0, longitude: 0)
+	static var address1 = Address.init(name: "Senču iela 2b", latitude: 56.968288, longitude: 24.1424928)
+	static var address2 = Address.init(name: "Katoļu 4", latitude: 56.940759, longitude: 24.1358849)
+	static var address3 = Address.init(name: "Kurzemes prospekts 4", latitude: 56.9543108, longitude: 24.0315306)
+	static var address4 = Address.init(name: "Lugažu 6", latitude: 56.9749415, longitude: 24.1059608)
+	static var address5 = Address.init(name: "Brīvības iela 82a", latitude: 56.9590876, longitude: 24.1253796)
 	
 	static var companyNeste = Company.init(companyType: .typeNeste, name: "Neste", logoName: "neste_logo", largeLogoName: "neste_big_logo", smallLogoName: "neste_tiny_logo")
 	static var companyCircleK = Company.init(companyType: .typeCircleK, name: "CircleK", logoName: "circle_k_logo", largeLogoName: "circle_k_big_logo", smallLogoName: "circle_k_tiny_logo")

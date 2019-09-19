@@ -8,7 +8,12 @@
 
 import UIKit
 
-final class FuelListToMapViewTransitionCoordinator: NSObject, UINavigationControllerDelegate {
+enum CustomNavigationTransitionResult<Value> {
+	case success
+	case failure
+}
+
+class FuelListToMapViewTransitionCoordinator: NSObject, UINavigationControllerDelegate {
     var interactionController: UIPercentDrivenInteractiveTransition?
 	var sideSwipeRecognizerAdded: Bool = false
 	weak var navController: UINavigationController?
