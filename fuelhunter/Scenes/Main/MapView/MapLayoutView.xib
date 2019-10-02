@@ -15,6 +15,7 @@
                 <outlet property="bottomShadowImageView" destination="kBi-YL-PXL" id="JxT-j7-4SJ"/>
                 <outlet property="mapView" destination="u7e-mm-R2l" id="lPH-RD-U93"/>
                 <outlet property="topShadowImageView" destination="V42-2k-Rtg" id="dkK-2q-upD"/>
+                <outlet property="viewTopShadow" destination="bFM-bK-Dqe" id="tHA-qY-fkR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,7 +27,12 @@
                     <rect key="frame" x="66" y="189" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </mapView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nav_bar_top_blur" translatesAutoresizingMaskIntoConstraints="NO" id="V42-2k-Rtg">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nav_bar_shadow" translatesAutoresizingMaskIntoConstraints="NO" id="bFM-bK-Dqe">
+                    <rect key="frame" x="25" y="337" width="321" height="3"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="top_white_gradient" translatesAutoresizingMaskIntoConstraints="NO" id="V42-2k-Rtg">
                     <rect key="frame" x="16" y="27" width="321" height="67"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,6 +52,7 @@
     </objects>
     <resources>
         <image name="nav_bar_bottom_blur" width="750" height="264"/>
-        <image name="nav_bar_top_blur" width="750" height="264"/>
+        <image name="nav_bar_shadow" width="15" height="3"/>
+        <image name="top_white_gradient" width="11" height="21.5"/>
     </resources>
 </document>

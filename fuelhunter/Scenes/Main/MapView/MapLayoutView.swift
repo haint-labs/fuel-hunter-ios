@@ -9,14 +9,31 @@
 import UIKit
 import MapKit
 
-class MapLayoutView: UIView {
+protocol MapLayoutViewViewLogic: class {
+	func mapPinWasPressed(_ mapPoint: MapPoint)
+}
+
+protocol MapLayoutViewDataLogic: class {
+	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat)
+	func updateMapViewOffset(offset: CGFloat, animated: Bool)
+}
+
+class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
+
+	weak var controller: MapLayoutViewViewLogic?
 
 	@IBOutlet var baseView: UIView!
 	@IBOutlet var mapView: MKMapView!
+
+	// These ones are white fade out, like a mask.
 	@IBOutlet weak var topShadowImageView: UIImageView!
 	@IBOutlet weak var bottomShadowImageView: UIImageView!
 
-	var mapBottomConstraint: NSLayoutConstraint!
+	// This is the generic one, shadow.
+	@IBOutlet weak var viewTopShadow: UIImageView!
+
+	var calculatedMaxPinWidth: CGFloat = 0
+	var calculatedMaxPinHeight: CGFloat = 0
 
 	// MARK: View lifecycle
 
@@ -35,84 +52,132 @@ class MapLayoutView: UIView {
 		addSubview(baseView)
 		baseView.frame = self.bounds
 
+		mapView.showsUserLocation = true
+		mapView.delegate = self
+
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
 		topShadowImageView.translatesAutoresizingMaskIntoConstraints = false
 		bottomShadowImageView.translatesAutoresizingMaskIntoConstraints = false
 		mapView.translatesAutoresizingMaskIntoConstraints = false
-//		topShadowImageView.alpha = 0
-//		bottomShadowImageView.alpha = 0
-		
-		topShadowImageView.topAnchor.constraint(equalTo: topAnchor, constant: -100).isActive = true
+		viewTopShadow.translatesAutoresizingMaskIntoConstraints = false
+
+		viewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
+		viewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		viewTopShadow.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		viewTopShadow.topAnchor.constraint(equalTo: topAnchor).isActive = true
+
+
+		topShadowImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
 		topShadowImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		topShadowImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		topShadowImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-//
-//		mapView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//		mapBottomConstraint = mapView.bottomAnchor.constraint(equalTo: bottomAnchor)
-//		mapBottomConstraint.isActive = true
-//		mapView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//		mapView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		topShadowImageView.heightAnchor.constraint(equalToConstant: 21).isActive = true
+
+		mapView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		mapView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+		mapView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		mapView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 
 
-		mapView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-		mapView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 		baseView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
 		baseView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-//
+
 		bottomShadowImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 50).isActive = true
 		bottomShadowImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		bottomShadowImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		bottomShadowImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-		
   	}
 
 	// MARK: Functions
 
-	func updateMapView(with data: [MapPoint]) {
-//		mapView.addAnnotations(data)
-		mapView.showAnnotations(data, animated: false)
+	func regionFor(mapPoints points: [MapPoint]) -> MKCoordinateRegion {
+		var r = MKMapRect.null
 
-		let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
-		let region = MKCoordinateRegion(center: data.first!.coordinate, span: span)
-        mapView.setRegion(region, animated: false)
+		for i in 0 ..< points.count {
+			let p = MKMapPoint(points[i].coordinate)
+			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
+		}
 
-self.mapView.setVisibleMapRect(self.mapView.visibleMapRect, edgePadding: UIEdgeInsets.init(top: 0, left: 0, bottom: 200, right: 0), animated: false)
+		var region = MKCoordinateRegion(r)
 
-//mapView.clipsToBounds = false
-//		mapView.layoutMargins = UIEdgeInsets.init(top: 0, left: 0, bottom: 400, right: 0)
-//		mapBottomConstraint.constant = -200
+		region.span.latitudeDelta = max(0.002, region.span.latitudeDelta)
+    	region.span.longitudeDelta = max(0.002, region.span.longitudeDelta)
 
-//		MKMapCamera.init(lookingAtCenter: <#T##CLLocationCoordinate2D#>, fromDistance: <#T##CLLocationDistance#>, pitch: <#T##CGFloat#>, heading: <#T##CLLocationDirection#>)
-//		let camera = MKMapCamera.init(lookingAtCenter: mapView.centerCoordinate, fromDistance: 1000, pitch: 0, heading: 0)
-//    	mapView.setCamera(camera, animated: false)
+		return region
+	}
+
+	func MKMapRectForCoordinateRegion(region:MKCoordinateRegion) -> MKMapRect {
+		let topLeft = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta/2), longitude: region.center.longitude - (region.span.longitudeDelta/2))
+		let bottomRight = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta/2), longitude: region.center.longitude + (region.span.longitudeDelta/2))
+
+		let a = MKMapPoint(topLeft)
+		let b = MKMapPoint(bottomRight)
+
+		return MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
+	}
+
+	// MARK: MapLayoutViewDataLogic
+
+	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat) {
+
+		mapView.removeAnnotations(mapView.annotations)
+		mapView.addAnnotations(data)
 //
-//		var center = mapView.centerCoordinate
-////		center.latitude -= mapView.region.span.latitudeDelta * 1.10;
-//		mapView.setCenter(center, animated: false)
-
-//		var point = mapView.convert(mapView.centerCoordinate, toPointTo: view)
-//		point.y -= offset
-//		let coordinate = mapView.convert(point, toCoordinateFrom: view)
-//		let offsetLocation = coordinate.location
+//		let region = self.regionFor(mapPoints: data)
+//		let mapRect = MKMapRectForCoordinateRegion(region: region)
 //
-//		let distance = mapView.centerCoordinate.location.distance(from: offsetLocation) / 1000.0
-//
-//		let camera = mapView.camera
-//		let adjustedCenter = mapView.centerCoordinate.adjust(by: distance, at: camera.heading - 180.0)
-//		camera.centerCoordinate = adjustedCenter
+//		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: offsetForMap, right: calculatedMaxPinWidth/2+5), animated: false)
+	}
 
+	func updateMapViewOffset(offset: CGFloat, animated: Bool) {
 
-//		CLLocationCoordinate2D center = coordinate;
-//		center.latitude -= mapView.region.span.latitudeDelta * 0.40;
-//		[self.mapView setCenterCoordinate:center animated:YES];
+		let region = self.regionFor(mapPoints: mapView!.annotations as! [MapPoint])
+		let mapRect = MKMapRectForCoordinateRegion(region: region)
 
-//		let region = MKCoordinateRegion.init(center: data.first!.coordinate, span: MKCoordinateSpan.init(latitudeDelta: 0.008, longitudeDelta: 0.008))
-//		let mapRect = MKMa .init(region)
-////		MKCoordinateRegion region = MKCoordinateRegionMake(data.first?.coordinate, MKCoordinateSpanMake(0.008, 0.008));
-////		MKMapRect mapRect = MKMapRectForCoordinateRegion(region);
-////		let mapRect = MKMapRec
-//
-//		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets.init(top: 0, left: 0, bottom: 400, right: 0), animated: true)
+		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: offset, right: calculatedMaxPinWidth/2+5), animated: false)
+	}
+
+	// MARK: MKMapViewDelegate
+
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+		guard !(annotation is MKUserLocation) else {
+			return nil
+		}
+
+		let annotationIdentifier = "mapPoint"
+
+		var annotationView: MKAnnotationView?
+		if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+			annotationView = dequeuedAnnotationView
+			annotationView?.annotation = annotation
+		}
+		else {
+			let av = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+			annotationView = av
+		}
+
+		if let annotationView = annotationView,
+		   let mapPointAnnotation = annotationView.annotation as? MapPoint {
+			annotationView.canShowCallout = false
+			let mapPinAccessory = MapPinAccessoryView.init()
+			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.imageName)
+			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
+			mapPinAccessory.distanceLabel.text = "\(mapPointAnnotation.distance) km"
+			mapPinAccessory.layoutIfNeeded()
+
+			calculatedMaxPinWidth = max(mapPinAccessory.frame.width, calculatedMaxPinWidth)
+			calculatedMaxPinHeight = max(mapPinAccessory.frame.height, calculatedMaxPinHeight)
+
+			annotationView.layer.anchorPoint = CGPoint.init(x: 0.5, y: 1)
+			annotationView.addSubview(mapPinAccessory)
+			annotationView.frame = mapPinAccessory.frame
+		}
+
+		return annotationView
+	}
+
+	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+		controller?.mapPinWasPressed(view.annotation as! MapPoint)
 	}
 }

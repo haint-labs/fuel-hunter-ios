@@ -82,6 +82,8 @@ class FuelTypeListCell: UITableViewCell {
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
+			default:
+				break
 		}
 	}
 

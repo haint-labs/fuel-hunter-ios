@@ -17,6 +17,8 @@ class PricesMemoryStore: PricesStoreProtocol, PricesStoreUtilityProtocol {
 	static var address3 = Address.init(name: "Kurzemes prospekts 4", latitude: 56.9543108, longitude: 24.0315306)
 	static var address4 = Address.init(name: "Lugažu 6", latitude: 56.9749415, longitude: 24.1059608)
 	static var address5 = Address.init(name: "Brīvības iela 82a", latitude: 56.9590876, longitude: 24.1253796)
+	static var address6 = Address.init(name: "Uzvaras bulvāris 16", latitude: 56.9361106, longitude: 24.0892882)
+	static var address7 = Address.init(name: "Lucavsalas iela 1, iebrauktuve no sētas puses", latitude: 56.9249891, longitude: 24.1106849)
 	
 	static var companyNeste = Company.init(companyType: .typeNeste, name: "Neste", logoName: "neste_logo", largeLogoName: "neste_big_logo", smallLogoName: "neste_tiny_logo")
 	static var companyCircleK = Company.init(companyType: .typeCircleK, name: "CircleK", logoName: "circle_k_logo", largeLogoName: "circle_k_big_logo", smallLogoName: "circle_k_tiny_logo")
@@ -30,15 +32,15 @@ class PricesMemoryStore: PricesStoreProtocol, PricesStoreUtilityProtocol {
 //	static var companyLPG = Company.init(companyType: .typeLPG, name: "CircleK", logoName: "lpg_logo")
 
   	static var prices = [
-    	Price(id: "1", company: companyVirsi, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address1, address2, address3, address4, address5]),
+    	Price(id: "1", company: companyVirsi, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address6]),
 //    	Price(id: "2", company: companyAstarte, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .typeDD, address: [address1, address4, address5]),
-    	Price(id: "3", company: companyKool, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type95, address: [address1]),
+    	Price(id: "3", company: companyKool, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type95, address: [address2]),
     	Price(id: "91", company: companyKool, city: "Rīga", price:"1.013", isPriceCheapest: true, fuelType: .type95, address: [address1]),
-    	Price(id: "4", company: companyLatvijasNafta, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address1, address2, address3, address4, address5]),
-    	Price(id: "5", company: companyCircleK, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address1, address4, address5]),
+    	Price(id: "4", company: companyLatvijasNafta, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address4]),
+    	Price(id: "5", company: companyCircleK, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address3]),
 //    	Price(id: "6", company: companyViada, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .type95, address: [address1, address5]),
-    	Price(id: "7", company: companyNeste, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address1, address2, address3, address4, address5]),
-    	Price(id: "8", company: companyGotikaAuto, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address1, address4, address5]),
+    	Price(id: "7", company: companyNeste, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address7, address2]),
+    	Price(id: "8", company: companyGotikaAuto, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address5]),
 //    	Price(id: "9", company: companyDinaz, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .type95, address: [address1, address5]),
     	Price(id: "90", company: companyKool, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type98, address: [address1]),
 //    	Price(id: "10", company: companyLPG, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .typeGas, address: [address1, address4, address3])

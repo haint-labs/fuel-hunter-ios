@@ -15,11 +15,28 @@ import UIKit
 enum Map {
   	// MARK: Use cases
 
+	enum MapWasPressed {
+		struct Request {
+			var mapPoint: MapPoint
+		}
+		struct Response {
+			var mapPoint: MapPoint
+			var priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+		}
+		struct ViewModel {
+			var mapPoint: MapPoint
+			var priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+		}
+	}
+
 	enum MapData {
 		struct Request {
 		}
 		struct Response {
 			var displayedPoints: [MapData.ViewModel.DisplayedMapPoint]
+			var mapPoints: [MapPoint]
+			var selectedPriceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+			var selectedMapPoint: MapPoint
 		}
 		struct ViewModel {
 			struct DisplayedMapPoint: Equatable {
@@ -36,6 +53,8 @@ enum Map {
 			}
 			var displayedPoints: [DisplayedMapPoint]
 			var mapPoints: [MapPoint]
+			var selectedPriceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+			var selectedMapPoint: MapPoint
 		}
   	}
 }

@@ -9,24 +9,24 @@
 import UIKit
 import ActiveLabel
 
-//extension UIView {
-//    func fadeTransition(_ duration:CFTimeInterval) {
-//        let animation = CATransition()
-//        animation.timingFunction = CAMediaTimingFunction(name:
-//            CAMediaTimingFunctionName.easeInEaseOut)
-//        animation.type = CATransitionType.fade
-//        animation.duration = duration
-//        layer.add(animation, forKey: CATransitionType.fade.rawValue)
-//    }
-//}
+extension UIView {
+    func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.duration = duration
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
+    }
+}
 
 protocol FuelListCellViewDisplayLogic {
-    func updateDataWithData(data: FuelList.FetchPrices.ViewModel.DisplayedPrice, andCellType cellType: CellBackgroundType)
+    func updateDataWithData(priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPointData: MapPoint, andCellType cellType: CellBackgroundType)
 }
 
 class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
-	public var cellBgType: CellBackgroundType = .single
+	public var cellBgType: CellBackgroundType = .unknown
 
 	// Forward this from viewController, so that we can extend white bg on the bottom
 	var safeLayoutBottomInset: CGFloat = 0 {
@@ -238,6 +238,8 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		priceLabel.alpha = 1
 		separatorView.alpha = 1
 		backgroundImageView.alpha = 1
+
+		self.setAsCellType(cellType: cellBgType)
     }
 	
 	func setUpConstraintsAsBottomView() {
@@ -273,46 +275,50 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		switch cellType {
 			case .top:
 				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = 0 + safeLayoutBottomInset
+				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = -5 + safeLayoutBottomInset
+				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = 0 + safeLayoutBottomInset
+				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = -5 + safeLayoutBottomInset
+				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
+			default:
+				break
 		}
 	}
 
 	// MARK: FuelListCellViewDisplayLogic
 
-	func updateDataWithData(data: FuelList.FetchPrices.ViewModel.DisplayedPrice, andCellType cellType: CellBackgroundType) {
-//		titleLabel.fadeTransition(0.2)
-//		addressesLabel.fadeTransition(0.2)
-//		iconImageView.fadeTransition(0.2)
-//		priceLabel.fadeTransition(0.2)
-		
-		if let addressObj = data.address.first { 
-			extendedAddressLabel.text = "\(addressObj.name), \(data.city)"
-		} else {
-			extendedAddressLabel.text = ""
-		}
-		
-		titleLabel.text = data.companyName
-		addressesLabel.text = data.addressDescription 
-		extendedTitleLabel.text = data.companyName
-		iconImageView.image = UIImage.init(named: data.companyBigLogoName)
-		if data.isPriceCheapest {
+	func updateDataWithData(priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPointData: MapPoint, andCellType cellType: CellBackgroundType) {
+		titleLabel.fadeTransition(0.2)
+		addressesLabel.fadeTransition(0.2)
+		iconImageView.fadeTransition(0.2)
+		priceLabel.fadeTransition(0.2)
+
+//		if let addressObj = data.address.first {
+//			extendedAddressLabel.text = "\(addressObj.name), \(data.city)"
+//		} else {
+//			extendedAddressLabel.text = ""
+//		}
+
+		titleLabel.text = priceData.companyName
+		addressesLabel.text = priceData.addressDescription
+
+		extendedAddressLabel.text = mapPointData.address
+		extendedTitleLabel.text = mapPointData.companyName
+		iconImageView.image = UIImage.init(named: mapPointData.imageName)
+		if mapPointData.priceIsCheapest {
 			priceLabel.textColor = UIColor.init(named: "CheapPriceColor")
 //			extendedPriceLabel.textColor = UIColor.init(named: "CheapPriceColor")
 		} else {
@@ -320,9 +326,9 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 //			extendedPriceLabel.textColor = UIColor.init(named: "TitleColor")
 		}
 		
-		mapInfoPriceView.setAsType(.typePrice, withText: data.price)
-		mapInfoDistanceView.setAsType(.typeDistance, withText: "4.5 km")
-		priceLabel.text = data.price
+		mapInfoPriceView.setAsType(.typePrice, withText: mapPointData.priceText)
+		mapInfoDistanceView.setAsType(.typeDistance, withText: "\(mapPointData.distance) km")
+		priceLabel.text = mapPointData.priceText
 		
 		let customType = ActiveType.custom(pattern: "\\smājaslapas\\b") 
 		extendedDescriptionLabel.enabledTypes = [customType]
@@ -333,8 +339,13 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 			print("Custom type tapped: \(element)") 
 		}
 		
-		self.setAsCellType(cellType: cellType)
+
+		if cellBgType == .unknown {
+			self.setAsCellType(cellType: cellType)
+		}
+
 		self.cellBgType = cellType
+
 		self.setNeedsLayout()
 	}
 	

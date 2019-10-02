@@ -11,9 +11,11 @@
 //
 
 import UIKit
+import MapKit
 
 protocol MapBusinessLogic {
   	func doSomething(request: Map.MapData.Request)
+  	func userPressedOnMapPin(request: Map.MapWasPressed.Request)
 }
 
 protocol MapDataStore {
@@ -30,16 +32,44 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
   	var selectedFuelType: FuelType = .type95
 	var selectedDataIndex: Int = 0
 	var selectedDataSection: Int = 0 // Used only for return value (to notify fuel list with cell was last active)
+
+	// Data array contains price objects (DD for Neste, Circle K...  but
+	// convertedDataArray and mapPoints contain addresses for each price objects, but
+	// without sections. (Thus if each price object have 3 addresss, then we have 6
+	// mapPoints)
 	var dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice] = []
 	var yLocation: CGFloat = 0
-
-  	// MARK: Do something
+	var convertedDataArray: [Map.MapData.ViewModel.DisplayedMapPoint] = []
+	var mapPoints: [MapPoint] = []
+	
+  	// MARK: MapBusinessLogic
 
   	func doSomething(request: Map.MapData.Request) {
     	worker = MapWorker()
-    	let usableDataArray = worker!.createUsableDataArray(from: dataArray)
+    	convertedDataArray = worker!.createUsableDataArray(from: dataArray)
+		mapPoints = createMapPoints(from: convertedDataArray)
 
-    	let response = Map.MapData.Response.init(displayedPoints: usableDataArray)
+		let selectedMapPoint = mapPoints.first(where: {$0.priceId == dataArray[selectedDataIndex].id }) ?? mapPoints.first
+
+    	let response = Map.MapData.Response.init(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedPriceData: dataArray[selectedDataIndex], selectedMapPoint: selectedMapPoint!)
     	presenter?.presentSomething(response: response)
+  	}
+
+  	func userPressedOnMapPin(request: Map.MapWasPressed.Request) {
+		selectedDataIndex = dataArray.firstIndex(where: {$0.id == request.mapPoint.priceId }) ?? 0
+
+
+    	let response = Map.MapWasPressed.Response.init(mapPoint: request.mapPoint, priceData: dataArray[selectedDataIndex])
+		presenter?.updateToRevealMapPoint(response: response)
+  	}
+
+  	// MARK: Functions
+
+  	func createMapPoints(from data: [Map.MapData.ViewModel.DisplayedMapPoint]) -> [MapPoint] {
+  		let mapPoints = data.map { MapPoint.init(priceId: $0.id, title: $0.companyName, companyName: $0.companyName, address: $0.addressName, coordinate:
+  			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), imageName: $0.companyBigLogoName,
+			priceText: $0.price, distance: $0.distanceInKm, priceIsCheapest: $0.isPriceCheapest) }
+
+  		return mapPoints
   	}
 }

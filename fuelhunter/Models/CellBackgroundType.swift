@@ -11,4 +11,5 @@ enum CellBackgroundType: Int {
 	case middle = 1
 	case bottom = 2
 	case single = 3
+	case unknown = 4
 }

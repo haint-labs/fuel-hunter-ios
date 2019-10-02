@@ -10,13 +10,25 @@ import MapKit
 import UIKit
 
 class MapPoint: NSObject, MKAnnotation {
+	var priceId: String // Used for price obj, which contain multiple addresses (mapPoints)
     var title: String?
+    var companyName: String
+    var address: String
     var coordinate: CLLocationCoordinate2D
-    var info: String
-
-    init(title: String, coordinate: CLLocationCoordinate2D, info: String) {
+    var imageName: String
+    var priceText: String
+    var distance: Double
+	var priceIsCheapest: Bool
+	
+    init(priceId: String, title: String, companyName: String, address: String, coordinate: CLLocationCoordinate2D, imageName: String, priceText: String, distance: Double, priceIsCheapest: Bool) {
+    	self.priceId = priceId
         self.title = title
+        self.companyName = companyName
+        self.address = address
         self.coordinate = coordinate
-        self.info = info
+        self.imageName = imageName
+        self.priceText = priceText
+        self.distance = distance
+        self.priceIsCheapest = priceIsCheapest
     }
 }

@@ -11,26 +11,25 @@
 //
 
 import UIKit
-import MapKit
 
 protocol MapPresentationLogic {
   	func presentSomething(response: Map.MapData.Response)
+  	func updateToRevealMapPoint(response: Map.MapWasPressed.Response)
 }
 
 class MapPresenter: MapPresentationLogic {
   	weak var viewController: MapDisplayLogic?
-
+	
   	// MARK: Do something
 
   	func presentSomething(response: Map.MapData.Response) {
-		let mapPoints = createMapPoints(from: response.displayedPoints)
-		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: mapPoints)
+		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: response.mapPoints, selectedPriceData: response.selectedPriceData, selectedMapPoint: response.selectedMapPoint)
     	viewController?.displaySomething(viewModel: viewModel)
   	}
 
-  	func createMapPoints(from data: [Map.MapData.ViewModel.DisplayedMapPoint]) -> [MapPoint] {
-  		let points: [MapPoint] = data.map { MapPoint.init(title: $0.companyName, coordinate: CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), info: $0.price) }
+	func updateToRevealMapPoint(response: Map.MapWasPressed.Response) {
+		let viewModel = Map.MapWasPressed.ViewModel.init(mapPoint: response.mapPoint, priceData: response.priceData)
+		viewController?.updateToRevealMapPoint(viewModel: viewModel)
+	}
 
-  		return points
-  	}
 }

@@ -14,9 +14,10 @@ import UIKit
 
 protocol MapDisplayLogic: class {
   	func displaySomething(viewModel: Map.MapData.ViewModel)
+  	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel)
 }
 
-class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPushTransitionAnimatorHelperProtocol, FuelListToMapViewPopTransitionAnimatorHelperProtocol {
+class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPushTransitionAnimatorHelperProtocol, FuelListToMapViewPopTransitionAnimatorHelperProtocol, MapLayoutViewViewLogic {
   	var interactor: MapBusinessLogic?
   	var router: (NSObjectProtocol & MapRoutingLogic & MapDataPassing)?
 	var layoutView: MapLayoutView!
@@ -46,25 +47,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
     	doSomething()
     	
     	layoutView.alpha = 0
-    	
-    	updateData()
-    	
-//    	let index = self.router?.dataStore?.selectedDataIndex
-//    	DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-//			self.router?.dataStore?.selectedDataIndex = index! + 1
-//			let row = self.router?.dataStore?.selectedDataIndex ?? 0
-//			let section = self.router?.dataStore?.selectedDataSection ?? 0
-//			let newYValue = self.router?.previousViewController?.justSelectedACell(atIndexPath: IndexPath.init(row:row, section: section))
-//			self.router?.dataStore?.yLocation = newYValue!
-//			self.updateData()
-//			 
-//			UIView.animate(withDuration: 0.3) {
-//				
-//			self.view.layoutIfNeeded()
-//				self.yOffSetConstraint.constant = self.view.frame.height-self.fuelCellView.frame.height-self.view.safeAreaInsets.bottom-12
-//				self.view.layoutIfNeeded()
-//			}
-//		})
   	}
 	
 	override func viewSafeAreaInsetsDidChange() {
@@ -93,13 +75,13 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	func setUpView() {
 		layoutView = MapLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
+		layoutView.controller = self
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
         layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         layoutView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-		
+
 		fuelCellView = FuelListCellView.init(frame: CGRect.init(x: 0, y: 100, width: self.view.frame.width, height: 100))
-		
 		fuelCellView.safeLayoutBottomInset = self.view.safeAreaInsets.bottom
 		self.view.addSubview(fuelCellView)
 		
@@ -116,24 +98,46 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
     	interactor?.doSomething(request: request)
   	}
 
-	func updateData() {
+	func updateData(to priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPoint: MapPoint) {
+
 		if let aData = router?.dataStore?.dataArray[router?.dataStore?.selectedDataIndex ?? 0] {
 			if router?.dataStore?.dataArray.count == 1 {
-				fuelCellView.updateDataWithData(data: aData, andCellType: .single)
+				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .single)
 			} else {
 				if router?.dataStore?.dataArray.first == aData {
-					fuelCellView.updateDataWithData(data: aData, andCellType: .top)
+					fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .top)
 				} else if router?.dataStore?.dataArray.last == aData {
-					fuelCellView.updateDataWithData(data: aData, andCellType: .bottom)
+					fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .bottom)
 				} else {
-					fuelCellView.updateDataWithData(data: aData, andCellType: .middle)
+					fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .middle)
 				}
 			}
 		}
+
+//		fuelCellView.setUpConstraintsAsBottomView()
 	}
 	
   	func displaySomething(viewModel: Map.MapData.ViewModel) {
-    	self.layoutView.updateMapView(with: viewModel.mapPoints)
+    	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:self.fuelCellView.frame.height)
+		updateData(to: viewModel.selectedPriceData, mapPoint: viewModel.selectedMapPoint)
+  	}
+
+  	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel) {
+
+		self.updateData(to: viewModel.priceData, mapPoint: viewModel.mapPoint)
+
+		let row = self.router?.dataStore?.selectedDataIndex ?? 0
+		let section = self.router?.dataStore?.selectedDataSection ?? 0
+		let newYValue = self.router?.previousViewController?.justSelectedACell(atIndexPath: IndexPath.init(row:row, section: section))
+		self.router?.dataStore?.yLocation = newYValue!
+
+		UIView.animate(withDuration: 0.3) {
+			self.view.layoutIfNeeded()
+			self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
+			self.view.layoutIfNeeded()
+		}
+
+		self.layoutView.updateMapViewOffset(offset: self.fuelCellView.frame.height-self.view.safeAreaInsets.bottom, animated: true)
   	}
   	
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol
@@ -153,11 +157,13 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		UIView.animate(withDuration: duration*2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
 			self.fuelCellView.setUpConstraintsAsBottomView()
 			self.view.layoutIfNeeded()
-			self.yOffSetConstraint.constant = self.view.frame.height-self.fuelCellView.frame.height
+			self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
 			self.view.layoutIfNeeded()
 		}, completion: { (finished: Bool) in
 			completionHandler(.success)
 		})
+
+		self.layoutView.updateMapViewOffset(offset: self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, animated: false)
   	}
   	
   	// MARK: FuelListToMapViewPopTransitionAnimatorHelperProtocol
@@ -185,4 +191,11 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   		self.yOffSetConstraint.constant = tempYOffset
   		self.fuelCellView.setUpConstraintsAsBottomView()
   	}
+
+  	// MARK: MapLayoutViewViewLogic
+
+  	func mapPinWasPressed(_ mapPoint: MapPoint) {
+		let request = Map.MapWasPressed.Request(mapPoint: mapPoint)
+    	interactor?.userPressedOnMapPin(request: request)
+	}
 }
