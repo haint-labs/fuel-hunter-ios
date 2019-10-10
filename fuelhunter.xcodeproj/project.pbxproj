@@ -486,6 +486,8 @@
 		5CDA4B6E22FD87C800740803 /* PushNotifSetupLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA4B6A22FD87C800740803 /* PushNotifSetupLayoutView.swift */; };
 		5CDA4B6F22FD87C800740803 /* PushNotifSetupLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA4B6A22FD87C800740803 /* PushNotifSetupLayoutView.swift */; };
 		5CDA4B7022FD87C800740803 /* PushNotifSetupLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA4B6A22FD87C800740803 /* PushNotifSetupLayoutView.swift */; };
+		5CE5AAE0234F09D10048FAB0 /* SettingsToggleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */; };
+		5CE5AAE1234F09D10048FAB0 /* SettingsToggleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */; };
 		5CEC2C7E233F38D8003F8114 /* MapPinAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */; };
 		5CEC2C7F233F38D8003F8114 /* MapPinAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7D233F38D8003F8114 /* MapPinAccessoryView.xib */; };
 		5CEC2C8023406A29003F8114 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
@@ -1850,6 +1852,7 @@
 				5C2E67C222E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
 				5C2E67A422DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
 				5C2E67AA22DE60E500FC71AD /* IntroPageRouter.swift in Sources */,
+				5CE5AAE0234F09D10048FAB0 /* SettingsToggleStatus.swift in Sources */,
 				5C2E66C622DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C2E66C022DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
@@ -1990,6 +1993,7 @@
 				5C2E67C322E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
 				5C2E67A522DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
 				5C2E67AB22DE60E500FC71AD /* IntroPageRouter.swift in Sources */,
+				5CE5AAE1234F09D10048FAB0 /* SettingsToggleStatus.swift in Sources */,
 				5C2E66C722DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C2E66C122DD941D00FC71AD /* SettingsInteractor.swift in Sources */,

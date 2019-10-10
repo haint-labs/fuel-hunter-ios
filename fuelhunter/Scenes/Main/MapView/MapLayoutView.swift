@@ -35,6 +35,9 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	var calculatedMaxPinWidth: CGFloat = 0
 	var calculatedMaxPinHeight: CGFloat = 0
 
+	var currentMapOffset: CGFloat = 0
+	var zoomOnUserWasDone: Bool = false
+
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
@@ -98,6 +101,11 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
 		}
 
+		if mapView!.userLocation.location != nil {
+			let p = MKMapPoint(mapView!.userLocation.coordinate)
+			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
+		}
+
 		var region = MKCoordinateRegion(r)
 
 		region.span.latitudeDelta = max(0.002, region.span.latitudeDelta)
@@ -116,25 +124,29 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		return MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
 	}
 
+	func zoomOnAllPins() {
+		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
+
+		let region = self.regionFor(mapPoints: actuals)
+		let mapRect = MKMapRectForCoordinateRegion(region: region)
+
+		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: currentMapOffset, right: calculatedMaxPinWidth/2+5), animated: false)
+	}
+
+
 	// MARK: MapLayoutViewDataLogic
 
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat) {
 
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(data)
-//
-//		let region = self.regionFor(mapPoints: data)
-//		let mapRect = MKMapRectForCoordinateRegion(region: region)
-//
-//		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: offsetForMap, right: calculatedMaxPinWidth/2+5), animated: false)
 	}
 
 	func updateMapViewOffset(offset: CGFloat, animated: Bool) {
 
-		let region = self.regionFor(mapPoints: mapView!.annotations as! [MapPoint])
-		let mapRect = MKMapRectForCoordinateRegion(region: region)
+		currentMapOffset = offset
 
-		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: offset, right: calculatedMaxPinWidth/2+5), animated: false)
+		zoomOnAllPins()
 	}
 
 	// MARK: MKMapViewDelegate
@@ -179,5 +191,12 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 		controller?.mapPinWasPressed(view.annotation as! MapPoint)
+	}
+
+	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+		if !zoomOnUserWasDone {
+			zoomOnAllPins()
+			zoomOnUserWasDone = true
+		}
 	}
 }

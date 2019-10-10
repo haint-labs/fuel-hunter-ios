@@ -7,19 +7,41 @@
 //
 
 import UIKit
- 
- class AppSettingsWorker {
-  	
+import CoreLocation
+
+
+class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
+
+	let locationManager = CLLocationManager()
+
   	// MARK: GPS
   	func gpsSwitchWasPressed(_ handler: @escaping (SettingsToggleResult<Bool>) -> Void) {
   		var gpsIsEnabledStatus = self.getGPSIsEnabled()
-  		gpsIsEnabledStatus.toggle()
-  		setGPSEnabled(enabled: gpsIsEnabledStatus)
-		handler(.success(gpsIsEnabledStatus))
-//		handler(.failure("Bool is bad"))
+
+		if gpsIsEnabledStatus == false {
+			locationManager.requestWhenInUseAuthorization()
+			locationManager.delegate = self
+		}
+
+		if CLLocationManager.authorizationStatus() == .denied {
+			handler(.failure("CLLocationManager.authorizationStatus == denied"))
+		} else {
+			gpsIsEnabledStatus.toggle()
+			setGPSEnabled(enabled: gpsIsEnabledStatus)
+			handler(.success(gpsIsEnabledStatus))
+		}
   	}
 
 	func getGPSIsEnabled() -> Bool {
+		if !CLLocationManager.locationServicesEnabled() {
+			return false
+		}
+
+		if CLLocationManager.authorizationStatus() == .denied
+			|| CLLocationManager.authorizationStatus() == .notDetermined {
+			return false
+		}
+
 		return  UserDefaults.standard.bool(forKey: "gps_is_enabled")
 	}
 	
@@ -102,5 +124,13 @@ import UIKit
 	func setFuelTypeToggleStatus(allFuelTypes: AllFuelTypesToogleStatus) {
 		UserDefaults.standard.setStruct(allFuelTypes, forKey: "AllFuelTypesToogleStatus")
 		UserDefaults.standard.synchronize()
+	}
+
+	// MARK: CLLocationManagerDelegate
+
+	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+	{
+    	print("location error is = \(error.localizedDescription)")
+    	setGPSEnabled(enabled: false)
 	}
 }

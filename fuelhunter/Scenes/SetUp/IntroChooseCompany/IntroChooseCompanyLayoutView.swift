@@ -169,9 +169,10 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 	// MARK: FuelCompanyListCellSwitchLogic
 
 	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool) {
-		let indexPath = tableView.indexPath(for: cell)
-		let aData = data[indexPath!.row] as IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem
-		controller?.switchWasPressedFor(companyType: aData.companyType, withState: state)
+		if let indexPath = tableView.indexPath(for: cell) {
+			let aData = data[indexPath.row] as IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem
+			controller?.switchWasPressedFor(companyType: aData.companyType, withState: state)
+		}
 	}
 
   	// MARK: IntroChooseCompanyLayoutViewDataLogic

@@ -92,7 +92,9 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 			cell.controller = self
 			cell.titleLabel.text = aData.title
 			cell.descriptionLabel.text = aData.description
-			cell.aSwitch.isOn = aData.toggleStatus
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+				cell.aSwitch.isOn = aData.toggleStatus
+			}
 			cell.setSwitch(asVisible: aData.shouldShowToggle)
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
@@ -146,10 +148,10 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	// MARK: SettingsCellSwitchLogic 
 
 	func switchWasPressedOnTableViewCell(cell: SettingsListCell) {
-		let indexPath = tableView.indexPath(for: cell)
-		let aData = self.data[indexPath!.row]
-
-		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
+		if let indexPath = tableView.indexPath(for: cell) {
+			let aData = self.data[indexPath.row]
+			controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
+		}
 	}
 
 	// MARK: SettingsViewLayoutViewDataLogic

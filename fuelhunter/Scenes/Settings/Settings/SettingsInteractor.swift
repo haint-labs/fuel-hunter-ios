@@ -60,6 +60,20 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
 
   	// MARK: TODO.
   	func userPressedOnGpsSwitch() {
-  		appSettingsWorker.gpsSwitchWasPressed { result in }
+  		appSettingsWorker.gpsSwitchWasPressed { result in
+  			switch result {
+  				case .success(let data):
+  					// All good. UI was probably up to date.
+					print(data)
+				case .needsSetUp:
+					// Ask for permission?
+					break
+  				case .failure(let error):
+  					// Error. Update UI. Show error.
+  					let request = Settings.SettingsList.Request()
+  					self.getSettingsCellsData(request: request)
+  					print(error)
+  			}
+		}
   	}
 }
