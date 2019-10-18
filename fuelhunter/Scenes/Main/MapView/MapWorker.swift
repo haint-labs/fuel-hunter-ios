@@ -18,7 +18,7 @@ class MapWorker {
 
 		for (_, item) in data.enumerated() {
 			for (subIndex, addressItem) in item.address.enumerated() {
-				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), companyName: item.companyName, companyBigLogoName: item.companyBigLogoName, price: item.price, isPriceCheapest: item.isPriceCheapest, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, distanceInKm: 15))
+				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), companyName: item.companyName, companyBigLogoName: item.companyBigLogoName, companyBigGrayLogoName: item.companyBigGrayLogoName, price: item.price, isPriceCheapest: item.isPriceCheapest, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, distanceInKm: 15))
 			}
 		}
 

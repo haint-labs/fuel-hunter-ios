@@ -13,6 +13,7 @@ struct Company: Equatable, Codable {
 	var name: String
 	var logoName: String
 	var largeLogoName: String
+	var largeGrayLogoName: String
 	var smallLogoName: String
 }
 enum CompanyType: String, Codable {

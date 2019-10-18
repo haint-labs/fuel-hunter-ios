@@ -44,6 +44,7 @@ enum Map {
 				var subId: String // this is the sub-ID -  which is id + address
 				var companyName: String
 				var companyBigLogoName: String
+				var companyBigGrayLogoName: String
 				var price: String
 				var isPriceCheapest: Bool
 				var latitude: Double

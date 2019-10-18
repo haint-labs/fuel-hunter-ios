@@ -10,14 +10,6 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-//enum PushNotificationState: Int {
-//	case type95 = "95 | Benzīns"
-//	case type98 = "98 | Benzīns"
-//	case typeDD = "DD | Dīzeļdegviela"
-//	case typeDDPro = "DD | Pro Dīzeļdegviela"
-//	case typeGas = "Auto gāze"
-//}
-
 extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
 }

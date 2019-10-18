@@ -20,30 +20,23 @@ class PricesMemoryStore: PricesStoreProtocol, PricesStoreUtilityProtocol {
 	static var address6 = Address.init(name: "Uzvaras bulvāris 16", latitude: 56.9361106, longitude: 24.0892882)
 	static var address7 = Address.init(name: "Lucavsalas iela 1, iebrauktuve no sētas puses", latitude: 56.9249891, longitude: 24.1106849)
 	
-	static var companyNeste = Company.init(companyType: .typeNeste, name: "Neste", logoName: "neste_logo", largeLogoName: "neste_big_logo", smallLogoName: "neste_tiny_logo")
-	static var companyCircleK = Company.init(companyType: .typeCircleK, name: "CircleK", logoName: "circle_k_logo", largeLogoName: "circle_k_big_logo", smallLogoName: "circle_k_tiny_logo")
-	static var companyKool = Company.init(companyType: .typeKool, name: "Kool", logoName: "kool_logo", largeLogoName: "kool_big_logo", smallLogoName: "kool_tiny_logo")
-	static var companyLatvijasNafta = Company.init(companyType: .typeLN, name: "Latvijas Nafta", logoName: "ln_logo", largeLogoName: "ln_big_logo", smallLogoName: "ln_tiny_logo")
-	static var companyVirsi = Company.init(companyType: .typeVirsi, name: "Virši", logoName: "virshi_logo", largeLogoName: "virshi_big_logo", smallLogoName: "virshi_tiny_logo")
-	static var companyGotikaAuto = Company.init(companyType: .typeGotikaAuto, name: "Gotika Auto", logoName: "gotika_logo", largeLogoName: "gotika_big_logo", smallLogoName: "gotika_tiny_logo")
-//	static var companyViada = Company.init(companyType: .typeViada, name: "Viada", logoName: "viada_logo")
-//	static var companyAstarte = Company.init(companyType: .typeAstarte, name: "Astarte", logoName: "astarte_logo")
-//	static var companyDinaz = Company.init(companyType: .typeDinaz, name: "Dinaz", logoName: "dinaz_logo")
-//	static var companyLPG = Company.init(companyType: .typeLPG, name: "CircleK", logoName: "lpg_logo")
+	static var companyNeste = Company.init(companyType: .typeNeste, name: "Neste", logoName: "neste_logo", largeLogoName: "neste_big_logo", largeGrayLogoName: "neste_big_gray_logo", smallLogoName: "neste_tiny_logo")
+	static var companyCircleK = Company.init(companyType: .typeCircleK, name: "CircleK", logoName: "circle_k_logo", largeLogoName: "circle_k_big_logo", largeGrayLogoName: "circle_k_big_gray_logo", smallLogoName: "circle_k_tiny_logo")
+	static var companyKool = Company.init(companyType: .typeKool, name: "Kool", logoName: "kool_logo", largeLogoName: "kool_big_logo", largeGrayLogoName: "kool_big_gray_logo", smallLogoName: "kool_tiny_logo")
+	static var companyLatvijasNafta = Company.init(companyType: .typeLN, name: "Latvijas Nafta", logoName: "ln_logo", largeLogoName: "ln_big_logo", largeGrayLogoName: "ln_big_gray_logo", smallLogoName: "ln_tiny_logo")
+	static var companyVirsi = Company.init(companyType: .typeVirsi, name: "Virši", logoName: "virshi_logo", largeLogoName: "virshi_big_logo", largeGrayLogoName: "virshi_big_gray_logo", smallLogoName: "virshi_tiny_logo")
+	static var companyGotikaAuto = Company.init(companyType: .typeGotikaAuto, name: "Gotika Auto", logoName: "gotika_logo", largeLogoName: "gotika_big_logo", largeGrayLogoName: "gotika_big_gray_logo", smallLogoName: "gotika_tiny_logo")
+
 
   	static var prices = [
     	Price(id: "1", company: companyVirsi, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address6]),
-//    	Price(id: "2", company: companyAstarte, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .typeDD, address: [address1, address4, address5]),
     	Price(id: "3", company: companyKool, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type95, address: [address2]),
     	Price(id: "91", company: companyKool, city: "Rīga", price:"1.013", isPriceCheapest: true, fuelType: .type95, address: [address1]),
     	Price(id: "4", company: companyLatvijasNafta, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address4]),
     	Price(id: "5", company: companyCircleK, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address3]),
-//    	Price(id: "6", company: companyViada, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .type95, address: [address1, address5]),
     	Price(id: "7", company: companyNeste, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address7, address2]),
     	Price(id: "8", company: companyGotikaAuto, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address5]),
-//    	Price(id: "9", company: companyDinaz, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .type95, address: [address1, address5]),
     	Price(id: "90", company: companyKool, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type98, address: [address1]),
-//    	Price(id: "10", company: companyLPG, city: "Rīga", price:"1.012", isPriceCheapest: true, gasType: .typeGas, address: [address1, address4, address3])
   	]
   
   	// MARK: - CRUD operations - Optional error

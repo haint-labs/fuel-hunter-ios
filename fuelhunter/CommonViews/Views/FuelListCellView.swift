@@ -317,13 +317,11 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
 		extendedAddressLabel.text = mapPointData.address
 		extendedTitleLabel.text = mapPointData.companyName
-		iconImageView.image = UIImage.init(named: mapPointData.imageName)
+		iconImageView.image = UIImage.init(named: mapPointData.companyBigImageName)
 		if mapPointData.priceIsCheapest {
 			priceLabel.textColor = UIColor.init(named: "CheapPriceColor")
-//			extendedPriceLabel.textColor = UIColor.init(named: "CheapPriceColor")
 		} else {
 			priceLabel.textColor = UIColor.init(named: "TitleColor")
-//			extendedPriceLabel.textColor = UIColor.init(named: "TitleColor")
 		}
 		
 		mapInfoPriceView.setAsType(.typePrice, withText: mapPointData.priceText)

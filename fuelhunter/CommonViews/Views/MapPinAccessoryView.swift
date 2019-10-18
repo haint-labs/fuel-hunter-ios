@@ -91,41 +91,19 @@ class MapPinAccessoryView: UIView {
 
 		priceLabel.font = Font.init(.medium, size: .size3).font
 		distanceLabel.font = Font.init(.normal, size: .size5).font
+	}
 
-
-//		button.translatesAutoresizingMaskIntoConstraints = false
-//		iconImageView.translatesAutoresizingMaskIntoConstraints = false
-//		label.translatesAutoresizingMaskIntoConstraints = false
-//		accessoryIconImageView.translatesAutoresizingMaskIntoConstraints = false
-//
-//		button.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//		button.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-//		button.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//		button.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//
-//		iconImageView.heightAnchor.constraint(equalToConstant: 13).isActive = true
-//		iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//		iconImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).isActive = true
-//
-//		label.topAnchor.constraint(equalTo: topAnchor, constant: 4).isActive = true
-//		label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-//		label.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
-//		labelRightAnchorConstraint = label.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
-//
-//		accessoryIconImageView.heightAnchor.constraint(equalToConstant: 13).isActive = true
-//		accessoryIconImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-//		accessoryIconImageView.leftAnchor.constraint(equalTo: label.rightAnchor, constant: 10).isActive = true
-//		accessoryImageRightAnchorConstraint = accessoryIconImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12)
-//
-//		label.isUserInteractionEnabled = false
-//
-//		button.backgroundColor = .white
-//		button.layer.borderColor = UIColor.init(named: "TitleColor")?.cgColor
-//		button.layer.borderWidth = 1
-//		button.layer.cornerRadius = 6
-//
-//		label.font = Font.init(.normal, size: .size3).font
-//
-//		button.addTarget(self, action: NSSelectorFromString("buttonPressed"), for: .touchUpInside)
+	func setAsSelected(_ selected: Bool) {
+		if selected == true {
+			priceLabel.textColor = UIColor.init(named: "TitleColor")
+			distanceLabel.textColor = UIColor.init(named: "SubTitleColor")
+			icon.isHighlighted = true
+//			icon.alpha = 1
+		} else {
+			priceLabel.textColor = UIColor.init(named: "InactiveTextColor")
+			distanceLabel.textColor = UIColor.init(named: "InactiveTextColor")
+			icon.isHighlighted = false
+//			icon.alpha = 0.5
+		}
 	}
 }

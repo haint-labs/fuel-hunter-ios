@@ -60,7 +60,7 @@ class FuelListPresenter: FuelListPresentationLogic {
     	
     	for aPrice in prices {
     		if aPrice.fuelType == type {
-				let displayedPrice = FuelList.FetchPrices.ViewModel.DisplayedPrice.init(id: aPrice.id, companyName: aPrice.company.name, companyLogoName: aPrice.company.logoName, companyBigLogoName: aPrice.company.largeLogoName, price: aPrice.price, isPriceCheapest: aPrice.isPriceCheapest, fuelType: aPrice.fuelType, addressDescription: aPrice.addressDescription, address: aPrice.address, city: aPrice.city)
+				let displayedPrice = FuelList.FetchPrices.ViewModel.DisplayedPrice.init(id: aPrice.id, companyName: aPrice.company.name, companyLogoName: aPrice.company.logoName, companyBigLogoName: aPrice.company.largeLogoName, companyBigGrayLogoName: aPrice.company.largeGrayLogoName, price: aPrice.price, isPriceCheapest: aPrice.isPriceCheapest, fuelType: aPrice.fuelType, addressDescription: aPrice.addressDescription, address: aPrice.address, city: aPrice.city)
 				pricesToReturn.append(displayedPrice)
 			}
 		}

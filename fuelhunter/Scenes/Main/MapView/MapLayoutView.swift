@@ -40,6 +40,8 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 	var myRoute: MKRoute?
 
+	var currentActivePin: MapPoint?
+
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
@@ -136,49 +138,49 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	}
 
 
-	func doTheDrawingOfRoute(forPin pin: MapPoint) {
-		let directionsRequest = MKDirections.Request()
-
-		let point1 = mapView.userLocation
-
-		let point2 = pin
-
-		let markTaipei = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point1.coordinate.latitude, point1.coordinate.longitude), addressDictionary: nil)
-
-		let markChungli = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point2.coordinate.latitude, point2.coordinate.longitude), addressDictionary: nil)
-
-		directionsRequest.source = MKMapItem(placemark: markChungli)
-		directionsRequest.destination = MKMapItem(placemark: markTaipei)
-
-		directionsRequest.transportType = MKDirectionsTransportType.automobile
-
-		let directions = MKDirections(request: directionsRequest)
-
-		directions.calculate(completionHandler: {
-
-			response, error in
-
-			if error == nil {
-
-				self.myRoute = response!.routes[0] as MKRoute
-
-				self.mapView.addOverlay(self.myRoute!.polyline)
-
-			}
-		})
-	}
-
-
-	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) ->MKOverlayRenderer {
-
-		let myLineRenderer = MKPolylineRenderer(polyline: self.myRoute!.polyline)
-
-		myLineRenderer.strokeColor = UIColor.red
-
-		myLineRenderer.lineWidth = 3
-
-		return myLineRenderer
-	}
+//	func doTheDrawingOfRoute(forPin pin: MapPoint) {
+//		let directionsRequest = MKDirections.Request()
+//
+//		let point1 = mapView.userLocation
+//
+//		let point2 = pin
+//
+//		let markTaipei = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point1.coordinate.latitude, point1.coordinate.longitude), addressDictionary: nil)
+//
+//		let markChungli = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point2.coordinate.latitude, point2.coordinate.longitude), addressDictionary: nil)
+//
+//		directionsRequest.source = MKMapItem(placemark: markChungli)
+//		directionsRequest.destination = MKMapItem(placemark: markTaipei)
+//
+//		directionsRequest.transportType = MKDirectionsTransportType.automobile
+//
+//		let directions = MKDirections(request: directionsRequest)
+//
+//		directions.calculate(completionHandler: {
+//
+//			response, error in
+//
+//			if error == nil {
+//
+//				self.myRoute = response!.routes[0] as MKRoute
+//
+//				self.mapView.addOverlay(self.myRoute!.polyline)
+//
+//			}
+//		})
+//	}
+//
+//
+//	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) ->MKOverlayRenderer {
+//
+//		let myLineRenderer = MKPolylineRenderer(polyline: self.myRoute!.polyline)
+//
+//		myLineRenderer.strokeColor = UIColor.red
+//
+//		myLineRenderer.lineWidth = 3
+//
+//		return myLineRenderer
+//	}
 
 	// MARK: MapLayoutViewDataLogic
 
@@ -219,26 +221,56 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		   let mapPointAnnotation = annotationView.annotation as? MapPoint {
 			annotationView.canShowCallout = false
 			let mapPinAccessory = MapPinAccessoryView.init()
-			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.imageName)
+			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.companyBigGrayImageName)
+			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.companyBigImageName)
 			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
 			mapPinAccessory.distanceLabel.text = "\(mapPointAnnotation.distance) km"
 			mapPinAccessory.layoutIfNeeded()
+			mapPinAccessory.tag = 333
 
 			calculatedMaxPinWidth = max(mapPinAccessory.frame.width, calculatedMaxPinWidth)
 			calculatedMaxPinHeight = max(mapPinAccessory.frame.height, calculatedMaxPinHeight)
 
 			annotationView.layer.anchorPoint = CGPoint.init(x: 0.5, y: 1)
 			annotationView.addSubview(mapPinAccessory)
+
 			annotationView.frame = mapPinAccessory.frame
+
+			if let currentActivePin = currentActivePin {
+				if mapPointAnnotation == currentActivePin {
+					mapPinAccessory.setAsSelected(true)
+				} else {
+					mapPinAccessory.setAsSelected(false)
+				}
+			}
 		}
 
 		return annotationView
 	}
 
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+		guard !(view.annotation is MKUserLocation) else { return }
+
 		controller?.mapPinWasPressed(view.annotation as! MapPoint)
 
-		doTheDrawingOfRoute(forPin: view.annotation as! MapPoint)
+//		doTheDrawingOfRoute(forPin: view.annotation as! MapPoint)
+	}
+
+	func selectedPin(_ selectedPin: MapPoint) {
+		currentActivePin = selectedPin
+
+		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
+
+		for i in 0 ..< actuals.count {
+			if let annotationView = mapView.view(for: actuals[i]) {
+				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
+				if actuals[i] == currentActivePin {
+					mapPinAccessoryView?.setAsSelected(true)
+				} else {
+					mapPinAccessoryView?.setAsSelected(false)
+				}
+			}
+		}
 	}
 
 	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {

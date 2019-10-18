@@ -67,8 +67,7 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
   	func createMapPoints(from data: [Map.MapData.ViewModel.DisplayedMapPoint]) -> [MapPoint] {
   		let mapPoints = data.map { MapPoint.init(priceId: $0.id, title: $0.companyName, companyName: $0.companyName, address: $0.addressName, coordinate:
-  			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), imageName: $0.companyBigLogoName,
-			priceText: $0.price, distance: $0.distanceInKm, priceIsCheapest: $0.isPriceCheapest) }
+  			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), companyBigImageName: $0.companyBigLogoName, companyBigGrayImageName: $0.companyBigGrayLogoName, priceText: $0.price, distance: $0.distanceInKm, priceIsCheapest: $0.isPriceCheapest) }
 
   		return mapPoints
   	}

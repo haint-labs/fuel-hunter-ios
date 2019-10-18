@@ -101,6 +101,9 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	func updateData(to priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPoint: MapPoint) {
 
 		if let aData = router?.dataStore?.dataArray[router?.dataStore?.selectedDataIndex ?? 0] {
+
+			layoutView.selectedPin(mapPoint)
+
 			if router?.dataStore?.dataArray.count == 1 {
 				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .single)
 			} else {

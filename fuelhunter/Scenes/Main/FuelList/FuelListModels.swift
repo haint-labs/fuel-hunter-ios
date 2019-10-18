@@ -27,6 +27,7 @@ enum FuelList {
 				var companyName: String
 				var companyLogoName: String
 				var companyBigLogoName: String
+				var companyBigGrayLogoName: String
 				var price: String
 				var isPriceCheapest: Bool
 				var fuelType: FuelType
