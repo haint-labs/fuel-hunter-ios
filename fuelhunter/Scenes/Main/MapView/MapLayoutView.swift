@@ -38,6 +38,8 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	var currentMapOffset: CGFloat = 0
 	var zoomOnUserWasDone: Bool = false
 
+	var myRoute: MKRoute?
+
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
@@ -134,6 +136,50 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	}
 
 
+	func doTheDrawingOfRoute(forPin pin: MapPoint) {
+		let directionsRequest = MKDirections.Request()
+
+		let point1 = mapView.userLocation
+
+		let point2 = pin
+
+		let markTaipei = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point1.coordinate.latitude, point1.coordinate.longitude), addressDictionary: nil)
+
+		let markChungli = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point2.coordinate.latitude, point2.coordinate.longitude), addressDictionary: nil)
+
+		directionsRequest.source = MKMapItem(placemark: markChungli)
+		directionsRequest.destination = MKMapItem(placemark: markTaipei)
+
+		directionsRequest.transportType = MKDirectionsTransportType.automobile
+
+		let directions = MKDirections(request: directionsRequest)
+
+		directions.calculate(completionHandler: {
+
+			response, error in
+
+			if error == nil {
+
+				self.myRoute = response!.routes[0] as MKRoute
+
+				self.mapView.addOverlay(self.myRoute!.polyline)
+
+			}
+		})
+	}
+
+
+	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) ->MKOverlayRenderer {
+
+		let myLineRenderer = MKPolylineRenderer(polyline: self.myRoute!.polyline)
+
+		myLineRenderer.strokeColor = UIColor.red
+
+		myLineRenderer.lineWidth = 3
+
+		return myLineRenderer
+	}
+
 	// MARK: MapLayoutViewDataLogic
 
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat) {
@@ -191,6 +237,8 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 	func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 		controller?.mapPinWasPressed(view.annotation as! MapPoint)
+
+		doTheDrawingOfRoute(forPin: view.annotation as! MapPoint)
 	}
 
 	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {

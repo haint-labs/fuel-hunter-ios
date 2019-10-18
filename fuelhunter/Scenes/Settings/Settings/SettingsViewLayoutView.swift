@@ -92,9 +92,20 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 			cell.controller = self
 			cell.titleLabel.text = aData.title
 			cell.descriptionLabel.text = aData.description
-			DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+
+			cell.aSwitch.isUserInteractionEnabled = true
+
+			// To make so that cell is pressed in all places, and switch is just for the looks.
+			// Pressing on it - will go to iOS settings, and when user comes back - it will reflect correct value.
+			if aData.settingsListCellType == .gpsCell {
+				cell.aSwitch.isUserInteractionEnabled = false
 				cell.aSwitch.isOn = aData.toggleStatus
+			} else {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+					cell.aSwitch.isOn = aData.toggleStatus
+				}
 			}
+
 			cell.setSwitch(asVisible: aData.shouldShowToggle)
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
@@ -123,7 +134,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 		let aData = self.data[indexPath.row]
 		switch aData.settingsListCellType {
 			case .gpsCell:
-				break
+				controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
 			case .pushNotifCell:
 				break
 			default:

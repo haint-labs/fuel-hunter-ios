@@ -41,14 +41,31 @@ class SettingsPresenter: SettingsPresentationLogic {
   			descriptionString.append("\(response.notifCentsValue) centiem.")
   		}
 
-		let array =  [
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "Atzīmē, kuras uzpildes kompānijas vēlies redzēt sarakstā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "Aktuālais degvielas veids", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .gpsCell, title: "GPS", description: "Izmantot GPS, lai attēlotu lētākās cenas Tavas lokācijas tuvumā", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "Paziņojumi", description: descriptionString, shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "Aplikācijas valoda", description: "Izmaini aplikācijas valodu", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false),
-			Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
-			]
+
+		let settingsItem1 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "Atzīmē, kuras uzpildes kompānijas vēlies redzēt sarakstā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+
+		let settingsItem2 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "Aktuālais degvielas veids", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+
+		let settingsItem3 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .gpsCell, title: "GPS", description: "Izmantot GPS, lai attēlotu lētākās cenas Tavas lokācijas tuvumā", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus)
+
+		let settingsItem4 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "Paziņojumi", description: descriptionString, shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus)
+
+		let settingsItem5 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "Aplikācijas valoda", description: "Izmaini aplikācijas valodu", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+
+		let settingsItem6 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+
+
+		var array = [settingsItem1, settingsItem2]
+
+		// Only if gps is disabled. This will serve as a "link" to settings, to enable it.
+//		if gpsIsEnabledStatus == false {
+			array.append(settingsItem3)
+//		}
+
+		array.append(settingsItem4)
+		array.append(settingsItem5)
+		array.append(settingsItem6)
+
 
     	let viewModel = Settings.SettingsList.ViewModel(displayedSettingsCells: array)
     	viewController?.displaySettingsList(viewModel: viewModel)

@@ -24,7 +24,7 @@ protocol FuelTypeChooseListDataStore {
 
 class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeChooseListDataStore {
   	var presenter: FuelTypeChooseListPresentationLogic?
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared
   	//var name: String = ""
 
   	// MARK: FuelTypeChooseListBusinessLogic

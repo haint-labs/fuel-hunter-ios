@@ -8,28 +8,62 @@
 
 import UIKit
 import CoreLocation
+import UserNotifications
 
+//enum PushNotificationState: Int {
+//	case type95 = "95 | Benzīns"
+//	case type98 = "98 | Benzīns"
+//	case typeDD = "DD | Dīzeļdegviela"
+//	case typeDDPro = "DD | Pro Dīzeļdegviela"
+//	case typeGas = "Auto gāze"
+//}
+
+extension Notification.Name {
+    static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
+}
 
 class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
+	static let shared = AppSettingsWorker()
+
+	var gpsSwitchHandler: ((LocationToggleResult<Any>) -> Void)?
+
 	let locationManager = CLLocationManager()
 
+	var notificationsAuthorisationStatus: UNAuthorizationStatus = .notDetermined
+
+	private override init() {
+		super.init()
+		locationManager.delegate = self
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+
+		refreshCurrentNotificationsStatus {}
+	}
+
+	// MARK: Notifications
+
+	@objc func applicationDidBecomeActive() {
+		refreshCurrentNotificationsStatus {
+			DispatchQueue.main.asyncAfter(deadline: .now()) {
+				NotificationCenter.default.post(name: .applicationDidBecomeActiveFromAppSettings, object: nil)
+			}
+		}
+	}
+
   	// MARK: GPS
-  	func gpsSwitchWasPressed(_ handler: @escaping (SettingsToggleResult<Bool>) -> Void) {
-  		var gpsIsEnabledStatus = self.getGPSIsEnabled()
+  	// Pressed from Intro and from Settings
+  	func userPressedButtonToGetGPSAccess(_ handler: @escaping (LocationToggleResult<Any>) -> Void) {
 
-		if gpsIsEnabledStatus == false {
+  		if CLLocationManager.authorizationStatus() == .notDetermined
+		{
 			locationManager.requestWhenInUseAuthorization()
-			locationManager.delegate = self
+			gpsSwitchHandler = handler;
+
+			return;
 		}
 
-		if CLLocationManager.authorizationStatus() == .denied {
-			handler(.failure("CLLocationManager.authorizationStatus == denied"))
-		} else {
-			gpsIsEnabledStatus.toggle()
-			setGPSEnabled(enabled: gpsIsEnabledStatus)
-			handler(.success(gpsIsEnabledStatus))
-		}
+		handler(.secondTime)
   	}
 
 	func getGPSIsEnabled() -> Bool {
@@ -42,36 +76,50 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 			return false
 		}
 
-		return  UserDefaults.standard.bool(forKey: "gps_is_enabled")
-	}
-	
-	func setGPSEnabled(enabled: Bool) {
-		UserDefaults.standard.set(enabled, forKey: "gps_is_enabled")
-		UserDefaults.standard.synchronize()
+		return true
 	}
 	
 	// MARK: Notif
-  	func notifSwitchWasPressed(_ handler: @escaping (SettingsToggleResult<Bool>) -> Void) {
-  		
-  		var notifIsEnabledStatus = self.getNotifIsEnabled()
-  		
-  		if notifIsEnabledStatus == false {
-  			handler(.needsSetUp)
-  		} else {
-			notifIsEnabledStatus.toggle()
-			setNotifEnabled(enabled: notifIsEnabledStatus)
-			handler(.success(notifIsEnabledStatus))
-//			handler(.failure("Bool is bad"))
+
+	func refreshCurrentNotificationsStatus(_ handler: @escaping () -> Void) {
+		UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+			self?.notificationsAuthorisationStatus = settings.authorizationStatus
+			print(settings)
+			handler()
+		}
+	}
+
+	// Pressed from intro and from settings.
+  	func notifSwitchWasPressed(_ handler: @escaping () -> Void) {
+
+		// If status is not determined - request auth.
+		// Otherwise, if status is accepted -> turn off |  If declined, then open settings
+
+		if notificationsAuthorisationStatus == .notDetermined {
+			UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+				[weak self] granted, error in
+				
+				// First time, getting access and then set to true if authorized.
+				self?.refreshCurrentNotificationsStatus {
+					if self?.notificationsAuthorisationStatus == .authorized { self?.setNotifEnabled(enabled: true) }
+					DispatchQueue.main.asyncAfter(deadline: .now()) { handler() }
+				}
+			}
+		} else {
+			if notificationsAuthorisationStatus == .authorized {
+				var notifEnabled = getNotifIsEnabled()
+				notifEnabled.toggle()
+				setNotifEnabled(enabled: notifEnabled)
+			}
+			DispatchQueue.main.asyncAfter(deadline: .now()) { handler() }
 		}
   	}
 
 	func getNotifIsEnabled() -> Bool {
-//		UNUserNotificationCenter.current().getNotificationSettings(){ (settings) in
-//			settings.sou
-//		}
-		return  UserDefaults.standard.bool(forKey: "notif_is_enabled")
+		if notificationsAuthorisationStatus == .denied { return false }
+		return UserDefaults.standard.bool(forKey: "notif_is_enabled")
 	}
-	
+
 	func setNotifEnabled(enabled: Bool) {
 		UserDefaults.standard.set(enabled, forKey: "notif_is_enabled")
 		UserDefaults.standard.synchronize()
@@ -82,7 +130,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	static let maximumNotifCents = 10
 	
 	func getStoredNotifCentsCount() -> Int {
-		return  max(AppSettingsWorker.minimumNotifCents, min(AppSettingsWorker.maximumNotifCents,  UserDefaults.standard.integer(forKey: "notif_stored_cents_count")))
+		return max(AppSettingsWorker.minimumNotifCents, min(AppSettingsWorker.maximumNotifCents,  UserDefaults.standard.integer(forKey: "notif_stored_cents_count")))
 	}
 	
 	func setStoredNotifCentsCount(count: Int) {
@@ -128,9 +176,20 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 	// MARK: CLLocationManagerDelegate
 
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+
+		if let tmpGpsSwitchHandler = gpsSwitchHandler {
+			tmpGpsSwitchHandler(.firstTime)
+			gpsSwitchHandler = nil
+		}
+	}
+
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
 	{
-    	print("location error is = \(error.localizedDescription)")
-    	setGPSEnabled(enabled: false)
+		if let tmpGpsSwitchHandler = gpsSwitchHandler {
+			tmpGpsSwitchHandler(.firstTime)
+
+			gpsSwitchHandler = nil
+		}
 	}
 }

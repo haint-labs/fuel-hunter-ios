@@ -25,7 +25,7 @@ protocol PushNotifSetupDataStore {
 
 class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataStore {
   	var presenter: PushNotifSetupPresentationLogic?
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared
 	var centsValue: Int = 0
 
 	// MARK: PushNotifSetupBusinessLogic
@@ -46,6 +46,7 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
   	}
 
   	func cancelButtonPressed() {
+  		appSettingsWorker.setNotifEnabled(enabled: false)
   		presenter?.returnBackToPreviousViewController()
   	}
 

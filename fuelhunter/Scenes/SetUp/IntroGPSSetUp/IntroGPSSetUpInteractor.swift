@@ -18,14 +18,12 @@ protocol IntroGPSSetUpBusinessLogic {
 }
 
 protocol IntroGPSSetUpDataStore {
-  	//var name: String { get set }
 }
 
 class IntroGPSSetUpInteractor: IntroGPSSetUpBusinessLogic, IntroGPSSetUpDataStore {
   	var presenter: IntroGPSSetUpPresentationLogic?
   	var worker: IntroGPSSetUpWorker?
-  	var appSettingsWorker = AppSettingsWorker()
-  	//var name: String = ""
+  	var appSettingsWorker = AppSettingsWorker.shared
 
   	// MARK: IntroGPSSetUpBusinessLogic
 
@@ -37,8 +35,8 @@ class IntroGPSSetUpInteractor: IntroGPSSetUpBusinessLogic, IntroGPSSetUpDataStor
   	}
 
   	func userAskedForGPSAccess(request: IntroGPSSetUp.Something.Request) {
-		appSettingsWorker.gpsSwitchWasPressed { result in 
-				ScenesManager.shared.advanceAppSceneState()
+		appSettingsWorker.userPressedButtonToGetGPSAccess { result in 
+			ScenesManager.shared.advanceAppSceneState()
 		}
   	}
 }

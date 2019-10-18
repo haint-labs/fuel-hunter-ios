@@ -24,7 +24,7 @@ protocol IntroNotifSetUpDataStore {
 class IntroNotifSetUpInteractor: IntroNotifSetUpBusinessLogic, IntroNotifSetUpDataStore {
   	var presenter: IntroNotifSetUpPresentationLogic?
   	var worker: IntroNotifSetUpWorker?
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared
   	//var name: String = ""
 
   	// MARK: IntroNotifSetUpBusinessLogic
@@ -38,22 +38,16 @@ class IntroNotifSetUpInteractor: IntroNotifSetUpBusinessLogic, IntroNotifSetUpDa
   	}
 
   	func userAskedForNotifAccess(request: IntroNotifSetUp.Something.Request) {
-			appSettingsWorker.notifSwitchWasPressed { result in 
-				switch result {
-  				case .success(let data):
-  					// All good. 
-					ScenesManager.shared.advanceAppSceneState()
-					print(data)
-				case .needsSetUp:
-					let storedCentsCount = self.appSettingsWorker.getStoredNotifCentsCount()
-					let response = IntroNotifSetUp.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount)
-					self.presenter?.showNotifSetUp(response: response)
-  				case .failure(let error):
-  					// Error. Update UI. Show error.
-//  					let request = Settings.SettingsList.Request()
-//  					self.getSettingsCellsData(request: request)
-  					print(error)
-  			}
+  		appSettingsWorker.notifSwitchWasPressed { [weak self] in
+  			// If we have auth
+			if self?.appSettingsWorker.notificationsAuthorisationStatus == .authorized
+  				&& self?.appSettingsWorker.getNotifIsEnabled() == true {
+				let storedCentsCount = self?.appSettingsWorker.getStoredNotifCentsCount()
+				let response = IntroNotifSetUp.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount ?? 1)
+				self?.presenter?.showNotifSetUp(response: response)
+			} else {
+				ScenesManager.shared.advanceAppSceneState()
+			}
 		}
   	}
 }

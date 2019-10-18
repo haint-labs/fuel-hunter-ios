@@ -25,11 +25,12 @@ protocol SettingsDataStore {
 class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	var presenter: SettingsPresentationLogic?
   	var worker = SettingsWorker()
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared
 
 	// MARK: SettingsBusinessLogic
 
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
+
 		let gpsIsEnabledStatus = appSettingsWorker.getGPSIsEnabled()
 		let notifIsEnabledStatus = appSettingsWorker.getNotifIsEnabled()
 		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
@@ -40,40 +41,39 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	}
 
   	func userPressedOnNotifSwitch() {
-  		appSettingsWorker.notifSwitchWasPressed { result in
-  			switch result {
-  				case .success(let data):
-  					// All good. UI was probably up to date.
-					print(data)
-				case .needsSetUp:
-					let storedCentsCount = self.appSettingsWorker.getStoredNotifCentsCount()
-					let response = Settings.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount)
-					self.presenter?.showNotifSetUp(response: response)
-  				case .failure(let error):
-  					// Error. Update UI. Show error.
-  					let request = Settings.SettingsList.Request()
-  					self.getSettingsCellsData(request: request)
-  					print(error)
-  			}
+  		appSettingsWorker.notifSwitchWasPressed { [weak self] in
+  			// If we have authorised, then we can work with our set Up.
+  			if self?.appSettingsWorker.notificationsAuthorisationStatus == .authorized {
+  				// This is already toggled in notifSwitchWasPressed.  So, then we just do set up view
+				if self?.appSettingsWorker.getNotifIsEnabled() == true {
+					let storedCentsCount = self?.appSettingsWorker.getStoredNotifCentsCount()
+					let response = Settings.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount ?? 1)
+					self?.presenter?.showNotifSetUp(response: response)
+				// We disabled, so simply reload table view.
+				} else {
+						let request = Settings.SettingsList.Request()
+						self?.getSettingsCellsData(request: request)
+				}
+			} else {
+				// This case it will always return as disabled, and so we only have to open settings and reload table view (to show it turned off if it was on.)
+				UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+				let request = Settings.SettingsList.Request()
+				self?.getSettingsCellsData(request: request)
+			}
 		}
   	}
 
   	// MARK: TODO.
   	func userPressedOnGpsSwitch() {
-  		appSettingsWorker.gpsSwitchWasPressed { result in
+  		appSettingsWorker.userPressedButtonToGetGPSAccess { result in
   			switch result {
-  				case .success(let data):
-  					// All good. UI was probably up to date.
-					print(data)
-				case .needsSetUp:
-					// Ask for permission?
-					break
-  				case .failure(let error):
-  					// Error. Update UI. Show error.
-  					let request = Settings.SettingsList.Request()
-  					self.getSettingsCellsData(request: request)
-  					print(error)
-  			}
+  				case .firstTime:
+					// All good, but reload data.
+					let request = Settings.SettingsList.Request()
+					self.getSettingsCellsData(request: request)
+				case .secondTime:
+					UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+			}
 		}
   	}
 }

@@ -23,7 +23,7 @@ protocol IntroChooseCompanyDataStore {
 
 class IntroChooseCompanyInteractor: IntroChooseCompanyBusinessLogic, IntroChooseCompanyDataStore {
   	var presenter: IntroChooseCompanyPresentationLogic?
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared;
   	//var name: String = ""
 
   	// MARK: IntroChooseCompanyBusinessLogic

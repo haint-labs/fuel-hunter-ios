@@ -37,11 +37,18 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 
   	// MARK: View lifecycle
 
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .applicationDidBecomeActiveFromAppSettings, object: nil)
+	}
+
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.title = "Iestatījumi"
     	self.view.backgroundColor = .white
     	setUpView()
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive),
+    		name: .applicationDidBecomeActiveFromAppSettings, object: nil)
   	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +111,11 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
   		layoutView.updateData(data: viewModel.displayedSettingsCells)
   	}
+
+  	@objc func applicationDidBecomeActive() {
+		getSettingsCellsData()
+	}
+
 
   	// MARK: PushNotifReturnUpdateDataLogic
 

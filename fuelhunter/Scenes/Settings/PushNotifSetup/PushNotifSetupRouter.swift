@@ -33,7 +33,6 @@ class PushNotifSetupRouter: NSObject, PushNotifSetupRoutingLogic, PushNotifSetup
 	// MARK: Routing
 
 	func dismissCurrentViewController() {
-		previousViewController?.updateData()
-		viewController?.dismiss(animated: true, completion: { })
+		viewController?.dismiss(animated: true, completion: { [weak self] in self?.previousViewController?.updateData() })
 	}
 }

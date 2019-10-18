@@ -23,7 +23,7 @@ protocol CompaniesChooseListDataStore {
 
 class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, CompaniesChooseListDataStore {
   	var presenter: CompaniesChooseListPresentationLogic?
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared
   	//var name: String = ""
 
   	// MARK: CompaniesChooseListBusinessLogic

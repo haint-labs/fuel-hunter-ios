@@ -13,6 +13,11 @@ enum SettingsToggleResult<Value> {
 	case failure(String)
 }
 
+enum LocationToggleResult<Value> {
+	case firstTime
+	case secondTime
+}
+
 
 
 //extension ValidationError: LocalizedError {

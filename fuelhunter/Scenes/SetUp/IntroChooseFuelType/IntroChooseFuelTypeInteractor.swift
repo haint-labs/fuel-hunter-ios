@@ -23,7 +23,7 @@ protocol IntroChooseFuelTypeDataStore {
 
 class IntroChooseFuelTypeInteractor: IntroChooseFuelTypeBusinessLogic, IntroChooseFuelTypeDataStore {
   	var presenter: IntroChooseFuelTypePresentationLogic?
-  	var appSettingsWorker = AppSettingsWorker()
+  	var appSettingsWorker = AppSettingsWorker.shared
   	//var name: String = ""
 
   	// MARK: IntroChooseFuelTypeBusinessLogic
