@@ -25,6 +25,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	var tempYOffset: CGFloat = 0
 	var yOffSetConstraint: NSLayoutConstraint!
 
+	var draggedOffset: CGFloat = 0
+
   	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -82,15 +84,51 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
         layoutView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
 
 		fuelCellView = FuelListCellView.init(frame: CGRect.init(x: 0, y: 100, width: self.view.frame.width, height: 100))
+
 		fuelCellView.safeLayoutBottomInset = self.view.safeAreaInsets.bottom
 		self.view.addSubview(fuelCellView)
-		
+
+		let panGesture = UIPanGestureRecognizer(target: self, action: #selector(fuelCellViewWasDragged(_:)))
+		fuelCellView.addGestureRecognizer(panGesture)
+
 		yOffSetConstraint = fuelCellView.topAnchor.constraint(equalTo: self.view.topAnchor)
 		yOffSetConstraint.isActive = true
 		fuelCellView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
 		fuelCellView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
 	}
 
+	@objc func fuelCellViewWasDragged(_ sender: UIPanGestureRecognizer) {
+//		if(sender.state == UIGestureRecognizer.State.began)
+//		{
+//			layoutView.layer.removeAllAnimations()
+//		}
+
+		if(sender.state == UIGestureRecognizer.State.ended)
+		{
+//			UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
+			let duration: TimeInterval = TimeInterval(max(0.05, min(0.3, draggedOffset/100)))
+
+//			print(duration)
+
+			UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseInOut], animations: {
+				self.view.layoutIfNeeded()
+				self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
+				self.view.layoutIfNeeded()
+
+				self.layoutView.updateMapViewOffset(offset: self.view.frame.height - self.yOffSetConstraint.constant - self.view.safeAreaInsets.bottom, animated: true)
+			}, completion: { success in })
+		} else {
+
+			let translation = sender.translation(in: self.view)
+			self.yOffSetConstraint.constant = self.yOffSetConstraint.constant + translation.y/2
+			sender.setTranslation(CGPoint.zero, in: self.view)
+			layoutView.updateMapViewOffset(offset: self.view.frame.height - self.yOffSetConstraint.constant - self.view.safeAreaInsets.bottom, animated: false)
+
+			draggedOffset = abs((self.view.frame.height - self.fuelCellView.frame.height) - (self.yOffSetConstraint.constant))
+		}
+
+	}
   	// MARK: Functions
 
   	func doSomething() {
@@ -116,8 +154,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 				}
 			}
 		}
-
-//		fuelCellView.setUpConstraintsAsBottomView()
 	}
 	
   	func displaySomething(viewModel: Map.MapData.ViewModel) {
@@ -140,7 +176,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 			self.view.layoutIfNeeded()
 		}
 
-		self.layoutView.updateMapViewOffset(offset: self.fuelCellView.frame.height-self.view.safeAreaInsets.bottom, animated: true)
+		self.layoutView.updateMapViewOffset(offset: self.view.frame.height - self.yOffSetConstraint.constant - self.view.safeAreaInsets.bottom, animated: true)
   	}
   	
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol

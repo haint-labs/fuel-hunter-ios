@@ -128,13 +128,13 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		return MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
 	}
 
-	func zoomOnAllPins() {
+	func zoomOnAllPins(animated: Bool) {
 		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
 
 		let region = self.regionFor(mapPoints: actuals)
 		let mapRect = MKMapRectForCoordinateRegion(region: region)
 
-		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: currentMapOffset, right: calculatedMaxPinWidth/2+5), animated: false)
+		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: currentMapOffset, right: calculatedMaxPinWidth/2+5), animated: animated)
 	}
 
 
@@ -194,7 +194,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 		currentMapOffset = offset
 
-		zoomOnAllPins()
+		zoomOnAllPins(animated: animated)
 	}
 
 	// MARK: MKMapViewDelegate
@@ -225,6 +225,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.companyBigImageName)
 			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
 			mapPinAccessory.distanceLabel.text = "\(mapPointAnnotation.distance) km"
+			mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
 			mapPinAccessory.layoutIfNeeded()
 			mapPinAccessory.tag = 333
 
@@ -275,7 +276,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
 		if !zoomOnUserWasDone {
-			zoomOnAllPins()
+			zoomOnAllPins(animated: true)
 			zoomOnUserWasDone = true
 		}
 	}

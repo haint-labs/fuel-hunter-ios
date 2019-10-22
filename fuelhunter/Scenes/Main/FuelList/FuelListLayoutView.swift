@@ -213,11 +213,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			// Cell is partly visible. So we scroll to reveal it fully. Just a nicety
 
 			tableView.scrollRectToVisible(CGRect.init(x: rect.origin.x, y: rect.origin.y-5, width: rect.width, height: rect.height+10), animated: true)
-//			if rectInScreen.origin.y > tableView.bounds.origin.y {
-//				tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-//			} else {
-//				tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-//			}
+
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { 
 				let rect = tableView.rectForRow(at: indexPath)
 				let rectInScreen = tableView.convert(rect, to: self.superview)

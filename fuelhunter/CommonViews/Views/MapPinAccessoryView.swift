@@ -11,23 +11,16 @@ import UIKit
 
 class MapPinAccessoryView: UIView {
 
-//	weak var controller: MapInfoButtonViewButtonLogic?
-//	var viewType: MapInfoButtonViewType = .typePrice
-
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet var backgroundImageView: UIImageView!
 	@IBOutlet var backgroundBubbleArrowImageView: UIImageView!
 	@IBOutlet var icon: UIImageView!
 	@IBOutlet var priceLabel: UILabel!
 	@IBOutlet var distanceLabel: UILabel!
-	
-//	@IBOutlet var button: UIButton!
-//	@IBOutlet var iconImageView: UIImageView!
-//	@IBOutlet var label: UILabel!
-//	@IBOutlet var accessoryIconImageView: UIImageView!
 
-//	var labelRightAnchorConstraint: NSLayoutConstraint?
-//	var accessoryImageRightAnchorConstraint: NSLayoutConstraint?
+	var priceLabelBottomConstraint: NSLayoutConstraint!
+	var distanceLabelBottomConstraint: NSLayoutConstraint!
+	var iconBottomConstraint: NSLayoutConstraint!
 
 	// MARK: View lifecycle
 
@@ -56,7 +49,6 @@ class MapPinAccessoryView: UIView {
 		distanceLabel.translatesAutoresizingMaskIntoConstraints = false
 
 
-
 		baseView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		baseView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		baseView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -76,18 +68,19 @@ class MapPinAccessoryView: UIView {
 		icon.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
 		icon.widthAnchor.constraint(equalToConstant: 28).isActive = true
 		icon.heightAnchor.constraint(equalToConstant: 28).isActive = true
-	
+		iconBottomConstraint = icon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
 
 		priceLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 5).isActive = true
 		priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
 		priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7).isActive = true
+		priceLabelBottomConstraint = priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
 
 
 		distanceLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 5).isActive = true
 		distanceLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: -1).isActive = true
 		distanceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7).isActive = true
-		distanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7).isActive = true
-
+		distanceLabelBottomConstraint = distanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
+		distanceLabelBottomConstraint.isActive = true
 
 		priceLabel.font = Font.init(.medium, size: .size3).font
 		distanceLabel.font = Font.init(.normal, size: .size5).font
@@ -98,12 +91,24 @@ class MapPinAccessoryView: UIView {
 			priceLabel.textColor = UIColor.init(named: "TitleColor")
 			distanceLabel.textColor = UIColor.init(named: "SubTitleColor")
 			icon.isHighlighted = true
-//			icon.alpha = 1
 		} else {
 			priceLabel.textColor = UIColor.init(named: "InactiveTextColor")
 			distanceLabel.textColor = UIColor.init(named: "InactiveTextColor")
 			icon.isHighlighted = false
-//			icon.alpha = 0.5
+		}
+	}
+
+	func setDistanceVisible(_ visible: Bool) {
+		if visible == true {
+			distanceLabel.isHidden = false
+			iconBottomConstraint.isActive = false
+			priceLabelBottomConstraint.isActive = false
+			distanceLabelBottomConstraint.isActive = true
+		} else {
+			distanceLabel.isHidden = true
+			distanceLabelBottomConstraint.isActive = false
+			iconBottomConstraint.isActive = true
+			priceLabelBottomConstraint.isActive = true
 		}
 	}
 }

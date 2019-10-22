@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window?.backgroundColor = .white		
 		ScenesManager.shared.window = window
 		ScenesManager.shared.setRootViewController(animated: false)
-		
+
+		// To initiate it.
+		_ = AppSettingsWorker.shared
 		
 		UINavigationBar.appearance().tintColor = UIColor.init(named: "TitleColor")!
 		UINavigationBar.appearance().titleTextAttributes =
