@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class PriceWorker {
 	var priceStore: PricesStoreProtocol
@@ -19,6 +20,7 @@ class PriceWorker {
     	priceStore.fetchPrices { (prices: () throws -> [Price]) -> Void in
 			do {
 				let prices = try prices()
+
         		DispatchQueue.main.async {
           			completionHandler(prices)
         		}

@@ -409,6 +409,10 @@
 		5CB9F6A922DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
 		5CB9F6AA22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
 		5CB9F6AB22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
+		5CBEF11D2370C5620052D289 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
+		5CBEF11E2370C5620052D289 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
+		5CBEF1202370C6BA0052D289 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBEF11F2370C6BA0052D289 /* MapKit.framework */; };
+		5CBEF12D237831CF0052D289 /* DoubleRoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */; };
 		5CCC38E1230A7797008D3512 /* FuelListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC38E0230A7797008D3512 /* FuelListCellView.swift */; };
 		5CCC38E2230A7797008D3512 /* FuelListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC38E0230A7797008D3512 /* FuelListCellView.swift */; };
 		5CCC38E3230A7797008D3512 /* FuelListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC38E0230A7797008D3512 /* FuelListCellView.swift */; };
@@ -490,8 +494,6 @@
 		5CE5AAE1234F09D10048FAB0 /* SettingsToggleStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */; };
 		5CEC2C7E233F38D8003F8114 /* MapPinAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */; };
 		5CEC2C7F233F38D8003F8114 /* MapPinAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7D233F38D8003F8114 /* MapPinAccessoryView.xib */; };
-		5CEC2C8023406A29003F8114 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
-		5CEC2C8123406A29003F8114 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5CEC2C8223406A32003F8114 /* MapPinAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */; };
 		5CEC2C8323406A32003F8114 /* MapPinAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */; };
 		5CEC2C8423406A35003F8114 /* MapInfoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC397A231BB1A3008D3512 /* MapInfoButtonView.swift */; };
@@ -667,6 +669,8 @@
 		5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpLayoutView.swift; sourceTree = "<group>"; };
 		5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleStatus.swift; sourceTree = "<group>"; };
 		5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsWorker.swift; sourceTree = "<group>"; };
+		5CBEF11F2370C6BA0052D289 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleRoundExtension.swift; sourceTree = "<group>"; };
 		5CCC38E0230A7797008D3512 /* FuelListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListCellView.swift; sourceTree = "<group>"; };
 		5CCC38E4230A77B4008D3512 /* FuelListCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FuelListCellView.xib; sourceTree = "<group>"; };
 		5CCC38E9230A945A008D3512 /* MapModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModels.swift; sourceTree = "<group>"; };
@@ -713,6 +717,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CBEF1202370C6BA0052D289 /* MapKit.framework in Frameworks */,
 				77047B7A36142CF3B8789A7B /* Pods_fuelhunter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -772,6 +777,7 @@
 				5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */,
 				5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */,
 				5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */,
+				5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */,
 				5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */,
 			);
 			path = Models;
@@ -1179,6 +1185,7 @@
 		A06D9252C43D3E2E4CB0455A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CBEF11F2370C6BA0052D289 /* MapKit.framework */,
 				015C4DAD380F385A14A33634 /* Pods_fuelhunter.framework */,
 				8B85546C98FBD3C85DD5F4A1 /* Pods_fuelhunterTests.framework */,
 				1E5F516AD4B302A8D0C02462 /* Pods_fuelhunterUITests.framework */,
@@ -1679,6 +1686,7 @@
 				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5C731FA822FB260000793DAF /* AboutAppLayoutView.swift in Sources */,
 				5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
+				5CBEF12D237831CF0052D289 /* DoubleRoundExtension.swift in Sources */,
 				5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
 				5CB8EC8622E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
 				5C2E66DD22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */,
@@ -1755,6 +1763,7 @@
 				5C2E672022DD941D00FC71AD /* AppLanguageViewController.swift in Sources */,
 				5C2E672322DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
 				5CCC3916230A9460008D3512 /* FuelListRouter.swift in Sources */,
+				5CBEF11D2370C5620052D289 /* MapPoint.swift in Sources */,
 				5C2E673222DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5CCC38FE230A945A008D3512 /* MapInteractor.swift in Sources */,
 				5C2E66BD22DD941D00FC71AD /* SettingsWorker.swift in Sources */,
@@ -1838,7 +1847,6 @@
 				5C0240B222CA530A000ABDCB /* InlineAlertView.swift in Sources */,
 				5C2E67D722E1938A00FC71AD /* AppDelegate.swift in Sources */,
 				5C2E67B322DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
-				5CEC2C8023406A29003F8114 /* MapPoint.swift in Sources */,
 				5CB8EC4422E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */,
 				5C22F64122C622FB000EF339 /* PriceWorker.swift in Sources */,
 				5CCC3907230A945A008D3512 /* MapLayoutView.swift in Sources */,
@@ -1896,6 +1904,7 @@
 				5C2E672122DD941D00FC71AD /* AppLanguageViewController.swift in Sources */,
 				5C2E672422DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
 				5CCC3917230A9460008D3512 /* FuelListRouter.swift in Sources */,
+				5CBEF11E2370C5620052D289 /* MapPoint.swift in Sources */,
 				5C2E673322DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5CCC38FF230A945A008D3512 /* MapInteractor.swift in Sources */,
 				5C2E66BE22DD941D00FC71AD /* SettingsWorker.swift in Sources */,
@@ -1979,7 +1988,6 @@
 				5C0240B422CA530A000ABDCB /* InlineAlertView.swift in Sources */,
 				5C2E67D622E1938900FC71AD /* AppDelegate.swift in Sources */,
 				5C2E67B422DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
-				5CEC2C8123406A29003F8114 /* MapPoint.swift in Sources */,
 				5CB8EC4522E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */,
 				5C22F64222C622FC000EF339 /* PriceWorker.swift in Sources */,
 				5CCC3908230A945A008D3512 /* MapLayoutView.swift in Sources */,

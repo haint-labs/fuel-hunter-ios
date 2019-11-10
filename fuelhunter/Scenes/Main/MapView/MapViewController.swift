@@ -136,41 +136,42 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
     	interactor?.doSomething(request: request)
   	}
 
-	func updateData(to priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPoint: MapPoint) {
+	func updateData(to priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPoint: MapPoint) {
 
-		if let aData = router?.dataStore?.dataArray[router?.dataStore?.selectedDataIndex ?? 0] {
+		let aData = router?.dataStore?.selectedPricesArray!.first(where: {$0.company == router?.dataStore?.selectedCompany}) ?? router?.dataStore?.selectedPricesArray?.first
 
-			layoutView.selectedPin(mapPoint)
+		layoutView.selectedPin(mapPoint)
 
-			if router?.dataStore?.dataArray.count == 1 {
-				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .single)
+		if router?.dataStore?.selectedPricesArray?.count == 1 {
+			fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .single)
+		} else {
+			if router?.dataStore?.selectedPricesArray?.first == aData {
+				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .top)
+			} else if router?.dataStore?.selectedPricesArray?.last == aData {
+				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .bottom)
 			} else {
-				if router?.dataStore?.dataArray.first == aData {
-					fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .top)
-				} else if router?.dataStore?.dataArray.last == aData {
-					fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .bottom)
-				} else {
-					fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .middle)
-				}
+				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .middle)
 			}
 		}
 	}
-	
+
+	// MARK: MapDisplayLogic
+
   	func displaySomething(viewModel: Map.MapData.ViewModel) {
     	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:self.fuelCellView.frame.height)
-		updateData(to: viewModel.selectedPriceData, mapPoint: viewModel.selectedMapPoint)
+		updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint)
   	}
 
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel) {
 
-		self.updateData(to: viewModel.priceData, mapPoint: viewModel.mapPoint)
+		self.updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint)
 
-		let row = self.router?.dataStore?.selectedDataIndex ?? 0
-		let section = self.router?.dataStore?.selectedDataSection ?? 0
-		let newYValue = self.router?.previousViewController?.justSelectedACell(atIndexPath: IndexPath.init(row:row, section: section))
+		let newYValue = self.router?.previousViewController?.justSelected(fuelPrice: viewModel.selectedPrice)
+
 		self.router?.dataStore?.yLocation = newYValue!
 
-		UIView.animate(withDuration: 0.3) {
+
+		UIView.animate(withDuration: 0.2) {
 			self.view.layoutIfNeeded()
 			self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
 			self.view.layoutIfNeeded()
@@ -214,11 +215,15 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 			self.layoutView.alpha = 0
 			self.view.layoutIfNeeded()
 		}
-		
+
 		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
 			if let location = self.router?.dataStore?.yLocation {
-				self.yOffSetConstraint.constant = location
-				self.fuelCellView.setUpConstraintsAsCell()
+				if location != -1 {
+					self.yOffSetConstraint.constant = location
+					self.fuelCellView.setUpConstraintsAsCell()
+				} else { // Means we did not find location, means we can't animate to return. So, just fade.
+					self.fuelCellView.alpha = 0
+				}
 			}
 			self.view.layoutIfNeeded()
 		}, completion: { (finished: Bool) in

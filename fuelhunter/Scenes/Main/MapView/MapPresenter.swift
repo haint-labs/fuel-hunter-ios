@@ -23,12 +23,13 @@ class MapPresenter: MapPresentationLogic {
   	// MARK: Do something
 
   	func presentSomething(response: Map.MapData.Response) {
-		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: response.mapPoints, selectedPriceData: response.selectedPriceData, selectedMapPoint: response.selectedMapPoint)
+		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: response.mapPoints, selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint)
     	viewController?.displaySomething(viewModel: viewModel)
   	}
 
 	func updateToRevealMapPoint(response: Map.MapWasPressed.Response) {
-		let viewModel = Map.MapWasPressed.ViewModel.init(mapPoint: response.mapPoint, priceData: response.priceData)
+		let viewModel = Map.MapWasPressed.ViewModel.init(selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint, selectedPrice: response.selectedPrice)
+
 		viewController?.updateToRevealMapPoint(viewModel: viewModel)
 	}
 

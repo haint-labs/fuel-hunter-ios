@@ -24,10 +24,13 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 	var notificationsAuthorisationStatus: UNAuthorizationStatus = .notDetermined
 
+	var userLocation: CLLocation?
+
 	private override init() {
 		super.init()
 		locationManager.delegate = self
-
+		locationManager.desiredAccuracy = 100
+		locationManager.startUpdatingLocation()
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
 
 		refreshCurrentNotificationsStatus {}
@@ -60,17 +63,22 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 	func getGPSIsEnabled() -> Bool {
 		if !CLLocationManager.locationServicesEnabled() {
+			userLocation = nil
 			return false
 		}
 
 		if CLLocationManager.authorizationStatus() == .denied
 			|| CLLocationManager.authorizationStatus() == .notDetermined {
+			userLocation = nil
 			return false
 		}
 
 		return true
 	}
-	
+
+	func getUserLocation() -> CLLocation? {
+		return userLocation
+	}
 	// MARK: Notif
 
 	func refreshCurrentNotificationsStatus(_ handler: @escaping () -> Void) {
@@ -174,6 +182,12 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 			tmpGpsSwitchHandler(.firstTime)
 			gpsSwitchHandler = nil
 		}
+
+		if status == .authorizedWhenInUse {
+			locationManager.startUpdatingLocation()
+		} else {
+			locationManager.stopUpdatingLocation()
+		}
 	}
 
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -183,5 +197,9 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 			gpsSwitchHandler = nil
 		}
+	}
+
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		userLocation = locations.last
 	}
 }

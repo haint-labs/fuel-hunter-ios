@@ -20,54 +20,59 @@ protocol MapBusinessLogic {
 
 protocol MapDataStore {
   	var selectedFuelType: FuelType { get set }
-  	var selectedDataIndex: Int { get set }
-  	var selectedDataSection: Int { get set }
-	var dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice] { get set }
+  	var selectedCompany: Company? { get set }
+  	var selectedPricesArray: [Price]? { get set }
 	var yLocation: CGFloat { get set }
 }
 
 class MapInteractor: MapBusinessLogic, MapDataStore {
-  	var presenter: MapPresentationLogic?
+	var presenter: MapPresentationLogic?
   	var worker: MapWorker?
   	var selectedFuelType: FuelType = .type95
-	var selectedDataIndex: Int = 0
-	var selectedDataSection: Int = 0 // Used only for return value (to notify fuel list with cell was last active)
-
-	// Data array contains price objects (DD for Neste, Circle K...  but
-	// convertedDataArray and mapPoints contain addresses for each price objects, but
-	// without sections. (Thus if each price object have 3 addresss, then we have 6
-	// mapPoints)
-	var dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice] = []
+  	var selectedCompany: Company?
+	var selectedPricesArray: [Price]?
 	var yLocation: CGFloat = 0
+
 	var convertedDataArray: [Map.MapData.ViewModel.DisplayedMapPoint] = []
 	var mapPoints: [MapPoint] = []
-	
+	var selectedPriceObject: Price?
+
   	// MARK: MapBusinessLogic
 
   	func doSomething(request: Map.MapData.Request) {
     	worker = MapWorker()
-    	convertedDataArray = worker!.createUsableDataArray(from: dataArray)
+    	convertedDataArray = worker!.createUsableDataArray(fromPricesArray: selectedPricesArray!)
 		mapPoints = createMapPoints(from: convertedDataArray)
 
-		let selectedMapPoint = mapPoints.first(where: {$0.priceId == dataArray[selectedDataIndex].id }) ?? mapPoints.first
+		let selectedMapPoint = mapPoints.first(where: {$0.company == selectedCompany}) ?? mapPoints.first
 
-    	let response = Map.MapData.Response.init(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedPriceData: dataArray[selectedDataIndex], selectedMapPoint: selectedMapPoint!)
+		selectedPriceObject = selectedPricesArray?.first(where: {$0.company == selectedCompany}) ?? selectedPricesArray?.first
+
+		let selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
+
+		let response = Map.MapData.Response.init(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!)
+
     	presenter?.presentSomething(response: response)
   	}
 
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request) {
-		selectedDataIndex = dataArray.firstIndex(where: {$0.id == request.mapPoint.priceId }) ?? 0
 
+		selectedCompany = request.mapPoint.company
 
-    	let response = Map.MapWasPressed.Response.init(mapPoint: request.mapPoint, priceData: dataArray[selectedDataIndex])
+		selectedPriceObject = selectedPricesArray?.first(where: {$0.company == selectedCompany}) ?? selectedPricesArray?.first
+
+		let selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
+
+		let response = Map.MapWasPressed.Response.init(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: request.mapPoint, selectedPrice: selectedPriceObject!)
+
 		presenter?.updateToRevealMapPoint(response: response)
   	}
 
   	// MARK: Functions
 
   	func createMapPoints(from data: [Map.MapData.ViewModel.DisplayedMapPoint]) -> [MapPoint] {
-  		let mapPoints = data.map { MapPoint.init(priceId: $0.id, title: $0.companyName, companyName: $0.companyName, address: $0.addressName, coordinate:
-  			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), companyBigImageName: $0.companyBigLogoName, companyBigGrayImageName: $0.companyBigGrayLogoName, priceText: $0.price, distance: $0.distanceInKm, priceIsCheapest: $0.isPriceCheapest) }
+  		let mapPoints = data.map { MapPoint.init(priceId: $0.id, title: $0.company.name, company: $0.company, address: $0.addressName, coordinate:
+  			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), priceText: $0.price, distanceInMeters: $0.distanceInMeters, priceIsCheapest: $0.isPriceCheapest) }
 
   		return mapPoints
   	}

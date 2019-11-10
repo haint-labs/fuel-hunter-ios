@@ -134,53 +134,10 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		let region = self.regionFor(mapPoints: actuals)
 		let mapRect = MKMapRectForCoordinateRegion(region: region)
 
-		mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: calculatedMaxPinHeight+5+10, left: calculatedMaxPinWidth/2+5, bottom: currentMapOffset, right: calculatedMaxPinWidth/2+5), animated: animated)
+		UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
+			self.mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: self.calculatedMaxPinHeight+5+10, left: self.calculatedMaxPinWidth/2+5, bottom: self.currentMapOffset, right: self.calculatedMaxPinWidth/2+5), animated: animated)
+		}) { (result) in }
 	}
-
-
-//	func doTheDrawingOfRoute(forPin pin: MapPoint) {
-//		let directionsRequest = MKDirections.Request()
-//
-//		let point1 = mapView.userLocation
-//
-//		let point2 = pin
-//
-//		let markTaipei = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point1.coordinate.latitude, point1.coordinate.longitude), addressDictionary: nil)
-//
-//		let markChungli = MKPlacemark(coordinate: CLLocationCoordinate2DMake(point2.coordinate.latitude, point2.coordinate.longitude), addressDictionary: nil)
-//
-//		directionsRequest.source = MKMapItem(placemark: markChungli)
-//		directionsRequest.destination = MKMapItem(placemark: markTaipei)
-//
-//		directionsRequest.transportType = MKDirectionsTransportType.automobile
-//
-//		let directions = MKDirections(request: directionsRequest)
-//
-//		directions.calculate(completionHandler: {
-//
-//			response, error in
-//
-//			if error == nil {
-//
-//				self.myRoute = response!.routes[0] as MKRoute
-//
-//				self.mapView.addOverlay(self.myRoute!.polyline)
-//
-//			}
-//		})
-//	}
-//
-//
-//	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) ->MKOverlayRenderer {
-//
-//		let myLineRenderer = MKPolylineRenderer(polyline: self.myRoute!.polyline)
-//
-//		myLineRenderer.strokeColor = UIColor.red
-//
-//		myLineRenderer.lineWidth = 3
-//
-//		return myLineRenderer
-//	}
 
 	// MARK: MapLayoutViewDataLogic
 
@@ -220,14 +177,30 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		if let annotationView = annotationView,
 		   let mapPointAnnotation = annotationView.annotation as? MapPoint {
 			annotationView.canShowCallout = false
-			let mapPinAccessory = MapPinAccessoryView.init()
-			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.companyBigGrayImageName)
-			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.companyBigImageName)
+
+			var distance = mapPointAnnotation.distanceInMeters/1000
+			distance = distance.rounded(rule: .down, scale: 1)
+
+			// This is needed, otherwise, I noticed that in some cases, more than one gets added..
+			let mapPinAccessory = annotationView.viewWithTag(333) as? MapPinAccessoryView ?? MapPinAccessoryView.init()
+			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.company.largeGrayLogoName)
+			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.company.largeLogoName)
 			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
-			mapPinAccessory.distanceLabel.text = "\(mapPointAnnotation.distance) km"
-			mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+
+			if (distance > 3) {
+				mapPinAccessory.setDistanceVisible(false)
+			} else if(distance >= 0.2) {
+				mapPinAccessory.distanceLabel.text = "\(distance) km"
+				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+			} else {
+				mapPinAccessory.distanceLabel.text = "\(Int(mapPointAnnotation.distanceInMeters)) m"
+				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+			}
+
+
 			mapPinAccessory.layoutIfNeeded()
 			mapPinAccessory.tag = 333
+
 
 			calculatedMaxPinWidth = max(mapPinAccessory.frame.width, calculatedMaxPinWidth)
 			calculatedMaxPinHeight = max(mapPinAccessory.frame.height, calculatedMaxPinHeight)
@@ -253,8 +226,6 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		guard !(view.annotation is MKUserLocation) else { return }
 
 		controller?.mapPinWasPressed(view.annotation as! MapPoint)
-
-//		doTheDrawingOfRoute(forPin: view.annotation as! MapPoint)
 	}
 
 	func selectedPin(_ selectedPin: MapPoint) {
@@ -262,10 +233,10 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
 
-		for i in 0 ..< actuals.count {
-			if let annotationView = mapView.view(for: actuals[i]) {
+		for(_, mapPoint) in actuals.enumerated() {
+			if let annotationView = mapView.view(for: mapPoint) {
 				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
-				if actuals[i] == currentActivePin {
+				if mapPoint == currentActivePin! {
 					mapPinAccessoryView?.setAsSelected(true)
 				} else {
 					mapPinAccessoryView?.setAsSelected(false)

@@ -20,12 +20,14 @@ enum Map {
 			var mapPoint: MapPoint
 		}
 		struct Response {
-			var mapPoint: MapPoint
-			var priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
+			var selectedMapPoint: MapPoint
+			var selectedPrice: Price
 		}
 		struct ViewModel {
-			var mapPoint: MapPoint
-			var priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
+			var selectedMapPoint: MapPoint
+			var selectedPrice: Price
 		}
 	}
 
@@ -35,26 +37,26 @@ enum Map {
 		struct Response {
 			var displayedPoints: [MapData.ViewModel.DisplayedMapPoint]
 			var mapPoints: [MapPoint]
-			var selectedPriceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
 			var selectedMapPoint: MapPoint
 		}
 		struct ViewModel {
 			struct DisplayedMapPoint: Equatable {
 				var id: String   // this is the price ID
 				var subId: String // this is the sub-ID -  which is id + address
-				var companyName: String
-				var companyBigLogoName: String
-				var companyBigGrayLogoName: String
+				var company: Company
 				var price: String
 				var isPriceCheapest: Bool
 				var latitude: Double
 				var longitude: Double
 				var addressName: String
-				var distanceInKm: Double
+				var addressDescription: String
+				var distanceInMeters: Double
 			}
+			
 			var displayedPoints: [DisplayedMapPoint]
 			var mapPoints: [MapPoint]
-			var selectedPriceData: FuelList.FetchPrices.ViewModel.DisplayedPrice
+			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
 			var selectedMapPoint: MapPoint
 		}
   	}

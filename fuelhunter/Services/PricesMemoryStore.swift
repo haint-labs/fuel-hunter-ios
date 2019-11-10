@@ -30,7 +30,7 @@ class PricesMemoryStore: PricesStoreProtocol, PricesStoreUtilityProtocol {
 
   	static var prices = [
     	Price(id: "1", company: companyVirsi, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address6]),
-    	Price(id: "3", company: companyKool, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type95, address: [address2]),
+    	Price(id: "3", company: companyVirsi, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .type95, address: [address2]),
     	Price(id: "91", company: companyKool, city: "Rīga", price:"1.013", isPriceCheapest: true, fuelType: .type95, address: [address1]),
     	Price(id: "4", company: companyLatvijasNafta, city: "Rīga", price:"1.254", isPriceCheapest: false, fuelType: .typeDD, address: [address4]),
     	Price(id: "5", company: companyCircleK, city: "Rīga", price:"1.012", isPriceCheapest: true, fuelType: .typeDD, address: [address3]),

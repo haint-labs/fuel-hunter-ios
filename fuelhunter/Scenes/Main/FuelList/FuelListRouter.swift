@@ -16,7 +16,8 @@ protocol FuelListRoutingLogic {
 	func routeToSettings()
 	func routeToAppAccuracyInfo()
 	func routeToAppSavingsInfo()
-	func routeToMapView(atYLocation yLocation: CGFloat, withDataArray dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice], dataIndex index: Int, dataSection section: Int)
+
+	func routeToMapView(atYLocation yLocation: CGFloat, withPrices prices: [Price], selectedFuelCompany company: Company, selectedFuelType fuelType: FuelType)
 }
 
 protocol FuelListDataPassing {
@@ -45,17 +46,18 @@ class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
   		navigateTo(source: viewController!, destination: AppSavingsInfoViewController())
 	}
 
-	func routeToMapView(atYLocation yLocation: CGFloat, withDataArray dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice], dataIndex index: Int, dataSection section: Int) {
+	func routeToMapView(atYLocation yLocation: CGFloat, withPrices prices: [Price], selectedFuelCompany company: Company, selectedFuelType fuelType: FuelType) {
+
 		viewController?.navigationController?.delegate = coordinator
 		let destination = MapViewController()
 		destination.router?.previousViewController = viewController!
-		destination.router?.dataStore?.selectedDataIndex = index
-		destination.router?.dataStore?.selectedDataSection = section
-		destination.router?.dataStore?.selectedFuelType = dataArray.first?.fuelType ?? .type98
-		destination.router?.dataStore?.dataArray = dataArray
+		destination.router?.dataStore?.selectedCompany = company
+		destination.router?.dataStore?.selectedFuelType = fuelType
+		destination.router?.dataStore?.selectedPricesArray = prices
 		destination.router?.dataStore?.yLocation = yLocation
 		navigateTo(source: viewController!, destination: destination)
 	}
+
 
   	// MARK: Navigation  
 	func navigateTo(source: FuelListViewController, destination: UIViewController) {

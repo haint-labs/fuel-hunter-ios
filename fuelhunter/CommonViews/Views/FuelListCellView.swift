@@ -21,7 +21,7 @@ extension UIView {
 }
 
 protocol FuelListCellViewDisplayLogic {
-    func updateDataWithData(priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPointData: MapPoint, andCellType cellType: CellBackgroundType)
+    func updateDataWithData(priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPointData: MapPoint, andCellType cellType: CellBackgroundType)
 }
 
 class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
@@ -300,32 +300,38 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
 	// MARK: FuelListCellViewDisplayLogic
 
-	func updateDataWithData(priceData: FuelList.FetchPrices.ViewModel.DisplayedPrice, mapPointData: MapPoint, andCellType cellType: CellBackgroundType) {
+	func updateDataWithData(priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPointData: MapPoint, andCellType cellType: CellBackgroundType) {
 		titleLabel.fadeTransition(0.2)
 		addressesLabel.fadeTransition(0.2)
 		iconImageView.fadeTransition(0.2)
 		priceLabel.fadeTransition(0.2)
 
-//		if let addressObj = data.address.first {
-//			extendedAddressLabel.text = "\(addressObj.name), \(data.city)"
-//		} else {
-//			extendedAddressLabel.text = ""
-//		}
-
-		titleLabel.text = priceData.companyName
+		titleLabel.text = priceData.company.name
 		addressesLabel.text = priceData.addressDescription
 
+
 		extendedAddressLabel.text = mapPointData.address
-		extendedTitleLabel.text = mapPointData.companyName
-		iconImageView.image = UIImage.init(named: mapPointData.companyBigImageName)
+		extendedTitleLabel.text = mapPointData.company.name
+		iconImageView.image = UIImage.init(named: mapPointData.company.largeLogoName)
 		if mapPointData.priceIsCheapest {
 			priceLabel.textColor = UIColor.init(named: "CheapPriceColor")
 		} else {
 			priceLabel.textColor = UIColor.init(named: "TitleColor")
 		}
-		
+
+		var distance = mapPointData.distanceInMeters/1000
+		distance = distance.rounded(rule: .down, scale: 1)
+
+		if(distance > 3) {
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "-1")
+		} else if(distance >= 0.2) {
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(distance) km")
+		} else {
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(Int(mapPointData.distanceInMeters)) m")
+		}
+
 		mapInfoPriceView.setAsType(.typePrice, withText: mapPointData.priceText)
-		mapInfoDistanceView.setAsType(.typeDistance, withText: "\(mapPointData.distance) km")
+
 		priceLabel.text = mapPointData.priceText
 		
 		let customType = ActiveType.custom(pattern: "\\smājaslapas\\b") 

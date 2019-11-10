@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MapReturnUpdateDataLogic: class {
-  	func justSelectedACell(atIndexPath indexPath: IndexPath) -> CGFloat
+  	func justSelected(fuelPrice: Price) -> CGFloat
 }
 
 @objc protocol MapRoutingLogic {

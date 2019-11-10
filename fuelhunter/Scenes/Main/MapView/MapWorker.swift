@@ -11,14 +11,26 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MapWorker {
-	func createUsableDataArray(from data: [FuelList.FetchPrices.ViewModel.DisplayedPrice]) -> [Map.MapData.ViewModel.DisplayedMapPoint] {
+	func createUsableDataArray(fromPricesArray priceArray: [Price]) -> [Map.MapData.ViewModel.DisplayedMapPoint] {
 		var newArray = [Map.MapData.ViewModel.DisplayedMapPoint]()
 
-		for (_, item) in data.enumerated() {
+		let userLocation = AppSettingsWorker.shared.getUserLocation()
+
+		for (_, item) in priceArray.enumerated() {
 			for (subIndex, addressItem) in item.address.enumerated() {
-				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), companyName: item.companyName, companyBigLogoName: item.companyBigLogoName, companyBigGrayLogoName: item.companyBigGrayLogoName, price: item.price, isPriceCheapest: item.isPriceCheapest, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, distanceInKm: 15))
+
+				var distanceInMeters: Double = 0
+
+
+				if(AppSettingsWorker.shared.getGPSIsEnabled() && userLocation != nil) {
+					let coordinate = CLLocation(latitude: addressItem.latitude, longitude: addressItem.longitude)
+					distanceInMeters = userLocation!.distance(from: coordinate);
+				}
+
+				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), company: item.company, price: item.price, isPriceCheapest: item.isPriceCheapest, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, addressDescription: item.addressDescription, distanceInMeters: distanceInMeters))
 			}
 		}
 

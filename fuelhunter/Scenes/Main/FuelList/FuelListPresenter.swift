@@ -14,57 +14,52 @@ import UIKit
 
 protocol FuelListPresentationLogic {
 	func presentSomething(response: FuelList.FetchPrices.Response)
+	func revealMapView(response: FuelList.RevealMap.Response)
 }
 
 class FuelListPresenter: FuelListPresentationLogic {
 	weak var viewController: FuelListDisplayLogic?
 
-	// MARK: Do something
+	// MARK: FuelListPresentationLogic
 
 	func presentSomething(response: FuelList.FetchPrices.Response) {
-		
+
 		var displayedPrices: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]] = []
-		
+
 		let type95Prices = self.getPrices(with: .type95, from: response.prices)
-		
 		let type98Prices = self.getPrices(with: .type98, from: response.prices)
-		
 		let typeDDPrices = self.getPrices(with: .typeDD, from: response.prices)
-		
 		let typeDDProPrices = self.getPrices(with: .typeDDPro, from: response.prices)
-		
 		let typeGasPrices = self.getPrices(with: .typeGas, from: response.prices)
 		
-		if type95Prices.count > 0 {
-			displayedPrices.append(type95Prices)
-		}
-		if type98Prices.count > 0 {
-			displayedPrices.append(type98Prices)
-		}
-		if typeDDPrices.count > 0 {
-			displayedPrices.append(typeDDPrices)
-		}
-		if typeDDProPrices.count > 0 {
-			displayedPrices.append(typeDDProPrices)
-		}
-		if typeGasPrices.count > 0 {
-			displayedPrices.append(typeGasPrices)
-		}
-    
+		if !type95Prices.isEmpty { displayedPrices.append(type95Prices) }
+		if !type98Prices.isEmpty { displayedPrices.append(type98Prices) }
+		if !typeDDPrices.isEmpty { displayedPrices.append(typeDDPrices) }
+		if !typeDDProPrices.isEmpty { displayedPrices.append(typeDDProPrices) }
+		if !typeGasPrices.isEmpty { displayedPrices.append(typeGasPrices) }
+
 		let viewModel = FuelList.FetchPrices.ViewModel(displayedPrices: displayedPrices)
 		viewController?.displaySomething(viewModel: viewModel)
 	}
-	
+
+
+	func revealMapView(response: FuelList.RevealMap.Response) {
+
+		let necessaryPrices = response.prices.filter( { $0.fuelType == response.selectedFuelType })
+
+		let viewModel = FuelList.RevealMap.ViewModel.init(slectedFuelTypePrices: necessaryPrices, selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
+
+		viewController?.revealMapView(viewModel: viewModel)
+	}
+
+	// MARK: Functions
+
 	func getPrices(with type: FuelType, from prices: [Price]) -> [FuelList.FetchPrices.ViewModel.DisplayedPrice] {
-    	var pricesToReturn: [FuelList.FetchPrices.ViewModel.DisplayedPrice] = []
-    	
-    	for aPrice in prices {
-    		if aPrice.fuelType == type {
-				let displayedPrice = FuelList.FetchPrices.ViewModel.DisplayedPrice.init(id: aPrice.id, companyName: aPrice.company.name, companyLogoName: aPrice.company.logoName, companyBigLogoName: aPrice.company.largeLogoName, companyBigGrayLogoName: aPrice.company.largeGrayLogoName, price: aPrice.price, isPriceCheapest: aPrice.isPriceCheapest, fuelType: aPrice.fuelType, addressDescription: aPrice.addressDescription, address: aPrice.address, city: aPrice.city)
-				pricesToReturn.append(displayedPrice)
-			}
-		}
-		
-		return pricesToReturn	
+
+		let pricesToReturn = prices.filter( { $0.fuelType == type }).map( {
+			return FuelList.FetchPrices.ViewModel.DisplayedPrice.init(id: $0.id, company: $0.company, price: $0.price, isPriceCheapest: $0.isPriceCheapest, fuelType: $0.fuelType, addressDescription: $0.addressDescription, address: $0.address, city: $0.city)
+		} )
+
+		return pricesToReturn
 	}
 }

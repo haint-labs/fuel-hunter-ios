@@ -15,10 +15,11 @@ import UIKit
 
 protocol FuelListDisplayLogic: class {
 	func displaySomething(viewModel: FuelList.FetchPrices.ViewModel)
+	func revealMapView(viewModel: FuelList.RevealMap.ViewModel)
 }
 
 class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLayoutViewLogic, MapReturnUpdateDataLogic, FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol {
-	
+
 	var interactor: FuelListBusinessLogic?
 	var router: (NSObjectProtocol & FuelListRoutingLogic & FuelListDataPassing)?
 	var layoutView: FuelListLayoutView!
@@ -87,6 +88,10 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 		layoutView.updateData(data: viewModel.displayedPrices)
 	}
 
+	func revealMapView(viewModel: FuelList.RevealMap.ViewModel) {
+		router?.routeToMapView(atYLocation: viewModel.selectedCellYPosition, withPrices: viewModel.slectedFuelTypePrices, selectedFuelCompany: viewModel.selectedCompany, selectedFuelType: viewModel.selectedFuelType)
+	}
+
 	// MARK: FuelListLayoutViewLogic
 
 	func savingsButtonPressed() {
@@ -97,12 +102,16 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 		router?.routeToAppAccuracyInfo()
 	}
 
-	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, withDataArray dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice], dataIndex index: Int, dataSection section: Int) {
+
+	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: Company, forSelectedFuelType fuelType: FuelType) {
 		selectedCell = cell
 		selectedCell?.isHidden = true
-		router?.routeToMapView(atYLocation: yLocation, withDataArray: dataArray, dataIndex: index, dataSection: section)
+
+		let request = FuelList.RevealMap.Request.init(selectedCompany: company, selectedFuelType: fuelType, selectedCellYPosition: yLocation)
+
+		interactor?.prepareToRevealMapWithRequest(request:request)
 	}
-	
+
 	// MARK: FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol
 	
 	func customTransitionWasFinished() {
@@ -110,32 +119,53 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	// MARK: MapReturnUpdateDataLogic
+	func justSelected(fuelPrice: Price) -> CGFloat {
 
-	func justSelectedACell(atIndexPath indexPath: IndexPath) -> CGFloat {
+		let request = FuelList.FindAPrice.Request(selectedPrice: fuelPrice)
+		let displayedPrice = interactor?.getDisplayedPriceObject(request: request)
+		var indexPath: IndexPath?
+
 		selectedCell?.isHidden = false
-		if let cell = layoutView.tableView.cellForRow(at: indexPath) {
-			// We found a cell!
-			selectedCell = cell as? FuelListCell
-			let cellRect = layoutView.tableView.rectForRow(at: indexPath)
-			if !layoutView.tableView.bounds.contains(cellRect) {
-				// Cell is partly visible. So we scroll to reveal it fully. Just a nicety
-				if cellRect.origin.y > layoutView.tableView.bounds.origin.y {
-					layoutView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-				} else {
-					layoutView.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+		selectedCell = nil;
+
+		outerLoop: for(sectionIndex, array) in layoutView.data.enumerated() {
+			for(rowIndex, price) in array.enumerated() {
+				if price.fuelType != fuelPrice.fuelType { break; }
+
+				if price == displayedPrice {
+					indexPath = IndexPath.init(row: rowIndex, section: sectionIndex)
+					if let cell = layoutView.tableView.cellForRow(at: indexPath!) {
+						// We found a cell!
+						selectedCell = cell as? FuelListCell
+						let cellRect = layoutView.tableView.rectForRow(at: indexPath!)
+						if !layoutView.tableView.bounds.contains(cellRect) {
+							// Cell is partly visible. So we scroll to reveal it fully. Just a nicety
+							if cellRect.origin.y > layoutView.tableView.bounds.origin.y {
+								layoutView.tableView.scrollToRow(at: indexPath!, at: .bottom, animated: false)
+							} else {
+								layoutView.tableView.scrollToRow(at: indexPath!, at: .top, animated: false)
+							}
+						}
+					} else {
+						// No cell. So, we scroll to middle, to reveal it.
+						layoutView.tableView.scrollToRow(at: indexPath!, at: .middle, animated: false)
+						if let cell = layoutView.tableView.cellForRow(at: indexPath!) {
+							selectedCell = cell as? FuelListCell
+						}
+					}
+					break outerLoop
 				}
 			}
-		} else {
-			// No cell. So, we scroll to middle, to reveal it.
-			layoutView.tableView.scrollToRow(at: indexPath, at: .middle, animated: false)
-			if let cell = layoutView.tableView.cellForRow(at: indexPath) {
-				selectedCell = cell as? FuelListCell
-			}
 		}
-		
-		selectedCell?.isHidden = true
-		let rect = layoutView.tableView.rectForRow(at: indexPath)
-		let rectInScreen = layoutView.tableView.convert(rect, to: self.view)
-		return rectInScreen.origin.y
+
+		if let indexPath = indexPath, let selectedCell = selectedCell {
+			selectedCell.isHidden = true
+			let rect = layoutView.tableView.rectForRow(at: indexPath)
+			let rectInScreen = layoutView.tableView.convert(rect, to: self.view)
+			return rectInScreen.origin.y
+		}
+
+		// Means we did not find location, means we can't animate to return. So, return -1, which will just fade.
+		return -1
 	}
 }

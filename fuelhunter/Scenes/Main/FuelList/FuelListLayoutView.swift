@@ -11,7 +11,7 @@ import UIKit
 protocol FuelListLayoutViewLogic: class {
 	func savingsButtonPressed()
 	func accuracyButtonPressed()
-	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, withDataArray dataArray: [FuelList.FetchPrices.ViewModel.DisplayedPrice], dataIndex index: Int, dataSection section: Int)
+	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: Company, forSelectedFuelType fuelType: FuelType)
 }
 
 protocol FuelListLayoutViewDataLogic: class {
@@ -141,9 +141,9 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		   for: indexPath
 		) as? FuelListCell {
 			let aData = self.data[indexPath.section][indexPath.row]
-			cell.titleLabel.text = aData.companyName
+			cell.titleLabel.text = aData.company.name
 			cell.addressesLabel.text = aData.addressDescription
-			cell.iconImageView.image = UIImage.init(named: aData.companyLogoName)
+			cell.iconImageView.image = UIImage.init(named: aData.company.logoName)
 			cell.priceLabel.text = aData.price
 			
 			if aData.isPriceCheapest == true {
@@ -204,8 +204,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		// TODO: check if cell is partly visible. If yes, then first scroll to visible, and then select it?
-		let aDataArray = self.data[indexPath.section]
-		
+		let aData = self.data[indexPath.section][indexPath.row]
+
 		let rect = tableView.rectForRow(at: indexPath)
 		let rectInScreen = tableView.convert(rect, to: self.superview)
 		
@@ -218,11 +218,13 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 				let rect = tableView.rectForRow(at: indexPath)
 				let rectInScreen = tableView.convert(rect, to: self.superview)
 				let cell = tableView.cellForRow(at: indexPath) as! FuelListCell
-				self.controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, withDataArray:aDataArray, dataIndex: indexPath.row, dataSection: indexPath.section)
+
+				self.controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType)
 			}
 		} else {
 			let cell = tableView.cellForRow(at: indexPath) as! FuelListCell
-			controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, withDataArray:aDataArray, dataIndex: indexPath.row, dataSection: indexPath.section)
+
+			controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType)
 		}
 	}
 	

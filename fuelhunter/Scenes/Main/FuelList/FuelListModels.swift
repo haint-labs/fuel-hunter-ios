@@ -15,6 +15,25 @@ import UIKit
 enum FuelList {
 	// MARK: Use cases
 
+	enum RevealMap {
+		struct Request {
+			var selectedCompany: Company
+			var selectedFuelType: FuelType
+			var selectedCellYPosition: CGFloat
+		}
+		struct Response {
+			var prices: [Price]
+			var selectedCompany: Company
+			var selectedFuelType: FuelType
+			var selectedCellYPosition: CGFloat
+		}
+		struct ViewModel {
+			var slectedFuelTypePrices: [Price]
+			var selectedCompany: Company
+			var selectedFuelType: FuelType
+			var selectedCellYPosition: CGFloat
+		}
+	}
 	enum FetchPrices {
 		struct Request {
 		}
@@ -24,10 +43,7 @@ enum FuelList {
 		struct ViewModel {
 			struct DisplayedPrice: Equatable {
 				var id: String
-				var companyName: String
-				var companyLogoName: String
-				var companyBigLogoName: String
-				var companyBigGrayLogoName: String
+				var company: Company
 				var price: String
 				var isPriceCheapest: Bool
 				var fuelType: FuelType
@@ -36,6 +52,11 @@ enum FuelList {
 				var city: String
 			}
 			var displayedPrices: [[DisplayedPrice]]
+		}
+	}
+	enum FindAPrice {
+		struct Request {
+			var selectedPrice: Price
 		}
 	}
 }
