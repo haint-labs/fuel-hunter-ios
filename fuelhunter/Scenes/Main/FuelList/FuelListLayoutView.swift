@@ -111,13 +111,15 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
     	tableView.contentInset = UIEdgeInsets.init(top: -6, left: 0, bottom: -9, right: 0)
     	let nib = UINib.init(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
-
-    	savingsLabelButton.setTitle("Ietaupījums", for: .normal)
-    	accuracyLabelButton.setTitle("Degvielas cenu precizitāte", for: .normal)
     	
     	savingsLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
 		accuracyLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
-		
+
+//		savingsLabelButton.setTitle("savings_button_title".localized(), for: .normal)
+//		accuracyLabelButton.setTitle("fuel_price_accuracy_button_title".localized(), for: .normal)
+//		accuracyLabelButton.layoutIfNeeded()
+//		savingsLabelButton.layoutIfNeeded()
+
 		savingsIconButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
 		accuracyIconButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
 		savingsLabelButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
@@ -246,6 +248,10 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]]) {
 		self.data = data
+		savingsLabelButton.setTitle("savings_button_title".localized(), for: .normal)
+		accuracyLabelButton.setTitle("fuel_price_accuracy_button_title".localized(), for: .normal)
+		accuracyLabelButton.layoutIfNeeded()
+		savingsLabelButton.layoutIfNeeded()
 		tableView.reloadData()
 		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines() 

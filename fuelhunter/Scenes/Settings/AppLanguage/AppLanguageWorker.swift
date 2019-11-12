@@ -13,8 +13,5 @@
 import UIKit
 
 class AppLanguageWorker {
-  	func getStatusOfEnabledFuelTypes() -> AppLanguage.GetLanguage.Response {
-  		let currentlyActiveLanguage: AppLanguage.LanguageType = .languageLatvian
-  		return AppLanguage.GetLanguage.Response.init(activeLanguage: currentlyActiveLanguage)
-  	}
+
 }

@@ -14,6 +14,7 @@ import UIKit
 
 protocol AppLanguageBusinessLogic {
   	func getLanaguageListData(request: AppLanguage.GetLanguage.Request)
+  	func userSelectedLanguage(request: AppLanguage.ChangeLanguage.Request)
 }
 
 protocol AppLanguageDataStore {
@@ -22,13 +23,21 @@ protocol AppLanguageDataStore {
 
 class AppLanguageInteractor: AppLanguageBusinessLogic, AppLanguageDataStore {
   	var presenter: AppLanguagePresentationLogic?
-  	var worker = AppLanguageWorker()
   	//var name: String = ""
 
   	// MARK: AppLanguageBusinessLogic
 
   	func getLanaguageListData(request: AppLanguage.GetLanguage.Request) {
-    	let response = worker.getStatusOfEnabledFuelTypes()
+    	let response = AppLanguage.GetLanguage.Response(activeLanguage: AppSettingsWorker.shared.getCurrentLanguage())
     	presenter?.presentLanguageList(response: response)
+  	}
+
+  	func userSelectedLanguage(request: AppLanguage.ChangeLanguage.Request) {
+		if AppSettingsWorker.shared.getCurrentLanguage() != request.selectedLanguage {
+			AppSettingsWorker.shared.setCurrentLanguage(request.selectedLanguage)
+
+			let response = AppLanguage.GetLanguage.Response(activeLanguage: request.selectedLanguage)
+			presenter?.presentLanguageList(response: response)
+		}
   	}
 }

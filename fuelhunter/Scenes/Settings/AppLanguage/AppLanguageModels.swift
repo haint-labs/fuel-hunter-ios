@@ -14,26 +14,28 @@ import UIKit
 
 enum AppLanguage {
   	// MARK: Use cases
-	enum LanguageType {
-		case languageLatvian
-		case languageRussian
-		case languageEnglish
-	}
+
 	enum GetLanguage {
 		struct Request {
 		}
 		struct Response {
-			var activeLanguage: AppLanguage.LanguageType
+			var activeLanguage: AppSettingsWorker.Language
 		}
 		struct ViewModel {
 			struct DisplayedLanguageCellItem: Equatable {
+				var language: AppSettingsWorker.Language
 				var currentlyActive: Bool
-				//This will be language name in that language. Latviešu, English
+				//This will be language name
 				var languageName: String
-				// This will be translated in selected language name. Latviešu, Angļu, Krievu
-				var languageNameTranslated: String
+				// language name in original language
+				var languageNameInOriginalLanguage: String
 			}
 			var displayedLanguageCellItems: [DisplayedLanguageCellItem]
+		}
+  	}
+  	enum ChangeLanguage {
+		struct Request {
+			var selectedLanguage: AppSettingsWorker.Language
 		}
   	}
 }

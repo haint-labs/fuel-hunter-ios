@@ -14,13 +14,9 @@
 		5C0240B422CA530A000ABDCB /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */; };
 		5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B07022A4DCA700DA3E9B /* AppFonts.swift */; };
-		5C11F083229EF4FB00EC7CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
 		5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F084229EF4FC00EC7CEC /* Assets.xcassets */; };
-		5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F086229EF4FC00EC7CEC /* LaunchScreen.storyboard */; };
 		5C11F093229EF4FC00EC7CEC /* fuelhunterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11F092229EF4FC00EC7CEC /* fuelhunterTests.swift */; };
 		5C11F09E229EF4FC00EC7CEC /* fuelhunterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11F09D229EF4FC00EC7CEC /* fuelhunterUITests.swift */; };
-		5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
-		5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C11F081229EF4FB00EC7CEC /* Main.storyboard */; };
 		5C22F63D22C622F6000EF339 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABED22C382E300213D46 /* Price.swift */; };
 		5C22F63E22C622F6000EF339 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBABED22C382E300213D46 /* Price.swift */; };
 		5C22F63F22C622F8000EF339 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B07022A4DCA700DA3E9B /* AppFonts.swift */; };
@@ -409,6 +405,18 @@
 		5CB9F6A922DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
 		5CB9F6AA22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
 		5CB9F6AB22DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */; };
+		5CBE59FD237AF36000639FDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE59FB237AF35F00639FDF /* Main.storyboard */; };
+		5CBE59FE237AF36000639FDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE59FB237AF35F00639FDF /* Main.storyboard */; };
+		5CBE59FF237AF36000639FDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE59FB237AF35F00639FDF /* Main.storyboard */; };
+		5CBE5A00237AF36000639FDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE59FC237AF35F00639FDF /* LaunchScreen.storyboard */; };
+		5CBE5A01237AF36000639FDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE59FC237AF35F00639FDF /* LaunchScreen.storyboard */; };
+		5CBE5A02237AF36000639FDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE59FC237AF35F00639FDF /* LaunchScreen.storyboard */; };
+		5CBE5A10237AFE3E00639FDF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE5A14237AFE3E00639FDF /* Localizable.strings */; };
+		5CBE5A11237AFE3E00639FDF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE5A14237AFE3E00639FDF /* Localizable.strings */; };
+		5CBE5A12237AFE3E00639FDF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CBE5A14237AFE3E00639FDF /* Localizable.strings */; };
+		5CBE5A18237B461A00639FDF /* StringLocalizationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */; };
+		5CBE5A19237B461A00639FDF /* StringLocalizationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */; };
+		5CBE5A1A237B461A00639FDF /* StringLocalizationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */; };
 		5CBEF11D2370C5620052D289 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5CBEF11E2370C5620052D289 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5CBEF1202370C6BA0052D289 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBEF11F2370C6BA0052D289 /* MapKit.framework */; };
@@ -528,9 +536,7 @@
 		5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C07B07022A4DCA700DA3E9B /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		5C11F07A229EF4FB00EC7CEC /* fuelhunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fuelhunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5C11F082229EF4FB00EC7CEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5C11F084229EF4FC00EC7CEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5C11F087229EF4FC00EC7CEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C11F089229EF4FC00EC7CEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C11F08E229EF4FC00EC7CEC /* fuelhunterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fuelhunterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C11F092229EF4FC00EC7CEC /* fuelhunterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fuelhunterTests.swift; sourceTree = "<group>"; };
@@ -669,6 +675,12 @@
 		5CB8EC9922E98ACD008EA53C /* IntroNotifSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroNotifSetUpLayoutView.swift; sourceTree = "<group>"; };
 		5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleStatus.swift; sourceTree = "<group>"; };
 		5CB9F6A822DAF02E00F47F6B /* AppSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsWorker.swift; sourceTree = "<group>"; };
+		5CBE59FB237AF35F00639FDF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5CBE59FC237AF35F00639FDF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5CBE5A13237AFE3E00639FDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5CBE5A15237AFE4500639FDF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5CBE5A16237AFE4700639FDF /* lv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lv; path = lv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLocalizationExtension.swift; sourceTree = "<group>"; };
 		5CBEF11F2370C6BA0052D289 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleRoundExtension.swift; sourceTree = "<group>"; };
 		5CCC38E0230A7797008D3512 /* FuelListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListCellView.swift; sourceTree = "<group>"; };
@@ -779,6 +791,7 @@
 				5C45BE0C22CE46DA00FE53D6 /* StringSizeExtension.swift */,
 				5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */,
 				5CB8EC4E22E6DBD7008EA53C /* UserDefaultsExtension.swift */,
+				5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -862,9 +875,10 @@
 		5C11F07C229EF4FB00EC7CEC /* fuelhunter */ = {
 			isa = PBXGroup;
 			children = (
+				5CBE5A03237AFA0C00639FDF /* Localization */,
+				5CBE59FC237AF35F00639FDF /* LaunchScreen.storyboard */,
+				5CBE59FB237AF35F00639FDF /* Main.storyboard */,
 				5C11F0AB229F03DA00EC7CEC /* fuelhunter.entitlements */,
-				5C11F081229EF4FB00EC7CEC /* Main.storyboard */,
-				5C11F086229EF4FC00EC7CEC /* LaunchScreen.storyboard */,
 				5C07B06C22A4DCA700DA3E9B /* AppDelegate */,
 				5C07B06F22A4DCA700DA3E9B /* Models */,
 				5C07B06B22A4DCA700DA3E9B /* Services */,
@@ -1141,6 +1155,14 @@
 			path = IntroNotifSetUp;
 			sourceTree = "<group>";
 		};
+		5CBE5A03237AFA0C00639FDF /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				5CBE5A14237AFE3E00639FDF /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		5CCC38E8230A945A008D3512 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,6 +1328,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
+				lv,
 				Base,
 			);
 			mainGroup = 5C11F071229EF4FB00EC7CEC;
@@ -1326,7 +1350,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C45BDCC22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
-				5C11F088229EF4FC00EC7CEC /* LaunchScreen.storyboard in Resources */,
 				5CB8EC7C22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */,
 				5C95519022FED31200AF2D90 /* AppSavingsInfoLayoutView.xib in Resources */,
@@ -1335,6 +1358,7 @@
 				5CDA4B6322FD782A00740803 /* CompaniesChooseListLayoutView.xib in Resources */,
 				5CB8EC9A22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
 				5C45BEDC22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
+				5CBE5A00237AF36000639FDF /* LaunchScreen.storyboard in Resources */,
 				5C731FA022F945D500793DAF /* SettingsViewLayoutView.xib in Resources */,
 				5C731FA522FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */,
 				5CB8EC4B22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
@@ -1349,13 +1373,14 @@
 				5C2E67C422E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5CCC3903230A945A008D3512 /* MapLayoutView.xib in Resources */,
 				5CCC3924230A9460008D3512 /* FuelListLayoutView.xib in Resources */,
+				5CBE5A10237AFE3E00639FDF /* Localizable.strings in Resources */,
 				5C2E667222DCD1CE00FC71AD /* AppSavingsView.xib in Resources */,
 				5C45BEE422D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
-				5C11F083229EF4FB00EC7CEC /* Main.storyboard in Resources */,
 				5C45BEE922D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CCC38E5230A77B5008D3512 /* FuelListCellView.xib in Resources */,
 				5C45BE4622CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
+				5CBE59FD237AF36000639FDF /* Main.storyboard in Resources */,
 				5CEC2C7F233F38D8003F8114 /* MapPinAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1364,10 +1389,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C22F63B22C622EC000EF339 /* Main.storyboard in Resources */,
 				5C45BE4722CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 				5C95518122FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.xib in Resources */,
 				5CB8EC9B22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
+				5CBE5A01237AF36000639FDF /* LaunchScreen.storyboard in Resources */,
 				5C0240B122CA530A000ABDCB /* InlineAlertView.xib in Resources */,
 				5CCC38E6230A77B5008D3512 /* FuelListCellView.xib in Resources */,
 				5C2E667322DCD1CE00FC71AD /* AppSavingsView.xib in Resources */,
@@ -1379,6 +1404,7 @@
 				5C45BEEA22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CB8EC7D22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5CCC3925230A9460008D3512 /* FuelListLayoutView.xib in Resources */,
+				5CBE5A11237AFE3E00639FDF /* Localizable.strings in Resources */,
 				5C80669022F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
 				5CDA4B6C22FD87C800740803 /* PushNotifSetupLayoutView.xib in Resources */,
 				5C45BEDD22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
@@ -1389,6 +1415,7 @@
 				5CCC3904230A945A008D3512 /* MapLayoutView.xib in Resources */,
 				5CB8EC4C22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C731FA622FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */,
+				5CBE59FE237AF36000639FDF /* Main.storyboard in Resources */,
 				5C95518922FEB8D100AF2D90 /* AppLanguageLayoutView.xib in Resources */,
 				5C22F64522C62307000EF339 /* FuelListCell.xib in Resources */,
 				5C2E67C522E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
@@ -1400,10 +1427,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C22F63C22C622EC000EF339 /* Main.storyboard in Resources */,
 				5C45BE4822CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 				5C95518222FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.xib in Resources */,
 				5CB8EC9C22E98ACE008EA53C /* IntroNotifSetUpLayoutView.xib in Resources */,
+				5CBE5A02237AF36000639FDF /* LaunchScreen.storyboard in Resources */,
 				5C0240B322CA530A000ABDCB /* InlineAlertView.xib in Resources */,
 				5CCC38E7230A77B5008D3512 /* FuelListCellView.xib in Resources */,
 				5C2E667422DCD1CE00FC71AD /* AppSavingsView.xib in Resources */,
@@ -1415,6 +1442,7 @@
 				5C45BEEB22D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CB8EC7E22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5CCC3926230A9460008D3512 /* FuelListLayoutView.xib in Resources */,
+				5CBE5A12237AFE3E00639FDF /* Localizable.strings in Resources */,
 				5C80669122F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
 				5CDA4B6D22FD87C800740803 /* PushNotifSetupLayoutView.xib in Resources */,
 				5C45BEDE22D2807200FE53D6 /* AboutAppTableHeaderView.xib in Resources */,
@@ -1425,6 +1453,7 @@
 				5CCC3905230A945A008D3512 /* MapLayoutView.xib in Resources */,
 				5CB8EC4D22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */,
 				5C731FA722FB260000793DAF /* AboutAppLayoutView.xib in Resources */,
+				5CBE59FF237AF36000639FDF /* Main.storyboard in Resources */,
 				5C95518A22FEB8D100AF2D90 /* AppLanguageLayoutView.xib in Resources */,
 				5C22F64722C62307000EF339 /* FuelListCell.xib in Resources */,
 				5C2E67C622E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
@@ -1723,6 +1752,7 @@
 				5C2E672822DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
 				5C2E67A622DE60E500FC71AD /* IntroPageWorker.swift in Sources */,
 				5C2E673122DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
+				5CBE5A18237B461A00639FDF /* StringLocalizationExtension.swift in Sources */,
 				5C2E66D122DD941D00FC71AD /* AboutAppPresenter.swift in Sources */,
 				5C2E670122DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */,
 				5CB8EC5722E967DC008EA53C /* Address.swift in Sources */,
@@ -1864,6 +1894,7 @@
 				5C2E66C622DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C45BDD122CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C2E66C022DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
+				5CBE5A19237B461A00639FDF /* StringLocalizationExtension.swift in Sources */,
 				5C2E66E122DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
 				5C2E66DB22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */,
 				5CB8EC5822E967DC008EA53C /* Address.swift in Sources */,
@@ -2005,6 +2036,7 @@
 				5C2E66C722DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C45BDD222CD40B300FE53D6 /* CellBackgroundType.swift in Sources */,
 				5C2E66C122DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
+				5CBE5A1A237B461A00639FDF /* StringLocalizationExtension.swift in Sources */,
 				5C2E66E222DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
 				5C2E66DC22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */,
 				5CB8EC5922E967DC008EA53C /* Address.swift in Sources */,
@@ -2030,20 +2062,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5C11F081229EF4FB00EC7CEC /* Main.storyboard */ = {
+		5CBE5A14237AFE3E00639FDF /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5C11F082229EF4FB00EC7CEC /* Base */,
+				5CBE5A13237AFE3E00639FDF /* en */,
+				5CBE5A15237AFE4500639FDF /* ru */,
+				5CBE5A16237AFE4700639FDF /* lv */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5C11F086229EF4FC00EC7CEC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5C11F087229EF4FC00EC7CEC /* Base */,
-			);
-			name = LaunchScreen.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2053,6 +2079,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2114,6 +2141,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

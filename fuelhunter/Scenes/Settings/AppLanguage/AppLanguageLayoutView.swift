@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AppLanguageLayoutViewLogic: class {
+	func userSelectedCell(withCellDataItem item: AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem)
+}
+
 protocol AppLanguageLayoutViewDataLogic: class {
 	func updateData(data: [AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem])
 }
@@ -18,6 +22,8 @@ class AppLanguageLayoutView: UIView, UITableViewDataSource, UITableViewDelegate,
 	@IBOutlet var tableView: UITableView!
 	@IBOutlet var tableViewTopShadow: UIImageView!
 	@IBOutlet var tableViewBottomShadow: UIImageView!
+
+	weak var controller: AppLanguageLayoutViewLogic?
 
   	var header: UIView!
 
@@ -84,8 +90,8 @@ class AppLanguageLayoutView: UIView, UITableViewDataSource, UITableViewDelegate,
 		) as? LanguageListCell {
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.languageName
-			cell.descriptionLabel.text = aData.languageNameTranslated
+			cell.titleLabel.text = aData.languageNameInOriginalLanguage
+			cell.descriptionLabel.text = aData.languageName.localized()
 			
 			if aData.currentlyActive == true {
 				cell.checkBoxImageView.isHidden = false
@@ -116,6 +122,8 @@ class AppLanguageLayoutView: UIView, UITableViewDataSource, UITableViewDelegate,
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let aData = self.data[indexPath.row]
+		controller?.userSelectedCell(withCellDataItem: aData)
 	}
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {

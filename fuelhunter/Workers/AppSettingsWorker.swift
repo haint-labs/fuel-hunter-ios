@@ -12,9 +12,17 @@ import UserNotifications
 
 extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
+
+    static let languageWasChanged = Notification.Name("languageWasChanged")
 }
 
 class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
+
+	enum Language: String {
+		case latvian = "lv"
+		case russian = "ru"
+		case english = "en"
+	}
 
 	static let shared = AppSettingsWorker()
 
@@ -26,6 +34,8 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 	var userLocation: CLLocation?
 
+	var languageBundle: Bundle!
+
 	private override init() {
 		super.init()
 		locationManager.delegate = self
@@ -34,6 +44,8 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
 
 		refreshCurrentNotificationsStatus {}
+
+		self.setUpBundle()
 	}
 
 	// MARK: Notifications
@@ -44,6 +56,34 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 				NotificationCenter.default.post(name: .applicationDidBecomeActiveFromAppSettings, object: nil)
 			}
 		}
+	}
+
+	// MARK: Language
+	func getCurrentLanguage() -> Language {
+		if let language = UserDefaults.standard.string(forKey: "Language") {
+			return Language.init(rawValue: language)!
+		}
+
+		return Language.latvian
+	}
+
+	func setCurrentLanguage(_ language: Language) {
+		UserDefaults.standard.set(language.rawValue, forKey: "Language")
+		UserDefaults.standard.synchronize()
+		setUpBundle()
+		NotificationCenter.default.post(name: .languageWasChanged, object: nil)
+	}
+
+	func setUpBundle() {
+        if let path = Bundle.main.path(forResource: self.getCurrentLanguage().rawValue, ofType: "lproj"),
+            let bundle = Bundle(path: path) {
+            languageBundle = bundle
+        }
+        // Default will work.
+        else if let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
+            let bundle = Bundle(path: path) {
+            languageBundle = bundle
+        }
 	}
 
   	// MARK: GPS
@@ -84,7 +124,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	func refreshCurrentNotificationsStatus(_ handler: @escaping () -> Void) {
 		UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
 			self?.notificationsAuthorisationStatus = settings.authorizationStatus
-			print(settings)
+//			print(settings)
 			handler()
 		}
 	}

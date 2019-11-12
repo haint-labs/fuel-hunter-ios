@@ -38,6 +38,9 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	// MARK: View lifecycle
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -50,10 +53,12 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
     	self.view.backgroundColor = .white
 		setUpView()
 		getData()
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
+    		name: .languageWasChanged, object: nil)
 	}
 
 	// Set up
-
 	private func setup() {
 		let viewController = self
 		let interactor = FuelListInteractor()
@@ -167,5 +172,10 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
 		// Means we did not find location, means we can't animate to return. So, return -1, which will just fade.
 		return -1
+	}
+
+	// MARK: Notifications
+	@objc func languageWasChanged() {
+		getData()
 	}
 }

@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  fuelhunter
+
+  Created by Guntis on 12/11/2019.
+  Copyright © 2019 . All rights reserved.
+*/
+
+"lv_language_name" = "Латвийский";
+"ru_language_name" = "Русский";
+"en_language_name" = "Английский";
+"savings_button_title" = "IetaupījumsRU";
+"fuel_price_accuracy_button_title" = "Degvielas cenu precizitāteRU";

@@ -35,7 +35,6 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
   	}
 
   	// MARK: View lifecycle
-
   	override func viewDidLoad() {
     	super.viewDidLoad()
 		self.title = "Degvielas veids"

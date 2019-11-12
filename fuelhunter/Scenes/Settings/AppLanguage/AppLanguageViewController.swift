@@ -16,7 +16,7 @@ protocol AppLanguageDisplayLogic: class {
   	func presentLanguageList(viewModel: AppLanguage.GetLanguage.ViewModel)
 }
 
-class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic {
+class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, AppLanguageLayoutViewLogic {
   	var interactor: AppLanguageBusinessLogic?
   	var router: (NSObjectProtocol & AppLanguageRoutingLogic & AppLanguageDataPassing)?
 	var layoutView: AppLanguageLayoutView!
@@ -64,6 +64,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic {
 
 	func setUpView() {
 		layoutView = AppLanguageLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView.controller = self
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -78,7 +79,16 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic {
     	interactor?.getLanaguageListData(request: request)
   	}
 
+	// MARK: AppLanguageDisplayLogic
+
   	func presentLanguageList(viewModel: AppLanguage.GetLanguage.ViewModel) {
   		layoutView.updateData(data: viewModel.displayedLanguageCellItems)
   	}
+
+  	// MARK: AppLanguageLayoutViewLogic
+
+	func userSelectedCell(withCellDataItem item: AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem) {
+		let request = AppLanguage.ChangeLanguage.Request(selectedLanguage: item.language)
+		interactor?.userSelectedLanguage(request: request)
+	}
 }

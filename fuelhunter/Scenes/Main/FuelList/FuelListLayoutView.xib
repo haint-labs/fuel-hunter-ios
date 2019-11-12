@@ -45,9 +45,9 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBa-KY-BAB" userLabel="savingsLabelButton">
-                    <rect key="frame" x="67" y="537" width="339" height="25"/>
+                    <rect key="frame" x="67" y="535" width="339" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Default">
+                    <state key="normal">
                         <color key="titleColor" name="TitleColor"/>
                     </state>
                 </button>
@@ -57,9 +57,9 @@
                     <state key="normal" image="ietaupijums_icon"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNr-pv-HRy" userLabel="accuracyLabelButton">
-                    <rect key="frame" x="74" y="586" width="339" height="25"/>
+                    <rect key="frame" x="74" y="584" width="339" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Default">
+                    <state key="normal">
                         <color key="titleColor" name="TitleColor"/>
                     </state>
                 </button>
