@@ -86,7 +86,7 @@ class FuelTypeChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		label.textAlignment = .center
 		label.font = Font.init(.normal, size: .size2).font
 		label.textColor = UIColor.init(named: "TitleColor")
-		let text = "Atzīmē degvielas veidus, kuru cenas Tevi interesē"
+		let text = "settings_fuel_type_second_description".localized()
 		let height = text.height(withConstrainedWidth: self.frame.width-26, font: label.font)
 		label.text = text
 		label.frame = CGRect.init(x: 12, y: 10, width: self.frame.width-26, height: height+6)
@@ -109,7 +109,7 @@ class FuelTypeChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		) as? FuelTypeListCell {
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.title
+			cell.titleLabel.text = aData.title.localized()
 			cell.aSwitch.isOn = aData.toggleStatus
 			cell.controller = self
 			if self.data.count == 1 {

@@ -41,9 +41,12 @@ class InlineAlertView: UIView {
 		addSubview(inlineAlertView)
 		inlineAlertView.frame = self.bounds
 		expanded = true
+		textLabel.text = "inline_alert_default_demo_message".localized()
+		NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
+    		name: .languageWasChanged, object: nil)
   	}
 
-	// Functions
+	// MARK: Functions
 
 	@IBAction func inlineAlertWasPressed(_ sender: Any) {
 		expanded = false
@@ -52,5 +55,13 @@ class InlineAlertView: UIView {
 				self.layoutIfNeeded()
 				self.superview?.layoutIfNeeded()
 		}
+	}
+
+	// MARK: Notifications
+
+	@objc func languageWasChanged() {
+		textLabel.text = "inline_alert_default_demo_message".localized()
+		self.layoutIfNeeded()
+		self.superview?.layoutIfNeeded()
 	}
 }

@@ -325,18 +325,22 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		if(distance > 3) {
 			mapInfoDistanceView.setAsType(.typeDistance, withText: "-1")
 		} else if(distance >= 0.2) {
-			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(distance) km")
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(distance) \("map_kilometers".localized())")
 		} else {
-			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(Int(mapPointData.distanceInMeters)) m")
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(Int(mapPointData.distanceInMeters)) \("map_meters".localized())")
 		}
 
 		mapInfoPriceView.setAsType(.typePrice, withText: mapPointData.priceText)
 
 		priceLabel.text = mapPointData.priceText
-		
-		let customType = ActiveType.custom(pattern: "\\smājaslapas\\b") 
+
+		let patternString = "\\s\("map_price_last_updated_homepage_name".localized())\\b"
+		var lastUpdatedString = "map_price_last_was_updated_many_ago_text".localized()
+		lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "45")
+
+		let customType = ActiveType.custom(pattern: patternString)
 		extendedDescriptionLabel.enabledTypes = [customType]
-		extendedDescriptionLabel.text = "Cena pēdējo reizi atjaunota pirms 45 minūtēm. Cena tika iegūta no mājaslapas."
+		extendedDescriptionLabel.text = lastUpdatedString
 		extendedDescriptionLabel.customColor[customType] = UIColor.init(red: 29/255, green: 105/255, blue: 255/255, alpha: 1.0)
 		extendedDescriptionLabel.customSelectedColor[customType] = UIColor.init(red: 29/255, green: 105/255, blue: 255/255, alpha: 1.0)
     	extendedDescriptionLabel.handleCustomTap(for: customType) { element in 

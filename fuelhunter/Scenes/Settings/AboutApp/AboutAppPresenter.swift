@@ -24,12 +24,12 @@ class AboutAppPresenter: AboutAppPresentationLogic {
   	func presentSomething(response:  AboutApp.CompanyCells.Response) {
 
 		let array =  [
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Neste", description: "Lētākā Degviela Rīgā.", imageName: "neste_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Circle K", description: "Lētākā Degviela Rīgā.", imageName: "circle_k_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Kool", description: "Zemākās cenas DUS tīklā Latvijā.", imageName: "kool_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Nafta", description: "Zemākās cenas DUS tīklā Latvijā, pa reģioniem (Rīgas rajons, Liepājas rajons, Ventspils rajons, Zemgale, Vidzeme, Latgale).", imageName: "ln_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Virši", description: "Lētākā degviela Rīgā un Pierīgā.", imageName: "virshi_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Gotika auto", description: "Zemākās cenas DUS tīklā Latvijā.", imageName: "gotika_logo", enabled: true)
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Neste", description: "company_type_neste_description", imageName: "neste_logo", enabled: true),
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Circle K", description: "company_type_circle_k_description", imageName: "circle_k_logo", enabled: true),
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Kool", description: "company_type_kool_description", imageName: "kool_logo", enabled: true),
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Latvijas Nafta", description: "company_type_ln_description", imageName: "ln_logo", enabled: true),
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Virši", description: "company_type_virsi_description", imageName: "virshi_logo", enabled: true),
+			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem.init(title: "Gotika auto", description: "company_type_gotika_description", imageName: "gotika_logo", enabled: true)
 			]
 
     	let viewModel = AboutApp.CompanyCells.ViewModel.init(displayedCompanyCellItems: array)

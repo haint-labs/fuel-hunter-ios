@@ -87,7 +87,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		label.textAlignment = .center
 		label.font = Font.init(.normal, size: .size2).font
 		label.textColor = UIColor.init(named: "TitleColor")
-		let text = "Atzīmē kuras uzpildes kompānijas vēlies redzēt sarakstā"
+		let text = "company_select_companies_you_wish_to_be_represented_title".localized()
 		let height = text.height(withConstrainedWidth: self.frame.width-26, font: label.font)
 		label.text = text
 		label.frame = CGRect.init(x: 12, y: 10, width: self.frame.width-26, height: height+6)
@@ -109,10 +109,10 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		) as? FuelCompanyListCell {
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.title
+			cell.titleLabel.text = aData.title.localized()
 			cell.aSwitch.isOn = aData.toggleStatus
 			cell.setIconImageFromImageName(imageName: aData.imageName)
-			cell.setDescriptionText(descriptionText: aData.description)
+			cell.setDescriptionText(descriptionText: aData.description.localized())
 			cell.controller = self
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)

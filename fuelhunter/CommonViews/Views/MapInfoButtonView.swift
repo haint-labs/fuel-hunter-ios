@@ -100,7 +100,7 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
 			labelRightAnchorConstraint?.isActive = true
 		} else {
 			if !AppSettingsWorker.shared.getGPSIsEnabled() || text == "-1" {
-				label.text = "Directions"
+				label.text = "map_directions_button_title".localized()
 			}
 			iconImageView.image = UIImage.init(named: "car_sign")
 			accessoryIconImageView.isHidden = false

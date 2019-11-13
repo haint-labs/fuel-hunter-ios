@@ -37,7 +37,7 @@ class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-    	self.title = "Ietaupījums"
+    	self.title = "fuel_savings_title".localized()
     	self.view.backgroundColor = .white
     	setUpView()
   	}

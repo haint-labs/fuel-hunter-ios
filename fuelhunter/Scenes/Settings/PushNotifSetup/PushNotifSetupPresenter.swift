@@ -24,12 +24,15 @@ class PushNotifSetupPresenter: PushNotifSetupPresentationLogic {
   	// MARK: PushNotifSetupPresentationLogic
 
   	func presentData(response: PushNotifSetup.SetUp.Response) {
-  		var descriptionString = "Saņemt paziņojumus, kad degvielas cena samazinās par "
+
+  		var descriptionString = "settings_receive_notif_if_price_drops_by_title".localized()
+
   		if response.value == 1 {
-  			descriptionString.append("\(response.convertedValue) centu.")
+  			descriptionString.append(" \(response.convertedValue) \("settings_1_cent".localized())")
   		} else {
-  			descriptionString.append("\(response.convertedValue) centiem.")
+  			descriptionString.append(" \(response.convertedValue) \("settings_more_cents".localized())")
   		}
+
   		let displayItem = PushNotifSetup.SetUp.ViewModel.DisplayedItem.init(description: descriptionString, value: response.value, minValue: response.minValue, maxValue: response.maxValue)
     	let viewModel = PushNotifSetup.SetUp.ViewModel.init(displayedItem: displayItem)
     	viewController?.updateData(viewModel: viewModel)

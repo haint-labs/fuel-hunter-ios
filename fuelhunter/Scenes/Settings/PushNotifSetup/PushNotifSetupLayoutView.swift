@@ -106,9 +106,9 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 
   		titleLabel.font = Font.init(.medium, size: .size1).font
   		descriptionLabel.font = Font.init(.normal, size: .size2).font
-  		activateButton.setTitle("Aktivizēt", for: .normal)
+  		activateButton.setTitle("activate_button_title".localized(), for: .normal)
   		activateButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-  		cancelButton.setTitle("Atcelt", for: .normal)
+  		cancelButton.setTitle("cancel_button_title".localized(), for: .normal)
   		cancelButton.titleLabel?.font = Font.init(.medium, size: .size2).font
   		backgroundView.backgroundColor = .clear
   		activateButton.addTarget(self, action: NSSelectorFromString("activateButtonPressed"), for: .touchUpInside)
@@ -153,6 +153,7 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 	// MARK: PushNotifSetupLayoutViewDataLogic
 
 	func updateData(data: PushNotifSetup.SetUp.ViewModel) {
+		titleLabel.text = "intro_notifs_title".localized()
 		descriptionLabel.text = data.displayedItem.description
   		stepper.minimumValue = Double(data.displayedItem.minValue)
   		stepper.maximumValue = Double(data.displayedItem.maxValue)

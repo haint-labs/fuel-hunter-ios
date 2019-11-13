@@ -37,7 +37,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, AppL
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-    	self.title = "Aplikācijas valoda"
+    	self.title = "settings_app_language_title".localized()
     	self.view.backgroundColor = .white
 		setUpView()
     	getLanaguageListData()
@@ -83,6 +83,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, AppL
 
   	func presentLanguageList(viewModel: AppLanguage.GetLanguage.ViewModel) {
   		layoutView.updateData(data: viewModel.displayedLanguageCellItems)
+  		self.title = "settings_app_language_title".localized()
   	}
 
   	// MARK: AppLanguageLayoutViewLogic

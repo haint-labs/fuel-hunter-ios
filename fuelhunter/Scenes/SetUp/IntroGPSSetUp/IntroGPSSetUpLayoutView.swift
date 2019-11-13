@@ -130,10 +130,10 @@ class IntroGPSSetUpLayoutView: UIView {
 		laterButton.topAnchor.constraint(equalTo: space7.bottomAnchor).isActive = true
 		laterButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
 		
-		titleLabel.text = "Lokācija"
-		descriptionLabel.text = "Ja ieslēgsi GPS, tad iespējams varēsim attēlot cenas, kas būtu Tuvāk Tev."
-		giveAccessButton.setTitle("Dot atļauju", for: .normal)
-		laterButton.setTitle("Vēlāk", for: .normal)
+		titleLabel.text = "intro_location_title".localized()
+		descriptionLabel.text = "intro_location_description".localized()
+		giveAccessButton.setTitle("give_access_button_title".localized(), for: .normal)
+		laterButton.setTitle("later_button_title".localized(), for: .normal)
 
 		titleLabel.font = Font.init(.normal, size: .size0).font
 		descriptionLabel.font = Font.init(.normal, size: .size2).font

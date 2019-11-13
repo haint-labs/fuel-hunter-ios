@@ -23,11 +23,11 @@ class IntroChooseFuelTypePresenter: IntroChooseFuelTypePresentationLogic {
 
   	func presentData(response: IntroChooseFuelType.FuelCells.Response) {
     	let array =  [
-			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeDD, title: "DD | Dīzeļdegviela", toggleStatus: response.statusOfDD),
-			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeDDPro, title: "DD | Pro Dīzeļdegviela", toggleStatus: response.statusOfProDD),
-			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .type95, title: "95 | Benzīns", toggleStatus: response.statusOf95),
-			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .type98, title: "98 | Benzīns", toggleStatus: response.statusOf98),
-			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeGas, title: "Auto Gāze", toggleStatus: response.statusOfGas)
+			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeDD, title: "fuel_dd", toggleStatus: response.statusOfDD),
+			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeDDPro, title: "fuel_dd_pro", toggleStatus: response.statusOfProDD),
+			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .type95, title: "fuel_95", toggleStatus: response.statusOf95),
+			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .type98, title: "fuel_98", toggleStatus: response.statusOf98),
+			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem.init(fuelType: .typeGas, title: "fuel_gas", toggleStatus: response.statusOfGas)
 			]
 
     	let viewModel = IntroChooseFuelType.FuelCells.ViewModel.init(nextButtonIsEnabled: response.statusOfNextButton, displayedFuelCellItems: array)

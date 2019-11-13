@@ -37,7 +37,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-		self.title = "Uzpildes kompānijas"
+		self.title = "settings_fuel_company_title".localized()
     	self.view.backgroundColor = .white
 		setUpView()
     	getCompaniesListData()

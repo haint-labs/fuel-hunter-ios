@@ -40,7 +40,7 @@ class AppAccuracyInfoTableHeaderView: UIView {
 		
 		descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25).isActive = true
 
-		descriptionLabel.text = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam šādus datus:"
+		descriptionLabel.text = "fuel_accuracy_description".localized()
 
 		descriptionLabel.font = Font.init(.normal, size: .size3).font
   	}

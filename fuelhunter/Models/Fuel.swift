@@ -10,20 +10,20 @@ import Foundation
 
 // Used for showing only..
 enum ShortFuelType: String, Codable {
-	case type95 = "95"
-	case type98 = "98"
-	case typeDD = "DD"
-	case typeDDPro = "DD Pro"
-	case typeGas = "Auto gāze"
+	case type95 = "fuel_95_short"
+	case type98 = "fuel_98_short"
+	case typeDD = "fuel_dd_short"
+	case typeDDPro = "fuel_dd_pro_short"
+	case typeGas = "fuel_gas_short"
 }
 
 
 enum FuelType: String, Codable {
-	case type95 = "95 | Benzīns"
-	case type98 = "98 | Benzīns"
-	case typeDD = "DD | Dīzeļdegviela"
-	case typeDDPro = "DD | Pro Dīzeļdegviela"
-	case typeGas = "Auto gāze"
+	case type95 = "fuel_95"
+	case type98 = "fuel_98"
+	case typeDD = "fuel_dd"
+	case typeDDPro = "fuel_dd_pro"
+	case typeGas = "fuel_gas"
 }
 
 // Using this to easier calculate used companies name.
@@ -58,17 +58,17 @@ struct AllFuelTypesToogleStatus: Encodable, Decodable {
 		if typeDDPro { count += 1 }
 		
 		if count > 1 {
-			if type95 { combineString.append(ShortFuelType.type95.rawValue); combineString.append(", ") }
-			if type98 { combineString.append(ShortFuelType.type98.rawValue); combineString.append(", ") }
-			if typeDD { combineString.append(ShortFuelType.typeDD.rawValue); combineString.append(", ") }
-			if typeDDPro { combineString.append(ShortFuelType.typeDDPro.rawValue); combineString.append(", ") }
+			if type95 { combineString.append(ShortFuelType.type95.rawValue.localized().trimmingCharacters(in: .whitespaces)); combineString.append(", ") }
+			if type98 { combineString.append(ShortFuelType.type98.rawValue.localized().trimmingCharacters(in: .whitespaces)); combineString.append(", ") }
+			if typeDD { combineString.append(ShortFuelType.typeDD.rawValue.localized()); combineString.append(", ") }
+			if typeDDPro { combineString.append(ShortFuelType.typeDDPro.rawValue.localized()); combineString.append(", ") }
 		} else {
-			if type95 { combineString.append(FuelType.type95.rawValue); combineString.append(", ") }
-			if type98 { combineString.append(FuelType.type98.rawValue); combineString.append(", ") }
-			if typeDD { combineString.append(FuelType.typeDD.rawValue); combineString.append(", ") }
-			if typeDDPro { combineString.append(FuelType.typeDDPro.rawValue); combineString.append(", ") }
+			if type95 { combineString.append(FuelType.type95.rawValue.localized()); combineString.append(", ") }
+			if type98 { combineString.append(FuelType.type98.rawValue.localized()); combineString.append(", ") }
+			if typeDD { combineString.append(FuelType.typeDD.rawValue.localized()); combineString.append(", ") }
+			if typeDDPro { combineString.append(FuelType.typeDDPro.rawValue.localized()); combineString.append(", ") }
 		}
-		if typeGas { combineString.append(FuelType.typeGas.rawValue); combineString.append(", ") }
+		if typeGas { combineString.append(FuelType.typeGas.rawValue.localized()); combineString.append(", ") }
 		
 		if combineString.count > 0 { combineString.removeLast() }
 		if combineString.count > 0 { combineString.removeLast() }

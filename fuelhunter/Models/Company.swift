@@ -17,7 +17,7 @@ struct Company: Equatable, Codable {
 	var smallLogoName: String
 }
 enum CompanyType: String, Codable {
-	case typeCheapest = "Lētākā"
+	case typeCheapest = "company_type_cheapest_title"
 	case typeNeste = "Neste"
 	case typeCircleK = "Circle K"
 	case typeKool = "Kool"

@@ -417,6 +417,9 @@
 		5CBE5A18237B461A00639FDF /* StringLocalizationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */; };
 		5CBE5A19237B461A00639FDF /* StringLocalizationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */; };
 		5CBE5A1A237B461A00639FDF /* StringLocalizationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */; };
+		5CBE5A1C237C26C900639FDF /* DoubleRoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */; };
+		5CBE5A1D237C26CA00639FDF /* DoubleRoundExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */; };
+		5CBE5A1F237C4BF900639FDF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBE5A1E237C4BF900639FDF /* CoreTelephony.framework */; };
 		5CBEF11D2370C5620052D289 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5CBEF11E2370C5620052D289 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5CBEF1202370C6BA0052D289 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBEF11F2370C6BA0052D289 /* MapKit.framework */; };
@@ -681,6 +684,7 @@
 		5CBE5A15237AFE4500639FDF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5CBE5A16237AFE4700639FDF /* lv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lv; path = lv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5CBE5A17237B461A00639FDF /* StringLocalizationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLocalizationExtension.swift; sourceTree = "<group>"; };
+		5CBE5A1E237C4BF900639FDF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5CBEF11F2370C6BA0052D289 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5CBEF12C237831CF0052D289 /* DoubleRoundExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleRoundExtension.swift; sourceTree = "<group>"; };
 		5CCC38E0230A7797008D3512 /* FuelListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListCellView.swift; sourceTree = "<group>"; };
@@ -729,6 +733,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CBE5A1F237C4BF900639FDF /* CoreTelephony.framework in Frameworks */,
 				5CBEF1202370C6BA0052D289 /* MapKit.framework in Frameworks */,
 				77047B7A36142CF3B8789A7B /* Pods_fuelhunter.framework in Frameworks */,
 			);
@@ -1207,6 +1212,7 @@
 		A06D9252C43D3E2E4CB0455A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CBE5A1E237C4BF900639FDF /* CoreTelephony.framework */,
 				5CBEF11F2370C6BA0052D289 /* MapKit.framework */,
 				015C4DAD380F385A14A33634 /* Pods_fuelhunter.framework */,
 				8B85546C98FBD3C85DD5F4A1 /* Pods_fuelhunterTests.framework */,
@@ -1829,6 +1835,7 @@
 				5CCC3922230A9460008D3512 /* FuelListLayoutView.swift in Sources */,
 				5CB8EC4922E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */,
 				5C2E66CF22DD941D00FC71AD /* AboutAppWorker.swift in Sources */,
+				5CBE5A1C237C26C900639FDF /* DoubleRoundExtension.swift in Sources */,
 				5C80669322F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */,
 				5C2E672922DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
 				5CB8EC7222E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */,
@@ -1971,6 +1978,7 @@
 				5CCC3923230A9460008D3512 /* FuelListLayoutView.swift in Sources */,
 				5CB8EC4A22E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */,
 				5C2E66D022DD941D00FC71AD /* AboutAppWorker.swift in Sources */,
+				5CBE5A1D237C26CA00639FDF /* DoubleRoundExtension.swift in Sources */,
 				5C80669422F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */,
 				5C2E672A22DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
 				5CB8EC7322E96B44008EA53C /* IntroChooseFuelTypeViewController.swift in Sources */,

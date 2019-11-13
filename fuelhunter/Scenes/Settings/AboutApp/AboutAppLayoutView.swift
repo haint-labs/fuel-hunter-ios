@@ -99,7 +99,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
 			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description
+			cell.descriptionLabel.text = aData.description.localized()
 			cell.iconImageView.image = UIImage.init(named: aData.imageName)
 
 			if self.data.count == 1 {

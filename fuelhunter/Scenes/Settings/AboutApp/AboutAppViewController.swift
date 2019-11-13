@@ -37,7 +37,7 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-    	self.title = "Par aplikāciju"
+    	self.title = "settings_about_app_title".localized()
     	self.view.backgroundColor = .white
     	setUpView()
     	getListData()

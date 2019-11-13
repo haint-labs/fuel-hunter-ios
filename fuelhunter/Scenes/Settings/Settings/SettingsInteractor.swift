@@ -63,7 +63,6 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
 		}
   	}
 
-  	// MARK: TODO.
   	func userPressedOnGpsSwitch() {
   		appSettingsWorker.userPressedButtonToGetGPSAccess { result in
   			switch result {

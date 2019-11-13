@@ -90,8 +90,8 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
 			cell.controller = self
-			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description
+			cell.titleLabel.text = aData.title.localized()
+			cell.descriptionLabel.text = aData.description.localized()
 
 			cell.aSwitch.isUserInteractionEnabled = true
 

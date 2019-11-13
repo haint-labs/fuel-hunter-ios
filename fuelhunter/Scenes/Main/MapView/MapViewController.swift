@@ -44,7 +44,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.view.backgroundColor = .clear
-    	self.title = router?.dataStore?.selectedFuelType.rawValue
+    	self.title = router?.dataStore?.selectedFuelType.rawValue.localized()
     	setUpView()
     	doSomething()
     	

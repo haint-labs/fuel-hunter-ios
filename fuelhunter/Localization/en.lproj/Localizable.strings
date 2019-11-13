@@ -15,10 +15,109 @@
 "lv_language_name" = "Latvian";
 "ru_language_name" = "Russian";
 "en_language_name" = "English";
+"next_button_title" = "Next";
+"give_access_button_title" = "Give access";
+"later_button_title" = "Later";
+"activate_button_title" = "Activate";
+"cancel_button_title" = "Cancel";
 //=== GLOBAL
 
 
+//--- COMPANY
+"company_type_cheapest_title" = "Cheapest";
+"company_type_cheapest_description" = "Turning this on - will also show the company, which has the cheapest price at that moment in Latvia";
+"company_type_neste_description" = "Cheapest Fuel in Riga.";
+"company_type_circle_k_description" = "Cheapest Fuel in Riga.";
+"company_type_kool_description" = "Lowest prices in the Latvian gas station network.";
+"company_type_ln_description" = "Lowest prices in the network of filling stations in Latvia, by regions (Riga district, Liepaja district, Ventspils district, Zemgale, Vidzeme, Latgale).";
+"company_type_virsi_description" = "Cheapest fuel in Riga and Riga district.";
+"company_type_gotika_description" = "Lowest prices in the Latvian gas station network.";
+"company_select_companies_you_wish_to_be_represented_title" = "Check which fuel companies you want to see listed";
+//=== COMPANY
+
+
+//--- FUEL 
+"fuel_dd" = "DD | Diesel fuel";
+"fuel_dd_pro" = "DD | Pro Diesel fuel";
+"fuel_95" = "95 | Gasoline";
+"fuel_98" = "98 | Gasoline";
+"fuel_gas" = "Car Gas";
+"fuel_dd_short" = "DD";
+"fuel_dd_pro_short" = "DD Pro";
+"fuel_95_short" = " 95";
+"fuel_98_short" = " 98";
+"fuel_gas_short" = "Car Gas";
+//=== FUEL 
+
+
+//--- INTRO
+"intro_app_description_text_1" = "Find out which fuel station has the lowest fuel price.";
+"intro_app_description_text_2" = "Get notifications on the phone when the price of fuel drops.";
+"intro_choose_companies_you_use_title" = "Mark the fuel companies you usually use.";
+"intro_choose_fuel_types_you_are_interested" = "Mark the types of fuel you are interested in.";
+"intro_notifs_title" = "Push Notifications";
+"intro_notifs_description" = "Receive push notifications when the price of fuel drops.";
+"intro_location_title" = "Location";
+"intro_location_description" = "If you turn on GPS, we can display prices closer to you.";
+//=== INTRO
+
+
+//--- SETTINGS
+"settings_title" = "Settings";
+"settings_receive_notif_if_price_drops_by_title" = "Get notified when fuel price drops by";
+"settings_1_cent" = "cent.";
+"settings_more_cents" = "cents.";
+"settings_fuel_company_title" = "Fuel companies";
+"settings_fuel_company_description" = "Mark which fuel companies you want to see listed";
+"settings_fuel_type_title" = "Fuel type";
+"settings_fuel_type_description" = "Current fuel type";
+"settings_fuel_type_second_description" = "Mark the types of fuel you are interested in";
+"settings_gps_title" = "GPS";
+"settings_gps_description" = "Use GPS to display the cheapest prices near your location";
+"settings_notif_title" = "Push Notifications";
+"settings_app_language_title" = "Application language";
+"settings_app_language_description" = "Change application language";
+"settings_about_app_title" = "About app";
+"settings_about_app_description" = "How it works";
+"settings_about_app_map_title" = "Find out which petrol station has the lowest fuel price.";
+"settings_about_app_notif_title" = "Get notified when the price of fuel drops.";
+"settings_about_app_full_description" = "We currently obtain the lowest price data from the websites of the fuel companies, so for the time being this information is for information only. In addition, the website does not update this information on weekends or holidays.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\ndata:";
+//=== SETTINGS
+
+
 //--- FUEL LIST
-"savings_button_title" = "Savings";
-"fuel_price_accuracy_button_title" = "Fuel price Accuracy";
+"fuel_list_savings_button_title" = "Savings";
+"fuel_list_fuel_price_accuracy_button_title" = "Fuel price Accuracy";
+"fuel_list_app_name" = "Fuel Hunter";
 //=== FUEL LIST
+
+
+//--- MAP
+"map_price_last_was_updated_many_ago_text" = "Price last updated ^^^ minutes ago. The price was obtained from the website.";
+"map_price_last_was_updated_just_ago_text" = "Price last updated 1 minute ago. The price was obtained from the website.";
+"map_price_last_updated_homepage_name" = "website";
+"map_directions_button_title" = "Directions";
+"map_kilometers" = "km";
+"map_meters" = "m";
+//=== MAP
+
+
+//--- FUEL ACCURACY
+"fuel_accuracy_title" = "Fuel price Accuracy";
+"fuel_accuracy_description" = "We currently obtain the lowest price data from the websites of the fuel companies, so for the time being this information is for information only. In addition, the website does not update this information on weekends or holidays.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\ndata:";
+//=== FUEL ACCURACY
+
+
+//--- FUEL SAVINGS
+"fuel_savings_title" = "Savings";
+"fuel_savings_description_1" = "An ordinary motorist fills the gas station on his way between home and work and when the lighthouse is almost empty.";
+"fuel_savings_description_2" = "By using this application, the driver will find out about a possibly filling station, where the price is 1-5 cents cheaper than the station previously filled.";
+"fuel_savings_description_3" = "Plus, finding out when prices fall directly allows the driver to fill the car at the right time, saving even more in the long run.";
+"fuel_savings_description_4" = "Even if you come to refuel at another station with a higher price, you will at least be able to evaluate the price - whether it is acceptable or inadequately high.";
+"fuel_savings_description_5" = "As an example of savings, I can cite my observation.\n\nFill up with Neste, who was on my way to work. There the price is always about 5 cents more expensive than the cheapest one. Instead, if I refueled at the cheapest station in Riga and had at least 40 liters of free light, the savings would be ~ 2 eur! \n\nThere are sometimes up to 2 lighthouses a month when commuting to work (15km / day) or off-campus. So you could save up to ~ 4 eur per month in this way. \n\nYou get it for Eur 48 a year - It's already one free full lighthouse! \n\n(Note that this is the best case. Maybe you already live in one of the cheapest stations on the way. Then no savings will come because you are already cheap refilled, but you will come to the realization that you were one of the cheaper ones!).\n\nAt least you can feel better knowing that there is no point in hunting for the cheapest fuel, unless it is any “meaningful savings“!";
+//=== FUEL SAVINGS
+
+
+//--- INLINE ALERT
+"inline_alert_default_demo_message" = "You are located in Kurzeme. Unfortunately for the selected fuel companies, we only have prices from the Riga area.";
+//=== INLINE ALERT

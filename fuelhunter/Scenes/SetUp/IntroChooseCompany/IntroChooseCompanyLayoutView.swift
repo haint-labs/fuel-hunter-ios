@@ -41,10 +41,10 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		super.init(coder: aDecoder)
     	setup()
 	}
-	
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		tableView.layoutSubviews()
+		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines()
 	}
 	
@@ -84,8 +84,8 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		nextButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
 		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
 
-		topTitleLabel.text = "Atzīmē degvielas kompānijas, kurās uzpildies."
-		nextButton.setTitle("Tālāk", for: .normal)
+		topTitleLabel.text = "intro_choose_companies_you_use_title".localized()
+		nextButton.setTitle("next_button_title".localized(), for: .normal)
 		topTitleLabel.font = Font.init(.normal, size: .size2).font
 		nextButton.titleLabel?.font = Font.init(.medium, size: .size2).font
 		nextButton.addTarget(self, action:NSSelectorFromString("nextButtonPressed"), for: .touchUpInside)
@@ -113,10 +113,10 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		) as? FuelCompanyListCell {
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.title
+			cell.titleLabel.text = aData.title.localized()
 			cell.aSwitch.isOn = aData.toggleStatus
 			cell.setIconImageFromImageName(imageName: aData.imageName)
-			cell.setDescriptionText(descriptionText: aData.description)
+			cell.setDescriptionText(descriptionText: aData.description.localized())
 			cell.controller = self
 
 			if self.data.count == 1 {
@@ -155,6 +155,7 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
   	// MARK: Functions
 
 	func adjustVisibilityOfShadowLines() {
+		print(tableView.contentSize.height)
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top

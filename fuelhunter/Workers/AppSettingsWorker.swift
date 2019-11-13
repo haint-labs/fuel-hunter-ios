@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import UserNotifications
+import CoreTelephony
 
 extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
@@ -59,12 +60,29 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	}
 
 	// MARK: Language
+
 	func getCurrentLanguage() -> Language {
+		// 1. Use previously selected/detected language.
 		if let language = UserDefaults.standard.string(forKey: "Language") {
 			return Language.init(rawValue: language)!
 		}
 
-		return Language.latvian
+		// 2. Check prefered phone language. If it is russian, then select russian
+		let preferredLanguage = Locale.preferredLanguages[0] as String
+		if preferredLanguage.lowercased().contains("ru") { return Language.russian }
+
+		// 3. Check prefered phone language. If it is latvian, then select latvian
+		if preferredLanguage.lowercased().contains("lv") { return Language.latvian }
+
+		// 4. Check sim card country. If it is latvian, then select latvian
+		let telephony = CTTelephonyNetworkInfo()
+		let carrier = telephony.subscriberCellularProvider
+		if let carrier = carrier, carrier.mobileCountryCode == "247" {
+			return Language.latvian
+		}
+
+		// 5. If all other check fails - go to default, english.
+		return Language.english
 	}
 
 	func setCurrentLanguage(_ language: Language) {

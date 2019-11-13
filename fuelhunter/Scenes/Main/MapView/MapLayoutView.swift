@@ -105,10 +105,10 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
 		}
 
-		if mapView!.userLocation.location != nil {
-			let p = MKMapPoint(mapView!.userLocation.coordinate)
-			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
-		}
+//		if mapView!.userLocation.location != nil {
+//			let p = MKMapPoint(mapView!.userLocation.coordinate)
+//			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
+//		}
 
 		var region = MKCoordinateRegion(r)
 
@@ -178,7 +178,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		   let mapPointAnnotation = annotationView.annotation as? MapPoint {
 			annotationView.canShowCallout = false
 
-			var distance = mapPointAnnotation.distanceInMeters/1000
+			var distance: Double = mapPointAnnotation.distanceInMeters/1000
 			distance = distance.rounded(rule: .down, scale: 1)
 
 			// This is needed, otherwise, I noticed that in some cases, more than one gets added..
@@ -190,10 +190,10 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 			if (distance > 3) {
 				mapPinAccessory.setDistanceVisible(false)
 			} else if(distance >= 0.2) {
-				mapPinAccessory.distanceLabel.text = "\(distance) km"
+				mapPinAccessory.distanceLabel.text = "\(distance) \("map_kilometers".localized())"
 				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
 			} else {
-				mapPinAccessory.distanceLabel.text = "\(Int(mapPointAnnotation.distanceInMeters)) m"
+				mapPinAccessory.distanceLabel.text = "\(Int(mapPointAnnotation.distanceInMeters)) \("map_meters".localized())"
 				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
 			}
 

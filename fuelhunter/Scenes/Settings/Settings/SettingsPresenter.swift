@@ -33,26 +33,26 @@ class SettingsPresenter: SettingsPresentationLogic {
 		let fuelTypeNames = response.fuelTypeNames
 		let gpsIsEnabledStatus = response.gpsIsEnabledStatus
 		let pushNotifIsEnabledStatus = response.pushNotifIsEnabledStatus
-		var descriptionString = "Saņemt paziņojumus, kad degvielas cena samazinās par "
+		var descriptionString = "settings_receive_notif_if_price_drops_by_title".localized()
 
   		if response.notifCentsValue == 1 {
-  			descriptionString.append("1 centu.")
+  			descriptionString.append(" \(response.notifCentsValue) \("settings_1_cent".localized())")
   		} else {
-  			descriptionString.append("\(response.notifCentsValue) centiem.")
+  			descriptionString.append(" \(response.notifCentsValue) \("settings_more_cents".localized())")
   		}
 
 
-		let settingsItem1 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "Atzīmē, kuras uzpildes kompānijas vēlies redzēt sarakstā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem1 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "settings_fuel_company_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem2 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "Aktuālais degvielas veids", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem2 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "settings_fuel_type_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem3 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .gpsCell, title: "GPS", description: "Izmantot GPS, lai attēlotu lētākās cenas Tavas lokācijas tuvumā", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus)
+		let settingsItem3 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .gpsCell, title: "settings_gps_title", description: "settings_gps_description", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus)
 
-		let settingsItem4 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "Paziņojumi", description: descriptionString, shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus)
+		let settingsItem4 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .pushNotifCell, title: "settings_notif_title", description: descriptionString, shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus)
 
-		let settingsItem5 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "Aplikācijas valoda", description: "Izmaini aplikācijas valodu", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem5 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .appLanguageCell, title: "settings_app_language_title", description: "settings_app_language_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem6 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "Par aplikāciju", description: "Kā tas strādā", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem6 = Settings.SettingsList.ViewModel.DisplayedSettingsCell.init(settingsListCellType: .aboutAppCell, title: "settings_about_app_title", description: "settings_about_app_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
 
 		var array = [settingsItem1, settingsItem2]

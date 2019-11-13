@@ -79,8 +79,8 @@ class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewD
 		nextButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10).isActive = true
 		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
 
-		topTitleLabel.text = "Atzīmē degvielas veidus, kuru cenas Tev interesē."
-		nextButton.setTitle("Tālāk", for: .normal)
+		topTitleLabel.text = "intro_choose_fuel_types_you_are_interested".localized()
+		nextButton.setTitle("next_button_title".localized(), for: .normal)
 		topTitleLabel.font = Font.init(.normal, size: .size2).font
 		nextButton.titleLabel?.font = Font.init(.medium, size: .size2).font
 		nextButton.setTitleColor(UIColor.init(named: "DisabledButtonColor"), for: .disabled)
@@ -109,7 +109,7 @@ class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewD
 		) as? FuelTypeListCell {
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
-			cell.titleLabel.text = aData.title
+			cell.titleLabel.text = aData.title.localized()
 			cell.aSwitch.isOn = aData.toggleStatus
 			cell.controller = self
 

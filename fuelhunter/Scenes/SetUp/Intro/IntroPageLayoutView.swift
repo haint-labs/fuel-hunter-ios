@@ -118,9 +118,9 @@ class IntroPageLayoutView: UIView {
 		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
 
 		topTitleLabel.text = "Fuel\nHunter"
-		description1Label.text = "Uzzini kurā degvielas uzpildes stacijā ir zemākā degvielas cena."
-		description2Label.text = "Saņem paziņojumus telefonā kad degvielai krītas cena."
-		nextButton.setTitle("Tālāk", for: .normal)
+		description1Label.text = "intro_app_description_text_1".localized()
+		description2Label.text = "intro_app_description_text_2".localized()
+		nextButton.setTitle("next_button_title".localized(), for: .normal)
 		iconImageView.image = UIImage.init(named: "Intro_icon")
 		topTitleLabel.font = Font.init(.normal, size: .size0).font
 		description1Label.font = Font.init(.normal, size: .size2).font

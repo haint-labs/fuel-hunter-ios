@@ -18,7 +18,7 @@ class AppAccuracyInfoViewController: AboutAppViewController {
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-    	self.title = "Degvielas cenu precizitāte"
+    	self.title = "fuel_accuracy_title".localized()
     }	
 
 	// MARK: Set up

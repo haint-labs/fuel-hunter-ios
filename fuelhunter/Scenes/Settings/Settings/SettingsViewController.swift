@@ -39,16 +39,20 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 
 	deinit {
     	NotificationCenter.default.removeObserver(self, name: .applicationDidBecomeActiveFromAppSettings, object: nil)
+    	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
 	}
 
   	override func viewDidLoad() {
     	super.viewDidLoad()
-    	self.title = "Iestatījumi"
+    	self.title = "settings_title".localized()
     	self.view.backgroundColor = .white
     	setUpView()
 
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive),
     		name: .applicationDidBecomeActiveFromAppSettings, object: nil)
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
+    		name: .languageWasChanged, object: nil)
   	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -112,10 +116,15 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
   		layoutView.updateData(data: viewModel.displayedSettingsCells)
   	}
 
+	// MARK: Notifications
+
   	@objc func applicationDidBecomeActive() {
 		getSettingsCellsData()
 	}
 
+	@objc func languageWasChanged() {
+		self.title = "settings_title".localized()
+	}
 
   	// MARK: PushNotifReturnUpdateDataLogic
 

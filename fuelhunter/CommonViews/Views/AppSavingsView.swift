@@ -101,22 +101,10 @@ class AppSavingsView: UIView {
 		savingsLabel4.font = Font.init(.normal, size: .size3).font
 		descriptionLabel.font = Font.init(.normal, size: .size3).font
 
-		savingsLabel1.text = "Parasts autobraucējs, uzpildās degvielas uzpildes stacijā, kas viņam ir pa ceļam starp mājām un darbu, un brīdī kad bāka ir gandrīz tukša."
-		savingsLabel2.text = "Lietojot šo aplikāciju, autobraucējs uzzinās par kādu, iespējams, netālu uzpildes staciju, kur cena ir lētāka par 1-5 centiem, nekā stacijā, kur pirms tam uzpildījās."
-		savingsLabel3.text = "Turklāt, uzzinot kad tieši nokrītas cenas, autobraucējs var uzpildīt auto īstajā brīdī, tādējādi ilgtermiņā ietaupot vēl vairāk."
-		savingsLabel4.text = "Pat ja Jūs braucat uzpildīties kādā citā stacijā, kur cena ir augstāka, vismaz spēsiet novērtēt cenu - vai tā ir pieņemama, vai neadekvāti augsta."
-		descriptionLabel.text = """
-		Kā piemēru par ietaupījumu, varu minēt savu novērojumu. 
-
-		Uzpildos Neste, kas man bija pa ceļam uz darbu. Tur cena, salīdzinājumā ar lētāko cenu, pārsvarā vienmēr ir par kādiem ~5 centiem dārgāka. Ja es tā vietā uzpildītos lētākajā stacijā, Rīgā, un man būtu bākā vismaz 40 litri brīvi, tad ietaupījums sanāk ~ 2 eur! 
-
-		Mēnesī, braukājot gan uz darbu (15 km dienā), gan citreiz ārpus pilsētas, sanāk dažreiz pat 2 bākas nobraukt. Tātad mēnesī šādā veidā varētu pat ~ 4 eur ietaupīt.
-
-		Gadā tas jau sanāk pie 48 eur - Tā jau ir viena bezmaksas pilna bāka!
-
-		(Ņemiet vērā, ka tas ir labākais gadījums. Varbūt ka Jūs jau dzīvojat vietā, kur pa ceļam ir tā lētākā stacija.. Tad nekāds ietaupījums nesanāks, jo Jūs jau tāpat lēti uzpildījāties. Bet klāt nāks apziņa, ka bijāt viens no tiem, kas uzpildījās lētāk!)
-
-		Ja Jums tas liekas smieklīgi, skaitīt centus, un gada griezumā ietaupīt līdz pat 48 eur, tad vismaz Jūs varat justies labāk, apzinoties ka nav jēga medīt lētāko degvielu, ja tāpat nekāds “jēdzīgs ietaupījums” tas nav!
-		"""
+		savingsLabel1.text = "fuel_savings_description_1".localized()
+		savingsLabel2.text = "fuel_savings_description_2".localized()
+		savingsLabel3.text = "fuel_savings_description_3".localized()
+		savingsLabel4.text = "fuel_savings_description_4".localized()
+		descriptionLabel.text = "fuel_savings_description_5".localized()
   	}
 }

@@ -115,11 +115,6 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
     	savingsLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
 		accuracyLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
 
-//		savingsLabelButton.setTitle("savings_button_title".localized(), for: .normal)
-//		accuracyLabelButton.setTitle("fuel_price_accuracy_button_title".localized(), for: .normal)
-//		accuracyLabelButton.layoutIfNeeded()
-//		savingsLabelButton.layoutIfNeeded()
-
 		savingsIconButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
 		accuracyIconButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
 		savingsLabelButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
@@ -180,11 +175,11 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		let baseView: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 60))
 		
 		let label: UILabel = UILabel()
-		label.text = aData.fuelType.rawValue
+		label.text = aData.fuelType.rawValue.localized()
 		label.font = Font.init(.medium, size: .size3).font
 		label.textColor = UIColor.init(named: "TitleColor")
 		
-		let height = aData.fuelType.rawValue.height(withConstrainedWidth: self.frame.width-32, font: Font.init(.medium, size: .size3).font)
+		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font.init(.medium, size: .size3).font)
 		
 		label.frame = CGRect.init(x: 16, y: 20, width: self.frame.width-32, height: height+6)
 		
@@ -195,7 +190,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		let aData = self.data[section].first!
-		let height = aData.fuelType.rawValue.height(withConstrainedWidth: self.frame.width-32, font: Font.init(.medium, size: .size3).font)
+		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font.init(.medium, size: .size3).font)
 		
 		return height + 26
 	}
@@ -248,8 +243,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]]) {
 		self.data = data
-		savingsLabelButton.setTitle("savings_button_title".localized(), for: .normal)
-		accuracyLabelButton.setTitle("fuel_price_accuracy_button_title".localized(), for: .normal)
+		savingsLabelButton.setTitle("fuel_list_savings_button_title".localized(), for: .normal)
+		accuracyLabelButton.setTitle("fuel_list_fuel_price_accuracy_button_title".localized(), for: .normal)
 		accuracyLabelButton.layoutIfNeeded()
 		savingsLabelButton.layoutIfNeeded()
 		tableView.reloadData()

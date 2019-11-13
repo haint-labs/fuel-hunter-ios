@@ -46,7 +46,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 		super.viewDidLoad()
 		self.navigationController!.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem.init(image:
 			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
-		self.navigationController!.navigationBar.topItem?.title = "Fuel Hunter"
+		self.navigationController!.navigationBar.topItem?.title = "fuel_list_app_name".localized()
 		self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
     	self.navigationController!.navigationBar.shadowImage = UIImage()
 		self.navigationController!.navigationBar.isTranslucent = true

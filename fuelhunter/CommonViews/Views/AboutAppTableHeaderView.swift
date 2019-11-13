@@ -68,9 +68,9 @@ class AboutAppTableHeaderView: UIView {
 		descriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16).isActive = true
 		descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -25).isActive = true
 
-		mapLabel.text = "Uzzini kurā degvielas uzpildes stacijā ir zemākā degvielas cena."
-		notifLabel.text = "Saņem paziņojumus kad degvielai krītas cena."
-		descriptionLabel.text = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam šādus datus:"
+		mapLabel.text = "settings_about_app_map_title".localized()
+		notifLabel.text = "settings_about_app_notif_title".localized()
+		descriptionLabel.text = "settings_about_app_full_description".localized()
 		
 		mapLabel.font = Font.init(.normal, size: .size3).font
 		notifLabel.font = Font.init(.normal, size: .size3).font
