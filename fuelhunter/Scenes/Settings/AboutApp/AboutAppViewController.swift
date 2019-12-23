@@ -35,12 +35,18 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
 
   	// MARK: View lifecycle
 
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
+	}
+
   	override func viewDidLoad() {
     	super.viewDidLoad()
     	self.title = "settings_about_app_title".localized()
     	self.view.backgroundColor = .white
     	setUpView()
     	getListData()
+    	NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
+    		name: .fontSizeWasChanged, object: nil)
   	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -72,7 +78,7 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
   	}
 
 	func setUpView() {
-		layoutView = AboutAppLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = AboutAppLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -98,4 +104,10 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
   	func displayData(viewModel: AboutApp.CompanyCells.ViewModel) {
     	layoutView.updateData(data: viewModel.displayedCompanyCellItems)
   	}
+
+  	// MARK: Notifications
+
+	@objc func fontSizeWasChanged() {
+		self.layoutView.resetUI()
+	}
 }

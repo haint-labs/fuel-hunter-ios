@@ -16,9 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions
 		launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-//		Utility.doit()
 		
-		//ScenesManager.shared.resetState()
+		//ScenesManager.shared.resetState() // For debug, to start over.
 		window?.backgroundColor = .white		
 		ScenesManager.shared.window = window
 		ScenesManager.shared.setRootViewController(animated: false)
@@ -26,11 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// To initiate it.
 		_ = AppSettingsWorker.shared
 		
-		UINavigationBar.appearance().tintColor = UIColor.init(named: "TitleColor")!
-		UINavigationBar.appearance().titleTextAttributes =
-			[NSAttributedString.Key.foregroundColor: UIColor.init(named: "TitleColor")!,
-			NSAttributedString.Key.font: Font.init(.normal, size: .size1).font]
-
 		return true
 	}
 
@@ -44,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
+		Font.recalculateFontIncreaseSize()
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {

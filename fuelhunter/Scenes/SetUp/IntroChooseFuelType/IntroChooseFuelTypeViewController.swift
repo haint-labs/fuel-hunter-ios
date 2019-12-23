@@ -59,7 +59,7 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
   	}
 
 	func setUpView() {
-		layoutView = IntroChooseFuelTypeLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = IntroChooseFuelTypeLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -83,7 +83,7 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
   	// MARK: IntroChooseFuelTypeLayoutViewLogic
 
 	func switchWasPressedFor(fuelType: FuelType, withState state: Bool) {
-		let request = IntroChooseFuelType.SwitchToggled.Request.init(fuelType: fuelType, state: state)
+		let request = IntroChooseFuelType.SwitchToggled.Request(fuelType: fuelType, state: state)
 		interactor?.userToggledFuelType(request: request)
 	}
 	

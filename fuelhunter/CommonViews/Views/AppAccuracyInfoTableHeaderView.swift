@@ -42,6 +42,6 @@ class AppAccuracyInfoTableHeaderView: UIView {
 
 		descriptionLabel.text = "fuel_accuracy_description".localized()
 
-		descriptionLabel.font = Font.init(.normal, size: .size3).font
+		descriptionLabel.font = Font(.normal, size: .size3).font
   	}
 }

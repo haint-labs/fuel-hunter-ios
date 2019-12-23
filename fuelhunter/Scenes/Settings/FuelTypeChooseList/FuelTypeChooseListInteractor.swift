@@ -31,7 +31,7 @@ class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeCho
 
   	func getFuelTypesListData(request: FuelTypeChooseList.FuelCells.Request) {
     	let fuelTypes = appSettingsWorker.getFuelTypeToggleStatus()
-    	let response = FuelTypeChooseList.FuelCells.Response.init(statusOfDD: fuelTypes.typeDD, statusOfProDD: fuelTypes.typeDDPro, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas)
+    	let response = FuelTypeChooseList.FuelCells.Response(statusOfDD: fuelTypes.typeDD, statusOfProDD: fuelTypes.typeDDPro, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas)
     	presenter?.presentData(response: response)
   	}
 

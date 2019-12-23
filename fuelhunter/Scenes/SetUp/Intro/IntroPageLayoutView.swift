@@ -12,7 +12,7 @@ protocol IntroPageLayoutViewLogic {
 	func nextButtonWasPressed()
 }
 
-class IntroPageLayoutView: UIView {
+class IntroPageLayoutView: FontChangeView {
 
 	weak var controller: IntroPageViewController? 
 
@@ -121,16 +121,25 @@ class IntroPageLayoutView: UIView {
 		description1Label.text = "intro_app_description_text_1".localized()
 		description2Label.text = "intro_app_description_text_2".localized()
 		nextButton.setTitle("next_button_title".localized(), for: .normal)
-		iconImageView.image = UIImage.init(named: "Intro_icon")
-		topTitleLabel.font = Font.init(.normal, size: .size0).font
-		description1Label.font = Font.init(.normal, size: .size2).font
-		description2Label.font = Font.init(.normal, size: .size2).font
-		nextButton.titleLabel?.font = Font.init(.medium, size: .size2).font
 		nextButton.addTarget(self, action:NSSelectorFromString("nextButtonPressed"), for: .touchUpInside)
 
 		baseView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
 		baseView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-  	}
+
+  		updateFonts()
+    }
+
+	func updateFonts() {
+		iconImageView.image = UIImage(named: "Intro_icon")
+		topTitleLabel.font = Font(.normal, size: .size0).font
+		description1Label.font = Font(.normal, size: .size2).font
+		description2Label.font = Font(.normal, size: .size2).font
+		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
 	// MARK: Functions
 

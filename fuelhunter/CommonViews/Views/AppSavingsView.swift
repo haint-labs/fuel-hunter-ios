@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppSavingsView: UIView {
+class AppSavingsView: FontChangeView {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var savingsIcon1: UIImageView!
@@ -95,16 +95,24 @@ class AppSavingsView: UIView {
 
 		descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-		savingsLabel1.font = Font.init(.normal, size: .size3).font
-		savingsLabel2.font = Font.init(.normal, size: .size3).font
-		savingsLabel3.font = Font.init(.normal, size: .size3).font
-		savingsLabel4.font = Font.init(.normal, size: .size3).font
-		descriptionLabel.font = Font.init(.normal, size: .size3).font
-
 		savingsLabel1.text = "fuel_savings_description_1".localized()
 		savingsLabel2.text = "fuel_savings_description_2".localized()
 		savingsLabel3.text = "fuel_savings_description_3".localized()
 		savingsLabel4.text = "fuel_savings_description_4".localized()
 		descriptionLabel.text = "fuel_savings_description_5".localized()
-  	}
+
+  		updateFonts()
+    }
+
+	func updateFonts() {
+		savingsLabel1.font = Font(.normal, size: .size3).font
+		savingsLabel2.font = Font(.normal, size: .size3).font
+		savingsLabel3.font = Font(.normal, size: .size3).font
+		savingsLabel4.font = Font(.normal, size: .size3).font
+		descriptionLabel.font = Font(.normal, size: .size3).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 }

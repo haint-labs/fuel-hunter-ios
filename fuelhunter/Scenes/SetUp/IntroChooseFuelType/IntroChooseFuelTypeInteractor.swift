@@ -30,7 +30,7 @@ class IntroChooseFuelTypeInteractor: IntroChooseFuelTypeBusinessLogic, IntroChoo
 
   	func getFuelTypesListData(request: IntroChooseFuelType.FuelCells.Request) {
     	let fuelTypes = appSettingsWorker.getFuelTypeToggleStatus()
-    	let response = IntroChooseFuelType.FuelCells.Response.init(statusOfDD: fuelTypes.typeDD, statusOfProDD: fuelTypes.typeDDPro, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas, statusOfNextButton: fuelTypes.isAtLeastOneTypeEnabled())
+    	let response = IntroChooseFuelType.FuelCells.Response(statusOfDD: fuelTypes.typeDD, statusOfProDD: fuelTypes.typeDDPro, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas, statusOfNextButton: fuelTypes.isAtLeastOneTypeEnabled())
     	presenter?.presentData(response: response)
   	}
 

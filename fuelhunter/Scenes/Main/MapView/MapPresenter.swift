@@ -28,7 +28,7 @@ class MapPresenter: MapPresentationLogic {
   	}
 
 	func updateToRevealMapPoint(response: Map.MapWasPressed.Response) {
-		let viewModel = Map.MapWasPressed.ViewModel.init(selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint, selectedPrice: response.selectedPrice)
+		let viewModel = Map.MapWasPressed.ViewModel(selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint, selectedPrice: response.selectedPrice)
 
 		viewController?.updateToRevealMapPoint(viewModel: viewModel)
 	}

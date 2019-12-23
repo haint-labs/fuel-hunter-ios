@@ -43,7 +43,7 @@ class IntroNotifSetUpInteractor: IntroNotifSetUpBusinessLogic, IntroNotifSetUpDa
 			if self?.appSettingsWorker.notificationsAuthorisationStatus == .authorized
   				&& self?.appSettingsWorker.getNotifIsEnabled() == true {
 				let storedCentsCount = self?.appSettingsWorker.getStoredNotifCentsCount()
-				let response = IntroNotifSetUp.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount ?? 1)
+				let response = IntroNotifSetUp.PushNotif.Response(storedNotifCentsCount: storedCentsCount ?? 1)
 				self?.presenter?.showNotifSetUp(response: response)
 			} else {
 				ScenesManager.shared.advanceAppSceneState()

@@ -40,12 +40,13 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	// MARK: View lifecycle
 	deinit {
     	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
+    	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationController!.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem.init(image:
-			UIImage.init(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
+		self.navigationController!.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(image:
+			UIImage(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
 		self.navigationController!.navigationBar.topItem?.title = "fuel_list_app_name".localized()
 		self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
     	self.navigationController!.navigationBar.shadowImage = UIImage()
@@ -56,6 +57,8 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
     	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
     		name: .languageWasChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
+    		name: .fontSizeWasChanged, object: nil)
 	}
 
 	// Set up
@@ -73,7 +76,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	func setUpView() {
-		layoutView = FuelListLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = FuelListLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -112,7 +115,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 		selectedCell = cell
 		selectedCell?.isHidden = true
 
-		let request = FuelList.RevealMap.Request.init(selectedCompany: company, selectedFuelType: fuelType, selectedCellYPosition: yLocation)
+		let request = FuelList.RevealMap.Request(selectedCompany: company, selectedFuelType: fuelType, selectedCellYPosition: yLocation)
 
 		interactor?.prepareToRevealMapWithRequest(request:request)
 	}
@@ -138,7 +141,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 				if price.fuelType != fuelPrice.fuelType { break; }
 
 				if price == displayedPrice {
-					indexPath = IndexPath.init(row: rowIndex, section: sectionIndex)
+					indexPath = IndexPath(row: rowIndex, section: sectionIndex)
 					if let cell = layoutView.tableView.cellForRow(at: indexPath!) {
 						// We found a cell!
 						selectedCell = cell as? FuelListCell
@@ -175,7 +178,12 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	// MARK: Notifications
+
 	@objc func languageWasChanged() {
 		getData()
+	}
+
+	@objc func fontSizeWasChanged() {
+		self.layoutView.resetUI()
 	}
 }

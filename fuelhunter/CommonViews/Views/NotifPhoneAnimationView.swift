@@ -62,6 +62,17 @@ class NotifPhoneAnimationView: UIView {
 		notifImageView.alpha = 1
 		activeBgImageView.alpha = 1
 
+		let language = AppSettingsWorker.shared.getCurrentLanguage()
+
+		switch language {
+			case .latvian:
+				notifImageView.image = UIImage(named: "notif_image_view_notif_box_lv")
+			case .russian:
+				notifImageView.image = UIImage(named: "notif_image_view_notif_box_ru")
+			case .english:
+				notifImageView.image = UIImage(named: "notif_image_view_notif_box_en")
+		}
+
 		self.layoutIfNeeded()
   	}
 

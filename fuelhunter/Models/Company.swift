@@ -13,8 +13,9 @@ struct Company: Equatable, Codable {
 	var name: String
 	var logoName: String
 	var largeLogoName: String
-	var largeGrayLogoName: String
-	var smallLogoName: String
+	var mapLogoName: String
+	var mapGrayLogoName: String
+	var homePage: String
 }
 enum CompanyType: String, Codable {
 	case typeCheapest = "company_type_cheapest_title"

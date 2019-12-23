@@ -12,6 +12,7 @@ protocol AboutAppLayoutViewDataLogic: class {
 	func appMovedToForeground()
 	func appMovedToBackground()
 	func updateData(data: [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem])
+	func resetUI()
 }
 
 class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, AboutAppLayoutViewDataLogic {
@@ -68,15 +69,15 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "AboutAppFuelCompanyCell", bundle: nil)
+    	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
+    	let nib = UINib(nibName: "AboutAppFuelCompanyCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
 
     	setUpTableViewHeader()
   	}
 
   	func setUpTableViewHeader() {
-		header = AboutAppTableHeaderView.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 100))
+		header = AboutAppTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 100))
 		header.translatesAutoresizingMaskIntoConstraints = false
 		self.tableView.tableHeaderView = header
 		header.widthAnchor.constraint(equalTo: self.tableView.widthAnchor).isActive = true
@@ -100,7 +101,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 			cell.selectionStyle = .none
 			cell.titleLabel.text = aData.title
 			cell.descriptionLabel.text = aData.description.localized()
-			cell.iconImageView.image = UIImage.init(named: aData.imageName)
+			cell.iconImageView.image = UIImage(named: aData.imageName)
 
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
@@ -116,7 +117,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 			return cell
 		} else {
 			// Problem
-			return UITableViewCell.init()
+			return UITableViewCell()
 		}
 	}
 
@@ -155,5 +156,14 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 		self.data = data
     	tableView.reloadData()
 		tableView.layoutIfNeeded()
-	}	
+	}
+
+	func resetUI() {
+//		tableView.reloadData()
+//		tableView.layoutIfNeeded()
+//		header.layoutIfNeeded()
+//		tableView.tableHeaderView = header
+//		tableView.reloadData()
+//		tableView.layoutIfNeeded()
+	}
 }

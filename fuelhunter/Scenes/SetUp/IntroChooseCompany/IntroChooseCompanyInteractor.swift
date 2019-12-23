@@ -30,7 +30,7 @@ class IntroChooseCompanyInteractor: IntroChooseCompanyBusinessLogic, IntroChoose
 
   	func getCompaniesListData(request: IntroChooseCompany.CompanyCells.Request) {
   		let companies = appSettingsWorker.getCompanyToggleStatus()
-		let response = IntroChooseCompany.CompanyCells.Response.init(companyCheapestStatus: companies.typeCheapest, companyNesteStatus: companies.typeNeste, companyCircleKStatus: companies.typeCircleK, companyKoolStatus: companies.typeKool, companyLatvijasNaftaStatus: companies.typeLn, companyVirsiStatus: companies.typeVirsi, companyGotikaStatus: companies.typeGotikaAuto)
+		let response = IntroChooseCompany.CompanyCells.Response(companyCheapestStatus: companies.typeCheapest, companyNesteStatus: companies.typeNeste, companyCircleKStatus: companies.typeCircleK, companyKoolStatus: companies.typeKool, companyLatvijasNaftaStatus: companies.typeLn, companyVirsiStatus: companies.typeVirsi, companyGotikaStatus: companies.typeGotikaAuto)
     	presenter?.presentData(response: response)
   	}
 

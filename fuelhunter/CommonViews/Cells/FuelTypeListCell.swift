@@ -12,7 +12,7 @@ protocol FuelTypeListCellSwitchLogic: class {
 	func switchWasPressedOnTableViewCell(cell: FuelTypeListCell, withState state: Bool)
 }
 
-class FuelTypeListCell: UITableViewCell {
+class FuelTypeListCell: FontChangeTableViewCell {
 
 	weak var controller: FuelTypeListCellSwitchLogic? 
     public var cellBgType: CellBackgroundType = .single
@@ -55,8 +55,16 @@ class FuelTypeListCell: UITableViewCell {
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 		
-		titleLabel.font = Font.init(.medium, size: .size2).font
+		updateFonts()
     }
+
+	func updateFonts() {
+		titleLabel.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
 	// MARK: Functions
 
@@ -66,22 +74,22 @@ class FuelTypeListCell: UITableViewCell {
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
+				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
+				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
+				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
+				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}

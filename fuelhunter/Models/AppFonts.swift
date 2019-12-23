@@ -11,6 +11,24 @@ import UIKit
 //https://graphemica.com/➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓
  
 struct Font {
+
+	static var increaseFontSize: Int = -100 {
+		didSet {
+			// For first time setting and only if it changes..
+			if oldValue != -100 && oldValue != increaseFontSize {
+				print("change")
+				NotificationCenter.default.post(name: .fontSizeWasChanged, object: nil)
+			}
+		}
+	}
+
+	static func recalculateFontIncreaseSize() {
+		// Default should be 28. (From my testing.)
+		print("before increase \(Font.increaseFontSize)")
+		Font.increaseFontSize = min(10, Int(UIFont.preferredFont(forTextStyle: .title1).pointSize) - 28)
+		print("after increase \(Font.increaseFontSize)")
+	}
+
     enum FontType: String {
         case normal = "HelveticaNeue"
         case medium = "HelveticaNeue-Medium"
@@ -23,6 +41,7 @@ struct Font {
         case size3 = 17
         case size4 = 15
         case size5 = 14
+        case size6 = 13
     }
 
     var type: FontType
@@ -34,8 +53,7 @@ struct Font {
 
     var font: UIFont {
         var instanceFont: UIFont!
-
-		guard let aFont =  UIFont(name: type.rawValue, size: CGFloat(size.rawValue)) else {
+		guard let aFont =  UIFont(name: type.rawValue, size: CGFloat(size.rawValue + Font.increaseFontSize)) else {
 			fatalError("""
 			font is not installed, make sure it is added in Info.plist"
 			"and logged with Utility.logAllAvailableFonts()
@@ -45,41 +63,4 @@ struct Font {
 
         return instanceFont
 	}
-}
-
-//struct AppFonts {
-
-//    HelveticaNeue-UltraLightItalic
-//   HelveticaNeue-Medium
-//   HelveticaNeue-MediumItalic
-//   HelveticaNeue-UltraLight
-//   HelveticaNeue-Italic
-//   HelveticaNeue-Light
-//   HelveticaNeue-ThinItalic
-//   HelveticaNeue-LightItalic
-//   HelveticaNeue-Bold
-//   HelveticaNeue-Thin
-//   HelveticaNeue-CondensedBlack
-//   HelveticaNeue
-//   HelveticaNeue-CondensedBold
-//   HelveticaNeue-BoldItalic
-//   
-//}
-
-class Utility {
-	class func doit() {
-
-//		let aab = Font(.bold, size: .size5).font
-
-//		print("font \(aab)")
-	}
-//	/// Logs all available fonts from iOS SDK and installed custom font
-//	class func logAllAvailableFonts() {
-//		for family in UIFont.familyNames {
-//			print("\(family)")
-//			for name in UIFont.fontNames(forFamilyName: family) {
-//				print("   \(name)")
-//			}
-//		}
-//	}
 }

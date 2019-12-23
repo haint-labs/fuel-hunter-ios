@@ -58,7 +58,7 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
   	}
 
 	func setUpView() {
-		layoutView = IntroGPSSetUpLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = IntroGPSSetUpLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true

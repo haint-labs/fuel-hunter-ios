@@ -40,6 +40,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 	deinit {
     	NotificationCenter.default.removeObserver(self, name: .applicationDidBecomeActiveFromAppSettings, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
+    	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
 	}
 
   	override func viewDidLoad() {
@@ -53,6 +54,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 
     	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
     		name: .languageWasChanged, object: nil)
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
+    		name: .fontSizeWasChanged, object: nil)
   	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +81,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
   	}
 
 	func setUpView() {
-		layoutView = SettingsViewLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = SettingsViewLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -125,6 +129,12 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 	@objc func languageWasChanged() {
 		self.title = "settings_title".localized()
 	}
+
+	@objc func fontSizeWasChanged() {
+		getSettingsCellsData()
+	}
+
+
 
   	// MARK: PushNotifReturnUpdateDataLogic
 

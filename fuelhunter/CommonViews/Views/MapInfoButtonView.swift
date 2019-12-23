@@ -79,11 +79,11 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
 		label.isUserInteractionEnabled = false
 
 		button.backgroundColor = .white
-		button.layer.borderColor = UIColor.init(named: "TitleColor")?.cgColor
+		button.layer.borderColor = UIColor(named: "TitleColor")?.cgColor
 		button.layer.borderWidth = 1
 		button.layer.cornerRadius = 6
 
-		label.font = Font.init(.normal, size: .size3).font
+		label.font = Font(.normal, size: .size3).font
 
 		button.addTarget(self, action: NSSelectorFromString("buttonPressed"), for: .touchUpInside)
 	}
@@ -94,7 +94,7 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
 		label.text = text
 		viewType = type
 		if type == .typePrice {
-			iconImageView.image = UIImage.init(named: "money_sign")
+			iconImageView.image = UIImage(named: "money_sign")
 			accessoryIconImageView.isHidden = true
 			accessoryImageRightAnchorConstraint?.isActive = false
 			labelRightAnchorConstraint?.isActive = true
@@ -102,7 +102,7 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
 			if !AppSettingsWorker.shared.getGPSIsEnabled() || text == "-1" {
 				label.text = "map_directions_button_title".localized()
 			}
-			iconImageView.image = UIImage.init(named: "car_sign")
+			iconImageView.image = UIImage(named: "car_sign")
 			accessoryIconImageView.isHidden = false
 			accessoryImageRightAnchorConstraint?.isActive = true
 			labelRightAnchorConstraint?.isActive = false

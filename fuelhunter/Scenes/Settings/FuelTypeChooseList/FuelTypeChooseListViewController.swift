@@ -68,7 +68,7 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
   	}
 
 	func setUpView() {
-		layoutView = FuelTypeChooseListLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = FuelTypeChooseListLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -91,7 +91,7 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 	// MARK: FuelTypeChooseListLayoutViewLogic 
 
 	func switchWasPressedFor(fuelType: FuelType, withState state: Bool) {
-		let request = FuelTypeChooseList.SwitchToggled.Request.init(fuelType: fuelType, state: state)
+		let request = FuelTypeChooseList.SwitchToggled.Request(fuelType: fuelType, state: state)
 		interactor?.userToggledFuelType(request: request)
 	}
 }

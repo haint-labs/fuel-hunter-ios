@@ -15,6 +15,8 @@ extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
 
     static let languageWasChanged = Notification.Name("languageWasChanged")
+
+    static let fontSizeWasChanged = Notification.Name("fontSizeWasChanged")
 }
 
 class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
@@ -46,7 +48,18 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 		refreshCurrentNotificationsStatus {}
 
+		Font.recalculateFontIncreaseSize()
+		
 		self.setUpBundle()
+
+		setUpGlobalFontColorAndSize()
+	}
+
+	func setUpGlobalFontColorAndSize() {
+		UINavigationBar.appearance().tintColor = UIColor(named: "TitleColor")!
+		UINavigationBar.appearance().titleTextAttributes =
+			[NSAttributedString.Key.foregroundColor: UIColor(named: "TitleColor")!,
+			NSAttributedString.Key.font: Font(.normal, size: .size1).font]
 	}
 
 	// MARK: Notifications
@@ -64,7 +77,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	func getCurrentLanguage() -> Language {
 		// 1. Use previously selected/detected language.
 		if let language = UserDefaults.standard.string(forKey: "Language") {
-			return Language.init(rawValue: language)!
+			return Language(rawValue: language)!
 		}
 
 		// 2. Check prefered phone language. If it is russian, then select russian
@@ -214,7 +227,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	
 	// MARK: Stored Companies
 	func getCompanyToggleStatus() -> AllCompaniesToogleStatus {
-		return UserDefaults.standard.structData(AllCompaniesToogleStatus.self, forKey: "AllCompaniesToogleStatus") ?? AllCompaniesToogleStatus.init()
+		return UserDefaults.standard.structData(AllCompaniesToogleStatus.self, forKey: "AllCompaniesToogleStatus") ?? AllCompaniesToogleStatus()
 	}
 	
 	func setCompanyToggleStatus(allCompanies: AllCompaniesToogleStatus) {
@@ -224,7 +237,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	
 	// MARK: Stored Fuel Types
 	func getFuelTypeToggleStatus() -> AllFuelTypesToogleStatus {
-		return UserDefaults.standard.structData(AllFuelTypesToogleStatus.self, forKey: "AllFuelTypesToogleStatus") ?? AllFuelTypesToogleStatus.init()
+		return UserDefaults.standard.structData(AllFuelTypesToogleStatus.self, forKey: "AllFuelTypesToogleStatus") ?? AllFuelTypesToogleStatus()
 	}
 	
 	func setFuelTypeToggleStatus(allFuelTypes: AllFuelTypesToogleStatus) {

@@ -17,17 +17,38 @@ protocol MapDisplayLogic: class {
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel)
 }
 
-class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPushTransitionAnimatorHelperProtocol, FuelListToMapViewPopTransitionAnimatorHelperProtocol, MapLayoutViewViewLogic {
+class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPushTransitionAnimatorHelperProtocol, FuelListToMapViewPopTransitionAnimatorHelperProtocol, MapLayoutViewViewLogic, UIScrollViewDelegate, FuelListCellViewExtendedInfoViewButtonLogic, FuelListCellViewButtonLogic {
   	var interactor: MapBusinessLogic?
   	var router: (NSObjectProtocol & MapRoutingLogic & MapDataPassing)?
 	var layoutView: MapLayoutView!
-	var fuelCellView: FuelListCellView!
 	var tempYOffset: CGFloat = 0
 	var yOffSetConstraint: NSLayoutConstraint!
+	var scrollBackgroundYOffSetConstraint: NSLayoutConstraint!
+	var scrollBackgroundBottomConstraint: NSLayoutConstraint!
 
-	var draggedOffset: CGFloat = 0
+	var fuelCellExtendedInfoViewTopConstraint: NSLayoutConstraint!
+	var fuelCellExtendedInfoViewBottomConstraint: NSLayoutConstraint!
+
+	var scrollViewFrontViewTopConstraint: NSLayoutConstraint!
+	var scrollViewFrontViewHeightConstraint: NSLayoutConstraint!
+
+	// This will appear behind scrollview - to show borders. It's necessary in case scrollview content
+	// Would be larger than frame, and would look better when scrolling.
+	var scrollBackgroundImageView: UIImageView!
+	var scrollView: PassThroughScrollView!
+
+	// This view will just be in front of all views, needed for X, XS.. (so that content would not be visible
+	// Under home line, outside bottom safeArea.
+	var scrollViewFrontView: UIView!
+
+	var fuelCellView: FuelListCellView!
+	var fuelCellExtendedInfoView: FuelListCellViewExtendedInfoView!
 
   	// MARK: Object lifecycle
+
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
+	}
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     	super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -49,13 +70,21 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
     	doSomething()
     	
     	layoutView.alpha = 0
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
+    		name: .fontSizeWasChanged, object: nil)
   	}
 	
 	override func viewSafeAreaInsetsDidChange() {
 		super.viewSafeAreaInsetsDidChange()
-		self.fuelCellView.safeLayoutBottomInset = self.view.safeAreaInsets.bottom
+		scrollViewFrontViewTopConstraint.constant = -self.view.safeAreaInsets.bottom
+		scrollViewFrontViewHeightConstraint.constant = self.view.safeAreaInsets.bottom
+
+		//For iPhone 7, we need extra space at the bottom. For X, safe are is that space - we don't need extra.
+		fuelCellExtendedInfoViewBottomConstraint.constant = (self.view.safeAreaInsets.bottom > 0) ? 0 : -15
+
 		if let location = router?.dataStore?.yLocation {
-			yOffSetConstraint.constant = location
+			scrollView.contentInset = UIEdgeInsets(top: location-yOffSetConstraint.constant, left: 0, bottom: 0, right: 0)
 		}
 	}
 	
@@ -75,60 +104,89 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	}
 
 	func setUpView() {
-		layoutView = MapLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		//--- Layout View
+		layoutView = MapLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.controller = self
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
         layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         layoutView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+		//===
 
-		fuelCellView = FuelListCellView.init(frame: CGRect.init(x: 0, y: 100, width: self.view.frame.width, height: 100))
+		//--- background for scrollview (consistent bg shadows box)
+		scrollBackgroundImageView = UIImageView(image: UIImage.init(named: "map_pop_up_base"))
+		scrollBackgroundImageView.alpha = 0
+		scrollBackgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+		self.view.addSubview(scrollBackgroundImageView)
+		scrollBackgroundImageView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 16).isActive = true
+        scrollBackgroundImageView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -16).isActive = true
+		//===
 
-		fuelCellView.safeLayoutBottomInset = self.view.safeAreaInsets.bottom
-		self.view.addSubview(fuelCellView)
-
-		let panGesture = UIPanGestureRecognizer(target: self, action: #selector(fuelCellViewWasDragged(_:)))
-		fuelCellView.addGestureRecognizer(panGesture)
-
-		yOffSetConstraint = fuelCellView.topAnchor.constraint(equalTo: self.view.topAnchor)
+		//--- scrollview above layout view
+		scrollView = PassThroughScrollView()
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.alwaysBounceVertical = true
+		scrollView.showsVerticalScrollIndicator = false
+		scrollView.delegate = self
+		self.view.addSubview(scrollView)
+		yOffSetConstraint = scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200)
 		yOffSetConstraint.isActive = true
-		fuelCellView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-		fuelCellView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+		scrollView.clipsToBounds = false
+
+		scrollBackgroundYOffSetConstraint = scrollBackgroundImageView.topAnchor.constraint(equalTo: scrollView.topAnchor)
+		scrollBackgroundYOffSetConstraint.isActive = true
+		//===
+
+		//--- fuel cell view (mimic the fuel cell)
+		fuelCellView = FuelListCellView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: 100))
+		fuelCellView.controller = self
+		scrollView.addSubview(fuelCellView)
+		fuelCellView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+		fuelCellView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+		fuelCellView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
+		fuelCellView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+		//===
+
+		//--- fuel cell extended info (homepage)
+		fuelCellExtendedInfoView = FuelListCellViewExtendedInfoView()
+		fuelCellExtendedInfoView.controller = self
+		fuelCellExtendedInfoView.translatesAutoresizingMaskIntoConstraints = false
+		fuelCellExtendedInfoView.alpha = 0
+		scrollView.addSubview(fuelCellExtendedInfoView)
+		fuelCellExtendedInfoViewTopConstraint = fuelCellExtendedInfoView.topAnchor.constraint(equalTo: fuelCellView.bottomAnchor)
+		fuelCellExtendedInfoViewTopConstraint.isActive = true
+		fuelCellExtendedInfoView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16).isActive = true
+		fuelCellExtendedInfoView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -16).isActive = true
+		fuelCellExtendedInfoViewBottomConstraint = fuelCellExtendedInfoView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
+		fuelCellExtendedInfoViewBottomConstraint.isActive = true
+		//===
+
+		//---
+		scrollBackgroundBottomConstraint = scrollBackgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+		scrollBackgroundBottomConstraint.isActive = true
+		fuelCellExtendedInfoView.updateData()
+		//===
+
+		//---
+		scrollViewFrontView = UIView()
+		scrollViewFrontView.translatesAutoresizingMaskIntoConstraints = false
+		self.view.addSubview(scrollViewFrontView)
+		scrollViewFrontView.leftAnchor.constraint(equalTo: fuelCellExtendedInfoView.leftAnchor).isActive = true
+		scrollViewFrontView.rightAnchor.constraint(equalTo: fuelCellExtendedInfoView.rightAnchor).isActive = true
+		scrollViewFrontViewTopConstraint = scrollViewFrontView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
+		scrollViewFrontViewTopConstraint.isActive = true
+		scrollViewFrontViewHeightConstraint = scrollViewFrontView.heightAnchor.constraint(equalToConstant: self.view.safeAreaInsets.bottom)
+		scrollViewFrontViewHeightConstraint.isActive = true
+		scrollViewFrontView.alpha = 0
+		scrollViewFrontView.backgroundColor = .white
+		//===
 	}
 
-	@objc func fuelCellViewWasDragged(_ sender: UIPanGestureRecognizer) {
-//		if(sender.state == UIGestureRecognizer.State.began)
-//		{
-//			layoutView.layer.removeAllAnimations()
-//		}
 
-		if(sender.state == UIGestureRecognizer.State.ended)
-		{
-//			UIImpactFeedbackGenerator(style: .light).impactOccurred()
-
-			let duration: TimeInterval = TimeInterval(max(0.05, min(0.3, draggedOffset/100)))
-
-//			print(duration)
-
-			UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseInOut], animations: {
-				self.view.layoutIfNeeded()
-				self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
-				self.view.layoutIfNeeded()
-
-				self.layoutView.updateMapViewOffset(offset: self.view.frame.height - self.yOffSetConstraint.constant - self.view.safeAreaInsets.bottom, animated: true)
-			}, completion: { success in })
-		} else {
-
-			let translation = sender.translation(in: self.view)
-			self.yOffSetConstraint.constant = self.yOffSetConstraint.constant + translation.y/2
-			sender.setTranslation(CGPoint.zero, in: self.view)
-			layoutView.updateMapViewOffset(offset: self.view.frame.height - self.yOffSetConstraint.constant - self.view.safeAreaInsets.bottom, animated: false)
-
-			draggedOffset = abs((self.view.frame.height - self.fuelCellView.frame.height) - (self.yOffSetConstraint.constant))
-		}
-
-	}
   	// MARK: Functions
 
   	func doSomething() {
@@ -153,12 +211,24 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .middle)
 			}
 		}
+
+		var animated = true
+
+		if self.scrollView.contentInset.top == -scrollView.contentOffset.y { animated = false }
+
+
+		self.view.layoutIfNeeded()
+		self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
+
+		
+		self.scrollView.setContentOffset(CGPoint(x: 0, y: -self.scrollView.contentInset.top), animated: animated)
+		self.view.layoutIfNeeded()
 	}
 
 	// MARK: MapDisplayLogic
 
   	func displaySomething(viewModel: Map.MapData.ViewModel) {
-    	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:self.fuelCellView.frame.height)
+    	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:getMapOffset(), andRatio: 1)
 		updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint)
   	}
 
@@ -173,11 +243,11 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 		UIView.animate(withDuration: 0.2) {
 			self.view.layoutIfNeeded()
-			self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
+			self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
 			self.view.layoutIfNeeded()
 		}
 
-		self.layoutView.updateMapViewOffset(offset: self.view.frame.height - self.yOffSetConstraint.constant - self.view.safeAreaInsets.bottom, animated: true)
+		self.layoutView.updateMapViewOffset(offset: getMapOffset(), ratio: getOffsetRatio(),  animated: true)
   	}
   	
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol
@@ -185,7 +255,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	func reveal(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
 
   		if let location = router?.dataStore?.yLocation {
-			yOffSetConstraint.constant = location
+  			scrollView.contentInset = UIEdgeInsets(top: location-yOffSetConstraint.constant, left: 0, bottom: 0, right: 0)
 		}
 		self.view.layoutIfNeeded()
 
@@ -196,30 +266,47 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		
 		UIView.animate(withDuration: duration*2, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
 			self.fuelCellView.setUpConstraintsAsBottomView()
+			self.scrollBackgroundImageView.alpha = 1
 			self.view.layoutIfNeeded()
-			self.yOffSetConstraint.constant = self.view.frame.height - self.fuelCellView.frame.height
+			self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
+			self.scrollView.contentOffset = CGPoint(x: 0, y: -self.scrollView.contentInset.top)
 			self.view.layoutIfNeeded()
 		}, completion: { (finished: Bool) in
+			self.scrollView.clipsToBounds = true
+			self.scrollView.isPagingEnabled = true
+			self.fuelCellExtendedInfoView.alpha = 1
+			self.scrollViewFrontView.alpha = 1
 			completionHandler(.success)
 		})
 
-		self.layoutView.updateMapViewOffset(offset: self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, animated: false)
+		self.layoutView.updateMapViewOffset(offset: getMapOffset(), ratio: 1, animated: false)
   	}
   	
   	// MARK: FuelListToMapViewPopTransitionAnimatorHelperProtocol
   	
   	func hide(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
-  		tempYOffset = self.yOffSetConstraint.constant
-  		
+		tempYOffset = self.scrollView.contentOffset.y
+		self.scrollView.clipsToBounds = false
+		self.scrollView.delegate = nil
+		self.scrollView.isPagingEnabled = false
+		
+		UIView.animate(withDuration: 0.05) {
+			self.fuelCellExtendedInfoView.alpha = 0
+			self.scrollViewFrontView.alpha = 0
+			self.view.layoutIfNeeded()
+		}
+
 		UIView.animate(withDuration: duration/2) {
 			self.layoutView.alpha = 0
 			self.view.layoutIfNeeded()
 		}
 
 		UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.2, options: [.curveEaseInOut], animations: {
+			self.scrollBackgroundImageView.alpha = 0
 			if let location = self.router?.dataStore?.yLocation {
 				if location != -1 {
-					self.yOffSetConstraint.constant = location
+					self.scrollView.contentInset = UIEdgeInsets(top: location-self.yOffSetConstraint.constant, left: 0, bottom: 0, right: 0)
+					self.scrollBackgroundYOffSetConstraint.constant = location-self.yOffSetConstraint.constant
 					self.fuelCellView.setUpConstraintsAsCell()
 				} else { // Means we did not find location, means we can't animate to return. So, just fade.
 					self.fuelCellView.alpha = 0
@@ -232,8 +319,17 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	}
 	
   	func reset() {
-  		self.yOffSetConstraint.constant = tempYOffset
+
+		self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
+		self.scrollView.contentOffset = CGPoint(x: 0, y: tempYOffset)
+		scrollBackgroundYOffSetConstraint.constant = -min(0, scrollView.contentOffset.y)
+		self.scrollBackgroundImageView.alpha = 1
+		self.fuelCellExtendedInfoView.alpha = 1
+		self.scrollViewFrontView.alpha = 1
   		self.fuelCellView.setUpConstraintsAsBottomView()
+  		self.scrollView.delegate = self
+  		self.scrollView.clipsToBounds = true
+		self.scrollView.isPagingEnabled = false
   	}
 
   	// MARK: MapLayoutViewViewLogic
@@ -241,5 +337,60 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	func mapPinWasPressed(_ mapPoint: MapPoint) {
 		let request = Map.MapWasPressed.Request(mapPoint: mapPoint)
     	interactor?.userPressedOnMapPin(request: request)
+	}
+
+	// MARK: FuelListCellViewExtendedInfoViewButtonLogic
+
+	func userPressedOnHomePageButton() {
+		interactor?.openHomePageForCurrentCompany()
+	}
+
+	// MARK: FuelListCellViewButtonLogic
+
+	func userPressedOnNavigationButton() {
+		let alert = UIAlertController(title: "map_navigation".localized(), message: "map_navigation_ask_which_app_to_open".localized(), preferredStyle: .alert)
+
+		if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
+			alert.addAction(UIAlertAction(title: "map_waze".localized(), style: .default, handler: { result in
+				self.interactor?.openNavigationForAppType(request: Map.MapNavigationRequested.Request(mapAppType: .Waze))
+			}))
+		}
+		if UIApplication.shared.canOpenURL(URL(string: "comgooglemaps://")!) {
+			alert.addAction(UIAlertAction(title: "map_google_maps".localized(), style: .default, handler: { result in
+				self.interactor?.openNavigationForAppType(request: Map.MapNavigationRequested.Request(mapAppType: .GoogleMaps))
+			}))
+		}
+		alert.addAction(UIAlertAction(title: "map_ios_maps".localized(), style: .default, handler: { result in
+			self.interactor?.openNavigationForAppType(request: Map.MapNavigationRequested.Request(mapAppType: .iOSMaps))
+		}))
+
+		alert.addAction(UIAlertAction(title: "cancel_button_title".localized(), style: .cancel, handler: nil))
+
+		self.present(alert, animated: true)
+	}
+
+	// MARK: ScrollViewDelegate
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		scrollBackgroundYOffSetConstraint.constant = -min(0, scrollView.contentOffset.y)
+		self.layoutView.updateMapViewOffset(offset: getMapOffset(), ratio: getOffsetRatio(),  animated: false)
+	}
+
+	func getOffsetRatio() -> Double {
+		return Double(min(1, max(0, -scrollView.contentOffset.y / scrollView.contentInset.top)))
+	}
+
+	func getMapOffset() -> CGFloat {
+		let safeAreaInsets = -self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
+		let scrollViewContentHeight = self.fuelCellView.frame.height + self.fuelCellExtendedInfoView.frame.height
+		return self.scrollView.frame.height + yOffSetConstraint.constant - scrollViewContentHeight - safeAreaInsets + min(0, scrollView.contentOffset.y)
+	}
+
+	// MARK: Notifications
+
+	@objc func fontSizeWasChanged() {
+		// Currently we have implemented, that if font size changes, we pop to root viewController (animated).
+		// Setting to -1 will make it default fade animation, because with all the font changing, it's crazy to animate..
+		// Or I'm too lazy. This will be a corner case anyways.
+		self.router?.dataStore?.yLocation = -1
 	}
 }

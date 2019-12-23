@@ -12,8 +12,20 @@
 
 import UIKit
 
+enum MapAppType {
+	case Waze
+	case GoogleMaps
+	case iOSMaps
+}
+
 enum Map {
   	// MARK: Use cases
+
+	enum MapNavigationRequested {
+		struct Request {
+			var mapAppType: MapAppType
+		}
+	}
 
 	enum MapWasPressed {
 		struct Request {

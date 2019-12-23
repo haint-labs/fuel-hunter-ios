@@ -72,8 +72,8 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "FuelCompanyListCell", bundle: nil)
+    	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
+    	let nib = UINib(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
 
     	setUpTableViewHeader()
@@ -85,13 +85,13 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		let label = UILabel()
 		label.numberOfLines = 0
 		label.textAlignment = .center
-		label.font = Font.init(.normal, size: .size2).font
-		label.textColor = UIColor.init(named: "TitleColor")
+		label.font = Font(.normal, size: .size2).font
+		label.textColor = UIColor(named: "TitleColor")
 		let text = "company_select_companies_you_wish_to_be_represented_title".localized()
 		let height = text.height(withConstrainedWidth: self.frame.width-26, font: label.font)
 		label.text = text
-		label.frame = CGRect.init(x: 12, y: 10, width: self.frame.width-26, height: height+6)
-		header.frame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: height+26)
+		label.frame = CGRect(x: 12, y: 10, width: self.frame.width-26, height: height+6)
+		header.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: height+26)
 		header.addSubview(label)
 		tableView.tableHeaderView = header
 	}
@@ -128,7 +128,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 			return cell
 		} else {
 			// Problem
-			return UITableViewCell.init()
+			return UITableViewCell()
 		}
 	}
 
@@ -170,11 +170,11 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		} else {
 			self.data = data
 			if self.data.count > 0 {
-				guard let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? FuelCompanyListCell else { return }
+				guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FuelCompanyListCell else { return }
 				if self.data.first?.toggleStatus != cell.aSwitch.isOn {
 					// Without this - tableview jumps.
 					UIView.setAnimationsEnabled(false)
-					tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
+					tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
 					UIView.setAnimationsEnabled(true)
 				}
 			}

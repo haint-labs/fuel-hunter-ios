@@ -36,7 +36,7 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
 		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
 		let companyNames = appSettingsWorker.getCompanyToggleStatus().description
 		let fuelTypeNames = appSettingsWorker.getFuelTypeToggleStatus().description
-		let response = Settings.SettingsList.Response.init(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
+		let response = Settings.SettingsList.Response(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
 		presenter?.presentSettingsListWithData(response: response)
   	}
 
@@ -47,7 +47,7 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   				// This is already toggled in notifSwitchWasPressed.  So, then we just do set up view
 				if self?.appSettingsWorker.getNotifIsEnabled() == true {
 					let storedCentsCount = self?.appSettingsWorker.getStoredNotifCentsCount()
-					let response = Settings.PushNotif.Response.init(storedNotifCentsCount: storedCentsCount ?? 1)
+					let response = Settings.PushNotif.Response(storedNotifCentsCount: storedCentsCount ?? 1)
 					self?.presenter?.showNotifSetUp(response: response)
 				// We disabled, so simply reload table view.
 				} else {

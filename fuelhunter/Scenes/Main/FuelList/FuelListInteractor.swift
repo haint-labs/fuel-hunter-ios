@@ -52,6 +52,6 @@ class FuelListInteractor: FuelListBusinessLogic, FuelListDataStore {
 
 	func getDisplayedPriceObject(request: FuelList.FindAPrice.Request) -> FuelList.FetchPrices.ViewModel.DisplayedPrice {
 
-		return FuelList.FetchPrices.ViewModel.DisplayedPrice.init(id: request.selectedPrice.id, company: request.selectedPrice.company, price: request.selectedPrice.price, isPriceCheapest: request.selectedPrice.isPriceCheapest, fuelType: request.selectedPrice.fuelType, addressDescription: request.selectedPrice.addressDescription, address: request.selectedPrice.address, city: request.selectedPrice.city)
+		return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: request.selectedPrice.id, company: request.selectedPrice.company, price: request.selectedPrice.price, isPriceCheapest: request.selectedPrice.isPriceCheapest, fuelType: request.selectedPrice.fuelType, addressDescription: request.selectedPrice.addressDescription, address: request.selectedPrice.address, city: request.selectedPrice.city)
 	}
 }

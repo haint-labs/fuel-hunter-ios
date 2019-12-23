@@ -13,7 +13,7 @@ protocol IntroNotifSetUpLayoutViewLogic {
 	func laterButtonPressed()
 }
 
-class IntroNotifSetUpLayoutView: UIView {
+class IntroNotifSetUpLayoutView: FontChangeView {
 
 	weak var controller: IntroNotifSetUpViewController? 
 
@@ -136,10 +136,6 @@ class IntroNotifSetUpLayoutView: UIView {
 		descriptionLabel.text = "intro_notifs_description".localized()
 		giveAccessButton.setTitle("give_access_button_title".localized(), for: .normal)
 		laterButton.setTitle("later_button_title".localized(), for: .normal)
-		titleLabel.font = Font.init(.normal, size: .size0).font
-		descriptionLabel.font = Font.init(.normal, size: .size2).font
-		giveAccessButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-		laterButton.titleLabel?.font = Font.init(.medium, size: .size2).font
 
 		giveAccessButton.addTarget(self, action:NSSelectorFromString("giveAccessButtonPressed"), for: .touchUpInside)
 		laterButton.addTarget(self, action:NSSelectorFromString("laterButtonPressed"), for: .touchUpInside)
@@ -148,7 +144,20 @@ class IntroNotifSetUpLayoutView: UIView {
 		baseView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 
 		notifAnimationView.startAnimating()
-  	}
+
+  	 	updateFonts()
+    }
+
+	func updateFonts() {
+		titleLabel.font = Font(.normal, size: .size0).font
+		descriptionLabel.font = Font(.normal, size: .size2).font
+		giveAccessButton.titleLabel?.font = Font(.medium, size: .size2).font
+		laterButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
   	// MARK: Functions
 

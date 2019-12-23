@@ -14,8 +14,8 @@ protocol MapLayoutViewViewLogic: class {
 }
 
 protocol MapLayoutViewDataLogic: class {
-	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat)
-	func updateMapViewOffset(offset: CGFloat, animated: Bool)
+	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double)
+	func updateMapViewOffset(offset: CGFloat, ratio: Double, animated: Bool)
 }
 
 class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
@@ -38,9 +38,12 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	var currentMapOffset: CGFloat = 0
 	var zoomOnUserWasDone: Bool = false
 
-	var myRoute: MKRoute?
-
 	var currentActivePin: MapPoint?
+
+	var allPinsMapRect: MKMapRect!
+	var selectedPinMapRect: MKMapRect!
+
+	var offsetRatio: Double = 1
 
 	// MARK: View lifecycle
 
@@ -129,26 +132,49 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	}
 
 	func zoomOnAllPins(animated: Bool) {
-		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
 
-		let region = self.regionFor(mapPoints: actuals)
-		let mapRect = MKMapRectForCoordinateRegion(region: region)
+//		let x: Double = ((Double(allPinsMapRect.origin.x) - Double(selectedPinMapRect.origin.x)) * offsetRatio) + Double(selectedPinMapRect.origin.x)
+//
+//		let y: Double = ((Double(allPinsMapRect.origin.y) - Double(selectedPinMapRect.origin.y)) * offsetRatio) + Double(selectedPinMapRect.origin.y)
+//
+//		let width: Double = ((Double(allPinsMapRect.size.width) - Double(selectedPinMapRect.size.width)) * offsetRatio) + Double(selectedPinMapRect.size.width)
+//
+//		let height: Double = ((Double(allPinsMapRect.size.height) - Double(selectedPinMapRect.size.height)) * offsetRatio) + Double(selectedPinMapRect.size.height)
+//
+//		let combinedMapRect = MKMapRect(x: x, y: y, width: width, height: height)
+
 
 		UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
-			self.mapView.setVisibleMapRect(mapRect, edgePadding: UIEdgeInsets(top: self.calculatedMaxPinHeight+5+10, left: self.calculatedMaxPinWidth/2+5, bottom: self.currentMapOffset, right: self.calculatedMaxPinWidth/2+5), animated: animated)
+			self.mapView.setVisibleMapRect(self.allPinsMapRect, edgePadding: UIEdgeInsets(top: self.calculatedMaxPinHeight+5+10, left: self.calculatedMaxPinWidth/2+5, bottom: self.currentMapOffset, right: self.calculatedMaxPinWidth/2+5), animated: animated)
 		}) { (result) in }
+	}
+
+	func recalculateMapRect() {
+		let allPins = mapView.annotations.compactMap { $0 as? MapPoint }
+		let allPinsRegion = self.regionFor(mapPoints: allPins)
+		allPinsMapRect = MKMapRectForCoordinateRegion(region: allPinsRegion)
+
+		if let currentActivePin = currentActivePin {
+			let allPinsRegion = self.regionFor(mapPoints: [currentActivePin])
+			selectedPinMapRect = MKMapRectForCoordinateRegion(region: allPinsRegion)
+		} else {
+			selectedPinMapRect = allPinsMapRect
+		}
 	}
 
 	// MARK: MapLayoutViewDataLogic
 
-	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat) {
+	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double) {
 
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(data)
+		offsetRatio = ratio
+		recalculateMapRect()
 	}
 
-	func updateMapViewOffset(offset: CGFloat, animated: Bool) {
+	func updateMapViewOffset(offset: CGFloat, ratio: Double, animated: Bool) {
 
+		offsetRatio = ratio
 		currentMapOffset = offset
 
 		zoomOnAllPins(animated: animated)
@@ -182,9 +208,9 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 			distance = distance.rounded(rule: .down, scale: 1)
 
 			// This is needed, otherwise, I noticed that in some cases, more than one gets added..
-			let mapPinAccessory = annotationView.viewWithTag(333) as? MapPinAccessoryView ?? MapPinAccessoryView.init()
-			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.company.largeGrayLogoName)
-			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.company.largeLogoName)
+			let mapPinAccessory = annotationView.viewWithTag(333) as? MapPinAccessoryView ?? MapPinAccessoryView()
+			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.company.mapGrayLogoName)
+			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.company.mapLogoName)
 			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
 
 			if (distance > 3) {
@@ -205,7 +231,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 			calculatedMaxPinWidth = max(mapPinAccessory.frame.width, calculatedMaxPinWidth)
 			calculatedMaxPinHeight = max(mapPinAccessory.frame.height, calculatedMaxPinHeight)
 
-			annotationView.layer.anchorPoint = CGPoint.init(x: 0.5, y: 1)
+			annotationView.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
 			annotationView.addSubview(mapPinAccessory)
 
 			annotationView.frame = mapPinAccessory.frame
@@ -230,7 +256,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 	func selectedPin(_ selectedPin: MapPoint) {
 		currentActivePin = selectedPin
-
+		recalculateMapRect()
 		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
 
 		for(_, mapPoint) in actuals.enumerated() {

@@ -70,8 +70,8 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "SettingsListCell", bundle: nil)
+    	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
+    	let nib = UINib(nibName: "SettingsListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
   	}
 
@@ -121,7 +121,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 			return cell
 		} else {
 			// Problem
-			return UITableViewCell.init()
+			return UITableViewCell()
 		}
 	}
 

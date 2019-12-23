@@ -30,7 +30,7 @@ class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, Companies
 
   	func getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request) {
   		let companies = appSettingsWorker.getCompanyToggleStatus()
-		let response = CompaniesChooseList.CompanyCells.Response.init(companyCheapestStatus: companies.typeCheapest, companyNesteStatus: companies.typeNeste, companyCircleKStatus: companies.typeCircleK, companyKoolStatus: companies.typeKool, companyLatvijasNaftaStatus: companies.typeLn, companyVirsiStatus: companies.typeVirsi, companyGotikaStatus: companies.typeGotikaAuto)
+		let response = CompaniesChooseList.CompanyCells.Response(companyCheapestStatus: companies.typeCheapest, companyNesteStatus: companies.typeNeste, companyCircleKStatus: companies.typeCircleK, companyKoolStatus: companies.typeKool, companyLatvijasNaftaStatus: companies.typeLn, companyVirsiStatus: companies.typeVirsi, companyGotikaStatus: companies.typeGotikaAuto)
     	presenter?.presentSomething(response: response)
   	}
 

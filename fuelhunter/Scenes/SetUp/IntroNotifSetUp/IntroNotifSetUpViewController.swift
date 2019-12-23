@@ -59,7 +59,7 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
   	}
 
 	func setUpView() {
-		layoutView = IntroNotifSetUpLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = IntroNotifSetUpLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true

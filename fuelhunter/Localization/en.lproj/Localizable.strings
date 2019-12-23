@@ -26,8 +26,8 @@
 //--- COMPANY
 "company_type_cheapest_title" = "Cheapest";
 "company_type_cheapest_description" = "Turning this on - will also show the company, which has the cheapest price at that moment in Latvia";
-"company_type_neste_description" = "Cheapest Fuel in Riga.";
-"company_type_circle_k_description" = "Cheapest Fuel in Riga.";
+"company_type_neste_description" = "Cheapest fuel in Riga.";
+"company_type_circle_k_description" = "Cheapest fuel in Riga.";
 "company_type_kool_description" = "Lowest prices in the Latvian gas station network.";
 "company_type_ln_description" = "Lowest prices in the network of filling stations in Latvia, by regions (Riga district, Liepaja district, Ventspils district, Zemgale, Vidzeme, Latgale).";
 "company_type_virsi_description" = "Cheapest fuel in Riga and Riga district.";
@@ -87,7 +87,7 @@
 
 //--- FUEL LIST
 "fuel_list_savings_button_title" = "Savings";
-"fuel_list_fuel_price_accuracy_button_title" = "Fuel price Accuracy";
+"fuel_list_fuel_price_accuracy_button_title" = "Price Accuracy";
 "fuel_list_app_name" = "Fuel Hunter";
 //=== FUEL LIST
 
@@ -99,11 +99,16 @@
 "map_directions_button_title" = "Directions";
 "map_kilometers" = "km";
 "map_meters" = "m";
+"map_navigation" = "Navigation";
+"map_navigation_ask_which_app_to_open" = "Which application?";
+"map_waze" = "Waze";
+"map_google_maps" = "Google Maps";
+"map_ios_maps" = "iOS Maps";
 //=== MAP
 
 
 //--- FUEL ACCURACY
-"fuel_accuracy_title" = "Fuel price Accuracy";
+"fuel_accuracy_title" = "Price Accuracy";
 "fuel_accuracy_description" = "We currently obtain the lowest price data from the websites of the fuel companies, so for the time being this information is for information only. In addition, the website does not update this information on weekends or holidays.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\ndata:";
 //=== FUEL ACCURACY
 

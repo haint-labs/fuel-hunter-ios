@@ -24,7 +24,7 @@ class AppAccuracyInfoViewController: AboutAppViewController {
 	// MARK: Set up
 
 	override func setUpView() {
-		layoutView = AppAccuracyInfoLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = AppAccuracyInfoLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         layoutView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true

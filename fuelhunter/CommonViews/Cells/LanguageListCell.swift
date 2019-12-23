@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LanguageListCell: UITableViewCell {
+class LanguageListCell: FontChangeTableViewCell {
 
     public var cellBgType: CellBackgroundType = .single
 
@@ -56,9 +56,17 @@ class LanguageListCell: UITableViewCell {
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 
-		titleLabel.font = Font.init(.medium, size: .size2).font
-		descriptionLabel.font = Font.init(.normal, size: .size4).font
+    	updateFonts()
     }
+
+	func updateFonts() {
+		titleLabel.font = Font(.medium, size: .size2).font
+		descriptionLabel.font = Font(.normal, size: .size4).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
 	// MARK: Functions
 
@@ -68,22 +76,22 @@ class LanguageListCell: UITableViewCell {
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
+				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
+				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
+				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
+				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}

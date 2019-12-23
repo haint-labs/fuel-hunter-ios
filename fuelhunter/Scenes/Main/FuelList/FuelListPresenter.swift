@@ -47,7 +47,7 @@ class FuelListPresenter: FuelListPresentationLogic {
 
 		let necessaryPrices = response.prices.filter( { $0.fuelType == response.selectedFuelType })
 
-		let viewModel = FuelList.RevealMap.ViewModel.init(slectedFuelTypePrices: necessaryPrices, selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
+		let viewModel = FuelList.RevealMap.ViewModel(slectedFuelTypePrices: necessaryPrices, selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
 
 		viewController?.revealMapView(viewModel: viewModel)
 	}
@@ -57,7 +57,7 @@ class FuelListPresenter: FuelListPresentationLogic {
 	func getPrices(with type: FuelType, from prices: [Price]) -> [FuelList.FetchPrices.ViewModel.DisplayedPrice] {
 
 		let pricesToReturn = prices.filter( { $0.fuelType == type }).map( {
-			return FuelList.FetchPrices.ViewModel.DisplayedPrice.init(id: $0.id, company: $0.company, price: $0.price, isPriceCheapest: $0.isPriceCheapest, fuelType: $0.fuelType, addressDescription: $0.addressDescription, address: $0.address, city: $0.city)
+			return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: $0.id, company: $0.company, price: $0.price, isPriceCheapest: $0.isPriceCheapest, fuelType: $0.fuelType, addressDescription: $0.addressDescription, address: $0.address, city: $0.city)
 		} )
 
 		return pricesToReturn

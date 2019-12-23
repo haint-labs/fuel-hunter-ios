@@ -17,6 +17,12 @@ class InlineAlertView: UIView {
 
 	// MARK: View lifecycle
 
+	deinit {
+		NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
+	}
+
+	
 	override init(frame: CGRect) {
    	super.init(frame: frame)
 		setup()
@@ -44,6 +50,13 @@ class InlineAlertView: UIView {
 		textLabel.text = "inline_alert_default_demo_message".localized()
 		NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
     		name: .languageWasChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
+    		name: .fontSizeWasChanged, object: nil)
+		updateFonts()
+  	}
+
+  	func updateFonts() {
+		textLabel.font = Font(.normal, size: .size6).font
   	}
 
 	// MARK: Functions
@@ -61,6 +74,13 @@ class InlineAlertView: UIView {
 
 	@objc func languageWasChanged() {
 		textLabel.text = "inline_alert_default_demo_message".localized()
+		self.layoutIfNeeded()
+		self.superview?.layoutIfNeeded()
+	}
+
+	@objc func fontSizeWasChanged() {
+		updateFonts()
+		self.heightConstraint.constant = 0
 		self.layoutIfNeeded()
 		self.superview?.layoutIfNeeded()
 	}

@@ -63,7 +63,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, AppL
   	}
 
 	func setUpView() {
-		layoutView = AppLanguageLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		layoutView = AppLanguageLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		layoutView.controller = self
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true

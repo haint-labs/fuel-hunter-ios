@@ -39,6 +39,8 @@ class MapPinAccessoryView: UIView {
 		addSubview(baseView)
 		baseView.frame = self.bounds
 
+		// For icons. We need to compensate, so that it would nice, when showing price + distance.
+		let increaseIconSize: CGFloat = CGFloat(max(0, Font.increaseFontSize)) * 2
 
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,9 +68,11 @@ class MapPinAccessoryView: UIView {
 
 		icon.leftAnchor.constraint(equalTo: leftAnchor, constant: 7).isActive = true
 		icon.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
-		icon.widthAnchor.constraint(equalToConstant: 28).isActive = true
-		icon.heightAnchor.constraint(equalToConstant: 28).isActive = true
-		iconBottomConstraint = icon.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+		icon.widthAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
+		icon.heightAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
+		iconBottomConstraint = icon.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10)
+		iconBottomConstraint?.priority = .defaultHigh
+		iconBottomConstraint?.isActive = true
 
 		priceLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 5).isActive = true
 		priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
@@ -79,21 +83,21 @@ class MapPinAccessoryView: UIView {
 		distanceLabel.leftAnchor.constraint(equalTo: icon.rightAnchor, constant: 5).isActive = true
 		distanceLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: -1).isActive = true
 		distanceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7).isActive = true
-		distanceLabelBottomConstraint = distanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
+		distanceLabelBottomConstraint = distanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
 		distanceLabelBottomConstraint.isActive = true
 
-		priceLabel.font = Font.init(.medium, size: .size3).font
-		distanceLabel.font = Font.init(.normal, size: .size5).font
+		priceLabel.font = Font(.medium, size: .size3).font
+		distanceLabel.font = Font(.normal, size: .size5).font
 	}
 
 	func setAsSelected(_ selected: Bool) {
 		if selected == true {
-			priceLabel.textColor = UIColor.init(named: "TitleColor")
-			distanceLabel.textColor = UIColor.init(named: "SubTitleColor")
+			priceLabel.textColor = UIColor(named: "TitleColor")
+			distanceLabel.textColor = UIColor(named: "SubTitleColor")
 			icon.isHighlighted = true
 		} else {
-			priceLabel.textColor = UIColor.init(named: "InactiveTextColor")
-			distanceLabel.textColor = UIColor.init(named: "InactiveTextColor")
+			priceLabel.textColor = UIColor(named: "InactiveTextColor")
+			distanceLabel.textColor = UIColor(named: "InactiveTextColor")
 			icon.isHighlighted = false
 		}
 	}
@@ -101,13 +105,13 @@ class MapPinAccessoryView: UIView {
 	func setDistanceVisible(_ visible: Bool) {
 		if visible == true {
 			distanceLabel.isHidden = false
-			iconBottomConstraint.isActive = false
+//			iconBottomConstraint.isActive = false
 			priceLabelBottomConstraint.isActive = false
 			distanceLabelBottomConstraint.isActive = true
 		} else {
 			distanceLabel.isHidden = true
 			distanceLabelBottomConstraint.isActive = false
-			iconBottomConstraint.isActive = true
+//			iconBottomConstraint.isActive = true
 			priceLabelBottomConstraint.isActive = true
 		}
 	}

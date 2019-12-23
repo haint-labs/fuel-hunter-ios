@@ -26,8 +26,8 @@
 //--- COMPANY
 "company_type_cheapest_title" = "Lētākā";
 "company_type_cheapest_description" = "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Latvijā ir lētākā degviela attiecīgajā brīdī";
-"company_type_neste_description" = "Lētākā Degviela Rīgā.";
-"company_type_circle_k_description" = "Lētākā Degviela Rīgā.";
+"company_type_neste_description" = "Lētākā degviela Rīgā.";
+"company_type_circle_k_description" = "Lētākā degviela Rīgā.";
 "company_type_kool_description" = "Zemākās cenas DUS tīklā Latvijā.";
 "company_type_ln_description" = "Zemākās cenas DUS tīklā Latvijā, pa reģioniem (Rīgas rajons, Liepājas rajons, Ventspils rajons, Zemgale, Vidzeme, Latgale).";
 "company_type_virsi_description" = "Lētākā degviela Rīgā un Pierīgā.";
@@ -87,7 +87,7 @@
 
 //--- FUEL LIST
 "fuel_list_savings_button_title" = "Ietaupījums";
-"fuel_list_fuel_price_accuracy_button_title" = "Degvielas cenu precizitāte";
+"fuel_list_fuel_price_accuracy_button_title" = "Cenu precizitāte";
 "fuel_list_app_name" = "Fuel Hunter";
 //=== FUEL LIST
 
@@ -99,11 +99,16 @@
 "map_directions_button_title" = "Norādes";
 "map_kilometers" = "km";
 "map_meters" = "m";
+"map_navigation" = "Navigācija";
+"map_navigation_ask_which_app_to_open" = "Kurā aplikācijā atvērt?";
+"map_waze" = "Waze";
+"map_google_maps" = "Google Maps";
+"map_ios_maps" = "iOS Maps";
 //=== MAP
 
 
 //--- FUEL ACCURACY
-"fuel_accuracy_title" = "Degvielas cenu precizitāte";
+"fuel_accuracy_title" = "Cenu precizitāte";
 "fuel_accuracy_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam šādus datus:";
 //=== FUEL ACCURACY
 

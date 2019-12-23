@@ -18,7 +18,6 @@
                 <outlet property="baseView" destination="iN0-l3-epB" id="xTt-Ue-IlX"/>
                 <outlet property="extendedAddressLabel" destination="lUh-3B-53o" id="gAQ-d7-VU9"/>
                 <outlet property="extendedBackgroundImageView" destination="3h3-7F-jwo" id="Kra-aY-wIh"/>
-                <outlet property="extendedDescriptionLabel" destination="vXS-lq-nyY" id="IA4-Fb-iZa"/>
                 <outlet property="extendedTitleLabel" destination="Rw8-Dq-mQn" id="4aF-OT-Ywo"/>
                 <outlet property="iconImageView" destination="wQA-Vl-L7Z" id="QUS-Vg-VL2"/>
                 <outlet property="mapInfoDistanceView" destination="z5l-4R-r4I" id="KTZ-9C-Z2A"/>
@@ -37,7 +36,7 @@
                     <rect key="frame" x="49" y="183" width="551" height="168"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map_pop_up_base" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-7F-jwo" userLabel="cell_extended_bg">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map_pop_up_base" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-7F-jwo" userLabel="cell_extended_bg">
                     <rect key="frame" x="314" y="447" width="551" height="168"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -101,13 +100,6 @@ Lugažu 6, Brīvības iela 82a</string>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="WDn-ea-r7k"/>
                 </view>
-                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXS-lq-nyY" userLabel="Extended Description Label" customClass="ActiveLabel" customModule="ActiveLabel">
-                    <rect key="frame" x="122" y="630" width="407" height="64"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" name="TitleColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedTopBarMetrics"/>

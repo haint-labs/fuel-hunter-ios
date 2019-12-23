@@ -100,16 +100,16 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 
   		frontView.backgroundColor = .white
   		frontView.layer.cornerRadius = 10
-  		frontView.layer.shadowColor = UIColor.init(red: 66/255.0, green: 93/255.0, blue: 146/255.0, alpha: 0.44).cgColor
+  		frontView.layer.shadowColor = UIColor(red: 66/255.0, green: 93/255.0, blue: 146/255.0, alpha: 0.44).cgColor
   		frontView.layer.shadowOpacity = 1
   		frontView.layer.shadowRadius = 8
 
-  		titleLabel.font = Font.init(.medium, size: .size1).font
-  		descriptionLabel.font = Font.init(.normal, size: .size2).font
+  		titleLabel.font = Font(.medium, size: .size1).font
+  		descriptionLabel.font = Font(.normal, size: .size2).font
   		activateButton.setTitle("activate_button_title".localized(), for: .normal)
-  		activateButton.titleLabel?.font = Font.init(.medium, size: .size2).font
+  		activateButton.titleLabel?.font = Font(.medium, size: .size2).font
   		cancelButton.setTitle("cancel_button_title".localized(), for: .normal)
-  		cancelButton.titleLabel?.font = Font.init(.medium, size: .size2).font
+  		cancelButton.titleLabel?.font = Font(.medium, size: .size2).font
   		backgroundView.backgroundColor = .clear
   		activateButton.addTarget(self, action: NSSelectorFromString("activateButtonPressed"), for: .touchUpInside)
   		cancelButton.addTarget(self, action: NSSelectorFromString("cancelButtonPressed"), for: .touchUpInside)
@@ -141,7 +141,7 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 	func animateBackgroundImageColorToState(visible: Bool) {
 		if visible {
 			UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-				self.backgroundView.backgroundColor = UIColor.init(red: 46/255.0, green: 63/255.0, blue: 97/255.0, alpha: 0.3)
+				self.backgroundView.backgroundColor = UIColor(red: 46/255.0, green: 63/255.0, blue: 97/255.0, alpha: 0.3)
 			}, completion: { (finished: Bool) in })
 		} else {
 			UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {

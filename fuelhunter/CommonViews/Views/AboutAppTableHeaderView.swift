@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutAppTableHeaderView: UIView {
+class AboutAppTableHeaderView: FontChangeView {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var mapPreviewView: MapAnimationView!
@@ -71,13 +71,21 @@ class AboutAppTableHeaderView: UIView {
 		mapLabel.text = "settings_about_app_map_title".localized()
 		notifLabel.text = "settings_about_app_notif_title".localized()
 		descriptionLabel.text = "settings_about_app_full_description".localized()
-		
-		mapLabel.font = Font.init(.normal, size: .size3).font
-		notifLabel.font = Font.init(.normal, size: .size3).font
-		descriptionLabel.font = Font.init(.normal, size: .size3).font
 
 		startAnimations()
-  	}
+
+  		updateFonts()
+    }
+
+	func updateFonts() {
+		mapLabel.font = Font(.normal, size: .size3).font
+		notifLabel.font = Font(.normal, size: .size3).font
+		descriptionLabel.font = Font(.normal, size: .size3).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
   	func startAnimations() {
   		mapPreviewView.startAnimating()

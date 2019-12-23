@@ -13,7 +13,7 @@ protocol IntroGPSSetUpLayoutViewLogic {
 	func laterButtonPressed()
 }
 
-class IntroGPSSetUpLayoutView: UIView {
+class IntroGPSSetUpLayoutView: FontChangeView {
 
 	weak var controller: IntroGPSSetUpViewController? 
 
@@ -135,11 +135,6 @@ class IntroGPSSetUpLayoutView: UIView {
 		giveAccessButton.setTitle("give_access_button_title".localized(), for: .normal)
 		laterButton.setTitle("later_button_title".localized(), for: .normal)
 
-		titleLabel.font = Font.init(.normal, size: .size0).font
-		descriptionLabel.font = Font.init(.normal, size: .size2).font
-		giveAccessButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-		laterButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-
 		giveAccessButton.addTarget(self, action:NSSelectorFromString("giveAccessButtonPressed"), for: .touchUpInside)
 		laterButton.addTarget(self, action:NSSelectorFromString("laterButtonPressed"), for: .touchUpInside)
 
@@ -147,7 +142,20 @@ class IntroGPSSetUpLayoutView: UIView {
 		baseView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 
 		mapAnimationView.startAnimating()
-  	}
+
+  	 	updateFonts()
+    }
+
+	func updateFonts() {
+		titleLabel.font = Font(.normal, size: .size0).font
+		descriptionLabel.font = Font(.normal, size: .size2).font
+		giveAccessButton.titleLabel?.font = Font(.medium, size: .size2).font
+		laterButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
   	// MARK: Functions
 

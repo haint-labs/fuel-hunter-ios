@@ -31,7 +31,7 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		scrollView.layoutSubviews()
-		scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: savingsView.frame.size.height + 30)
+		scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: savingsView.frame.size.height + 30)
 		adjustVisibilityOfShadowLines()
 	}
 
@@ -71,7 +71,7 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
   	}
 
   	func setUpView() {
-		savingsView = AppSavingsView.init(frame: CGRect.init(x: 0, y: 10, width: self.frame.width, height: 100))
+		savingsView = AppSavingsView(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 100))
 		scrollView.addSubview(savingsView)
 		savingsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
 		savingsView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true

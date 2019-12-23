@@ -12,7 +12,7 @@ protocol FuelCompanyListCellSwitchLogic: class {
 	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool)
 }
 
-class FuelCompanyListCell: UITableViewCell {
+class FuelCompanyListCell: FontChangeTableViewCell {
 
 	weak var controller: FuelCompanyListCellSwitchLogic? 
 	public var cellBgType: CellBackgroundType = .single
@@ -33,6 +33,8 @@ class FuelCompanyListCell: UITableViewCell {
 	var titleTopAnchorConstraint: NSLayoutConstraint?
 	var titleBottomAnchorConstraint: NSLayoutConstraint?
 	var descriptionBottomAnchorConstraint: NSLayoutConstraint?
+
+	var iconBottomConstraint: NSLayoutConstraint?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,6 +63,9 @@ class FuelCompanyListCell: UITableViewCell {
 		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
 		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 10).isActive = true
+		iconBottomConstraint = iconImageView.bottomAnchor.constraint(lessThanOrEqualTo: backgroundImageView.bottomAnchor, constant: -11)
+		iconBottomConstraint?.priority = .defaultHigh
+		iconBottomConstraint?.isActive = true
 
 		titleLeftImageAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
 		titleLeftCellAnchorConstraint = titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10)
@@ -77,7 +82,7 @@ class FuelCompanyListCell: UITableViewCell {
 		space1.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 9).isActive = true
 		space1.leftAnchor.constraint(equalTo: descriptionLabel.rightAnchor, constant: 9).isActive = true
 		let space1Width = space1.widthAnchor.constraint(equalToConstant: 1)
-		space1Width.priority = UILayoutPriority.init(1)
+		space1Width.priority = UILayoutPriority(1)
 		space1Width.isActive = true
 
 		aSwitch.widthAnchor.constraint(equalToConstant: aSwitch.intrinsicContentSize.width).isActive = true
@@ -90,9 +95,17 @@ class FuelCompanyListCell: UITableViewCell {
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 
-		titleLabel.font = Font.init(.medium, size: .size2).font
-		descriptionLabel.font = Font.init(.normal, size: .size4).font
+    	updateFonts()
     }
+
+	func updateFonts() {
+		titleLabel.font = Font(.medium, size: .size2).font
+		descriptionLabel.font = Font(.normal, size: .size4).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 
 	// MARK: Functions
 
@@ -105,7 +118,7 @@ class FuelCompanyListCell: UITableViewCell {
 			self.descriptionLeftImageAnchorConstraint?.isActive = false
 			self.descriptionLeftCellAnchorConstraint?.isActive = true
 		} else {
-			self.iconImageView.image = UIImage.init(named: imageName)
+			self.iconImageView.image = UIImage(named: imageName)
 			self.iconImageView.isHidden = false
 			self.titleLeftCellAnchorConstraint?.isActive = false
 			self.titleLeftImageAnchorConstraint?.isActive = true
@@ -132,22 +145,22 @@ class FuelCompanyListCell: UITableViewCell {
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
+				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
+				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
+				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
+				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}

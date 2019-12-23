@@ -17,7 +17,7 @@ protocol IntroChooseCompanyLayoutViewDataLogic: class {
 	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem])
 }
 
-class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, IntroChooseCompanyLayoutViewDataLogic, FuelCompanyListCellSwitchLogic {
+class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITableViewDelegate, IntroChooseCompanyLayoutViewDataLogic, FuelCompanyListCellSwitchLogic {
 
 	weak var controller: IntroChooseCompanyViewController? 
 
@@ -86,8 +86,6 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 
 		topTitleLabel.text = "intro_choose_companies_you_use_title".localized()
 		nextButton.setTitle("next_button_title".localized(), for: .normal)
-		topTitleLabel.font = Font.init(.normal, size: .size2).font
-		nextButton.titleLabel?.font = Font.init(.medium, size: .size2).font
 		nextButton.addTarget(self, action:NSSelectorFromString("nextButtonPressed"), for: .touchUpInside)
 
 		baseView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
@@ -95,10 +93,22 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "FuelCompanyListCell", bundle: nil)
+    	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
+    	let nib = UINib(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
-  	}
+
+  		updateFonts()
+    }
+
+	func updateFonts() {
+		topTitleLabel.font = Font(.normal, size: .size2).font
+		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+		tableView.reloadData()
+	}
 
   	// MARK: Table view
 
@@ -133,7 +143,7 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 			return cell
 		} else {
 			// Problem
-			return UITableViewCell.init()
+			return UITableViewCell()
 		}
 	}
 
@@ -185,11 +195,11 @@ class IntroChooseCompanyLayoutView: UIView, UITableViewDataSource, UITableViewDe
 		} else {
 			self.data = data
 			if self.data.count > 0 {
-				guard let cell = tableView.cellForRow(at: IndexPath.init(row: 0, section: 0)) as? FuelCompanyListCell else { return } 
+				guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FuelCompanyListCell else { return }
 				if self.data.first?.toggleStatus != cell.aSwitch.isOn {
 					// Without this - table view jumps.
 					UIView.setAnimationsEnabled(false)
-						tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: .fade)
+						tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
 					UIView.setAnimationsEnabled(true)
 				}
 			}

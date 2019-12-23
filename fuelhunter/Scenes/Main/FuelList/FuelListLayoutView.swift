@@ -16,6 +16,7 @@ protocol FuelListLayoutViewLogic: class {
 
 protocol FuelListLayoutViewDataLogic: class {
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]])
+	func resetUI()
 }
 
 class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic {
@@ -108,12 +109,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets.init(top: -6, left: 0, bottom: -9, right: 0)
-    	let nib = UINib.init(nibName: "FuelListCell", bundle: nil)
+    	tableView.contentInset = UIEdgeInsets(top: -6, left: 0, bottom: -9, right: 0)
+    	let nib = UINib(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	
-    	savingsLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
-		accuracyLabelButton.titleLabel!.font = Font.init(.medium, size: .size3).font
+    	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
+		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
 
 		savingsIconButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
 		accuracyIconButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
@@ -140,13 +141,13 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			let aData = self.data[indexPath.section][indexPath.row]
 			cell.titleLabel.text = aData.company.name
 			cell.addressesLabel.text = aData.addressDescription
-			cell.iconImageView.image = UIImage.init(named: aData.company.logoName)
+			cell.iconImageView.image = UIImage(named: aData.company.logoName)
 			cell.priceLabel.text = aData.price
 			
 			if aData.isPriceCheapest == true {
-				cell.priceLabel.textColor = UIColor.init(named: "CheapPriceColor") 
+				cell.priceLabel.textColor = UIColor(named: "CheapPriceColor")
 			} else {
-				cell.priceLabel.textColor = UIColor.init(named: "TitleColor")
+				cell.priceLabel.textColor = UIColor(named: "TitleColor")
 			}
 			
 			cell.selectionStyle = .none
@@ -165,23 +166,23 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			return cell
 		} else {
 			// Problem
-			return UITableViewCell.init()
+			return UITableViewCell()
 		}
 	}
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let aData = self.data[section].first!
 			
-		let baseView: UIView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 60))
+		let baseView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 60))
 		
 		let label: UILabel = UILabel()
 		label.text = aData.fuelType.rawValue.localized()
-		label.font = Font.init(.medium, size: .size3).font
-		label.textColor = UIColor.init(named: "TitleColor")
+		label.font = Font(.medium, size: .size3).font
+		label.textColor = UIColor(named: "TitleColor")
 		
-		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font.init(.medium, size: .size3).font)
+		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font(.medium, size: .size3).font)
 		
-		label.frame = CGRect.init(x: 16, y: 20, width: self.frame.width-32, height: height+6)
+		label.frame = CGRect(x: 16, y: 20, width: self.frame.width-32, height: height+6)
 		
 		baseView.addSubview(label)
 		
@@ -190,7 +191,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		let aData = self.data[section].first!
-		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font.init(.medium, size: .size3).font)
+		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font(.medium, size: .size3).font)
 		
 		return height + 26
 	}
@@ -209,7 +210,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		if !tableView.bounds.contains(rect) {
 			// Cell is partly visible. So we scroll to reveal it fully. Just a nicety
 
-			tableView.scrollRectToVisible(CGRect.init(x: rect.origin.x, y: rect.origin.y-5, width: rect.width, height: rect.height+10), animated: true)
+			tableView.scrollRectToVisible(CGRect(x: rect.origin.x, y: rect.origin.y-5, width: rect.width, height: rect.height + 10), animated: true)
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { 
 				let rect = tableView.rectForRow(at: indexPath)
@@ -250,6 +251,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		tableView.reloadData()
 		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines() 
+	}
+
+	func resetUI() {
+		tableView.reloadData()
+    	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
+		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
 	}
 
 	// MARK: Functions

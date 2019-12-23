@@ -87,7 +87,7 @@
 
 //--- FUEL LIST
 "fuel_list_savings_button_title" = "Экономия";
-"fuel_list_fuel_price_accuracy_button_title" = "Точность цен на топливо";
+"fuel_list_fuel_price_accuracy_button_title" = "Точность цены";
 "fuel_list_app_name" = "Fuel Hunter";
 //=== FUEL LIST
 
@@ -99,11 +99,16 @@
 "map_directions_button_title" = "Направления";
 "map_kilometers" = "км";
 "map_meters" = "м";
+"map_navigation" = "Навигация";
+"map_navigation_ask_which_app_to_open" = "Какое приложение открыть?";
+"map_waze" = "Waze";
+"map_google_maps" = "Google Maps";
+"map_ios_maps" = "iOS Maps";
 //=== MAP
 
 
 //--- FUEL ACCURACY
-"fuel_accuracy_title" = "Точность цен на топливо";
+"fuel_accuracy_title" = "Точность цены";
 "fuel_accuracy_description" = "В настоящее время мы получаем данные о самых низких ценах с сайтов топливных компаний, поэтому пока эта информация носит исключительно информационный характер. Кроме того, веб-сайт не обновляет эту информацию в выходные или праздничные дни.\n\nОднако мы считаем, что любой водитель автомобиля выиграет, только если узнает, что топливная компания снизит цены на топливо и где найти заправочную станцию ​​по самой низкой цене.\n\n данные:";
 //=== FUEL ACCURACY
 

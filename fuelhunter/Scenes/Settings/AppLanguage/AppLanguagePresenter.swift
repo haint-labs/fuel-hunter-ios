@@ -25,9 +25,9 @@ class AppLanguagePresenter: AppLanguagePresentationLogic {
   		let currentlyActiveLanguage = response.activeLanguage
 
   		let array =  [
-			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem.init(language: .latvian, currentlyActive: currentlyActiveLanguage == AppSettingsWorker.Language.latvian, languageName: "lv_language_name", languageNameInOriginalLanguage: "Latviski"),
-			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem.init(language: .english, currentlyActive: currentlyActiveLanguage == AppSettingsWorker.Language.english, languageName: "en_language_name", languageNameInOriginalLanguage: "English"),
-			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem.init(language: .russian, currentlyActive: currentlyActiveLanguage == AppSettingsWorker.Language.russian, languageName: "ru_language_name", languageNameInOriginalLanguage: "Русский")
+			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem(language: .latvian, currentlyActive: currentlyActiveLanguage == AppSettingsWorker.Language.latvian, languageName: "lv_language_name", languageNameInOriginalLanguage: "Latviski"),
+			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem(language: .english, currentlyActive: currentlyActiveLanguage == AppSettingsWorker.Language.english, languageName: "en_language_name", languageNameInOriginalLanguage: "English"),
+			AppLanguage.GetLanguage.ViewModel.DisplayedLanguageCellItem(language: .russian, currentlyActive: currentlyActiveLanguage == AppSettingsWorker.Language.russian, languageName: "ru_language_name", languageNameInOriginalLanguage: "Русский")
 			]
     	let viewModel = AppLanguage.GetLanguage.ViewModel(displayedLanguageCellItems: array)
     	viewController?.presentLanguageList(viewModel: viewModel)

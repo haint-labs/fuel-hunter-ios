@@ -24,17 +24,14 @@ protocol FuelListCellViewDisplayLogic {
     func updateDataWithData(priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPointData: MapPoint, andCellType cellType: CellBackgroundType)
 }
 
+protocol FuelListCellViewButtonLogic: class {
+    func userPressedOnNavigationButton()
+}
+
 class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
 	public var cellBgType: CellBackgroundType = .unknown
 
-	// Forward this from viewController, so that we can extend white bg on the bottom
-	var safeLayoutBottomInset: CGFloat = 0 {
-		didSet {
-			self.extendedDescriptionLabelBottomConstraint?.constant = -10 - safeLayoutBottomInset
-		}
-	}
-	
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var iconImageView: UIImageView!
@@ -48,8 +45,10 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	@IBOutlet var extendedAddressLabel: UILabel!
 	@IBOutlet var mapInfoPriceView: MapInfoButtonView!
 	@IBOutlet var mapInfoDistanceView: MapInfoButtonView!
-	@IBOutlet var extendedDescriptionLabel: ActiveLabel!
-	
+
+	weak var controller: FuelListCellViewButtonLogic?
+
+
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
 	var bgViewTopAnchorConstraint: NSLayoutConstraint?
 	
@@ -57,7 +56,8 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	var iconImageViewTopConstraint: NSLayoutConstraint?
 	var iconImageViewWidthConstraint: NSLayoutConstraint?
 	var iconImageViewHeightConstraint: NSLayoutConstraint?
-	
+	var iconBottomConstraint: NSLayoutConstraint?
+
 	var iconImageViewCenterXConstraint: NSLayoutConstraint?
 	
 	var priceLabelBottomConstraint: NSLayoutConstraint?
@@ -80,6 +80,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	func setup() {
 		Bundle.main.loadNibNamed("FuelListCellView", owner: self, options: nil)
 		addSubview(baseView)
+//		backgroundColor = .gray
 		baseView.frame = self.bounds
 		self.clipsToBounds = true
 		self.translatesAutoresizingMaskIntoConstraints = false
@@ -94,8 +95,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
         
         extendedBackgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         extendedTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-       	extendedDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        extendedAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+       	extendedAddressLabel.translatesAutoresizingMaskIntoConstraints = false
         mapInfoPriceView.translatesAutoresizingMaskIntoConstraints = false
         mapInfoDistanceView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -117,7 +117,10 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		iconImageViewTopConstraint = iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 11)
 		iconImageViewWidthConstraint = iconImageView.widthAnchor.constraint(equalToConstant: 33)
 		iconImageViewHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 33)
-		
+		iconBottomConstraint = iconImageView.bottomAnchor.constraint(lessThanOrEqualTo: backgroundImageView.bottomAnchor, constant: -11)
+		iconBottomConstraint?.priority = .defaultHigh
+		iconBottomConstraint?.isActive = true
+
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10+10+33).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 
@@ -153,10 +156,10 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		
 		iconImageViewCenterXConstraint = iconImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
 		extendedTitleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-		extendedTitleLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor).isActive = true
+		extendedTitleLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor, constant: -4).isActive = true
 		extendedTitleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 9).isActive = true
 		extendedAddressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-		extendedAddressLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor).isActive = true
+		extendedAddressLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor, constant: -4).isActive = true
 		extendedAddressLabel.topAnchor.constraint(equalTo: extendedTitleLabel.bottomAnchor, constant: 9).isActive = true
 		
 		
@@ -186,23 +189,19 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		mapInfoDistanceView.leftAnchor.constraint(equalTo: infoSpaceMiddle.rightAnchor).isActive = true
 		infoSpaceRight.leftAnchor.constraint(equalTo: mapInfoDistanceView.rightAnchor).isActive = true
 		infoSpaceRight.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-		
-		
-		extendedDescriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
-		extendedDescriptionLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
-		extendedDescriptionLabel.topAnchor.constraint(equalTo: mapInfoPriceView.bottomAnchor, constant: 10).isActive = true
-		extendedDescriptionLabelBottomConstraint = extendedDescriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor)
+
+
+		extendedDescriptionLabelBottomConstraint = mapInfoDistanceView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
 		//===
 		
 				
 		
-		titleLabel.font = Font.init(.medium, size: .size2).font
-		addressesLabel.font = Font.init(.normal, size: .size4).font
-		priceLabel.font = Font.init(.bold, size: .size1).font
+		titleLabel.font = Font(.medium, size: .size2).font
+		addressesLabel.font = Font(.normal, size: .size4).font
+		priceLabel.font = Font(.bold, size: .size1).font
 		
-		extendedTitleLabel.font = Font.init(.medium, size: .size0).font
-		extendedAddressLabel.font = Font.init(.normal, size: .size3).font
-		extendedDescriptionLabel.font = Font.init(.normal, size: .size5).font
+		extendedTitleLabel.font = Font(.medium, size: .size0).font
+		extendedAddressLabel.font = Font(.normal, size: .size3).font
 		
 		setUpConstraintsAsBottomView()
 
@@ -220,6 +219,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		iconImageViewTopConstraint?.isActive = true
 		iconImageViewWidthConstraint?.isActive = true
 		iconImageViewHeightConstraint?.isActive = true
+		iconBottomConstraint?.isActive = true
 		priceLabelBottomConstraint?.isActive = true
 		
 		iconImageViewTopConstraint?.constant = 11
@@ -228,7 +228,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		
 		extendedTitleLabel.alpha = 0
 		extendedAddressLabel.alpha = 0
-		extendedDescriptionLabel.alpha = 0
 		mapInfoPriceView.alpha = 0
 		mapInfoDistanceView.alpha = 0
 		extendedBackgroundImageView.alpha = 0
@@ -250,14 +249,15 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		iconImageViewTopConstraint?.constant = 15
 		iconImageViewWidthConstraint?.constant = 60	
 		iconImageViewHeightConstraint?.constant = 60
-		
+
+		iconBottomConstraint?.isActive = false
+
 		iconImageViewCenterXConstraint?.isActive = true
 		
 		extendedDescriptionLabelBottomConstraint?.isActive = true
 		
 		extendedTitleLabel.alpha = 1
 		extendedAddressLabel.alpha = 1
-		extendedDescriptionLabel.alpha = 1
 		mapInfoPriceView.alpha = 1
 		mapInfoDistanceView.alpha = 1
 		extendedBackgroundImageView.alpha = 1
@@ -277,22 +277,22 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_top")
+				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_bottom")
+				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
 				self.bgViewTopAnchorConstraint?.constant = 0
 				self.bgViewBottomAnchorConstraint?.constant = 0
 				self.separatorView.isHidden = false
-				backgroundImageView.image = UIImage.init(named: "cell_bg_middle")
+				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
 				self.bgViewTopAnchorConstraint?.constant = 5
 				self.bgViewBottomAnchorConstraint?.constant = -5
 				self.separatorView.isHidden = true
-				backgroundImageView.image = UIImage.init(named: "cell_bg_single")
+				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}
@@ -312,11 +312,11 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
 		extendedAddressLabel.text = mapPointData.address
 		extendedTitleLabel.text = mapPointData.company.name
-		iconImageView.image = UIImage.init(named: mapPointData.company.largeLogoName)
+		iconImageView.image = UIImage(named: mapPointData.company.largeLogoName)
 		if mapPointData.priceIsCheapest {
-			priceLabel.textColor = UIColor.init(named: "CheapPriceColor")
+			priceLabel.textColor = UIColor(named: "CheapPriceColor")
 		} else {
-			priceLabel.textColor = UIColor.init(named: "TitleColor")
+			priceLabel.textColor = UIColor(named: "TitleColor")
 		}
 
 		var distance = mapPointData.distanceInMeters/1000
@@ -334,20 +334,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
 		priceLabel.text = mapPointData.priceText
 
-		let patternString = "\\s\("map_price_last_updated_homepage_name".localized())\\b"
-		var lastUpdatedString = "map_price_last_was_updated_many_ago_text".localized()
-		lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "45")
-
-		let customType = ActiveType.custom(pattern: patternString)
-		extendedDescriptionLabel.enabledTypes = [customType]
-		extendedDescriptionLabel.text = lastUpdatedString
-		extendedDescriptionLabel.customColor[customType] = UIColor.init(red: 29/255, green: 105/255, blue: 255/255, alpha: 1.0)
-		extendedDescriptionLabel.customSelectedColor[customType] = UIColor.init(red: 29/255, green: 105/255, blue: 255/255, alpha: 1.0)
-    	extendedDescriptionLabel.handleCustomTap(for: customType) { element in 
-			print("Custom type tapped: \(element)") 
-		}
-		
-
 		if cellBgType == .unknown {
 			self.setAsCellType(cellType: cellType)
 		}
@@ -360,6 +346,9 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	// MARK: MapInfoButtonViewButtonLogic
 	
 	func buttonWasPressedForViewType(_ viewType: MapInfoButtonViewType) {
-		
+		print(viewType)
+		if viewType == .typeDistance {
+			self.controller?.userPressedOnNavigationButton()
+		}
 	}
 }

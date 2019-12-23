@@ -21,6 +21,12 @@ class ScenesManager: NSObject {
 
 	static let shared = ScenesManager()
 
+	private override init() {
+		super.init()
+
+		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged), name: .fontSizeWasChanged, object: nil)
+	}
+
 	weak var window: UIWindow?
 
 	func setRootViewController(animated: Bool) {
@@ -79,6 +85,23 @@ class ScenesManager: NSObject {
 	private class func storeAppSceneState(state: AppSceneState) {
 		UserDefaults.standard.set(state.rawValue, forKey: "app_scene_state")
 		UserDefaults.standard.synchronize()
+	}
+
+	// MARK: Notifications
+
+	@objc func fontSizeWasChanged() {
+		AppSettingsWorker.shared.setUpGlobalFontColorAndSize()
+		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController
+		// This is a hack, to force it to update font color, size.
+		if (rootVc.isNavigationBarHidden) {
+			rootVc.isNavigationBarHidden = false
+			rootVc.isNavigationBarHidden = true
+		} else {
+			rootVc.isNavigationBarHidden = true
+			rootVc.isNavigationBarHidden = false
+		}
+
+		rootVc.popToRootViewController(animated: true)
 	}
 }
 

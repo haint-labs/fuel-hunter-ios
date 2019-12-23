@@ -18,7 +18,7 @@ protocol IntroChooseFuelTypeLayoutViewDataLogic: class {
 	func setNextButtonAsEnabled(_ isEnabled: Bool)
 }
 
-class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, IntroChooseFuelTypeLayoutViewDataLogic, FuelTypeListCellSwitchLogic {
+class IntroChooseFuelTypeLayoutView: FontChangeView, UITableViewDataSource, UITableViewDelegate, IntroChooseFuelTypeLayoutViewDataLogic, FuelTypeListCellSwitchLogic {
 
 	weak var controller: IntroChooseFuelTypeViewController? 
 
@@ -81,9 +81,7 @@ class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 		topTitleLabel.text = "intro_choose_fuel_types_you_are_interested".localized()
 		nextButton.setTitle("next_button_title".localized(), for: .normal)
-		topTitleLabel.font = Font.init(.normal, size: .size2).font
-		nextButton.titleLabel?.font = Font.init(.medium, size: .size2).font
-		nextButton.setTitleColor(UIColor.init(named: "DisabledButtonColor"), for: .disabled)
+		nextButton.setTitleColor(UIColor(named: "DisabledButtonColor"), for: .disabled)
 		nextButton.addTarget(self, action:NSSelectorFromString("nextButtonPressed"), for: .touchUpInside)
 
 		baseView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
@@ -91,10 +89,22 @@ class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets.init(top: 16, left: 0, bottom: 12, right: 0)
-    	let nib = UINib.init(nibName: "FuelTypeListCell", bundle: nil)
+    	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
+    	let nib = UINib(nibName: "FuelTypeListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
-  	}
+
+  		updateFonts()
+    }
+
+	func updateFonts() {
+		topTitleLabel.font = Font(.normal, size: .size2).font
+		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+		tableView.reloadData()
+	}
 
   	// MARK: Table view
 
@@ -127,7 +137,7 @@ class IntroChooseFuelTypeLayoutView: UIView, UITableViewDataSource, UITableViewD
 			return cell
 		} else {
 			// Problem
-			return UITableViewCell.init()
+			return UITableViewCell()
 		}
 	}
 

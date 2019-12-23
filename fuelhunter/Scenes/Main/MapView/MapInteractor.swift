@@ -16,6 +16,8 @@ import MapKit
 protocol MapBusinessLogic {
   	func doSomething(request: Map.MapData.Request)
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request)
+  	func openHomePageForCurrentCompany()
+  	func openNavigationForAppType(request: Map.MapNavigationRequested.Request)
 }
 
 protocol MapDataStore {
@@ -36,6 +38,7 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 	var convertedDataArray: [Map.MapData.ViewModel.DisplayedMapPoint] = []
 	var mapPoints: [MapPoint] = []
 	var selectedPriceObject: Price?
+	var selectedDisplayedPoint: Map.MapData.ViewModel.DisplayedMapPoint?
 
   	// MARK: MapBusinessLogic
 
@@ -48,9 +51,9 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
 		selectedPriceObject = selectedPricesArray?.first(where: {$0.company == selectedCompany}) ?? selectedPricesArray?.first
 
-		let selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
+		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
 
-		let response = Map.MapData.Response.init(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!)
+		let response = Map.MapData.Response(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!)
 
     	presenter?.presentSomething(response: response)
   	}
@@ -61,17 +64,39 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
 		selectedPriceObject = selectedPricesArray?.first(where: {$0.company == selectedCompany}) ?? selectedPricesArray?.first
 
-		let selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
+		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
 
-		let response = Map.MapWasPressed.Response.init(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: request.mapPoint, selectedPrice: selectedPriceObject!)
+		let response = Map.MapWasPressed.Response(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: request.mapPoint, selectedPrice: selectedPriceObject!)
 
 		presenter?.updateToRevealMapPoint(response: response)
   	}
 
+	func openHomePageForCurrentCompany() {
+		if let companyHomePage = selectedCompany?.homePage {
+			UIApplication.shared.open(URL(string: companyHomePage)!, options: [:], completionHandler: nil)
+		}
+	}
+
+	func openNavigationForAppType(request: Map.MapNavigationRequested.Request) {
+		var url: String?
+		if let selectedDisplayedPoint = selectedDisplayedPoint {
+			switch request.mapAppType {
+				case .Waze:
+					url = "waze://?ll=\(selectedDisplayedPoint.latitude),\(selectedDisplayedPoint.longitude)&navigate=yes"
+				case .GoogleMaps:
+					url = "comgooglemaps://?daddr=\(selectedDisplayedPoint.latitude),\(selectedDisplayedPoint.longitude)&directionsmode=driving"
+				case .iOSMaps:
+					url = "http://maps.apple.com?daddr=\(selectedDisplayedPoint.latitude),\(selectedDisplayedPoint.longitude)&directionsmode=driving"
+			}
+		}
+
+		if let url = url { UIApplication.shared.open(URL(string: url)!) }
+	}
+
   	// MARK: Functions
 
   	func createMapPoints(from data: [Map.MapData.ViewModel.DisplayedMapPoint]) -> [MapPoint] {
-  		let mapPoints = data.map { MapPoint.init(priceId: $0.id, title: $0.company.name, company: $0.company, address: $0.addressName, coordinate:
+  		let mapPoints = data.map { MapPoint(priceId: $0.id, title: $0.company.name, company: $0.company, address: $0.addressName, coordinate:
   			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), priceText: $0.price, distanceInMeters: $0.distanceInMeters, priceIsCheapest: $0.isPriceCheapest) }
 
   		return mapPoints

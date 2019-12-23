@@ -33,8 +33,8 @@ class PushNotifSetupPresenter: PushNotifSetupPresentationLogic {
   			descriptionString.append(" \(response.convertedValue) \("settings_more_cents".localized())")
   		}
 
-  		let displayItem = PushNotifSetup.SetUp.ViewModel.DisplayedItem.init(description: descriptionString, value: response.value, minValue: response.minValue, maxValue: response.maxValue)
-    	let viewModel = PushNotifSetup.SetUp.ViewModel.init(displayedItem: displayItem)
+  		let displayItem = PushNotifSetup.SetUp.ViewModel.DisplayedItem(description: descriptionString, value: response.value, minValue: response.minValue, maxValue: response.maxValue)
+    	let viewModel = PushNotifSetup.SetUp.ViewModel(displayedItem: displayItem)
     	viewController?.updateData(viewModel: viewModel)
   	}
 

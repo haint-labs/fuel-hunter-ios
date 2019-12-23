@@ -58,7 +58,7 @@ class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPag
   	}
 
 	func setUpView() {
-		let view = IntroPageLayoutView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 100))
+		let view = IntroPageLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(view)
 		view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
 		view.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor).isActive = true
