@@ -289,7 +289,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		self.scrollView.clipsToBounds = false
 		self.scrollView.delegate = nil
 		self.scrollView.isPagingEnabled = false
-		
+
 		UIView.animate(withDuration: 0.05) {
 			self.fuelCellExtendedInfoView.alpha = 0
 			self.scrollViewFrontView.alpha = 0
@@ -380,9 +380,12 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	}
 
 	func getMapOffset() -> CGFloat {
-		let safeAreaInsets = -self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
-		let scrollViewContentHeight = self.fuelCellView.frame.height + self.fuelCellExtendedInfoView.frame.height
-		return self.scrollView.frame.height + yOffSetConstraint.constant - scrollViewContentHeight - safeAreaInsets + min(0, scrollView.contentOffset.y)
+
+		return self.view.frame.height - scrollBackgroundImageView.frame.origin.y
+
+//		let safeAreaInsets = -self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
+//		let scrollViewContentHeight = self.fuelCellView.frame.height + self.fuelCellExtendedInfoView.frame.height
+//		return self.scrollView.frame.height + yOffSetConstraint.constant - scrollViewContentHeight - safeAreaInsets + min(0, scrollView.contentOffset.y)
 	}
 
 	// MARK: Notifications

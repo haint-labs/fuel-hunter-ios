@@ -23,7 +23,7 @@ enum CompanyType: String, Codable {
 	case typeCircleK = "Circle K"
 	case typeKool = "Kool"
 	case typeLN = "Latvijas Nafta"
-	case typeVirsi = "Virsi"
+	case typeVirsi = "Virši"
 	case typeGotikaAuto = "Gotika Auto"
 }
 

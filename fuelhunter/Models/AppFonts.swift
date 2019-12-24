@@ -16,7 +16,7 @@ struct Font {
 		didSet {
 			// For first time setting and only if it changes..
 			if oldValue != -100 && oldValue != increaseFontSize {
-				print("change")
+//				print("change of font size!")
 				NotificationCenter.default.post(name: .fontSizeWasChanged, object: nil)
 			}
 		}
@@ -24,9 +24,9 @@ struct Font {
 
 	static func recalculateFontIncreaseSize() {
 		// Default should be 28. (From my testing.)
-		print("before increase \(Font.increaseFontSize)")
+//		print("font size before increase \(Font.increaseFontSize)")
 		Font.increaseFontSize = min(10, Int(UIFont.preferredFont(forTextStyle: .title1).pointSize) - 28)
-		print("after increase \(Font.increaseFontSize)")
+//		print("font size after increase \(Font.increaseFontSize)")
 	}
 
     enum FontType: String {

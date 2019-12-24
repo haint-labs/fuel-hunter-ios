@@ -18,7 +18,7 @@ protocol MapLayoutViewDataLogic: class {
 	func updateMapViewOffset(offset: CGFloat, ratio: Double, animated: Bool)
 }
 
-class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
+class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestureRecognizerDelegate {
 
 	weak var controller: MapLayoutViewViewLogic?
 
@@ -44,6 +44,10 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	var selectedPinMapRect: MKMapRect!
 
 	var offsetRatio: Double = 1
+
+	var userDraggedOrZoomedMap: Bool = false
+
+	var disableMapAdjusting: Bool = false
 
 	// MARK: View lifecycle
 
@@ -96,6 +100,13 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 		bottomShadowImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		bottomShadowImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		bottomShadowImageView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+
+		let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.didDragOrPinchMap(_:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(self.didDragOrPinchMap(_:)))
+        panGesture.delegate = self
+        pinchGesture.delegate = self
+        mapView.addGestureRecognizer(panGesture)
+        mapView.addGestureRecognizer(pinchGesture)
   	}
 
 	// MARK: Functions
@@ -133,20 +144,18 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 
 	func zoomOnAllPins(animated: Bool) {
 
-//		let x: Double = ((Double(allPinsMapRect.origin.x) - Double(selectedPinMapRect.origin.x)) * offsetRatio) + Double(selectedPinMapRect.origin.x)
-//
-//		let y: Double = ((Double(allPinsMapRect.origin.y) - Double(selectedPinMapRect.origin.y)) * offsetRatio) + Double(selectedPinMapRect.origin.y)
-//
-//		let width: Double = ((Double(allPinsMapRect.size.width) - Double(selectedPinMapRect.size.width)) * offsetRatio) + Double(selectedPinMapRect.size.width)
-//
-//		let height: Double = ((Double(allPinsMapRect.size.height) - Double(selectedPinMapRect.size.height)) * offsetRatio) + Double(selectedPinMapRect.size.height)
-//
-//		let combinedMapRect = MKMapRect(x: x, y: y, width: width, height: height)
+		if !disableMapAdjusting {
+			if self.userDraggedOrZoomedMap == true { disableMapAdjusting = true }
 
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+				self.userDraggedOrZoomedMap = false
+				self.disableMapAdjusting = false
+			})
 
-		UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
-			self.mapView.setVisibleMapRect(self.allPinsMapRect, edgePadding: UIEdgeInsets(top: self.calculatedMaxPinHeight+5+10, left: self.calculatedMaxPinWidth/2+5, bottom: self.currentMapOffset, right: self.calculatedMaxPinWidth/2+5), animated: animated)
-		}) { (result) in }
+			UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {
+				self.mapView.setVisibleMapRect(self.allPinsMapRect, edgePadding: UIEdgeInsets(top: self.calculatedMaxPinHeight + 15, left: self.calculatedMaxPinWidth / 2 + 5, bottom: self.currentMapOffset + 5, right: self.calculatedMaxPinWidth / 2 + 5), animated: self.userDraggedOrZoomedMap == true ? true : animated)
+			}) { (result) in }
+		}
 	}
 
 	func recalculateMapRect() {
@@ -181,6 +190,14 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic {
 	}
 
 	// MARK: MKMapViewDelegate
+
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    @objc func didDragOrPinchMap(_ sender: UIGestureRecognizer) {
+            userDraggedOrZoomedMap = true
+    }
 
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
