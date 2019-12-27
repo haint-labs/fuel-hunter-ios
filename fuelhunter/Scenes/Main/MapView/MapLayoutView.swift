@@ -255,9 +255,9 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 			if let currentActivePin = currentActivePin {
 				if mapPointAnnotation == currentActivePin {
-					mapPinAccessory.setAsSelected(true)
+					mapPinAccessory.setAsSelected(true, isCheapestPrice: currentActivePin.priceIsCheapest)
 				} else {
-					mapPinAccessory.setAsSelected(false)
+					mapPinAccessory.setAsSelected(false, isCheapestPrice: currentActivePin.priceIsCheapest)
 				}
 			}
 		}
@@ -280,9 +280,9 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 			if let annotationView = mapView.view(for: mapPoint) {
 				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
 				if mapPoint == currentActivePin! {
-					mapPinAccessoryView?.setAsSelected(true)
+					mapPinAccessoryView?.setAsSelected(true, isCheapestPrice: selectedPin.priceIsCheapest)
 				} else {
-					mapPinAccessoryView?.setAsSelected(false)
+					mapPinAccessoryView?.setAsSelected(false, isCheapestPrice: selectedPin.priceIsCheapest)
 				}
 			}
 		}

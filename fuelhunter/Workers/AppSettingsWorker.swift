@@ -16,6 +16,8 @@ extension Notification.Name {
 
     static let languageWasChanged = Notification.Name("languageWasChanged")
 
+    static let settingsUpdated = Notification.Name("settingsUpdated")
+
     static let fontSizeWasChanged = Notification.Name("fontSizeWasChanged")
 }
 
@@ -233,6 +235,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	func setCompanyToggleStatus(allCompanies: AllCompaniesToogleStatus) {
 		UserDefaults.standard.setStruct(allCompanies, forKey: "AllCompaniesToogleStatus")
 		UserDefaults.standard.synchronize()
+		NotificationCenter.default.post(name: .settingsUpdated, object: nil)
 	}
 	
 	// MARK: Stored Fuel Types
@@ -243,6 +246,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	func setFuelTypeToggleStatus(allFuelTypes: AllFuelTypesToogleStatus) {
 		UserDefaults.standard.setStruct(allFuelTypes, forKey: "AllFuelTypesToogleStatus")
 		UserDefaults.standard.synchronize()
+		NotificationCenter.default.post(name: .settingsUpdated, object: nil)
 	}
 
 	// MARK: CLLocationManagerDelegate

@@ -19,6 +19,8 @@ class MapWorker {
 
 		let userLocation = AppSettingsWorker.shared.getUserLocation()
 
+		let lowestPrice = priceArray.min { Float($0.price)! < Float($1.price)! }
+
 		for (_, item) in priceArray.enumerated() {
 			for (subIndex, addressItem) in item.address.enumerated() {
 
@@ -30,7 +32,7 @@ class MapWorker {
 					distanceInMeters = userLocation!.distance(from: coordinate);
 				}
 
-				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), company: item.company, price: item.price, isPriceCheapest: item.isPriceCheapest, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, addressDescription: item.addressDescription, distanceInMeters: distanceInMeters))
+				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), company: item.company, price: item.price, isPriceCheapest: item == lowestPrice ? true : false, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, addressDescription: item.addressDescription, distanceInMeters: distanceInMeters))
 			}
 		}
 

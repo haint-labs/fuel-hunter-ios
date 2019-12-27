@@ -26,17 +26,33 @@ class FuelListPresenter: FuelListPresentationLogic {
 
 		var displayedPrices: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]] = []
 
-		let type95Prices = self.getPrices(with: .type95, from: response.prices)
-		let type98Prices = self.getPrices(with: .type98, from: response.prices)
-		let typeDDPrices = self.getPrices(with: .typeDD, from: response.prices)
-		let typeDDProPrices = self.getPrices(with: .typeDDPro, from: response.prices)
-		let typeGasPrices = self.getPrices(with: .typeGas, from: response.prices)
-		
-		if !type95Prices.isEmpty { displayedPrices.append(type95Prices) }
-		if !type98Prices.isEmpty { displayedPrices.append(type98Prices) }
-		if !typeDDPrices.isEmpty { displayedPrices.append(typeDDPrices) }
-		if !typeDDProPrices.isEmpty { displayedPrices.append(typeDDProPrices) }
-		if !typeGasPrices.isEmpty { displayedPrices.append(typeGasPrices) }
+		let fuelTypesStatus = AppSettingsWorker.shared.getFuelTypeToggleStatus()
+		let enabledCompanies = AppSettingsWorker.shared.getCompanyToggleStatus()
+
+		if fuelTypesStatus.typeDD {
+			let typeDDPrices = self.getPrices(with: .typeDD, from: response.prices, companies: enabledCompanies)
+			if !typeDDPrices.isEmpty { displayedPrices.append(typeDDPrices) }
+		}
+
+		if fuelTypesStatus.typeDDPro {
+			let typeDDProPrices = self.getPrices(with: .typeDDPro, from: response.prices, companies: enabledCompanies)
+			if !typeDDProPrices.isEmpty { displayedPrices.append(typeDDProPrices) }
+		}
+
+		if fuelTypesStatus.type95 {
+			let type95Prices = self.getPrices(with: .type95, from: response.prices, companies: enabledCompanies)
+			if !type95Prices.isEmpty { displayedPrices.append(type95Prices) }
+		}
+
+		if fuelTypesStatus.type98 {
+			let type98Prices = self.getPrices(with: .type98, from: response.prices, companies: enabledCompanies)
+			if !type98Prices.isEmpty { displayedPrices.append(type98Prices) }
+		}
+
+		if fuelTypesStatus.typeGas {
+			let typeGasPrices = self.getPrices(with: .typeGas, from: response.prices, companies: enabledCompanies)
+			if !typeGasPrices.isEmpty { displayedPrices.append(typeGasPrices) }
+		}
 
 		let viewModel = FuelList.FetchPrices.ViewModel(displayedPrices: displayedPrices)
 		viewController?.displaySomething(viewModel: viewModel)
@@ -47,19 +63,58 @@ class FuelListPresenter: FuelListPresentationLogic {
 
 		let necessaryPrices = response.prices.filter( { $0.fuelType == response.selectedFuelType })
 
-		let viewModel = FuelList.RevealMap.ViewModel(slectedFuelTypePrices: necessaryPrices, selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
+		let enabledCompanies = AppSettingsWorker.shared.getCompanyToggleStatus()
+		let finalFilteredPrices = filteredPricesByEnabledCompanies(companies: enabledCompanies, from: necessaryPrices)
+
+		let viewModel = FuelList.RevealMap.ViewModel(slectedFuelTypePrices: finalFilteredPrices, selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
 
 		viewController?.revealMapView(viewModel: viewModel)
 	}
 
 	// MARK: Functions
 
-	func getPrices(with type: FuelType, from prices: [Price]) -> [FuelList.FetchPrices.ViewModel.DisplayedPrice] {
+	func getPrices(with type: FuelType, from prices: [Price], companies: AllCompaniesToogleStatus) -> [FuelList.FetchPrices.ViewModel.DisplayedPrice] {
 
-		let pricesToReturn = prices.filter( { $0.fuelType == type }).map( {
-			return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: $0.id, company: $0.company, price: $0.price, isPriceCheapest: $0.isPriceCheapest, fuelType: $0.fuelType, addressDescription: $0.addressDescription, address: $0.address, city: $0.city)
+		let pricesForFuelType = prices.filter({ $0.fuelType == type })
+
+		let enabledCompanies = AppSettingsWorker.shared.getCompanyToggleStatus()
+		let finalFilteredPrices = filteredPricesByEnabledCompanies(companies: enabledCompanies, from: pricesForFuelType)
+
+		let pricesToReturn = finalFilteredPrices.map( {
+			return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: $0.id, company: $0.company, price: $0.price, isPriceCheapest: $0.price == finalFilteredPrices.first?.price, fuelType: $0.fuelType, addressDescription: $0.addressDescription, address: $0.address, city: $0.city)
 		} )
 
 		return pricesToReturn
+	}
+
+	func filteredPricesByEnabledCompanies(companies: AllCompaniesToogleStatus, from prices: [Price]) -> [Price] {
+
+		var finalFilteredPrices: [Price] = []
+
+		if companies.typeNeste { finalFilteredPrices.append(contentsOf: prices.filter({ $0.company.name == CompanyType.typeNeste.rawValue })) }
+		if companies.typeCircleK { finalFilteredPrices.append(contentsOf: prices.filter({ $0.company.name == CompanyType.typeCircleK.rawValue })) }
+		if companies.typeKool { finalFilteredPrices.append(contentsOf: prices.filter({ $0.company.name == CompanyType.typeKool.rawValue })) }
+		if companies.typeLn { finalFilteredPrices.append(contentsOf: prices.filter({ $0.company.name == CompanyType.typeLN.rawValue })) }
+		if companies.typeVirsi { finalFilteredPrices.append(contentsOf: prices.filter({ $0.company.name == CompanyType.typeVirsi.rawValue })) }
+		if companies.typeGotikaAuto { finalFilteredPrices.append(contentsOf: prices.filter({ $0.company.name == CompanyType.typeGotikaAuto.rawValue })) }
+
+		// We find lowest price, between all companies
+		var lowestPrice = prices.min { Float($0.price)! < Float($1.price)! }
+
+		if companies.typeCheapest {
+			if let lowestPrice = lowestPrice {
+				if !finalFilteredPrices.contains(lowestPrice) {
+					finalFilteredPrices.append(lowestPrice)
+				}
+			}
+		} else {
+			// In case typeCheapest was off, only then we return value, from filtered results.
+			lowestPrice = finalFilteredPrices.min { Float($0.price)! < Float($1.price)! }
+		}
+
+		// Sort all results - cheapest to expensiver
+		finalFilteredPrices.sort(by: { Float($0.price)! < Float($1.price)! })
+
+		return finalFilteredPrices
 	}
 }

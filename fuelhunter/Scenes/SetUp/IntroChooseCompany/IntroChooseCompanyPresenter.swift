@@ -24,12 +24,12 @@ class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
   	func presentData(response:  IntroChooseCompany.CompanyCells.Response) {
 		let array =  [
 			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeCheapest, title: "company_type_cheapest_title", description: "company_type_cheapest_description", imageName: "", toggleStatus: response.companyCheapestStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeNeste, title: "Neste", description: "company_type_neste_description", imageName: "neste_logo", toggleStatus: response.companyNesteStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeCircleK, title: "Circle K", description: "company_type_circle_k_description", imageName: "circle_k_logo", toggleStatus: response.companyCircleKStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeKool, title: "Kool", description: "company_type_kool_description", imageName: "kool_logo", toggleStatus: response.companyKoolStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeLN, title: "Latvijas Nafta", description: "company_type_ln_description", imageName: "ln_logo", toggleStatus: response.companyLatvijasNaftaStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeVirsi, title: "Virši", description: "company_type_virsi_description", imageName: "virshi_logo", toggleStatus: response.companyVirsiStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeGotikaAuto, title: "Gotika Auto", description: "company_type_gotika_description", imageName: "gotika_logo", toggleStatus: response.companyGotikaStatus)
+			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeNeste, title: CompanyType.typeNeste.rawValue, description: "company_type_neste_description", imageName: "neste_logo", toggleStatus: response.companyNesteStatus),
+			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeCircleK, title: CompanyType.typeCircleK.rawValue, description: "company_type_circle_k_description", imageName: "circle_k_logo", toggleStatus: response.companyCircleKStatus),
+			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeKool, title: CompanyType.typeKool.rawValue, description: "company_type_kool_description", imageName: "kool_logo", toggleStatus: response.companyKoolStatus),
+			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeLN, title: CompanyType.typeLN.rawValue, description: "company_type_ln_description", imageName: "ln_logo", toggleStatus: response.companyLatvijasNaftaStatus),
+			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeVirsi, title: CompanyType.typeVirsi.rawValue, description: "company_type_virsi_description", imageName: "virshi_logo", toggleStatus: response.companyVirsiStatus),
+			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeGotikaAuto, title: CompanyType.typeGotikaAuto.rawValue, description: "company_type_gotika_description", imageName: "gotika_logo", toggleStatus: response.companyGotikaStatus)
 			]
     	let viewModel = IntroChooseCompany.CompanyCells.ViewModel(displayedCompanyCellItems: array)
     	viewController?.displayListWithData(viewModel: viewModel)

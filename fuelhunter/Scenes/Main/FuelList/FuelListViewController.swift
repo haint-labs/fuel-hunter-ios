@@ -59,6 +59,9 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
     		name: .languageWasChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
     		name: .fontSizeWasChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated),
+    		name: .settingsUpdated, object: nil)
+
 	}
 
 	// Set up
@@ -128,9 +131,6 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
 	// MARK: MapReturnUpdateDataLogic
 	func justSelected(fuelPrice: Price) -> CGFloat {
-
-		let request = FuelList.FindAPrice.Request(selectedPrice: fuelPrice)
-		let displayedPrice = interactor?.getDisplayedPriceObject(request: request)
 		var indexPath: IndexPath?
 
 		selectedCell?.isHidden = false
@@ -140,7 +140,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 			for(rowIndex, price) in array.enumerated() {
 				if price.fuelType != fuelPrice.fuelType { break; }
 
-				if price == displayedPrice {
+				if price.company == fuelPrice.company {
 					indexPath = IndexPath(row: rowIndex, section: sectionIndex)
 					if let cell = layoutView.tableView.cellForRow(at: indexPath!) {
 						// We found a cell!
@@ -185,5 +185,9 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
 	@objc func fontSizeWasChanged() {
 		self.layoutView.resetUI()
+	}
+
+	@objc func settingsUpdated() {
+		getData()
 	}
 }

@@ -14,7 +14,6 @@ struct Price: Equatable, Codable {
 	var company: Company
 	var city: String
 	var price: String
-	var isPriceCheapest: Bool
 	var fuelType: FuelType
 	var address: [Address]
 	var addressDescription: String {
@@ -33,7 +32,6 @@ struct Price: Equatable, Codable {
 			&& lhs.company == rhs.company
 			&& lhs.city == rhs.city
 			&& lhs.price == rhs.price
-			&& lhs.isPriceCheapest == rhs.isPriceCheapest
 			&& lhs.fuelType == rhs.fuelType
 			&& lhs.addressDescription == rhs.addressDescription
 	}

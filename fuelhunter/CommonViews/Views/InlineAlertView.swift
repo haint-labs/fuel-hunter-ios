@@ -8,11 +8,18 @@
 
 import UIKit
 
+protocol InlineAlertViewLogic: class {
+    func inlineAlertViewFrameChanged()
+}
+
 class InlineAlertView: UIView {
 
 	@IBOutlet weak var inlineAlertView: UIView!
 	@IBOutlet weak var textLabel: UILabel!
 	@IBOutlet weak var heightConstraint: NSLayoutConstraint!
+
+	weak var controller: InlineAlertViewLogic?
+
 	var expanded = false
 
 	// MARK: View lifecycle
@@ -65,8 +72,9 @@ class InlineAlertView: UIView {
 		expanded = false
 		UIView.animate(withDuration: 0.3) {
 			self.heightConstraint.constant = 0
-				self.layoutIfNeeded()
-				self.superview?.layoutIfNeeded()
+			self.layoutIfNeeded()
+			self.superview?.layoutIfNeeded()
+			self.controller?.inlineAlertViewFrameChanged()
 		}
 	}
 

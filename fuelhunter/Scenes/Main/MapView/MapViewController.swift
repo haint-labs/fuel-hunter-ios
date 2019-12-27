@@ -382,10 +382,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	func getMapOffset() -> CGFloat {
 
 		return self.view.frame.height - scrollBackgroundImageView.frame.origin.y
-
-//		let safeAreaInsets = -self.view.safeAreaInsets.top + self.view.safeAreaInsets.bottom
-//		let scrollViewContentHeight = self.fuelCellView.frame.height + self.fuelCellExtendedInfoView.frame.height
-//		return self.scrollView.frame.height + yOffSetConstraint.constant - scrollViewContentHeight - safeAreaInsets + min(0, scrollView.contentOffset.y)
 	}
 
 	// MARK: Notifications

@@ -15,7 +15,6 @@ import UIKit
 protocol FuelListBusinessLogic {
 	func fetchPrices(request: FuelList.FetchPrices.Request)
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request)
-	func getDisplayedPriceObject(request: FuelList.FindAPrice.Request) -> FuelList.FetchPrices.ViewModel.DisplayedPrice
 }
 
 protocol FuelListDataStore {
@@ -43,15 +42,8 @@ class FuelListInteractor: FuelListBusinessLogic, FuelListDataStore {
 	}
 
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request) {
-
 		let response = FuelList.RevealMap.Response(prices: self.prices!, selectedCompany: request.selectedCompany, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
 
 		self.presenter?.revealMapView(response: response)
-	}
-
-
-	func getDisplayedPriceObject(request: FuelList.FindAPrice.Request) -> FuelList.FetchPrices.ViewModel.DisplayedPrice {
-
-		return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: request.selectedPrice.id, company: request.selectedPrice.company, price: request.selectedPrice.price, isPriceCheapest: request.selectedPrice.isPriceCheapest, fuelType: request.selectedPrice.fuelType, addressDescription: request.selectedPrice.addressDescription, address: request.selectedPrice.address, city: request.selectedPrice.city)
 	}
 }

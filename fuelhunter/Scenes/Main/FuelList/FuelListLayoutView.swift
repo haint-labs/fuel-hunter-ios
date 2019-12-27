@@ -19,7 +19,7 @@ protocol FuelListLayoutViewDataLogic: class {
 	func resetUI()
 }
 
-class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic {
+class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic, InlineAlertViewLogic {
 
 	weak var controller: FuelListLayoutViewLogic? 
 
@@ -47,10 +47,17 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
     	setup()
 	}
 
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		adjustVisibilityOfShadowLines()
+	}
+
 	func setup() {
 		Bundle.main.loadNibNamed("FuelListLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
+
+		inlineAlertView.controller = self
 
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
@@ -257,6 +264,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		tableView.reloadData()
     	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
 		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
+	}
+
+	// MARK: InlineAlertViewLogic
+
+	func inlineAlertViewFrameChanged() {
+		adjustVisibilityOfShadowLines()
 	}
 
 	// MARK: Functions

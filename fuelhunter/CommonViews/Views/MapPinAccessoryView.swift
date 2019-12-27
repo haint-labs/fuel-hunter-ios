@@ -90,9 +90,9 @@ class MapPinAccessoryView: UIView {
 		distanceLabel.font = Font(.normal, size: .size5).font
 	}
 
-	func setAsSelected(_ selected: Bool) {
+	func setAsSelected(_ selected: Bool, isCheapestPrice: Bool) {
 		if selected == true {
-			priceLabel.textColor = UIColor(named: "TitleColor")
+			priceLabel.textColor = UIColor(named: isCheapestPrice ? "CheapPriceColor" : "TitleColor")
 			distanceLabel.textColor = UIColor(named: "SubTitleColor")
 			icon.isHighlighted = true
 		} else {
