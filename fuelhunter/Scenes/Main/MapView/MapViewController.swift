@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MapDisplayLogic: class {
-  	func displaySomething(viewModel: Map.MapData.ViewModel)
+  	func displayData(viewModel: Map.MapData.ViewModel)
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel)
 }
 
@@ -67,7 +67,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
     	self.view.backgroundColor = .clear
     	self.title = router?.dataStore?.selectedFuelType.rawValue.localized()
     	setUpView()
-    	doSomething()
+    	getData()
     	
     	layoutView.alpha = 0
 
@@ -189,9 +189,9 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
   	// MARK: Functions
 
-  	func doSomething() {
+  	func getData() {
     	let request = Map.MapData.Request()
-    	interactor?.doSomething(request: request)
+    	interactor?.getData(request: request)
   	}
 
 	func updateData(to priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPoint: MapPoint) {
@@ -227,7 +227,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 	// MARK: MapDisplayLogic
 
-  	func displaySomething(viewModel: Map.MapData.ViewModel) {
+  	func displayData(viewModel: Map.MapData.ViewModel) {
     	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:getMapOffset(), andRatio: 1)
 		updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint)
   	}

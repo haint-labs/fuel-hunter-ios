@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MapPresentationLogic {
-  	func presentSomething(response: Map.MapData.Response)
+  	func presentData(response: Map.MapData.Response)
   	func updateToRevealMapPoint(response: Map.MapWasPressed.Response)
 }
 
@@ -22,9 +22,9 @@ class MapPresenter: MapPresentationLogic {
 	
   	// MARK: Do something
 
-  	func presentSomething(response: Map.MapData.Response) {
+  	func presentData(response: Map.MapData.Response) {
 		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: response.mapPoints, selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint)
-    	viewController?.displaySomething(viewModel: viewModel)
+    	viewController?.displayData(viewModel: viewModel)
   	}
 
 	func updateToRevealMapPoint(response: Map.MapWasPressed.Response) {

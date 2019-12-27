@@ -14,7 +14,7 @@ import UIKit
 import MapKit
 
 protocol MapBusinessLogic {
-  	func doSomething(request: Map.MapData.Request)
+  	func getData(request: Map.MapData.Request)
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request)
   	func openHomePageForCurrentCompany()
   	func openNavigationForAppType(request: Map.MapNavigationRequested.Request)
@@ -42,7 +42,7 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
   	// MARK: MapBusinessLogic
 
-  	func doSomething(request: Map.MapData.Request) {
+  	func getData(request: Map.MapData.Request) {
     	worker = MapWorker()
     	convertedDataArray = worker!.createUsableDataArray(fromPricesArray: selectedPricesArray!)
 		mapPoints = createMapPoints(from: convertedDataArray)
@@ -55,7 +55,7 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
 		let response = Map.MapData.Response(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!)
 
-    	presenter?.presentSomething(response: response)
+    	presenter?.presentData(response: response)
   	}
 
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request) {
