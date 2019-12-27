@@ -174,18 +174,29 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 	// MARK: MapLayoutViewDataLogic
 
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double) {
-
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(data)
 		offsetRatio = ratio
 		recalculateMapRect()
+
+		// This is needed for inital map opening, to put first active pin in front (because if it was added first one
+		// It might be behind other pins
+		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			for(_, mapPoint) in actuals.enumerated() {
+				if let annotationView = self.mapView.view(for: mapPoint) {
+					if mapPoint == self.currentActivePin {
+						annotationView.layer.zPosition = 1000
+					}
+				}
+			}
+		}
 	}
 
 	func updateMapViewOffset(offset: CGFloat, ratio: Double, animated: Bool) {
-
 		offsetRatio = ratio
 		currentMapOffset = offset
-
 		zoomOnAllPins(animated: animated)
 	}
 
@@ -277,10 +288,12 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
 
 		for(_, mapPoint) in actuals.enumerated() {
-			if let annotationView = mapView.view(for: mapPoint) {
+			if let annotationView = self.mapView.view(for: mapPoint) {
+				print(annotationView.layer.zPosition)
 				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
-				if mapPoint == currentActivePin! {
+				if mapPoint.address == self.currentActivePin!.address {
 					mapPinAccessoryView?.setAsSelected(true, isCheapestPrice: selectedPin.priceIsCheapest)
+					annotationView.layer.zPosition = 1000
 				} else {
 					mapPinAccessoryView?.setAsSelected(false, isCheapestPrice: selectedPin.priceIsCheapest)
 				}

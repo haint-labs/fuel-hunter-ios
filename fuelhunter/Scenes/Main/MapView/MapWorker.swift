@@ -35,7 +35,7 @@ class MapWorker {
 				newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id, subId: item.id + String(subIndex), company: item.company, price: item.price, isPriceCheapest: item == lowestPrice ? true : false, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name, addressDescription: item.addressDescription, distanceInMeters: distanceInMeters))
 			}
 		}
-		
+
 		return newArray.sorted { $0.distanceInMeters < $1.distanceInMeters }
 	}
 }

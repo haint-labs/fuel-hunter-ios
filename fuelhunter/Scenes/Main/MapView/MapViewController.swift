@@ -216,11 +216,9 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 		if self.scrollView.contentInset.top == -scrollView.contentOffset.y { animated = false }
 
-
 		self.view.layoutIfNeeded()
 		self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
 
-		
 		self.scrollView.setContentOffset(CGPoint(x: 0, y: -self.scrollView.contentInset.top), animated: animated)
 		self.view.layoutIfNeeded()
 	}
@@ -253,7 +251,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol
   	
   	func reveal(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
-
   		if let location = router?.dataStore?.yLocation {
   			scrollView.contentInset = UIEdgeInsets(top: location-yOffSetConstraint.constant, left: 0, bottom: 0, right: 0)
 		}
@@ -319,7 +316,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	}
 	
   	func reset() {
-
 		self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
 		self.scrollView.contentOffset = CGPoint(x: 0, y: tempYOffset)
 		scrollBackgroundYOffSetConstraint.constant = -min(0, scrollView.contentOffset.y)
@@ -380,7 +376,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	}
 
 	func getMapOffset() -> CGFloat {
-
 		return self.view.frame.height - scrollBackgroundImageView.frame.origin.y
 	}
 
