@@ -183,11 +183,11 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		// It might be behind other pins
 		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
 			for(_, mapPoint) in actuals.enumerated() {
 				if let annotationView = self.mapView.view(for: mapPoint) {
-					if mapPoint == self.currentActivePin {
-						annotationView.layer.zPosition = 1000
+					if mapPoint.address == self.currentActivePin?.address {
+						self.mapView.selectAnnotation(annotationView.annotation!, animated: false)
 					}
 				}
 			}
@@ -289,11 +289,9 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 		for(_, mapPoint) in actuals.enumerated() {
 			if let annotationView = self.mapView.view(for: mapPoint) {
-				print(annotationView.layer.zPosition)
 				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
 				if mapPoint.address == self.currentActivePin!.address {
 					mapPinAccessoryView?.setAsSelected(true, isCheapestPrice: selectedPin.priceIsCheapest)
-					annotationView.layer.zPosition = 1000
 				} else {
 					mapPinAccessoryView?.setAsSelected(false, isCheapestPrice: selectedPin.priceIsCheapest)
 				}
