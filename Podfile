@@ -11,21 +11,16 @@ target 'fuelhunter' do
   pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.3.1'
   pod 'Mixpanel-swift' => '2.6.2'
   pod 'ActiveLabel' => '1.1.0'
+  pod 'SDWebImage' => '5.0.2'
 
   target 'fuelhunterTests' do
     inherit! :search_paths
     # Pods for testing
-
-    pod 'SwiftLint' => '0.32.0'
-    pod 'ActiveLabel' => '1.1.0'
   end
 
   target 'fuelhunterUITests' do
     inherit! :search_paths
     # Pods for testing
-
-    pod 'SwiftLint' => '0.32.0'
-    pod 'ActiveLabel' => '1.1.0'
   end
 
 end

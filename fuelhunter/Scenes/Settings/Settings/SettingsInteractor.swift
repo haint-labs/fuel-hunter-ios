@@ -24,9 +24,8 @@ protocol SettingsDataStore {
 
 class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
   	var presenter: SettingsPresentationLogic?
-  	var worker = SettingsWorker()
+  	var settingsWorker = SettingsWorker()
   	var appSettingsWorker = AppSettingsWorker.shared
-
 	// MARK: SettingsBusinessLogic
 
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
@@ -34,7 +33,7 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
 		let gpsIsEnabledStatus = appSettingsWorker.getGPSIsEnabled()
 		let notifIsEnabledStatus = appSettingsWorker.getNotifIsEnabled()
 		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
-		let companyNames = appSettingsWorker.getCompanyToggleStatus().description
+		let companyNames = settingsWorker.getCompanyNames() //appSettingsWorker.getCompanyToggleStatus().description
 		let fuelTypeNames = appSettingsWorker.getFuelTypeToggleStatus().description
 		let response = Settings.SettingsList.Response(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
 		presenter?.presentSettingsListWithData(response: response)

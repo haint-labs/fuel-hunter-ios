@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol CompaniesChooseListBusinessLogic {
   	func getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request)
@@ -29,25 +30,103 @@ class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, Companies
   	// MARK: CompaniesChooseListBusinessLogic
 
   	func getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request) {
-  		let companies = appSettingsWorker.getCompanyToggleStatus()
-		let response = CompaniesChooseList.CompanyCells.Response(companyCheapestStatus: companies.typeCheapest, companyNesteStatus: companies.typeNeste, companyCircleKStatus: companies.typeCircleK, companyKoolStatus: companies.typeKool, companyLatvijasNaftaStatus: companies.typeLn, companyVirsiStatus: companies.typeVirsi, companyGotikaStatus: companies.typeGotikaAuto)
-    	presenter?.presentSomething(response: response)
+
+		let context = DataBaseManager.shared.mainManagedObjectContext()
+
+		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+
+		var fetchedCompanies: [CompanyEntity]?
+
+		let sort = NSSortDescriptor(key: "order", ascending: true)
+		fetchRequest.sortDescriptors = [sort]
+
+		do {
+			fetchedCompanies = try context.fetch(fetchRequest)
+		} catch let error {
+			// Something went wrong
+			print("Something went wrong. Reseting. \(error)")
+		}
+
+		let response = CompaniesChooseList.CompanyCells.Response(fetchedCompanies: fetchedCompanies ?? [])
+    	presenter?.presentData(response: response)
   	}
 
   	func userToggledCompanyType(request: CompaniesChooseList.SwitchToggled.Request) {
-  		var companies = appSettingsWorker.getCompanyToggleStatus()
 
-  		if request.companyType == .typeCheapest { companies.typeCheapest = request.state }
-  		if request.companyType == .typeNeste { companies.typeNeste = request.state }
-  		if request.companyType == .typeCircleK { companies.typeCircleK = request.state }
-  		if request.companyType == .typeKool { companies.typeKool = request.state }
-  		if request.companyType == .typeLN { companies.typeLn = request.state }
-  		if request.companyType == .typeVirsi { companies.typeVirsi = request.state }
-  		if request.companyType == .typeGotikaAuto { companies.typeGotikaAuto = request.state }
+  		let context = DataBaseManager.shared.mainManagedObjectContext()
 
-  		appSettingsWorker.setCompanyToggleStatus(allCompanies: companies)
+		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 
-  		let request = CompaniesChooseList.CompanyCells.Request()
+		fetchRequest.predicate = NSPredicate(format: "name == %@", request.companyName)
+
+		do {
+			let fetchedCompanies = try context.fetch(fetchRequest)
+
+			if fetchedCompanies.isEmpty {
+				// Problem
+			} else {
+				// Now we need to toggle enable status for selected company.
+				// And then check all other companies, and toggle chepest, if needed.
+				let selectedCompany = fetchedCompanies.first!
+				selectedCompany.isEnabled = request.state
+
+				fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
+				let cheapestCompaniesArray = try context.fetch(fetchRequest)
+
+				if cheapestCompaniesArray.isEmpty {
+					// Problem
+				} else {
+					let cheapestCompany = cheapestCompaniesArray.first!
+
+					// If cheapest is disabled, then we need to re-calculate all.
+					if cheapestCompany.isEnabled == false {
+						fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", false)
+						let allExceptCheapestCompaniesArray = try context.fetch(fetchRequest)
+
+						if allExceptCheapestCompaniesArray.isEmpty {
+							// Problem
+						} else {
+							var isAtLeastOneEnabled = false
+
+							for aCompany in allExceptCheapestCompaniesArray {
+								if aCompany.isEnabled == true {
+									isAtLeastOneEnabled = true
+									break
+								}
+							}
+							// If none was enabled, then set as true.
+							if isAtLeastOneEnabled == false {
+								cheapestCompany.isEnabled = true
+							}
+						}
+					}
+					// else, all is good.
+				}
+
+				DataBaseManager.shared.saveContext()
+			}
+
+		} catch let error {
+			print("Something went wrong. \(error)")
+		}
+
+		let request = CompaniesChooseList.CompanyCells.Request()
     	getCompaniesListData(request: request)
+
+
+//  		var companies = appSettingsWorker.getCompanyToggleStatus()
+//
+//  		if request.companyType == .typeCheapest { companies.typeCheapest = request.state }
+//  		if request.companyType == .typeNeste { companies.typeNeste = request.state }
+//  		if request.companyType == .typeCircleK { companies.typeCircleK = request.state }
+//  		if request.companyType == .typeKool { companies.typeKool = request.state }
+//  		if request.companyType == .typeLN { companies.typeLn = request.state }
+//  		if request.companyType == .typeVirsi { companies.typeVirsi = request.state }
+//  		if request.companyType == .typeGotikaAuto { companies.typeGotikaAuto = request.state }
+//
+//  		appSettingsWorker.setCompanyToggleStatus(allCompanies: companies)
+//
+//  		let request = CompaniesChooseList.CompanyCells.Request()
+//    	getCompaniesListData(request: request)
   	}
 }

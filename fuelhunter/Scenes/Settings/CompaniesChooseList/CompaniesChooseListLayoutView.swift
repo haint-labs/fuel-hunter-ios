@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CompaniesChooseListLayoutViewLogic: class {
-	func switchWasPressedFor(companyType: CompanyType, withState state: Bool)
+	func switchWasPressedFor(companyName: String, withState state: Bool)
 }
 
 protocol CompaniesChooseListLayoutViewDataLogic: class {
@@ -158,7 +158,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
   	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool) {
 		let indexPath = tableView.indexPath(for: cell)
 		let aData = data[indexPath!.row] as CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem
-		controller?.switchWasPressedFor(companyType: aData.companyType, withState: state)
+		controller?.switchWasPressedFor(companyName: aData.title, withState: state)
 	}
 
 	// MARK: CompaniesChooseListLayoutViewDataLogic

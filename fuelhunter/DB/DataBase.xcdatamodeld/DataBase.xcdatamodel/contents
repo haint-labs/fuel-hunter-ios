@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AddressEntity" representedClassName="AddressEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="distanceInMeters" optional="YES" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="id" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <relationship name="prices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PriceEntity" inverseName="addresses" inverseEntity="PriceEntity">
+            <userInfo/>
+        </relationship>
+    </entity>
+    <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="descriptionEN" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="descriptionLV" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="descriptionRU" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="homePage" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="isCheapestToggle" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="isEnabled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="isHidden" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <attribute name="largeLogoName" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="logoName" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="mapGrayLogoName" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="mapLogoName" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="name" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES">
+            <userInfo/>
+        </attribute>
+        <relationship name="prices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PriceEntity" inverseName="company" inverseEntity="PriceEntity">
+            <userInfo/>
+        </relationship>
+    </entity>
+    <entity name="PriceEntity" representedClassName="PriceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="addressDescription" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="city" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="fuelType" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="id" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="price" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="prices" inverseEntity="AddressEntity">
+            <userInfo/>
+        </relationship>
+        <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="prices" inverseEntity="CompanyEntity">
+            <userInfo/>
+        </relationship>
+    </entity>
+    <elements>
+        <element name="AddressEntity" positionX="27" positionY="72" width="128" height="135"/>
+        <element name="CompanyEntity" positionX="-41.23828125" positionY="245.2734375" width="128" height="255"/>
+        <element name="PriceEntity" positionX="-257.9296875" positionY="99.08984375" width="128" height="150"/>
+    </elements>
+</model>

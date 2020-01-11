@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol FuelCompanyListCellSwitchLogic: class {
 	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool)
@@ -118,7 +119,13 @@ class FuelCompanyListCell: FontChangeTableViewCell {
 			self.descriptionLeftImageAnchorConstraint?.isActive = false
 			self.descriptionLeftCellAnchorConstraint?.isActive = true
 		} else {
-			self.iconImageView.image = UIImage(named: imageName)
+			self.iconImageView.sd_setImage(with: URL.init(string: imageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+//				if error != nil {
+//					print("Failed: \(error)")
+//				} else {
+//					print("Success")
+//				}
+			}
 			self.iconImageView.isHidden = false
 			self.titleLeftCellAnchorConstraint?.isActive = false
 			self.titleLeftImageAnchorConstraint?.isActive = true

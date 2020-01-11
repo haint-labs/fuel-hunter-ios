@@ -81,8 +81,8 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 
   	// MARK: CompaniesChooseListLayoutViewLogic
 
-  	func switchWasPressedFor(companyType: CompanyType, withState state: Bool) {
-		let request = CompaniesChooseList.SwitchToggled.Request(companyType: companyType, state: state)
+  	func switchWasPressedFor(companyName: String, withState state: Bool) {
+		let request = CompaniesChooseList.SwitchToggled.Request(companyName: companyName, state: state)
 		interactor?.userToggledCompanyType(request: request)
 	}
 }

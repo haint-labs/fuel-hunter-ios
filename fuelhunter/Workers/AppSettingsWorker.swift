@@ -19,6 +19,8 @@ extension Notification.Name {
     static let settingsUpdated = Notification.Name("settingsUpdated")
 
     static let fontSizeWasChanged = Notification.Name("fontSizeWasChanged")
+
+    static let companiesUpdated = Notification.Name("companiesUpdated")
 }
 
 class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
@@ -152,12 +154,23 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	func getUserLocation() -> CLLocation? {
 		return userLocation
 	}
+
+	// MARK: Push notif token
+
+	func getPushNotifToken() -> String {
+		return UserDefaults.standard.string(forKey: "push_notif_token") ?? ""
+	}
+
+	func setPushNotifToken(_ token: String) {
+		UserDefaults.standard.set(token, forKey: "push_notif_token")
+		UserDefaults.standard.synchronize()
+	}
+
 	// MARK: Notif
 
 	func refreshCurrentNotificationsStatus(_ handler: @escaping () -> Void) {
 		UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
 			self?.notificationsAuthorisationStatus = settings.authorizationStatus
-//			print(settings)
 			handler()
 		}
 	}
@@ -276,5 +289,6 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		userLocation = locations.last
+		DirectionsWorker.shared.updateDistancesAndDirections()
 	}
 }

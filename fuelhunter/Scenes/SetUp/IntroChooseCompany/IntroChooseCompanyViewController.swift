@@ -41,6 +41,7 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
     	self.view.backgroundColor = .white
     	setUpView()
     	getData()
+    	NotificationCenter.default.addObserver(self, selector: #selector(companiesUpdated), name: .companiesUpdated, object: nil)
   	}
 
   	// MARK: Set up
@@ -81,12 +82,18 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
 
   	// MARK: IntroChooseCompanyLayoutViewLogic
 
-	func switchWasPressedFor(companyType: CompanyType, withState state: Bool) {
-		let request = IntroChooseCompany.SwitchToggled.Request(companyType: companyType, state: state)
+	func switchWasPressedFor(companyName: String, withState state: Bool) {
+		let request = IntroChooseCompany.SwitchToggled.Request(companyName: companyName, state: state)
 		interactor?.userToggledCompanyType(request: request)
 	}
 
   	func nextButtonWasPressed() {
   		ScenesManager.shared.advanceAppSceneState()
+  	}
+
+  	// MARK: Notifications
+
+  	@objc func companiesUpdated() {
+		getData()
   	}
 }

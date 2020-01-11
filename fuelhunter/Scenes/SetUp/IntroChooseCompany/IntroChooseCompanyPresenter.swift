@@ -22,15 +22,28 @@ class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
   	// MARK: IntroChooseCompanyPresentationLogic
 
   	func presentData(response:  IntroChooseCompany.CompanyCells.Response) {
-		let array =  [
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeCheapest, title: "company_type_cheapest_title", description: "company_type_cheapest_description", imageName: "", toggleStatus: response.companyCheapestStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeNeste, title: CompanyType.typeNeste.rawValue, description: "company_type_neste_description", imageName: "neste_logo", toggleStatus: response.companyNesteStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeCircleK, title: CompanyType.typeCircleK.rawValue, description: "company_type_circle_k_description", imageName: "circle_k_logo", toggleStatus: response.companyCircleKStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeKool, title: CompanyType.typeKool.rawValue, description: "company_type_kool_description", imageName: "kool_logo", toggleStatus: response.companyKoolStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeLN, title: CompanyType.typeLN.rawValue, description: "company_type_ln_description", imageName: "ln_logo", toggleStatus: response.companyLatvijasNaftaStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeVirsi, title: CompanyType.typeVirsi.rawValue, description: "company_type_virsi_description", imageName: "virshi_logo", toggleStatus: response.companyVirsiStatus),
-			IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(companyType: .typeGotikaAuto, title: CompanyType.typeGotikaAuto.rawValue, description: "company_type_gotika_description", imageName: "gotika_logo", toggleStatus: response.companyGotikaStatus)
-			]
+		var array = [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
+
+		let language = AppSettingsWorker.shared.getCurrentLanguage()
+
+		for company in response.fetchedCompanies {
+			let languageString: String
+
+			switch language {
+				case .latvian:
+					languageString = company.descriptionLV ?? ""
+				case .russian:
+					languageString = company.descriptionRU ?? ""
+				case .english:
+					languageString = company.descriptionEN ?? ""
+			}
+
+			let title = company.name ?? ""
+			let imageName = company.logoName ?? ""
+
+			array.append(IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: title, description: languageString, imageName: imageName, toggleStatus: company.isEnabled))
+		}
+
     	let viewModel = IntroChooseCompany.CompanyCells.ViewModel(displayedCompanyCellItems: array)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}

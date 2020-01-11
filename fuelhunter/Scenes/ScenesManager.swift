@@ -42,6 +42,8 @@ class ScenesManager: NSObject {
 			case .introPageChooseFuelType:
 				destinationVC = IntroChooseFuelTypeViewController()
 			case .introPageGPSAccessAsking:
+				// At this point, we should also try to download prices.
+				DataDownloader.shared.downloadPrices()
 				destinationVC = IntroGPSSetUpViewController()
 			case .introPageNotifAccessAsking:
 				destinationVC = IntroNotifSetUpViewController()
@@ -78,7 +80,7 @@ class ScenesManager: NSObject {
 		ScenesManager.storeAppSceneState(state: .introPageFirstView)
 	}
 
-	private func getAppSceneState() -> AppSceneState {
+	func getAppSceneState() -> AppSceneState {
 		return AppSceneState(rawValue: UserDefaults.standard.integer(forKey: "app_scene_state")) ?? AppSceneState.introPageFirstView
 	}
 

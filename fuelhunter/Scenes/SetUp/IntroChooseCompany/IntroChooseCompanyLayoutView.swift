@@ -9,7 +9,7 @@
 import UIKit
 
 protocol IntroChooseCompanyLayoutViewLogic {
-	func switchWasPressedFor(companyType: CompanyType, withState state: Bool)
+	func switchWasPressedFor(companyName: String, withState state: Bool)
 	func nextButtonWasPressed()
 }
 
@@ -165,7 +165,6 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
   	// MARK: Functions
 
 	func adjustVisibilityOfShadowLines() {
-		print(tableView.contentSize.height)
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
@@ -182,7 +181,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool) {
 		if let indexPath = tableView.indexPath(for: cell) {
 			let aData = data[indexPath.row] as IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem
-			controller?.switchWasPressedFor(companyType: aData.companyType, withState: state)
+			controller?.switchWasPressedFor(companyName: aData.title, withState: state)
 		}
 	}
 

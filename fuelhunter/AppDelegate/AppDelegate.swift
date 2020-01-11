@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		// To initiate it.
 		_ = AppSettingsWorker.shared
-		
+
 		return true
 	}
 
@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		Font.recalculateFontIncreaseSize()
+		DataDownloader.shared.downloadPrices()
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
@@ -47,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	// MARK: Token
 	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+		AppSettingsWorker.shared.setPushNotifToken(deviceTokenString)
 		print(deviceTokenString)
 	}
 	

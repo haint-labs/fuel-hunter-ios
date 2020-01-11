@@ -11,12 +11,13 @@
 //
 
 import UIKit
+import CoreData
 
 enum CompaniesChooseList {
   	// MARK: Use cases
 	enum SwitchToggled {
 		struct Request {
-			var companyType: CompanyType
+			var companyName: String
 			var state: Bool
 		}
 	}
@@ -24,17 +25,10 @@ enum CompaniesChooseList {
 		struct Request {
 		}
 		struct Response {
-			var companyCheapestStatus: Bool
-			var companyNesteStatus: Bool
-			var companyCircleKStatus: Bool
-			var companyKoolStatus: Bool
-			var companyLatvijasNaftaStatus: Bool
-			var companyVirsiStatus: Bool
-			var companyGotikaStatus: Bool
+			var fetchedCompanies: [CompanyEntity]
 		}
 		struct ViewModel {
 			struct DisplayedCompanyCellItem: Equatable {
-				var companyType: CompanyType
 				var title: String
 				var description: String
 				var imageName: String
