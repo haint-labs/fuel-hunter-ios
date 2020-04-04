@@ -17,11 +17,9 @@ class AddressesWorker: NSObject {
 
 	class func resetAllAddressesDistances() {
 		let task = {
-
 			let context = DataBaseManager.shared.mainManagedObjectContext()
-
 			let fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
-
+			
 			if let addresses = try? context.fetch(fetchRequest) {
 				for address in addresses {
 					address.distanceInMeters = -1

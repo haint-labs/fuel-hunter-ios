@@ -136,7 +136,6 @@
 		5CB8EC4322E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */; };
 		5CB8EC4822E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */; };
 		5CB8EC4B22E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */; };
-		5CB8EC5722E967DC008EA53C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5622E967DC008EA53C /* Address.swift */; };
 		5CB8EC5B22E967FB008EA53C /* Fuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5A22E967FB008EA53C /* Fuel.swift */; };
 		5CB8EC6522E96B44008EA53C /* IntroChooseFuelTypePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */; };
 		5CB8EC6822E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */; };
@@ -356,7 +355,6 @@
 		5CB8EC3322E1C510008EA53C /* IntroChooseCompanyInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyInteractor.swift; sourceTree = "<group>"; };
 		5CB8EC4622E1C54E008EA53C /* IntroChooseCompanyLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroChooseCompanyLayoutView.swift; sourceTree = "<group>"; };
 		5CB8EC4722E1C54E008EA53C /* IntroChooseCompanyLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroChooseCompanyLayoutView.xib; sourceTree = "<group>"; };
-		5CB8EC5622E967DC008EA53C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		5CB8EC5A22E967FB008EA53C /* Fuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel.swift; sourceTree = "<group>"; };
 		5CB8EC5F22E96B44008EA53C /* IntroChooseFuelTypePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypePresenter.swift; sourceTree = "<group>"; };
 		5CB8EC6022E96B44008EA53C /* IntroChooseFuelTypeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroChooseFuelTypeWorker.swift; sourceTree = "<group>"; };
@@ -488,7 +486,6 @@
 			children = (
 				5C07B07022A4DCA700DA3E9B /* AppFonts.swift */,
 				5CB8EC5A22E967FB008EA53C /* Fuel.swift */,
-				5CB8EC5622E967DC008EA53C /* Address.swift */,
 				5C45BDCF22CD40B300FE53D6 /* CellBackgroundType.swift */,
 				5CB9F6A622D8DA9500F47F6B /* SettingsToggleStatus.swift */,
 				5CB367F523EFF0D7003E5180 /* NSDataToSha256String.swift */,
@@ -1456,7 +1453,6 @@
 				5C2E673122DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5C2E66D122DD941D00FC71AD /* AboutAppPresenter.swift in Sources */,
 				5C2E670122DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */,
-				5CB8EC5722E967DC008EA53C /* Address.swift in Sources */,
 				5C2E66C522DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C53C2A02434D5890059CC5A /* AddressesWorker.swift in Sources */,
 				5C8066A422F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */,
