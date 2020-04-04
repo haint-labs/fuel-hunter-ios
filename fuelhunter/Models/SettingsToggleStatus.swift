@@ -7,12 +7,6 @@
 //
 
 
-enum SettingsToggleResult<Value> {
-	case success(Value)
-	case needsSetUp
-	case failure(String)
-}
-
 enum LocationToggleResult<Value> {
 	case firstTime
 	case secondTime

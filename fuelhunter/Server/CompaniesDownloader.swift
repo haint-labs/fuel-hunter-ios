@@ -107,10 +107,10 @@ class CompaniesDownloader: NSObject {
 		CompaniesDownloader.updateLastDownloadTime()
 		CompaniesDownloader.lastDownloadResult = .success
 		
-//		if !CompaniesDownloader.isAllowedToDownload() {
+		if !CompaniesDownloader.isAllowedToDownload() {
 			completionHandler()
 			return
-//		}
+		}
 
 		if DataDownloader.shared.downloaderIsActive {
 			completionHandler()
