@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	@objc func fireTimer() {
 		print("Timer fired!")
 
-//		CompaniesDownloader.resetLastDownloadTime()
+		CompaniesDownloader.resetLastDownloadTime()
 //		PricesDownloader.resetLastDownloadTime()
 		DataDownloader.shared.activateProcess()
 	}

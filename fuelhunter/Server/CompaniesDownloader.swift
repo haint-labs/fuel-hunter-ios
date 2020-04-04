@@ -104,9 +104,6 @@ class CompaniesDownloader: NSObject {
 	*/
 	func work(completionHandler: @escaping () -> Void) {
 
-		CompaniesDownloader.updateLastDownloadTime()
-		CompaniesDownloader.lastDownloadResult = .success
-		
 		if !CompaniesDownloader.isAllowedToDownload() {
 			completionHandler()
 			return
