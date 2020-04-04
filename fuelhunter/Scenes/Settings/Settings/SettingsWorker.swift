@@ -32,7 +32,5 @@ class SettingsWorker {
 
 			return combinedString
 		}
-
-		return ""
 	}
 }

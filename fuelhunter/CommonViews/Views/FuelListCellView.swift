@@ -336,7 +336,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	}
 
 	func refreshDataWithData(mapPointData: MapPoint) {
-		mapInfoDistanceView.fadeTransition(0.2)
 
 		var distance = mapPointData.distanceInMeters/1000
 		distance = distance.rounded(rule: .down, scale: 1)

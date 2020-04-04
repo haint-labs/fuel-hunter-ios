@@ -51,6 +51,8 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 	var disableMapAdjusting: Bool = false
 
+	var usedAccessoryViews: [MapPinAccessoryView] = []
+
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
@@ -176,6 +178,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 	// MARK: MapLayoutViewDataLogic
 
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double) {
+		usedAccessoryViews.removeAll()
 		mapView.removeAnnotations(mapView.annotations)
 		mapView.addAnnotations(data)
 		offsetRatio = ratio
@@ -203,10 +206,22 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 	}
 
 	func refreshMapPin(with data: MapPoint) {
-		let shownAnnotations = mapView?.annotations.compactMap { $0 as? MapPoint }
-		if let pins = shownAnnotations?.filter({$0.address == data.address && $0.title == data.title}) {
-			mapView.removeAnnotations(pins)
-			mapView.addAnnotation(data)
+		if let necessaryAccessoryView = usedAccessoryViews.first(where: {$0.address == data.address && $0.title == data.title}) {
+
+			var distance: Double = data.distanceInMeters/1000
+			distance = distance.rounded(rule: .down, scale: 1)
+
+			if data.distanceInMeters < 0 {
+				necessaryAccessoryView.setDistanceVisible(false)
+			} else if distance >= 0.2 {
+				necessaryAccessoryView.distanceLabel.text = "\(distance) \("map_kilometers".localized())"
+				necessaryAccessoryView.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+			} else {
+				necessaryAccessoryView.distanceLabel.text = "\(Int(data.distanceInMeters)) \("map_meters".localized())"
+				necessaryAccessoryView.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+			}
+
+			necessaryAccessoryView.layoutIfNeeded()
 		}
 	}
 
@@ -268,6 +283,8 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 			}
 
 			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
+			mapPinAccessory.address = mapPointAnnotation.address
+			mapPinAccessory.title = mapPointAnnotation.title!
 
 //			if (distance > 3) {
 //				mapPinAccessory.setDistanceVisible(false)
@@ -294,6 +311,10 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 			annotationView.addSubview(mapPinAccessory)
 
 			annotationView.frame = mapPinAccessory.frame
+
+			if usedAccessoryViews.contains(mapPinAccessory) == false {
+				usedAccessoryViews.append(mapPinAccessory)
+			}
 
 			if let currentActivePin = currentActivePin {
 				if mapPointAnnotation.address == currentActivePin.address, mapPointAnnotation.title == currentActivePin.title {

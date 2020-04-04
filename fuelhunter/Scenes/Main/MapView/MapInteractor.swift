@@ -145,12 +145,14 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
   	}
 
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request) {
-
+		
 		selectedCompany = request.mapPoint.company
 
 		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
 
-		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
+		selectedDisplayedPoint = convertedDataArray.first(where: {$0.addressName == request.mapPoint.address}) ?? convertedDataArray.first
+
+		let mapObjects = createMapPoints(from: [selectedDisplayedPoint!])
 
 		var cellBackgroundType = CellBackgroundType.middle
 
@@ -164,7 +166,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 			}
 		}
 
-		let response = Map.MapWasPressed.Response(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: request.mapPoint, selectedPrice: selectedPriceObject!, cellType: cellBackgroundType)
+		let response = Map.MapWasPressed.Response(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: mapObjects.first!, selectedPrice: selectedPriceObject!, cellType: cellBackgroundType)
 
 		presenter?.updateToRevealMapPoint(response: response)
   	}
@@ -207,6 +209,13 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 			dataObject.distanceInMeters = Double(address.distanceInMeters)
 			let mapObjects = createMapPoints(from: [dataObject])
 			if mapObjects.isEmpty == false {
+				//--- Now update convertedDataArray and MapPoints, because they might be used when user switches location (won't refetch data)
+				let index = convertedDataArray.firstIndex(where: {$0.addressName == address.name})
+				convertedDataArray.remove(at: index!)
+				convertedDataArray.insert(dataObject, at: index!)
+				mapPoints = createMapPoints(from: convertedDataArray)
+				//===
+
 				let response = Map.MapPinRefresh.Response(mapPoint: mapObjects.first!)
 				presenter?.updateData(response: response)
 			}
@@ -221,29 +230,19 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 		}
 
 		if let tmpAllAddresses = allAddressesWithoutDistances, tmpAllAddresses.isEmpty == false {
-
 			let addressToCalculate = tmpAllAddresses.first(where: {$0.distanceInMeters == -1})
-
-//			print("startCalculatingAddress | addressToCalculate \(addressToCalculate)")
-
 			if let addressToCalculate = addressToCalculate {
 				addressDistanceCalculatingInProgress = true
-
 				AddressesWorker.calculateDistance(for: addressToCalculate) { [weak self] updatedAddress in
+
 					print("startCalculatingAddress | AddressesWorker.calculateDistance returned! ")
-
 					self?.addressDistanceCalculatingInProgress = false
-
 					print("startCalculatingAddress | Stopped.")
-
+					
 					if updatedAddress.distanceInMeters > -1 {
-
 						print("startCalculatingAddress | Remove previous versions and starting again.")
-
 						self?.allAddressesWithoutDistances?.removeAll(where: {$0.name == addressToCalculate.name})
-
 						self?.updatMapPinFor(address: updatedAddress)
-
 						self?.startCalculatingAddress()
 					}
 				}

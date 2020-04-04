@@ -24,6 +24,9 @@ class MapPinAccessoryView: UIView {
 	var iconGrayBottomConstraint: NSLayoutConstraint!
 	var iconNormalBottomConstraint: NSLayoutConstraint!
 
+	var address: String!
+	var title: String!
+	
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {

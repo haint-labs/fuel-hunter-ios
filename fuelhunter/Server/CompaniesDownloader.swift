@@ -65,7 +65,6 @@ class CompaniesDownloader: NSObject {
 
 
 	class func isAllowedToDownload() -> Bool {
-//		return true
 
 		let lastDownloadTimestamp = UserDefaults.standard.double(forKey: "CompaniesDownloaderLastDownloadTimestamp")
 
@@ -121,63 +120,6 @@ class CompaniesDownloader: NSObject {
 
 			var string = "http://www.mocky.io/v2/5e6f890a330000b38ef07a6d"
 
-//			if UserDefaults.standard.integer(forKey: "companyTesting") == 1
-//			{
-//				string = "http://www.mocky.io/v2/5e6f892d33000043b9f07a70"
-//
-//				UserDefaults.standard.set(2, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 2
-//			{
-//				string = "http://www.mocky.io/v2/5e6f894f330000251ef07a73"
-//
-//				UserDefaults.standard.set(3, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 3
-//			{
-//				string = "http://www.mocky.io/v2/5e6f892d33000043b9f07a70"
-//
-//				UserDefaults.standard.set(5, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-////			else if UserDefaults.standard.integer(forKey: "companyTesting") == 4
-////			{
-////				string = "http://www.mocky.io/v2/5e6f89a333000076bbf07a76"
-////
-////				UserDefaults.standard.set(5, forKey: "companyTesting")
-////				UserDefaults.standard.synchronize()
-////			}
-//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 5
-//			{
-//				string = "http://www.mocky.io/v2/5e649e5d3400007f0033882f"
-//
-//				UserDefaults.standard.set(6, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 6
-//			{
-//				string = "http://www.mocky.io/v2/5e6f89f4330000251ef07a77"
-//
-//				UserDefaults.standard.set(7, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 7
-//			{
-//				string = "http://www.mocky.io/v2/5e6f8a13330000251ef07a78"
-//
-//				UserDefaults.standard.set(9, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 8
-//			{
-//				string = "http://www.mocky.io/v2/5e64ad9b3400008e0033883c3"
-//
-//				UserDefaults.standard.set(9, forKey: "companyTesting")
-//				UserDefaults.standard.synchronize()
-//			}
-//			else
 			if UserDefaults.standard.integer(forKey: "companyTesting") == 1
 			{
 				string = "http://www.mocky.io/v2/5e6f894f330000251ef07a73"
@@ -228,7 +170,7 @@ class CompaniesDownloader: NSObject {
 				UserDefaults.standard.synchronize()
 			}
 
-			print("string \(string)")
+			print("url string \(string)")
 			
 			let sessionConfig = URLSessionConfiguration.default
 			sessionConfig.timeoutIntervalForRequest = 10.0
