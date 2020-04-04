@@ -31,30 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// To initiate it.
 		_ = AppSettingsWorker.shared
 
-
-
-//		let context = DataBaseManager.shared.mainManagedObjectContext()
-//
-//		let priceFetchRequest: NSFetchRequest<PriceEntity> = PriceEntity.fetchRequest()
-//		let companiesFetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-//
-//		let oldPrices = try! context.fetch(priceFetchRequest)
-//
-//		for oldPrice in oldPrices {
-//			context.delete(oldPrice)
-//		}
-//
-//		let oldCompanies = try! context.fetch(companiesFetchRequest)
-//
-//		for oldCompany in oldCompanies {
-//			context.delete(oldCompany)
-//		}
-//
-//		DataBaseManager.shared.saveContext()
-
 		_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
-
-//		CompaniesDownloader.updateLastDownloadTime()
 
 		return true
 	}
