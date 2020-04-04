@@ -13,6 +13,4 @@
 import UIKit
 
 class FuelListWorker {
-	func doSomeWork() {
-	}
 }

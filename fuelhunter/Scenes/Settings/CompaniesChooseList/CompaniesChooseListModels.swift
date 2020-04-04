@@ -26,6 +26,9 @@ enum CompaniesChooseList {
 		}
 		struct Response {
 			var fetchedCompanies: [CompanyEntity]
+			var insert: [IndexPath]
+			var delete: [IndexPath]
+			var update: [IndexPath]
 		}
 		struct ViewModel {
 			struct DisplayedCompanyCellItem: Equatable {
@@ -35,6 +38,9 @@ enum CompaniesChooseList {
 				var toggleStatus: Bool = false
 			}
 			var displayedCompanyCellItems: [DisplayedCompanyCellItem]
+			var insert: [IndexPath]
+			var delete: [IndexPath]
+			var update: [IndexPath]
 		}
   	}
 }

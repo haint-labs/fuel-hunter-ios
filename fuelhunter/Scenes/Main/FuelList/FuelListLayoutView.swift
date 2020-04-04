@@ -7,24 +7,28 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol FuelListLayoutViewLogic: class {
 	func savingsButtonPressed()
 	func accuracyButtonPressed()
-	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: Company, forSelectedFuelType fuelType: FuelType)
+	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType)
 }
 
 protocol FuelListLayoutViewDataLogic: class {
-	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]])
+	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int])
 	func resetUI()
 }
 
 class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic, InlineAlertViewLogic {
 
+	var currentScrollPos : CGFloat?
+
 	weak var controller: FuelListLayoutViewLogic? 
 
 	@IBOutlet var baseView: UIView!
 	@IBOutlet weak var inlineAlertView: InlineAlertView!
+	@IBOutlet weak var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var tableViewTopShadow: UIImageView!
 	@IBOutlet weak var tableViewBottomShadow: UIImageView!
@@ -47,6 +51,10 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
     	setup()
 	}
 
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .dataDownloaderStateChange, object: nil)
+	}
+
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		adjustVisibilityOfShadowLines()
@@ -62,6 +70,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
 		inlineAlertView.translatesAutoresizingMaskIntoConstraints = false
+		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +87,10 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		tableView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor).isActive = true
 		tableView.bottomAnchor.constraint(equalTo: savingsIconButton.topAnchor, constant: -15).isActive = true
+
+		tableViewNoDataView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		tableViewNoDataView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		tableViewNoDataView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor, constant: 30).isActive = true
 
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -119,6 +132,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
     	tableView.contentInset = UIEdgeInsets(top: -6, left: 0, bottom: -9, right: 0)
     	let nib = UINib(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	tableView.backgroundColor = UIColor.clear
     	
     	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
 		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
@@ -128,6 +142,11 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		savingsLabelButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
 		accuracyLabelButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
 
+		NotificationCenter.default.addObserver(self, selector: #selector(dataDownloaderStateChange),
+			name: .dataDownloaderStateChange, object: nil)
+
+		tableViewNoDataView.alpha = 0;
+		adjustNoDataLabelText()
   	}
 
   	// MARK: Table view
@@ -148,7 +167,14 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			let aData = self.data[indexPath.section][indexPath.row]
 			cell.titleLabel.text = aData.company.name
 			cell.addressesLabel.text = aData.addressDescription
-			cell.iconImageView.image = UIImage(named: aData.company.logoName)
+			cell.iconImageView.sd_setImage(with: URL.init(string: aData.company.logoName ?? ""), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+//				if error != nil {
+//					print("Failed: \(error)")
+//				} else {
+//					print("Success")
+//				}
+			}
+
 			cell.priceLabel.text = aData.price
 			
 			if aData.isPriceCheapest == true {
@@ -235,6 +261,11 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		adjustVisibilityOfShadowLines()
+
+		// Force the tableView to stay at scroll position until animation completes
+		if (currentScrollPos != nil){
+			tableView.setContentOffset(CGPoint(x: 0, y: currentScrollPos!), animated: false)
+		}
 	}
 
 	// MARK: Functions
@@ -247,17 +278,82 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		tableViewBottomShadow.alpha = alfa2
 	}
 
+	@objc func savingsButtonPressed() {
+		controller?.savingsButtonPressed()
+	}
+
+	@objc func accuracyButtonPressed() {
+		controller?.accuracyButtonPressed()
+	}
+
 	// MARK: FuelListLayoutViewDataLogic
 
-	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]]) {
-		self.data = data
-		savingsLabelButton.setTitle("fuel_list_savings_button_title".localized(), for: .normal)
-		accuracyLabelButton.setTitle("fuel_list_fuel_price_accuracy_button_title".localized(), for: .normal)
-		accuracyLabelButton.layoutIfNeeded()
-		savingsLabelButton.layoutIfNeeded()
-		tableView.reloadData()
-		tableView.layoutIfNeeded()
-		adjustVisibilityOfShadowLines() 
+	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int]) {
+
+//		print("data \(data)")
+		print("insertItems \(insertItems)")
+		print("deleteItems \(deleteItems)")
+		print("updateItems \(updateItems)")
+		print("insertSections \(insertSections)")
+		print("deleteSections \(deleteSections)")
+		print("updateSections \(updateSections)")
+
+		if insertItems.isEmpty && deleteItems.isEmpty && updateItems.isEmpty && insertSections.isEmpty && deleteSections.isEmpty && updateSections.isEmpty {
+			self.data = data
+			tableView.reloadData()
+			tableView.layoutIfNeeded()
+		} else {
+			self.data = data
+
+			self.currentScrollPos = self.tableView.contentOffset.y
+
+			tableView.performBatchUpdates({
+				if !updateItems.isEmpty {
+					tableView.reloadRows(at: updateItems, with: .left)
+				}
+
+				if !deleteItems.isEmpty {
+					tableView.deleteRows(at: deleteItems, with: .fade)
+				}
+
+				if !insertItems.isEmpty {
+					tableView.insertRows(at: insertItems, with: .fade)
+				}
+
+				if !insertSections.isEmpty {
+					tableView.insertSections(IndexSet(insertSections), with: .fade)
+				}
+
+				if !deleteSections.isEmpty {
+					tableView.deleteSections(IndexSet(deleteSections), with: .fade)
+				}
+
+				if !updateSections.isEmpty {
+					tableView.reloadSections(IndexSet(updateSections), with: .fade)
+				}
+
+			}) { finished in
+				self.adjustVisibilityOfShadowLines()
+
+				self.currentScrollPos = nil
+			}
+		}
+
+			savingsLabelButton.setTitle("fuel_list_savings_button_title".localized(), for: .normal)
+			accuracyLabelButton.setTitle("fuel_list_fuel_price_accuracy_button_title".localized(), for: .normal)
+			accuracyLabelButton.layoutIfNeeded()
+			savingsLabelButton.layoutIfNeeded()
+
+
+		if self.data.isEmpty {
+			self.tableViewNoDataView.alpha = 1
+			self.tableView.isUserInteractionEnabled = false
+		} else {
+			self.tableViewNoDataView.alpha = 0
+			self.tableView.isUserInteractionEnabled = true
+		}
+
+		adjustVisibilityOfShadowLines()
 	}
 
 	func resetUI() {
@@ -266,19 +362,30 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
 	}
 
+	func adjustNoDataLabelText() {
+		switch PricesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
+	}
+
+	// MARK: Notifications
+
+	@objc func dataDownloaderStateChange() {
+		adjustNoDataLabelText()
+	}
+
 	// MARK: InlineAlertViewLogic
 
 	func inlineAlertViewFrameChanged() {
 		adjustVisibilityOfShadowLines()
-	}
-
-	// MARK: Functions
-
-	@objc func savingsButtonPressed() {
-		controller?.savingsButtonPressed()
-	}
-
-	@objc func accuracyButtonPressed() {
-		controller?.accuracyButtonPressed()
 	}
 }

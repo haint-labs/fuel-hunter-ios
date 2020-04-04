@@ -13,7 +13,7 @@
 import UIKit
 
 protocol AboutAppPresentationLogic {
-  	func presentSomething(response: AboutApp.CompanyCells.Response)
+  	func presentData(response: AboutApp.CompanyCells.Response)
 }
 
 class AboutAppPresenter: AboutAppPresentationLogic {
@@ -21,16 +21,17 @@ class AboutAppPresenter: AboutAppPresentationLogic {
 
   	// MARK: AboutAppPresentationLogic
 
-  	func presentSomething(response:  AboutApp.CompanyCells.Response) {
+  	func presentData(response:  AboutApp.CompanyCells.Response) {
 
-		let array =  [
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: "Neste", description: "company_type_neste_description", imageName: "neste_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: "Circle K", description: "company_type_circle_k_description", imageName: "circle_k_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: "Kool", description: "company_type_kool_description", imageName: "kool_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: "Latvijas Nafta", description: "company_type_ln_description", imageName: "ln_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: "Virši", description: "company_type_virsi_description", imageName: "virshi_logo", enabled: true),
-			AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: "Gotika auto", description: "company_type_gotika_description", imageName: "gotika_logo", enabled: true)
-			]
+		var array = [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
+
+		for company in response.fetchedCompanies {
+
+			let title = company.name ?? ""
+			let imageName = company.logoName ?? ""
+
+			array.append(AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: title, imageName: imageName))
+		}
 
     	let viewModel = AboutApp.CompanyCells.ViewModel(displayedCompanyCellItems: array)
     	viewController?.displayData(viewModel: viewModel)

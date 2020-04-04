@@ -41,6 +41,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	deinit {
     	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
+    	NotificationCenter.default.removeObserver(self, name: .settingsUpdated, object: nil)
 	}
 
 	override func viewDidLoad() {
@@ -91,16 +92,16 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	// MARK: Functions
 
 	func getData() {
-		let request = FuelList.FetchPrices.Request()
+		let request = FuelList.FetchPrices.Request(forcedReload: false)
 		interactor?.fetchPrices(request: request)
 	}
 
 	func displaySomething(viewModel: FuelList.FetchPrices.ViewModel) {
-		layoutView.updateData(data: viewModel.displayedPrices)
+		layoutView.updateData(data: viewModel.displayedPrices, insertItems: viewModel.insertItems, deleteItems: viewModel.deleteItems, updateItems: viewModel.updateItems, insertSections: viewModel.insertSections, deleteSections: viewModel.deleteSections, updateSections: viewModel.updateSections)
 	}
 
 	func revealMapView(viewModel: FuelList.RevealMap.ViewModel) {
-		router?.routeToMapView(atYLocation: viewModel.selectedCellYPosition, withPrices: viewModel.slectedFuelTypePrices, selectedFuelCompany: viewModel.selectedCompany, selectedFuelType: viewModel.selectedFuelType)
+		router?.routeToMapView(atYLocation: viewModel.selectedCellYPosition, selectedFuelCompany: viewModel.selectedCompany, selectedFuelType: viewModel.selectedFuelType)
 	}
 
 	// MARK: FuelListLayoutViewLogic
@@ -114,7 +115,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 
-	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: Company, forSelectedFuelType fuelType: FuelType) {
+	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType) {
 		selectedCell = cell
 		selectedCell?.isHidden = true
 
@@ -130,7 +131,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	// MARK: MapReturnUpdateDataLogic
-	func justSelected(fuelPrice: Price) -> CGFloat {
+	func justSelected(fuelPrice: PriceEntity) -> CGFloat {
 		var indexPath: IndexPath?
 
 		selectedCell?.isHidden = false
@@ -138,9 +139,9 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
 		outerLoop: for(sectionIndex, array) in layoutView.data.enumerated() {
 			for(rowIndex, price) in array.enumerated() {
-				if price.fuelType != fuelPrice.fuelType { break; }
+				if price.fuelType.rawValue != fuelPrice.fuelType { break; }
 
-				if price.company == fuelPrice.company {
+				if price.company == fuelPrice.companyMetaData?.company {
 					indexPath = IndexPath(row: rowIndex, section: sectionIndex)
 					if let cell = layoutView.tableView.cellForRow(at: indexPath!) {
 						// We found a cell!
@@ -188,6 +189,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	@objc func settingsUpdated() {
-		getData()
+		let request = FuelList.FetchPrices.Request(forcedReload: true)
+		interactor?.fetchPrices(request: request)
 	}
 }

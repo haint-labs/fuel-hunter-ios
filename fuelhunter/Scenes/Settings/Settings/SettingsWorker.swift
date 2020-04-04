@@ -15,36 +15,22 @@ import CoreData
 
 class SettingsWorker {
 
-	func getCompanyNames() -> String {
-		let context = DataBaseManager.shared.mainManagedObjectContext()
+	func getCompanyNames(fromFetchedCompanies: [CompanyEntity]) -> String {
 
-		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-
-		fetchRequest.predicate = NSPredicate(format: "isEnabled == %i", true)
-
-		let sort = NSSortDescriptor(key: "order", ascending: true)
-		fetchRequest.sortDescriptors = [sort]
-
-		do {
-			let fetchedCompanies = try context.fetch(fetchRequest)
-
-			if fetchedCompanies.isEmpty {
-				// Problem, because at least Cheapest should be returned.
-				return ""
-			} else {
-				var combinedString = ""
-				for aCompany in fetchedCompanies {
-					let companyName = aCompany.name ?? " "
-					combinedString.append("\(companyName.localized()), ")
-				}
-
-				if combinedString.count > 0 { combinedString.removeLast() }
-				if combinedString.count > 0 { combinedString.removeLast() }
-
-				return combinedString
+		if fromFetchedCompanies.isEmpty {
+			// Problem, because at least Cheapest should be returned.
+			return ""
+		} else {
+			var combinedString = ""
+			for aCompany in fromFetchedCompanies {
+				let companyName = aCompany.name ?? " "
+				combinedString.append("\(companyName.localized()), ")
 			}
-		} catch let error {
-			print("Something went wrong. \(error)")
+
+			if combinedString.count > 0 { combinedString.removeLast() }
+			if combinedString.count > 0 { combinedString.removeLast() }
+
+			return combinedString
 		}
 
 		return ""

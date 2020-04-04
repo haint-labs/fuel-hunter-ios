@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AboutAppFuelCompanyCell: FontChangeTableViewCell {
 
@@ -15,7 +16,6 @@ class AboutAppFuelCompanyCell: FontChangeTableViewCell {
 	@IBOutlet weak var iconImageView: UIImageView!
 	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
-	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var separatorView: UIView!
 
 	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
@@ -28,7 +28,6 @@ class AboutAppFuelCompanyCell: FontChangeTableViewCell {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         separatorView.translatesAutoresizingMaskIntoConstraints = false
 
 		backgroundImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
@@ -49,11 +48,7 @@ class AboutAppFuelCompanyCell: FontChangeTableViewCell {
 		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 		titleLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
-
-		descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
-		descriptionLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
-		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
-		descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9).isActive = true
+		titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9).isActive = true
 
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
@@ -65,7 +60,6 @@ class AboutAppFuelCompanyCell: FontChangeTableViewCell {
 
 	func updateFonts() {
 		titleLabel.font = Font(.medium, size: .size2).font
-		descriptionLabel.font = Font(.normal, size: .size4).font
 	}
 
 	override func fontSizeWasChanged() {
@@ -73,6 +67,22 @@ class AboutAppFuelCompanyCell: FontChangeTableViewCell {
 	}
 
 	// MARK: Functions
+
+	func setIconImageFromImageName(imageName: String!) {
+		if imageName.count == 0 {
+			self.iconImageView.image = nil
+			self.iconImageView.isHidden = true
+		} else {
+			self.iconImageView.sd_setImage(with: URL.init(string: imageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+//				if error != nil {
+//					print("Failed: \(error)")
+//				} else {
+//					print("Success")
+//				}
+			}
+			self.iconImageView.isHidden = false
+		}
+	}
 
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {

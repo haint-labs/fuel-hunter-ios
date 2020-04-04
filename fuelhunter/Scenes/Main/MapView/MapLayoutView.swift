@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SDWebImage
 
 protocol MapLayoutViewViewLogic: class {
 	func mapPinWasPressed(_ mapPoint: MapPoint)
@@ -16,6 +17,7 @@ protocol MapLayoutViewViewLogic: class {
 protocol MapLayoutViewDataLogic: class {
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double)
 	func updateMapViewOffset(offset: CGFloat, ratio: Double, animated: Bool)
+	func refreshMapPin(with data: MapPoint)
 }
 
 class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestureRecognizerDelegate {
@@ -200,6 +202,14 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		zoomOnAllPins(animated: animated)
 	}
 
+	func refreshMapPin(with data: MapPoint) {
+		let shownAnnotations = mapView?.annotations.compactMap { $0 as? MapPoint }
+		if let pins = shownAnnotations?.filter({$0.address == data.address && $0.title == data.title}) {
+			mapView.removeAnnotations(pins)
+			mapView.addAnnotation(data)
+		}
+	}
+
 	// MARK: MKMapViewDelegate
 
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -237,13 +247,34 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 			// This is needed, otherwise, I noticed that in some cases, more than one gets added..
 			let mapPinAccessory = annotationView.viewWithTag(333) as? MapPinAccessoryView ?? MapPinAccessoryView()
-			mapPinAccessory.icon.image = UIImage(named: mapPointAnnotation.company.mapGrayLogoName)
-			mapPinAccessory.icon.highlightedImage = UIImage(named: mapPointAnnotation.company.mapLogoName)
+			
+			let iconGrayImageName = mapPointAnnotation.company.mapGrayLogoName ?? ""
+			let iconNormalImageName = mapPointAnnotation.company.mapLogoName ?? ""
+			
+			mapPinAccessory.iconGray.sd_setImage(with: URL.init(string: iconGrayImageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+//				if error != nil {
+//					print("Failed: \(error)")
+//				} else {
+//					print("Success")
+//				}
+			}
+
+			mapPinAccessory.iconNormal.sd_setImage(with: URL.init(string: iconNormalImageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+//				if error != nil {
+//					print("Failed: \(error)")
+//				} else {
+//					print("Success")
+//				}
+			}
+
 			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
 
-			if (distance > 3) {
+//			if (distance > 3) {
+//				mapPinAccessory.setDistanceVisible(false)
+//			} else
+			if mapPointAnnotation.distanceInMeters < 0 {
 				mapPinAccessory.setDistanceVisible(false)
-			} else if(distance >= 0.2) {
+			} else if distance >= 0.2 {
 				mapPinAccessory.distanceLabel.text = "\(distance) \("map_kilometers".localized())"
 				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
 			} else {
@@ -265,7 +296,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 			annotationView.frame = mapPinAccessory.frame
 
 			if let currentActivePin = currentActivePin {
-				if mapPointAnnotation == currentActivePin {
+				if mapPointAnnotation.address == currentActivePin.address, mapPointAnnotation.title == currentActivePin.title {
 					mapPinAccessory.setAsSelected(true, isCheapestPrice: currentActivePin.priceIsCheapest)
 				} else {
 					mapPinAccessory.setAsSelected(false, isCheapestPrice: currentActivePin.priceIsCheapest)

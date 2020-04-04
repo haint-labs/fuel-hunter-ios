@@ -16,6 +16,7 @@ protocol FuelTypeChooseListBusinessLogic {
   	func getFuelTypesListData(request: FuelTypeChooseList.FuelCells.Request)
   	func userToggledFuelType(request: FuelTypeChooseList.SwitchToggled.Request)
   	func reCheckFuelTypes()
+  	func didUserAddAFuelType() -> Bool
 }
 
 protocol FuelTypeChooseListDataStore {
@@ -25,6 +26,9 @@ protocol FuelTypeChooseListDataStore {
 class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeChooseListDataStore {
   	var presenter: FuelTypeChooseListPresentationLogic?
   	var appSettingsWorker = AppSettingsWorker.shared
+
+	var fuelTypesThatWereEnabled = [FuelType]()
+
   	//var name: String = ""
 
   	// MARK: FuelTypeChooseListBusinessLogic
@@ -37,6 +41,12 @@ class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeCho
 
   	func userToggledFuelType(request: FuelTypeChooseList.SwitchToggled.Request) {
   		var fuelTypes = appSettingsWorker.getFuelTypeToggleStatus()
+
+		if request.state == true {
+			fuelTypesThatWereEnabled.append(request.fuelType)
+		} else {
+			fuelTypesThatWereEnabled.removeAll(where: {$0 == request.fuelType})
+		}
 
   		if request.fuelType == .type95 { fuelTypes.type95 = request.state }
   		if request.fuelType == .type98 { fuelTypes.type98 = request.state }
@@ -57,7 +67,14 @@ class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeCho
 
 		if !fuelTypes.isAtLeastOneTypeEnabled() {
 			fuelTypes.setToDefault()
+			fuelTypesThatWereEnabled.append(.type95) // Need only to add one, as it will result in download anyways.
 			appSettingsWorker.setFuelTypeToggleStatus(allFuelTypes: fuelTypes)
 		}
 	}
+
+	// If we just remove fuel types and leave view, then it's fine (as we have data covered it).
+	// But if we add new type, then we better re-download all.
+	func didUserAddAFuelType() -> Bool {
+		return !fuelTypesThatWereEnabled.isEmpty
+  	}
 }

@@ -80,10 +80,34 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
 	func updateData() {
 
 		let patternString = "\\s\("map_price_last_updated_homepage_name".localized())\\b"
-		var lastUpdatedString = "map_price_last_was_updated_many_ago_text".localized()
-		lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "45")
+		var lastUpdatedString = ""
 
-//		lastUpdatedString.append("\n\nAA\nAAA\n\n\nAAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA\n\nAAA")
+
+		let timestamp = PricesDownloader.lastDownloadTimeStamp()
+
+		if timestamp == 0 {
+			lastUpdatedString = "map_price_last_was_updated_more_than_a_day_ago_text".localized()
+		} else {
+			let diffSeconds = Int(Date().timeIntervalSince1970 - timestamp)
+
+			let minutes = diffSeconds / 60
+			let hours = diffSeconds / 3600
+
+			if hours == 1 { // Hour
+				lastUpdatedString = "map_price_was_updated_hour_ago_text".localized()
+			} else if hours >= 24 { // Too old data..
+				lastUpdatedString = "map_price_last_was_updated_more_than_a_day_ago_text".localized()
+			} else if hours > 1 { // Hours
+				lastUpdatedString = "map_price_last_was_updated_many_hours_ago_text".localized()
+				lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(hours)")
+			} else if minutes <= 1 { // Just now
+				lastUpdatedString = "map_price_last_was_updated_just_ago_text".localized()
+			} else { // Minutes (until 59
+				lastUpdatedString = "map_price_last_was_updated_many_minutes_ago_text".localized()
+				lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(minutes)")
+			}
+		}
+
 		let customType = ActiveType.custom(pattern: patternString)
 		extendedDescriptionLabel.enabledTypes = [customType]
 		extendedDescriptionLabel.text = lastUpdatedString

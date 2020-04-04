@@ -11,52 +11,64 @@
 //
 
 import UIKit
+import CoreData
 
 enum FuelList {
 	// MARK: Use cases
 
 	enum RevealMap {
 		struct Request {
-			var selectedCompany: Company
+			var selectedCompany: CompanyEntity
 			var selectedFuelType: FuelType
 			var selectedCellYPosition: CGFloat
 		}
 		struct Response {
-			var prices: [Price]
-			var selectedCompany: Company
+			var selectedCompany: CompanyEntity
 			var selectedFuelType: FuelType
 			var selectedCellYPosition: CGFloat
 		}
 		struct ViewModel {
-			var slectedFuelTypePrices: [Price]
-			var selectedCompany: Company
+			var selectedCompany: CompanyEntity
 			var selectedFuelType: FuelType
 			var selectedCellYPosition: CGFloat
 		}
 	}
 	enum FetchPrices {
 		struct Request {
+			var forcedReload: Bool
 		}
 		struct Response {
-			var prices: [Price]
+			var fetchedPrices: [PriceEntity]
+			var insertItems: [IndexPath]
+			var deleteItems: [IndexPath]
+			var updateItems: [IndexPath]
+			var insertSections: [Int]
+			var deleteSections: [Int]
+			var updateSections: [Int]
 		}
 		struct ViewModel {
 			struct DisplayedPrice: Equatable {
 				var id: String
-				var company: Company
+				var company: CompanyEntity
 				var price: String
 				var isPriceCheapest: Bool
 				var fuelType: FuelType
 				var addressDescription: String
-				var address: [Address]
+				var address: [AddressEntity]
 				var city: String
 			}
 			var displayedPrices: [[DisplayedPrice]]
+			var insertItems: [IndexPath]
+			var deleteItems: [IndexPath]
+			var updateItems: [IndexPath]
+			var insertSections: [Int]
+			var deleteSections: [Int]
+			var updateSections: [Int]
 		}
 	}
 	enum FindAPrice {
 		struct Request {
-			var selectedPrice: Price
+			var selectedPrice: PriceEntity
 		}
 	}
 }

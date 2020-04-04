@@ -24,6 +24,21 @@ enum FuelType: String, Codable {
 	case type95 = "fuel_95"
 	case type98 = "fuel_98"
 	case typeGas = "fuel_gas"
+
+	var index: Int {
+        switch self {
+			case .typeDD:
+				return 0
+			case .typeDDPro:
+				return 1
+			case .type95:
+				return 2
+			case .type98:
+				return 3
+			case .typeGas:
+				return 4
+		}
+    }
 }
 
 // Using this to easier calculate used companies name.

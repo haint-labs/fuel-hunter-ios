@@ -16,117 +16,202 @@ import CoreData
 protocol CompaniesChooseListBusinessLogic {
   	func getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request)
   	func userToggledCompanyType(request: CompaniesChooseList.SwitchToggled.Request)
+  	func didUserAddACompany() -> Bool
 }
 
 protocol CompaniesChooseListDataStore {
   	//var name: String { get set }
 }
 
-class CompaniesChooseListInteractor: CompaniesChooseListBusinessLogic, CompaniesChooseListDataStore {
+class CompaniesChooseListInteractor: NSObject, CompaniesChooseListBusinessLogic, CompaniesChooseListDataStore, NSFetchedResultsControllerDelegate {
+
   	var presenter: CompaniesChooseListPresentationLogic?
-  	var appSettingsWorker = AppSettingsWorker.shared
-  	//var name: String = ""
+	var fetchedResultsController: NSFetchedResultsController<CompanyEntity>!
+	var insert = [IndexPath]()
+	var delete = [IndexPath]()
+	var update = [IndexPath]()
+	var previousFetchedCompanies: [CompanyEntity]?
+
+	var companiesThatWereEnabled = [String]()
+
 
   	// MARK: CompaniesChooseListBusinessLogic
 
   	func getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request) {
 
-		let context = DataBaseManager.shared.mainManagedObjectContext()
+		if fetchedResultsController == nil {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
+			let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+			fetchRequest.predicate = NSPredicate(format: "isHidden == \(false)")
+			let sort = NSSortDescriptor(key: "order", ascending: true)
+			fetchRequest.sortDescriptors = [sort]
+			fetchRequest.propertiesToFetch = ["isEnabled"]
+			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
 
-		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+			fetchedResultsController.delegate = self
+		}
 
 		var fetchedCompanies: [CompanyEntity]?
 
-		let sort = NSSortDescriptor(key: "order", ascending: true)
-		fetchRequest.sortDescriptors = [sort]
-
 		do {
-			fetchedCompanies = try context.fetch(fetchRequest)
+			try fetchedResultsController.performFetch()
+
+			fetchedCompanies = fetchedResultsController.fetchedObjects
 		} catch let error {
 			// Something went wrong
-			print("Something went wrong. Reseting. \(error)")
+			print("Something went wrong. \(error)")
 		}
 
-		let response = CompaniesChooseList.CompanyCells.Response(fetchedCompanies: fetchedCompanies ?? [])
+		// First of all - if no insert/delete, then no need to update last cell
+		// Second of all, only if cell that needs updating - is now (but was not) / is not anymore (but was) last cell - we update it.
+		if !insert.isEmpty || !delete.isEmpty {
+			if let previousFetchedCompanies = previousFetchedCompanies, !previousFetchedCompanies.isEmpty {
+				if let fetchedCompanies = fetchedCompanies, !fetchedCompanies.isEmpty {
+					if(previousFetchedCompanies.last != fetchedCompanies.last)
+					{
+						//--- Extra logic. We need to update previous last cell
+						if let previousLastCompanyIndex = fetchedCompanies.firstIndex(of: previousFetchedCompanies.last!) {
+							let indexPath = IndexPath.init(row: previousLastCompanyIndex, section: 0)
+							if !update.contains(indexPath) { update.append(indexPath) }
+						}
+						//===
+
+						//--- Extra logic. We need to update new last cell
+						if let newLastCompanyIndex = previousFetchedCompanies.firstIndex(of: fetchedCompanies.last!) {
+							let indexPath = IndexPath.init(row: newLastCompanyIndex, section: 0)
+							if !update.contains(indexPath) { update.append(indexPath) }
+						}
+						//===
+					}
+				}
+			}
+		}
+
+		previousFetchedCompanies = fetchedCompanies
+
+		let response = CompaniesChooseList.CompanyCells.Response(fetchedCompanies: fetchedCompanies ?? [], insert: insert, delete: delete, update: update)
     	presenter?.presentData(response: response)
   	}
 
   	func userToggledCompanyType(request: CompaniesChooseList.SwitchToggled.Request) {
 
-  		let context = DataBaseManager.shared.mainManagedObjectContext()
+		let task = {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
 
-		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+			let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 
-		fetchRequest.predicate = NSPredicate(format: "name == %@", request.companyName)
+			fetchRequest.predicate = NSPredicate(format: "isHidden == \(false) && name == %@", request.companyName)
+			fetchRequest.propertiesToFetch = ["isEnabled"]
 
-		do {
-			let fetchedCompanies = try context.fetch(fetchRequest)
+			do {
+				let fetchedCompanies = try context.fetch(fetchRequest)
 
-			if fetchedCompanies.isEmpty {
-				// Problem
-			} else {
-				// Now we need to toggle enable status for selected company.
-				// And then check all other companies, and toggle chepest, if needed.
-				let selectedCompany = fetchedCompanies.first!
-				selectedCompany.isEnabled = request.state
-
-				fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
-				let cheapestCompaniesArray = try context.fetch(fetchRequest)
-
-				if cheapestCompaniesArray.isEmpty {
+				if fetchedCompanies.isEmpty {
 					// Problem
 				} else {
-					let cheapestCompany = cheapestCompaniesArray.first!
+					// Now we need to toggle enable status for selected company.
+					// And then check all other companies, and toggle chepest, if needed.
+					let selectedCompany = fetchedCompanies.first!
+					selectedCompany.isEnabled = request.state
 
-					// If cheapest is disabled, then we need to re-calculate all.
-					if cheapestCompany.isEnabled == false {
-						fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", false)
-						let allExceptCheapestCompaniesArray = try context.fetch(fetchRequest)
+					if selectedCompany.isEnabled == true {
+						self.companiesThatWereEnabled.append(selectedCompany.name!)
+					} else {
+						self.companiesThatWereEnabled.removeAll(where: {$0 == selectedCompany.name})
+					}
 
-						if allExceptCheapestCompaniesArray.isEmpty {
-							// Problem
-						} else {
-							var isAtLeastOneEnabled = false
+					fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == \(true)")
+					fetchRequest.propertiesToFetch = ["isEnabled"]
+					let cheapestCompaniesArray = try context.fetch(fetchRequest)
 
-							for aCompany in allExceptCheapestCompaniesArray {
-								if aCompany.isEnabled == true {
-									isAtLeastOneEnabled = true
-									break
+
+					if cheapestCompaniesArray.isEmpty {
+						// Problem
+					} else {
+						let cheapestCompany = cheapestCompaniesArray.first!
+
+						// If cheapest is disabled, then we need to re-calculate all.
+						if cheapestCompany.isEnabled == false {
+							fetchRequest.predicate = NSPredicate(format: "isHidden == \(false) && isCheapestToggle == \(false)")
+							fetchRequest.propertiesToFetch = ["isEnabled"]
+							let allExceptCheapestCompaniesArray = try context.fetch(fetchRequest)
+
+							if allExceptCheapestCompaniesArray.isEmpty {
+								// Problem
+							} else {
+								var isAtLeastOneEnabled = false
+
+								for aCompany in allExceptCheapestCompaniesArray {
+									if aCompany.isEnabled == true {
+										isAtLeastOneEnabled = true
+										break
+									}
+								}
+								// If none was enabled, then set as true.
+								if isAtLeastOneEnabled == false {
+									cheapestCompany.isEnabled = true
+									self.companiesThatWereEnabled.append(cheapestCompany.name!)
 								}
 							}
-							// If none was enabled, then set as true.
-							if isAtLeastOneEnabled == false {
-								cheapestCompany.isEnabled = true
-							}
 						}
+						// else, all is good.
 					}
-					// else, all is good.
+					
+					DataBaseManager.shared.saveContext()
+
+					NotificationCenter.default.post(name: .settingsUpdated, object: nil)
 				}
 
-				DataBaseManager.shared.saveContext()
+			} catch let error {
+				print("Something went wrong. \(error) Sentry Report!")
 			}
-
-		} catch let error {
-			print("Something went wrong. \(error)")
 		}
 
-		let request = CompaniesChooseList.CompanyCells.Request()
-    	getCompaniesListData(request: request)
-
-
-//  		var companies = appSettingsWorker.getCompanyToggleStatus()
-//
-//  		if request.companyType == .typeCheapest { companies.typeCheapest = request.state }
-//  		if request.companyType == .typeNeste { companies.typeNeste = request.state }
-//  		if request.companyType == .typeCircleK { companies.typeCircleK = request.state }
-//  		if request.companyType == .typeKool { companies.typeKool = request.state }
-//  		if request.companyType == .typeLN { companies.typeLn = request.state }
-//  		if request.companyType == .typeVirsi { companies.typeVirsi = request.state }
-//  		if request.companyType == .typeGotikaAuto { companies.typeGotikaAuto = request.state }
-//
-//  		appSettingsWorker.setCompanyToggleStatus(allCompanies: companies)
-//
-//  		let request = CompaniesChooseList.CompanyCells.Request()
-//    	getCompaniesListData(request: request)
+		DataBaseManager.shared.addATask(action: task)
   	}
+  	
+	// If we just remove fuel types and leave view, then it's fine (as we have data covered it).
+	// But if we add new type, then we better re-download all.
+  	func didUserAddACompany() -> Bool {
+		return !companiesThatWereEnabled.isEmpty
+  	}
+
+	// MARK: NSFetchedResultsControllerDelegate
+	
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		insert.removeAll()
+		update.removeAll()
+		delete.removeAll()
+	}
+
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+		switch type {
+			case .insert:
+				if let newIndexPath = newIndexPath {
+					insert.append(newIndexPath)
+				}
+			case .delete:
+				if let indexPath = indexPath {
+					delete.append(indexPath)
+				}
+			case .update:
+				if let indexPath = indexPath {
+					update.append(indexPath)
+				}
+			case .move:
+				if let indexPath = indexPath, let newIndexPath = newIndexPath {
+					delete.append(indexPath)
+					insert.append(newIndexPath)
+				}
+			default:
+				break
+		}
+	}
+
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		getCompaniesListData(request: CompaniesChooseList.CompanyCells.Request())
+		insert.removeAll()
+		update.removeAll()
+		delete.removeAll()
+	}
 }

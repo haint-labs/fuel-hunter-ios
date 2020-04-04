@@ -46,6 +46,10 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		interactor?.reCheckFuelTypes()
+
+		if interactor?.didUserAddAFuelType() == true {
+			PricesDownloader.removeAllPricesAndCallDownloader()
+		}
 	}
 
 	override func viewDidAppear(_ animated: Bool) {

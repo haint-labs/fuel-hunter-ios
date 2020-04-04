@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol SettingsBusinessLogic {
   	func getSettingsCellsData(request: Settings.SettingsList.Request)
@@ -22,18 +23,42 @@ protocol SettingsDataStore {
   	//var name: String { get set }
 }
 
-class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
+class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NSFetchedResultsControllerDelegate {
   	var presenter: SettingsPresentationLogic?
+	var fetchedResultsController: NSFetchedResultsController<CompanyEntity>!
   	var settingsWorker = SettingsWorker()
   	var appSettingsWorker = AppSettingsWorker.shared
 	// MARK: SettingsBusinessLogic
 
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
 
+		if fetchedResultsController == nil {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
+			let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+			fetchRequest.predicate = NSPredicate(format: "isEnabled == %i && isHidden == %i", true, false)
+			let sort = NSSortDescriptor(key: "order", ascending: true)
+			fetchRequest.sortDescriptors = [sort]
+			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+
+			fetchedResultsController.delegate = self
+		}
+
+		var fetchedCompanies: [CompanyEntity]?
+
+		do {
+			try fetchedResultsController.performFetch()
+
+			fetchedCompanies = fetchedResultsController.fetchedObjects
+		} catch let error {
+			// Something went wrong
+			print("Something went wrong. \(error)")
+		}
+
+
 		let gpsIsEnabledStatus = appSettingsWorker.getGPSIsEnabled()
 		let notifIsEnabledStatus = appSettingsWorker.getNotifIsEnabled()
 		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
-		let companyNames = settingsWorker.getCompanyNames() //appSettingsWorker.getCompanyToggleStatus().description
+		let companyNames = settingsWorker.getCompanyNames(fromFetchedCompanies: fetchedCompanies ?? [])
 		let fuelTypeNames = appSettingsWorker.getFuelTypeToggleStatus().description
 		let response = Settings.SettingsList.Response(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
 		presenter?.presentSettingsListWithData(response: response)
@@ -74,4 +99,10 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
 			}
 		}
   	}
+
+  	// MARK: NSFetchedResultsControllerDelegate
+
+  	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+  		getSettingsCellsData(request: Settings.SettingsList.Request())
+	}
 }

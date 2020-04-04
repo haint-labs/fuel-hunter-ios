@@ -43,6 +43,14 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
     	getCompaniesListData()
   	}
 
+  	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		if interactor?.didUserAddACompany() == true {
+			PricesDownloader.removeAllPricesAndCallDownloader()
+		}
+	}
+
 	// MARK: Set up
 
 	private func setup() {
@@ -76,7 +84,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
   	}
 
   	func displayListWithData(viewModel: CompaniesChooseList.CompanyCells.ViewModel) {
-    	layoutView.updateData(data: viewModel.displayedCompanyCellItems)
+    	layoutView.updateData(data: viewModel.displayedCompanyCellItems, insert: viewModel.insert, delete: viewModel.delete, update: viewModel.update)
   	}
 
   	// MARK: CompaniesChooseListLayoutViewLogic

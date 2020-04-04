@@ -18,13 +18,12 @@ enum AboutApp {
 		struct Request {
 		}
 		struct Response {
+			var fetchedCompanies: [CompanyEntity]
 		}
 		struct ViewModel {
 			struct DisplayedCompanyCellItem: Equatable {
 				var title: String
-				var description: String
 				var imageName: String
-				var enabled: Bool
 			}
 			var displayedCompanyCellItems: [DisplayedCompanyCellItem]
 		}

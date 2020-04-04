@@ -13,10 +13,12 @@ struct PriceRequestCodable: Codable {
 }
 
 struct PriceCodable: Codable {
+	let id: String
 	let price: String
 	let fuelType: String
 	let company: String
 	let city: String
+	let isCheapest: Bool
 	let addresses: [DownloadedAddress]
 
 	struct DownloadedAddress: Codable {
@@ -24,15 +26,6 @@ struct PriceCodable: Codable {
 		var latitude: Double
 		var longitude: Double
 	}
-
-//	enum CodingKeys: String, CodingKey
-//    {
-//        case price = "price"
-//        case fuelType = "fuelType"
-//        case company = "company"
-//        case city = "city"
-//        case addresses = "addresses"
-//    }
 }
 
 
@@ -44,7 +37,6 @@ struct CompanyCodable: Codable {
 	let name: String
 	let order: Int
 	let homepage: String
-	let description: [String: String]
 	let logo: [String: String]
 	let largeLogo: [String: String]
 	let mapLogo: [String: String]

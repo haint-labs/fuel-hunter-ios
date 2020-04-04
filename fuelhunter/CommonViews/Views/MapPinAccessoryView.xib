@@ -15,7 +15,8 @@
                 <outlet property="backgroundImageView" destination="IyA-5o-XSM" id="4uv-1W-oNx"/>
                 <outlet property="baseView" destination="iN0-l3-epB" id="mbd-bw-a4q"/>
                 <outlet property="distanceLabel" destination="DT5-OM-9Mr" id="Ys3-WY-c1k"/>
-                <outlet property="icon" destination="gaW-qw-Uzy" id="4rC-sJ-jhh"/>
+                <outlet property="iconGray" destination="gaW-qw-Uzy" id="AHf-PF-VTx"/>
+                <outlet property="iconNormal" destination="1QB-Qc-9Z8" id="rrd-cM-x6s"/>
                 <outlet property="priceLabel" destination="d5V-3M-0Ua" id="bgR-Iz-TuG"/>
             </connections>
         </placeholder>
@@ -35,8 +36,12 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaW-qw-Uzy" userLabel="icon">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaW-qw-Uzy" userLabel="iconGray">
                     <rect key="frame" x="153" y="65" width="73" height="83"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1QB-Qc-9Z8" userLabel="iconNormal">
+                    <rect key="frame" x="188" y="65" width="73" height="83"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DT5-OM-9Mr" userLabel="distanceLabel">

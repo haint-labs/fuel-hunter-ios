@@ -13,15 +13,18 @@ protocol CompaniesChooseListLayoutViewLogic: class {
 }
 
 protocol CompaniesChooseListLayoutViewDataLogic: class {
-	func updateData(data: [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem])
+	func updateData(data: [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath])
 }
 
 class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelCompanyListCellSwitchLogic, CompaniesChooseListLayoutViewDataLogic {
+
+	var currentScrollPos : CGFloat?
 
 	weak var controller: CompaniesChooseListLayoutViewLogic? 
 
 	@IBOutlet var baseView: UIView!
 	@IBOutlet var tableView: UITableView!
+	@IBOutlet weak var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet var tableViewTopShadow: UIImageView!
 	@IBOutlet var tableViewBottomShadow: UIImageView!
 
@@ -41,6 +44,17 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
     	setup()
 	}
 
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .dataDownloaderStateChange, object: nil)
+	}
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		tableView.layoutSubviews()
+		tableView.layoutIfNeeded()
+		adjustVisibilityOfShadowLines()
+	}
+
 	func setup() {
 		Bundle.main.loadNibNamed("CompaniesChooseListLayoutView", owner: self, options: nil)
 		addSubview(baseView)
@@ -49,6 +63,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
+		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
 
@@ -56,6 +71,10 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 		tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+		tableViewNoDataView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		tableViewNoDataView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		tableViewNoDataView.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
 
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -75,8 +94,15 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
     	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
     	let nib = UINib(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
-
+		tableView.backgroundColor = UIColor.clear
+		tableViewNoDataView.alpha = 0;
+		
     	setUpTableViewHeader()
+
+    	NotificationCenter.default.addObserver(self, selector: #selector(dataDownloaderStateChange),
+    		name: .dataDownloaderStateChange, object: nil)
+
+		adjustNoDataLabelText()
   	}
 
   	func setUpTableViewHeader() {
@@ -141,6 +167,11 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		adjustVisibilityOfShadowLines()
+
+		// Force the tableView to stay at scroll position until animation completes
+		if (currentScrollPos != nil){
+			tableView.setContentOffset(CGPoint(x: 0, y: currentScrollPos!), animated: false)
+		}
 	}
 
 	// MARK: Functions
@@ -163,21 +194,70 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 	// MARK: CompaniesChooseListLayoutViewDataLogic
 
-	func updateData(data: [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem]) {
-		if self.data.count == 0 {
+	func updateData(data: [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath]) {
+
+		print("data \(data)")
+		print("insert \(insert)")
+		print("delete \(delete)")
+		print("update \(update)")
+
+		if delete.isEmpty && insert.isEmpty && update.isEmpty {
 			self.data = data
 			tableView.reloadData()
 		} else {
 			self.data = data
-			if self.data.count > 0 {
-				guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FuelCompanyListCell else { return }
-				if self.data.first?.toggleStatus != cell.aSwitch.isOn {
-					// Without this - tableview jumps.
-					UIView.setAnimationsEnabled(false)
-					tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-					UIView.setAnimationsEnabled(true)
+
+			self.currentScrollPos = self.tableView.contentOffset.y
+
+			tableView.performBatchUpdates({
+				if !update.isEmpty {
+					tableView.reloadRows(at: update, with: .left)
 				}
+
+				if !delete.isEmpty {
+					tableView.deleteRows(at: delete, with: .fade)
+				}
+
+				if !insert.isEmpty {
+					tableView.insertRows(at: insert, with: .fade)
+				}
+			}) { finished in
+				self.adjustVisibilityOfShadowLines()
+
+				self.currentScrollPos = nil
 			}
 		}
+
+		if self.data.isEmpty {
+			self.tableViewNoDataView.alpha = 1
+			self.header.alpha = 0
+			self.tableView.isUserInteractionEnabled = false
+		} else {
+			self.tableViewNoDataView.alpha = 0
+			self.header.alpha = 1
+			self.tableView.isUserInteractionEnabled = true
+		}
+
+		adjustVisibilityOfShadowLines()
+	}
+
+	func adjustNoDataLabelText() {
+		switch CompaniesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
+	}
+	// MARK: Notifications
+
+	@objc func dataDownloaderStateChange() {
+		adjustNoDataLabelText()
 	}
 }

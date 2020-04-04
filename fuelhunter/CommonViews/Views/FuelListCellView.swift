@@ -8,20 +8,11 @@
 
 import UIKit
 import ActiveLabel
-
-extension UIView {
-    func fadeTransition(_ duration:CFTimeInterval) {
-        let animation = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.fade
-        animation.duration = duration
-        layer.add(animation, forKey: CATransitionType.fade.rawValue)
-    }
-}
+import SDWebImage
 
 protocol FuelListCellViewDisplayLogic {
     func updateDataWithData(priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPointData: MapPoint, andCellType cellType: CellBackgroundType)
+    func refreshDataWithData(mapPointData: MapPoint)
 }
 
 protocol FuelListCellViewButtonLogic: class {
@@ -306,29 +297,30 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		iconImageView.fadeTransition(0.2)
 		priceLabel.fadeTransition(0.2)
 
+
 		titleLabel.text = priceData.company.name
 		addressesLabel.text = priceData.addressDescription
 
 
 		extendedAddressLabel.text = mapPointData.address
 		extendedTitleLabel.text = mapPointData.company.name
-		iconImageView.image = UIImage(named: mapPointData.company.largeLogoName)
+
+		iconImageView.sd_setImage(with: URL.init(string: mapPointData.company.largeLogoName ?? ""), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+//				if error != nil {
+//					print("Failed: \(error)")
+//				} else {
+//					print("Success")
+//				}
+			}
+
+//		iconImageView.image = UIImage(named: mapPointData.company.largeLogoName)
 		if mapPointData.priceIsCheapest {
 			priceLabel.textColor = UIColor(named: "CheapPriceColor")
 		} else {
 			priceLabel.textColor = UIColor(named: "TitleColor")
 		}
 
-		var distance = mapPointData.distanceInMeters/1000
-		distance = distance.rounded(rule: .down, scale: 1)
-
-		if(distance > 3) {
-			mapInfoDistanceView.setAsType(.typeDistance, withText: "-1")
-		} else if(distance >= 0.2) {
-			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(distance) \("map_kilometers".localized())")
-		} else {
-			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(Int(mapPointData.distanceInMeters)) \("map_meters".localized())")
-		}
+		refreshDataWithData(mapPointData: mapPointData)
 
 		mapInfoPriceView.setAsType(.typePrice, withText: mapPointData.priceText)
 
@@ -342,7 +334,25 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
 		self.setNeedsLayout()
 	}
-	
+
+	func refreshDataWithData(mapPointData: MapPoint) {
+		mapInfoDistanceView.fadeTransition(0.2)
+
+		var distance = mapPointData.distanceInMeters/1000
+		distance = distance.rounded(rule: .down, scale: 1)
+
+//		if(distance > 3) {
+//			mapInfoDistanceView.setAsType(.typeDistance, withText: "-1")
+//		}
+		if mapPointData.distanceInMeters < 0 {
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "-1")
+		} else if(distance >= 0.2) {
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(distance) \("map_kilometers".localized())")
+		} else {
+			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(Int(mapPointData.distanceInMeters)) \("map_meters".localized())")
+		}
+	}
+
 	// MARK: MapInfoButtonViewButtonLogic
 	
 	func buttonWasPressedForViewType(_ viewType: MapInfoButtonViewType) {

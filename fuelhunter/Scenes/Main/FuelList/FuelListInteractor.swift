@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol FuelListBusinessLogic {
 	func fetchPrices(request: FuelList.FetchPrices.Request)
@@ -21,29 +22,156 @@ protocol FuelListDataStore {
 	//var name: String { get set }
 }
 
-class FuelListInteractor: FuelListBusinessLogic, FuelListDataStore {
+class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NSFetchedResultsControllerDelegate {
 	
 	var presenter: FuelListPresentationLogic?
-	var worker: FuelListWorker?
-	//var name: String = ""
+	var fetchedResultsController: NSFetchedResultsController<PriceEntity>!
+	var insertItems = [IndexPath]()
+	var deleteItems = [IndexPath]()
+	var updateItems = [IndexPath]()
+	var insertSections = [Int]()
+	var deleteSections = [Int]()
+	var updateSections = [Int]()
 
-	var pricesWorker = PriceWorker(priceStore: PricesMemoryStore())
-  	var prices: [Price]?
-  
+	var worker: FuelListWorker?
+
 	// MARK: Do something
 
 	func fetchPrices(request: FuelList.FetchPrices.Request) {
 
-		pricesWorker.fetchPrices { (fetchedPrices) -> Void in
-			self.prices = fetchedPrices
-			let response = FuelList.FetchPrices.Response(prices: fetchedPrices)
-			self.presenter?.presentSomething(response: response)
+		let fuelTypesStatus = AppSettingsWorker.shared.getFuelTypeToggleStatus()
+
+		var filteredArray = [String]()
+		if fuelTypesStatus.typeDD { filteredArray.append(FuelType.typeDD.rawValue) }
+		if fuelTypesStatus.typeDDPro { filteredArray.append(FuelType.typeDDPro.rawValue) }
+		if fuelTypesStatus.type95 { filteredArray.append(FuelType.type95.rawValue) }
+		if fuelTypesStatus.type98 { filteredArray.append(FuelType.type98.rawValue) }
+		if fuelTypesStatus.typeGas { filteredArray.append(FuelType.typeGas.rawValue) }
+
+		var shouldUseCheapestCompany = false
+		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
+		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
+			if !companyObjectArray.isEmpty {
+				shouldUseCheapestCompany = companyObjectArray.first!.isEnabled
+			}
 		}
+
+		if request.forcedReload == true {
+			fetchedResultsController = nil
+		}
+
+		if fetchedResultsController == nil {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
+			let fetchRequest: NSFetchRequest<PriceEntity> = PriceEntity.fetchRequest()
+
+			if shouldUseCheapestCompany == true {
+				fetchRequest.predicate = NSPredicate(format: "(isCheapest == %i || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType IN %@", true, true, false, filteredArray)
+			} else {
+				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType IN %@", true, false, filteredArray)
+			}
+
+			let sortOrder = NSSortDescriptor(key: "fuelSortId", ascending: true)
+			let sortPrice = NSSortDescriptor(key: "price", ascending: true)
+			fetchRequest.sortDescriptors = [sortOrder, sortPrice]
+			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "fuelSortId", cacheName: nil)
+
+			fetchedResultsController.delegate = self
+		}
+
+		var fetchedPrices: [PriceEntity]?
+
+		do {
+			try fetchedResultsController.performFetch()
+
+			fetchedPrices = fetchedResultsController.fetchedObjects
+		} catch let error {
+			// Something went wrong
+			print("Something went wrong. \(error)")
+		}
+
+
+		/*
+			1.) We fetch in sections, Thus it is well sorted, and controller will return us indexpaths of changes
+			2.) But we forward simple unsectioned data, but that is allright, we need to map each item to model objects anyway.
+
+		*/
+
+		let response = FuelList.FetchPrices.Response(fetchedPrices: fetchedPrices ?? [], insertItems: insertItems, deleteItems: deleteItems, updateItems: updateItems, insertSections: insertSections, deleteSections: deleteSections, updateSections: updateSections)
+    	presenter?.presentData(response: response)
 	}
 
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request) {
-		let response = FuelList.RevealMap.Response(prices: self.prices!, selectedCompany: request.selectedCompany, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
+//		print("request.selectedCompany \(request.selectedCompany)")
+//		print("request.selectedFuelType \(request.selectedFuelType)")
+//		print("request.selectedCellYPosition \(request.selectedCellYPosition)")
+
+		let response = FuelList.RevealMap.Response(selectedCompany: request.selectedCompany, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
 
 		self.presenter?.revealMapView(response: response)
+	}
+
+	// MARK: NSFetchedResultsControllerDelegate
+
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		insertItems.removeAll()
+		updateItems.removeAll()
+		deleteItems.removeAll()
+		insertSections.removeAll()
+		updateSections.removeAll()
+		deleteSections.removeAll()
+	}
+
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+		switch type {
+			case .insert:
+				if let newIndexPath = newIndexPath {
+					insertItems.append(newIndexPath)
+				}
+			case .delete:
+				if let indexPath = indexPath {
+					deleteItems.append(indexPath)
+				}
+			case .update:
+				if let indexPath = indexPath {
+					updateItems.append(indexPath)
+				}
+			case .move:
+				if let indexPath = indexPath, let newIndexPath = newIndexPath {
+					deleteItems.append(indexPath)
+					insertItems.append(newIndexPath)
+				}
+			default:
+				break
+		}
+	}
+
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+
+		switch type {
+			case .insert:
+				insertSections.append(sectionIndex)
+			case .delete:
+				deleteSections.append(sectionIndex)
+			case .update:
+				updateSections.append(sectionIndex)
+			case .move:
+				deleteSections.append(sectionIndex)
+				insertSections.append(sectionIndex)
+			default:
+				break
+		}
+
+
+	}
+	
+  	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		fetchPrices(request: FuelList.FetchPrices.Request(forcedReload: false))
+		insertItems.removeAll()
+		updateItems.removeAll()
+		deleteItems.removeAll()
+		insertSections.removeAll()
+		updateSections.removeAll()
+		deleteSections.removeAll()
 	}
 }

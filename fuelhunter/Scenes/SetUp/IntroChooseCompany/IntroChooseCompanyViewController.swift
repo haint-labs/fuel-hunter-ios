@@ -41,7 +41,6 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
     	self.view.backgroundColor = .white
     	setUpView()
     	getData()
-    	NotificationCenter.default.addObserver(self, selector: #selector(companiesUpdated), name: .companiesUpdated, object: nil)
   	}
 
   	// MARK: Set up
@@ -77,7 +76,7 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
   	}
 
   	func displayListWithData(viewModel: IntroChooseCompany.CompanyCells.ViewModel) {
-  		layoutView.updateData(data: viewModel.displayedCompanyCellItems)
+  		layoutView.updateData(data: viewModel.displayedCompanyCellItems, insert: viewModel.insert, delete: viewModel.delete, update: viewModel.update)
   	}
 
   	// MARK: IntroChooseCompanyLayoutViewLogic
@@ -89,11 +88,5 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
 
   	func nextButtonWasPressed() {
   		ScenesManager.shared.advanceAppSceneState()
-  	}
-
-  	// MARK: Notifications
-
-  	@objc func companiesUpdated() {
-		getData()
   	}
 }

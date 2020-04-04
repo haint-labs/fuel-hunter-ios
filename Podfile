@@ -8,10 +8,12 @@ target 'fuelhunter' do
   # Pods for fuelhunter
 
   pod 'SwiftLint' => '0.32.0'
-  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.3.1'
   pod 'Mixpanel-swift' => '2.6.2'
   pod 'ActiveLabel' => '1.1.0'
   pod 'SDWebImage' => '5.0.2'
+  pod 'Firebase' => '6.21.0'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
 
   target 'fuelhunterTests' do
     inherit! :search_paths

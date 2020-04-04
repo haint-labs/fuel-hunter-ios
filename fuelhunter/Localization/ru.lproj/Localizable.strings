@@ -20,12 +20,17 @@
 "later_button_title" = "Позже";
 "activate_button_title" = "Активизировать";
 "cancel_button_title" = "Отмена";
+"no_data_label_downloading_active" = "Пожалуйста, подождите .. \ nЗагрузка данных";
+"no_data_label_no_data_available" = "В настоящее время нет доступных данных. Проверьте позже.";
+"no_data_label_parsing_problem" = "Возникла проблема с анализом данных с сервера. Проверьте позже.";
+"no_data_label_server_error" = "Возникла проблема с сервером. Проверьте позже.";
+"no_data_label_timeout" = "При подключении к серверу возникла проблема (время ожидания). Попробуйте позже.";
 //=== GLOBAL
 
 
 //--- COMPANY
 "company_type_cheapest_title" = "Самый дешевый";
-"company_type_cheapest_description" = "Включение этого параметра всегда будет показывать компанию, у которой в данный момент самое дешевое топливо в Латвии.";
+"company_type_cheapest_description" = "Включение этого всегда будет показывать компанию, которая имеет самое дешевое топливо в Риге в то время";
 "company_type_neste_description" = "Самое дешевое топливо в Риге.";
 "company_type_circle_k_description" = "Самое дешевое топливо в Риге.";
 "company_type_kool_description" = "Самые низкие цены в сети АЗС Латвии.";
@@ -93,8 +98,11 @@
 
 
 //--- MAP
-"map_price_last_was_updated_many_ago_text" = "Цена в последний раз обновлялась ^^^ минут назад. Цена была получена с сайта.";
-"map_price_last_was_updated_just_ago_text" = "Цена в последний раз обновлялась 1 минуту назад. Цена была получена с сайта.";
+"map_price_last_was_updated_many_minutes_ago_text" = "Цена в последний раз обновлялась ^^^ минут назад. Цена была получена с сайта.";
+"map_price_was_updated_hour_ago_text" = "Цена в последний раз обновлялась час назад. Цена была получена с сайта.";
+"map_price_last_was_updated_many_hours_ago_text" = "Цена в последний раз обновлялась ^^^ часов назад. Цена была получена с сайта.";
+"map_price_last_was_updated_more_than_a_day_ago_text" = "Цена была обновлена более суток назад. Цена была получена с сайта.";
+"map_price_last_was_updated_just_ago_text" = "Цена была только что обновлена. Цена была получена с сайта.";
 "map_price_last_updated_homepage_name" = "сайта";
 "map_directions_button_title" = "Направления";
 "map_kilometers" = "км";

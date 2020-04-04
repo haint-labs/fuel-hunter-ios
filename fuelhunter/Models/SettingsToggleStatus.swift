@@ -17,29 +17,3 @@ enum LocationToggleResult<Value> {
 	case firstTime
 	case secondTime
 }
-
-
-
-//extension ValidationError: LocalizedError {
-//    var errorDescription: String? {
-//        switch self {
-//        case .tooShort:
-//            return NSLocalizedString(
-//                "Your username needs to be at least 4 characters long",
-//                comment: ""
-//            )
-//        case .tooLong:
-//            return NSLocalizedString(
-//                "Your username can't be longer than 14 characters",
-//                comment: ""
-//            )
-//        case .invalidCharacterFound(let character):
-//            let format = NSLocalizedString(
-//                "Your username can't contain the character '%@'",
-//                comment: ""
-//            )
-//
-//            return String(format: format, String(character))
-//        }
-//    }
-//}

@@ -14,15 +14,18 @@ protocol IntroChooseCompanyLayoutViewLogic {
 }
 
 protocol IntroChooseCompanyLayoutViewDataLogic: class {
-	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem])
+	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath])
 }
 
 class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITableViewDelegate, IntroChooseCompanyLayoutViewDataLogic, FuelCompanyListCellSwitchLogic {
+
+	var currentScrollPos : CGFloat?
 
 	weak var controller: IntroChooseCompanyViewController? 
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var topTitleLabel: UILabel!
+	@IBOutlet weak var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var tableViewTopShadow: UIImageView!
 	@IBOutlet weak var tableViewBottomShadow: UIImageView!
@@ -41,6 +44,11 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		super.init(coder: aDecoder)
     	setup()
 	}
+
+	deinit {
+    	NotificationCenter.default.removeObserver(self, name: .dataDownloaderStateChange, object: nil)
+	}
+
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		tableView.layoutSubviews()
@@ -56,6 +64,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
 		topTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +77,11 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		tableView.topAnchor.constraint(equalTo: topTitleLabel.bottomAnchor, constant: 10).isActive = true
+
+		tableViewNoDataView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		tableViewNoDataView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		tableViewNoDataView.topAnchor.constraint(equalTo: topTitleLabel.bottomAnchor, constant: 30).isActive = true
+
 
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -85,6 +99,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50).isActive = true
 
 		topTitleLabel.text = "intro_choose_companies_you_use_title".localized()
+		nextButton.setTitleColor(UIColor(named: "DisabledButtonColor"), for: .disabled)
 		nextButton.setTitle("next_button_title".localized(), for: .normal)
 		nextButton.addTarget(self, action:NSSelectorFromString("nextButtonPressed"), for: .touchUpInside)
 
@@ -96,8 +111,15 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
     	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
     	let nib = UINib(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
+		tableView.backgroundColor = UIColor.clear
+		tableViewNoDataView.alpha = 0;
 
   		updateFonts()
+
+		NotificationCenter.default.addObserver(self, selector: #selector(dataDownloaderStateChange),
+    		name: .dataDownloaderStateChange, object: nil)
+
+		adjustNoDataLabelText()
     }
 
 	func updateFonts() {
@@ -143,6 +165,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 			return cell
 		} else {
 			// Problem
+			print("problem")
 			return UITableViewCell()
 		}
 	}
@@ -160,6 +183,12 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		adjustVisibilityOfShadowLines()
+
+		// Force the tableView to stay at scroll position until animation completes
+		if (currentScrollPos != nil){
+			tableView.setContentOffset(CGPoint(x: 0, y: currentScrollPos!), animated: false)
+		}
+
 	}
 
   	// MARK: Functions
@@ -187,21 +216,66 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 
   	// MARK: IntroChooseCompanyLayoutViewDataLogic
 
-  	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem]) {
-  		if self.data.count == 0 {
+	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath]) {
+
+		if delete.isEmpty && insert.isEmpty && update.isEmpty {
 			self.data = data
 			tableView.reloadData()
 		} else {
 			self.data = data
-			if self.data.count > 0 {
-				guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FuelCompanyListCell else { return }
-				if self.data.first?.toggleStatus != cell.aSwitch.isOn {
-					// Without this - table view jumps.
-					UIView.setAnimationsEnabled(false)
-						tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-					UIView.setAnimationsEnabled(true)
+
+			self.currentScrollPos = self.tableView.contentOffset.y
+
+			tableView.performBatchUpdates({
+				if !update.isEmpty {
+					tableView.reloadRows(at: update, with: .fade)
 				}
+
+				if !delete.isEmpty {
+					tableView.deleteRows(at: delete, with: .fade)
+				}
+
+				if !insert.isEmpty {
+					tableView.insertRows(at: insert, with: .fade)
+				}
+			}) { finished in
+				self.adjustVisibilityOfShadowLines()
+
+				self.currentScrollPos = nil
 			}
 		}
-  	}
+
+		self.nextButton.isEnabled = !self.data.isEmpty
+
+		if self.data.isEmpty {
+			self.tableViewNoDataView.alpha = 1
+			self.tableView.isUserInteractionEnabled = false
+		} else {
+			self.tableViewNoDataView.alpha = 0
+			self.tableView.isUserInteractionEnabled = true
+		}
+
+		adjustVisibilityOfShadowLines()
+	}
+
+	func adjustNoDataLabelText() {
+		switch CompaniesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
+	}
+
+	// MARK: Notifications
+
+	@objc func dataDownloaderStateChange() {
+		adjustNoDataLabelText()
+	}
 }

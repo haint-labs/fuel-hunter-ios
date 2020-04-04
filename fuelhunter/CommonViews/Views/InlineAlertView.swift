@@ -53,8 +53,8 @@ class InlineAlertView: UIView {
 		Bundle.main.loadNibNamed("InlineAlertView", owner: self, options: nil)
 		addSubview(inlineAlertView)
 		inlineAlertView.frame = self.bounds
-		expanded = true
-		textLabel.text = "inline_alert_default_demo_message".localized()
+		expanded = false
+		textLabel.text = ""//"inline_alert_default_demo_message".localized()
 		NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
     		name: .languageWasChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
@@ -81,7 +81,7 @@ class InlineAlertView: UIView {
 	// MARK: Notifications
 
 	@objc func languageWasChanged() {
-		textLabel.text = "inline_alert_default_demo_message".localized()
+		textLabel.text = ""//"inline_alert_default_demo_message".localized()
 		self.layoutIfNeeded()
 		self.superview?.layoutIfNeeded()
 	}

@@ -44,7 +44,7 @@ class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
 			array.append(IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: title, description: languageString, imageName: imageName, toggleStatus: company.isEnabled))
 		}
 
-    	let viewModel = IntroChooseCompany.CompanyCells.ViewModel(displayedCompanyCellItems: array)
+    	let viewModel = IntroChooseCompany.CompanyCells.ViewModel(displayedCompanyCellItems: array, insert: response.insert, delete: response.delete, update: response.update)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}
 }

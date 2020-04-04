@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AboutAppBusinessLogic {
   	func getListData(request: AboutApp.CompanyCells.Request)
@@ -20,13 +21,36 @@ protocol AboutAppDataStore {
   	//var name: String { get set }
 }
 
-class AboutAppInteractor: AboutAppBusinessLogic, AboutAppDataStore {
+class AboutAppInteractor: NSObject, AboutAppBusinessLogic, AboutAppDataStore, NSFetchedResultsControllerDelegate {
   	var presenter: AboutAppPresentationLogic?
+  	var fetchedResultsController: NSFetchedResultsController<CompanyEntity>!
 
   	// MARK: AboutAppBusinessLogic
 
   	func getListData(request: AboutApp.CompanyCells.Request) {
-    	let response = AboutApp.CompanyCells.Response()
-    	presenter?.presentSomething(response: response)
+  		if fetchedResultsController == nil {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
+			let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+			fetchRequest.predicate = NSPredicate(format: "isHidden == \(false) && isCheapestToggle == %i", false)
+			let sort = NSSortDescriptor(key: "order", ascending: true)
+			fetchRequest.sortDescriptors = [sort]
+			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+
+			fetchedResultsController.delegate = self
+		}
+
+		var fetchedCompanies: [CompanyEntity]?
+
+		do {
+			try fetchedResultsController.performFetch()
+
+			fetchedCompanies = fetchedResultsController.fetchedObjects
+		} catch let error {
+			// Something went wrong
+			print("Something went wrong. \(error)")
+		}
+
+		let response = AboutApp.CompanyCells.Response(fetchedCompanies: fetchedCompanies ?? [])
+    	presenter?.presentData(response: response)
   	}
 }

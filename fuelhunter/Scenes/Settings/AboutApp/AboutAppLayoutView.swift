@@ -12,12 +12,12 @@ protocol AboutAppLayoutViewDataLogic: class {
 	func appMovedToForeground()
 	func appMovedToBackground()
 	func updateData(data: [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem])
-	func resetUI()
 }
 
 class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, AboutAppLayoutViewDataLogic {
 
 	@IBOutlet var baseView: UIView!
+	@IBOutlet weak var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet var tableView: UITableView!
 	@IBOutlet var tableViewTopShadow: UIImageView!
 	@IBOutlet var tableViewBottomShadow: UIImageView!
@@ -45,6 +45,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
+		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +54,10 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 		tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+		tableViewNoDataView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		tableViewNoDataView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		tableViewNoDataView.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
 
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -74,6 +79,8 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
     	tableView.register(nib, forCellReuseIdentifier: "cell")
 
     	setUpTableViewHeader()
+
+    	adjustNoDataLabelText()
   	}
 
   	func setUpTableViewHeader() {
@@ -100,8 +107,8 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
 			cell.titleLabel.text = aData.title
-			cell.descriptionLabel.text = aData.description.localized()
-			cell.iconImageView.image = UIImage(named: aData.imageName)
+//			cell.descriptionLabel.text = ""
+			cell.setIconImageFromImageName(imageName: aData.imageName)
 
 			if self.data.count == 1 {
 				cell.setAsCellType(cellType: .single)
@@ -145,25 +152,43 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 	// MARK: AboutAppLayoutViewDataLogic
 
 	func appMovedToForeground() {
-		(header as! AboutAppTableHeaderView).startAnimations()
+		if let header = header as? AboutAppTableHeaderView {
+			header.startAnimations()
+		}
 	}
 
 	func appMovedToBackground() {
-		(header as! AboutAppTableHeaderView).stopAnimations()
+		if let header = header as? AboutAppTableHeaderView {
+			header.stopAnimations()
+		}
 	}
 
 	func updateData(data: [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem]) {
 		self.data = data
     	tableView.reloadData()
 		tableView.layoutIfNeeded()
+		adjustVisibilityOfShadowLines()
+
+		if self.data.isEmpty {
+			self.tableViewNoDataView.alpha = 1
+		} else {
+			self.tableViewNoDataView.alpha = 0
+		}
 	}
 
-	func resetUI() {
-//		tableView.reloadData()
-//		tableView.layoutIfNeeded()
-//		header.layoutIfNeeded()
-//		tableView.tableHeaderView = header
-//		tableView.reloadData()
-//		tableView.layoutIfNeeded()
+	func adjustNoDataLabelText() {
+		switch CompaniesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
 	}
+
 }

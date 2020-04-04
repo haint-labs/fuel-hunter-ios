@@ -12,6 +12,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 protocol MapBusinessLogic {
   	func getData(request: Map.MapData.Request)
@@ -22,38 +23,123 @@ protocol MapBusinessLogic {
 
 protocol MapDataStore {
   	var selectedFuelType: FuelType { get set }
-  	var selectedCompany: Company? { get set }
-  	var selectedPricesArray: [Price]? { get set }
+  	var selectedCompany: CompanyEntity? { get set }
 	var yLocation: CGFloat { get set }
 }
 
-class MapInteractor: MapBusinessLogic, MapDataStore {
+class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsControllerDelegate {
 	var presenter: MapPresentationLogic?
-  	var worker: MapWorker?
+	var fetchedResultsController: NSFetchedResultsController<PriceEntity>!
+  	var worker = MapWorker()
   	var selectedFuelType: FuelType = .type95
-  	var selectedCompany: Company?
-	var selectedPricesArray: [Price]?
+  	var selectedCompany: CompanyEntity?
 	var yLocation: CGFloat = 0
 
 	var convertedDataArray: [Map.MapData.ViewModel.DisplayedMapPoint] = []
 	var mapPoints: [MapPoint] = []
-	var selectedPriceObject: Price?
+	var selectedPriceObject: PriceEntity?
 	var selectedDisplayedPoint: Map.MapData.ViewModel.DisplayedMapPoint?
+	var allValidCompanies: [CompanyEntity]?
+	var allValidPrices: [PriceEntity]?
+	var allAddressesWithoutDistances: [AddressEntity]?
+
+	var addressDistanceCalculatingInProgress = false
 
   	// MARK: MapBusinessLogic
 
   	func getData(request: Map.MapData.Request) {
-    	worker = MapWorker()
-    	convertedDataArray = worker!.createUsableDataArray(fromPricesArray: selectedPricesArray!)
+
+		var shouldUseCheapestCompany = false
+		let cheapestCompanyFetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+		cheapestCompanyFetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
+		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(cheapestCompanyFetchRequest) {
+			if !companyObjectArray.isEmpty {
+				shouldUseCheapestCompany = companyObjectArray.first!.isEnabled
+			}
+		}
+
+		if request.forcedReload == true {
+			fetchedResultsController = nil
+		}
+		
+		if fetchedResultsController == nil {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
+			let fetchRequest: NSFetchRequest<PriceEntity> = PriceEntity.fetchRequest()
+
+			if shouldUseCheapestCompany == true {
+				fetchRequest.predicate = NSPredicate(format: "(isCheapest == %i || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType == %@", true, true, false, selectedFuelType.rawValue)
+			} else {
+				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType == %@", true, false, selectedFuelType.rawValue)
+			}
+
+			let sortPrice = NSSortDescriptor(key: "price", ascending: true)
+			fetchRequest.sortDescriptors = [sortPrice]
+			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+
+			fetchedResultsController.delegate = self
+		}
+
+		do {
+			try fetchedResultsController.performFetch()
+
+			allValidPrices = fetchedResultsController.fetchedObjects
+		} catch let error {
+			// Something went wrong
+			print("Something went wrong. \(error)")
+		}
+
+
+		//--- Get usable companies
+		let context = DataBaseManager.shared.mainManagedObjectContext()
+		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == \(false)")
+
+		if let onlyValidEnabledCompanies = try? context.fetch(fetchRequest) {
+			allValidCompanies = onlyValidEnabledCompanies
+		}
+		//===
+
+		/*
+			If we have user location enabled,
+
+			We need to gather locations every time we fetch locations, but we should not interfere with forwarding process.
+
+
+			1.) Get all addresses that needs distance measurement
+			2.) Store this array
+			3.) One by one, need to forward to AddressWorker, to calculate address. When finished,
+				completion block returns back here, and if "here" exists, we forward next one, until all done.
+			4.) AddressWorker, when finishes, updates address, and, somewhow we need pins to update (but maybe it will happen automatically)
+		*/
+		if AppSettingsWorker.shared.getGPSIsEnabled() == true {
+			allAddressesWithoutDistances = worker.getAllAddressesThatNeedsDistanceMeasurement(from: allValidPrices!)
+
+			startCalculatingAddress()
+		}
+
+		convertedDataArray = worker.createUsableDataArray(fromPricesArray: allValidPrices!, companiesArray: allValidCompanies ?? [])
+
 		mapPoints = createMapPoints(from: convertedDataArray)
 
 		let selectedMapPoint = mapPoints.first(where: {$0.company == selectedCompany}) ?? mapPoints.first
 
-		selectedPriceObject = selectedPricesArray?.first(where: {$0.company == selectedCompany}) ?? selectedPricesArray?.first
+		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
 
 		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
 
-		let response = Map.MapData.Response(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!)
+		var cellBackgroundType = CellBackgroundType.middle
+
+		if allValidPrices?.count == 1 {
+			cellBackgroundType = .single
+		} else {
+			if allValidPrices?.first == selectedPriceObject {
+				cellBackgroundType = .top
+			} else if allValidPrices?.last == selectedPriceObject {
+				cellBackgroundType = .bottom
+			}
+		}
+
+		let response = Map.MapData.Response(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!, cellType: cellBackgroundType)
 
     	presenter?.presentData(response: response)
   	}
@@ -62,11 +148,23 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
 
 		selectedCompany = request.mapPoint.company
 
-		selectedPriceObject = selectedPricesArray?.first(where: {$0.company == selectedCompany}) ?? selectedPricesArray?.first
+		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
 
 		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
 
-		let response = Map.MapWasPressed.Response(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: request.mapPoint, selectedPrice: selectedPriceObject!)
+		var cellBackgroundType = CellBackgroundType.middle
+
+		if allValidPrices?.count == 1 {
+			cellBackgroundType = .single
+		} else {
+			if allValidPrices?.first == selectedPriceObject {
+				cellBackgroundType = .top
+			} else if allValidPrices?.last == selectedPriceObject {
+				cellBackgroundType = .bottom
+			}
+		}
+
+		let response = Map.MapWasPressed.Response(selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: request.mapPoint, selectedPrice: selectedPriceObject!, cellType: cellBackgroundType)
 
 		presenter?.updateToRevealMapPoint(response: response)
   	}
@@ -96,9 +194,68 @@ class MapInteractor: MapBusinessLogic, MapDataStore {
   	// MARK: Functions
 
   	func createMapPoints(from data: [Map.MapData.ViewModel.DisplayedMapPoint]) -> [MapPoint] {
-  		let mapPoints = data.map { MapPoint(priceId: $0.id, title: $0.company.name, company: $0.company, address: $0.addressName, coordinate:
+  		let mapPoints = data.map { MapPoint(priceId: $0.id, title: $0.company.name ?? " ", company: $0.company, address: $0.addressName, coordinate:
   			CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude), priceText: $0.price, distanceInMeters: $0.distanceInMeters, priceIsCheapest: $0.isPriceCheapest) }
 
   		return mapPoints
   	}
+
+	func updatMapPinFor(address: AddressEntity) {
+		let dataObject = convertedDataArray.first(where: {$0.addressName == address.name})
+		if var dataObject = dataObject {
+			dataObject.distanceEstimatedTime = address.estimatedTimeInMinutes
+			dataObject.distanceInMeters = Double(address.distanceInMeters)
+			let mapObjects = createMapPoints(from: [dataObject])
+			if mapObjects.isEmpty == false {
+				let response = Map.MapPinRefresh.Response(mapPoint: mapObjects.first!)
+				presenter?.updateData(response: response)
+			}
+		}
+	}
+
+	func startCalculatingAddress() {
+		print("startCalculatingAddress |")
+		if addressDistanceCalculatingInProgress == true {
+			print("startCalculatingAddress | already in progress. Stopping.")
+			return
+		}
+
+		if let tmpAllAddresses = allAddressesWithoutDistances, tmpAllAddresses.isEmpty == false {
+
+			let addressToCalculate = tmpAllAddresses.first(where: {$0.distanceInMeters == -1})
+
+//			print("startCalculatingAddress | addressToCalculate \(addressToCalculate)")
+
+			if let addressToCalculate = addressToCalculate {
+				addressDistanceCalculatingInProgress = true
+
+				AddressesWorker.calculateDistance(for: addressToCalculate) { [weak self] updatedAddress in
+					print("startCalculatingAddress | AddressesWorker.calculateDistance returned! ")
+
+					self?.addressDistanceCalculatingInProgress = false
+
+					print("startCalculatingAddress | Stopped.")
+
+					if updatedAddress.distanceInMeters > -1 {
+
+						print("startCalculatingAddress | Remove previous versions and starting again.")
+
+						self?.allAddressesWithoutDistances?.removeAll(where: {$0.name == addressToCalculate.name})
+
+						self?.updatMapPinFor(address: updatedAddress)
+
+						self?.startCalculatingAddress()
+					}
+				}
+			} else {
+				print("startCalculatingAddress | Did not find any address to use.")
+			}
+		}
+	}
+
+	// MARK: NSFetchedResultsControllerDelegate
+
+  	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		getData(request: Map.MapData.Request(forcedReload: false))
+	}
 }

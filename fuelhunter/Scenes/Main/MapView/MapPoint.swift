@@ -12,7 +12,7 @@ import MapKit
 class MapPoint: NSObject, MKAnnotation {
 	var priceId: String // Used for price obj, which contain multiple addresses (mapPoints)
     var title: String?
-    var company: Company
+    var company: CompanyEntity
     var address: String
     var coordinate: CLLocationCoordinate2D
     var priceText: String
@@ -20,7 +20,7 @@ class MapPoint: NSObject, MKAnnotation {
 	var priceIsCheapest: Bool
 
 	
-    init(priceId: String, title: String, company: Company, address: String, coordinate: CLLocationCoordinate2D, priceText: String, distanceInMeters: Double, priceIsCheapest: Bool) {
+    init(priceId: String, title: String, company: CompanyEntity, address: String, coordinate: CLLocationCoordinate2D, priceText: String, distanceInMeters: Double, priceIsCheapest: Bool) {
     	self.priceId = priceId
         self.title = title
         self.company = company

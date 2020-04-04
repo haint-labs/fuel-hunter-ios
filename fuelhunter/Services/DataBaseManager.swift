@@ -12,9 +12,17 @@ class DataBaseManager: NSObject {
 
 	static let shared = DataBaseManager()
 
-	static let PricesEntity = String("PriceEntity")
-	static let CompaniesEntity = "CompanyEntity"
-	static let AddressesEntity = "AddressEntity"
+	var isDoingATask = false {
+		didSet {
+			if isDoingATask == false {
+				doTask()
+			}
+		}
+	}
+
+	var backgroundTaskArray = [() -> Void]()
+	var mainThreadTaskArray = [() -> Void]()
+
 
 	var persistentContainer: NSPersistentContainer!
 
@@ -28,6 +36,9 @@ class DataBaseManager: NSObject {
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+
+			self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+			self.persistentContainer.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump;
         })
 
 	}
@@ -41,7 +52,8 @@ class DataBaseManager: NSObject {
                 try context.save()
             } catch {
                 let error = error as NSError
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                	print("error \(error)")
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
     }
@@ -58,10 +70,61 @@ class DataBaseManager: NSObject {
     }
 
     func mainManagedObjectContext() -> NSManagedObjectContext {
-		return persistentContainer.viewContext
+    	let mainContext = persistentContainer.viewContext
+		mainContext.mergePolicy = NSRollbackMergePolicy
+		return mainContext
     }
 
     func newBackgroundManagedObjectContext() -> NSManagedObjectContext {
-		return persistentContainer!.newBackgroundContext()
+		let bgContext = persistentContainer!.newBackgroundContext()
+		bgContext.mergePolicy = NSOverwriteMergePolicy
+		return bgContext
+    }
+
+    func addATask(action: @escaping () -> Void) {
+		let taskIsComingFromMainThread = Thread.current.isMainThread
+
+		DispatchQueue.main.async {
+			if taskIsComingFromMainThread {
+				self.mainThreadTaskArray.append(action)
+			} else {
+				self.backgroundTaskArray.append(action)
+			}
+			if !self.isDoingATask {
+				self.doTask()
+			}
+		}
+    }
+
+    func doTask()
+    {
+    	print("mainThreadTaskArray \(mainThreadTaskArray)")
+    	print("backgroundTaskArray \(backgroundTaskArray)")
+    	
+    	if isDoingATask {
+			return
+    	}
+
+    	if !mainThreadTaskArray.isEmpty {
+			isDoingATask = true
+			let function = mainThreadTaskArray.first!
+			function()
+			mainThreadTaskArray.removeFirst(1)
+			isDoingATask = false
+		} else if !backgroundTaskArray.isEmpty {
+			isDoingATask = true
+			let function = backgroundTaskArray.first!
+
+			DispatchQueue.background(background: {
+				print("doing a background task - start!")
+				function()
+				print("about to finish a background task - end!")
+			}, completion:{
+				DispatchQueue.main.async {
+					self.backgroundTaskArray.removeFirst(1)
+					self.isDoingATask = false
+				}
+			})
+		}
     }
 }

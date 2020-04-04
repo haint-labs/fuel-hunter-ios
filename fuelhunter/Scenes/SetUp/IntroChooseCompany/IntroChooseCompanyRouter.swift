@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol IntroChooseCompanyRoutingLogic {
-  	//func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
 protocol IntroChooseCompanyDataPassing {

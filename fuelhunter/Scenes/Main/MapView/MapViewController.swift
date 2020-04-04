@@ -15,6 +15,7 @@ import UIKit
 protocol MapDisplayLogic: class {
   	func displayData(viewModel: Map.MapData.ViewModel)
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel)
+  	func justRefreshMapPins(viewModel: Map.MapPinRefresh.ViewModel)
 }
 
 class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPushTransitionAnimatorHelperProtocol, FuelListToMapViewPopTransitionAnimatorHelperProtocol, MapLayoutViewViewLogic, UIScrollViewDelegate, FuelListCellViewExtendedInfoViewButtonLogic, FuelListCellViewButtonLogic {
@@ -48,6 +49,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 	deinit {
     	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
+    	NotificationCenter.default.removeObserver(self, name: .settingsUpdated, object: nil)
 	}
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,6 +75,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
     	NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
     		name: .fontSizeWasChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated),
+		name: .settingsUpdated, object: nil)
   	}
 	
 	override func viewSafeAreaInsetsDidChange() {
@@ -190,27 +194,15 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	// MARK: Functions
 
   	func getData() {
-    	let request = Map.MapData.Request()
+    	let request = Map.MapData.Request(forcedReload: false)
     	interactor?.getData(request: request)
   	}
 
-	func updateData(to priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPoint: MapPoint) {
-
-		let aData = router?.dataStore?.selectedPricesArray!.first(where: {$0.company == router?.dataStore?.selectedCompany}) ?? router?.dataStore?.selectedPricesArray?.first
+	func updateData(to priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPoint: MapPoint, cellType: CellBackgroundType) {
 
 		layoutView.selectedPin(mapPoint)
-
-		if router?.dataStore?.selectedPricesArray?.count == 1 {
-			fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .single)
-		} else {
-			if router?.dataStore?.selectedPricesArray?.first == aData {
-				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .top)
-			} else if router?.dataStore?.selectedPricesArray?.last == aData {
-				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .bottom)
-			} else {
-				fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: .middle)
-			}
-		}
+		fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: cellType)
+		fuelCellExtendedInfoView.updateData()
 
 		var animated = true
 
@@ -218,7 +210,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 		self.view.layoutIfNeeded()
 		self.scrollView.contentInset = UIEdgeInsets(top: self.scrollView.frame.height - self.fuelCellView.frame.height - self.view.safeAreaInsets.bottom, left: 0, bottom: 0, right: 0)
-
 		self.scrollView.setContentOffset(CGPoint(x: 0, y: -self.scrollView.contentInset.top), animated: animated)
 		self.view.layoutIfNeeded()
 	}
@@ -227,12 +218,12 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
   	func displayData(viewModel: Map.MapData.ViewModel) {
     	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:getMapOffset(), andRatio: 1)
-		updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint)
+		updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint, cellType: viewModel.cellType)
   	}
 
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel) {
 
-		self.updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint)
+		self.updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint, cellType: viewModel.cellType)
 
 		let newYValue = self.router?.previousViewController?.justSelected(fuelPrice: viewModel.selectedPrice)
 
@@ -246,6 +237,15 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		}
 
 		self.layoutView.updateMapViewOffset(offset: getMapOffset(), ratio: getOffsetRatio(),  animated: true)
+  	}
+
+  	func justRefreshMapPins(viewModel: Map.MapPinRefresh.ViewModel) {
+		self.layoutView.refreshMapPin(with: viewModel.mapPoint)
+
+		if layoutView.currentActivePin?.address == viewModel.mapPoint.address {
+			fuelCellView.refreshDataWithData(mapPointData: viewModel.mapPoint)
+			fuelCellExtendedInfoView.updateData()
+		}
   	}
   	
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol
@@ -386,5 +386,10 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		// Setting to -1 will make it default fade animation, because with all the font changing, it's crazy to animate..
 		// Or I'm too lazy. This will be a corner case anyways.
 		self.router?.dataStore?.yLocation = -1
+	}
+
+	@objc func settingsUpdated() {
+		let request = Map.MapData.Request(forcedReload: true)
+    	interactor?.getData(request: request)
 	}
 }

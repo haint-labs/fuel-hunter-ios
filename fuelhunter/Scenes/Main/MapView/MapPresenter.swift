@@ -14,6 +14,7 @@ import UIKit
 
 protocol MapPresentationLogic {
   	func presentData(response: Map.MapData.Response)
+  	func updateData(response: Map.MapPinRefresh.Response)
   	func updateToRevealMapPoint(response: Map.MapWasPressed.Response)
 }
 
@@ -23,14 +24,18 @@ class MapPresenter: MapPresentationLogic {
   	// MARK: Do something
 
   	func presentData(response: Map.MapData.Response) {
-		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: response.mapPoints, selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint)
+		let viewModel = Map.MapData.ViewModel(displayedPoints: response.displayedPoints, mapPoints: response.mapPoints, selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint, cellType: response.cellType)
     	viewController?.displayData(viewModel: viewModel)
   	}
 
 	func updateToRevealMapPoint(response: Map.MapWasPressed.Response) {
-		let viewModel = Map.MapWasPressed.ViewModel(selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint, selectedPrice: response.selectedPrice)
+		let viewModel = Map.MapWasPressed.ViewModel(selectedDisplayedPoint: response.selectedDisplayedPoint, selectedMapPoint: response.selectedMapPoint, selectedPrice: response.selectedPrice, cellType: response.cellType)
 
 		viewController?.updateToRevealMapPoint(viewModel: viewModel)
 	}
 
+	func updateData(response: Map.MapPinRefresh.Response) {
+		let viewModel = Map.MapPinRefresh.ViewModel(mapPoint: response.mapPoint)
+		viewController?.justRefreshMapPins(viewModel: viewModel)
+	}
 }

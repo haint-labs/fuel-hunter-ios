@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "95E14B6A-B190-42FA-8F93-91E14D4D5DF0"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "E6A474F5-2656-4A48-9BD4-3EDF36BBE93C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fuelhunter/Scenes/Settings/CompaniesChooseList/CompaniesChooseListLayoutView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "updateData(data:insert:delete:update:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88CC0365-3B76-4285-811E-A1D515B3AEB9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fuelhunter/Scenes/Main/FuelList/FuelListViewController.swift"
-            timestampString = "599306164.722181"
+            filePath = "fuelhunter/Server/PricesDownloader.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "justSelected(fuelPrice:)"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "removeAllPricesAndCallDownloader()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

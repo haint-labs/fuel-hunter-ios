@@ -20,12 +20,17 @@
 "later_button_title" = "Vēlāk";
 "activate_button_title" = "Aktivizēt";
 "cancel_button_title" = "Atcelt";
+"no_data_label_downloading_active" = "Lūdzu uzgaidiet..\nLejuplādēju datus";
+"no_data_label_no_data_available" = "Patreiz nav pieejami dati. Mēģiniet vēlreiz vēlāk.";
+"no_data_label_parsing_problem" = "Problēma atkodējot datus, kas ir saņemti no servera. Mēģiniet vēlreiz vēlāk.";
+"no_data_label_server_error" = "Problēma savienoties ar serveri. Mēģiniet vēlreiz vēlāk.";
+"no_data_label_timeout" = "Neizdevās savienoties ar severi. Mēģiniet vēlreiz vēlāk.";
 //=== GLOBAL
 
 
 //--- COMPANY
 "company_type_cheapest_title" = "Lētākā";
-"company_type_cheapest_description" = "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Latvijā ir lētākā degviela attiecīgajā brīdī";
+"company_type_cheapest_description" = "Ieslēdzot šo - vienmēr tiks rādīta arī tā kompānija, kurai Rīgā ir lētākā degviela attiecīgajā brīdī";
 "company_type_neste_description" = "Lētākā degviela Rīgā.";
 "company_type_circle_k_description" = "Lētākā degviela Rīgā.";
 "company_type_kool_description" = "Zemākās cenas DUS tīklā Latvijā.";
@@ -81,7 +86,7 @@
 "settings_about_app_description" = "Kā tas strādā";
 "settings_about_app_map_title" = "Uzzini kurā degvielas uzpildes stacijā ir zemākā degvielas cena.";
 "settings_about_app_notif_title" = "Saņem paziņojumus kad degvielai krītas cena.";
-"settings_about_app_full_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam šādus datus:";
+"settings_about_app_full_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
 //=== SETTINGS
 
 
@@ -93,8 +98,11 @@
 
 
 //--- MAP
-"map_price_last_was_updated_many_ago_text" = "Cena pēdējo reizi atjaunota pirms ^^^ minūtēm. Cena tika iegūta no mājaslapas.";
-"map_price_last_was_updated_just_ago_text" = "Cena pēdējo reizi atjaunota pirms 1 minūtes. Cena tika iegūta no mājaslapas.";
+"map_price_last_was_updated_many_minutes_ago_text" = "Cena pēdējo reizi atjaunota pirms ^^^ minūtēm. Cena tika iegūta no mājaslapas.";
+"map_price_was_updated_hour_ago_text" = "Cena pēdējo reizi atjaunināta pirms stundas. Cena tika iegūta no mājaslapas.";
+"map_price_last_was_updated_many_hours_ago_text" = "Cena pēdējo reizi atjaunota pirms ^^^ stundām. Cena tika iegūta no mājaslapas.";
+"map_price_last_was_updated_more_than_a_day_ago_text" = "Cena pēdējo reizi atjaunota pirms vairāk kā dienas. Cena tika iegūta no mājaslapas.";
+"map_price_last_was_updated_just_ago_text" = "Cena tikko tika atjaunota. Cena tika iegūta no mājaslapas.";
 "map_price_last_updated_homepage_name" = "mājaslapas";
 "map_directions_button_title" = "Norādes";
 "map_kilometers" = "km";
@@ -109,7 +117,7 @@
 
 //--- FUEL ACCURACY
 "fuel_accuracy_title" = "Cenu precizitāte";
-"fuel_accuracy_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam šādus datus:";
+"fuel_accuracy_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
 //=== FUEL ACCURACY
 
 

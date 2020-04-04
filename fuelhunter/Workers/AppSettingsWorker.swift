@@ -20,7 +20,7 @@ extension Notification.Name {
 
     static let fontSizeWasChanged = Notification.Name("fontSizeWasChanged")
 
-    static let companiesUpdated = Notification.Name("companiesUpdated")
+    static let dataDownloaderStateChange = Notification.Name("dataDownloaderStateChange")
 }
 
 class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
@@ -43,10 +43,17 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 	var languageBundle: Bundle!
 
+	//--- Used to get specific translation.
+	var ruLanguageBundle = Bundle(path: Bundle.main.path(forResource: "ru", ofType: "lproj")!)!
+	var lvLanguageBundle = Bundle(path: Bundle.main.path(forResource: "lv", ofType: "lproj")!)!
+	var enLanguageBundle = Bundle(path: Bundle.main.path(forResource: "en", ofType: "lproj")!)!
+	//===
+
 	private override init() {
 		super.init()
 		locationManager.delegate = self
-		locationManager.desiredAccuracy = 100
+		locationManager.desiredAccuracy = kCLLocationAccuracyBest
+		locationManager.distanceFilter = 200
 		locationManager.startUpdatingLocation()
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
 
@@ -240,17 +247,6 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 		}
 	}
 	
-	// MARK: Stored Companies
-	func getCompanyToggleStatus() -> AllCompaniesToogleStatus {
-		return UserDefaults.standard.structData(AllCompaniesToogleStatus.self, forKey: "AllCompaniesToogleStatus") ?? AllCompaniesToogleStatus()
-	}
-	
-	func setCompanyToggleStatus(allCompanies: AllCompaniesToogleStatus) {
-		UserDefaults.standard.setStruct(allCompanies, forKey: "AllCompaniesToogleStatus")
-		UserDefaults.standard.synchronize()
-		NotificationCenter.default.post(name: .settingsUpdated, object: nil)
-	}
-	
 	// MARK: Stored Fuel Types
 	func getFuelTypeToggleStatus() -> AllFuelTypesToogleStatus {
 		return UserDefaults.standard.structData(AllFuelTypesToogleStatus.self, forKey: "AllFuelTypesToogleStatus") ?? AllFuelTypesToogleStatus()
@@ -288,7 +284,21 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 	}
 
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+		if let userLocation = userLocation, let lastLocation = locations.last {
+			let distanceInMeters = userLocation.distance(from: lastLocation);
+
+			print("distanceInMeters \(distanceInMeters)")
+
+			if distanceInMeters < 50 {
+				return
+			}
+		}
+
+		print("Set up user location and reset previous stored distances")
+		
 		userLocation = locations.last
-		DirectionsWorker.shared.updateDistancesAndDirections()
+
+		AddressesWorker.resetAllAddressesDistances()
 	}
 }

@@ -34,29 +34,33 @@ enum Map {
 		struct Response {
 			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
 			var selectedMapPoint: MapPoint
-			var selectedPrice: Price
+			var selectedPrice: PriceEntity
+			var cellType: CellBackgroundType
 		}
 		struct ViewModel {
 			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
 			var selectedMapPoint: MapPoint
-			var selectedPrice: Price
+			var selectedPrice: PriceEntity
+			var cellType: CellBackgroundType
 		}
 	}
 
 	enum MapData {
 		struct Request {
+			var forcedReload: Bool
 		}
 		struct Response {
 			var displayedPoints: [MapData.ViewModel.DisplayedMapPoint]
 			var mapPoints: [MapPoint]
 			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
 			var selectedMapPoint: MapPoint
+			var cellType: CellBackgroundType
 		}
 		struct ViewModel {
 			struct DisplayedMapPoint: Equatable {
 				var id: String   // this is the price ID
 				var subId: String // this is the sub-ID -  which is id + address
-				var company: Company
+				var company: CompanyEntity
 				var price: String
 				var isPriceCheapest: Bool
 				var latitude: Double
@@ -64,12 +68,26 @@ enum Map {
 				var addressName: String
 				var addressDescription: String
 				var distanceInMeters: Double
+				var distanceInMetersStraightLine: Double
+				var distanceEstimatedTime: Double
 			}
 			
 			var displayedPoints: [DisplayedMapPoint]
 			var mapPoints: [MapPoint]
 			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
 			var selectedMapPoint: MapPoint
+			var cellType: CellBackgroundType
+		}
+  	}
+
+  	enum MapPinRefresh {
+		struct Request {
+		}
+		struct Response {
+			var mapPoint: MapPoint
+		}
+		struct ViewModel {
+			var mapPoint: MapPoint
 		}
   	}
 }
