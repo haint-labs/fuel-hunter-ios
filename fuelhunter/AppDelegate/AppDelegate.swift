@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		FirebaseApp.configure()
 
-		
+		application.registerForRemoteNotifications()
+
 //		ScenesManager.shared.resetState() // For debug, to start over.
 		window?.backgroundColor = .white
 		ScenesManager.shared.window = window

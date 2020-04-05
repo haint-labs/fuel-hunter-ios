@@ -10,6 +10,9 @@ import UIKit
 import CoreLocation
 import UserNotifications
 import CoreTelephony
+import FirebaseMessaging
+import UserNotifications
+import FirebaseInstanceID
 
 extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
@@ -23,7 +26,7 @@ extension Notification.Name {
     static let dataDownloaderStateChange = Notification.Name("dataDownloaderStateChange")
 }
 
-class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
+class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
 	enum Language: String {
 		case latvian = "lv"
@@ -64,6 +67,9 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 		self.setUpBundle()
 
 		setUpGlobalFontColorAndSize()
+
+		UNUserNotificationCenter.current().delegate = self
+		Messaging.messaging().delegate = self
 	}
 
 	func setUpGlobalFontColorAndSize() {
@@ -301,4 +307,45 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate {
 
 		AddressesWorker.resetAllAddressesDistances()
 	}
+
+	// MARK: UNUserNotificationCenterDelegate
+
+	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+	}
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+	print("A")
+    }
+
+//  @available(iOS 12.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+
+    }
+
+    // MARK: MessagingDelegate
+
+	func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+		let dataDict:[String: String] = ["token": fcmToken]
+		print("dataDict \(dataDict)")
+
+		InstanceID.instanceID().instanceID { (result, error) in
+		  if let error = error {
+			print("Error fetching remote instance ID: \(error)")
+		  } else if let result = result {
+			print("Remote instance ID token: \(result.token)")
+//			self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+		  }
+		}
+
+
+		NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+	}
+
+//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+//		print("remoteMessage \(remoteMessage)")
+//
+//		print("a")
+//    }
 }

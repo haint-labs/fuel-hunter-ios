@@ -14,6 +14,7 @@ target 'fuelhunter' do
   pod 'Firebase' => '6.21.0'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
 
   target 'fuelhunterTests' do
     inherit! :search_paths
