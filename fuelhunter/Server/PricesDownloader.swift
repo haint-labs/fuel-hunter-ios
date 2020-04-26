@@ -296,7 +296,7 @@ class PricesDownloader: NSObject {
 						} catch let error {
 							// Something went wrong
 							print("Prices - Something went wrong. Reseting. \(error)")
-							Analytics.logEvent("downloading", parameters: ["Error": "error \(error.localizedDescription)"])
+							Analytics.logEvent("downloading - prices", parameters: ["Error": "error \(error.localizedDescription)"])
 							PricesDownloader.resetLastDownloadTime()
 						}
 

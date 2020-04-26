@@ -20,6 +20,7 @@
 "later_button_title" = "Later";
 "activate_button_title" = "Activate";
 "cancel_button_title" = "Cancel";
+"ok_button_title" = "Ok";
 "no_data_label_downloading_active" = "Please wait..\nDownloading data";
 "no_data_label_no_data_available" = "Currently there is no data available. Check again later.";
 "no_data_label_parsing_problem" = "There was a problem parsing the data from the server. Check again later.";
@@ -72,6 +73,8 @@
 "settings_receive_notif_if_price_drops_by_title" = "Get notified when fuel price drops by";
 "settings_1_cent" = "cent.";
 "settings_more_cents" = "cents.";
+"settings_city_title" = "City";
+"settings_choose_city_title" = "Choose a city for which to receive notifications.";
 "settings_fuel_company_title" = "Fuel companies";
 "settings_fuel_company_description" = "Mark which fuel companies you want to see listed";
 "settings_fuel_type_title" = "Fuel type";
@@ -87,6 +90,12 @@
 "settings_about_app_map_title" = "Find out which petrol station has the lowest fuel price.";
 "settings_about_app_notif_title" = "Get notified when the price of fuel drops.";
 "settings_about_app_full_description" = "We currently obtain the lowest price data from the websites of the fuel companies, so for the time being this information is for information only. In addition, the website does not update this information on weekends or holidays.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\nCurrently we are getting data from companies:";
+"settings_feedback_title" = "Feedback";
+"settings_feedback_description" = "Have a suggestion? Noticed a bug?\nDrop us an email!";
+"settings_feedback_email_title" = "Feedback on Fuel Hunter (iOS)";
+"settings_feedback_email_info" = "Send us your feedback, suggestions, or encountered problems. Add screenshots, if necessary, by touch and hold in text area and choose \"Insert Photo or Video\"";
+"settings_error_email_title" = "Sorry";
+"settings_error_email_description" = "You have not set up any emails (in Settings)";
 //=== SETTINGS
 
 
@@ -134,3 +143,83 @@
 //--- INLINE ALERT
 "inline_alert_default_demo_message" = "You are located in Kurzeme. Unfortunately for the selected fuel companies, we only have prices from the Riga area.";
 //=== INLINE ALERT
+
+
+//--- CITY_NAMES
+"Ainaži" = "Ainaži";
+"Aizkraukle" = "Aizkraukle";
+"Aizpute" = "Aizpute";
+"Aknīste" = "Aknīste";
+"Aloja" = "Aloja";
+"Alūksne" = "Alūksne";
+"Ape" = "Ape";
+"Auce" = "Auce";
+"Baldone" = "Baldone";
+"Baloži" = "Baloži";
+"Balvi" = "Balvi";
+"Bauska" = "Bauska";
+"Brocēni" = "Brocēni";
+"Cēsis" = "Cēsis";
+"Cesvaine" = "Cesvaine";
+"Dagda" = "Dagda";
+"Daugavpils" = "Daugavpils";
+"Dobele" = "Dobele";
+"Durbe" = "Durbe";
+"Grobiņa" = "Grobiņa";
+"Gulbene" = "Gulbene";
+"Ikšķile" = "Ikšķile";
+"Ilūkste" = "Ilūkste";
+"Jaunjelgava" = "Jaunjelgava";
+"Jēkabpils" = "Jēkabpils";
+"Jelgava" = "Jelgava";
+"Jūrmala" = "Jūrmala";
+"Kandava" = "Kandava";
+"Kārsava" = "Kārsava";
+"Kegums" = "Ķegums";
+"Krāslava" = "Krāslava";
+"Kuldīga" = "Kuldīga";
+"Lielvārde" = "Lielvārde";
+"Liepāja" = "Liepāja";
+"Līgatne" = "Līgatne";
+"Limbaži" = "Limbaži";
+"Līvāni" = "Līvāni";
+"Lubāna" = "Lubāna";
+"Ludza" = "Ludza";
+"Madona" = "Madona";
+"Mazsalaca" = "Mazsalaca";
+"Ogre" = "Ogre";
+"Olaine" = "Olaine";
+"Pāvilosta" = "Pāvilosta";
+"Piltene" = "Piltene";
+"Pļaviņas" = "Pļaviņas";
+"Preiļi" = "Preiļi";
+"Priekule" = "Priekule";
+"Rēzekne" = "Rēzekne";
+"Rīga" = "Rīga";
+"Rūjiena" = "Rūjiena";
+"Sabile" = "Sabile";
+"Salacgrīva" = "Salacgrīva";
+"Salaspils" = "Salaspils";
+"Saldus" = "Saldus";
+"Saulkrasti" = "Saulkrasti";
+"Seda" = "Seda";
+"Sigulda" = "Sigulda";
+"Skrunda" = "Skrunda";
+"Smiltene" = "Smiltene";
+"Staicele" = "Staicele";
+"Stende" = "Stende";
+"Strenči" = "Strenči";
+"Subate" = "Subate";
+"Talsi" = "Talsi";
+"Tukums" = "Tukums";
+"Valdemārpils" = "Valdemārpils";
+"Valka" = "Valka";
+"Valmiera" = "Valmiera";
+"Vangaži" = "Vangaži";
+"Varakļāni" = "Varakļāni";
+"Ventspils" = "Ventspils";
+"Viesīte" = "Viesīte";
+"Viļaka" = "Viļaka";
+"Viļāni" = "Viļāni";
+"Zilupe" = "Zilupe";
+//=== CITY_NAMES

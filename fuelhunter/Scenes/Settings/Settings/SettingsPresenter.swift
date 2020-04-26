@@ -41,6 +41,9 @@ class SettingsPresenter: SettingsPresentationLogic {
   			descriptionString.append(" \(response.notifCentsValue) \("settings_more_cents".localized())")
   		}
 
+		if pushNotifIsEnabledStatus == true {
+			descriptionString.append("\n\("settings_city_title".localized()) - \(response.notifSelectedCityName.localized()).")
+		}
 
 		let settingsItem1 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "settings_fuel_company_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
@@ -52,7 +55,9 @@ class SettingsPresenter: SettingsPresentationLogic {
 
 		let settingsItem5 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .appLanguageCell, title: "settings_app_language_title", description: "settings_app_language_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem6 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .aboutAppCell, title: "settings_about_app_title", description: "settings_about_app_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem6 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .feedbackCell, title: "settings_feedback_title", description: "settings_feedback_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+
+		let settingsItem7 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .aboutAppCell, title: "settings_about_app_title", description: "settings_about_app_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
 
 		var array = [settingsItem1, settingsItem2]
@@ -65,6 +70,7 @@ class SettingsPresenter: SettingsPresentationLogic {
 		array.append(settingsItem4)
 		array.append(settingsItem5)
 		array.append(settingsItem6)
+		array.append(settingsItem7)
 
 
     	let viewModel = Settings.SettingsList.ViewModel(displayedSettingsCells: array)

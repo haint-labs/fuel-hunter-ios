@@ -196,10 +196,10 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 	func updateData(data: [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath]) {
 
-		print("data \(data)")
-		print("insert \(insert)")
-		print("delete \(delete)")
-		print("update \(update)")
+//		print("data \(data)")
+//		print("insert \(insert)")
+//		print("delete \(delete)")
+//		print("update \(update)")
 
 		if delete.isEmpty && insert.isEmpty && update.isEmpty {
 			self.data = data
@@ -211,7 +211,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 			tableView.performBatchUpdates({
 				if !update.isEmpty {
-					tableView.reloadRows(at: update, with: .left)
+					tableView.reloadRows(at: update, with: .fade)
 				}
 
 				if !delete.isEmpty {

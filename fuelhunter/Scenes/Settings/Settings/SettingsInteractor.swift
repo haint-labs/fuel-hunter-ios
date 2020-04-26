@@ -60,7 +60,9 @@ class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NS
 		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
 		let companyNames = settingsWorker.getCompanyNames(fromFetchedCompanies: fetchedCompanies ?? [])
 		let fuelTypeNames = appSettingsWorker.getFuelTypeToggleStatus().description
-		let response = Settings.SettingsList.Response(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue)
+		let selectedCityName = appSettingsWorker.getStoredNotifCityName()
+
+		let response = Settings.SettingsList.Response(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue, notifSelectedCityName: selectedCityName)
 		presenter?.presentSettingsListWithData(response: response)
   	}
 

@@ -20,6 +20,7 @@
 "later_button_title" = "Vēlāk";
 "activate_button_title" = "Aktivizēt";
 "cancel_button_title" = "Atcelt";
+"ok_button_title" = "Labi";
 "no_data_label_downloading_active" = "Lūdzu uzgaidiet..\nLejuplādēju datus";
 "no_data_label_no_data_available" = "Patreiz nav pieejami dati. Mēģiniet vēlreiz vēlāk.";
 "no_data_label_parsing_problem" = "Problēma atkodējot datus, kas ir saņemti no servera. Mēģiniet vēlreiz vēlāk.";
@@ -72,6 +73,8 @@
 "settings_receive_notif_if_price_drops_by_title" = "Saņemt paziņojumus, kad degvielas cena samazinās par";
 "settings_1_cent" = "centu.";
 "settings_more_cents" = "centiem.";
+"settings_city_title" = "Pilsēta";
+"settings_choose_city_title" = "Norādi pilsētu, par kuru saņemt paziņojumus.";
 "settings_fuel_company_title" = "Uzpildes kompānijas";
 "settings_fuel_company_description" = "Atzīmē, kuras uzpildes kompānijas vēlies redzēt sarakstā";
 "settings_fuel_type_title" = "Degvielas veids";
@@ -87,6 +90,12 @@
 "settings_about_app_map_title" = "Uzzini kurā degvielas uzpildes stacijā ir zemākā degvielas cena.";
 "settings_about_app_notif_title" = "Saņem paziņojumus kad degvielai krītas cena.";
 "settings_about_app_full_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
+"settings_feedback_title" = "Atsauksmes";
+"settings_feedback_description" = "Vai jums ir kāds ieteikums? Vai pamanījāt kļūdu? Nosūtiet mums e-pastu!";
+"settings_feedback_email_title" = "Atsauksmes par Fuel Hunter (iOS)";
+"settings_feedback_email_info" = "Sūtiet atsauksmes, ieteikumus vai radušās problēmas. Ja nepieciešams - pievienojiet ekrānuzņēmumus pieskaroties un turot teksta laukā un izvēloties \"Insert Photo or Video\"";
+"settings_error_email_title" = "Problēma";
+"settings_error_email_description" = "Jūs neesat iestatījis nevienu e-pasta kontu (Iestatījumos)";
 //=== SETTINGS
 
 
@@ -134,3 +143,83 @@
 //--- INLINE ALERT
 "inline_alert_default_demo_message" = "Pēc lokācijas atrodaties Kurzemē. Diemžēl atzīmētajām degvielas kompānijām, mums ir pieejamas cenas tikai no Rīgas rajona.";
 //=== INLINE ALERT
+
+
+//--- CITY_NAMES
+"Ainaži" = "Ainaži";
+"Aizkraukle" = "Aizkraukle";
+"Aizpute" = "Aizpute";
+"Aknīste" = "Aknīste";
+"Aloja" = "Aloja";
+"Alūksne" = "Alūksne";
+"Ape" = "Ape";
+"Auce" = "Auce";
+"Baldone" = "Baldone";
+"Baloži" = "Baloži";
+"Balvi" = "Balvi";
+"Bauska" = "Bauska";
+"Brocēni" = "Brocēni";
+"Cēsis" = "Cēsis";
+"Cesvaine" = "Cesvaine";
+"Dagda" = "Dagda";
+"Daugavpils" = "Daugavpils";
+"Dobele" = "Dobele";
+"Durbe" = "Durbe";
+"Grobiņa" = "Grobiņa";
+"Gulbene" = "Gulbene";
+"Ikšķile" = "Ikšķile";
+"Ilūkste" = "Ilūkste";
+"Jaunjelgava" = "Jaunjelgava";
+"Jēkabpils" = "Jēkabpils";
+"Jelgava" = "Jelgava";
+"Jūrmala" = "Jūrmala";
+"Kandava" = "Kandava";
+"Kārsava" = "Kārsava";
+"Kegums" = "Ķegums";
+"Krāslava" = "Krāslava";
+"Kuldīga" = "Kuldīga";
+"Lielvārde" = "Lielvārde";
+"Liepāja" = "Liepāja";
+"Līgatne" = "Līgatne";
+"Limbaži" = "Limbaži";
+"Līvāni" = "Līvāni";
+"Lubāna" = "Lubāna";
+"Ludza" = "Ludza";
+"Madona" = "Madona";
+"Mazsalaca" = "Mazsalaca";
+"Ogre" = "Ogre";
+"Olaine" = "Olaine";
+"Pāvilosta" = "Pāvilosta";
+"Piltene" = "Piltene";
+"Pļaviņas" = "Pļaviņas";
+"Preiļi" = "Preiļi";
+"Priekule" = "Priekule";
+"Rēzekne" = "Rēzekne";
+"Rīga" = "Rīga";
+"Rūjiena" = "Rūjiena";
+"Sabile" = "Sabile";
+"Salacgrīva" = "Salacgrīva";
+"Salaspils" = "Salaspils";
+"Saldus" = "Saldus";
+"Saulkrasti" = "Saulkrasti";
+"Seda" = "Seda";
+"Sigulda" = "Sigulda";
+"Skrunda" = "Skrunda";
+"Smiltene" = "Smiltene";
+"Staicele" = "Staicele";
+"Stende" = "Stende";
+"Strenči" = "Strenči";
+"Subate" = "Subate";
+"Talsi" = "Talsi";
+"Tukums" = "Tukums";
+"Valdemārpils" = "Valdemārpils";
+"Valka" = "Valka";
+"Valmiera" = "Valmiera";
+"Vangaži" = "Vangaži";
+"Varakļāni" = "Varakļāni";
+"Ventspils" = "Ventspils";
+"Viesīte" = "Viesīte";
+"Viļaka" = "Viļaka";
+"Viļāni" = "Viļāni";
+"Zilupe" = "Zilupe";
+//=== CITY_NAMES

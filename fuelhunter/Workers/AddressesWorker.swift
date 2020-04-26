@@ -40,7 +40,7 @@ class AddressesWorker: NSObject {
 //			print("route \(route?.distance), estimated time \(route?.expectedTravelTime) error \(error)")
 
 			if let route = route {
-				address.distanceInMeters = Int16(route.distance)
+				address.distanceInMeters = Int16(min(10000, route.distance))
 				address.estimatedTimeInMinutes = route.expectedTravelTime/60
 			} else {
 				address.distanceInMeters = -1
@@ -50,7 +50,7 @@ class AddressesWorker: NSObject {
 
 			let task = {
 				if let route = route {
-					address.distanceInMeters = Int16(route.distance)
+					address.distanceInMeters = Int16(min(10000, route.distance))
 					address.estimatedTimeInMinutes = route.expectedTravelTime/60
 				} else {
 					address.distanceInMeters = -1

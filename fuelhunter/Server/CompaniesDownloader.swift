@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UIKit
+import Firebase
 
 class CompaniesDownloader: NSObject {
 
@@ -356,6 +357,7 @@ class CompaniesDownloader: NSObject {
 						} catch let error {
 							// Something went wrong
 							print("Companies - Something went wrong. Reseting. \(error)")
+							Analytics.logEvent("downloading - companies", parameters: ["Error": "error \(error.localizedDescription)"])
 							CompaniesDownloader.resetLastDownloadTime()
 							CompaniesDownloader.lastDownloadResult = .parsingError
 						}

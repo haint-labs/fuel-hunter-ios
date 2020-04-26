@@ -104,6 +104,8 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 				router?.routeToAboutScene()
 			case .gpsCell:
 				interactor?.userPressedOnGpsSwitch()
+			case .feedbackCell:
+				router?.presentMailForm()
 			case .pushNotifCell:
 				interactor?.userPressedOnNotifSwitch()
 		}

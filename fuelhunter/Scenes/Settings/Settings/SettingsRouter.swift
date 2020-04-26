@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import MessageUI
 
 protocol SettingsRoutingLogic {
   	func routeToCompanyChooseScene()
@@ -18,13 +19,14 @@ protocol SettingsRoutingLogic {
   	func routeToLanguageChooseScene()
   	func routeToAboutScene()
   	func presentNotifSetUpScene(response: Settings.PushNotif.Response)
+  	func presentMailForm()
 }
 
 protocol SettingsDataPassing {
   	var dataStore: SettingsDataStore? { get }
 }
 
-class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
+class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMailComposeViewControllerDelegate {
   	weak var viewController: SettingsViewController?
   	var dataStore: SettingsDataStore?
 
@@ -58,5 +60,30 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing {
 	func navigateToScene(source: UIViewController, destination: UIViewController) {
 		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 		source.show(destination, sender: nil)
-  	}  
+  	}
+
+	func presentMailForm() {
+		if MFMailComposeViewController.canSendMail() {
+			let mail = MFMailComposeViewController()
+			mail.mailComposeDelegate = self
+			mail.setToRecipients(["fuelhunterlatvia@gmail.com"])
+			mail.setSubject("settings_feedback_email_title".localized())
+			mail.setMessageBody("""
+				\("settings_feedback_email_info".localized()).
+				<br><br><br><br><br><br><br><br><br>\(UIDevice.deviceDescription)
+				""", isHTML: true)
+
+			viewController!.present(mail, animated: true) { }
+		} else {
+			let alert = UIAlertController(title: "settings_error_email_title".localized(), message: "settings_error_email_description".localized(), preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "ok_button_title".localized(), style: .cancel, handler: nil))
+			viewController!.present(alert, animated: true)
+		}
+	}
+
+	// MARK: MFMailComposeViewControllerDelegate
+
+	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+		controller.dismiss(animated: true)
+	}
 }

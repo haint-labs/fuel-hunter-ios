@@ -22,6 +22,7 @@ enum Settings {
 		case gpsCell
 		case pushNotifCell
 		case appLanguageCell
+		case feedbackCell
 		case aboutAppCell
 	}
 
@@ -44,6 +45,7 @@ enum Settings {
 			let gpsIsEnabledStatus: Bool
 			let pushNotifIsEnabledStatus: Bool
 			let notifCentsValue: Int
+			let notifSelectedCityName: String
 		}
 		struct ViewModel {
 			struct DisplayedSettingsCell: Equatable {

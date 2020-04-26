@@ -13,6 +13,7 @@ import CoreTelephony
 import FirebaseMessaging
 import UserNotifications
 import FirebaseInstanceID
+import SDWebImage
 
 extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
@@ -54,6 +55,9 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 
 	private override init() {
 		super.init()
+
+		SDImageCache.shared.config.maxDiskAge = -1
+
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 		locationManager.distanceFilter = 200
@@ -223,8 +227,20 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 		UserDefaults.standard.set(enabled, forKey: "notif_is_enabled")
 		UserDefaults.standard.synchronize()
 	}
-	
+
+	// MARK: Stored Notif City Name
+
+	func getStoredNotifCityName() -> String {
+		return UserDefaults.standard.string(forKey: "notif_stored_city_name") ?? CityWorker.rigaCity.name
+	}
+
+	func setStoredNotifCity(name: String) {
+		UserDefaults.standard.set(name, forKey: "notif_stored_city_name")
+		UserDefaults.standard.synchronize()
+	}
+
 	// MARK: Stored Notif Cents
+
 	static let minimumNotifCents = 1
 	static let maximumNotifCents = 10
 	
@@ -254,6 +270,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 	}
 	
 	// MARK: Stored Fuel Types
+	
 	func getFuelTypeToggleStatus() -> AllFuelTypesToogleStatus {
 		return UserDefaults.standard.structData(AllFuelTypesToogleStatus.self, forKey: "AllFuelTypesToogleStatus") ?? AllFuelTypesToogleStatus()
 	}
@@ -316,7 +333,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 
-	print("A")
+		print("A")
     }
 
 //  @available(iOS 12.0, *)

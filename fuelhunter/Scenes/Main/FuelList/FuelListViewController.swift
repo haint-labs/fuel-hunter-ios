@@ -62,7 +62,11 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
     		name: .fontSizeWasChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated),
     		name: .settingsUpdated, object: nil)
+	}
 
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		layoutView.adjustVisibilityOfShadowLines()
 	}
 
 	// Set up

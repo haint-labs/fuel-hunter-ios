@@ -39,3 +39,24 @@ class FontChangeView: UIView {
 		// override
 	}
 }
+
+class FontChangeHeaderFooterView: UITableViewHeaderFooterView {
+
+	// MARK: View lifecycle
+
+	override func awakeFromNib() {
+	super.awakeFromNib()
+
+		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
+    		name: .fontSizeWasChanged, object: nil)
+  	}
+
+	deinit {
+		NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
+	}
+
+	// MARK: FontChangeTableViewCellNotifications
+	@objc func fontSizeWasChanged() {
+		// override
+	}
+}

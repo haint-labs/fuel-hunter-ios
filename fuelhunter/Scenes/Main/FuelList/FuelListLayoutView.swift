@@ -57,6 +57,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
+		tableView.layoutSubviews()
+		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines()
 	}
 

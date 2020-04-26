@@ -20,6 +20,7 @@
 "later_button_title" = "Позже";
 "activate_button_title" = "Активизировать";
 "cancel_button_title" = "Отмена";
+"ok_button_title" = "Ну ладно";
 "no_data_label_downloading_active" = "Пожалуйста, подождите .. \ nЗагрузка данных";
 "no_data_label_no_data_available" = "В настоящее время нет доступных данных. Проверьте позже.";
 "no_data_label_parsing_problem" = "Возникла проблема с анализом данных с сервера. Проверьте позже.";
@@ -72,6 +73,8 @@
 "settings_receive_notif_if_price_drops_by_title" = "Получать уведомления, когда цена на топливо падает на";
 "settings_1_cent" = "цент.";
 "settings_more_cents" = "центов.";
+"settings_city_title" = "Город";
+"settings_choose_city_title" = "Укажите город для уведомления.";
 "settings_fuel_company_title" = "Заполняющие компании";
 "settings_fuel_company_description" = "Отметьте, какие компании по розливу вы хотите видеть в списке";
 "settings_fuel_type_title" = "Тип топлива";
@@ -87,6 +90,12 @@
 "settings_about_app_map_title" = "Узнайте, какая бензозаправочная станция имеет самую низкую цену на топливо.";
 "settings_about_app_notif_title" = "Получить уведомление, когда цена топлива падает.";
 "settings_about_app_full_description" = "В настоящее время мы получаем данные о самых низких ценах с сайтов топливных компаний, поэтому пока эта информация носит исключительно информационный характер. Кроме того, веб-сайт не обновляет эту информацию в выходные или праздничные дни.\n\nОднако мы считаем, что любой водитель автомобиля выиграет, только если узнает, что топливная компания снизит цены на топливо и где найти заправочную станцию ​​по самой низкой цене. \n\nданные:";
+"settings_feedback_title" = "Send us your feedback!";
+"settings_feedback_description" = "Есть предложение? Заметили ошибку?\nНапишите нам письмо!";
+"settings_feedback_email_title" = "Отзыв о Fuel Hunter (iOS)";
+"settings_feedback_email_info" = "Присылайте нам свои отзывы, предложения или возникшие проблемы. При необходимости добавьте снимки экрана, коснитесь и удерживайте их в текстовой области и выберите \"Вставить фото или видео\".";
+"settings_error_email_title" = "Проблема";
+"settings_error_email_description" = "Вы не настроили ни одной электронной почты (в настройках)";
 //=== SETTINGS
 
 
@@ -134,3 +143,83 @@
 //--- INLINE ALERT
 "inline_alert_default_demo_message" = "После локации вы находитесь в Курземе. К сожалению, для выбранных топливных компаний у нас есть цены только из Рижского района.";
 //=== INLINE ALERT
+
+
+//--- CITY_NAMES
+"Ainaži" = "Айнажи";
+"Aizkraukle" = "Айзкраукле";
+"Aizpute" = "Айзпуте";
+"Aknīste" = "Акнисте";
+"Aloja" = "Алоя";
+"Alūksne" = "Алуксне";
+"Ape" = "Апе";
+"Auce" = "Ауце";
+"Baldone" = "Балдоне";
+"Baloži" = "Баложи";
+"Balvi" = "Балви";
+"Bauska" = "Бауска";
+"Brocēni" = "Броцены";
+"Cēsis" = "Цесис";
+"Cesvaine" = "Цесвайне";
+"Dagda" = "Дагда";
+"Daugavpils" = "Даугавпилс";
+"Dobele" = "Добеле";
+"Durbe" = "Дурбе";
+"Grobiņa" = "Гробиня";
+"Gulbene" = "Гулбене";
+"Ikšķile" = "Икшкиле";
+"Ilūkste" = "Илукста";
+"Jaunjelgava" = "Яунелгава";
+"Jēkabpils" = "Екабпилс";
+"Jelgava" = "Елгава";
+"Jūrmala" = "Юрмала";
+"Kandava" = "Кандава";
+"Kārsava" = "Карсава";
+"Kegums" = "Кегумс";
+"Krāslava" = "Краслава";
+"Kuldīga" = "Кулдига";
+"Lielvārde" = "Лиелварде";
+"Liepāja" = "Лиепая";
+"Līgatne" = "Лигатне";
+"Limbaži" = "Лимбажи";
+"Līvāni" = "Ливаны";
+"Lubāna" = "Лубана";
+"Ludza" = "Лудза";
+"Madona" = "Мадона";
+"Mazsalaca" = "Мазсалаца";
+"Ogre" = "Огре";
+"Olaine" = "Олайне";
+"Pāvilosta" = "Павилоста";
+"Piltene" = "Пилтене";
+"Pļaviņas" = "Плявиняс";
+"Preiļi" = "Прейли";
+"Priekule" = "Приекуле";
+"Rēzekne" = "Резекне";
+"Rīga" = "Рига";
+"Rūjiena" = "Руена";
+"Sabile" = "Сабиле";
+"Salacgrīva" = "Салацгрива";
+"Salaspils" = "Саласпилс";
+"Saldus" = "Салдус";
+"Saulkrasti" = "Саулкрасты";
+"Seda" = "Седа";
+"Sigulda" = "Сигулда";
+"Skrunda" = "Скрунда";
+"Smiltene" = "Смилтене";
+"Staicele" = "Стайцеле";
+"Stende" = "Стенде";
+"Strenči" = "Стренчи";
+"Subate" = "Субате";
+"Talsi" = "Талса";
+"Tukums" = "Тукумс";
+"Valdemārpils" = "Валдемарпилс";
+"Valka" = "Валка";
+"Valmiera" = "Валмиера";
+"Vangaži" = "Вангажи";
+"Varakļāni" = "Варакляны";
+"Ventspils" = "Вентспилс";
+"Viesīte" = "Виесите";
+"Viļaka" = "Виляка";
+"Viļāni" = "Виляны";
+"Zilupe" = "Зилупе";
+//=== CITY_NAMES
