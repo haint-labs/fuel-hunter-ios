@@ -34,9 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
 
-
-//		print("city \(CityWorker.getClosestCity().name)")
-
 		return true
 	}
 
