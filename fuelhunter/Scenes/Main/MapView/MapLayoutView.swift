@@ -118,8 +118,6 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 	func regionFor(mapPoints points: [MapPoint]) -> MKCoordinateRegion {
 		var r = MKMapRect.null
 
-		print("points \(points)")
-
 		for i in 0 ..< points.count {
 			let p = MKMapPoint(points[i].coordinate)
 			r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
@@ -130,8 +128,6 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 				let p = MKMapPoint(mapView!.userLocation.coordinate)
 				r = r.union(MKMapRect(x: p.x, y: p.y, width: 0, height: 0))
 			}
-
-			print("mapView!.userLocation.coordinate \(mapView!.userLocation.coordinate)")
 		}
 
 		var region = MKCoordinateRegion(r)
@@ -200,21 +196,6 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		usedAccessoryViews.removeAll()
 		mapView.removeAnnotations(mapView.annotations)
 
-//		for city in CityWorker.cities {
-//			mapView.addOverlay(MKCircle(center: city.location.coordinate, radius: CLLocationDistance(city.radius)))
-//		}
-//
-//		let redpoint = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 5, height: mapView.frame.size.height))
-//		redpoint.backgroundColor = .red
-//		mapView.addSubview(redpoint)
-//
-//		redpoint.translatesAutoresizingMaskIntoConstraints = false
-//		redpoint.widthAnchor.constraint(equalToConstant: 5).isActive = true
-//		redpoint.heightAnchor.constraint(equalToConstant: 5).isActive = true
-//		redpoint.centerYAnchor.constraint(equalTo: mapView.centerYAnchor).isActive = true
-//		redpoint.centerXAnchor.constraint(equalTo: mapView.centerXAnchor).isActive = true
-
-
 		mapView.addAnnotations(data)
 
 		offsetRatio = ratio
@@ -269,10 +250,6 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
     @objc func didDragOrPinchMap(_ sender: UIGestureRecognizer) {
 		userDraggedOrZoomedMap = true
-
-//		let city = CityWorker.getClosestCity(from: CLLocation.init(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude))
-//		
-//		print("city \(city.name)")
     }
 
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

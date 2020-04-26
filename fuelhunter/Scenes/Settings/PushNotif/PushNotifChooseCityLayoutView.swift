@@ -232,6 +232,9 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		frontViewHeightConstraint.constant = frame.size.height
 
 		filteredSortedCities = sortedCities
+		
+		self.tableView.layoutSubviews()
+		self.tableView.layoutIfNeeded()
 		tableView.reloadData()
 
 		let calculatedOffset = (self.frame.height - frame.size.height - frame.origin.y)

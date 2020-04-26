@@ -59,9 +59,12 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 		var smallOffset: CGFloat = 20
 
 		if UIDevice.screenType == .iPhones_4_4S {
-			largeOffset = 20
-			smallOffset = 10
+			largeOffset = 13
+			smallOffset = 4
 		} else if UIDevice.screenType == .iPhones_5_5s_5c_SE {
+			largeOffset = 17
+			smallOffset = 10
+		} else if UIDevice.screenType == .iPhones_6_6s_7_8 {
 			largeOffset = 25
 			smallOffset = 15
 		}
@@ -111,7 +114,7 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
   		descriptionCityLabel.leftAnchor.constraint(equalTo: frontView.leftAnchor, constant: 30).isActive = true
   		descriptionCityLabel.rightAnchor.constraint(equalTo: frontView.rightAnchor, constant: -30).isActive = true
 
-		chooseCityButton.topAnchor.constraint(equalTo: descriptionCityLabel.bottomAnchor, constant: 20).isActive = true
+		chooseCityButton.topAnchor.constraint(equalTo: descriptionCityLabel.bottomAnchor, constant: smallOffset).isActive = true
   		chooseCityButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
   		activateButton.topAnchor.constraint(equalTo: chooseCityButton.bottomAnchor, constant: largeOffset).isActive = true
@@ -122,9 +125,9 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
   		cancelButton.rightAnchor.constraint(equalTo: frontView.rightAnchor, constant: -40).isActive = true
   		cancelButton.bottomAnchor.constraint(equalTo: frontView.bottomAnchor, constant: -20).isActive = true
 
-		frontView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: smallOffset).isActive = true
-  		let yconstraint = frontView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -50)
-		yconstraint.priority = .defaultLow
+		frontView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 5).isActive = true
+  		let yconstraint = frontView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -40)
+		yconstraint.priority = .defaultHigh
 		yconstraint.isActive = true
   		frontView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
   		frontView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true

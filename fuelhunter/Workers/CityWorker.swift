@@ -137,25 +137,6 @@ class CityWorker: NSObject {
 	  	return closestCity
 	}
 
-	class func getClosestCity(from userLocation: CLLocation) -> City {
-		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
-			return rigaCity
-		}
-		
-		var closestCity = rigaCity
-	  	var smallestDistance: CLLocationDistance?
-
-	  	for city in cities {
-			let distance = userLocation.distance(from: city.location)
-			if smallestDistance == nil || (distance - Double(city.radius)) < smallestDistance! {
-				closestCity = city
-				smallestDistance = (distance - Double(city.radius))
-			}
-	  	}
-
-	  	return closestCity
-	}
-
 	class func getCitiesByDistance() -> [CityAndDistance] {
 
 		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
@@ -186,15 +167,16 @@ class CityWorker: NSObject {
 
 	class func getCitiesByName() -> [CityAndDistance] {
 
-		var dict: [String: Double] = [:]
+		var uniqueCityNames = Set<String>()
+
 		var array: [CityAndDistance] = []
 
 		for city in cities {
-			dict[city.name] = 0
+			uniqueCityNames.insert(city.name)
 		}
 
-		for (key, _) in dict {
-			array.append(CityAndDistance.init(name: key, distanceInKm: 0))
+		for cityName in uniqueCityNames {
+			array.append(CityAndDistance.init(name: cityName, distanceInKm: 0))
 		}
 
 		array.sort(by: { $0.name < $1.name })

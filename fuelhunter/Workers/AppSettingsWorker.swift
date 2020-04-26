@@ -332,8 +332,6 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 	}
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-
-		print("A")
     }
 
 //  @available(iOS 12.0, *)
