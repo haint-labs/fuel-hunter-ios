@@ -15,6 +15,7 @@
 "lv_language_name" = "Латвийский";
 "ru_language_name" = "Русский";
 "en_language_name" = "Английский";
+"lg_language_name" = "Латгальский";
 "next_button_title" = "Далее";
 "give_access_button_title" = "Дать разрешение";
 "later_button_title" = "Позже";
@@ -63,6 +64,7 @@
 "intro_choose_fuel_types_you_are_interested" = "Отметьте виды топлива, которые вас интересуют.";
 "intro_notifs_title" = "Уведомления";
 "intro_notifs_description" = "Получать телефонные уведомления, когда цена на топливо падает.";
+"intro_notifs_no_data_found_when_filtered" = "Не найдено городов, соответствующих поисковому запросу. \n\nК сожалению, в настоящее время нельзя указать деревни и другие менее населенные районы.";
 "intro_location_title" = "Локационной";
 "intro_location_description" = "Если вы включите GPS, мы можем отобразить цены ближе к вам.";
 //=== INTRO
@@ -90,12 +92,17 @@
 "settings_about_app_map_title" = "Узнайте, какая бензозаправочная станция имеет самую низкую цену на топливо.";
 "settings_about_app_notif_title" = "Получить уведомление, когда цена топлива падает.";
 "settings_about_app_full_description" = "В настоящее время мы получаем данные о самых низких ценах с сайтов топливных компаний, поэтому пока эта информация носит исключительно информационный характер. Кроме того, веб-сайт не обновляет эту информацию в выходные или праздничные дни.\n\nОднако мы считаем, что любой водитель автомобиля выиграет, только если узнает, что топливная компания снизит цены на топливо и где найти заправочную станцию ​​по самой низкой цене. \n\nданные:";
-"settings_feedback_title" = "Send us your feedback!";
+"settings_feedback_title" = "Отзывы";
 "settings_feedback_description" = "Есть предложение? Заметили ошибку?\nНапишите нам письмо!";
 "settings_feedback_email_title" = "Отзыв о Fuel Hunter (iOS)";
 "settings_feedback_email_info" = "Присылайте нам свои отзывы, предложения или возникшие проблемы. При необходимости добавьте снимки экрана, коснитесь и удерживайте их в текстовой области и выберите \"Вставить фото или видео\".";
 "settings_error_email_title" = "Проблема";
 "settings_error_email_description" = "Вы не настроили ни одной электронной почты (в настройках)";
+"settings_changes_title" = "Изменения";
+"settings_changes_new_company_section_title" = "Fuel Hunter теперь также предлагает эту компанию";
+"settings_changes_new_companies_section_title" = "Fuel Hunter теперь также предлагает эти компании";
+"settings_changes_removes_company_section_title" = "К сожалению, в настоящее время Fuel Hunter больше не может получать данные от этой компании";
+"settings_changes_removes_companies_section_title" = "К сожалению, в настоящее время Fuel Hunter больше не может получать данные от этих компаний";
 //=== SETTINGS
 
 

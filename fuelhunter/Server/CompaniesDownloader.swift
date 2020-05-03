@@ -119,57 +119,71 @@ class CompaniesDownloader: NSObject {
 		DispatchQueue.background(background: {
 			// do something in background
 
-			var string = "http://www.mocky.io/v2/5e6f890a330000b38ef07a6d"
+			var string = "http://www.mocky.io/v2/5ead3d702f00004b001986f1"
 
 			if UserDefaults.standard.integer(forKey: "companyTesting") == 1
 			{
-				string = "http://www.mocky.io/v2/5e6f894f330000251ef07a73"
+				string = "http://www.mocky.io/v2/5ead3d702f00004b001986f1"
 
-				UserDefaults.standard.set(10, forKey: "companyTesting")
+				UserDefaults.standard.set(2, forKey: "companyTesting")
 				UserDefaults.standard.synchronize()
 			}
-			else if UserDefaults.standard.integer(forKey: "companyTesting") == 10
+			else if UserDefaults.standard.integer(forKey: "companyTesting") == 2
 			{
-				string = "http://www.mocky.io/v2/5e778ae4330000c24409a009"
+				string = "http://www.mocky.io/v2/5ead3dbe2f000067001986f2"
 
-				UserDefaults.standard.set(11, forKey: "companyTesting")
+				UserDefaults.standard.set(3, forKey: "companyTesting")
 				UserDefaults.standard.synchronize()
 			}
-			else if UserDefaults.standard.integer(forKey: "companyTesting") == 11
-			{
-				string = "http://www.mocky.io/v2/5e778b05330000773a09a00a"
+			else {
 
-				UserDefaults.standard.set(12, forKey: "companyTesting")
-				UserDefaults.standard.synchronize()
-			}
-			else if UserDefaults.standard.integer(forKey: "companyTesting") == 12
-			{
-				string = "http://www.mocky.io/v2/5e778b28330000290009a00b"
-
-				UserDefaults.standard.set(13, forKey: "companyTesting")
-				UserDefaults.standard.synchronize()
-			}
-			else if UserDefaults.standard.integer(forKey: "companyTesting") == 13
-			{
-				string = "http://www.mocky.io/v2/5e778eda330000290009a014"
-
-				UserDefaults.standard.set(14, forKey: "companyTesting")
-				UserDefaults.standard.synchronize()
-			}
-			else if UserDefaults.standard.integer(forKey: "companyTesting") == 14
-			{
-				string = "http://www.mocky.io/v2/5e7793b03300005d0009a01f"
-
-				UserDefaults.standard.set(15, forKey: "companyTesting")
-				UserDefaults.standard.synchronize()
-			}
-			else
-			{
-				string = "http://www.mocky.io/v2/5e6f8a55330000b38ef07a7a"
+				string = "http://www.mocky.io/v2/5ead3def2f00004d001986f3"
 
 				UserDefaults.standard.set(1, forKey: "companyTesting")
 				UserDefaults.standard.synchronize()
 			}
+//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 10
+//			{
+//				string = "http://www.mocky.io/v2/5e778ae4330000c24409a009"
+//
+//				UserDefaults.standard.set(11, forKey: "companyTesting")
+//				UserDefaults.standard.synchronize()
+//			}
+//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 11
+//			{
+//				string = "http://www.mocky.io/v2/5e778b05330000773a09a00a"
+//
+//				UserDefaults.standard.set(12, forKey: "companyTesting")
+//				UserDefaults.standard.synchronize()
+//			}
+//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 12
+//			{
+//				string = "http://www.mocky.io/v2/5e778b28330000290009a00b"
+//
+//				UserDefaults.standard.set(13, forKey: "companyTesting")
+//				UserDefaults.standard.synchronize()
+//			}
+//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 13
+//			{
+//				string = "http://www.mocky.io/v2/5e778eda330000290009a014"
+//
+//				UserDefaults.standard.set(14, forKey: "companyTesting")
+//				UserDefaults.standard.synchronize()
+//			}
+//			else if UserDefaults.standard.integer(forKey: "companyTesting") == 14
+//			{
+//				string = "http://www.mocky.io/v2/5e7793b03300005d0009a01f"
+//
+//				UserDefaults.standard.set(15, forKey: "companyTesting")
+//				UserDefaults.standard.synchronize()
+//			}
+//			else
+//			{
+//				string = "http://www.mocky.io/v2/5e6f8a55330000b38ef07a7a"
+//
+//				UserDefaults.standard.set(1, forKey: "companyTesting")
+//				UserDefaults.standard.synchronize()
+//			}
 
 			print("url string \(string)")
 			
@@ -193,6 +207,9 @@ class CompaniesDownloader: NSObject {
 						print("same old companies data!")
 						CompaniesDownloader.updateLastDownloadTime()
 						CompaniesDownloader.lastDownloadResult = .success
+						DispatchQueue.main.asyncAfter(deadline: .now()) {
+							DataDownloader.shared.downloaderIsActive = false
+						}
 						completionHandler()
 						return
 					} else {
@@ -234,6 +251,7 @@ class CompaniesDownloader: NSObject {
 							let cheapestCompanyDescriptionLV = "company_type_cheapest_description".localizedToLV()
 							let cheapestCompanyDescriptionEN = "company_type_cheapest_description".localizedToEN()
 							let cheapestCompanyDescriptionRU = "company_type_cheapest_description".localizedToRU()
+							let cheapestCompanyDescriptionLG = "company_type_cheapest_description".localizedToLG()
 
 							if cheapestCompany.name != cheapestCompanyTitle {
 								cheapestCompany.name = cheapestCompanyTitle
@@ -247,12 +265,17 @@ class CompaniesDownloader: NSObject {
 							if cheapestCompany.descriptionRU != cheapestCompanyDescriptionRU {
 								cheapestCompany.descriptionRU = cheapestCompanyDescriptionRU
 							}
+							if cheapestCompany.descriptionLG != cheapestCompanyDescriptionLG {
+								cheapestCompany.descriptionLG = cheapestCompanyDescriptionLG
+							}
 							//===
 
 
 							//--- Fetch old companies
 							fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", false)
 							var oldCompanies = try backgroundContext.fetch(fetchRequest)
+							let oldCompanyCount = oldCompanies.count
+							print("oldCompanyCount \(oldCompanyCount)")
 							//=== Fetch old companies
 
 							if let decodedResults = try? JSONDecoder().decode(CompanyRequestCodable.self, from: data!) {
@@ -265,7 +288,6 @@ class CompaniesDownloader: NSObject {
 
 								//--- Update or enable existing companies
 								for company in decodedResults.companies {
-
 
 									//--- Company
 									let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
@@ -297,8 +319,40 @@ class CompaniesDownloader: NSObject {
 
 									atLeastOneNewCompanyIsAdded = true
 
-									if companyObject.isHidden != false {
-										companyObject.isHidden = false
+									// If downloaded company.hidden is different than saved state
+									// Then we change state, but also enable pop up value.
+									if companyObject.isHidden != company.hidden {
+										companyObject.isHidden = company.hidden
+
+										// So, not to happen on first time, when we had no companies
+										if oldCompanyCount != 0 {
+											if companyObject.shouldPopUpToUser == false {
+												// Only if company is visible, or hidden+enabled we pop up.
+												if companyObject.isHidden == false
+													|| (companyObject.isHidden == true && companyObject.isEnabled == true)
+												{
+													companyObject.shouldPopUpToUser = true
+												}
+											}
+										}
+									}
+
+									if let description = company.description {
+										if companyObject.descriptionLV != description["lv"] {
+											companyObject.descriptionLV = description["lv"]
+										}
+
+										if companyObject.descriptionRU != description["ru"] {
+											companyObject.descriptionRU = description["ru"]
+										}
+
+										if companyObject.descriptionEN != description["en"] {
+											companyObject.descriptionEN = description["en"]
+										}
+
+										if companyObject.descriptionLG != description["lg"] {
+											companyObject.descriptionLG = description["lg"]
+										}
 									}
 
 									if companyObject.homePage != company.homepage {
@@ -309,20 +363,20 @@ class CompaniesDownloader: NSObject {
 										companyObject.order = Int16(company.order)
 									}
 
-									if companyObject.logoName != company.logo[key] {
-										companyObject.logoName = company.logo[key]
+									if let logo = company.logo, companyObject.logoName != logo[key] {
+										companyObject.logoName = logo[key]
 									}
 
-									if companyObject.largeLogoName != company.largeLogo[key] {
-										companyObject.largeLogoName = company.largeLogo[key]
+									if let largeLogo = company.largeLogo, companyObject.largeLogoName != largeLogo[key] {
+										companyObject.largeLogoName = largeLogo[key]
 									}
 
-									if companyObject.mapLogoName != company.mapLogo[key] {
-										companyObject.mapLogoName = company.mapLogo[key]
+									if let mapLogo = company.mapLogo, companyObject.mapLogoName != mapLogo[key] {
+										companyObject.mapLogoName = mapLogo[key]
 									}
 
-									if companyObject.mapGrayLogoName != company.mapGrayLogo[key] {
-										companyObject.mapGrayLogoName = company.mapGrayLogo[key]
+									if let mapGrayLogo = company.mapGrayLogo, companyObject.mapGrayLogoName != mapGrayLogo[key] {
+										companyObject.mapGrayLogoName = mapGrayLogo[key]
 									}
 									//===
 								}
@@ -341,6 +395,16 @@ class CompaniesDownloader: NSObject {
 								//--- oldCompanies should contain only those, that were not downloaded anymore.
 								for oldCompany in oldCompanies {
 									oldCompany.isHidden = true
+
+									// So, not to happen on first time, when we had no companies
+									if oldCompanyCount != 0 {
+										if oldCompany.shouldPopUpToUser == false {
+											// Only if old company was enabled, we pop up.
+											if oldCompany.isEnabled == true {
+												oldCompany.shouldPopUpToUser = true
+											}
+										}
+									}
 								}
 								//===
 
@@ -402,6 +466,7 @@ class CompaniesDownloader: NSObject {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 					// when background job finished, do something in main thread
 					DataDownloader.shared.downloaderIsActive = false
+					NotificationCenter.default.post(name: .checkForCompanyChanges, object: nil)
 
 					completionHandler()
 				}

@@ -196,6 +196,17 @@
 		5CD096E424542725004DAFAE /* PushNotifSetupLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096DA24542725004DAFAE /* PushNotifSetupLayoutView.swift */; };
 		5CD096E524542725004DAFAE /* PushNotifSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096DB24542725004DAFAE /* PushNotifSetupViewController.swift */; };
 		5CD096E624542725004DAFAE /* PushNotifChooseCityLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD096DC24542725004DAFAE /* PushNotifChooseCityLayoutView.xib */; };
+		5CD096F424572539004DAFAE /* CompanyChangesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096EC24572539004DAFAE /* CompanyChangesInteractor.swift */; };
+		5CD096F524572539004DAFAE /* CompanyChangesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096ED24572539004DAFAE /* CompanyChangesPresenter.swift */; };
+		5CD096F624572539004DAFAE /* CompanyChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096EE24572539004DAFAE /* CompanyChangesViewController.swift */; };
+		5CD096F724572539004DAFAE /* CompanyChangesLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096EF24572539004DAFAE /* CompanyChangesLayoutView.swift */; };
+		5CD096F824572539004DAFAE /* CompanyChangesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096F024572539004DAFAE /* CompanyChangesRouter.swift */; };
+		5CD096F924572539004DAFAE /* CompanyChangesLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD096F124572539004DAFAE /* CompanyChangesLayoutView.xib */; };
+		5CD096FA24572539004DAFAE /* CompanyChangesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096F224572539004DAFAE /* CompanyChangesWorker.swift */; };
+		5CD096FB24572539004DAFAE /* CompanyChangesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096F324572539004DAFAE /* CompanyChangesModels.swift */; };
+		5CD096FD24573C18004DAFAE /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096FC24573C18004DAFAE /* ContentSizedTableView.swift */; };
+		5CD097002458A102004DAFAE /* TextTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD096FE2458A102004DAFAE /* TextTableViewHeaderView.xib */; };
+		5CD097012458A102004DAFAE /* TextTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD096FF2458A102004DAFAE /* TextTableViewHeaderView.swift */; };
 		5CDA4B6322FD782A00740803 /* CompaniesChooseListLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CDA4B6122FD782900740803 /* CompaniesChooseListLayoutView.xib */; };
 		5CDA4B6622FD782A00740803 /* CompaniesChooseListLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA4B6222FD782A00740803 /* CompaniesChooseListLayoutView.swift */; };
 		5CEC2C7E233F38D8003F8114 /* MapPinAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */; };
@@ -425,10 +436,22 @@
 		5CD096DA24542725004DAFAE /* PushNotifSetupLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupLayoutView.swift; sourceTree = "<group>"; };
 		5CD096DB24542725004DAFAE /* PushNotifSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotifSetupViewController.swift; sourceTree = "<group>"; };
 		5CD096DC24542725004DAFAE /* PushNotifChooseCityLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushNotifChooseCityLayoutView.xib; sourceTree = "<group>"; };
+		5CD096EC24572539004DAFAE /* CompanyChangesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesInteractor.swift; sourceTree = "<group>"; };
+		5CD096ED24572539004DAFAE /* CompanyChangesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesPresenter.swift; sourceTree = "<group>"; };
+		5CD096EE24572539004DAFAE /* CompanyChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesViewController.swift; sourceTree = "<group>"; };
+		5CD096EF24572539004DAFAE /* CompanyChangesLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesLayoutView.swift; sourceTree = "<group>"; };
+		5CD096F024572539004DAFAE /* CompanyChangesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesRouter.swift; sourceTree = "<group>"; };
+		5CD096F124572539004DAFAE /* CompanyChangesLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyChangesLayoutView.xib; sourceTree = "<group>"; };
+		5CD096F224572539004DAFAE /* CompanyChangesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesWorker.swift; sourceTree = "<group>"; };
+		5CD096F324572539004DAFAE /* CompanyChangesModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyChangesModels.swift; sourceTree = "<group>"; };
+		5CD096FC24573C18004DAFAE /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
+		5CD096FE2458A102004DAFAE /* TextTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextTableViewHeaderView.xib; sourceTree = "<group>"; };
+		5CD096FF2458A102004DAFAE /* TextTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextTableViewHeaderView.swift; sourceTree = "<group>"; };
 		5CDA4B6122FD782900740803 /* CompaniesChooseListLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompaniesChooseListLayoutView.xib; sourceTree = "<group>"; };
 		5CDA4B6222FD782A00740803 /* CompaniesChooseListLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompaniesChooseListLayoutView.swift; sourceTree = "<group>"; };
 		5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPinAccessoryView.swift; sourceTree = "<group>"; };
 		5CEC2C7D233F38D8003F8114 /* MapPinAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapPinAccessoryView.xib; sourceTree = "<group>"; };
+		5CF17ABD245CAC9800A5B3D6 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5CFAE46423B76DF3009D4A30 /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
 		5CFAE46823B7B363009D4A30 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		5CFAE47623B7CBDA009D4A30 /* DataDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
@@ -544,6 +567,7 @@
 		5C07B08222A4E07400DA3E9B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5CD096FC24573C18004DAFAE /* ContentSizedTableView.swift */,
 				5CBBDE9D239D88190044B172 /* FontChangeView.swift */,
 				5CBFF5D123891062004CFEDE /* PassThroughScrollView.swift */,
 				5C2E667122DCD1CE00FC71AD /* AppSavingsView.swift */,
@@ -570,6 +594,8 @@
 				5C13A99B23E5D93400546416 /* TableViewNoDataView.xib */,
 				5C114B16244B7F8600B4B60E /* SearchTableViewHeaderView.swift */,
 				5C114B15244B7F8600B4B60E /* SearchTableViewHeaderView.xib */,
+				5CD096FF2458A102004DAFAE /* TextTableViewHeaderView.swift */,
+				5CD096FE2458A102004DAFAE /* TextTableViewHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -689,6 +715,7 @@
 				5C114AEE244A0D3D00B4B60E /* PushNotif */,
 				5C2E669622DD941D00FC71AD /* FuelTypeChooseList */,
 				5C2E669D22DD941D00FC71AD /* AppLanguage */,
+				5CD096EB24572539004DAFAE /* CompanyChanges */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -949,6 +976,21 @@
 			path = FuelListToMapViewTransition;
 			sourceTree = "<group>";
 		};
+		5CD096EB24572539004DAFAE /* CompanyChanges */ = {
+			isa = PBXGroup;
+			children = (
+				5CD096EE24572539004DAFAE /* CompanyChangesViewController.swift */,
+				5CD096EC24572539004DAFAE /* CompanyChangesInteractor.swift */,
+				5CD096ED24572539004DAFAE /* CompanyChangesPresenter.swift */,
+				5CD096F224572539004DAFAE /* CompanyChangesWorker.swift */,
+				5CD096F324572539004DAFAE /* CompanyChangesModels.swift */,
+				5CD096F024572539004DAFAE /* CompanyChangesRouter.swift */,
+				5CD096EF24572539004DAFAE /* CompanyChangesLayoutView.swift */,
+				5CD096F124572539004DAFAE /* CompanyChangesLayoutView.xib */,
+			);
+			path = CompanyChanges;
+			sourceTree = "<group>";
+		};
 		5CFAE46223B76C7E009D4A30 /* DB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1098,6 +1140,7 @@
 				ru,
 				lv,
 				Base,
+				"lv-LV",
 			);
 			mainGroup = 5C11F071229EF4FB00EC7CEC;
 			productRefGroup = 5C11F07B229EF4FB00EC7CEC /* Products */;
@@ -1118,6 +1161,7 @@
 			files = (
 				5C114B1C244B869400B4B60E /* ChooseCityCell.xib in Resources */,
 				5C45BDCC22CD3F2000FE53D6 /* SettingsListCell.xib in Resources */,
+				5CD097002458A102004DAFAE /* TextTableViewHeaderView.xib in Resources */,
 				5CB8EC7C22E96B82008EA53C /* IntroChooseFuelTypeLayoutView.xib in Resources */,
 				5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */,
 				5C95519022FED31200AF2D90 /* AppSavingsInfoLayoutView.xib in Resources */,
@@ -1154,6 +1198,7 @@
 				5C13A99D23E5D93400546416 /* TableViewNoDataView.xib in Resources */,
 				5C45BE4622CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 				5CBE59FD237AF36000639FDF /* Main.storyboard in Resources */,
+				5CD096F924572539004DAFAE /* CompanyChangesLayoutView.xib in Resources */,
 				5CEC2C7F233F38D8003F8114 /* MapPinAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1360,6 +1405,7 @@
 				5CCC38F4230A945A008D3512 /* MapWorker.swift in Sources */,
 				5C8066AA22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */,
 				5CB9F6A922DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */,
+				5CD096F524572539004DAFAE /* CompanyChangesPresenter.swift in Sources */,
 				5CDA4B6622FD782A00740803 /* CompaniesChooseListLayoutView.swift in Sources */,
 				5C1A8E96241FD13C0061A94D /* StringSizeExtension.swift in Sources */,
 				5C114ACA2447315300B4B60E /* UIDeviceExtension.swift in Sources */,
@@ -1379,6 +1425,7 @@
 				5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */,
 				5CCC3927230A9460008D3512 /* FuelListPresenter.swift in Sources */,
 				5C2E66D722DD941D00FC71AD /* AboutAppModels.swift in Sources */,
+				5CD096F724572539004DAFAE /* CompanyChangesLayoutView.swift in Sources */,
 				5CB8EC6B22E96B44008EA53C /* IntroChooseFuelTypeRouter.swift in Sources */,
 				5C45BE9422CF793500FE53D6 /* LanguageListCell.swift in Sources */,
 				5C2E671622DD941D00FC71AD /* AppLanguageWorker.swift in Sources */,
@@ -1401,7 +1448,9 @@
 				5C2E66E322DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */,
 				5C183B5823945C9500F498AA /* FuelListCellViewExtendedInfoView.swift in Sources */,
 				5C2E67A322DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
+				5CD096FB24572539004DAFAE /* CompanyChangesModels.swift in Sources */,
 				5C8066A122F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */,
+				5CD096F824572539004DAFAE /* CompanyChangesRouter.swift in Sources */,
 				5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */,
 				5CB8EC3422E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
@@ -1417,6 +1466,7 @@
 				5C772327233346D4008CC861 /* MapPoint.swift in Sources */,
 				5CCC38F7230A945A008D3512 /* MapRouter.swift in Sources */,
 				5C731FAC22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */,
+				5CD096F624572539004DAFAE /* CompanyChangesViewController.swift in Sources */,
 				5C2E66D422DD941D00FC71AD /* AboutAppRouter.swift in Sources */,
 				5C2E673422DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
 				5C1A8E93241FD13C0061A94D /* UserDefaultsExtension.swift in Sources */,
@@ -1437,8 +1487,11 @@
 				5CFAE47723B7CBDA009D4A30 /* DataDownloader.swift in Sources */,
 				5C2E670422DD941D00FC71AD /* FuelTypeChooseListViewController.swift in Sources */,
 				5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
+				5CD096FA24572539004DAFAE /* CompanyChangesWorker.swift in Sources */,
 				5CCC397B231BB1A3008D3512 /* MapInfoButtonView.swift in Sources */,
+				5CD096F424572539004DAFAE /* CompanyChangesInteractor.swift in Sources */,
 				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
+				5CD096FD24573C18004DAFAE /* ContentSizedTableView.swift in Sources */,
 				5C731FA822FB260000793DAF /* AboutAppLayoutView.swift in Sources */,
 				5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
 				5CD096DD24542725004DAFAE /* PushNotifSetupWorker.swift in Sources */,
@@ -1462,6 +1515,7 @@
 				5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */,
 				5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */,
 				5C114B18244B7F8600B4B60E /* SearchTableViewHeaderView.swift in Sources */,
+				5CD097012458A102004DAFAE /* TextTableViewHeaderView.swift in Sources */,
 				5C45BE0622CE29EC00FE53D6 /* FuelCompanyListCell.swift in Sources */,
 				5C2E666A22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */,
 				5C2E67C122E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
@@ -1530,6 +1584,7 @@
 				5CBE5A13237AFE3E00639FDF /* en */,
 				5CBE5A15237AFE4500639FDF /* ru */,
 				5CBE5A16237AFE4700639FDF /* lv */,
+				5CF17ABD245CAC9800A5B3D6 /* lv-LV */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -71,6 +71,8 @@ class NotifPhoneAnimationView: UIView {
 				notifImageView.image = UIImage(named: "notif_image_view_notif_box_ru")
 			case .english:
 				notifImageView.image = UIImage(named: "notif_image_view_notif_box_en")
+			case .latgalian:
+				notifImageView.image = UIImage(named: "notif_image_view_notif_box_lv")
 		}
 
 		self.layoutIfNeeded()

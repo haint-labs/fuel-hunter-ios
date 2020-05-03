@@ -14,7 +14,7 @@ import UIKit
 
 
 protocol FuelListDisplayLogic: class {
-	func displaySomething(viewModel: FuelList.FetchPrices.ViewModel)
+	func displayData(viewModel: FuelList.FetchPrices.ViewModel)
 	func revealMapView(viewModel: FuelList.RevealMap.ViewModel)
 }
 
@@ -42,6 +42,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
     	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .settingsUpdated, object: nil)
+    	NotificationCenter.default.removeObserver(self, name: .checkForCompanyChanges, object: nil)
 	}
 
 	override func viewDidLoad() {
@@ -62,6 +63,20 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
     		name: .fontSizeWasChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated),
     		name: .settingsUpdated, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(checkForCompanyChanges),
+			name: .checkForCompanyChanges, object: nil)
+
+		checkForCompanyChanges()
+
+		// For testing... for now..
+//		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//			let destinationVC = CompanyChangesViewController()
+//			destinationVC.providesPresentationContextTransitionStyle = true
+//			destinationVC.definesPresentationContext = true
+//			destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
+//			self.present(destinationVC, animated: true) { }
+//		}
+
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -100,7 +115,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 		interactor?.fetchPrices(request: request)
 	}
 
-	func displaySomething(viewModel: FuelList.FetchPrices.ViewModel) {
+	func displayData(viewModel: FuelList.FetchPrices.ViewModel) {
 		layoutView.updateData(data: viewModel.displayedPrices, insertItems: viewModel.insertItems, deleteItems: viewModel.deleteItems, updateItems: viewModel.updateItems, insertSections: viewModel.insertSections, deleteSections: viewModel.deleteSections, updateSections: viewModel.updateSections)
 	}
 
@@ -195,5 +210,11 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	@objc func settingsUpdated() {
 		let request = FuelList.FetchPrices.Request(forcedReload: true)
 		interactor?.fetchPrices(request: request)
+	}
+
+	@objc func checkForCompanyChanges() {
+		if interactor?.checkIfThereAreCompanyChangesToPresent() == true {
+			router?.revealCompanyChanges()
+		}
 	}
 }

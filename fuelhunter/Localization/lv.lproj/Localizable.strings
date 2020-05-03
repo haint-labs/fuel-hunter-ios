@@ -15,6 +15,7 @@
 "lv_language_name" = "Latviski";
 "ru_language_name" = "Krieviski";
 "en_language_name" = "Angliski";
+"lg_language_name" = "Latgaliski";
 "next_button_title" = "Tālāk";
 "give_access_button_title" = "Dot atļauju";
 "later_button_title" = "Vēlāk";
@@ -63,6 +64,7 @@
 "intro_choose_fuel_types_you_are_interested" = "Atzīmē degvielas veidus, kuru cenas Tev interesē.";
 "intro_notifs_title" = "Paziņojumi";
 "intro_notifs_description" = "Saņem paziņojumus telefonā,  kad degvielai krītas cena.";
+"intro_notifs_no_data_found_when_filtered" = "Nav pilsētu, kas atbilstu meklētajam vārdam.\n\nDiemžēl patreiz nevar norādīt ciematus un citas mazāk apdzīvotas vietas.";
 "intro_location_title" = "Lokācija";
 "intro_location_description" = "Ja ieslēgsi GPS, tad iespējams varēsim attēlot cenas, kas būtu Tuvāk Tev.";
 //=== INTRO
@@ -96,6 +98,11 @@
 "settings_feedback_email_info" = "Sūtiet atsauksmes, ieteikumus vai radušās problēmas. Ja nepieciešams - pievienojiet ekrānuzņēmumus pieskaroties un turot teksta laukā un izvēloties \"Insert Photo or Video\"";
 "settings_error_email_title" = "Problēma";
 "settings_error_email_description" = "Jūs neesat iestatījis nevienu e-pasta kontu (Iestatījumos)";
+"settings_changes_title" = "Izmaiņas";
+"settings_changes_new_company_section_title" = "Fuel Hunter tagad piedāvā arī šo kompāniju";
+"settings_changes_new_companies_section_title" = "Fuel Hunter tagad piedāvā arī šīs kompānijas";
+"settings_changes_removes_company_section_title" = "Diemžēl Fuel Hunter patreiz vairs nevar iegūt datus no šīs kompānijas";
+"settings_changes_removes_companies_section_title" = "Diemžēl Fuel Hunter patreiz vairs nevar iegūt datus no šīm kompānijām";
 //=== SETTINGS
 
 

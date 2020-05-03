@@ -182,6 +182,9 @@ class PricesDownloader: NSObject {
 						print("same old prices data!")
 						PricesDownloader.updateLastDownloadTime()
 						PricesDownloader.lastDownloadResult = .success
+						DispatchQueue.main.asyncAfter(deadline: .now()) {
+							DataDownloader.shared.downloaderIsActive = false
+						}
 						completionHandler()
 						return
 					} else {

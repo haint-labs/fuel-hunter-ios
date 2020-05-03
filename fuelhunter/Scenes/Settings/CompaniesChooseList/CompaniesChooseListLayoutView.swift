@@ -18,8 +18,6 @@ protocol CompaniesChooseListLayoutViewDataLogic: class {
 
 class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelCompanyListCellSwitchLogic, CompaniesChooseListLayoutViewDataLogic {
 
-	var currentScrollPos : CGFloat?
-
 	weak var controller: CompaniesChooseListLayoutViewLogic? 
 
 	@IBOutlet var baseView: UIView!
@@ -95,7 +93,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
     	let nib = UINib(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
 		tableView.backgroundColor = UIColor.clear
-		tableViewNoDataView.alpha = 0;
+		tableViewNoDataView.alpha = 0
 		
     	setUpTableViewHeader()
 
@@ -167,11 +165,6 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		adjustVisibilityOfShadowLines()
-
-		// Force the tableView to stay at scroll position until animation completes
-		if (currentScrollPos != nil){
-			tableView.setContentOffset(CGPoint(x: 0, y: currentScrollPos!), animated: false)
-		}
 	}
 
 	// MARK: Functions
@@ -207,25 +200,15 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		} else {
 			self.data = data
 
-			self.currentScrollPos = self.tableView.contentOffset.y
+			tableView.performBatchUpdates({
+				if !delete.isEmpty { tableView.deleteRows(at: delete, with: .fade) }
+				if !insert.isEmpty { tableView.insertRows(at: insert, with: .fade) }
+				if !update.isEmpty { tableView.reloadRows(at: update, with: .fade) }
+			}) { finished in self.adjustVisibilityOfShadowLines() }
 
 			tableView.performBatchUpdates({
-				if !update.isEmpty {
-					tableView.reloadRows(at: update, with: .fade)
-				}
-
-				if !delete.isEmpty {
-					tableView.deleteRows(at: delete, with: .fade)
-				}
-
-				if !insert.isEmpty {
-					tableView.insertRows(at: insert, with: .fade)
-				}
-			}) { finished in
-				self.adjustVisibilityOfShadowLines()
-
-				self.currentScrollPos = nil
-			}
+				if !update.isEmpty { tableView.reloadRows(at: update, with: .none) }
+			})
 		}
 
 		if self.data.isEmpty {

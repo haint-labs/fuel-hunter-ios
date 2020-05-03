@@ -54,6 +54,10 @@ class TableViewNoDataView: UIView {
 		titleLabel.font = Font(.normal, size: .size2).font
 	}
 
+	func setSmallerFont() {
+		titleLabel.font = Font(.normal, size: .size3).font
+	}
+
 	func set(title: String, loadingEnabled: Bool) {
 		titleLabel.text = title
 		if loadingEnabled {

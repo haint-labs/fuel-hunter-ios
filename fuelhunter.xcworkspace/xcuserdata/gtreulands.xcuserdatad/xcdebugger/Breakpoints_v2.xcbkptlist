@@ -14,25 +14,9 @@
             filePath = "fuelhunter/Scenes/Settings/CompaniesChooseList/CompaniesChooseListLayoutView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "updateData(data:insert:delete:update:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "ABC49C25-5E37-40B2-A911-E62E4844DE70"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fuelhunter/Workers/AppSettingsWorker.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -50,6 +34,29 @@
             endingLineNumber = "196"
             landmarkName = "tableView(_:viewForHeaderInSection:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "0DD03455-038B-4353-AFD1-FD70CF5F608B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "_NSLayoutConstraintNumberExceedsLimit"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "0DD03455-038B-4353-AFD1-FD70CF5F608B - 3feea0eb05246630"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_NSLayoutConstraintNumberExceedsLimit"
+                  moduleName = "Foundation"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

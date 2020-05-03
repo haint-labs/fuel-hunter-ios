@@ -188,7 +188,7 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 	func animateBackgroundImageColorToState(visible: Bool) {
 		if visible {
 			UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
-				self.backgroundView.backgroundColor = UIColor(red: 46/255.0, green: 63/255.0, blue: 97/255.0, alpha: 0.3)
+				self.backgroundView.backgroundColor = UIColor(named: "PopUpBackground")
 			}, completion: { (finished: Bool) in })
 		} else {
 			UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {

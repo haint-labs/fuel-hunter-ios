@@ -19,8 +19,6 @@ protocol IntroChooseCompanyLayoutViewDataLogic: class {
 
 class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITableViewDelegate, IntroChooseCompanyLayoutViewDataLogic, FuelCompanyListCellSwitchLogic {
 
-	var currentScrollPos : CGFloat?
-
 	weak var controller: IntroChooseCompanyViewController? 
 
 	@IBOutlet weak var baseView: UIView!
@@ -112,7 +110,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
     	let nib = UINib(nibName: "FuelCompanyListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
 		tableView.backgroundColor = UIColor.clear
-		tableViewNoDataView.alpha = 0;
+		tableViewNoDataView.alpha = 0
 
   		updateFonts()
 
@@ -183,12 +181,6 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		adjustVisibilityOfShadowLines()
-
-		// Force the tableView to stay at scroll position until animation completes
-		if (currentScrollPos != nil){
-			tableView.setContentOffset(CGPoint(x: 0, y: currentScrollPos!), animated: false)
-		}
-
 	}
 
   	// MARK: Functions
@@ -213,7 +205,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 			controller?.switchWasPressedFor(companyName: aData.title, withState: state)
 		}
 	}
-
+	
   	// MARK: IntroChooseCompanyLayoutViewDataLogic
 
 	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath]) {
@@ -224,25 +216,15 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		} else {
 			self.data = data
 
-			self.currentScrollPos = self.tableView.contentOffset.y
+			tableView.performBatchUpdates({
+				if !delete.isEmpty { tableView.deleteRows(at: delete, with: .fade) }
+				if !insert.isEmpty { tableView.insertRows(at: insert, with: .fade) }
+				if !update.isEmpty { tableView.reloadRows(at: update, with: .fade) }
+			}) { finished in self.adjustVisibilityOfShadowLines() }
 
 			tableView.performBatchUpdates({
-				if !update.isEmpty {
-					tableView.reloadRows(at: update, with: .fade)
-				}
-
-				if !delete.isEmpty {
-					tableView.deleteRows(at: delete, with: .fade)
-				}
-
-				if !insert.isEmpty {
-					tableView.insertRows(at: insert, with: .fade)
-				}
-			}) { finished in
-				self.adjustVisibilityOfShadowLines()
-
-				self.currentScrollPos = nil
-			}
+				if !update.isEmpty { tableView.reloadRows(at: update, with: .none) }
+			})
 		}
 
 		self.nextButton.isEnabled = !self.data.isEmpty

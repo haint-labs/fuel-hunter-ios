@@ -56,7 +56,7 @@ class FuelListPresenter: FuelListPresentationLogic {
 		}
 
 		let viewModel = FuelList.FetchPrices.ViewModel(displayedPrices: displayedPrices, insertItems: response.insertItems, deleteItems: response.deleteItems, updateItems: response.updateItems, insertSections: response.insertSections, deleteSections: response.deleteSections, updateSections: response.updateSections)
-		viewController?.displaySomething(viewModel: viewModel)
+		viewController?.displayData(viewModel: viewModel)
 	}
 
 

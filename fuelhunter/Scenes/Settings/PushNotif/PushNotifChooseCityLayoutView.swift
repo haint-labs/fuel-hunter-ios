@@ -26,6 +26,7 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 	@IBOutlet var frontView: UIView!
 	@IBOutlet var descriptionCityLabel: UILabel!
 	@IBOutlet var backButton: UIButton!
+	@IBOutlet var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet var tableView: UITableView!
 
 	var textField: UITextField?
@@ -40,6 +41,8 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 
 	var tableViewBottomConstraint: NSLayoutConstraint!
 	var tableViewRightConstraint: NSLayoutConstraint!
+
+	var tableViewNoDataViewRightConstraint: NSLayoutConstraint!
 
 	var sortedCities: [CityAndDistance]!
 	var filteredSortedCities: [CityAndDistance]!
@@ -77,6 +80,7 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
   		descriptionCityLabel.translatesAutoresizingMaskIntoConstraints = false
 		backButton.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
+		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
 
   		baseView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		baseView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
@@ -105,10 +109,16 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		tableViewRightConstraint = tableView.rightAnchor.constraint(equalTo: frontView.rightAnchor)
 		tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: frontView.bottomAnchor, constant: 0)
 
+		tableViewNoDataView.leftAnchor.constraint(equalTo: frontView.leftAnchor, constant: 16).isActive = true
+		tableViewNoDataViewRightConstraint = tableViewNoDataView.rightAnchor.constraint(equalTo: frontView.rightAnchor, constant: -16)
+		tableViewNoDataView.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 80).isActive = true
+
 		descriptionRightConstraint.isActive = true
 
 		tableViewRightConstraint.isActive = true
 		tableViewBottomConstraint.isActive = true
+
+		tableViewNoDataViewRightConstraint.isActive = true
 
   		frontView.backgroundColor = .white
   		frontView.layer.cornerRadius = 10
@@ -124,6 +134,7 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
   		tableView.delegate = self
     	tableView.dataSource = self
     	tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
+		tableView.scrollIndicatorInsets.right = 2
     	let nibCell = UINib(nibName: "ChooseCityCell", bundle: nil)
     	let nibHeader = UINib(nibName: "SearchTableViewHeaderView", bundle: nil)
     	tableView.register(nibCell, forCellReuseIdentifier: "cell")
@@ -134,6 +145,10 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
 			shouldListShowDistance = false
 		}
+
+		tableViewNoDataView.setSmallerFont()
+		tableViewNoDataView.alpha = 0
+		adjustNoDataLabelText()
   	}
 
 	// MARK: Table view
@@ -215,6 +230,10 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		self.tableView.setContentOffset(.zero, animated: true)
 	}
 
+	func adjustNoDataLabelText() {
+		self.tableViewNoDataView.set(title: "intro_notifs_no_data_found_when_filtered".localized(), loadingEnabled: false)
+	}
+
 	// MARK: PushNotifChooseCityLayoutViewDataLogic
 
 	func updateData(data: PushNotifSetup.SetUp.ViewModel) {
@@ -249,6 +268,14 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 			filteredSortedCities = sortedCities.filter({$0.name.localized().range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil})
 		} else {
 			filteredSortedCities = sortedCities
+		}
+
+		if filteredSortedCities.isEmpty {
+			self.tableViewNoDataView.alpha = 1
+			self.tableView.isScrollEnabled = false
+		} else {
+			self.tableViewNoDataView.alpha = 0
+			self.tableView.isScrollEnabled = true
 		}
 
 		// simple reloadData, but with a tinsy fade animation. We can't reload section with animation, because textfield in section header.

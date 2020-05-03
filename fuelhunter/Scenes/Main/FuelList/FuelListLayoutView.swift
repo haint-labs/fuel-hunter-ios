@@ -147,7 +147,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		NotificationCenter.default.addObserver(self, selector: #selector(dataDownloaderStateChange),
 			name: .dataDownloaderStateChange, object: nil)
 
-		tableViewNoDataView.alpha = 0;
+		tableViewNoDataView.alpha = 0
 		adjustNoDataLabelText()
   	}
 

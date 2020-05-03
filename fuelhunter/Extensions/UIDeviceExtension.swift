@@ -3,7 +3,7 @@
 //  fuelhunter
 //
 //  Created by Guntis on 15/04/2020.
-//  Copyright © 2020 myEmerg. All rights reserved.
+//  Copyright © 2020 . All rights reserved.
 //
 
 import Foundation

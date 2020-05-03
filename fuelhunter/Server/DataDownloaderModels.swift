@@ -35,10 +35,12 @@ struct CompanyRequestCodable: Codable {
 
 struct CompanyCodable: Codable {
 	let name: String
+	let hidden: Bool
 	let order: Int
-	let homepage: String
-	let logo: [String: String]
-	let largeLogo: [String: String]
-	let mapLogo: [String: String]
-	let mapGrayLogo: [String: String]
+	let description: [String: String]?
+	let homepage: String = ""
+	let logo: [String: String]?
+	let largeLogo: [String: String]?
+	let mapLogo: [String: String]?
+	let mapGrayLogo: [String: String]?
 }

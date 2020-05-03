@@ -25,4 +25,8 @@ public extension String {
     func localizedToLV() -> String {
 		return AppSettingsWorker.shared.lvLanguageBundle.localizedString(forKey: self, value: nil, table: nil)
     }
+
+    func localizedToLG() -> String {
+		return AppSettingsWorker.shared.lgLanguageBundle.localizedString(forKey: self, value: nil, table: nil)
+    }
 }

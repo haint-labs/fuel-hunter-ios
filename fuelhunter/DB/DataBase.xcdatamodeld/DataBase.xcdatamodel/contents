@@ -11,6 +11,7 @@
     </entity>
     <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
         <attribute name="descriptionEN" optional="YES" attributeType="String"/>
+        <attribute name="descriptionLG" optional="YES" attributeType="String"/>
         <attribute name="descriptionLV" optional="YES" attributeType="String"/>
         <attribute name="descriptionRU" optional="YES" attributeType="String"/>
         <attribute name="homePage" optional="YES" attributeType="String"/>
@@ -23,6 +24,7 @@
         <attribute name="mapLogoName" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="order" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shouldPopUpToUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="companyMetaData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="company" inverseEntity="CompanyMetaDataEntity"/>
     </entity>
     <entity name="CompanyMetaDataEntity" representedClassName="CompanyMetaDataEntity" syncable="YES" codeGenerationType="class">
@@ -43,7 +45,7 @@
     </entity>
     <elements>
         <element name="AddressEntity" positionX="331.546875" positionY="29.45703125" width="128" height="148"/>
-        <element name="CompanyEntity" positionX="-267.26171875" positionY="-61.09375" width="128" height="253"/>
+        <element name="CompanyEntity" positionX="-267.26171875" positionY="-61.09375" width="128" height="283"/>
         <element name="CompanyMetaDataEntity" positionX="-90.71875" positionY="134.5546875" width="159.55078125" height="88"/>
         <element name="PriceEntity" positionX="125.96484375" positionY="29.5859375" width="128" height="178"/>
     </elements>

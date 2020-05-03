@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		ScenesManager.shared.window = window
 		ScenesManager.shared.setRootViewController(animated: false)
 
+		DataBaseManager.shared.saveContext()
+		
 		// To initiate it.
 		_ = AppSettingsWorker.shared
 

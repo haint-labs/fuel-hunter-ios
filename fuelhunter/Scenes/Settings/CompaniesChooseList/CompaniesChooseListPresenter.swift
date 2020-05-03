@@ -40,6 +40,8 @@ class CompaniesChooseListPresenter: CompaniesChooseListPresentationLogic {
 					languageString = company.descriptionRU ?? ""
 				case .english:
 					languageString = company.descriptionEN ?? ""
+				case .latgalian:
+					languageString = company.descriptionLV ?? ""
 			}
 
 			let title = company.name ?? ""

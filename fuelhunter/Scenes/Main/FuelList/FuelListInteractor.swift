@@ -16,6 +16,7 @@ import CoreData
 protocol FuelListBusinessLogic {
 	func fetchPrices(request: FuelList.FetchPrices.Request)
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request)
+	func checkIfThereAreCompanyChangesToPresent() -> Bool
 }
 
 protocol FuelListDataStore {
@@ -109,6 +110,20 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 		let response = FuelList.RevealMap.Response(selectedCompany: request.selectedCompany, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
 
 		self.presenter?.revealMapView(response: response)
+	}
+
+	func checkIfThereAreCompanyChangesToPresent() -> Bool {
+		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i && shouldPopUpToUser == %i", false, true)
+		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
+			print("companyObjectArray \(companyObjectArray.count)")
+
+			if !companyObjectArray.isEmpty {
+				return true
+			}
+		}
+
+		return false
 	}
 
 	// MARK: NSFetchedResultsControllerDelegate

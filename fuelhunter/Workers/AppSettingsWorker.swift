@@ -25,6 +25,8 @@ extension Notification.Name {
     static let fontSizeWasChanged = Notification.Name("fontSizeWasChanged")
 
     static let dataDownloaderStateChange = Notification.Name("dataDownloaderStateChange")
+
+    static let checkForCompanyChanges = Notification.Name("checkForCompanyChanges")
 }
 
 class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -33,6 +35,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 		case latvian = "lv"
 		case russian = "ru"
 		case english = "en"
+		case latgalian = "lv-LV"
 	}
 
 	static let shared = AppSettingsWorker()
@@ -51,6 +54,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 	var ruLanguageBundle = Bundle(path: Bundle.main.path(forResource: "ru", ofType: "lproj")!)!
 	var lvLanguageBundle = Bundle(path: Bundle.main.path(forResource: "lv", ofType: "lproj")!)!
 	var enLanguageBundle = Bundle(path: Bundle.main.path(forResource: "en", ofType: "lproj")!)!
+	var lgLanguageBundle = Bundle(path: Bundle.main.path(forResource: "lv-LV", ofType: "lproj")!)!
 	//===
 
 	private override init() {
@@ -309,7 +313,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
 		if let userLocation = userLocation, let lastLocation = locations.last {
-			let distanceInMeters = userLocation.distance(from: lastLocation);
+			let distanceInMeters = userLocation.distance(from: lastLocation)
 
 			print("distanceInMeters \(distanceInMeters)")
 

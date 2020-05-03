@@ -18,7 +18,6 @@ protocol PushNotifReturnUpdateDataLogic: class {
 
 @objc protocol PushNotifSetupRoutingLogic {
   	func dismissCurrentViewController()
-  	func chooseCityButtonPressed()
 }
 
 protocol PushNotifSetupDataPassing {
@@ -35,11 +34,5 @@ class PushNotifSetupRouter: NSObject, PushNotifSetupRoutingLogic, PushNotifSetup
 
 	func dismissCurrentViewController() {
 		viewController?.dismiss(animated: true, completion: { [weak self] in self?.previousViewController?.updateData() })
-	}
-
-	func chooseCityButtonPressed() {
-//		let destination = PushNotifChooseCityViewController()
-//		destination.modalTransitionStyle = .flipHorizontal
-//		viewController?.present(destination, animated: true, completion: nil)
 	}
 }

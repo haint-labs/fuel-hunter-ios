@@ -37,6 +37,10 @@ class FuelCompanyListCell: FontChangeTableViewCell {
 
 	var iconBottomConstraint: NSLayoutConstraint?
 
+	var titleLabelRightConstraint: NSLayoutConstraint!
+	var descriptionLabelRightConstraint: NSLayoutConstraint!
+	var switchLeftConstraint: NSLayoutConstraint!
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -73,11 +77,15 @@ class FuelCompanyListCell: FontChangeTableViewCell {
 		titleTopAnchorConstraint = titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6)
 		titleTopAnchorConstraint?.isActive = true
 
+		titleLabelRightConstraint = titleLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10)
+
 		titleBottomAnchorConstraint = titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -12)
 
 		descriptionLeftImageAnchorConstraint = descriptionLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10)
 		descriptionLeftCellAnchorConstraint = descriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10)
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
+
+		descriptionLabelRightConstraint = descriptionLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10)
 		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
 
 		space1.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 9).isActive = true
@@ -87,7 +95,7 @@ class FuelCompanyListCell: FontChangeTableViewCell {
 		space1Width.isActive = true
 
 		aSwitch.widthAnchor.constraint(equalToConstant: aSwitch.intrinsicContentSize.width).isActive = true
-		aSwitch.leftAnchor.constraint(equalTo: space1.rightAnchor).isActive = true
+		switchLeftConstraint = aSwitch.leftAnchor.constraint(equalTo: space1.rightAnchor)
 		aSwitch.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		aSwitch.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
 
@@ -95,6 +103,8 @@ class FuelCompanyListCell: FontChangeTableViewCell {
 		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
+
+		setSwitchAsVisible(true)
 
     	updateFonts()
     }
@@ -144,6 +154,13 @@ class FuelCompanyListCell: FontChangeTableViewCell {
 			self.titleTopAnchorConstraint?.constant = 6
 			self.titleBottomAnchorConstraint?.isActive = false
 		}
+	}
+
+	func setSwitchAsVisible(_ visible: Bool) {
+		self.switchLeftConstraint.isActive = visible
+		self.titleLabelRightConstraint.isActive = !visible
+		self.descriptionLabelRightConstraint.isActive = !visible
+		self.aSwitch.isHidden = !visible
 	}
 
 	func setAsCellType(cellType: CellBackgroundType) {

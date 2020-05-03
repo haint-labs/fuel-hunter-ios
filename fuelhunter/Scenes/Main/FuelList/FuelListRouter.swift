@@ -16,8 +16,8 @@ protocol FuelListRoutingLogic {
 	func routeToSettings()
 	func routeToAppAccuracyInfo()
 	func routeToAppSavingsInfo()
-
 	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType)
+	func revealCompanyChanges()
 }
 
 protocol FuelListDataPassing {
@@ -57,7 +57,14 @@ class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
 		navigateTo(source: viewController!, destination: destination)
 	}
 
-
+	func revealCompanyChanges() {
+		let destinationVC = CompanyChangesViewController()
+		destinationVC.providesPresentationContextTransitionStyle = true
+		destinationVC.definesPresentationContext = true
+		destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
+		viewController!.present(destinationVC, animated: true) { }
+	}
+	
   	// MARK: Navigation  
 	func navigateTo(source: FuelListViewController, destination: UIViewController) {
 		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
