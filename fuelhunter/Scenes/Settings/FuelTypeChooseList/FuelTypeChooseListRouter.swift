@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol FuelTypeChooseListRoutingLogic {
-  	//func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
 protocol FuelTypeChooseListDataPassing {

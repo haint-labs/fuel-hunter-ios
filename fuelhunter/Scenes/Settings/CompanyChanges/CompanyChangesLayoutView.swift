@@ -14,6 +14,7 @@ protocol CompanyChangesLayoutViewLogic: class {
 }
 
 protocol CompanyChangesLayoutViewDataLogic: class {
+	func animateBackgroundImageColorToState(visible: Bool)
 	func updateData(data: CompanyChanges.List.ViewModel)
 }
 
@@ -29,6 +30,7 @@ class CompanyChangesLayoutView: UIView, CompanyChangesLayoutViewDataLogic, UITab
 	@IBOutlet weak var tableViewTopShadow: UIImageView!
 	@IBOutlet weak var tableViewBottomShadow: UIImageView!
 	@IBOutlet weak var dismissButton: UIButton!
+	@IBOutlet var backgroundDismissButton: UIButton!
 
 	var tableViewHeightConstraint: NSLayoutConstraint!
 
@@ -51,7 +53,7 @@ class CompanyChangesLayoutView: UIView, CompanyChangesLayoutViewDataLogic, UITab
 		adjustVisibilityOfShadowLines()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("CompanyChangesLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -67,10 +69,14 @@ class CompanyChangesLayoutView: UIView, CompanyChangesLayoutViewDataLogic, UITab
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
   		dismissButton.translatesAutoresizingMaskIntoConstraints = false
-
+		backgroundDismissButton.translatesAutoresizingMaskIntoConstraints = false
 
   		baseView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		baseView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+
+		backgroundDismissButton.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+  		backgroundDismissButton.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+		backgroundDismissButton.addTarget(self, action: NSSelectorFromString("dismissButtonPressed"), for: .touchUpInside)
 
   		backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 6000).isActive = true
@@ -227,6 +233,20 @@ class CompanyChangesLayoutView: UIView, CompanyChangesLayoutViewDataLogic, UITab
 		adjustVisibilityOfShadowLines()
 	}
 
+	// MARK: Functions
+
+	private func adjustVisibilityOfShadowLines() {
+		let alfa = min(15, max(0, tableView.contentOffset.y + tableView.contentInset.top))/15.0
+		tableViewTopShadow.alpha = alfa
+		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
+		let alfa2 = min(15, max(0, tableView.contentSize.height - value - tableView.contentInset.top))/15.0
+		tableViewBottomShadow.alpha = alfa2
+	}
+
+  	@objc private func dismissButtonPressed() {
+  		controller?.dismissButtonPressed()
+  	}
+
 	// MARK: FuelCompanyListCellSwitchLogic
 
 	func switchWasPressedOnTableViewCell(cell: FuelCompanyListCell, withState state: Bool) {
@@ -236,19 +256,7 @@ class CompanyChangesLayoutView: UIView, CompanyChangesLayoutViewDataLogic, UITab
 		}
 	}
 
-  	// MARK: Functions
-
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(15, max(0, tableView.contentOffset.y + tableView.contentInset.top))/15.0
-		tableViewTopShadow.alpha = alfa
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-		let alfa2 = min(15, max(0, tableView.contentSize.height - value - tableView.contentInset.top))/15.0
-		tableViewBottomShadow.alpha = alfa2
-	}
-
-  	@objc func dismissButtonPressed() {
-  		controller?.dismissButtonPressed()
-  	}
+	// MARK: CompanyChangesLayoutViewDataLogic
 
 	func animateBackgroundImageColorToState(visible: Bool) {
 		if visible {
@@ -262,13 +270,9 @@ class CompanyChangesLayoutView: UIView, CompanyChangesLayoutViewDataLogic, UITab
 		}
 	}
 
-	// MARK: CompanyChangesLayoutViewDataLogic
-
 	func updateData(data: CompanyChanges.List.ViewModel) {
 		companyData = data.displayedCompanyCellItems
-
 		titleLabel.text = "settings_changes_title".localized()
-
 		tableView.reloadData()
 		self.layoutSubviews()
 	}

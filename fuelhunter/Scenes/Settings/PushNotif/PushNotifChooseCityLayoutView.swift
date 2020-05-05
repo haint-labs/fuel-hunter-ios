@@ -28,6 +28,7 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 	@IBOutlet var backButton: UIButton!
 	@IBOutlet var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet var tableView: UITableView!
+	@IBOutlet var backgroundDismissButton: UIButton!
 
 	var textField: UITextField?
 	var headerView: SearchTableViewHeaderView?
@@ -67,7 +68,7 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		NotificationCenter.default.removeObserver(self)
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("PushNotifChooseCityLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		self.backgroundColor = .clear
@@ -81,9 +82,15 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		backButton.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
+		backgroundDismissButton.translatesAutoresizingMaskIntoConstraints = false
 
   		baseView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		baseView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+
+		backgroundDismissButton.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+  		backgroundDismissButton.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+
+		backgroundDismissButton.addTarget(self, action: NSSelectorFromString("backButtonPressed"), for: .touchUpInside)
 
 		frontViewTopConstraint = frontView.topAnchor.constraint(equalTo: self.topAnchor)
 		frontViewLeftConstraint = frontView.leftAnchor.constraint(equalTo: self.leftAnchor)
@@ -210,18 +217,18 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 
   	// MARK: Functions
 
-  	@objc func backButtonPressed() {
+  	@objc private func backButtonPressed() {
   		controller?.backButtonPressed()
   		resignTextField()
   	}
 
-	func updateTableViewOffset() {
+	private func updateTableViewOffset() {
 		let calculatedOffset = (self.frame.height - frontView.frame.maxY)
 		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight - calculatedOffset + 12, right: 0)
 		tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight - calculatedOffset, right: 0)
 	}
 
-	func resignTextField() {
+	private func resignTextField() {
 		shouldRiseKeyboard = false
 		headerView?.deactivateTextField()
 
@@ -230,7 +237,7 @@ class PushNotifChooseCityLayoutView: UIView, PushNotifChooseCityLayoutViewDataLo
 		self.tableView.setContentOffset(.zero, animated: true)
 	}
 
-	func adjustNoDataLabelText() {
+	private func adjustNoDataLabelText() {
 		self.tableViewNoDataView.set(title: "intro_notifs_no_data_found_when_filtered".localized(), loadingEnabled: false)
 	}
 

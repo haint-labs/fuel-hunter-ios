@@ -13,5 +13,4 @@
 import UIKit
 
 class CompanyChangesWorker {
-  	
 }

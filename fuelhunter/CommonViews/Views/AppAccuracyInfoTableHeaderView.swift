@@ -25,7 +25,7 @@ class AppAccuracyInfoTableHeaderView: UIView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("AppAccuracyInfoTableHeaderView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds

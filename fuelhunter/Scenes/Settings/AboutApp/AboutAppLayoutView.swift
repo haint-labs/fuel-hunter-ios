@@ -38,7 +38,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("AboutAppLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -83,7 +83,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
     	adjustNoDataLabelText()
   	}
 
-  	func setUpTableViewHeader() {
+  	internal func setUpTableViewHeader() {
 		header = AboutAppTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 100))
 		header.translatesAutoresizingMaskIntoConstraints = false
 		self.tableView.tableHeaderView = header
@@ -107,7 +107,6 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 			let aData = self.data[indexPath.row]
 			cell.selectionStyle = .none
 			cell.titleLabel.text = aData.title
-//			cell.descriptionLabel.text = ""
 			cell.setIconImageFromImageName(imageName: aData.imageName)
 
 			if self.data.count == 1 {
@@ -141,7 +140,22 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 
 	// MARK: functions
 
-	func adjustVisibilityOfShadowLines() {
+	private func adjustNoDataLabelText() {
+		switch CompaniesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
+	}
+
+	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top
@@ -175,20 +189,4 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
 			self.tableViewNoDataView.alpha = 0
 		}
 	}
-
-	func adjustNoDataLabelText() {
-		switch CompaniesDownloader.downloadingState {
-			case .downloading:
-				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
-			case .downloaded:
-				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
-			case .parsingError:
-				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
-			case .serverError:
-				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
-			case .timeout:
-				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
-		}
-	}
-
 }

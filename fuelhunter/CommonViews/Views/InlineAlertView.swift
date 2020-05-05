@@ -49,7 +49,7 @@ class InlineAlertView: UIView {
 		}
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("InlineAlertView", owner: self, options: nil)
 		addSubview(inlineAlertView)
 		inlineAlertView.frame = self.bounds
@@ -62,13 +62,9 @@ class InlineAlertView: UIView {
 		updateFonts()
   	}
 
-  	func updateFonts() {
-		textLabel.font = Font(.normal, size: .size6).font
-  	}
-
 	// MARK: Functions
-
-	@IBAction func inlineAlertWasPressed(_ sender: Any) {
+	
+	@IBAction private func inlineAlertWasPressed(_ sender: Any) {
 		expanded = false
 		UIView.animate(withDuration: 0.3) {
 			self.heightConstraint.constant = 0
@@ -78,15 +74,19 @@ class InlineAlertView: UIView {
 		}
 	}
 
+	private func updateFonts() {
+		textLabel.font = Font(.normal, size: .size6).font
+  	}
+  	
 	// MARK: Notifications
 
-	@objc func languageWasChanged() {
+	@objc private func languageWasChanged() {
 		textLabel.text = ""//"inline_alert_default_demo_message".localized()
 		self.layoutIfNeeded()
 		self.superview?.layoutIfNeeded()
 	}
 
-	@objc func fontSizeWasChanged() {
+	@objc private func fontSizeWasChanged() {
 		updateFonts()
 		self.heightConstraint.constant = 0
 		self.layoutIfNeeded()

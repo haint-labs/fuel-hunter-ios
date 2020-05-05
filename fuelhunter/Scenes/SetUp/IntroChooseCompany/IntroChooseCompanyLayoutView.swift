@@ -54,7 +54,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		adjustVisibilityOfShadowLines()
 	}
 	
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("IntroChooseCompanyLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -120,16 +120,6 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		adjustNoDataLabelText()
     }
 
-	func updateFonts() {
-		topTitleLabel.font = Font(.normal, size: .size2).font
-		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
-	}
-
-	override func fontSizeWasChanged() {
-		updateFonts()
-		tableView.reloadData()
-	}
-
   	// MARK: Table view
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -185,7 +175,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 
   	// MARK: Functions
 
-	func adjustVisibilityOfShadowLines() {
+	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
@@ -193,9 +183,34 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		tableViewBottomShadow.alpha = alfa2
 	}
 
-  	@objc func nextButtonPressed() {
+	private func adjustNoDataLabelText() {
+		switch CompaniesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
+	}
+
+  	@objc private func nextButtonPressed() {
 		controller?.nextButtonWasPressed()
   	}
+
+  	private func updateFonts() {
+		topTitleLabel.font = Font(.normal, size: .size2).font
+		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+		tableView.reloadData()
+	}
 
 	// MARK: FuelCompanyListCellSwitchLogic
 
@@ -240,24 +255,9 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 		adjustVisibilityOfShadowLines()
 	}
 
-	func adjustNoDataLabelText() {
-		switch CompaniesDownloader.downloadingState {
-			case .downloading:
-				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
-			case .downloaded:
-				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
-			case .parsingError:
-				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
-			case .serverError:
-				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
-			case .timeout:
-				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
-		}
-	}
-
 	// MARK: Notifications
 
-	@objc func dataDownloaderStateChange() {
+	@objc private func dataDownloaderStateChange() {
 		adjustNoDataLabelText()
 	}
 }

@@ -31,8 +31,8 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
 	@IBOutlet var label: UILabel!
 	@IBOutlet var accessoryIconImageView: UIImageView!
 
-	var labelRightAnchorConstraint: NSLayoutConstraint?
-	var accessoryImageRightAnchorConstraint: NSLayoutConstraint?
+	var labelRightAnchorConstraint: NSLayoutConstraint!
+	var accessoryImageRightAnchorConstraint: NSLayoutConstraint!
 	
 	// MARK: View lifecycle
 
@@ -46,7 +46,7 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("MapInfoButtonView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -96,22 +96,22 @@ class MapInfoButtonView: UIView, MapInfoButtonViewDisplayLogic {
 		if type == .typePrice {
 			iconImageView.image = UIImage(named: "money_sign")
 			accessoryIconImageView.isHidden = true
-			accessoryImageRightAnchorConstraint?.isActive = false
-			labelRightAnchorConstraint?.isActive = true
+			accessoryImageRightAnchorConstraint.isActive = false
+			labelRightAnchorConstraint.isActive = true
 		} else {
 			if !AppSettingsWorker.shared.getGPSIsEnabled() || text == "-1" {
 				label.text = "map_directions_button_title".localized()
 			}
 			iconImageView.image = UIImage(named: "car_sign")
 			accessoryIconImageView.isHidden = false
-			accessoryImageRightAnchorConstraint?.isActive = true
-			labelRightAnchorConstraint?.isActive = false
+			accessoryImageRightAnchorConstraint.isActive = true
+			labelRightAnchorConstraint.isActive = false
 		}
 	}
 
-	// MARK: MapInfoButtonViewButtonLogic
+	// MARK: Functions
 
-	@objc func buttonPressed() {
+	@objc private func buttonPressed() {
 		controller?.buttonWasPressedForViewType(viewType)
 	}
 }

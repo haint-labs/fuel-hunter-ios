@@ -27,7 +27,7 @@ class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NS
   	var presenter: SettingsPresentationLogic?
 	var fetchedResultsController: NSFetchedResultsController<CompanyEntity>!
   	var settingsWorker = SettingsWorker()
-  	var appSettingsWorker = AppSettingsWorker.shared
+
 	// MARK: SettingsBusinessLogic
 
   	func getSettingsCellsData(request: Settings.SettingsList.Request) {
@@ -55,30 +55,30 @@ class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NS
 		}
 
 
-		let gpsIsEnabledStatus = appSettingsWorker.getGPSIsEnabled()
-		let notifIsEnabledStatus = appSettingsWorker.getNotifIsEnabled()
-		let notifCentsValue = appSettingsWorker.getStoredNotifCentsCount()
+		let gpsIsEnabledStatus = AppSettingsWorker.shared.getGPSIsEnabled()
+		let notifIsEnabledStatus = AppSettingsWorker.shared.getNotifIsEnabled()
+		let notifCentsValue = AppSettingsWorker.shared.getStoredNotifCentsCount()
 		let companyNames = settingsWorker.getCompanyNames(fromFetchedCompanies: fetchedCompanies ?? [])
-		let fuelTypeNames = appSettingsWorker.getFuelTypeToggleStatus().description
-		let selectedCityName = appSettingsWorker.getStoredNotifCityName()
+		let fuelTypeNames = AppSettingsWorker.shared.getFuelTypeToggleStatus().description
+		let selectedCityName = AppSettingsWorker.shared.getStoredNotifCityName()
 
 		let response = Settings.SettingsList.Response(companyNames: companyNames, fuelTypeNames: fuelTypeNames, gpsIsEnabledStatus: gpsIsEnabledStatus, pushNotifIsEnabledStatus: notifIsEnabledStatus, notifCentsValue: notifCentsValue, notifSelectedCityName: selectedCityName)
 		presenter?.presentSettingsListWithData(response: response)
   	}
 
   	func userPressedOnNotifSwitch() {
-  		appSettingsWorker.notifSwitchWasPressed { [weak self] in
+  		AppSettingsWorker.shared.notifSwitchWasPressed { [weak self] in
   			// If we have authorised, then we can work with our set Up.
-  			if self?.appSettingsWorker.notificationsAuthorisationStatus == .authorized {
+  			if AppSettingsWorker.shared.notificationsAuthorisationStatus == .authorized {
   				// This is already toggled in notifSwitchWasPressed.  So, then we just do set up view
-				if self?.appSettingsWorker.getNotifIsEnabled() == true {
-					let storedCentsCount = self?.appSettingsWorker.getStoredNotifCentsCount()
-					let response = Settings.PushNotif.Response(storedNotifCentsCount: storedCentsCount ?? 1)
+				if AppSettingsWorker.shared.getNotifIsEnabled() == true {
+					let storedCentsCount = AppSettingsWorker.shared.getStoredNotifCentsCount()
+					let response = Settings.PushNotif.Response(storedNotifCentsCount: storedCentsCount)
 					self?.presenter?.showNotifSetUp(response: response)
 				// We disabled, so simply reload table view.
 				} else {
-						let request = Settings.SettingsList.Request()
-						self?.getSettingsCellsData(request: request)
+					let request = Settings.SettingsList.Request()
+					self?.getSettingsCellsData(request: request)
 				}
 			} else {
 				// This case it will always return as disabled, and so we only have to open settings and reload table view (to show it turned off if it was on.)
@@ -90,7 +90,7 @@ class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NS
   	}
 
   	func userPressedOnGpsSwitch() {
-  		appSettingsWorker.userPressedButtonToGetGPSAccess { result in
+  		AppSettingsWorker.shared.userPressedButtonToGetGPSAccess { result in
   			switch result {
   				case .firstTime:
 					// All good, but reload data.

@@ -22,15 +22,10 @@ class CompaniesChooseListPresenter: CompaniesChooseListPresentationLogic {
   	// MARK: CompaniesChooseListPresentationLogic
 
   	func presentData(response:  CompaniesChooseList.CompanyCells.Response) {
-
 		var array = [CompaniesChooseList.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
-
 		let language = AppSettingsWorker.shared.getCurrentLanguage()
 
-
 		for company in response.fetchedCompanies {
-//			print("company: \ndescriptionLV - \(company.descriptionLV)\ndescriptionRU - \(company.descriptionRU)\nhomePage - \(company.homePage)\nisCheapestToggle - \(company.isCheapestToggle)\nisEnabled - \(company.isEnabled)\nlargeLogoName - \(company.largeLogoName)\nlogoName - \(company.logoName)\nmapGrayLogoName - \(company.mapGrayLogoName)\nmapLogoName - \(company.mapLogoName)\nname - \(company.name)\norder - \(company.order)\nprices - \(company.prices)")
-
 			let languageString: String
 
 			switch language {

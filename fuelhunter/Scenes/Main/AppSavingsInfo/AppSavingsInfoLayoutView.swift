@@ -35,7 +35,7 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 		adjustVisibilityOfShadowLines()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("AppSavingsInfoLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -70,7 +70,7 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 		setUpView()
   	}
 
-  	func setUpView() {
+  	private func setUpView() {
 		savingsView = AppSavingsView(frame: CGRect(x: 0, y: 10, width: self.frame.width, height: 100))
 		scrollView.addSubview(savingsView)
 		savingsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20).isActive = true
@@ -85,7 +85,7 @@ class AppSavingsInfoLayoutView: UIView, UIScrollViewDelegate {
 		adjustVisibilityOfShadowLines()
 	}
 
-	func adjustVisibilityOfShadowLines() {
+	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, scrollView.contentOffset.y))/50.0
 		topShadowImageView.alpha = alfa
 		let value = scrollView.contentOffset.y+scrollView.frame.size.height-scrollView.contentInset.bottom-scrollView.contentInset.top

@@ -82,7 +82,7 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 		router.dataStore = interactor
   	}
 
-  	func setUpViews() {
+  	private func setUpViews() {
 		mainLayoutView = PushNotifSetupLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(mainLayoutView)
 		mainLayoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -105,18 +105,20 @@ class PushNotifSetupViewController: UIViewController, PushNotifSetupDisplayLogic
 
   	// MARK: Functions
 
-	@objc func appMovedToForeground() {
+	@objc private func appMovedToForeground() {
 		mainLayoutView.appMovedToForeground()
 	}
 
-	@objc func appMovedToBackground() {
+	@objc private func appMovedToBackground() {
 		mainLayoutView.appMovedToBackground()
 	}
 
-	func getData() {
+	private func getData() {
     	let request = PushNotifSetup.SetUp.Request()
     	interactor?.getDataToShow(request: request)
   	}
+
+	// MARK: PushNotifSetupDisplayLogic
 
   	func updateData(viewModel: PushNotifSetup.SetUp.ViewModel) {
   		mainLayoutView.updateData(data: viewModel)

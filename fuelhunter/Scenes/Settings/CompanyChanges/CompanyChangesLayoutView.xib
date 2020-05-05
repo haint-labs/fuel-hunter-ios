@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompanyChangesLayoutView" customModule="fuelhunter" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundDismissButton" destination="Uak-Xc-4cj" id="rDB-KH-xZ7"/>
                 <outlet property="backgroundView" destination="i8k-dd-xpx" id="zsJ-6A-62F"/>
                 <outlet property="baseView" destination="iN0-l3-epB" id="kRO-PE-9OU"/>
                 <outlet property="dismissButton" destination="qdK-Sm-cWB" id="8ig-7g-lEn"/>
@@ -30,6 +31,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uak-Xc-4cj">
+                    <rect key="frame" x="257" y="320" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrn-iV-DXL" userLabel="FrontView">
                     <rect key="frame" x="138" y="110" width="285" height="451"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

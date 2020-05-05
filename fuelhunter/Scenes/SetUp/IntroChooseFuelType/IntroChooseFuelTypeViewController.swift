@@ -58,7 +58,7 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = IntroChooseFuelTypeLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -70,11 +70,13 @@ class IntroChooseFuelTypeViewController: UIViewController, IntroChooseFuelTypeDi
 
   	// MARK: Functions
 
-  	func getData() {
+  	private func getData() {
     	let request = IntroChooseFuelType.FuelCells.Request()
     	interactor?.getFuelTypesListData(request: request)
   	}
 
+	// MARK: IntroChooseFuelTypeDisplayLogic
+	
   	func displayListWithData(viewModel: IntroChooseFuelType.FuelCells.ViewModel) {
     	layoutView.updateData(data: viewModel.displayedFuelCellItems)
     	layoutView.setNextButtonAsEnabled(viewModel.nextButtonIsEnabled)

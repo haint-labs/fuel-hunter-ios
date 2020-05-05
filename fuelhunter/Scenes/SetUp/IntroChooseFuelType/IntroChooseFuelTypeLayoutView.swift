@@ -43,7 +43,7 @@ class IntroChooseFuelTypeLayoutView: FontChangeView, UITableViewDataSource, UITa
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("IntroChooseFuelTypeLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -95,16 +95,6 @@ class IntroChooseFuelTypeLayoutView: FontChangeView, UITableViewDataSource, UITa
 
   		updateFonts()
     }
-
-	func updateFonts() {
-		topTitleLabel.font = Font(.normal, size: .size2).font
-		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
-	}
-
-	override func fontSizeWasChanged() {
-		updateFonts()
-		tableView.reloadData()
-	}
 
   	// MARK: Table view
 
@@ -158,7 +148,12 @@ class IntroChooseFuelTypeLayoutView: FontChangeView, UITableViewDataSource, UITa
 
   	// MARK: functions
 
-  	func adjustVisibilityOfShadowLines() {
+	private func updateFonts() {
+		topTitleLabel.font = Font(.normal, size: .size2).font
+		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
+	}
+
+  	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
@@ -166,9 +161,14 @@ class IntroChooseFuelTypeLayoutView: FontChangeView, UITableViewDataSource, UITa
 		tableViewBottomShadow.alpha = alfa2
 	}
 
-  	@objc func nextButtonPressed() {
+  	@objc private func nextButtonPressed() {
 		controller?.nextButtonWasPressed()
   	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+		tableView.reloadData()
+	}
 
   	// MARK: IntroChooseFuelTypeLayoutViewDataLogic
 

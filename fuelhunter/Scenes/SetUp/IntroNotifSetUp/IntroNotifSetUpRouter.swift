@@ -24,6 +24,8 @@ class IntroNotifSetUpRouter: NSObject, IntroNotifSetUpRoutingLogic, IntroNotifSe
   	weak var viewController: IntroNotifSetUpViewController?
   	var dataStore: IntroNotifSetUpDataStore?
 
+	// MARK: IntroNotifSetUpRoutingLogic
+
 	func presentNotifSetUpScene(response: IntroNotifSetUp.PushNotif.Response) {
 		let destinationVC = PushNotifSetupViewController()
   		destinationVC.router?.previousViewController = viewController!

@@ -18,6 +18,7 @@ protocol MapLayoutViewDataLogic: class {
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double)
 	func updateMapViewOffset(offset: CGFloat, ratio: Double, animated: Bool)
 	func refreshMapPin(with data: MapPoint)
+	func selectedPin(_ selectedPin: MapPoint)
 }
 
 class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestureRecognizerDelegate {
@@ -36,19 +37,16 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 	var calculatedMaxPinWidth: CGFloat = 0
 	var calculatedMaxPinHeight: CGFloat = 0
-
 	var currentMapOffset: CGFloat = 0
-	var zoomOnUserWasDone: Bool = false
+	var offsetRatio: Double = 1
 
 	var currentActivePin: MapPoint?
 
 	var allPinsMapRect: MKMapRect!
 	var selectedPinMapRect: MKMapRect!
 
-	var offsetRatio: Double = 1
-
+	var zoomOnUserWasDone: Bool = false
 	var userDraggedOrZoomedMap: Bool = false
-
 	var disableMapAdjusting: Bool = false
 
 	var usedAccessoryViews: [MapPinAccessoryView] = []
@@ -65,7 +63,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("MapLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -115,7 +113,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 	// MARK: Functions
 
-	func regionFor(mapPoints points: [MapPoint]) -> MKCoordinateRegion {
+	private func regionFor(mapPoints points: [MapPoint]) -> MKCoordinateRegion {
 		var r = MKMapRect.null
 
 		for i in 0 ..< points.count {
@@ -138,7 +136,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		return region
 	}
 
-	func MKMapRectForCoordinateRegion(region:MKCoordinateRegion) -> MKMapRect {
+	private func MKMapRectForCoordinateRegion(region:MKCoordinateRegion) -> MKMapRect {
 		let topLeft = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta/2), longitude: region.center.longitude - (region.span.longitudeDelta/2))
 		let bottomRight = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta/2), longitude: region.center.longitude + (region.span.longitudeDelta/2))
 
@@ -148,8 +146,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		return MKMapRect(origin: MKMapPoint(x:min(a.x,b.x), y:min(a.y,b.y)), size: MKMapSize(width: abs(a.x-b.x), height: abs(a.y-b.y)))
 	}
 
-	func zoomOnAllPins(animated: Bool) {
-
+	private func zoomOnAllPins(animated: Bool) {
 		if !disableMapAdjusting {
 			if self.userDraggedOrZoomedMap == true { disableMapAdjusting = true }
 
@@ -167,7 +164,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		}
 	}
 
-	func recalculateMapRect() {
+	private func recalculateMapRect() {
 		let allPins = mapView.annotations.compactMap { $0 as? MapPoint }
 		let allPinsRegion = self.regionFor(mapPoints: allPins)
 		allPinsMapRect = MKMapRectForCoordinateRegion(region: allPinsRegion)
@@ -239,6 +236,23 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 			}
 
 			necessaryAccessoryView.layoutIfNeeded()
+		}
+	}
+
+	func selectedPin(_ selectedPin: MapPoint) {
+		currentActivePin = selectedPin
+		recalculateMapRect()
+		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
+
+		for(_, mapPoint) in actuals.enumerated() {
+			if let annotationView = self.mapView.view(for: mapPoint) {
+				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
+				if mapPoint.address == self.currentActivePin!.address {
+					mapPinAccessoryView?.setAsSelected(true, isCheapestPrice: selectedPin.priceIsCheapest)
+				} else {
+					mapPinAccessoryView?.setAsSelected(false, isCheapestPrice: selectedPin.priceIsCheapest)
+				}
+			}
 		}
 	}
 
@@ -349,23 +363,6 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 		guard !(view.annotation is MKUserLocation) else { return }
 
 		controller?.mapPinWasPressed(view.annotation as! MapPoint)
-	}
-
-	func selectedPin(_ selectedPin: MapPoint) {
-		currentActivePin = selectedPin
-		recalculateMapRect()
-		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
-
-		for(_, mapPoint) in actuals.enumerated() {
-			if let annotationView = self.mapView.view(for: mapPoint) {
-				let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView
-				if mapPoint.address == self.currentActivePin!.address {
-					mapPinAccessoryView?.setAsSelected(true, isCheapestPrice: selectedPin.priceIsCheapest)
-				} else {
-					mapPinAccessoryView?.setAsSelected(false, isCheapestPrice: selectedPin.priceIsCheapest)
-				}
-			}
-		}
 	}
 
 	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {

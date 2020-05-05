@@ -34,7 +34,7 @@ class AppSavingsView: FontChangeView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("AppSavingsView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -104,7 +104,9 @@ class AppSavingsView: FontChangeView {
   		updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+	
+	private func updateFonts() {
 		savingsLabel1.font = Font(.normal, size: .size3).font
 		savingsLabel2.font = Font(.normal, size: .size3).font
 		savingsLabel3.font = Font(.normal, size: .size3).font

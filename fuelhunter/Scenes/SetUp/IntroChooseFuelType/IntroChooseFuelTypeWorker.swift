@@ -13,6 +13,4 @@
 import UIKit
 
 class IntroChooseFuelTypeWorker {
-  	func doSomeWork() {
-  	}
 }

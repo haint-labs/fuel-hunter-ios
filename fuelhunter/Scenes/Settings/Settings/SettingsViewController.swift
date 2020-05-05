@@ -51,10 +51,8 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive),
     		name: .applicationDidBecomeActiveFromAppSettings, object: nil)
-
     	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
     		name: .languageWasChanged, object: nil)
-
     	NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
     		name: .fontSizeWasChanged, object: nil)
   	}
@@ -80,7 +78,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = SettingsViewLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -113,34 +111,34 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 
   	// MARK: Functions
 
-  	func getSettingsCellsData() {
+  	private func getSettingsCellsData() {
     	let request = Settings.SettingsList.Request()
     	interactor?.getSettingsCellsData(request: request)
   	}
+
+	// MARK: SettingsDisplayLogic
 
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel) {
   		layoutView.updateData(data: viewModel.displayedSettingsCells)
   	}
 
-	// MARK: Notifications
-
-  	@objc func applicationDidBecomeActive() {
-		getSettingsCellsData()
-	}
-
-	@objc func languageWasChanged() {
-		self.title = "settings_title".localized()
-	}
-
-	@objc func fontSizeWasChanged() {
-		getSettingsCellsData()
-	}
-
-
-
   	// MARK: PushNotifReturnUpdateDataLogic
 
 	func updateData() {
+		getSettingsCellsData()
+	}
+
+	// MARK: Notifications
+
+  	@objc private func applicationDidBecomeActive() {
+		getSettingsCellsData()
+	}
+
+	@objc private func languageWasChanged() {
+		self.title = "settings_title".localized()
+	}
+
+	@objc private func fontSizeWasChanged() {
 		getSettingsCellsData()
 	}
 }

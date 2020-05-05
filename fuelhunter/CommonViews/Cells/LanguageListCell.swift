@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol LanguageListCellDisplayLogic {
+	func setAsCellType(cellType: CellBackgroundType)
+}
+
 class LanguageListCell: FontChangeTableViewCell {
 
     public var cellBgType: CellBackgroundType = .single
@@ -18,9 +22,11 @@ class LanguageListCell: FontChangeTableViewCell {
 	@IBOutlet weak var checkBoxImageView: UIImageView!
 	@IBOutlet weak var separatorView: UIView!
 
-	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
-	var bgViewTopAnchorConstraint: NSLayoutConstraint?
+	var bgViewBottomAnchorConstraint: NSLayoutConstraint!
+	var bgViewTopAnchorConstraint: NSLayoutConstraint!
 
+	// MARK: View lifecycle
+	
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -34,8 +40,8 @@ class LanguageListCell: FontChangeTableViewCell {
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
-		bgViewTopAnchorConstraint?.isActive = true
-		bgViewBottomAnchorConstraint?.isActive = true
+		bgViewTopAnchorConstraint.isActive = true
+		bgViewBottomAnchorConstraint.isActive = true
 
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
@@ -59,7 +65,9 @@ class LanguageListCell: FontChangeTableViewCell {
     	updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+
+	private func updateFonts() {
 		titleLabel.font = Font(.medium, size: .size2).font
 		descriptionLabel.font = Font(.normal, size: .size4).font
 	}
@@ -68,37 +76,36 @@ class LanguageListCell: FontChangeTableViewCell {
 		updateFonts()
 	}
 
-	// MARK: Functions
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
 
-	func setAsCellType(cellType: CellBackgroundType) {
+    // MARK: LanguageListCellDisplayLogic
+
+    func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}
 	}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 }

@@ -30,11 +30,7 @@ class CompanyChangesPresenter: CompanyChangesPresentationLogic {
 
 		let language = AppSettingsWorker.shared.getCurrentLanguage()
 
-
-		var count = 0
-
 		for company in response.fetchedAddedCompanies {
-			count += 1
 			let languageString: String
 
 			switch language {
@@ -52,17 +48,9 @@ class CompanyChangesPresenter: CompanyChangesPresentationLogic {
 			let imageName = company.logoName ?? ""
 
 			addedCompanies.append(CompanyChanges.List.ViewModel.DisplayedCompanyCellItem(companyWasAdded: true, title: title, description: languageString, imageName: imageName, toggleStatus: company.isEnabled))
-
-
-			if count > 2 {
-				break
-			}
 		}
 
-		count = 0
-
 		for company in response.fetchedRemovedCompanies {
-			count += 1
 			let languageString: String
 
 			switch language {
@@ -80,10 +68,6 @@ class CompanyChangesPresenter: CompanyChangesPresentationLogic {
 			let imageName = company.logoName ?? ""
 
 			removedCompanies.append(CompanyChanges.List.ViewModel.DisplayedCompanyCellItem(title: title, description: languageString, imageName: imageName))
-
-			if count > 1 {
-				break
-			}
 		}
 
 		var combinedArray = [[CompanyChanges.List.ViewModel.DisplayedCompanyCellItem]]()

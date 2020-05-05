@@ -37,7 +37,7 @@ class IntroGPSSetUpLayoutView: FontChangeView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("IntroGPSSetUpLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -146,24 +146,24 @@ class IntroGPSSetUpLayoutView: FontChangeView {
   	 	updateFonts()
     }
 
-	func updateFonts() {
+  	// MARK: Functions
+
+	private func updateFonts() {
 		titleLabel.font = Font(.normal, size: .size0).font
 		descriptionLabel.font = Font(.normal, size: .size2).font
 		giveAccessButton.titleLabel?.font = Font(.medium, size: .size2).font
 		laterButton.titleLabel?.font = Font(.medium, size: .size2).font
 	}
 
-	override func fontSizeWasChanged() {
-		updateFonts()
-	}
-
-  	// MARK: Functions
-
-  	@objc func giveAccessButtonPressed() {
+  	@objc private func giveAccessButtonPressed() {
 		controller?.giveAccessButtonPressed()
   	}
 
-  	@objc func laterButtonPressed() {
+  	@objc private func laterButtonPressed() {
 		controller?.laterButtonPressed()
   	}
+
+  	override func fontSizeWasChanged() {
+		updateFonts()
+	}
 }

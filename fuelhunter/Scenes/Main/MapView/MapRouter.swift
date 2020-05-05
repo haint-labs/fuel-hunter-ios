@@ -17,7 +17,6 @@ protocol MapReturnUpdateDataLogic: class {
 }
 
 @objc protocol MapRoutingLogic {
-  	//func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
 protocol MapDataPassing {

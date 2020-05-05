@@ -71,7 +71,7 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = FuelTypeChooseListLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -83,11 +83,13 @@ class FuelTypeChooseListViewController: UIViewController, FuelTypeChooseListDisp
 
   	// MARK: Functions
 
-  	func getFuelTypesListData() {
+  	private func getFuelTypesListData() {
     	let request = FuelTypeChooseList.FuelCells.Request()
     	interactor?.getFuelTypesListData(request: request)
   	}
 
+	// MARK: FuelTypeChooseListDisplayLogic
+	
   	func displayListWithData(viewModel: FuelTypeChooseList.FuelCells.ViewModel) {
   		layoutView.updateData(data: viewModel.displayedFuelCellItems)
   	}

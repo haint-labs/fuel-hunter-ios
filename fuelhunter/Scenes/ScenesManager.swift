@@ -23,11 +23,12 @@ class ScenesManager: NSObject {
 
 	private override init() {
 		super.init()
-
 		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged), name: .fontSizeWasChanged, object: nil)
 	}
 
 	weak var window: UIWindow?
+
+	// MARK: Functions
 
 	func setRootViewController(animated: Bool) {
 		var destinationVC: UIViewController?
@@ -75,11 +76,6 @@ class ScenesManager: NSObject {
 		}
 	}
 
-	// For debug //
-	func resetState() {
-		ScenesManager.storeAppSceneState(state: .introPageFirstView)
-	}
-
 	func getAppSceneState() -> AppSceneState {
 		return AppSceneState(rawValue: UserDefaults.standard.integer(forKey: "app_scene_state")) ?? AppSceneState.introPageFirstView
 	}
@@ -89,9 +85,15 @@ class ScenesManager: NSObject {
 		UserDefaults.standard.synchronize()
 	}
 
+	// MARK: For debug
+	
+	func resetState() {
+		ScenesManager.storeAppSceneState(state: .introPageFirstView)
+	}
+
 	// MARK: Notifications
 
-	@objc func fontSizeWasChanged() {
+	@objc private func fontSizeWasChanged() {
 		AppSettingsWorker.shared.setUpGlobalFontColorAndSize()
 		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController
 		// This is a hack, to force it to update font color, size.

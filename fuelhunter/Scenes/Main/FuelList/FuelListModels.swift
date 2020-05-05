@@ -16,6 +16,19 @@ import CoreData
 enum FuelList {
 	// MARK: Use cases
 
+	enum UpdateCityView {
+		struct Request {
+		}
+		struct Response {
+			var currentCityName: String
+			var currentCityGPSIconEnabled: Bool
+		}
+		struct ViewModel {
+			var currentCityName: String
+			var currentCityGPSIconEnabled: Bool
+		}
+	}
+
 	enum RevealMap {
 		struct Request {
 			var selectedCompany: CompanyEntity

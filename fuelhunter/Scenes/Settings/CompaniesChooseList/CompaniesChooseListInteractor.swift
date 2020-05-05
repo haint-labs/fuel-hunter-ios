@@ -20,7 +20,6 @@ protocol CompaniesChooseListBusinessLogic {
 }
 
 protocol CompaniesChooseListDataStore {
-  	//var name: String { get set }
 }
 
 class CompaniesChooseListInteractor: NSObject, CompaniesChooseListBusinessLogic, CompaniesChooseListDataStore, NSFetchedResultsControllerDelegate {
@@ -33,7 +32,6 @@ class CompaniesChooseListInteractor: NSObject, CompaniesChooseListBusinessLogic,
 	var previousFetchedCompanies: [CompanyEntity]?
 
 	var companiesThatWereEnabled = [String]()
-
 
   	// MARK: CompaniesChooseListBusinessLogic
 

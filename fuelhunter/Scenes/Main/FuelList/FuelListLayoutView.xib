@@ -13,6 +13,7 @@
                 <outlet property="accuracyIconButton" destination="0N7-tI-hqr" id="2Qv-57-1Fg"/>
                 <outlet property="accuracyLabelButton" destination="FNr-pv-HRy" id="nmH-nm-gPE"/>
                 <outlet property="baseView" destination="iN0-l3-epB" id="qsM-IW-VS0"/>
+                <outlet property="closestCityNameButtonView" destination="Df1-rO-jHN" id="F2L-5r-hCn"/>
                 <outlet property="inlineAlertView" destination="zTW-tY-OlJ" id="Vi0-yb-cVI"/>
                 <outlet property="savingsIconButton" destination="V51-E5-lta" id="pNG-OP-cIB"/>
                 <outlet property="savingsLabelButton" destination="dBa-KY-BAB" id="Pc6-Vy-5cU"/>
@@ -76,6 +77,11 @@
                     <rect key="frame" x="-22" y="47" width="414" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Df1-rO-jHN" customClass="ClosestCityNameButtonView" customModule="fuelhunter" customModuleProvider="target">
+                    <rect key="frame" x="66" y="274" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

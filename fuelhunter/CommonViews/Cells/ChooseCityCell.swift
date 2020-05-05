@@ -8,7 +8,13 @@
 
 import UIKit
 
-class ChooseCityCell: FontChangeTableViewCell {
+protocol ChooseCityCellDisplayLogic {
+    func setAsCellType(cellType: CellBackgroundType)
+    func setDistance(value: Double, visible: Bool)
+    func setText(text: String, with searchString: String?)
+}
+
+class ChooseCityCell: FontChangeTableViewCell, ChooseCityCellDisplayLogic {
 
 	public var cellBgType: CellBackgroundType = .single
 
@@ -18,12 +24,14 @@ class ChooseCityCell: FontChangeTableViewCell {
 	@IBOutlet weak var distanceLabel: UILabel!
 	@IBOutlet weak var separatorView: UIView!
 
-	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
-	var bgViewTopAnchorConstraint: NSLayoutConstraint?
+	var bgViewBottomAnchorConstraint: NSLayoutConstraint!
+	var bgViewTopAnchorConstraint: NSLayoutConstraint!
 
-	var titleRightDistanceAnchorConstraint: NSLayoutConstraint?
-	var titleRightImageAnchorConstraint: NSLayoutConstraint?
+	var titleRightDistanceAnchorConstraint: NSLayoutConstraint!
+	var titleRightImageAnchorConstraint: NSLayoutConstraint!
 
+	// MARK: View lifecycle
+	
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -36,9 +44,9 @@ class ChooseCityCell: FontChangeTableViewCell {
 		backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-		bgViewBottomAnchorConstraint?.isActive = true
+		bgViewBottomAnchorConstraint.isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
-		bgViewTopAnchorConstraint?.isActive = true
+		bgViewTopAnchorConstraint.isActive = true
 
 		gpsIconImageView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		gpsIconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 10).isActive = true
@@ -66,7 +74,9 @@ class ChooseCityCell: FontChangeTableViewCell {
     	updateFonts()
     }
 
-	func updateFonts() {
+    // MARK: Functions
+
+	private func updateFonts() {
 		titleLabel.font = Font(.normal, size: .size2).font
 		distanceLabel.font = Font(.normal, size: .size3).font
 	}
@@ -75,26 +85,32 @@ class ChooseCityCell: FontChangeTableViewCell {
 		updateFonts()
 	}
 
+	override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
+	// MARK: ChooseCityCellDisplayLogic
+
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
@@ -108,14 +124,14 @@ class ChooseCityCell: FontChangeTableViewCell {
 			distanceLabel.isHidden = true
 		} else {
 			if value <= 0 {
-				titleRightDistanceAnchorConstraint?.isActive = false
-				titleRightImageAnchorConstraint?.isActive = true
+				titleRightDistanceAnchorConstraint.isActive = false
+				titleRightImageAnchorConstraint.isActive = true
 				gpsIconImageView.isHidden = false
 				distanceLabel.isHidden = true
 				distanceLabel.text = ""
 			} else {
-				titleRightDistanceAnchorConstraint?.isActive = true
-				titleRightImageAnchorConstraint?.isActive = false
+				titleRightDistanceAnchorConstraint.isActive = true
+				titleRightImageAnchorConstraint.isActive = false
 				gpsIconImageView.isHidden = true
 				distanceLabel.isHidden = false
 				distanceLabel.text = "\(String(format:"%.f", value)) km"
@@ -142,7 +158,7 @@ class ChooseCityCell: FontChangeTableViewCell {
 			let nsRange = NSRange(range, in: text)
 
 			// Apply new attributes to the text matching the range
-			let newAttributes = [NSAttributedString.Key.foregroundColor : UIColor.init(named: "TitleColor")!, NSAttributedString.Key.font : Font(.bold, size: .size2).font] as [NSAttributedString.Key : Any] //, NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue
+			let newAttributes = [NSAttributedString.Key.foregroundColor : UIColor.init(named: "TitleColor")!, NSAttributedString.Key.font : Font(.bold, size: .size2).font] as [NSAttributedString.Key : Any]
 			mutableAttributedString.setAttributes(newAttributes, range: nsRange)
 
 			titleLabel.attributedText = mutableAttributedString
@@ -151,9 +167,4 @@ class ChooseCityCell: FontChangeTableViewCell {
 			titleLabel.text = text
 		}
 	}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 }

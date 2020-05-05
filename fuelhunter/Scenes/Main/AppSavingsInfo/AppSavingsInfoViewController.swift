@@ -12,25 +12,17 @@
 
 import UIKit
 
-protocol AppSavingsInfoDisplayLogic: class {
-  	func displaySomething(viewModel: AppSavingsInfo.Something.ViewModel)
-}
-
-class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic {
-  	var interactor: AppSavingsInfoBusinessLogic?
-  	var router: (NSObjectProtocol & AppSavingsInfoRoutingLogic & AppSavingsInfoDataPassing)?
+class AppSavingsInfoViewController: UIViewController {
 	var layoutView: AppSavingsInfoLayoutView!
-
+	
 	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     	super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    	setup()
   	}
 
   	required init?(coder aDecoder: NSCoder) {
     	super.init(coder: aDecoder)
-    	setup()
   	}
 
   	// MARK: View lifecycle
@@ -42,22 +34,7 @@ class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic
     	setUpView()
   	}
 
-	// Set up
-
-	private func setup() {
-		let viewController = self
-		let interactor = AppSavingsInfoInteractor()
-		let presenter = AppSavingsInfoPresenter()
-		let router = AppSavingsInfoRouter()
-		viewController.interactor = interactor
-		viewController.router = router
-		interactor.presenter = presenter
-		presenter.viewController = viewController
-		router.viewController = viewController
-		router.dataStore = interactor
-  	}
-
-  	func setUpView() {
+  	private func setUpView() {
 		layoutView = AppSavingsInfoLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -65,9 +42,4 @@ class AppSavingsInfoViewController: UIViewController, AppSavingsInfoDisplayLogic
         layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 	}
-
-  	// MARK: Functions
-
-  	func displaySomething(viewModel: AppSavingsInfo.Something.ViewModel) {
-  	}
 }

@@ -24,27 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		application.registerForRemoteNotifications()
 
+		// To initiate it.
+		_ = AppSettingsWorker.shared
+
 //		ScenesManager.shared.resetState() // For debug, to start over.
 		window?.backgroundColor = .white
 		ScenesManager.shared.window = window
 		ScenesManager.shared.setRootViewController(animated: false)
 
-		DataBaseManager.shared.saveContext()
-		
-		// To initiate it.
-		_ = AppSettingsWorker.shared
 
-		_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+		_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(downloaderTestTimer), userInfo: nil, repeats: true)
 
 		return true
-	}
-
-	@objc func fireTimer() {
-		print("Timer fired!")
-
-//		CompaniesDownloader.resetLastDownloadTime()
-//		PricesDownloader.resetLastDownloadTime()
-		DataDownloader.shared.activateProcess()
 	}
 
 	func applicationWillResignActive(_ application: UIApplication) {
@@ -63,8 +54,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationWillTerminate(_ application: UIApplication) {
 	}
-	
+
+	// MARK: Functions
+
+	@objc private func downloaderTestTimer() {
+		print("downloaderTestTimer fired!")
+
+//		CompaniesDownloader.resetLastDownloadTime()
+//		PricesDownloader.resetLastDownloadTime()
+		DataDownloader.shared.activateProcess()
+	}
+
 	// MARK: Token
+
 	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
 		AppSettingsWorker.shared.setPushNotifToken(deviceTokenString)

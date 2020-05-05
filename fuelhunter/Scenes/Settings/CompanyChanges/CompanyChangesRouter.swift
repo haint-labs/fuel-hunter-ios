@@ -24,7 +24,7 @@ class CompanyChangesRouter: NSObject, CompanyChangesRoutingLogic, CompanyChanges
 	weak var viewController: CompanyChangesViewController?
   	var dataStore: CompanyChangesDataStore?
 
-	// MARK: Routing
+	// MARK: CompanyChangesRoutingLogic
 
 	func dismissCurrentViewController() {
 		viewController?.dismiss(animated: true, completion: { })

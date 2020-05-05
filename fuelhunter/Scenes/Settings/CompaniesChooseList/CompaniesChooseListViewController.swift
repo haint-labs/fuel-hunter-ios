@@ -45,7 +45,6 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 
   	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-
 		if interactor?.didUserAddACompany() == true {
 			PricesDownloader.removeAllPricesAndCallDownloader()
 		}
@@ -66,7 +65,7 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = CompaniesChooseListLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -78,11 +77,13 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 	
   	// MARK: Functions
 
-  	func getCompaniesListData() {
+  	private func getCompaniesListData() {
     	let request = CompaniesChooseList.CompanyCells.Request()
     	interactor?.getCompaniesListData(request: request)
   	}
 
+	// MARK: CompaniesChooseListDisplayLogic
+	
   	func displayListWithData(viewModel: CompaniesChooseList.CompanyCells.ViewModel) {
     	layoutView.updateData(data: viewModel.displayedCompanyCellItems, insert: viewModel.insert, delete: viewModel.delete, update: viewModel.update)
   	}

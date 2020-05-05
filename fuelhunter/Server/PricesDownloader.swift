@@ -11,7 +11,16 @@ import CoreData
 import Firebase
 import UIKit
 
-class PricesDownloader: NSObject {
+protocol PricesDownloaderLogic: class {
+	static func isAllowedToDownload() -> Bool
+	static func updateLastDownloadTime()
+	static func resetLastDownloadTime()
+	static func lastDownloadTimeStamp() -> Double
+	static func removeAllPricesAndCallDownloader()
+	func work(completionHandler: @escaping () -> Void)
+}
+
+class PricesDownloader: PricesDownloaderLogic {
 
 	static var downloadingState: DownloaderState {
 		if DataDownloader.shared.downloaderIsActive {
@@ -97,12 +106,12 @@ class PricesDownloader: NSObject {
 		UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "PricesDownloaderLastDownloadTimestamp")
 		UserDefaults.standard.synchronize()
 	}
-
+	
 	class func resetLastDownloadTime() {
 		UserDefaults.standard.set(0, forKey: "PricesDownloaderLastDownloadTimestamp")
 		UserDefaults.standard.synchronize()
 	}
-
+	
 	class func lastDownloadTimeStamp() -> Double {
 		UserDefaults.standard.double(forKey: "PricesDownloaderLastDownloadTimestamp")
 	}
@@ -213,8 +222,6 @@ class PricesDownloader: NSObject {
 							let oldPrices = try backgroundContext.fetch(fetchRequest)
 
 							for oldPrice in oldPrices {
-//									oldPrice.setPrimitiveValue(nil, forKey: "company")
-//									oldPrice.company = nil
 								backgroundContext.delete(oldPrice)
 							}
 							//=== Delete old prices

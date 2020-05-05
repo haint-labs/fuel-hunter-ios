@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol MapPinAccessoryViewDisplayLogic {
+	func setAsSelected(_ selected: Bool, isCheapestPrice: Bool)
+    func setDistanceVisible(_ visible: Bool)
+}
 
-class MapPinAccessoryView: UIView {
+class MapPinAccessoryView: UIView, MapPinAccessoryViewDisplayLogic {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet var backgroundImageView: UIImageView!
@@ -39,7 +43,7 @@ class MapPinAccessoryView: UIView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("MapPinAccessoryView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -77,16 +81,16 @@ class MapPinAccessoryView: UIView {
 		iconGray.widthAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
 		iconGray.heightAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
 		iconGrayBottomConstraint = iconGray.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10)
-		iconGrayBottomConstraint?.priority = .defaultHigh
-		iconGrayBottomConstraint?.isActive = true
+		iconGrayBottomConstraint.priority = .defaultHigh
+		iconGrayBottomConstraint.isActive = true
 
 		iconNormal.leftAnchor.constraint(equalTo: leftAnchor, constant: 7).isActive = true
 		iconNormal.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
 		iconNormal.widthAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
 		iconNormal.heightAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
 		iconNormalBottomConstraint = iconNormal.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10)
-		iconNormalBottomConstraint?.priority = .defaultHigh
-		iconNormalBottomConstraint?.isActive = true
+		iconNormalBottomConstraint.priority = .defaultHigh
+		iconNormalBottomConstraint.isActive = true
 
 
 		priceLabel.leftAnchor.constraint(equalTo: iconGray.rightAnchor, constant: 5).isActive = true
@@ -105,6 +109,8 @@ class MapPinAccessoryView: UIView {
 		distanceLabel.font = Font(.normal, size: .size5).font
 	}
 
+	// MARK: MapPinAccessoryViewDisplayLogic
+
 	func setAsSelected(_ selected: Bool, isCheapestPrice: Bool) {
 		if selected == true {
 			priceLabel.textColor = UIColor(named: isCheapestPrice ? "CheapPriceColor" : "TitleColor")
@@ -120,7 +126,6 @@ class MapPinAccessoryView: UIView {
 	}
 
 	func setDistanceVisible(_ visible: Bool) {
-
 		baseView.fadeTransition(0.2)
 		backgroundImageView.fadeTransition(0.2)
 		backgroundBubbleArrowImageView.fadeTransition(0.2)

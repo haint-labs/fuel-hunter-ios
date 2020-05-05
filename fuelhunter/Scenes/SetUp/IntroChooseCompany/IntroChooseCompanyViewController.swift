@@ -58,7 +58,7 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
 		router.dataStore = interactor
   	}
 
-  	func setUpView() {
+  	private func setUpView() {
 		layoutView = IntroChooseCompanyLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -70,11 +70,13 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
 
   	// MARK: Functions
 
-  	func getData() {
+  	private func getData() {
     	let request = IntroChooseCompany.CompanyCells.Request()
     	interactor?.getCompaniesListData(request: request)
   	}
 
+	// MARK: IntroChooseCompanyDisplayLogic
+	
   	func displayListWithData(viewModel: IntroChooseCompany.CompanyCells.ViewModel) {
   		layoutView.updateData(data: viewModel.displayedCompanyCellItems, insert: viewModel.insert, delete: viewModel.delete, update: viewModel.update)
   	}

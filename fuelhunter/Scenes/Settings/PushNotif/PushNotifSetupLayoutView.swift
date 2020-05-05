@@ -17,6 +17,9 @@ protocol PushNotifSetupLayoutViewLogic: class {
 
 protocol PushNotifSetupLayoutViewDataLogic: class {
 	func updateData(data: PushNotifSetup.SetUp.ViewModel)
+	func appMovedToForeground()
+	func appMovedToBackground()
+	func animateBackgroundImageColorToState(visible: Bool)
 }
 
 class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
@@ -35,6 +38,7 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 	@IBOutlet var chooseCityButton: UIButton!
 	@IBOutlet weak var activateButton: UIButton!
 	@IBOutlet weak var cancelButton: UIButton!
+	@IBOutlet var backgroundDismissButton: UIButton!
 
 	// MARK: View lifecycle
 
@@ -48,7 +52,7 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("PushNotifSetupLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -82,11 +86,11 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
   		chooseCityButton.translatesAutoresizingMaskIntoConstraints = false
   		activateButton.translatesAutoresizingMaskIntoConstraints = false
   		cancelButton.translatesAutoresizingMaskIntoConstraints = false
-
+		backgroundDismissButton.translatesAutoresizingMaskIntoConstraints = false
 
   		baseView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		baseView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-
+		
   		backgroundView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		backgroundView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 6000).isActive = true
   		backgroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: -3000).isActive = true
@@ -94,6 +98,9 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 		frontViewContainer.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
   		frontViewContainer.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
 
+		backgroundDismissButton.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+  		backgroundDismissButton.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+		backgroundDismissButton.addTarget(self, action: NSSelectorFromString("cancelButtonPressed"), for: .touchUpInside)
 
   		notifAnimationView.topAnchor.constraint(equalTo: frontView.topAnchor, constant: smallOffset).isActive = true
   		notifAnimationView.leftAnchor.constraint(equalTo: frontView.leftAnchor, constant: 20).isActive = true
@@ -161,23 +168,36 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 
   	// MARK: Functions
 
-  	@objc func activateButtonPressed() {
+  	@objc private func activateButtonPressed() {
   		controller?.activateButtonPressed()
   	}
 
-  	@objc func cancelButtonPressed() {
+  	@objc private func cancelButtonPressed() {
   		controller?.cancelButtonPressed()
   	}
 
-  	@objc func stepperPressed() {
+  	@objc private func stepperPressed() {
 		controller?.stepperPressed(value: Int(stepper.value))
   	}
 
-	@objc func chooseCityButtonPressed() {
+	@objc private func chooseCityButtonPressed() {
 		controller?.chooseCityButtonPressed(with: frontView.frame)
   	}
 
-  	func appMovedToForeground() {
+	// MARK: PushNotifSetupLayoutViewDataLogic
+
+	func updateData(data: PushNotifSetup.SetUp.ViewModel) {
+		titleLabel.text = "intro_notifs_title".localized()
+		descriptionLabel.text = data.displayedItem.description
+  		stepper.minimumValue = Double(data.displayedItem.minValue)
+  		stepper.maximumValue = Double(data.displayedItem.maxValue)
+  		stepper.value = Double(data.displayedItem.value)
+
+  		descriptionCityLabel.text = "settings_choose_city_title".localized()
+		chooseCityButton.setTitle("   \(data.displayedItem.selectedCityName.localized())   ", for: .normal)
+	}
+
+	func appMovedToForeground() {
   		notifAnimationView.startAnimating()
 	}
 
@@ -195,18 +215,5 @@ class PushNotifSetupLayoutView: UIView, PushNotifSetupLayoutViewDataLogic {
 				self.backgroundView.backgroundColor = .clear
 			}, completion: { (finished: Bool) in })
 		}
-	}
-
-	// MARK: PushNotifSetupLayoutViewDataLogic
-
-	func updateData(data: PushNotifSetup.SetUp.ViewModel) {
-		titleLabel.text = "intro_notifs_title".localized()
-		descriptionLabel.text = data.displayedItem.description
-  		stepper.minimumValue = Double(data.displayedItem.minValue)
-  		stepper.maximumValue = Double(data.displayedItem.maxValue)
-  		stepper.value = Double(data.displayedItem.value)
-
-  		descriptionCityLabel.text = "settings_choose_city_title".localized()
-		chooseCityButton.setTitle("   \(data.displayedItem.selectedCityName.localized())   ", for: .normal)
 	}
 }

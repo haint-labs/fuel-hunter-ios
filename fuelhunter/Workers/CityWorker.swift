@@ -118,9 +118,13 @@ class CityWorker: NSObject {
 		City.init(name: "Zilupe", location: CLLocation.init(latitude: 56.3923723, longitude: 28.1206763), radius: 2000)
 	]
 
-	class func getClosestCity() -> City {
+	class func getClosestCityName() -> String {
 		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
-			return rigaCity
+
+			if AppSettingsWorker.shared.getNotifIsEnabled() {
+				return AppSettingsWorker.shared.getStoredNotifCityName()
+			}
+			return rigaCity.name!
 		}
 
 		var closestCity = rigaCity
@@ -134,7 +138,7 @@ class CityWorker: NSObject {
 			}
 	  	}
 
-	  	return closestCity
+	  	return closestCity.name!
 	}
 
 	class func getCitiesByDistance() -> [CityAndDistance] {

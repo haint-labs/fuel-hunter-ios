@@ -8,7 +8,12 @@
 
 import UIKit
 
-class NotifPhoneAnimationView: UIView {
+protocol NotifPhoneAnimationViewDisplayLogic {
+    func startAnimating()
+   	func stopAnimating()
+}
+
+class NotifPhoneAnimationView: UIView, NotifPhoneAnimationViewDisplayLogic {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var inactiveBgImageView: UIImageView!
@@ -28,7 +33,7 @@ class NotifPhoneAnimationView: UIView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("NotifPhoneAnimationView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -78,7 +83,7 @@ class NotifPhoneAnimationView: UIView {
 		self.layoutIfNeeded()
   	}
 
-	// MARK: Functions for animating
+	// MARK: NotifPhoneAnimationViewDisplayLogic
 
 	func startAnimating() {
 		hideNotif()
@@ -89,7 +94,9 @@ class NotifPhoneAnimationView: UIView {
 		self.layoutIfNeeded()
   	}
 
-	func shakeAnimation() {
+	// MARK: Functions for animating
+
+	private func shakeAnimation() {
 		let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.repeatCount = 4
@@ -107,7 +114,7 @@ class NotifPhoneAnimationView: UIView {
         layer.add(animation2, forKey: "shake2")
 	}
 
-	func revealNotif() {
+	private func revealNotif() {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 			self.shakeAnimation()
 		}
@@ -125,7 +132,7 @@ class NotifPhoneAnimationView: UIView {
 		})
 	}
 
-	func hideNotif() {
+	private func hideNotif() {
 		UIView.animate(withDuration: 0.3, delay: 2.2, options: [], animations: {
 			self.activeBgImageView.alpha = 0
 			self.notifImageView.alpha = 0

@@ -8,7 +8,11 @@
 
 import UIKit
 
-class MapAnimationView: UIView {
+protocol MapAnimationViewDisplayLogic {
+    func startAnimating()
+}
+
+class MapAnimationView: UIView, MapAnimationViewDisplayLogic {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var mapImageView: UIImageView!
@@ -26,7 +30,7 @@ class MapAnimationView: UIView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("MapAnimationView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -51,7 +55,7 @@ class MapAnimationView: UIView {
 		self.clipsToBounds = true
   	}
 
-	// MARK: Functions for animating
+	// MARK: MapAnimationViewDisplayLogic
 
 	func startAnimating() {
 		self.mapImageView.transform = CGAffineTransform(translationX: -20, y: 0)
@@ -59,8 +63,10 @@ class MapAnimationView: UIView {
 			self.firstMove()
 		}
 	}
+	
+	// MARK: Functions for animating
 
-	func firstMove() {
+	private func firstMove() {
 		UIView.animate(withDuration: 1.6, delay: 0.7, options: [], animations: {
 			self.mapImageView.transform = CGAffineTransform(translationX: 45, y: 130)
 		}, completion: { (finished: Bool) in 
@@ -70,7 +76,7 @@ class MapAnimationView: UIView {
 		})
 	}
 
-	func secondMove() {
+	private func secondMove() {
 		UIView.animate(withDuration: 1.6, delay: 0.7, options: [], animations: {
 			self.mapImageView.transform = CGAffineTransform(translationX: -30, y: 250)
 		}, completion: { (finished: Bool) in 
@@ -80,7 +86,7 @@ class MapAnimationView: UIView {
 		})
 	}
 
-	func thirdMove() {
+	private func thirdMove() {
 		UIView.animate(withDuration: 1.8, delay: 0.7, options: [], animations: {
 			self.mapImageView.transform = CGAffineTransform(translationX: -20, y: 0)
 		}, completion: { (finished: Bool) in 

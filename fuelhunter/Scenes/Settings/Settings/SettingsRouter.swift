@@ -30,7 +30,7 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMai
   	weak var viewController: SettingsViewController?
   	var dataStore: SettingsDataStore?
 
-	// MARK: Routing
+	// MARK: SettingsRoutingLogic
 
 	func routeToCompanyChooseScene() {
   		navigateToScene(source: viewController!, destination: CompaniesChooseListViewController())
@@ -57,11 +57,6 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMai
 		viewController!.present(destinationVC, animated: true) { }
   	}
 
-	func navigateToScene(source: UIViewController, destination: UIViewController) {
-		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-		source.show(destination, sender: nil)
-  	}
-
 	func presentMailForm() {
 		if MFMailComposeViewController.canSendMail() {
 			let mail = MFMailComposeViewController()
@@ -86,4 +81,11 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMai
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
 		controller.dismiss(animated: true)
 	}
+
+	// MARK: Functions
+
+	private func navigateToScene(source: UIViewController, destination: UIViewController) {
+		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		source.show(destination, sender: nil)
+  	}
 }

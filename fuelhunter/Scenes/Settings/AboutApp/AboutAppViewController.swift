@@ -71,7 +71,7 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	internal func setUpView() {
 		layoutView = AboutAppLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -82,18 +82,20 @@ class AboutAppViewController: UIViewController, AboutAppDisplayLogic {
 
   	// MARK: Functions
 
-	@objc func appMovedToForeground() {
+	@objc private func appMovedToForeground() {
 		layoutView.appMovedToForeground()
 	}
 
-	@objc func appMovedToBackground() {
+	@objc private func appMovedToBackground() {
 		layoutView.appMovedToBackground()
 	}
 
-  	func getListData() {
+  	private func getListData() {
     	let request = AboutApp.CompanyCells.Request()
     	interactor?.getListData(request: request)
   	}
+
+	// MARK: AboutAppDisplayLogic
 
   	func displayData(viewModel: AboutApp.CompanyCells.ViewModel) {
     	layoutView.updateData(data: viewModel.displayedCompanyCellItems)

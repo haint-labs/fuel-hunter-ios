@@ -8,7 +8,15 @@
 
 import CoreData
 
-class DataBaseManager: NSObject {
+protocol DataBaseManagerLogic {
+	func saveContext()
+    func saveBackgroundContext(backgroundContext: NSManagedObjectContext)
+    func mainManagedObjectContext() -> NSManagedObjectContext
+    func newBackgroundManagedObjectContext() -> NSManagedObjectContext
+    func addATask(action: @escaping () -> Void)
+}
+
+class DataBaseManager: NSObject, DataBaseManagerLogic {
 
 	static let shared = DataBaseManager()
 
@@ -43,7 +51,7 @@ class DataBaseManager: NSObject {
 
 	}
 
-	// MARK: functions
+	// MARK: DataBaseManagerLogic
 
 	func saveContext() {
         let context = persistentContainer.viewContext
@@ -57,7 +65,7 @@ class DataBaseManager: NSObject {
             }
         }
     }
-
+	
     func saveBackgroundContext(backgroundContext: NSManagedObjectContext) {
 		if backgroundContext.hasChanges {
             do {
@@ -68,19 +76,19 @@ class DataBaseManager: NSObject {
             }
         }
     }
-
+	
     func mainManagedObjectContext() -> NSManagedObjectContext {
     	let mainContext = persistentContainer.viewContext
 		mainContext.mergePolicy = NSRollbackMergePolicy
 		return mainContext
     }
-
+	
     func newBackgroundManagedObjectContext() -> NSManagedObjectContext {
 		let bgContext = persistentContainer!.newBackgroundContext()
 		bgContext.mergePolicy = NSOverwriteMergePolicy
 		return bgContext
     }
-
+	
     func addATask(action: @escaping () -> Void) {
 		let taskIsComingFromMainThread = Thread.current.isMainThread
 
@@ -96,7 +104,9 @@ class DataBaseManager: NSObject {
 		}
     }
 
-    func doTask()
+	// MARK: Functions
+	
+    private func doTask()
     {
     	print("mainThreadTaskArray \(mainThreadTaskArray)")
     	print("backgroundTaskArray \(backgroundTaskArray)")

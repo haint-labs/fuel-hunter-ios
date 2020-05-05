@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol AboutAppRoutingLogic {
-  	//func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
 protocol AboutAppDataPassing {

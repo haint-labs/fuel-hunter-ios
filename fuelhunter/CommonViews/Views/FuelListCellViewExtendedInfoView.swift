@@ -20,20 +20,13 @@ protocol FuelListCellViewExtendedInfoViewButtonLogic: class {
 class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoViewDisplayLogic {
 
 	// Forward this from viewController, so that we can extend white bg on the bottom
-	var safeLayoutBottomInset: CGFloat = 0 {
-		didSet {
-//			self.extendedDescriptionLabelBottomConstraint?.constant = -safeLayoutBottomInset
-		}
-	}
+	var safeLayoutBottomInset: CGFloat = 0
 	
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet var extendedDescriptionLabel: ActiveLabel!
 
 	weak var controller: FuelListCellViewExtendedInfoViewButtonLogic?
 
-	var extendedDescriptionLabelBottomConstraint: NSLayoutConstraint?
-		
-	
 	// MARK: View lifecycle
 
 	override init(frame: CGRect) {
@@ -46,10 +39,10 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("FuelListCellViewExtendedInfoView", owner: self, options: nil)
 		addSubview(baseView)
-//		self.backgroundColor = .blue
+
 		baseView.frame = self.bounds
 		self.clipsToBounds = true
 		self.translatesAutoresizingMaskIntoConstraints = false
@@ -64,16 +57,11 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
        	extendedDescriptionLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
 		extendedDescriptionLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
 		extendedDescriptionLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-		extendedDescriptionLabelBottomConstraint = extendedDescriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+		extendedDescriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
 		//===
-		
-				
-		extendedDescriptionLabel.font = Font(.normal, size: .size5).font
 
-		extendedDescriptionLabelBottomConstraint?.isActive = true
+		extendedDescriptionLabel.font = Font(.normal, size: .size5).font
 	}
-	
-	// MARK: Functions
 
 	// MARK: FuelListCellViewExtendedInfoViewDisplayLogic
 
@@ -81,7 +69,6 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
 
 		let patternString = "\\s\("map_price_last_updated_homepage_name".localized())\\b"
 		var lastUpdatedString = ""
-
 
 		let timestamp = PricesDownloader.lastDownloadTimeStamp()
 
@@ -114,7 +101,6 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
 		extendedDescriptionLabel.customColor[customType] = UIColor(red: 29/255, green: 105/255, blue: 255/255, alpha: 1.0)
 		extendedDescriptionLabel.customSelectedColor[customType] = UIColor(red: 29/255, green: 105/255, blue: 255/255, alpha: 1.0)
     	extendedDescriptionLabel.handleCustomTap(for: customType) { element in 
-//			print("Custom type tapped: \(element)")
 			self.controller?.userPressedOnHomePageButton()
 		}
 

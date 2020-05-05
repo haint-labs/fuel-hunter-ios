@@ -76,7 +76,7 @@ class CompanyChangesViewController: UIViewController, CompanyChangesDisplayLogic
 		router.dataStore = interactor
   	}
 
-  	func setUpView() {
+  	private func setUpView() {
 		layoutView = CompanyChangesLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -88,10 +88,12 @@ class CompanyChangesViewController: UIViewController, CompanyChangesDisplayLogic
 
   	// MARK: Functions
 
-	func getData() {
+	private func getData() {
     	let request = CompanyChanges.List.Request()
     	interactor?.getDataToShow(request: request)
   	}
+
+	// MARK: CompanyChangesDisplayLogic
 
   	func updateData(viewModel: CompanyChanges.List.ViewModel) {
   		layoutView.updateData(data: viewModel)

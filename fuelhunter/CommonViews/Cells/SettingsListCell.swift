@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol SettingsListCellDisplayLogic {
+    func setSwitch(asVisible switchIsVisible: Bool)
+    func setAsCellType(cellType: CellBackgroundType)
+}
+
 protocol SettingsCellSwitchLogic: class {
 	func switchWasPressedOnTableViewCell(cell: SettingsListCell)
 }
 
-class SettingsListCell: FontChangeTableViewCell {
+class SettingsListCell: FontChangeTableViewCell, SettingsListCellDisplayLogic {
 
 	weak var controller: SettingsCellSwitchLogic? 
 	public var cellBgType: CellBackgroundType = .single
@@ -24,10 +29,12 @@ class SettingsListCell: FontChangeTableViewCell {
 	@IBOutlet weak var accessoryIconImageView: UIImageView!
 	@IBOutlet weak var separatorView: UIView!
 
-	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
-	var bgViewTopAnchorConstraint: NSLayoutConstraint?
-	var titleRightAnchorConstraint: NSLayoutConstraint?
-	var descriptionRightAnchorConstraint: NSLayoutConstraint?
+	var bgViewBottomAnchorConstraint: NSLayoutConstraint!
+	var bgViewTopAnchorConstraint: NSLayoutConstraint!
+	var titleRightAnchorConstraint: NSLayoutConstraint!
+	var descriptionRightAnchorConstraint: NSLayoutConstraint!
+
+	// MARK: View lifecycle
 	
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,18 +51,18 @@ class SettingsListCell: FontChangeTableViewCell {
 		backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-		bgViewBottomAnchorConstraint?.isActive = true
+		bgViewBottomAnchorConstraint.isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
-		bgViewTopAnchorConstraint?.isActive = true
+		bgViewTopAnchorConstraint.isActive = true
 
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 		titleRightAnchorConstraint = titleLabel.rightAnchor.constraint(equalTo: accessoryIconImageView.leftAnchor, constant: -10)
-		titleRightAnchorConstraint?.isActive = true
+		titleRightAnchorConstraint.isActive = true
 
 		descriptionLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		descriptionRightAnchorConstraint = descriptionLabel.rightAnchor.constraint(equalTo: accessoryIconImageView.leftAnchor, constant: -10)
-		descriptionRightAnchorConstraint?.isActive = true
+		descriptionRightAnchorConstraint.isActive = true
 		descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		descriptionLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
 
@@ -74,14 +81,26 @@ class SettingsListCell: FontChangeTableViewCell {
     	updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+
+	private func updateFonts() {
 		titleLabel.font = Font(.medium, size: .size2).font
 		descriptionLabel.font = Font(.normal, size: .size4).font
+	}
+
+	@objc private func aSwitchWasPressed(_ aSwitch: UISwitch) {
+		controller?.switchWasPressedOnTableViewCell(cell: self)
 	}
 
 	override func fontSizeWasChanged() {
 		updateFonts()
 	}
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
+	// MARK: SettingsListCellDisplayLogic
 
 	func setSwitch(asVisible switchIsVisible: Bool) {
 		if switchIsVisible {
@@ -123,13 +142,4 @@ class SettingsListCell: FontChangeTableViewCell {
 				break
 		}
 	}
-
-	@objc func aSwitchWasPressed(_ aSwitch: UISwitch) {
-		controller?.switchWasPressedOnTableViewCell(cell: self)	
-	}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 }

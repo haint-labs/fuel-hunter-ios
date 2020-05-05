@@ -11,6 +11,9 @@ import ActiveLabel
 import SDWebImage
 
 protocol FuelListCellViewDisplayLogic {
+	func setUpConstraintsAsCell()
+	func setUpConstraintsAsBottomView()
+	func setAsCellType(cellType: CellBackgroundType)
     func updateDataWithData(priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPointData: MapPoint, andCellType cellType: CellBackgroundType)
     func refreshDataWithData(mapPointData: MapPoint)
 }
@@ -19,7 +22,7 @@ protocol FuelListCellViewButtonLogic: class {
     func userPressedOnNavigationButton()
 }
 
-class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
+class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDisplayLogic {
 
 	public var cellBgType: CellBackgroundType = .unknown
 
@@ -40,20 +43,20 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 	weak var controller: FuelListCellViewButtonLogic?
 
 
-	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
-	var bgViewTopAnchorConstraint: NSLayoutConstraint?
+	var bgViewBottomAnchorConstraint: NSLayoutConstraint!
+	var bgViewTopAnchorConstraint: NSLayoutConstraint!
 	
-	var iconImageViewLeftConstraint: NSLayoutConstraint?
-	var iconImageViewTopConstraint: NSLayoutConstraint?
-	var iconImageViewWidthConstraint: NSLayoutConstraint?
-	var iconImageViewHeightConstraint: NSLayoutConstraint?
-	var iconBottomConstraint: NSLayoutConstraint?
+	var iconImageViewLeftConstraint: NSLayoutConstraint!
+	var iconImageViewTopConstraint: NSLayoutConstraint!
+	var iconImageViewWidthConstraint: NSLayoutConstraint!
+	var iconImageViewHeightConstraint: NSLayoutConstraint!
+	var iconBottomConstraint: NSLayoutConstraint!
 
-	var iconImageViewCenterXConstraint: NSLayoutConstraint?
+	var iconImageViewCenterXConstraint: NSLayoutConstraint!
 	
-	var priceLabelBottomConstraint: NSLayoutConstraint?
+	var priceLabelBottomConstraint: NSLayoutConstraint!
 	
-	var extendedDescriptionLabelBottomConstraint: NSLayoutConstraint?
+	var extendedDescriptionLabelBottomConstraint: NSLayoutConstraint!
 		
 	
 	// MARK: View lifecycle
@@ -68,10 +71,9 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("FuelListCellView", owner: self, options: nil)
 		addSubview(baseView)
-//		backgroundColor = .gray
 		baseView.frame = self.bounds
 		self.clipsToBounds = true
 		self.translatesAutoresizingMaskIntoConstraints = false
@@ -100,22 +102,22 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-		bgViewBottomAnchorConstraint?.isActive = true
+		bgViewBottomAnchorConstraint.isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor)
-		bgViewTopAnchorConstraint?.isActive = true
+		bgViewTopAnchorConstraint.isActive = true
 
 		iconImageViewLeftConstraint = iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10)
 		iconImageViewTopConstraint = iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 11)
 		iconImageViewWidthConstraint = iconImageView.widthAnchor.constraint(equalToConstant: 33)
 		iconImageViewHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 33)
 		iconBottomConstraint = iconImageView.bottomAnchor.constraint(lessThanOrEqualTo: backgroundImageView.bottomAnchor, constant: -11)
-		iconBottomConstraint?.priority = .defaultHigh
-		iconBottomConstraint?.isActive = true
+		iconBottomConstraint.priority = .defaultHigh
+		iconBottomConstraint.isActive = true
 
-		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10+10+33).isActive = true
+		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 20+33).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 
-		addressesLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10+10+33).isActive = true
+		addressesLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 20+33).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		
 		
@@ -185,8 +187,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		extendedDescriptionLabelBottomConstraint = mapInfoDistanceView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
 		//===
 		
-				
-		
 		titleLabel.font = Font(.medium, size: .size2).font
 		addressesLabel.font = Font(.normal, size: .size4).font
 		priceLabel.font = Font(.bold, size: .size1).font
@@ -198,24 +198,23 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 
         setUpConstraintsAsCell()
 	}
-	
+
+	// MARK: FuelListCellViewDisplayLogic
+
 	func setUpConstraintsAsCell() {
+		iconImageViewCenterXConstraint.isActive = false
+		extendedDescriptionLabelBottomConstraint.isActive = false
+
+		iconImageViewLeftConstraint.isActive = true
+		iconImageViewTopConstraint.isActive = true
+		iconImageViewWidthConstraint.isActive = true
+		iconImageViewHeightConstraint.isActive = true
+		iconBottomConstraint.isActive = true
+		priceLabelBottomConstraint.isActive = true
 		
-		iconImageViewCenterXConstraint?.isActive = false
-		
-		extendedDescriptionLabelBottomConstraint?.isActive = false
-		
-		
-		iconImageViewLeftConstraint?.isActive = true
-		iconImageViewTopConstraint?.isActive = true
-		iconImageViewWidthConstraint?.isActive = true
-		iconImageViewHeightConstraint?.isActive = true
-		iconBottomConstraint?.isActive = true
-		priceLabelBottomConstraint?.isActive = true
-		
-		iconImageViewTopConstraint?.constant = 11
-		iconImageViewWidthConstraint?.constant = 33		
-		iconImageViewHeightConstraint?.constant = 33
+		iconImageViewTopConstraint.constant = 11
+		iconImageViewWidthConstraint.constant = 33
+		iconImageViewHeightConstraint.constant = 33
 		
 		extendedTitleLabel.alpha = 0
 		extendedAddressLabel.alpha = 0
@@ -229,23 +228,21 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		separatorView.alpha = 1
 		backgroundImageView.alpha = 1
 
-		self.setAsCellType(cellType: cellBgType)
+		setAsCellType(cellType: cellBgType)
     }
 	
 	func setUpConstraintsAsBottomView() {
-		
-		iconImageViewLeftConstraint?.isActive = false
-		priceLabelBottomConstraint?.isActive = false
+		iconImageViewLeftConstraint.isActive = false
+		priceLabelBottomConstraint.isActive = false
 
-		iconImageViewTopConstraint?.constant = 15
-		iconImageViewWidthConstraint?.constant = 60	
-		iconImageViewHeightConstraint?.constant = 60
+		iconImageViewTopConstraint.constant = 15
+		iconImageViewWidthConstraint.constant = 60
+		iconImageViewHeightConstraint.constant = 60
 
-		iconBottomConstraint?.isActive = false
+		iconBottomConstraint.isActive = false
 
-		iconImageViewCenterXConstraint?.isActive = true
-		
-		extendedDescriptionLabelBottomConstraint?.isActive = true
+		iconImageViewCenterXConstraint.isActive = true
+		extendedDescriptionLabelBottomConstraint.isActive = true
 		
 		extendedTitleLabel.alpha = 1
 		extendedAddressLabel.alpha = 1
@@ -259,37 +256,33 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		separatorView.alpha = 0
 		backgroundImageView.alpha = 0
 	}
-	
-	// MARK: Functions
 
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}
 	}
-
-	// MARK: FuelListCellViewDisplayLogic
 
 	func updateDataWithData(priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPointData: MapPoint, andCellType cellType: CellBackgroundType) {
 		titleLabel.fadeTransition(0.2)
@@ -313,7 +306,6 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 //				}
 			}
 
-//		iconImageView.image = UIImage(named: mapPointData.company.largeLogoName)
 		if mapPointData.priceIsCheapest {
 			priceLabel.textColor = UIColor(named: "CheapPriceColor")
 		} else {
@@ -327,7 +319,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic {
 		priceLabel.text = mapPointData.priceText
 
 		if cellBgType == .unknown {
-			self.setAsCellType(cellType: cellType)
+			setAsCellType(cellType: cellType)
 		}
 
 		self.cellBgType = cellType

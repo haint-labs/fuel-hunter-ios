@@ -41,7 +41,7 @@ class FuelTypeChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDe
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("FuelTypeChooseListLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -78,22 +78,6 @@ class FuelTypeChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDe
 
     	setUpTableViewHeader()
   	}
-
-  	func setUpTableViewHeader() {
-		header = UIView()
-		let label = UILabel()
-		label.numberOfLines = 0
-		label.textAlignment = .center
-		label.font = Font(.normal, size: .size2).font
-		label.textColor = UIColor(named: "TitleColor")
-		let text = "settings_fuel_type_second_description".localized()
-		let height = text.height(withConstrainedWidth: self.frame.width-26, font: label.font)
-		label.text = text
-		label.frame = CGRect(x: 12, y: 10, width: self.frame.width-26, height: height+6)
-		header.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: height+26)
-		header.addSubview(label)
-		tableView.tableHeaderView = header
-	}
 
   	// MARK: Table view
 
@@ -143,7 +127,23 @@ class FuelTypeChooseListLayoutView: UIView, UITableViewDataSource, UITableViewDe
 
 	// MARK: Functions
 
-	func adjustVisibilityOfShadowLines() {
+  	private func setUpTableViewHeader() {
+		header = UIView()
+		let label = UILabel()
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		label.font = Font(.normal, size: .size2).font
+		label.textColor = UIColor(named: "TitleColor")
+		let text = "settings_fuel_type_second_description".localized()
+		let height = text.height(withConstrainedWidth: self.frame.width-26, font: label.font)
+		label.text = text
+		label.frame = CGRect(x: 12, y: 10, width: self.frame.width-26, height: height+6)
+		header.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: height+26)
+		header.addSubview(label)
+		tableView.tableHeaderView = header
+	}
+
+	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top

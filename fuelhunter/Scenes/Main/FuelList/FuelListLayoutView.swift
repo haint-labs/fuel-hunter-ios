@@ -13,18 +13,21 @@ protocol FuelListLayoutViewLogic: class {
 	func savingsButtonPressed()
 	func accuracyButtonPressed()
 	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType)
+	func closestCityNameButtonWasPressed()
 }
 
 protocol FuelListLayoutViewDataLogic: class {
+	func adjustVisibilityOfShadowLines()
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int])
+	func updateCity(_ name: String, gpsIconVisible: Bool)
 	func resetUI()
 }
 
-class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic, InlineAlertViewLogic {
+class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic, InlineAlertViewLogic, ClosestCityNameButtonViewButtonLogic {
 
 	var currentScrollPos : CGFloat?
 
-	weak var controller: FuelListLayoutViewLogic? 
+	weak var controller: FuelListLayoutViewLogic?
 
 	@IBOutlet var baseView: UIView!
 	@IBOutlet weak var inlineAlertView: InlineAlertView!
@@ -36,6 +39,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	@IBOutlet weak var savingsLabelButton: UIButton!
 	@IBOutlet weak var accuracyIconButton: UIButton!
 	@IBOutlet weak var accuracyLabelButton: UIButton!
+
+	@IBOutlet var closestCityNameButtonView: ClosestCityNameButtonView!
 
 	var data = [[FuelList.FetchPrices.ViewModel.DisplayedPrice]]()
 
@@ -62,7 +67,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		adjustVisibilityOfShadowLines()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("FuelListLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -85,6 +90,10 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		inlineAlertView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		inlineAlertView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 
+		closestCityNameButtonView.translatesAutoresizingMaskIntoConstraints = false
+
+		closestCityNameButtonView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+
 		tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		tableView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor).isActive = true
@@ -92,7 +101,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 		tableViewNoDataView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableViewNoDataView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		tableViewNoDataView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor, constant: 30).isActive = true
+		tableViewNoDataView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor, constant: 60).isActive = true
 
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -131,7 +140,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets(top: -6, left: 0, bottom: -9, right: 0)
+    	tableView.contentInset = UIEdgeInsets(top: -2, left: 0, bottom: -9, right: 0)
     	let nib = UINib(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	tableView.backgroundColor = UIColor.clear
@@ -149,6 +158,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 		tableViewNoDataView.alpha = 0
 		adjustNoDataLabelText()
+
+		closestCityNameButtonView.controller = self
   	}
 
   	// MARK: Table view
@@ -272,99 +283,15 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	// MARK: Functions
 
-	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y-15))/50.0
-		tableViewTopShadow.alpha = alfa
-		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value+5))/50.0
-		tableViewBottomShadow.alpha = alfa2
-	}
-
-	@objc func savingsButtonPressed() {
+	@objc private func savingsButtonPressed() {
 		controller?.savingsButtonPressed()
 	}
 
-	@objc func accuracyButtonPressed() {
+	@objc private func accuracyButtonPressed() {
 		controller?.accuracyButtonPressed()
 	}
 
-	// MARK: FuelListLayoutViewDataLogic
-
-	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int]) {
-
-//		print("data \(data)")
-		print("insertItems \(insertItems)")
-		print("deleteItems \(deleteItems)")
-		print("updateItems \(updateItems)")
-		print("insertSections \(insertSections)")
-		print("deleteSections \(deleteSections)")
-		print("updateSections \(updateSections)")
-
-		if insertItems.isEmpty && deleteItems.isEmpty && updateItems.isEmpty && insertSections.isEmpty && deleteSections.isEmpty && updateSections.isEmpty {
-			self.data = data
-			tableView.reloadData()
-			tableView.layoutIfNeeded()
-		} else {
-			self.data = data
-
-			self.currentScrollPos = self.tableView.contentOffset.y
-
-			tableView.performBatchUpdates({
-				if !updateItems.isEmpty {
-					tableView.reloadRows(at: updateItems, with: .left)
-				}
-
-				if !deleteItems.isEmpty {
-					tableView.deleteRows(at: deleteItems, with: .fade)
-				}
-
-				if !insertItems.isEmpty {
-					tableView.insertRows(at: insertItems, with: .fade)
-				}
-
-				if !insertSections.isEmpty {
-					tableView.insertSections(IndexSet(insertSections), with: .fade)
-				}
-
-				if !deleteSections.isEmpty {
-					tableView.deleteSections(IndexSet(deleteSections), with: .fade)
-				}
-
-				if !updateSections.isEmpty {
-					tableView.reloadSections(IndexSet(updateSections), with: .fade)
-				}
-
-			}) { finished in
-				self.adjustVisibilityOfShadowLines()
-
-				self.currentScrollPos = nil
-			}
-		}
-
-			savingsLabelButton.setTitle("fuel_list_savings_button_title".localized(), for: .normal)
-			accuracyLabelButton.setTitle("fuel_list_fuel_price_accuracy_button_title".localized(), for: .normal)
-			accuracyLabelButton.layoutIfNeeded()
-			savingsLabelButton.layoutIfNeeded()
-
-
-		if self.data.isEmpty {
-			self.tableViewNoDataView.alpha = 1
-			self.tableView.isUserInteractionEnabled = false
-		} else {
-			self.tableViewNoDataView.alpha = 0
-			self.tableView.isUserInteractionEnabled = true
-		}
-
-		adjustVisibilityOfShadowLines()
-	}
-
-	func resetUI() {
-		tableView.reloadData()
-    	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
-		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
-	}
-
-	func adjustNoDataLabelText() {
+	private func adjustNoDataLabelText() {
 		switch PricesDownloader.downloadingState {
 			case .downloading:
 				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
@@ -379,9 +306,78 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		}
 	}
 
+	// MARK: FuelListLayoutViewDataLogic
+
+	func adjustVisibilityOfShadowLines() {
+		let alfa = min(50, max(0, tableView.contentOffset.y-15))/50.0
+		tableViewTopShadow.alpha = alfa
+		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
+		let alfa2 = min(50, max(0, tableView.contentSize.height-value+5))/50.0
+		tableViewBottomShadow.alpha = alfa2
+	}
+
+	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int]) {
+//		print("data \(data)")
+//		print("insertItems \(insertItems)")
+//		print("deleteItems \(deleteItems)")
+//		print("updateItems \(updateItems)")
+//		print("insertSections \(insertSections)")
+//		print("deleteSections \(deleteSections)")
+//		print("updateSections \(updateSections)")
+
+		if insertItems.isEmpty && deleteItems.isEmpty && updateItems.isEmpty && insertSections.isEmpty && deleteSections.isEmpty && updateSections.isEmpty {
+			self.data = data
+			tableView.reloadData()
+			tableView.layoutIfNeeded()
+		} else {
+			self.data = data
+
+			self.currentScrollPos = self.tableView.contentOffset.y
+
+			tableView.performBatchUpdates({
+				if !updateItems.isEmpty { tableView.reloadRows(at: updateItems, with: .left) }
+				if !deleteItems.isEmpty { tableView.deleteRows(at: deleteItems, with: .fade) }
+				if !insertItems.isEmpty { tableView.insertRows(at: insertItems, with: .fade) }
+				if !insertSections.isEmpty { tableView.insertSections(IndexSet(insertSections), with: .fade) }
+				if !deleteSections.isEmpty { tableView.deleteSections(IndexSet(deleteSections), with: .fade) }
+				if !updateSections.isEmpty { tableView.reloadSections(IndexSet(updateSections), with: .fade) }
+
+			}) { finished in
+				self.adjustVisibilityOfShadowLines()
+				self.currentScrollPos = nil
+			}
+		}
+
+		savingsLabelButton.setTitle("fuel_list_savings_button_title".localized(), for: .normal)
+		accuracyLabelButton.setTitle("fuel_list_fuel_price_accuracy_button_title".localized(), for: .normal)
+		accuracyLabelButton.layoutIfNeeded()
+		savingsLabelButton.layoutIfNeeded()
+
+		if self.data.isEmpty {
+			self.tableViewNoDataView.alpha = 1
+			self.tableView.isScrollEnabled = false
+		} else {
+			self.tableViewNoDataView.alpha = 0
+			self.tableView.isScrollEnabled = true
+		}
+
+		adjustVisibilityOfShadowLines()
+	}
+
+	func updateCity(_ name: String, gpsIconVisible: Bool) {
+		closestCityNameButtonView.setCity(name: name, gpsIconVisible: gpsIconVisible)
+		tableView.tableHeaderView = closestCityNameButtonView
+	}
+
+	func resetUI() {
+		tableView.reloadData()
+    	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
+		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
+	}
+
 	// MARK: Notifications
 
-	@objc func dataDownloaderStateChange() {
+	@objc private func dataDownloaderStateChange() {
 		adjustNoDataLabelText()
 	}
 
@@ -389,5 +385,11 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	func inlineAlertViewFrameChanged() {
 		adjustVisibilityOfShadowLines()
+	}
+
+	// MARK: ClosestCityNameButtonViewButtonLogic
+
+	func closestCityNameButtonWasPressed() {
+		controller?.closestCityNameButtonWasPressed()
 	}
 }

@@ -17,9 +17,7 @@ class MapWorker {
 	func createUsableDataArray(fromPricesArray priceArray: [PriceEntity], companiesArray: [CompanyEntity]) -> [Map.MapData.ViewModel.DisplayedMapPoint] {
 		var newArray = [Map.MapData.ViewModel.DisplayedMapPoint]()
 
-		let userLocation = AppSettingsWorker.shared.getUserLocation()
-
-//		let lowestPrice = priceArray.min { Float($0.price!)! < Float($1.price!)! }
+		let userLocation = AppSettingsWorker.shared.userLocation
 
 		for (_, item) in priceArray.enumerated() {
 			let allAddresses = item.addresses?.allObjects as! [AddressEntity]

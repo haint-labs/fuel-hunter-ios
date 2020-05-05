@@ -13,37 +13,24 @@
 import UIKit
 
 protocol IntroNotifSetUpBusinessLogic {
-  	func loadData(request: IntroNotifSetUp.Something.Request)
   	func userAskedForNotifAccess(request: IntroNotifSetUp.Something.Request)
 }
 
 protocol IntroNotifSetUpDataStore {
-  	//var name: String { get set }
 }
 
 class IntroNotifSetUpInteractor: IntroNotifSetUpBusinessLogic, IntroNotifSetUpDataStore {
   	var presenter: IntroNotifSetUpPresentationLogic?
-  	var worker: IntroNotifSetUpWorker?
-  	var appSettingsWorker = AppSettingsWorker.shared
-  	//var name: String = ""
 
   	// MARK: IntroNotifSetUpBusinessLogic
 
-  	func loadData(request: IntroNotifSetUp.Something.Request) {
-    	worker = IntroNotifSetUpWorker()
-    	worker?.doSomeWork()
-
-    	let response = IntroNotifSetUp.Something.Response()
-    	presenter?.presentData(response: response)
-  	}
-
   	func userAskedForNotifAccess(request: IntroNotifSetUp.Something.Request) {
-  		appSettingsWorker.notifSwitchWasPressed { [weak self] in
+  		AppSettingsWorker.shared.notifSwitchWasPressed { [weak self] in
   			// If we have auth
-			if self?.appSettingsWorker.notificationsAuthorisationStatus == .authorized
-  				&& self?.appSettingsWorker.getNotifIsEnabled() == true {
-				let storedCentsCount = self?.appSettingsWorker.getStoredNotifCentsCount()
-				let response = IntroNotifSetUp.PushNotif.Response(storedNotifCentsCount: storedCentsCount ?? 1)
+			if AppSettingsWorker.shared.notificationsAuthorisationStatus == .authorized
+  				&& AppSettingsWorker.shared.getNotifIsEnabled() == true {
+				let storedCentsCount = AppSettingsWorker.shared.getStoredNotifCentsCount()
+				let response = IntroNotifSetUp.PushNotif.Response(storedNotifCentsCount: storedCentsCount)
 				self?.presenter?.showNotifSetUp(response: response)
 			} else {
 				ScenesManager.shared.advanceAppSceneState()

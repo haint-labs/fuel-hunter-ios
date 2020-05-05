@@ -35,7 +35,7 @@ class IntroPageLayoutView: FontChangeView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("IntroPageLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -129,7 +129,9 @@ class IntroPageLayoutView: FontChangeView {
   		updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+
+  	private func updateFonts() {
 		iconImageView.image = UIImage(named: "Intro_icon")
 		topTitleLabel.font = Font(.normal, size: .size0).font
 		description1Label.font = Font(.normal, size: .size2).font
@@ -137,13 +139,11 @@ class IntroPageLayoutView: FontChangeView {
 		nextButton.titleLabel?.font = Font(.medium, size: .size2).font
 	}
 
+  	@objc private func nextButtonPressed() {
+		controller?.nextButtonWasPressed()
+  	}
+
 	override func fontSizeWasChanged() {
 		updateFonts()
 	}
-
-	// MARK: Functions
-
-  	@objc func nextButtonPressed() {
-		controller?.nextButtonWasPressed()
-  	}	
 }

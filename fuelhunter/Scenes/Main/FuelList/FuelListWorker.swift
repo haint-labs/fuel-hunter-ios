@@ -13,4 +13,16 @@
 import UIKit
 
 class FuelListWorker {
+
+	class func getPrices(with type: FuelType, from prices: [PriceEntity]) -> [FuelList.FetchPrices.ViewModel.DisplayedPrice] {
+
+		let pricesForFuelType = prices.filter({ $0.fuelType == type.rawValue })
+
+		let pricesToReturn = pricesForFuelType.map() { price in
+			return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: price.id!, company: price.companyMetaData!.company!, price: price.price!, isPriceCheapest: price.price! == pricesForFuelType.first?.price!, fuelType: type, addressDescription: price.addressDescription!, address: price.addresses!.allObjects as! [AddressEntity], city: price.city!)
+		}
+
+		return pricesToReturn
+	}
+
 }

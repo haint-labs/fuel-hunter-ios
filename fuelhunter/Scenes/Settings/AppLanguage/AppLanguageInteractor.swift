@@ -18,12 +18,10 @@ protocol AppLanguageBusinessLogic {
 }
 
 protocol AppLanguageDataStore {
-  	//var name: String { get set }
 }
 
 class AppLanguageInteractor: AppLanguageBusinessLogic, AppLanguageDataStore {
   	var presenter: AppLanguagePresentationLogic?
-  	//var name: String = ""
 
   	// MARK: AppLanguageBusinessLogic
 

@@ -28,7 +28,6 @@ class SettingsPresenter: SettingsPresentationLogic {
 	} 
 
   	func presentSettingsListWithData(response: Settings.SettingsList.Response) {
-
   		let companyNames = response.companyNames
 		let fuelTypeNames = response.fuelTypeNames
 		let gpsIsEnabledStatus = response.gpsIsEnabledStatus
@@ -59,19 +58,7 @@ class SettingsPresenter: SettingsPresentationLogic {
 
 		let settingsItem7 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .aboutAppCell, title: "settings_about_app_title", description: "settings_about_app_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-
-		var array = [settingsItem1, settingsItem2]
-
-		// Only if gps is disabled. This will serve as a "link" to settings, to enable it.
-//		if gpsIsEnabledStatus == false {
-			array.append(settingsItem3)
-//		}
-
-		array.append(settingsItem4)
-		array.append(settingsItem5)
-		array.append(settingsItem6)
-		array.append(settingsItem7)
-
+		let array = [settingsItem1, settingsItem2, settingsItem3, settingsItem4, settingsItem5, settingsItem6, settingsItem7]
 
     	let viewModel = Settings.SettingsList.ViewModel(displayedSettingsCells: array)
     	viewController?.displaySettingsList(viewModel: viewModel)

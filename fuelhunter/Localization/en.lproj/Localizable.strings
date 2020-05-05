@@ -110,6 +110,8 @@
 "fuel_list_savings_button_title" = "Savings";
 "fuel_list_fuel_price_accuracy_button_title" = "Price Accuracy";
 "fuel_list_app_name" = "Fuel Hunter";
+"fuel_list_city_title" = "Why";
+"fuel_list_city_explain_description" = "Fuel Hunter currently only works in Latvian cities.\n\nThe application uses GPS to navigate to the city closest to you.\n\nIf GPS is off, the application will display data from the city you selected when setting Notifications.\n\nIf GPS is off, and notifications are turned off, then the application will show data only from Riga.";
 //=== FUEL LIST
 
 

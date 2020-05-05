@@ -29,7 +29,7 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
   	var appSettingsWorker = AppSettingsWorker.shared
 	var centsValue: Int = 0
 	var sortedCities = CityWorker.getCitiesByDistance()
-	var selectedCityName = CityWorker.getClosestCity().name!
+	var selectedCityName = CityWorker.getClosestCityName()
 	
 	// MARK: PushNotifSetupBusinessLogic
 
@@ -42,11 +42,27 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
   		appSettingsWorker.setNotifEnabled(enabled: true)
   		appSettingsWorker.setStoredNotifCentsCount(count: centsValue)
   		appSettingsWorker.setStoredNotifCity(name: selectedCityName)
+
+		// This will give real city OR selected city (if gps is disabled)
+		let cityName = CityWorker.getClosestCityName()
+		appSettingsWorker.setStoredLastGPSDetectedCityName(name: cityName)
+
+		// Needed for FuelListViewController - to show correct city,
+		// if gps is disabled, show push notif chosen city name.
+  		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
+			NotificationCenter.default.post(name: .settingsUpdated, object: nil)
+		}
+
   		presenter?.returnBackToPreviousViewController()
   	}
 
   	func cancelButtonPressed() {
   		appSettingsWorker.setNotifEnabled(enabled: false)
+
+  		let cityName = CityWorker.getClosestCityName()
+		appSettingsWorker.setStoredNotifCity(name: cityName)
+		appSettingsWorker.setStoredLastGPSDetectedCityName(name: cityName)
+
   		presenter?.returnBackToPreviousViewController()
   	}
 
@@ -62,7 +78,7 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
 
   	// MARK: Functions
 
-  	func callPresenter() {
+  	private func callPresenter() {
 		let minimumValue = AppSettingsWorker.minimumNotifCents
 		let maximumValue = AppSettingsWorker.maximumNotifCents
 		let convertedValue = appSettingsWorker.getCentsSymbolBasedOnValue(value: centsValue)

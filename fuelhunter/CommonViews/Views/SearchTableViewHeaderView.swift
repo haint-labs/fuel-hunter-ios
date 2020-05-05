@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol SearchTableViewHeaderViewDisplayLogic {
+    func activateTextField()
+    func deactivateTextField()
+}
+
 protocol SearchTableViewHeaderViewLogic: class {
 	func textFieldValueWasChanged(textField: UITextField)
 }
@@ -25,15 +30,17 @@ class SearchTableViewHeaderView: FontChangeHeaderFooterView {
 
 	var lastActiveTextField: UITextField?
 
+	// MARK: View lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
+
+		self.contentView.backgroundColor = .white
 
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         separatorView.translatesAutoresizingMaskIntoConstraints = false
 		textField.translatesAutoresizingMaskIntoConstraints = false
 		searchIconImageView.translatesAutoresizingMaskIntoConstraints = false
-
-		self.contentView.backgroundColor = .white
 
 		backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
@@ -52,7 +59,6 @@ class SearchTableViewHeaderView: FontChangeHeaderFooterView {
 		textField.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -11).isActive = true
 		textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
-
 		separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
 		separatorView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -1).isActive = true
 		separatorView.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor).isActive = true
@@ -64,7 +70,9 @@ class SearchTableViewHeaderView: FontChangeHeaderFooterView {
 		updateFonts()
     }
 
-    @objc func textFieldDidChange() {
+	// MARK: Functions
+
+    @objc private func textFieldDidChange() {
     	if textField.text?.isEmpty == true {
 			searchIconImageView.isHighlighted = false
 		} else {
@@ -73,6 +81,16 @@ class SearchTableViewHeaderView: FontChangeHeaderFooterView {
 		controller?.textFieldValueWasChanged(textField: textField)
     }
 
+	private func updateFonts() {
+		textField.font = Font(.normal, size: .size2).font
+	}
+
+    override func fontSizeWasChanged() {
+		updateFonts()
+	}
+
+	// MARK: SearchTableViewHeaderViewDisplayLogic
+
 	func activateTextField() {
 		DispatchQueue.main.asyncAfter(deadline: .now()) { self.textField.becomeFirstResponder() }
 	}
@@ -80,13 +98,5 @@ class SearchTableViewHeaderView: FontChangeHeaderFooterView {
 	func deactivateTextField() {
 		textField.endEditing(true)
 		self.textField.text = nil
-	}
-
-	func updateFonts() {
-		textField.font = Font(.normal, size: .size2).font
-	}
-
-    override func fontSizeWasChanged() {
-		updateFonts()
 	}
 }

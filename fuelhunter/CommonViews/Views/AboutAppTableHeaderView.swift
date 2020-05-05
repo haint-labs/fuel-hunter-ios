@@ -8,7 +8,12 @@
 
 import UIKit
 
-class AboutAppTableHeaderView: FontChangeView {
+protocol AboutAppTableHeaderViewDisplayLogic {
+    func startAnimations()
+    func stopAnimations()
+}
+
+class AboutAppTableHeaderView: FontChangeView, AboutAppTableHeaderViewDisplayLogic {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet weak var mapPreviewView: MapAnimationView!
@@ -30,7 +35,7 @@ class AboutAppTableHeaderView: FontChangeView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("AboutAppTableHeaderView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -77,7 +82,9 @@ class AboutAppTableHeaderView: FontChangeView {
   		updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+
+	private func updateFonts() {
 		mapLabel.font = Font(.normal, size: .size3).font
 		notifLabel.font = Font(.normal, size: .size3).font
 		descriptionLabel.font = Font(.normal, size: .size3).font
@@ -86,6 +93,8 @@ class AboutAppTableHeaderView: FontChangeView {
 	override func fontSizeWasChanged() {
 		updateFonts()
 	}
+
+	// MARK: AboutAppTableHeaderViewDisplayLogic
 
   	func startAnimations() {
   		mapPreviewView.startAnimating()

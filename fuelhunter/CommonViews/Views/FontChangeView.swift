@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol FontChangeViewNotifications {
-	func fontSizeWasChanged()
-}
-
 class FontChangeView: UIView {
 
 	// MARK: View lifecycle
@@ -34,7 +30,8 @@ class FontChangeView: UIView {
 		NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
 	}
 
-	// MARK: FontChangeTableViewCellNotifications
+	// MARK: Functions
+
 	@objc func fontSizeWasChanged() {
 		// override
 	}
@@ -55,7 +52,8 @@ class FontChangeHeaderFooterView: UITableViewHeaderFooterView {
 		NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
 	}
 
-	// MARK: FontChangeTableViewCellNotifications
+	// MARK: Functions
+
 	@objc func fontSizeWasChanged() {
 		// override
 	}

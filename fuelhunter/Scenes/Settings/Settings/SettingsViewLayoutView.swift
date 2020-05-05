@@ -39,7 +39,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("SettingsViewLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -148,7 +148,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 
 	// MARK: Functions
 
-	func adjustVisibilityOfShadowLines() {
+	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top

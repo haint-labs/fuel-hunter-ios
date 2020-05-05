@@ -14,6 +14,7 @@ import UIKit
 import CoreData
 
 protocol FuelListPresentationLogic {
+	func updateCityView(response: FuelList.UpdateCityView.Response)
 	func presentData(response: FuelList.FetchPrices.Response)
 	func revealMapView(response: FuelList.RevealMap.Response)
 }
@@ -23,35 +24,39 @@ class FuelListPresenter: FuelListPresentationLogic {
 
 	// MARK: FuelListPresentationLogic
 
+	func updateCityView(response: FuelList.UpdateCityView.Response) {
+		let viewModel = FuelList.UpdateCityView.ViewModel(currentCityName: response.currentCityName, currentCityGPSIconEnabled: response.currentCityGPSIconEnabled)
+		viewController?.updateCityView(viewModel: viewModel)
+	}
+
 	func presentData(response: FuelList.FetchPrices.Response) {
 
 		var displayedPrices: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]] = []
 
-
 		let fuelTypesStatus = AppSettingsWorker.shared.getFuelTypeToggleStatus()
 
 		if fuelTypesStatus.typeDD {
-			let typeDDPrices = self.getPrices(with: .typeDD, from: response.fetchedPrices)
+			let typeDDPrices = FuelListWorker.getPrices(with: .typeDD, from: response.fetchedPrices)
 			if !typeDDPrices.isEmpty { displayedPrices.append(typeDDPrices) }
 		}
 
 		if fuelTypesStatus.typeDDPro {
-			let typeDDProPrices = self.getPrices(with: .typeDDPro, from: response.fetchedPrices)
+			let typeDDProPrices = FuelListWorker.getPrices(with: .typeDDPro, from: response.fetchedPrices)
 			if !typeDDProPrices.isEmpty { displayedPrices.append(typeDDProPrices) }
 		}
 
 		if fuelTypesStatus.type95 {
-			let type95Prices = self.getPrices(with: .type95, from: response.fetchedPrices)
+			let type95Prices = FuelListWorker.getPrices(with: .type95, from: response.fetchedPrices)
 			if !type95Prices.isEmpty { displayedPrices.append(type95Prices) }
 		}
 
 		if fuelTypesStatus.type98 {
-			let type98Prices = self.getPrices(with: .type98, from: response.fetchedPrices)
+			let type98Prices = FuelListWorker.getPrices(with: .type98, from: response.fetchedPrices)
 			if !type98Prices.isEmpty { displayedPrices.append(type98Prices) }
 		}
 
 		if fuelTypesStatus.typeGas {
-			let typeGasPrices = self.getPrices(with: .typeGas, from: response.fetchedPrices)
+			let typeGasPrices = FuelListWorker.getPrices(with: .typeGas, from: response.fetchedPrices)
 			if !typeGasPrices.isEmpty { displayedPrices.append(typeGasPrices) }
 		}
 
@@ -65,18 +70,5 @@ class FuelListPresenter: FuelListPresentationLogic {
 		let viewModel = FuelList.RevealMap.ViewModel(selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
 
 		viewController?.revealMapView(viewModel: viewModel)
-	}
-
-	// MARK: Functions
-
-	func getPrices(with type: FuelType, from prices: [PriceEntity]) -> [FuelList.FetchPrices.ViewModel.DisplayedPrice] {
-
-		let pricesForFuelType = prices.filter({ $0.fuelType == type.rawValue })
-
-		let pricesToReturn = pricesForFuelType.map() { price in
-			return FuelList.FetchPrices.ViewModel.DisplayedPrice(id: price.id!, company: price.companyMetaData!.company!, price: price.price!, isPriceCheapest: price.price! == pricesForFuelType.first?.price!, fuelType: type, addressDescription: price.addressDescription!, address: price.addresses!.allObjects as! [AddressEntity], city: price.city!)
-		}
-
-		return pricesToReturn
 	}
 }

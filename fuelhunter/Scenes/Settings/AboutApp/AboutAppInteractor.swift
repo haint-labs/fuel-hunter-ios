@@ -18,7 +18,6 @@ protocol AboutAppBusinessLogic {
 }
 
 protocol AboutAppDataStore {
-  	//var name: String { get set }
 }
 
 class AboutAppInteractor: NSObject, AboutAppBusinessLogic, AboutAppDataStore, NSFetchedResultsControllerDelegate {

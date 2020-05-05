@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol TableViewNoDataViewDisplayLogic {
+	func setSmallerFont()
+    func set(title: String, loadingEnabled: Bool)
+}
 
-class TableViewNoDataView: UIView {
+class TableViewNoDataView: FontChangeView, TableViewNoDataViewDisplayLogic {
 
 	@IBOutlet weak var baseView: UIView!
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var loadingIndicator: UIActivityIndicatorView!
+
+	var useSmallFonts = false
 
 	// MARK: View lifecycle
 
@@ -27,7 +33,7 @@ class TableViewNoDataView: UIView {
     	setup()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("TableViewNoDataView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -51,11 +57,28 @@ class TableViewNoDataView: UIView {
 		loadingIndicator.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
 		loadingIndicator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-		titleLabel.font = Font(.normal, size: .size2).font
+		updateFonts()
 	}
 
+	// MARK: Functions
+
+	private func updateFonts() {
+		if useSmallFonts {
+			titleLabel.font = Font(.normal, size: .size3).font
+		} else {
+			titleLabel.font = Font(.normal, size: .size2).font
+		}
+	}
+
+	override func fontSizeWasChanged() {
+		updateFonts()
+	}
+
+	// MARK: TableViewNoDataViewDisplayLogic
+
 	func setSmallerFont() {
-		titleLabel.font = Font(.normal, size: .size3).font
+		useSmallFonts = true
+		updateFonts()
 	}
 
 	func set(title: String, loadingEnabled: Bool) {

@@ -20,7 +20,6 @@ protocol CompanyChangesBusinessLogic {
 }
 
 protocol CompanyChangesDataStore {
-
 }
 
 class CompanyChangesInteractor: CompanyChangesBusinessLogic, CompanyChangesDataStore {
@@ -39,7 +38,6 @@ class CompanyChangesInteractor: CompanyChangesBusinessLogic, CompanyChangesDataS
 		let addedCompanyRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 		addedCompanyRequest.predicate = NSPredicate(format: "isCheapestToggle == %i && shouldPopUpToUser == %i && isHidden == %i", false, true, false)
 		addedCompanyRequest.sortDescriptors = [sort]
-//		removedCompanyRequest.predicate = NSPredicate(format: "isHidden == %i", false)
 		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(addedCompanyRequest) {
 			addedCompanies.append(contentsOf: companyObjectArray)
 		}
@@ -47,7 +45,6 @@ class CompanyChangesInteractor: CompanyChangesBusinessLogic, CompanyChangesDataS
 		let removedCompanyRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 		removedCompanyRequest.predicate = NSPredicate(format: "isCheapestToggle == %i && shouldPopUpToUser == %i && isHidden == %i", false, true, true)
 		removedCompanyRequest.sortDescriptors = [sort]
-//		removedCompanyRequest.predicate = NSPredicate(format: "isHidden == %i", false)
 		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(removedCompanyRequest) {
 			removedCompanies.append(contentsOf: companyObjectArray)
 		}
@@ -56,7 +53,6 @@ class CompanyChangesInteractor: CompanyChangesBusinessLogic, CompanyChangesDataS
   	}
 
 	func userToggledCompanyType(request: CompanyChanges.SwitchToggled.Request) {
-
 		let status = {
 			let context = DataBaseManager.shared.mainManagedObjectContext()
 
@@ -131,7 +127,6 @@ class CompanyChangesInteractor: CompanyChangesBusinessLogic, CompanyChangesDataS
   	}
 
   	func dismissButtonPressed() {
-
 		// In case we enabled a new company, we need to re-download prices.
 		if companiesThatWereEnabled.isEmpty == false {
 			PricesDownloader.removeAllPricesAndCallDownloader()
@@ -150,7 +145,6 @@ class CompanyChangesInteractor: CompanyChangesBusinessLogic, CompanyChangesDataS
 		}
 
 		DataBaseManager.shared.addATask(action: task)
-
   		presenter?.returnBackToPreviousViewController()
   	}
 }

@@ -11,7 +11,11 @@ import CoreData
 import UIKit
 
 
-class DataDownloader: NSObject {
+protocol DataDownloaderLogic {
+	func activateProcess()
+}
+
+class DataDownloader: NSObject, DataDownloaderLogic {
 
 	static let shared = DataDownloader()
 
@@ -34,7 +38,7 @@ class DataDownloader: NSObject {
 		}
 	}
 
-	// MARK: Private functions
+	// MARK: DataDownloaderLogic
 
 	func activateProcess() {
 

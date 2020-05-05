@@ -12,11 +12,7 @@
 
 import UIKit
 
-protocol IntroNotifSetUpDisplayLogic: class {
-  	func displayData(viewModel: IntroNotifSetUp.Something.ViewModel)
-}
-
-class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLogic, IntroNotifSetUpLayoutViewLogic, PushNotifReturnUpdateDataLogic {
+class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpLayoutViewLogic, PushNotifReturnUpdateDataLogic {
   	var interactor: IntroNotifSetUpBusinessLogic?
   	var router: (NSObjectProtocol & IntroNotifSetUpRoutingLogic & IntroNotifSetUpDataPassing)?
 	var layoutView: IntroNotifSetUpLayoutView!
@@ -39,7 +35,6 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
     	super.viewDidLoad()
     	self.view.backgroundColor = .white
     	setUpView()
-    	loadData()
   	}
 
   	// MARK: Set up
@@ -52,13 +47,12 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
 		viewController.interactor = interactor
 		viewController.router = router
 		interactor.presenter = presenter
-		presenter.viewController = viewController
 		presenter.router = router
 		router.viewController = viewController
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = IntroNotifSetUpLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -67,17 +61,6 @@ class IntroNotifSetUpViewController: UIViewController, IntroNotifSetUpDisplayLog
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
 	}
-
-	// MARK: Functions
-
-  	func loadData() {
-    	let request = IntroNotifSetUp.Something.Request()
-    	interactor?.loadData(request: request)
-  	}
-
-  	func displayData(viewModel: IntroNotifSetUp.Something.ViewModel) {
-    	//nameTextField.text = viewModel.name
-  	}
 
   	// MARK: IntroNotifSetUpLayoutViewLogic
 

@@ -9,7 +9,11 @@
 import UIKit
 import SDWebImage
 
-class FuelListCell: FontChangeTableViewCell {
+protocol FuelListCellDisplayLogic {
+    func setAsCellType(cellType: CellBackgroundType)
+}
+
+class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
 
 	public var cellBgType: CellBackgroundType = .single
 
@@ -20,10 +24,12 @@ class FuelListCell: FontChangeTableViewCell {
 	@IBOutlet weak var priceLabel: UILabel!
 	@IBOutlet weak var separatorView: UIView!
 
-	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
-	var bgViewTopAnchorConstraint: NSLayoutConstraint?
-	var iconBottomConstraint: NSLayoutConstraint?
+	var bgViewBottomAnchorConstraint: NSLayoutConstraint!
+	var bgViewTopAnchorConstraint: NSLayoutConstraint!
+	var iconBottomConstraint: NSLayoutConstraint!
 
+	// MARK: View lifecycle
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,23 +42,21 @@ class FuelListCell: FontChangeTableViewCell {
 		backgroundImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
 		backgroundImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-		bgViewBottomAnchorConstraint?.isActive = true
+		bgViewBottomAnchorConstraint.isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
-		bgViewTopAnchorConstraint?.isActive = true
+		bgViewTopAnchorConstraint.isActive = true
 
 		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 11).isActive = true
 		iconImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
 		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
 		iconBottomConstraint = iconImageView.bottomAnchor.constraint(lessThanOrEqualTo: backgroundImageView.bottomAnchor, constant: -11)
-		iconBottomConstraint?.priority = .defaultHigh
-		iconBottomConstraint?.isActive = true
+		iconBottomConstraint.priority = .defaultHigh
+		iconBottomConstraint.isActive = true
 
 		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
-		// Added this one, so that if animating (in other place), title width would not decrease/increase presenting a weird effect)
-//		titleLabel.widthAnchor.constraint(greaterThanOrEqualTo: addressesLabel.widthAnchor, multiplier: 1).isActive = true
-		
+
 		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		addressesLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
@@ -74,7 +78,9 @@ class FuelListCell: FontChangeTableViewCell {
 		updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+
+	private func updateFonts() {
 		titleLabel.font = Font(.medium, size: .size2).font
 		priceLabel.font = Font(.bold, size: .size1).font
 		addressesLabel.font = Font(.normal, size: .size4).font
@@ -84,7 +90,11 @@ class FuelListCell: FontChangeTableViewCell {
 		updateFonts()
 	}
 
-	// MARK: Functions
+	override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
+	// MARK: FuelListCellDisplayLogic
 
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
@@ -112,9 +122,4 @@ class FuelListCell: FontChangeTableViewCell {
 				break
 		}
 	}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 }

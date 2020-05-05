@@ -12,7 +12,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
 class AddressesWorker: NSObject {
 
 	class func resetAllAddressesDistances() {

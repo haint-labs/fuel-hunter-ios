@@ -14,13 +14,13 @@ import UIKit
 import CoreData
 
 protocol FuelListBusinessLogic {
+	func updateCityView(request: FuelList.UpdateCityView.Request)
 	func fetchPrices(request: FuelList.FetchPrices.Request)
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request)
 	func checkIfThereAreCompanyChangesToPresent() -> Bool
 }
 
 protocol FuelListDataStore {
-	//var name: String { get set }
 }
 
 class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NSFetchedResultsControllerDelegate {
@@ -34,12 +34,17 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 	var deleteSections = [Int]()
 	var updateSections = [Int]()
 
-	var worker: FuelListWorker?
+	// MARK: FuelListBusinessLogic
 
-	// MARK: Do something
+	func updateCityView(request: FuelList.UpdateCityView.Request) {
+		let currentCityName = AppSettingsWorker.shared.getStoredLastGPSDetectedCityName()
+		let gpsIconShouldBeEnabled = AppSettingsWorker.shared.getGPSIsEnabled()
+
+		let response = FuelList.UpdateCityView.Response(currentCityName: currentCityName, currentCityGPSIconEnabled: gpsIconShouldBeEnabled)
+    	presenter?.updateCityView(response: response)
+	}
 
 	func fetchPrices(request: FuelList.FetchPrices.Request) {
-
 		let fuelTypesStatus = AppSettingsWorker.shared.getFuelTypeToggleStatus()
 
 		var filteredArray = [String]()
@@ -103,10 +108,6 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 	}
 
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request) {
-//		print("request.selectedCompany \(request.selectedCompany)")
-//		print("request.selectedFuelType \(request.selectedFuelType)")
-//		print("request.selectedCellYPosition \(request.selectedCellYPosition)")
-
 		let response = FuelList.RevealMap.Response(selectedCompany: request.selectedCompany, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
 
 		self.presenter?.revealMapView(response: response)
@@ -116,7 +117,6 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i && shouldPopUpToUser == %i", false, true)
 		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
-			print("companyObjectArray \(companyObjectArray.count)")
 
 			if !companyObjectArray.isEmpty {
 				return true
@@ -176,8 +176,6 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 			default:
 				break
 		}
-
-
 	}
 	
   	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

@@ -53,7 +53,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		adjustVisibilityOfShadowLines()
 	}
 
-	func setup() {
+	private func setup() {
 		Bundle.main.loadNibNamed("CompaniesChooseListLayoutView", owner: self, options: nil)
 		addSubview(baseView)
 		baseView.frame = self.bounds
@@ -103,7 +103,7 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		adjustNoDataLabelText()
   	}
 
-  	func setUpTableViewHeader() {
+  	private func setUpTableViewHeader() {
 		header = UIView()
 
 		let label = UILabel()
@@ -169,12 +169,27 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 
 	// MARK: Functions
 
-	func adjustVisibilityOfShadowLines() {
+	private func adjustVisibilityOfShadowLines() {
 		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top
 		let alfa2 = min(50, max(0, tableView.contentSize.height-value-15))/50.0
 		tableViewBottomShadow.alpha = alfa2
+	}
+
+	private func adjustNoDataLabelText() {
+		switch CompaniesDownloader.downloadingState {
+			case .downloading:
+				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+			case .downloaded:
+				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+			case .parsingError:
+				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+			case .serverError:
+				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+			case .timeout:
+				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		}
 	}
 
 	// MARK: FuelCompanyListCellSwitchLogic
@@ -224,23 +239,9 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 		adjustVisibilityOfShadowLines()
 	}
 
-	func adjustNoDataLabelText() {
-		switch CompaniesDownloader.downloadingState {
-			case .downloading:
-				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
-			case .downloaded:
-				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
-			case .parsingError:
-				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
-			case .serverError:
-				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
-			case .timeout:
-				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
-		}
-	}
 	// MARK: Notifications
 
-	@objc func dataDownloaderStateChange() {
+	@objc private func dataDownloaderStateChange() {
 		adjustNoDataLabelText()
 	}
 }

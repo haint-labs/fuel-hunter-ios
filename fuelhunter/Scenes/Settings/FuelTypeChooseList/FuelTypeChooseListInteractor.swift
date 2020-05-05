@@ -20,7 +20,6 @@ protocol FuelTypeChooseListBusinessLogic {
 }
 
 protocol FuelTypeChooseListDataStore {
-  	//var name: String { get set }
 }
 
 class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeChooseListDataStore {
@@ -28,8 +27,6 @@ class FuelTypeChooseListInteractor: FuelTypeChooseListBusinessLogic, FuelTypeCho
   	var appSettingsWorker = AppSettingsWorker.shared
 
 	var fuelTypesThatWereEnabled = [FuelType]()
-
-  	//var name: String = ""
 
   	// MARK: FuelTypeChooseListBusinessLogic
 

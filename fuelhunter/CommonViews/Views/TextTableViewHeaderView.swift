@@ -8,14 +8,19 @@
 
 import UIKit
 
+protocol TextTableViewHeaderViewDisplayLogic {
+    func setSectionIndex(_ sectionIndex: Int)
+}
 
-class TextTableViewHeaderView: FontChangeHeaderFooterView {
+class TextTableViewHeaderView: FontChangeHeaderFooterView, TextTableViewHeaderViewDisplayLogic {
 
 	public var cellBgType: CellBackgroundType = .single
 
 	@IBOutlet weak var titleLabel: UILabel!
 
 	var titleLabelTopConstraint: NSLayoutConstraint!
+
+	// MARK: View lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,7 +41,9 @@ class TextTableViewHeaderView: FontChangeHeaderFooterView {
 		updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+	
+	private func updateFonts() {
 		titleLabel.font = Font(.normal, size: .size3).font
 	}
 
@@ -44,6 +51,8 @@ class TextTableViewHeaderView: FontChangeHeaderFooterView {
 		updateFonts()
 	}
 
+	// MARK: TextTableViewHeaderViewDisplayLogic
+	
 	func setSectionIndex(_ sectionIndex: Int) {
 		if sectionIndex > 0 {
 			titleLabelTopConstraint.constant = 10

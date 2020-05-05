@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PushNotifSetupLayoutView" customModule="fuelhunter" customModuleProvider="target">
             <connections>
                 <outlet property="activateButton" destination="qdK-Sm-cWB" id="yNR-PS-7dV"/>
+                <outlet property="backgroundDismissButton" destination="3m3-r7-Krt" id="f7C-s6-cCX"/>
                 <outlet property="backgroundView" destination="i8k-dd-xpx" id="zsJ-6A-62F"/>
                 <outlet property="baseView" destination="iN0-l3-epB" id="kRO-PE-9OU"/>
                 <outlet property="cancelButton" destination="OT2-WB-Sfk" id="MJn-NE-9QQ"/>
@@ -38,6 +39,11 @@
                     <rect key="frame" x="160" y="271" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3m3-r7-Krt">
+                            <rect key="frame" x="97" y="49" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                        </button>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jrn-iV-DXL" userLabel="FrontView">
                             <rect key="frame" x="-23" y="-162" width="285" height="451"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

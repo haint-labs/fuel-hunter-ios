@@ -118,13 +118,9 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 		}
 
 		convertedDataArray = worker.createUsableDataArray(fromPricesArray: allValidPrices!, companiesArray: allValidCompanies ?? [])
-
 		mapPoints = createMapPoints(from: convertedDataArray)
-
 		let selectedMapPoint = mapPoints.first(where: {$0.company == selectedCompany}) ?? mapPoints.first
-
 		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
-
 		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
 
 		var cellBackgroundType = CellBackgroundType.middle
@@ -145,11 +141,8 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
   	}
 
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request) {
-		
 		selectedCompany = request.mapPoint.company
-
 		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
-
 		selectedDisplayedPoint = convertedDataArray.first(where: {$0.addressName == request.mapPoint.address}) ?? convertedDataArray.first
 
 		let mapObjects = createMapPoints(from: [selectedDisplayedPoint!])

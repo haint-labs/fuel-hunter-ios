@@ -19,7 +19,6 @@ protocol IntroChooseCompanyBusinessLogic {
 }
 
 protocol IntroChooseCompanyDataStore {
-  	//var name: String { get set }
 }
 
 class IntroChooseCompanyInteractor: NSObject, IntroChooseCompanyBusinessLogic, IntroChooseCompanyDataStore, NSFetchedResultsControllerDelegate {
@@ -30,7 +29,6 @@ class IntroChooseCompanyInteractor: NSObject, IntroChooseCompanyBusinessLogic, I
 	var delete = [IndexPath]()
 	var update = [IndexPath]()
 	var previousFetchedCompanies: [CompanyEntity]?
-  	//var name: String = ""
 
   	// MARK: IntroChooseCompanyBusinessLogic
 

@@ -12,13 +12,8 @@
 
 import UIKit
 
-protocol IntroGPSSetUpDisplayLogic: class {
-  	func displayData(viewModel: IntroGPSSetUp.Something.ViewModel)
-}
-
-class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, IntroGPSSetUpLayoutViewLogic {
+class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpLayoutViewLogic {
   	var interactor: IntroGPSSetUpBusinessLogic?
-  	var router: (NSObjectProtocol & IntroGPSSetUpRoutingLogic & IntroGPSSetUpDataPassing)?
 	var layoutView: IntroGPSSetUpLayoutView!
 
   	// MARK: Object lifecycle
@@ -39,7 +34,6 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
     	super.viewDidLoad()
     	self.view.backgroundColor = .white
     	setUpView()
-    	loadData()
   	}
 
   	// MARK: Set up
@@ -47,17 +41,10 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
 	private func setup() {
 		let viewController = self
 		let interactor = IntroGPSSetUpInteractor()
-		let presenter = IntroGPSSetUpPresenter()
-		let router = IntroGPSSetUpRouter()
 		viewController.interactor = interactor
-		viewController.router = router
-		interactor.presenter = presenter
-		presenter.viewController = viewController
-		router.viewController = viewController
-		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = IntroGPSSetUpLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
 		layoutView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -67,22 +54,10 @@ class IntroGPSSetUpViewController: UIViewController, IntroGPSSetUpDisplayLogic, 
 		layoutView.controller = self
 	}
 
-	// MARK: Functions
-
-  	func loadData() {
-    	let request = IntroGPSSetUp.Something.Request()
-    	interactor?.loadData(request: request)
-  	}
-
-  	func displayData(viewModel: IntroGPSSetUp.Something.ViewModel) {
-    	//nameTextField.text = viewModel.name
-  	}
-
   	// MARK: IntroNotifSetUpLayoutViewLogic
 
   	func giveAccessButtonPressed() {
-		let request = IntroGPSSetUp.Something.Request()
-		interactor?.userAskedForGPSAccess(request: request)
+		interactor?.userAskedForGPSAccess()
   	}
 
   	func laterButtonPressed() {

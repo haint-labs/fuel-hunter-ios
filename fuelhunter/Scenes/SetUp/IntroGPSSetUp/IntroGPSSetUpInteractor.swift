@@ -13,29 +13,15 @@
 import UIKit
 
 protocol IntroGPSSetUpBusinessLogic {
-  	func loadData(request: IntroGPSSetUp.Something.Request)
-  	func userAskedForGPSAccess(request: IntroGPSSetUp.Something.Request)
+  	func userAskedForGPSAccess()
 }
 
-protocol IntroGPSSetUpDataStore {
-}
-
-class IntroGPSSetUpInteractor: IntroGPSSetUpBusinessLogic, IntroGPSSetUpDataStore {
-  	var presenter: IntroGPSSetUpPresentationLogic?
-  	var worker: IntroGPSSetUpWorker?
-  	var appSettingsWorker = AppSettingsWorker.shared
+class IntroGPSSetUpInteractor: IntroGPSSetUpBusinessLogic {
 
   	// MARK: IntroGPSSetUpBusinessLogic
 
-  	func loadData(request: IntroGPSSetUp.Something.Request) {
-    	worker = IntroGPSSetUpWorker()
-    	worker?.doSomeWork()
-    	let response = IntroGPSSetUp.Something.Response()
-    	presenter?.presentData(response: response)
-  	}
-
-  	func userAskedForGPSAccess(request: IntroGPSSetUp.Something.Request) {
-		appSettingsWorker.userPressedButtonToGetGPSAccess { result in 
+  	func userAskedForGPSAccess() {
+		AppSettingsWorker.shared.userPressedButtonToGetGPSAccess { result in
 			ScenesManager.shared.advanceAppSceneState()
 		}
   	}

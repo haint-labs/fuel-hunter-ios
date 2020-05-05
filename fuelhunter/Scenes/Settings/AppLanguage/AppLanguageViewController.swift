@@ -62,7 +62,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, AppL
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		layoutView = AppLanguageLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		layoutView.controller = self
 		self.view.addSubview(layoutView)
@@ -74,7 +74,7 @@ class AppLanguageViewController: UIViewController, AppLanguageDisplayLogic, AppL
 
   	// MARK: Functions
 
-  	func getLanaguageListData() {
+  	private func getLanaguageListData() {
     	let request = AppLanguage.GetLanguage.Request()
     	interactor?.getLanaguageListData(request: request)
   	}

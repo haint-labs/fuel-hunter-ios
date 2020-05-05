@@ -26,10 +26,8 @@ class AboutAppPresenter: AboutAppPresentationLogic {
 		var array = [AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem]()
 
 		for company in response.fetchedCompanies {
-
 			let title = company.name ?? ""
 			let imageName = company.logoName ?? ""
-
 			array.append(AboutApp.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: title, imageName: imageName))
 		}
 

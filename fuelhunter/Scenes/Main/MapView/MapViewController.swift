@@ -107,7 +107,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		router.dataStore = interactor
   	}
 
-	func setUpView() {
+	private func setUpView() {
 		//--- Layout View
 		layoutView = MapLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(layoutView)
@@ -193,12 +193,12 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
   	// MARK: Functions
 
-  	func getData() {
+  	private func getData() {
     	let request = Map.MapData.Request(forcedReload: false)
     	interactor?.getData(request: request)
   	}
 
-	func updateData(to priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPoint: MapPoint, cellType: CellBackgroundType) {
+	private func updateData(to priceData: Map.MapData.ViewModel.DisplayedMapPoint, mapPoint: MapPoint, cellType: CellBackgroundType) {
 
 		layoutView.selectedPin(mapPoint)
 		fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: cellType)
@@ -224,11 +224,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel) {
 
 		self.updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint, cellType: viewModel.cellType)
-
 		let newYValue = self.router?.previousViewController?.justSelected(fuelPrice: viewModel.selectedPrice)
-
 		self.router?.dataStore?.yLocation = newYValue!
-
 
 		UIView.animate(withDuration: 0.2) {
 			self.view.layoutIfNeeded()
@@ -366,6 +363,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 	}
 
 	// MARK: ScrollViewDelegate
+	
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		scrollBackgroundYOffSetConstraint.constant = -min(0, scrollView.contentOffset.y)
 		self.layoutView.updateMapViewOffset(offset: getMapOffset(), ratio: getOffsetRatio(),  animated: false)

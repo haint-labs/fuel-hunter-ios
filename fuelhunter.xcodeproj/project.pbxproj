@@ -62,18 +62,8 @@
 		5C2E671C22DD941D00FC71AD /* AppLanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */; };
 		5C2E671F22DD941D00FC71AD /* AppLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */; };
 		5C2E672222DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */; };
-		5C2E672522DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */; };
 		5C2E672822DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */; };
-		5C2E672B22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */; };
-		5C2E672E22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */; };
-		5C2E673122DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */; };
-		5C2E673422DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */; };
 		5C2E679722DE1D9E00FC71AD /* ScenesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */; };
-		5C2E67A322DE60E500FC71AD /* IntroPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */; };
-		5C2E67A622DE60E500FC71AD /* IntroPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */; };
-		5C2E67A922DE60E500FC71AD /* IntroPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */; };
-		5C2E67AC22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */; };
-		5C2E67AF22DE60E500FC71AD /* IntroPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */; };
 		5C2E67B222DE60E500FC71AD /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */; };
 		5C2E67C122E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */; };
 		5C2E67C422E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */; };
@@ -107,10 +97,6 @@
 		5C772327233346D4008CC861 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C772326233346D4008CC861 /* MapPoint.swift */; };
 		5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */; };
 		5C80669222F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */; };
-		5C80669B22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */; };
-		5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */; };
-		5C8066A122F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */; };
-		5C8066A422F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */; };
 		5C8066A722F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */; };
 		5C8066AA22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */; };
 		5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84440122A7B4BD003A8752 /* InlineAlertView.xib */; };
@@ -211,6 +197,15 @@
 		5CDA4B6622FD782A00740803 /* CompaniesChooseListLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA4B6222FD782A00740803 /* CompaniesChooseListLayoutView.swift */; };
 		5CEC2C7E233F38D8003F8114 /* MapPinAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */; };
 		5CEC2C7F233F38D8003F8114 /* MapPinAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CEC2C7D233F38D8003F8114 /* MapPinAccessoryView.xib */; };
+		5CF17AC0245FEF8300A5B3D6 /* ClosestCityNameButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF17ABE245FEF8300A5B3D6 /* ClosestCityNameButtonView.xib */; };
+		5CF17AC1245FEF8300A5B3D6 /* ClosestCityNameButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17ABF245FEF8300A5B3D6 /* ClosestCityNameButtonView.swift */; };
+		5CF17ADB24600D7900A5B3D6 /* LoadedCityExplainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17AD424600D7900A5B3D6 /* LoadedCityExplainPresenter.swift */; };
+		5CF17ADC24600D7900A5B3D6 /* LoadedCityExplainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17AD524600D7900A5B3D6 /* LoadedCityExplainInteractor.swift */; };
+		5CF17ADE24600D7900A5B3D6 /* LoadedCityExplainLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17AD724600D7900A5B3D6 /* LoadedCityExplainLayoutView.swift */; };
+		5CF17ADF24600D7900A5B3D6 /* LoadedCityExplainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17AD824600D7900A5B3D6 /* LoadedCityExplainModels.swift */; };
+		5CF17AE024600D7900A5B3D6 /* LoadedCityExplainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17AD924600D7900A5B3D6 /* LoadedCityExplainRouter.swift */; };
+		5CF17AE124600D7900A5B3D6 /* LoadedCityExplainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF17ADA24600D7900A5B3D6 /* LoadedCityExplainViewController.swift */; };
+		5CF17AE324600D9F00A5B3D6 /* LoadedCityExplainLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF17AE224600D9F00A5B3D6 /* LoadedCityExplainLayoutView.xib */; };
 		5CFAE46523B76DF5009D4A30 /* DataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAE46323B76DF3009D4A30 /* DataBase.xcdatamodeld */; };
 		5CFAE46923B7B363009D4A30 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAE46823B7B363009D4A30 /* DataBaseManager.swift */; };
 		5CFAE47723B7CBDA009D4A30 /* DataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAE47623B7CBDA009D4A30 /* DataDownloader.swift */; };
@@ -300,18 +295,8 @@
 		5C2E66A222DD941D00FC71AD /* AppLanguagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguagePresenter.swift; sourceTree = "<group>"; };
 		5C2E66A322DD941D00FC71AD /* AppLanguageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageViewController.swift; sourceTree = "<group>"; };
 		5C2E66A722DD941D00FC71AD /* AppAccuracyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAccuracyInfoViewController.swift; sourceTree = "<group>"; };
-		5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoModels.swift; sourceTree = "<group>"; };
 		5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoViewController.swift; sourceTree = "<group>"; };
-		5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoWorker.swift; sourceTree = "<group>"; };
-		5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoPresenter.swift; sourceTree = "<group>"; };
-		5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoRouter.swift; sourceTree = "<group>"; };
-		5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSavingsInfoInteractor.swift; sourceTree = "<group>"; };
 		5C2E679622DE1D9E00FC71AD /* ScenesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesManager.swift; sourceTree = "<group>"; };
-		5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageInteractor.swift; sourceTree = "<group>"; };
-		5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageWorker.swift; sourceTree = "<group>"; };
-		5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageRouter.swift; sourceTree = "<group>"; };
-		5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPagePresenter.swift; sourceTree = "<group>"; };
-		5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageModels.swift; sourceTree = "<group>"; };
 		5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroPageLayoutView.swift; sourceTree = "<group>"; };
 		5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroPageLayoutView.xib; sourceTree = "<group>"; };
@@ -345,10 +330,6 @@
 		5C772326233346D4008CC861 /* MapPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroGPSSetUpLayoutView.xib; sourceTree = "<group>"; };
 		5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpLayoutView.swift; sourceTree = "<group>"; };
-		5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpPresenter.swift; sourceTree = "<group>"; };
-		5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpWorker.swift; sourceTree = "<group>"; };
-		5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpRouter.swift; sourceTree = "<group>"; };
-		5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpModels.swift; sourceTree = "<group>"; };
 		5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpViewController.swift; sourceTree = "<group>"; };
 		5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroGPSSetUpInteractor.swift; sourceTree = "<group>"; };
 		5C84440122A7B4BD003A8752 /* InlineAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InlineAlertView.xib; sourceTree = "<group>"; };
@@ -452,6 +433,15 @@
 		5CEC2C7C233F38D8003F8114 /* MapPinAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPinAccessoryView.swift; sourceTree = "<group>"; };
 		5CEC2C7D233F38D8003F8114 /* MapPinAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapPinAccessoryView.xib; sourceTree = "<group>"; };
 		5CF17ABD245CAC9800A5B3D6 /* lv-LV */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lv-LV"; path = "lv-LV.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5CF17ABE245FEF8300A5B3D6 /* ClosestCityNameButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClosestCityNameButtonView.xib; sourceTree = "<group>"; };
+		5CF17ABF245FEF8300A5B3D6 /* ClosestCityNameButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosestCityNameButtonView.swift; sourceTree = "<group>"; };
+		5CF17AD424600D7900A5B3D6 /* LoadedCityExplainPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedCityExplainPresenter.swift; sourceTree = "<group>"; };
+		5CF17AD524600D7900A5B3D6 /* LoadedCityExplainInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedCityExplainInteractor.swift; sourceTree = "<group>"; };
+		5CF17AD724600D7900A5B3D6 /* LoadedCityExplainLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedCityExplainLayoutView.swift; sourceTree = "<group>"; };
+		5CF17AD824600D7900A5B3D6 /* LoadedCityExplainModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedCityExplainModels.swift; sourceTree = "<group>"; };
+		5CF17AD924600D7900A5B3D6 /* LoadedCityExplainRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedCityExplainRouter.swift; sourceTree = "<group>"; };
+		5CF17ADA24600D7900A5B3D6 /* LoadedCityExplainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadedCityExplainViewController.swift; sourceTree = "<group>"; };
+		5CF17AE224600D9F00A5B3D6 /* LoadedCityExplainLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadedCityExplainLayoutView.xib; sourceTree = "<group>"; };
 		5CFAE46423B76DF3009D4A30 /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
 		5CFAE46823B7B363009D4A30 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		5CFAE47623B7CBDA009D4A30 /* DataDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
@@ -596,6 +586,8 @@
 				5C114B15244B7F8600B4B60E /* SearchTableViewHeaderView.xib */,
 				5CD096FF2458A102004DAFAE /* TextTableViewHeaderView.swift */,
 				5CD096FE2458A102004DAFAE /* TextTableViewHeaderView.xib */,
+				5CF17ABF245FEF8300A5B3D6 /* ClosestCityNameButtonView.swift */,
+				5CF17ABE245FEF8300A5B3D6 /* ClosestCityNameButtonView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -810,6 +802,7 @@
 		5C2E66A522DD941D00FC71AD /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				5CF17AD324600D7900A5B3D6 /* LoadedCityExplainView */,
 				5CCC392A230A9470008D3512 /* FuelListToMapViewTransition */,
 				5CCC3909230A945F008D3512 /* FuelList */,
 				5CCC38E8230A945A008D3512 /* MapView */,
@@ -832,11 +825,6 @@
 			isa = PBXGroup;
 			children = (
 				5C2E66AA22DD941D00FC71AD /* AppSavingsInfoViewController.swift */,
-				5C2E66AE22DD941D00FC71AD /* AppSavingsInfoInteractor.swift */,
-				5C2E66AC22DD941D00FC71AD /* AppSavingsInfoPresenter.swift */,
-				5C2E66A922DD941D00FC71AD /* AppSavingsInfoModels.swift */,
-				5C2E66AB22DD941D00FC71AD /* AppSavingsInfoWorker.swift */,
-				5C2E66AD22DD941D00FC71AD /* AppSavingsInfoRouter.swift */,
 				5C95518B22FED31200AF2D90 /* AppSavingsInfoLayoutView.swift */,
 				5C95518C22FED31200AF2D90 /* AppSavingsInfoLayoutView.xib */,
 			);
@@ -847,11 +835,6 @@
 			isa = PBXGroup;
 			children = (
 				5C2E67A022DE60E500FC71AD /* IntroPageViewController.swift */,
-				5C2E679B22DE60E500FC71AD /* IntroPageInteractor.swift */,
-				5C2E679E22DE60E500FC71AD /* IntroPagePresenter.swift */,
-				5C2E679C22DE60E500FC71AD /* IntroPageWorker.swift */,
-				5C2E679F22DE60E500FC71AD /* IntroPageModels.swift */,
-				5C2E679D22DE60E500FC71AD /* IntroPageRouter.swift */,
 				5C2E67BF22E18EB500FC71AD /* IntroPageLayoutView.swift */,
 				5C2E67C022E18EB500FC71AD /* IntroPageLayoutView.xib */,
 			);
@@ -872,10 +855,6 @@
 			children = (
 				5C80669922F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift */,
 				5C80669A22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift */,
-				5C80669522F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift */,
-				5C80669622F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift */,
-				5C80669822F3FDA800BD33B4 /* IntroGPSSetUpModels.swift */,
-				5C80669722F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift */,
 				5C80668E22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.swift */,
 				5C80668D22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib */,
 			);
@@ -989,6 +968,20 @@
 				5CD096F124572539004DAFAE /* CompanyChangesLayoutView.xib */,
 			);
 			path = CompanyChanges;
+			sourceTree = "<group>";
+		};
+		5CF17AD324600D7900A5B3D6 /* LoadedCityExplainView */ = {
+			isa = PBXGroup;
+			children = (
+				5CF17ADA24600D7900A5B3D6 /* LoadedCityExplainViewController.swift */,
+				5CF17AD524600D7900A5B3D6 /* LoadedCityExplainInteractor.swift */,
+				5CF17AD424600D7900A5B3D6 /* LoadedCityExplainPresenter.swift */,
+				5CF17AD824600D7900A5B3D6 /* LoadedCityExplainModels.swift */,
+				5CF17AD924600D7900A5B3D6 /* LoadedCityExplainRouter.swift */,
+				5CF17AD724600D7900A5B3D6 /* LoadedCityExplainLayoutView.swift */,
+				5CF17AE224600D9F00A5B3D6 /* LoadedCityExplainLayoutView.xib */,
+			);
+			path = LoadedCityExplainView;
 			sourceTree = "<group>";
 		};
 		5CFAE46223B76C7E009D4A30 /* DB */ = {
@@ -1192,6 +1185,8 @@
 				5C45BEE422D31C6100FE53D6 /* NotifPhoneAnimationView.xib in Resources */,
 				5CD096E624542725004DAFAE /* PushNotifChooseCityLayoutView.xib in Resources */,
 				5C80668F22F3FD8A00BD33B4 /* IntroGPSSetUpLayoutView.xib in Resources */,
+				5CF17AE324600D9F00A5B3D6 /* LoadedCityExplainLayoutView.xib in Resources */,
+				5CF17AC0245FEF8300A5B3D6 /* ClosestCityNameButtonView.xib in Resources */,
 				5C53C2982430E2EA0059CC5A /* GoogleService-Info.plist in Resources */,
 				5C45BEE922D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CCC38E5230A77B5008D3512 /* FuelListCellView.xib in Resources */,
@@ -1389,11 +1384,11 @@
 				5CB8EC7922E96B82008EA53C /* IntroChooseFuelTypeLayoutView.swift in Sources */,
 				5C1A8E95241FD13C0061A94D /* DoubleRoundExtension.swift in Sources */,
 				5CD096E124542725004DAFAE /* PushNotifSetupPresenter.swift in Sources */,
-				5C2E67AF22DE60E500FC71AD /* IntroPageModels.swift in Sources */,
 				5CCC391E230A9460008D3512 /* FuelListViewController.swift in Sources */,
 				5C2E670722DD941D00FC71AD /* FuelTypeChooseListModels.swift in Sources */,
 				5CB8EC3D22E1C510008EA53C /* IntroChooseCompanyModels.swift in Sources */,
 				5C2E66E922DD941D00FC71AD /* CompaniesChooseListViewController.swift in Sources */,
+				5CF17AE124600D7900A5B3D6 /* LoadedCityExplainViewController.swift in Sources */,
 				5C2E671322DD941D00FC71AD /* AppLanguageInteractor.swift in Sources */,
 				5C53C2A22435D7D70059CC5A /* UIViewAnimateExtension.swift in Sources */,
 				5C2E672222DD941D00FC71AD /* AppAccuracyInfoViewController.swift in Sources */,
@@ -1410,9 +1405,7 @@
 				5C1A8E96241FD13C0061A94D /* StringSizeExtension.swift in Sources */,
 				5C114ACA2447315300B4B60E /* UIDeviceExtension.swift in Sources */,
 				5C1A8E94241FD13C0061A94D /* StringLocalizationExtension.swift in Sources */,
-				5C80669B22F3FDA800BD33B4 /* IntroGPSSetUpPresenter.swift in Sources */,
 				5CB367F223EFEEBE003E5180 /* CompaniesDownloader.swift in Sources */,
-				5C2E67AC22DE60E500FC71AD /* IntroPagePresenter.swift in Sources */,
 				5CCC3915230A9460008D3512 /* FuelListRouter.swift in Sources */,
 				5CB367F423EFEF96003E5180 /* DownloaderState.swift in Sources */,
 				5C2E66BF22DD941D00FC71AD /* SettingsInteractor.swift in Sources */,
@@ -1447,41 +1440,37 @@
 				5CD096E324542725004DAFAE /* PushNotifSetupModels.swift in Sources */,
 				5C2E66E322DD941D00FC71AD /* CompaniesChooseListRouter.swift in Sources */,
 				5C183B5823945C9500F498AA /* FuelListCellViewExtendedInfoView.swift in Sources */,
-				5C2E67A322DE60E500FC71AD /* IntroPageInteractor.swift in Sources */,
 				5CD096FB24572539004DAFAE /* CompanyChangesModels.swift in Sources */,
-				5C8066A122F3FDA800BD33B4 /* IntroGPSSetUpRouter.swift in Sources */,
 				5CD096F824572539004DAFAE /* CompanyChangesRouter.swift in Sources */,
 				5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */,
 				5CB8EC3422E1C510008EA53C /* IntroChooseCompanyPresenter.swift in Sources */,
 				5C45BECD22D27A0D00FE53D6 /* AboutAppFuelCompanyCell.swift in Sources */,
 				5C95518522FEB8D100AF2D90 /* AppLanguageLayoutView.swift in Sources */,
 				5C731F9D22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */,
-				5C2E672E22DD941D00FC71AD /* AppSavingsInfoPresenter.swift in Sources */,
 				5C1A8E92241FD13C0061A94D /* DispatchQueue.swift in Sources */,
 				5CCC3912230A9460008D3512 /* FuelListWorker.swift in Sources */,
 				5C2E66E022DD941D00FC71AD /* CompaniesChooseListWorker.swift in Sources */,
 				5CD096DF24542725004DAFAE /* PushNotifSetupInteractor.swift in Sources */,
-				5C80669E22F3FDA800BD33B4 /* IntroGPSSetUpWorker.swift in Sources */,
 				5C2E66C822DD941D00FC71AD /* AboutAppInteractor.swift in Sources */,
 				5C772327233346D4008CC861 /* MapPoint.swift in Sources */,
 				5CCC38F7230A945A008D3512 /* MapRouter.swift in Sources */,
 				5C731FAC22FB2BF500793DAF /* AppAccuracyInfoLayoutView.swift in Sources */,
 				5CD096F624572539004DAFAE /* CompanyChangesViewController.swift in Sources */,
 				5C2E66D422DD941D00FC71AD /* AboutAppRouter.swift in Sources */,
-				5C2E673422DD941D00FC71AD /* AppSavingsInfoInteractor.swift in Sources */,
+				5CF17AE024600D7900A5B3D6 /* LoadedCityExplainRouter.swift in Sources */,
 				5C1A8E93241FD13C0061A94D /* UserDefaultsExtension.swift in Sources */,
 				5CCC3918230A9460008D3512 /* FuelListModels.swift in Sources */,
 				5C2E66B622DD941D00FC71AD /* SettingsModels.swift in Sources */,
-				5C2E67A922DE60E500FC71AD /* IntroPageRouter.swift in Sources */,
+				5CF17AC1245FEF8300A5B3D6 /* ClosestCityNameButtonView.swift in Sources */,
 				5CEC2C7E233F38D8003F8114 /* MapPinAccessoryView.swift in Sources */,
 				5C45BED922D2807200FE53D6 /* AboutAppTableHeaderView.swift in Sources */,
 				5CB8EC8F22E98A54008EA53C /* IntroNotifSetUpModels.swift in Sources */,
 				5CD096E424542725004DAFAE /* PushNotifSetupLayoutView.swift in Sources */,
 				5C2E66BC22DD941D00FC71AD /* SettingsWorker.swift in Sources */,
 				5CB8EC7422E96B44008EA53C /* IntroChooseFuelTypeInteractor.swift in Sources */,
-				5C2E672522DD941D00FC71AD /* AppSavingsInfoModels.swift in Sources */,
 				5C2E66DA22DD941D00FC71AD /* CompaniesChooseListPresenter.swift in Sources */,
 				5C95517D22FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.swift in Sources */,
+				5CF17ADE24600D7900A5B3D6 /* LoadedCityExplainLayoutView.swift in Sources */,
 				5CFAE47F23B89DC3009D4A30 /* DataDownloaderModels.swift in Sources */,
 				5C2E671922DD941D00FC71AD /* AppLanguageRouter.swift in Sources */,
 				5CFAE47723B7CBDA009D4A30 /* DataDownloader.swift in Sources */,
@@ -1489,6 +1478,7 @@
 				5C45BEEC22D3506800FE53D6 /* MapAnimationView.swift in Sources */,
 				5CD096FA24572539004DAFAE /* CompanyChangesWorker.swift in Sources */,
 				5CCC397B231BB1A3008D3512 /* MapInfoButtonView.swift in Sources */,
+				5CF17ADF24600D7900A5B3D6 /* LoadedCityExplainModels.swift in Sources */,
 				5CD096F424572539004DAFAE /* CompanyChangesInteractor.swift in Sources */,
 				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
 				5CD096FD24573C18004DAFAE /* ContentSizedTableView.swift in Sources */,
@@ -1496,6 +1486,7 @@
 				5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */,
 				5CD096DD24542725004DAFAE /* PushNotifSetupWorker.swift in Sources */,
 				5C45BDC922CD3F2000FE53D6 /* SettingsListCell.swift in Sources */,
+				5CF17ADC24600D7900A5B3D6 /* LoadedCityExplainInteractor.swift in Sources */,
 				5CB8EC8622E98A54008EA53C /* IntroNotifSetUpPresenter.swift in Sources */,
 				5C2E66DD22DD941D00FC71AD /* CompaniesChooseListInteractor.swift in Sources */,
 				5CCC392E230A9470008D3512 /* FuelListToMapViewTransitionCoordinator.swift in Sources */,
@@ -1510,6 +1501,7 @@
 				5C2E67B222DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
 				5C8066A722F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */,
 				5C95518D22FED31200AF2D90 /* AppSavingsInfoLayoutView.swift in Sources */,
+				5CF17ADB24600D7900A5B3D6 /* LoadedCityExplainPresenter.swift in Sources */,
 				5CB8EC4022E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */,
 				5CCC3934230A9470008D3512 /* FuelListToMapViewPushTransitionAnimator.swift in Sources */,
 				5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */,
@@ -1520,7 +1512,6 @@
 				5C2E666A22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.swift in Sources */,
 				5C2E67C122E18EB500FC71AD /* IntroPageLayoutView.swift in Sources */,
 				5CB8EC4322E1C510008EA53C /* IntroChooseCompanyInteractor.swift in Sources */,
-				5C2E672B22DD941D00FC71AD /* AppSavingsInfoWorker.swift in Sources */,
 				5CCC3906230A945A008D3512 /* MapLayoutView.swift in Sources */,
 				5CB8EC9522E98A54008EA53C /* IntroNotifSetUpInteractor.swift in Sources */,
 				5CB367F823F0013E003E5180 /* PricesDownloader.swift in Sources */,
@@ -1533,13 +1524,10 @@
 				5C2E66B922DD941D00FC71AD /* SettingsRouter.swift in Sources */,
 				5C2E66CE22DD941D00FC71AD /* AboutAppWorker.swift in Sources */,
 				5C2E672822DD941D00FC71AD /* AppSavingsInfoViewController.swift in Sources */,
-				5C2E67A622DE60E500FC71AD /* IntroPageWorker.swift in Sources */,
-				5C2E673122DD941D00FC71AD /* AppSavingsInfoRouter.swift in Sources */,
 				5C2E66D122DD941D00FC71AD /* AboutAppPresenter.swift in Sources */,
 				5C2E670122DD941D00FC71AD /* FuelTypeChooseListWorker.swift in Sources */,
 				5C2E66C522DD941D00FC71AD /* SettingsViewController.swift in Sources */,
 				5C53C2A02434D5890059CC5A /* AddressesWorker.swift in Sources */,
-				5C8066A422F3FDA800BD33B4 /* IntroGPSSetUpModels.swift in Sources */,
 				5C114B1B244B869400B4B60E /* ChooseCityCell.swift in Sources */,
 				5CBE72BE244044CF00559D7D /* CityWorker.swift in Sources */,
 				5CCC3900230A945A008D3512 /* MapViewController.swift in Sources */,

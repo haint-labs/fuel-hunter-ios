@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol FuelTypeListCellDisplayLogic {
+	func setAsCellType(cellType: CellBackgroundType)
+}
+
 protocol FuelTypeListCellSwitchLogic: class {
 	func switchWasPressedOnTableViewCell(cell: FuelTypeListCell, withState state: Bool)
 }
 
-class FuelTypeListCell: FontChangeTableViewCell {
+class FuelTypeListCell: FontChangeTableViewCell, FuelTypeListCellDisplayLogic {
 
 	weak var controller: FuelTypeListCellSwitchLogic? 
     public var cellBgType: CellBackgroundType = .single
@@ -22,9 +26,11 @@ class FuelTypeListCell: FontChangeTableViewCell {
 	@IBOutlet weak var aSwitch: UISwitch!
 	@IBOutlet weak var separatorView: UIView!
 
-	var bgViewBottomAnchorConstraint: NSLayoutConstraint?
-	var bgViewTopAnchorConstraint: NSLayoutConstraint?
+	var bgViewBottomAnchorConstraint: NSLayoutConstraint!
+	var bgViewTopAnchorConstraint: NSLayoutConstraint!
 
+	// MARK: View lifecycle
+	
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -39,8 +45,8 @@ class FuelTypeListCell: FontChangeTableViewCell {
 		backgroundImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
 		bgViewTopAnchorConstraint = backgroundImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5)
 		bgViewBottomAnchorConstraint = backgroundImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
-		bgViewTopAnchorConstraint?.isActive = true
-		bgViewBottomAnchorConstraint?.isActive = true
+		bgViewTopAnchorConstraint.isActive = true
+		bgViewBottomAnchorConstraint.isActive = true
 
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 8).isActive = true
@@ -58,49 +64,50 @@ class FuelTypeListCell: FontChangeTableViewCell {
 		updateFonts()
     }
 
-	func updateFonts() {
+	// MARK: Functions
+
+	private func updateFonts() {
 		titleLabel.font = Font(.medium, size: .size2).font
+	}
+
+	@objc private func aSwitchWasPressed(_ aSwitch: UISwitch) {
+		controller?.switchWasPressedOnTableViewCell(cell: self, withState: aSwitch.isOn)
 	}
 
 	override func fontSizeWasChanged() {
 		updateFonts()
 	}
 
-	// MARK: Functions
+	override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+	// MARK: FuelTypeListCellDisplayLogic
 
 	func setAsCellType(cellType: CellBackgroundType) {
 		switch cellType {
 			case .top:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_top")
 			case .bottom:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_bottom")
 			case .middle:
-				self.bgViewTopAnchorConstraint?.constant = 0
-				self.bgViewBottomAnchorConstraint?.constant = 0
+				self.bgViewTopAnchorConstraint.constant = 0
+				self.bgViewBottomAnchorConstraint.constant = 0
 				self.separatorView.isHidden = false
 				backgroundImageView.image = UIImage(named: "cell_bg_middle")
 			case .single:
-				self.bgViewTopAnchorConstraint?.constant = 5
-				self.bgViewBottomAnchorConstraint?.constant = -5
+				self.bgViewTopAnchorConstraint.constant = 5
+				self.bgViewBottomAnchorConstraint.constant = -5
 				self.separatorView.isHidden = true
 				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
 		}
 	}
-
-	@objc func aSwitchWasPressed(_ aSwitch: UISwitch) {
-		controller?.switchWasPressedOnTableViewCell(cell: self, withState: aSwitch.isOn)	
-	}
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 }

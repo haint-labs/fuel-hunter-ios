@@ -27,9 +27,33 @@ extension Notification.Name {
     static let dataDownloaderStateChange = Notification.Name("dataDownloaderStateChange")
 
     static let checkForCompanyChanges = Notification.Name("checkForCompanyChanges")
+
+    static let cityNameUpdated = Notification.Name("cityNameUpdated")
 }
 
-class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+protocol AppSettingsWorkerLogic {
+	func setUpGlobalFontColorAndSize()
+	func getCurrentLanguage() -> AppSettingsWorker.Language
+	func setCurrentLanguage(_ language: AppSettingsWorker.Language)
+	func userPressedButtonToGetGPSAccess(_ handler: @escaping (LocationToggleResult<Any>) -> Void)
+	func getGPSIsEnabled() -> Bool
+	func getPushNotifToken() -> String
+	func setPushNotifToken(_ token: String)
+	func notifSwitchWasPressed(_ handler: @escaping () -> Void)
+	func getNotifIsEnabled() -> Bool
+	func setNotifEnabled(enabled: Bool)
+	func getStoredLastGPSDetectedCityName() -> String
+	func setStoredLastGPSDetectedCityName(name: String)
+	func getStoredNotifCityName() -> String
+	func setStoredNotifCity(name: String)
+	func getStoredNotifCentsCount() -> Int
+	func setStoredNotifCentsCount(count: Int)
+	func getCentsSymbolBasedOnValue(value: Int) -> String
+	func getFuelTypeToggleStatus() -> AllFuelTypesToogleStatus
+	func setFuelTypeToggleStatus(allFuelTypes: AllFuelTypesToogleStatus)
+}
+
+class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
 	enum Language: String {
 		case latvian = "lv"
@@ -40,14 +64,11 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 
 	static let shared = AppSettingsWorker()
 
+	private let locationManager = CLLocationManager()
+
 	var gpsSwitchHandler: ((LocationToggleResult<Any>) -> Void)?
-
-	let locationManager = CLLocationManager()
-
-	var notificationsAuthorisationStatus: UNAuthorizationStatus = .notDetermined
-
 	var userLocation: CLLocation?
-
+	var notificationsAuthorisationStatus: UNAuthorizationStatus = .notDetermined
 	var languageBundle: Bundle!
 
 	//--- Used to get specific translation.
@@ -67,7 +88,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 		locationManager.distanceFilter = 200
 		locationManager.startUpdatingLocation()
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-
+		
 		refreshCurrentNotificationsStatus {}
 
 		Font.recalculateFontIncreaseSize()
@@ -89,10 +110,13 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 
 	// MARK: Notifications
 
-	@objc func applicationDidBecomeActive() {
+	@objc private func applicationDidBecomeActive() {
 		refreshCurrentNotificationsStatus {
 			DispatchQueue.main.asyncAfter(deadline: .now()) {
 				NotificationCenter.default.post(name: .applicationDidBecomeActiveFromAppSettings, object: nil)
+
+				let cityName = CityWorker.getClosestCityName()
+				self.setStoredLastGPSDetectedCityName(name: cityName)
 			}
 		}
 	}
@@ -130,7 +154,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 		NotificationCenter.default.post(name: .languageWasChanged, object: nil)
 	}
 
-	func setUpBundle() {
+	private func setUpBundle() {
         if let path = Bundle.main.path(forResource: self.getCurrentLanguage().rawValue, ofType: "lproj"),
             let bundle = Bundle(path: path) {
             languageBundle = bundle
@@ -172,10 +196,6 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 		return true
 	}
 
-	func getUserLocation() -> CLLocation? {
-		return userLocation
-	}
-
 	// MARK: Push notif token
 
 	func getPushNotifToken() -> String {
@@ -189,7 +209,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 
 	// MARK: Notif
 
-	func refreshCurrentNotificationsStatus(_ handler: @escaping () -> Void) {
+	private func refreshCurrentNotificationsStatus(_ handler: @escaping () -> Void) {
 		UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
 			self?.notificationsAuthorisationStatus = settings.authorizationStatus
 			handler()
@@ -217,27 +237,51 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 				var notifEnabled = getNotifIsEnabled()
 				notifEnabled.toggle()
 				setNotifEnabled(enabled: notifEnabled)
+
+				if notifEnabled == false {
+					let cityName = CityWorker.getClosestCityName()
+					self.setStoredLastGPSDetectedCityName(name: cityName)
+					self.setStoredNotifCity(name: cityName)
+				}
 			}
 			DispatchQueue.main.asyncAfter(deadline: .now()) { handler() }
 		}
   	}
-
+	
 	func getNotifIsEnabled() -> Bool {
 		if notificationsAuthorisationStatus == .denied { return false }
 		return UserDefaults.standard.bool(forKey: "notif_is_enabled")
 	}
-
+	
 	func setNotifEnabled(enabled: Bool) {
 		UserDefaults.standard.set(enabled, forKey: "notif_is_enabled")
 		UserDefaults.standard.synchronize()
 	}
 
-	// MARK: Stored Notif City Name
+	// MARK: Stored Last GPS Detected City Name
+	
+	func getStoredLastGPSDetectedCityName() -> String {
+		return UserDefaults.standard.string(forKey: "gps_last_stored_city_name") ?? CityWorker.rigaCity.name
+	}
+	
+	func setStoredLastGPSDetectedCityName(name: String) {
+		let lastGPS = getStoredLastGPSDetectedCityName()
+		UserDefaults.standard.set(name, forKey: "gps_last_stored_city_name")
+		UserDefaults.standard.synchronize()
 
+		// If the name is changed.. This city name will be used for list.
+		if lastGPS != name {
+			PricesDownloader.removeAllPricesAndCallDownloader()
+			NotificationCenter.default.post(name: .cityNameUpdated, object: nil)
+		}
+	}
+
+	// MARK: Stored Notif City Name
+	
 	func getStoredNotifCityName() -> String {
 		return UserDefaults.standard.string(forKey: "notif_stored_city_name") ?? CityWorker.rigaCity.name
 	}
-
+	
 	func setStoredNotifCity(name: String) {
 		UserDefaults.standard.set(name, forKey: "notif_stored_city_name")
 		UserDefaults.standard.synchronize()
@@ -278,7 +322,7 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 	func getFuelTypeToggleStatus() -> AllFuelTypesToogleStatus {
 		return UserDefaults.standard.structData(AllFuelTypesToogleStatus.self, forKey: "AllFuelTypesToogleStatus") ?? AllFuelTypesToogleStatus()
 	}
-	
+
 	func setFuelTypeToggleStatus(allFuelTypes: AllFuelTypesToogleStatus) {
 		UserDefaults.standard.setStruct(allFuelTypes, forKey: "AllFuelTypesToogleStatus")
 		UserDefaults.standard.synchronize()
@@ -326,6 +370,9 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 		
 		userLocation = locations.last
 
+		let currentDetected = CityWorker.getClosestCityName()
+		setStoredLastGPSDetectedCityName(name: currentDetected)
+
 		AddressesWorker.resetAllAddressesDistances()
 	}
 
@@ -364,7 +411,5 @@ class AppSettingsWorker: NSObject, CLLocationManagerDelegate, UNUserNotification
 
 //    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
 //		print("remoteMessage \(remoteMessage)")
-//
-//		print("a")
 //    }
 }

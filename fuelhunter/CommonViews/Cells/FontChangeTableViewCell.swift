@@ -8,11 +8,8 @@
 
 import UIKit
 
-protocol FontChangeTableViewCellNotifications {
-	func fontSizeWasChanged()
-}
 
-class FontChangeTableViewCell: UITableViewCell, FontChangeTableViewCellNotifications {
+class FontChangeTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +22,8 @@ class FontChangeTableViewCell: UITableViewCell, FontChangeTableViewCellNotificat
 		NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
 	}
 
-	// MARK: FontChangeTableViewCellNotifications
+	// MARK: Functions
+
 	@objc func fontSizeWasChanged() {
 		// override
 	}

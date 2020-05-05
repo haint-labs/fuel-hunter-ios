@@ -11,7 +11,14 @@ import CoreData
 import UIKit
 import Firebase
 
-class CompaniesDownloader: NSObject {
+protocol CompaniesDownloaderLogic: class {
+	static func isAllowedToDownload() -> Bool
+	static func updateLastDownloadTime()
+	static func resetLastDownloadTime()
+	func work(completionHandler: @escaping () -> Void)
+}
+
+class CompaniesDownloader: CompaniesDownloaderLogic {
 
 	static var downloadingState: DownloaderState {
 		if DataDownloader.shared.downloaderIsActive {

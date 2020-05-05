@@ -12,25 +12,16 @@
 
 import UIKit
 
-protocol IntroPageDisplayLogic: class {
-  	func displaySomething(viewModel: IntroPage.Something.ViewModel)
-}
-
-class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPageLayoutViewLogic {
-
-  	var interactor: IntroPageBusinessLogic?
-  	var router: (NSObjectProtocol & IntroPageRoutingLogic & IntroPageDataPassing)?
+class IntroPageViewController: UIViewController, IntroPageLayoutViewLogic {
 
 	// MARK: Object lifecycle
 
   	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     	super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    	setup()
   	}
 
   	required init?(coder aDecoder: NSCoder) {
     	super.init(coder: aDecoder)
-    	setup()
   	}
 
   	// MARK: View lifecycle
@@ -39,25 +30,11 @@ class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPag
     	super.viewDidLoad()
     	self.view.backgroundColor = .white
     	setUpView()
-    	doSomething()
   	}
 
 	// MARK: Set up
 
-	private func setup() {
-		let viewController = self
-		let interactor = IntroPageInteractor()
-		let presenter = IntroPagePresenter()
-		let router = IntroPageRouter()
-		viewController.interactor = interactor
-		viewController.router = router
-		interactor.presenter = presenter
-		presenter.viewController = viewController
-		router.viewController = viewController
-		router.dataStore = interactor
-  	}
-
-	func setUpView() {
+	private func setUpView() {
 		let view = IntroPageLayoutView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 		self.view.addSubview(view)
 		view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -66,18 +43,9 @@ class IntroPageViewController: UIViewController, IntroPageDisplayLogic, IntroPag
 		view.controller = self
 	}
 
-  	// MARK: Functions
+  	// MARK: IntroPageLayoutViewLogic
 
 	func nextButtonWasPressed() {
 		ScenesManager.shared.advanceAppSceneState()
 	}
-
-  	func doSomething() {
-    	let request = IntroPage.Something.Request()
-    	interactor?.doSomething(request: request)
-  	}
-
-  	func displaySomething(viewModel: IntroPage.Something.ViewModel) {
-    	//nameTextField.text = viewModel.name
-  	}
 }
