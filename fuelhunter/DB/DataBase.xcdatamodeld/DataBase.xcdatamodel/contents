@@ -44,9 +44,9 @@
         <relationship name="companyMetaData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="prices" inverseEntity="CompanyMetaDataEntity"/>
     </entity>
     <elements>
-        <element name="AddressEntity" positionX="331.546875" positionY="29.45703125" width="128" height="148"/>
-        <element name="CompanyEntity" positionX="-267.26171875" positionY="-61.09375" width="128" height="283"/>
-        <element name="CompanyMetaDataEntity" positionX="-90.71875" positionY="134.5546875" width="159.55078125" height="88"/>
+        <element name="CompanyEntity" positionX="-268.45703125" positionY="32.58984375" width="128" height="283"/>
+        <element name="CompanyMetaDataEntity" positionX="-95.58984375" positionY="5.15234375" width="159.55078125" height="88"/>
         <element name="PriceEntity" positionX="125.96484375" positionY="29.5859375" width="128" height="178"/>
+        <element name="AddressEntity" positionX="322.59765625" positionY="108.5703125" width="128" height="148"/>
     </elements>
 </model>

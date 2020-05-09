@@ -86,7 +86,7 @@ class AboutAppFuelCompanyCell: FontChangeTableViewCell, AboutAppFuelCompanyCellD
 			self.iconImageView.image = nil
 			self.iconImageView.isHidden = true
 		} else {
-			self.iconImageView.sd_setImage(with: URL.init(string: imageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+			self.iconImageView.sd_setImage(with: URL.init(string: imageName), placeholderImage: UIImage.init(named: "fuel_icon_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
 //				if error != nil {
 //					print("Failed: \(error)")
 //				} else {

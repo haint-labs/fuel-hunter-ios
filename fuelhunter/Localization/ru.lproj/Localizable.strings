@@ -116,11 +116,13 @@
 
 
 //--- MAP
-"map_price_last_was_updated_many_minutes_ago_text" = "Цена в последний раз обновлялась ^^^ минут назад. Цена была получена с сайта.";
-"map_price_was_updated_hour_ago_text" = "Цена в последний раз обновлялась час назад. Цена была получена с сайта.";
-"map_price_last_was_updated_many_hours_ago_text" = "Цена в последний раз обновлялась ^^^ часов назад. Цена была получена с сайта.";
-"map_price_last_was_updated_more_than_a_day_ago_text" = "Цена была обновлена более суток назад. Цена была получена с сайта.";
-"map_price_last_was_updated_just_ago_text" = "Цена была только что обновлена. Цена была получена с сайта.";
+"map_price_last_was_updated_many_minutes_ago_text" = "Цена в последний раз обновлялась ^^^ минут назад.";
+"map_price_was_updated_hour_ago_text" = "Цена в последний раз обновлялась час назад.";
+"map_price_last_was_updated_many_hours_ago_text" = "Цена в последний раз обновлялась ^^^ часов назад.";
+"map_price_last_was_updated_more_than_a_day_ago_text" = "Цена была обновлена более суток назад.";
+"map_price_last_was_updated_just_ago_text" = "Цена была только что обновлена.";
+"map_price_was_updated_from_homepage" = "Цена была получена с сайта.";
+"map_price_was_updated_from_waze" = "Цена была получена с waze.";
 "map_price_last_updated_homepage_name" = "сайта";
 "map_directions_button_title" = "Направления";
 "map_kilometers" = "км";

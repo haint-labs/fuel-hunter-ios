@@ -298,7 +298,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		extendedAddressLabel.text = mapPointData.address
 		extendedTitleLabel.text = mapPointData.company.name
 
-		iconImageView.sd_setImage(with: URL.init(string: mapPointData.company.largeLogoName ?? ""), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+		iconImageView.sd_setImage(with: URL.init(string: mapPointData.company.largeLogoName ?? ""), placeholderImage: UIImage.init(named: "fuel_icon_big_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
 //				if error != nil {
 //					print("Failed: \(error)")
 //				} else {

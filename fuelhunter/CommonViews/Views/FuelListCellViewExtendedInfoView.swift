@@ -95,6 +95,8 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
 			}
 		}
 
+		lastUpdatedString.append("\n\("map_price_was_updated_from_homepage".localized())")
+
 		let customType = ActiveType.custom(pattern: patternString)
 		extendedDescriptionLabel.enabledTypes = [customType]
 		extendedDescriptionLabel.text = lastUpdatedString

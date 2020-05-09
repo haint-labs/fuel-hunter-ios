@@ -81,8 +81,8 @@ class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDele
 	private override init() {
 		super.init()
 
-		SDImageCache.shared.config.maxDiskAge = -1
-
+		SDImageCache.shared.config.maxDiskAge = 60*60*24*365//-1
+		SDImageCache.shared.clearDisk()
 		locationManager.delegate = self
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 		locationManager.distanceFilter = 200

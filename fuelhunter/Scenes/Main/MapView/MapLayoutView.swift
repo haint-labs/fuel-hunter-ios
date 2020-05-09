@@ -297,7 +297,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 			let iconGrayImageName = mapPointAnnotation.company.mapGrayLogoName ?? ""
 			let iconNormalImageName = mapPointAnnotation.company.mapLogoName ?? ""
 			
-			mapPinAccessory.iconGray.sd_setImage(with: URL.init(string: iconGrayImageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+			mapPinAccessory.iconGray.sd_setImage(with: URL.init(string: iconGrayImageName), placeholderImage: UIImage.init(named: "fuel_icon_map_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
 //				if error != nil {
 //					print("Failed: \(error)")
 //				} else {
@@ -305,7 +305,7 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 //				}
 			}
 
-			mapPinAccessory.iconNormal.sd_setImage(with: URL.init(string: iconNormalImageName), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+			mapPinAccessory.iconNormal.sd_setImage(with: URL.init(string: iconNormalImageName), placeholderImage: UIImage.init(named: "fuel_icon_map_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
 //				if error != nil {
 //					print("Failed: \(error)")
 //				} else {

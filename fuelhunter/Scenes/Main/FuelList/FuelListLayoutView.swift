@@ -180,7 +180,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			let aData = self.data[indexPath.section][indexPath.row]
 			cell.titleLabel.text = aData.company.name
 			cell.addressesLabel.text = aData.addressDescription
-			cell.iconImageView.sd_setImage(with: URL.init(string: aData.company.logoName ?? ""), placeholderImage: nil, options: .retryFailed) { (image, error, cacheType, url) in
+			cell.iconImageView.sd_setImage(with: URL.init(string: aData.company.logoName ?? ""), placeholderImage: UIImage.init(named: "fuel_icon_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
 //				if error != nil {
 //					print("Failed: \(error)")
 //				} else {

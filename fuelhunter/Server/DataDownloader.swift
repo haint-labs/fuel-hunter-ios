@@ -34,7 +34,9 @@ class DataDownloader: NSObject, DataDownloaderLogic {
 
 	public var downloaderIsActive: Bool = false {
 		didSet {
-			NotificationCenter.default.post(name: .dataDownloaderStateChange, object: nil)
+			DispatchQueue.main.asyncAfter(deadline: .now()) {
+				NotificationCenter.default.post(name: .dataDownloaderStateChange, object: nil)
+			}
 		}
 	}
 
