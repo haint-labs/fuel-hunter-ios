@@ -64,7 +64,7 @@
 "intro_choose_fuel_types_you_are_interested" = "Mark the types of fuel you are interested in.";
 "intro_notifs_title" = "Push Notifications";
 "intro_notifs_description" = "Receive push notifications when the price of fuel drops.";
-"intro_notifs_no_data_found_when_filtered" = "There are no cities matching the search term.\n\ nUnfortunately, it is not possible to specify villages and other less populated areas at this time.";
+"intro_notifs_no_data_found_when_filtered" = "There are no cities matching the search term.\n\n Unfortunately, it is not possible to specify villages and other less populated areas at this time.";
 "intro_location_title" = "Location";
 "intro_location_description" = "If you turn on GPS, we can display prices closer to you.";
 //=== INTRO

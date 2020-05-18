@@ -89,6 +89,8 @@
 		5C53C2982430E2EA0059CC5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C53C2972430E2EA0059CC5A /* GoogleService-Info.plist */; };
 		5C53C2A02434D5890059CC5A /* AddressesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C53C29F2434D5890059CC5A /* AddressesWorker.swift */; };
 		5C53C2A22435D7D70059CC5A /* UIViewAnimateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C53C2A12435D7D60059CC5A /* UIViewAnimateExtension.swift */; };
+		5C5673272472B853009C81E0 /* FuelListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C5673252472B853009C81E0 /* FuelListHeaderView.xib */; };
+		5C5673282472B853009C81E0 /* FuelListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5673262472B853009C81E0 /* FuelListHeaderView.swift */; };
 		5C731F9D22F945D500793DAF /* SettingsViewLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */; };
 		5C731FA022F945D500793DAF /* SettingsViewLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */; };
 		5C731FA522FB25FF00793DAF /* AboutAppLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */; };
@@ -322,6 +324,8 @@
 		5C53C2972430E2EA0059CC5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C53C29F2434D5890059CC5A /* AddressesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesWorker.swift; sourceTree = "<group>"; };
 		5C53C2A12435D7D60059CC5A /* UIViewAnimateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewAnimateExtension.swift; sourceTree = "<group>"; };
+		5C5673252472B853009C81E0 /* FuelListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FuelListHeaderView.xib; sourceTree = "<group>"; };
+		5C5673262472B853009C81E0 /* FuelListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelListHeaderView.swift; sourceTree = "<group>"; };
 		5C731F9B22F945D400793DAF /* SettingsViewLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewLayoutView.swift; sourceTree = "<group>"; };
 		5C731F9C22F945D400793DAF /* SettingsViewLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewLayoutView.xib; sourceTree = "<group>"; };
 		5C731FA322FB25FF00793DAF /* AboutAppLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppLayoutView.xib; sourceTree = "<group>"; };
@@ -588,6 +592,8 @@
 				5CD096FE2458A102004DAFAE /* TextTableViewHeaderView.xib */,
 				5CF17ABF245FEF8300A5B3D6 /* ClosestCityNameButtonView.swift */,
 				5CF17ABE245FEF8300A5B3D6 /* ClosestCityNameButtonView.xib */,
+				5C5673262472B853009C81E0 /* FuelListHeaderView.swift */,
+				5C5673252472B853009C81E0 /* FuelListHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1191,6 +1197,7 @@
 				5C45BEE922D3506800FE53D6 /* MapAnimationView.xib in Resources */,
 				5CCC38E5230A77B5008D3512 /* FuelListCellView.xib in Resources */,
 				5C13A99D23E5D93400546416 /* TableViewNoDataView.xib in Resources */,
+				5C5673272472B853009C81E0 /* FuelListHeaderView.xib in Resources */,
 				5C45BE4622CF56A200FE53D6 /* FuelTypeListCell.xib in Resources */,
 				5CBE59FD237AF36000639FDF /* Main.storyboard in Resources */,
 				5CD096F924572539004DAFAE /* CompanyChangesLayoutView.xib in Resources */,
@@ -1481,6 +1488,7 @@
 				5CF17ADF24600D7900A5B3D6 /* LoadedCityExplainModels.swift in Sources */,
 				5CD096F424572539004DAFAE /* CompanyChangesInteractor.swift in Sources */,
 				5C45BEE122D31C6100FE53D6 /* NotifPhoneAnimationView.swift in Sources */,
+				5C5673282472B853009C81E0 /* FuelListHeaderView.swift in Sources */,
 				5CD096FD24573C18004DAFAE /* ContentSizedTableView.swift in Sources */,
 				5C731FA822FB260000793DAF /* AboutAppLayoutView.swift in Sources */,
 				5C2E671022DD941D00FC71AD /* AppLanguageModels.swift in Sources */,

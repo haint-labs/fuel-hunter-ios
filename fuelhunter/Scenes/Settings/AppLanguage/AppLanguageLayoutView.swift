@@ -75,6 +75,7 @@ class AppLanguageLayoutView: UIView, UITableViewDataSource, UITableViewDelegate,
     	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
     	let nib = UINib(nibName: "LanguageListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	tableView.backgroundColor = .white
   	}
 
   	// MARK: Table view

@@ -1,5 +1,16 @@
 PODS:
   - ActiveLabel (1.1.0)
+  - CGRPCZlib (1.0.0-alpha.11)
+  - CNIOAtomics (2.15.0)
+  - CNIOBoringSSL (2.7.1)
+  - CNIOBoringSSLShims (2.7.1):
+    - CNIOBoringSSL (= 2.7.1)
+  - CNIODarwin (2.15.0)
+  - CNIOHTTPParser (2.15.0)
+  - CNIOLinux (2.15.0)
+  - CNIOSHA1 (2.15.0)
+  - FHClient (0.0.1):
+    - gRPC-Swift (= 1.0.0-alpha.11)
   - Firebase (6.21.0):
     - Firebase/Core (= 6.21.0)
   - Firebase/Analytics (6.21.0):
@@ -30,31 +41,32 @@ PODS:
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.2):
+  - FirebaseCoreDiagnostics (1.2.4):
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleDataTransportCCTSupport (~> 2.0)
+    - GoogleDataTransportCCTSupport (~> 3.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
-  - FirebaseCrashlytics (4.0.0-beta.6):
+  - FirebaseCrashlytics (4.0.0):
     - FirebaseAnalyticsInterop (~> 1.2)
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.1)
-    - GoogleDataTransport (~> 5.1)
-    - GoogleDataTransportCCTSupport (>= 2.0.1, ~> 2.0)
+    - GoogleDataTransport (~> 6.0)
+    - GoogleDataTransportCCTSupport (~> 3.0)
     - nanopb (~> 0.3.901)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (1.1.1):
+  - FirebaseInstallations (1.2.0):
     - FirebaseCore (~> 6.6)
-    - GoogleUtilities/UserDefaults (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
-  - FirebaseInstanceID (4.3.2):
+  - FirebaseInstanceID (4.3.4):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
-  - FirebaseMessaging (4.3.0):
+  - FirebaseMessaging (4.3.1):
     - FirebaseAnalyticsInterop (~> 1.5)
     - FirebaseCore (~> 6.6)
     - FirebaseInstanceID (~> 4.3)
@@ -69,28 +81,38 @@ PODS:
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (5.1.0)
-  - GoogleDataTransportCCTSupport (2.0.1):
-    - GoogleDataTransport (~> 5.1)
+  - GoogleDataTransport (6.1.0)
+  - GoogleDataTransportCCTSupport (3.0.0):
+    - GoogleDataTransport (~> 6.0)
     - nanopb (~> 0.3.901)
-  - GoogleUtilities/AppDelegateSwizzler (6.5.2):
+  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.5.2)
-  - GoogleUtilities/Logger (6.5.2):
+  - GoogleUtilities/Environment (6.6.0):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.6.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.5.2):
+  - GoogleUtilities/MethodSwizzler (6.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.5.2):
+  - GoogleUtilities/Network (6.6.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.5.2)"
-  - GoogleUtilities/Reachability (6.5.2):
+  - "GoogleUtilities/NSData+zlib (6.6.0)"
+  - GoogleUtilities/Reachability (6.6.0):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.5.2):
+  - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
+  - gRPC-Swift (1.0.0-alpha.11):
+    - CGRPCZlib (= 1.0.0-alpha.11)
+    - Logging (= 1.2.0)
+    - SwiftNIO (= 2.15.0)
+    - SwiftNIOHTTP2 (= 1.11.0)
+    - SwiftNIOSSL (= 2.7.1)
+    - SwiftNIOTransportServices (= 1.3.0)
+    - SwiftProtobuf (= 1.8.0)
+  - Logging (1.2.0)
   - Mixpanel-swift (2.6.2):
     - Mixpanel-swift/Complete (= 2.6.2)
   - Mixpanel-swift/Complete (2.6.2)
@@ -105,9 +127,48 @@ PODS:
     - SDWebImage/Core (= 5.0.2)
   - SDWebImage/Core (5.0.2)
   - SwiftLint (0.32.0)
+  - SwiftNIO (2.15.0):
+    - CNIOAtomics (= 2.15.0)
+    - CNIODarwin (= 2.15.0)
+    - CNIOLinux (= 2.15.0)
+    - CNIOSHA1 (= 2.15.0)
+    - SwiftNIOConcurrencyHelpers (= 2.15.0)
+  - SwiftNIOConcurrencyHelpers (2.15.0):
+    - CNIOAtomics (= 2.15.0)
+  - SwiftNIOFoundationCompat (2.15.0):
+    - SwiftNIO (= 2.15.0)
+  - SwiftNIOHPACK (1.11.0):
+    - SwiftNIO (= 2.15.0)
+    - SwiftNIOConcurrencyHelpers (= 2.15.0)
+    - SwiftNIOHTTP1 (= 2.15.0)
+  - SwiftNIOHTTP1 (2.15.0):
+    - CNIOHTTPParser (= 2.15.0)
+    - SwiftNIO (= 2.15.0)
+    - SwiftNIOConcurrencyHelpers (= 2.15.0)
+  - SwiftNIOHTTP2 (1.11.0):
+    - SwiftNIO (= 2.15.0)
+    - SwiftNIOConcurrencyHelpers (= 2.15.0)
+    - SwiftNIOHPACK (= 1.11.0)
+    - SwiftNIOHTTP1 (= 2.15.0)
+    - SwiftNIOTLS (= 2.15.0)
+  - SwiftNIOSSL (2.7.1):
+    - CNIOBoringSSL (= 2.7.1)
+    - CNIOBoringSSLShims (= 2.7.1)
+    - SwiftNIO (= 2.15.0)
+    - SwiftNIOConcurrencyHelpers (= 2.15.0)
+    - SwiftNIOTLS (= 2.15.0)
+  - SwiftNIOTLS (2.15.0):
+    - SwiftNIO (= 2.15.0)
+  - SwiftNIOTransportServices (1.3.0):
+    - SwiftNIO (~> 2.0)
+    - SwiftNIOConcurrencyHelpers (~> 2.0)
+    - SwiftNIOFoundationCompat (~> 2.0)
+    - SwiftNIOTLS (~> 2.0)
+  - SwiftProtobuf (1.8.0)
 
 DEPENDENCIES:
   - ActiveLabel (= 1.1.0)
+  - FHClient (from `https://github.com/haint-labs/fuel-hunter-client-swift`)
   - Firebase (= 6.21.0)
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -119,6 +180,14 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ActiveLabel
+    - CGRPCZlib
+    - CNIOAtomics
+    - CNIOBoringSSL
+    - CNIOBoringSSLShims
+    - CNIODarwin
+    - CNIOHTTPParser
+    - CNIOLinux
+    - CNIOSHA1
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -133,36 +202,78 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - gRPC-Swift
+    - Logging
     - Mixpanel-swift
     - nanopb
     - PromisesObjC
     - Protobuf
     - SDWebImage
     - SwiftLint
+    - SwiftNIO
+    - SwiftNIOConcurrencyHelpers
+    - SwiftNIOFoundationCompat
+    - SwiftNIOHPACK
+    - SwiftNIOHTTP1
+    - SwiftNIOHTTP2
+    - SwiftNIOSSL
+    - SwiftNIOTLS
+    - SwiftNIOTransportServices
+    - SwiftProtobuf
+
+EXTERNAL SOURCES:
+  FHClient:
+    :git: https://github.com/haint-labs/fuel-hunter-client-swift
+
+CHECKOUT OPTIONS:
+  FHClient:
+    :commit: f2def5d7495391dfb343f2aa795900f625036739
+    :git: https://github.com/haint-labs/fuel-hunter-client-swift
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  CGRPCZlib: e595387378d0601be796e858dd30c505458c4b1f
+  CNIOAtomics: ba49b1c86f281e1ecfd84c9205fbc27a81826847
+  CNIOBoringSSL: e4766830ab6d7c7fcd3618331f05fcb11638314d
+  CNIOBoringSSLShims: c3f3c6f05b7ce9b576521328a5b1b566d8f4665b
+  CNIODarwin: 2e341dd283fa3972706568b12925366145a8e2cd
+  CNIOHTTPParser: 25e1d1bc84c0612cbbbd6baedc4be05d77a17e01
+  CNIOLinux: 61598a8e49510207acb74c87f8fc11f762f76b5a
+  CNIOSHA1: 7b1dcceef9682aef4c6578b9fc67f87a03f0c48e
+  FHClient: ae12062a484a51e47643f62805574c8f2ca09b51
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseAnalytics: a1a0b3327ceb5cd5b4bacffdb293f6c909aa087d
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
   FirebaseCore: 9f495d3afacb7b558711e6218ebb14b1c51b5802
-  FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
+  FirebaseCoreDiagnostics: b59c024493a409f8aecba02c99928d0d8431d159
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
-  FirebaseCrashlytics: b9e729da8b80d9c45f234f791a73b5fe647d4c31
-  FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
-  FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
-  FirebaseMessaging: 4ec33842d36b3319e062e51fb8b35a74f726950d
+  FirebaseCrashlytics: 941608d2a3475b48fb7010b998703d07696b8db1
+  FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
+  FirebaseInstanceID: cef67c4967c7cecb56ea65d8acbb4834825c587b
+  FirebaseMessaging: 828e66eb357a893e3cebd9ee0f6bc1941447cc94
   GoogleAppMeasurement: 6e68a94d0eaeb1d73ef6b0ed4f7334e29d63ae29
-  GoogleDataTransport: b29a21d813e906014ca16c00897827e40e4a24ab
-  GoogleDataTransportCCTSupport: 6f15a89b0ca35d6fa523e1f752ef818588885988
-  GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
+  GoogleDataTransport: f6f8eba931df03ebd2232ff4645aa85f8f47b5ab
+  GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
+  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  gRPC-Swift: 79f04da038f9a62005271d5b638611ce1bb31304
+  Logging: 7838d379d234d7e5ae1265fa02804a9084caf04c
   Mixpanel-swift: eea98bb65fd80e992a9ecb3a0a421eca542ea72f
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+  SwiftNIO: c9889dcd8aed2655af9163b42fc11ebd4ce94252
+  SwiftNIOConcurrencyHelpers: 2357037a16e9c51880c01b896a5ac3cd41066044
+  SwiftNIOFoundationCompat: f09ee499a8a9c636ec9007f73c5a1cedc23dcad3
+  SwiftNIOHPACK: 906596511ff9d1e095b7a72a0011351591bcae03
+  SwiftNIOHTTP1: b05f4061ba18482006a264a5aa087bbcd35d153c
+  SwiftNIOHTTP2: 3a52499594c6ec073af2a2801cf3c5d3d1c8700f
+  SwiftNIOSSL: 7c82b8393a6b69a3ef9b12fe74240e92c2bd7add
+  SwiftNIOTLS: 51580e51240d1a4d51efb2d317e92cf243181042
+  SwiftNIOTransportServices: 26d40c589fc8fe667af51b06ef0aa49fbc9ae7f2
+  SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
 
-PODFILE CHECKSUM: 0e39c84e8fd0bc88d2a178a048f7a13c0ee679be
+PODFILE CHECKSUM: db9cf4c480ef99d92ac2008a7065625beca35887
 
 COCOAPODS: 1.9.1

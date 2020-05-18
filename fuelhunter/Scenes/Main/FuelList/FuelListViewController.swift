@@ -71,7 +71,7 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
 		setUpView()
 		getData()
-
+		
 		checkForCompanyChanges()
 
 		// For testing... for now..

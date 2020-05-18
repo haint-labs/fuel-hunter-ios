@@ -10,6 +10,9 @@ import UIKit
 import SDWebImage
 import Firebase
 import CoreData
+import FHClient
+import GRPC
+import NIO
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +37,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 		_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(downloaderTestTimer), userInfo: nil, repeats: true)
+
+
+//		let group = PlatformSupport.makeEventLoopGroup(loopCount: 1)
+//		let channel = ClientConnection
+//			.insecure(group: group)
+//			.connect(host: "162.243.16.251", port: 50051)
+//		let client = SnapshotServiceClient(channel: channel)
+//		let query = SnapshotQuery.with { _ in }
+//
+//		do {
+//			let response = try client.getSnapshots(query)
+//				.response
+//				.wait()
+//			response.snapshots.forEach { print("printing snapshots \($0)") }
+//			print(response.snapshots.count)
+//		} catch {
+//			print("caught: \(error)")
+////			fatalError()
+//		}
+
 
 		return true
 	}

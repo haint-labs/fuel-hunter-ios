@@ -15,6 +15,7 @@ target 'fuelhunter' do
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
+  pod 'FHClient', :git => 'https://github.com/haint-labs/fuel-hunter-client-swift' 
 
   target 'fuelhunterTests' do
     inherit! :search_paths

@@ -130,22 +130,25 @@ class CityWorker: NSObject {
 		var closestCity = rigaCity
 	  	var smallestDistance: CLLocationDistance?
 
-	  	for city in cities {
-			let distance = AppSettingsWorker.shared.userLocation!.distance(from: city.location)
-			if smallestDistance == nil || (distance - Double(city.radius)) < smallestDistance! {
-				closestCity = city
-				smallestDistance = (distance - Double(city.radius))
+		if let userLocation = AppSettingsWorker.shared.userLocation {
+			for city in cities {
+				let distance = userLocation.distance(from: city.location)
+				if smallestDistance == nil || (distance - Double(city.radius)) < smallestDistance! {
+					closestCity = city
+					smallestDistance = (distance - Double(city.radius))
+				}
 			}
-	  	}
+		}
 
 	  	return closestCity.name!
 	}
 
 	class func getCitiesByDistance() -> [CityAndDistance] {
 
-		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
+		if AppSettingsWorker.shared.getGPSIsEnabled() == false
+			|| AppSettingsWorker.shared.userLocation == nil {
 			return CityWorker.getCitiesByName()
-		}
+		}	
 
 		var dict: [String: Double] = [:]
 		var array: [CityAndDistance] = []

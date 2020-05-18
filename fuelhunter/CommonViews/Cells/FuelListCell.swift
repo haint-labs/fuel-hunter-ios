@@ -56,13 +56,15 @@ class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
 
 		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
+		titleLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -6).isActive = true
 
 		addressesLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
 		addressesLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
+		addressesLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -6).isActive = true
 
-		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: titleLabel.rightAnchor, constant: 6).isActive = true
-		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: addressesLabel.rightAnchor, constant: 6).isActive = true
+//		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: titleLabel.rightAnchor, constant: 6).isActive = true
+//		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: addressesLabel.rightAnchor, constant: 6).isActive = true
 		priceLabel.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		priceLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor).isActive = true
 		priceLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor).isActive = true
@@ -73,7 +75,9 @@ class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
 		separatorView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor).isActive = true
 
 		//TODO: Calculate width of normal price, and provide it as minimum
-		priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
+//		priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
+		priceLabel.widthAnchor.constraint(equalToConstant:priceLabel.intrinsicContentSize.width).isActive = true
+
 
 		updateFonts()
     }

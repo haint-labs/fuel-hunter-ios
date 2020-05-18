@@ -77,7 +77,7 @@ class AboutAppLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Ab
     	tableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 12, right: 0)
     	let nib = UINib(nibName: "AboutAppFuelCompanyCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
-
+		tableView.backgroundColor = .white
     	setUpTableViewHeader()
 
     	adjustNoDataLabelText()

@@ -72,7 +72,7 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 			let fetchRequest: NSFetchRequest<PriceEntity> = PriceEntity.fetchRequest()
 
 			if shouldUseCheapestCompany == true {
-				fetchRequest.predicate = NSPredicate(format: "(isCheapest == %i || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType IN %@", true, true, false, filteredArray)
+				fetchRequest.predicate = NSPredicate(format: "((isCheapest == %i && companyMetaData != nil) || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType IN %@", true, true, false, filteredArray)
 			} else {
 				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType IN %@", true, false, filteredArray)
 			}

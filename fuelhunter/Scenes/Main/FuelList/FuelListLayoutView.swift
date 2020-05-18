@@ -62,6 +62,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
+		print("tableView.window \(tableView.window)")
 		tableView.layoutSubviews()
 		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines()
@@ -143,6 +144,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
     	tableView.contentInset = UIEdgeInsets(top: -2, left: 0, bottom: -9, right: 0)
     	let nib = UINib(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
+    	let nibHeader = UINib(nibName: "FuelListHeaderView", bundle: nil)
+		self.tableView.register(nibHeader, forHeaderFooterViewReuseIdentifier: "header")
     	tableView.backgroundColor = UIColor.clear
     	
     	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
@@ -217,29 +220,13 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	}
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let aData = self.data[section].first!
-			
-		let baseView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 60))
-		
-		let label: UILabel = UILabel()
-		label.text = aData.fuelType.rawValue.localized()
-		label.font = Font(.medium, size: .size3).font
-		label.textColor = UIColor(named: "TitleColor")
-		
-		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font(.medium, size: .size3).font)
-		
-		label.frame = CGRect(x: 16, y: 20, width: self.frame.width-32, height: height+6)
-		
-		baseView.addSubview(label)
-		
-		return baseView
-	}
 
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! FuelListHeaderView
+
 		let aData = self.data[section].first!
-		let height = aData.fuelType.rawValue.localized().height(withConstrainedWidth: self.frame.width-32, font: Font(.medium, size: .size3).font)
-		
-		return height + 26
+		header.titleLabel.text = aData.fuelType.rawValue.localized()
+
+        return header
 	}
 
 	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -317,6 +304,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	}
 
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int]) {
+
 //		print("data \(data)")
 //		print("insertItems \(insertItems)")
 //		print("deleteItems \(deleteItems)")
@@ -328,7 +316,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		if insertItems.isEmpty && deleteItems.isEmpty && updateItems.isEmpty && insertSections.isEmpty && deleteSections.isEmpty && updateSections.isEmpty {
 			self.data = data
 			tableView.reloadData()
-			tableView.layoutIfNeeded()
+//			tableView.layoutSubviews()
+//			tableView.layoutIfNeeded()
 		} else {
 			self.data = data
 
@@ -367,6 +356,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	func updateCity(_ name: String, gpsIconVisible: Bool) {
 		closestCityNameButtonView.setCity(name: name, gpsIconVisible: gpsIconVisible)
 		tableView.tableHeaderView = closestCityNameButtonView
+		self.layoutIfNeeded()
 	}
 
 	func resetUI() {
