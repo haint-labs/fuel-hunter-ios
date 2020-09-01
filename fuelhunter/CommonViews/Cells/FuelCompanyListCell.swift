@@ -165,10 +165,12 @@ class FuelCompanyListCell: FontChangeTableViewCell, FuelCompanyListCellDisplayLo
 
 	func setDescriptionText(descriptionText: String) {
 		if descriptionText.count == 0 {
+			iconImageView.contentMode = .center
 			self.descriptionLabel.text = ""
 			self.titleTopAnchorConstraint.constant = 9
 			self.titleBottomAnchorConstraint.isActive = true
 		} else {
+			iconImageView.contentMode = .top
 			self.descriptionLabel.text = descriptionText
 			self.titleTopAnchorConstraint.constant = 6
 			self.titleBottomAnchorConstraint.isActive = false

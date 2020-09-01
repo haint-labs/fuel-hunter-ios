@@ -24,7 +24,6 @@ class FuelTypeChooseListPresenter: FuelTypeChooseListPresentationLogic {
   	func presentData(response: FuelTypeChooseList.FuelCells.Response) {
   		let array =  [
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .typeDD, title: "fuel_dd", toggleStatus: response.statusOfDD),
-			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .typeDDPro, title: "fuel_dd_pro", toggleStatus: response.statusOfProDD),
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .type95, title: "fuel_95", toggleStatus: response.statusOf95),
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .type98, title: "fuel_98", toggleStatus: response.statusOf98),
 			FuelTypeChooseList.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .typeGas, title: "fuel_gas", toggleStatus: response.statusOfGas)

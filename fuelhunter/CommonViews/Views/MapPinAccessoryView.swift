@@ -28,6 +28,21 @@ class MapPinAccessoryView: UIView, MapPinAccessoryViewDisplayLogic {
 	var iconGrayBottomConstraint: NSLayoutConstraint!
 	var iconNormalBottomConstraint: NSLayoutConstraint!
 
+
+	var iconNormalWidthConstraint: NSLayoutConstraint!
+	var iconNormalHeightConstraint: NSLayoutConstraint!
+
+	var iconGrayWidthConstraint: NSLayoutConstraint!
+	var iconGrayHeightConstraint: NSLayoutConstraint!
+
+
+	var iconGrayRightConstraint: NSLayoutConstraint!
+	var iconNormalRightConstraint: NSLayoutConstraint!
+
+
+	var priceLabelRightConstraint: NSLayoutConstraint!
+	var distanceLabelRightConstraint: NSLayoutConstraint!
+
 	var address: String!
 	var title: String!
 	
@@ -78,38 +93,101 @@ class MapPinAccessoryView: UIView, MapPinAccessoryViewDisplayLogic {
 
 		iconGray.leftAnchor.constraint(equalTo: leftAnchor, constant: 7).isActive = true
 		iconGray.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
-		iconGray.widthAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
-		iconGray.heightAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
+		iconGrayRightConstraint = iconGray.rightAnchor.constraint(equalTo: rightAnchor, constant: -7)
+
+		iconGrayWidthConstraint = iconGray.widthAnchor.constraint(equalToConstant: 28+increaseIconSize)
+		iconGrayHeightConstraint = iconGray.heightAnchor.constraint(equalToConstant: 28+increaseIconSize)
+
 		iconGrayBottomConstraint = iconGray.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10)
 		iconGrayBottomConstraint.priority = .defaultHigh
 		iconGrayBottomConstraint.isActive = true
 
 		iconNormal.leftAnchor.constraint(equalTo: leftAnchor, constant: 7).isActive = true
 		iconNormal.topAnchor.constraint(equalTo: topAnchor, constant: 7).isActive = true
-		iconNormal.widthAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
-		iconNormal.heightAnchor.constraint(equalToConstant: 28+increaseIconSize).isActive = true
+		iconNormalRightConstraint = iconGray.rightAnchor.constraint(equalTo: rightAnchor, constant: -7)
+
+
+		iconNormalWidthConstraint = iconNormal.widthAnchor.constraint(equalToConstant: 28+increaseIconSize)
+		iconNormalHeightConstraint = iconNormal.heightAnchor.constraint(equalToConstant: 28+increaseIconSize)
+
 		iconNormalBottomConstraint = iconNormal.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10)
 		iconNormalBottomConstraint.priority = .defaultHigh
 		iconNormalBottomConstraint.isActive = true
 
+		iconGrayWidthConstraint.isActive = true
+		iconGrayHeightConstraint.isActive = true
+		iconNormalWidthConstraint.isActive = true
+		iconNormalHeightConstraint.isActive = true
 
 		priceLabel.leftAnchor.constraint(equalTo: iconGray.rightAnchor, constant: 5).isActive = true
 		priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
-		priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7).isActive = true
+		priceLabelRightConstraint = priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7)
 		priceLabelBottomConstraint = priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7)
 
 
 		distanceLabel.leftAnchor.constraint(equalTo: iconGray.rightAnchor, constant: 5).isActive = true
 		distanceLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: -1).isActive = true
-		distanceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7).isActive = true
+		distanceLabelRightConstraint = distanceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -7)
 		distanceLabelBottomConstraint = distanceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
 		distanceLabelBottomConstraint.isActive = true
 
 		priceLabel.font = Font(.medium, size: .size3).font
 		distanceLabel.font = Font(.normal, size: .size5).font
+
+		iconGray.contentMode = .center
+		iconNormal.contentMode = .center
 	}
 
 	// MARK: MapPinAccessoryViewDisplayLogic
+
+	func setAsTiny(_ tiny: Bool) {
+		let increaseIconSize: CGFloat = CGFloat(max(0, Font.increaseFontSize)) * 2
+
+		if tiny {
+			iconGray.contentMode = .scaleAspectFit
+			iconNormal.contentMode = .scaleAspectFit
+			self.priceLabel.isHidden = true
+			self.distanceLabel.isHidden = true
+//			self.backgroundImageView.image = UIImage.init(named: "map_tiny_pin")
+//			self.backgroundBubbleArrowImageView.isHidden = true
+
+//			iconGrayWidthConstraint.constant = 14+increaseIconSize
+//			iconGrayHeightConstraint.constant = 14+increaseIconSize
+//
+//			iconNormalWidthConstraint.constant = 14+increaseIconSize
+//			iconNormalHeightConstraint.constant = 14+increaseIconSize
+
+			priceLabelBottomConstraint.isActive = false
+			distanceLabelBottomConstraint.isActive = false
+
+			iconGrayRightConstraint.isActive = true
+			iconNormalRightConstraint.isActive = true
+
+			priceLabelRightConstraint.isActive = false
+			distanceLabelRightConstraint.isActive = false
+		} else {
+
+			iconGray.contentMode = .center
+			iconNormal.contentMode = .center
+
+			self.priceLabel.isHidden = false
+			self.distanceLabel.isHidden = false
+			self.backgroundImageView.image = UIImage.init(named: "map_bubble")
+			self.backgroundBubbleArrowImageView.isHidden = false
+
+			iconGrayWidthConstraint.constant = 28+increaseIconSize
+			iconGrayHeightConstraint.constant = 28+increaseIconSize
+
+			iconNormalWidthConstraint.constant = 28+increaseIconSize
+			iconNormalHeightConstraint.constant = 28+increaseIconSize
+
+			iconGrayRightConstraint.isActive = false
+			iconNormalRightConstraint.isActive = false
+
+			priceLabelRightConstraint.isActive = true
+			distanceLabelRightConstraint.isActive = true
+		}
+	}
 
 	func setAsSelected(_ selected: Bool, isCheapestPrice: Bool) {
 		if selected == true {

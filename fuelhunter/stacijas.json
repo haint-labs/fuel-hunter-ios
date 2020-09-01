@@ -1,0 +1,4747 @@
+{"items":
+	[
+		{
+			"id":1,
+			"company":"Circle K",
+			"latitude":56.9622428,
+			"longitude":23.7244566,
+			"city":"Jūrmala",
+			"address":"Kalēju iela 4",
+			"name":"Circle K Jūrmala,automāts"
+		},
+		{
+			"id":2,
+			"company":"Circle K",
+			"latitude":56.9034248,
+			"longitude":24.1933529,
+			"city":"Rīga",
+			"address":"Maskavas iela 324",
+			"name":"Circle K Maskavas Automāts"
+		},
+		{
+			"id":3,
+			"company":"Circle K",
+			"latitude":56.9505099,
+			"longitude":24.186707,
+			"city":"Rīga",
+			"address":"Gunāra Astras iela 10",
+			"name":"Circle K Purvciems 2"
+		},
+		{
+			"id":4,
+			"company":"Circle K",
+			"latitude":57.1430503,
+			"longitude":24.8431004,
+			"city":"Sigulda",
+			"address":"Mazā Saules iela 2",
+			"name":"Circle K Sigulda"
+		},
+		{
+			"id":5,
+			"company":"Circle K",
+			"latitude":56.911451,
+			"longitude":24.095421,
+			"city":"Rīga",
+			"address":"Valdeķu iela 35",
+			"name":"Circle K Automāts Valdeķu"
+		},
+		{
+			"id":6,
+			"company":"Circle K",
+			"latitude":57.069425,
+			"longitude":24.316671,
+			"city":"Ādaži",
+			"address":"Vidlauku iela 1, Stapriņi",
+			"name":"Circle K Ādaži"
+		},
+		{
+			"id":7,
+			"company":"Circle K",
+			"latitude":56.4059211,
+			"longitude":24.1966201,
+			"city":"Bauska",
+			"address":"Zaļā iela 10",
+			"name":"Circle K Bauska"
+		},
+		{
+			"id":8,
+			"company":"Circle K",
+			"latitude":57.0053855,
+			"longitude":24.2916949,
+			"city":"Garkalnes novads",
+			"address":"Rīgas-Siguldas šoseja 1",
+			"name":"Circle K, Berģi"
+		},
+		{
+			"id":9,
+			"company":"Circle K",
+			"latitude":57.2798355,
+			"longitude":25.4912493,
+			"city":"Veselavas pagasts",
+			"address":"Saulrīti",
+			"name":"Circle K Bērzkrogs"
+		},
+		{
+			"id":10,
+			"company":"Circle K",
+			"latitude":56.951932,
+			"longitude":24.054286,
+			"city":"Rīga",
+			"address":"Jūrmalas gatve 5A",
+			"name":"Circle K Botānika"
+		},
+		{
+			"id":11,
+			"company":"Circle K",
+			"latitude":56.9514623,
+			"longitude":24.0605549,
+			"city":"Rīga",
+			"address":"Kandavas iela 7",
+			"name":"Circle K Botānika 2"
+		},
+		{
+			"id":12,
+			"company":"Circle K",
+			"latitude":56.9662172,
+			"longitude":24.1456298,
+			"city":"Rīga",
+			"address":"Brīvības iela 176A",
+			"name":"Circle K Brīvības/Cēsu"
+		},
+		{
+			"id":13,
+			"company":"Circle K",
+			"latitude":57.2983834,
+			"longitude":25.3004586,
+			"city":"Cēsis",
+			"address":"Piebalgas iela 91",
+			"name":"Circle K Cēsis"
+		},
+		{
+			"id":14,
+			"company":"Circle K",
+			"latitude":56.9341732,
+			"longitude":24.1388731,
+			"city":"Rīga",
+			"address":"Krasta iela 47",
+			"name":"Circle K Daugava"
+		},
+		{
+			"id":15,
+			"company":"Circle K",
+			"latitude":55.8745149,
+			"longitude":26.5450287,
+			"city":"Daugavpils",
+			"address":"Ventspils iela 28",
+			"name":"Circle K Daugavpils 1"
+		},
+		{
+			"id":16,
+			"company":"Circle K",
+			"latitude":55.8761714,
+			"longitude":26.5241507,
+			"city":"Daugavpils",
+			"address":"Stacijas iela 97A",
+			"name":"Circle K Daugavpils 2"
+		},
+		{
+			"id":17,
+			"company":"Circle K",
+			"latitude":56.821868,
+			"longitude":24.414175,
+			"city":"Ķekavas novads",
+			"address":"Augstceltne, Daugmale",
+			"name":"Circle K, Daugmale"
+		},
+		{
+			"id":18,
+			"company":"Circle K",
+			"latitude":56.9428436,
+			"longitude":24.2297097,
+			"city":"Rīga",
+			"address":"Deglava iela 164C",
+			"name":"Circle K Deglava"
+		},
+		{
+			"id":19,
+			"company":"Circle K",
+			"latitude":56.6262519,
+			"longitude":23.2878963,
+			"city":"Dobele",
+			"address":"Jāņa Čakstes iela 1",
+			"name":"Circle K Dobele"
+		},
+		{
+			"id":20,
+			"company":"Circle K",
+			"latitude":56.943722,
+			"longitude":24.258907,
+			"city":"Dreiliņi",
+			"address":"Kuršu iela 1",
+			"name":"Circle K Dreiliņi"
+		},
+		{
+			"id":21,
+			"company":"Circle K",
+			"latitude":56.981905,
+			"longitude":24.135675,
+			"city":"Rīga",
+			"address":"Duntes iela 15",
+			"name":"Circle K Duntes"
+		},
+		{
+			"id":22,
+			"company":"Circle K",
+			"latitude":56.963099,
+			"longitude":24.169493,
+			"city":"Rīga",
+			"address":"Dzelzavas iela 14",
+			"name":"Circle K Dzelzavas"
+		},
+		{
+			"id":23,
+			"company":"Circle K",
+			"latitude":56.955729,
+			"longitude":24.097309,
+			"city":"Rīga",
+			"address":"Eksporta iela 1C",
+			"name":"Circle K Eksporta"
+		},
+		{
+			"id":24,
+			"company":"Circle K",
+			"latitude":56.365553,
+			"longitude":24.279655,
+			"city":"Bauskas novads",
+			"address":"Ozolnieki, Ceraukste",
+			"name":"Circle K Grenctāle"
+		},
+		{
+			"id":25,
+			"company":"Circle K",
+			"latitude":57.177633,
+			"longitude":26.742547,
+			"city":"Gulbene",
+			"address":"Gulbene, Brīvības iela 89A",
+			"name":"Circle K Gulbene"
+		},
+		{
+			"id":26,
+			"company":"Circle K",
+			"latitude":56.958607,
+			"longitude":24.052484,
+			"city":"Rīga",
+			"address":"Dzirciema iela 40",
+			"name":"Circle K Iļģuciems"
+		},
+		{
+			"id":27,
+			"company":"Circle K",
+			"latitude":56.959576,
+			"longitude":24.0186121,
+			"city":"Rīga",
+			"address":"Anniņmuižas bulvāris 25A",
+			"name":"Circle K Imanta"
+		},
+		{
+			"id":28,
+			"company":"Circle K",
+			"latitude":56.657382,
+			"longitude":23.743107,
+			"city":"Jelgava",
+			"address":"Brīvības bulvāris 1",
+			"name":"Circle K, Jelgava 1"
+		},
+		{
+			"id":29,
+			"company":"Circle K",
+			"latitude":56.647675,
+			"longitude":23.730211,
+			"city":"Jelgava",
+			"address":"Akadēmijas iela 20",
+			"name":"Circle K, Jelgava 2"
+		},
+		{
+			"id":30,
+			"company":"Circle K",
+			"latitude":56.6556822,
+			"longitude":23.6977551,
+			"city":"Jelgava",
+			"address":"Satiksmes iela 29",
+			"name":"Circle K, Jelgava 3"
+		},
+		{
+			"id":31,
+			"company":"Circle K",
+			"latitude":56.516073,
+			"longitude":25.856345,
+			"city":"Jēkabpils",
+			"address":"Rīgas iela 218G",
+			"name":"Circle K, Jēkabpils"
+		},
+		{
+			"id":32,
+			"company":"Circle K",
+			"latitude":56.989493,
+			"longitude":24.24365,
+			"city":"Rīga",
+			"address":"Juglas iela 2C",
+			"name":"Circle K Jugla"
+		},
+		{
+			"id":33,
+			"company":"Circle K",
+			"latitude":56.966819,
+			"longitude":23.763267,
+			"city":"Jūrmala",
+			"address":"Dubultu prospekts 42A",
+			"name":"Circle K Jūrmala"
+		},
+		{
+			"id":34,
+			"company":"Circle K",
+			"latitude":57.06751,
+			"longitude":22.817604,
+			"city":"Kandavas novads",
+			"address":"Kandavas pagasts, Mazcuntes",
+			"name":"Circle K, Kandava"
+		},
+		{
+			"id":35,
+			"company":"Circle K",
+			"latitude":56.923913,
+			"longitude":24.162991,
+			"city":"Rīga",
+			"address":"Krasta iela 101",
+			"name":"Circle K Krasta"
+		},
+		{
+			"id":36,
+			"company":"Circle K",
+			"latitude":55.887975,
+			"longitude":27.184193,
+			"city":"Krāslava",
+			"address":"Rīgas iela 165A",
+			"name":"Circle K Krāslava"
+		},
+		{
+			"id":37,
+			"company":"Circle K",
+			"latitude":57.179211,
+			"longitude":24.715224,
+			"city":"Ragana",
+			"address":"Cielavas",
+			"name":"Circle K Krimulda"
+		},
+		{
+			"id":38,
+			"company":"Circle K",
+			"latitude":56.958162,
+			"longitude":21.991625,
+			"city":"Kuldīga",
+			"address":"Ganību iela 22",
+			"name":"Circle K Kuldīga"
+		},
+		{
+			"id":39,
+			"company":"Circle K",
+			"latitude":56.947385,
+			"longitude":24.136856,
+			"city":"Rīga",
+			"address":"Kurbada iela 8",
+			"name":"Circle K Kurbada"
+		},
+		{
+			"id":40,
+			"company":"Circle K",
+			"latitude":56.8216062,
+			"longitude":24.246237,
+			"city":"Ķekava",
+			"address":"Rīgas iela 107",
+			"name":"Circle K Ķekava"
+		},
+		{
+			"id":41,
+			"company":"Circle K",
+			"latitude":56.906425,
+			"longitude":24.189191,
+			"city":"Rīga",
+			"address":"Maskavas iela 349B",
+			"name":"Circle K Ķengarags"
+		},
+		{
+			"id":42,
+			"company":"Circle K",
+			"latitude":56.928726,
+			"longitude":24.15664,
+			"city":"Rīga",
+			"address":"Krasta iela 70",
+			"name":"Circle K Lido"
+		},
+		{
+			"id":43,
+			"company":"Circle K",
+			"latitude":56.662736,
+			"longitude":24.896693,
+			"city":"Jumpravas pagasts",
+			"address":"Priežkalni 2",
+			"name":"Circle K Lielvārde"
+		},
+		{
+			"id":44,
+			"company":"Circle K",
+			"latitude":56.5156155,
+			"longitude":21.0179768,
+			"city":"Liepāja",
+			"address":"Esperanto iela 2/8",
+			"name":"Circle K Liepāja 1"
+		},
+		{
+			"id":45,
+			"company":"Circle K",
+			"latitude":56.48733,
+			"longitude":21.017189,
+			"city":"Liepāja",
+			"address":"Ganību iela 171",
+			"name":"Circle K Liepāja 2"
+		},
+		{
+			"id":46,
+			"company":"Circle K",
+			"latitude":56.534524,
+			"longitude":21.055813,
+			"city":"Liepāja",
+			"address":"Cukura iela 3",
+			"name":"Circle K Liepāja 3"
+		},
+		{
+			"id":47,
+			"company":"Circle K",
+			"latitude":57.512519,
+			"longitude":24.7280083,
+			"city":"Limbaži",
+			"address":"Cēsu iela 30",
+			"name":"Circle K Limbaži"
+		},
+		{
+			"id":48,
+			"company":"Circle K",
+			"latitude":56.859226,
+			"longitude":26.229322,
+			"city":"Madona",
+			"address":"Cesvaines iela 10",
+			"name":"Circle K Madona"
+		},
+		{
+			"id":49,
+			"company":"Circle K",
+			"latitude":56.928374,
+			"longitude":24.017851,
+			"city":"Mārupe",
+			"address":"Kārļa Ulmaņa gatve 127",
+			"name":"Circle K Mārupe"
+		},
+		{
+			"id":50,
+			"company":"Circle K",
+			"latitude":56.958513,
+			"longitude":24.233973,
+			"city":"Rīga",
+			"address":"Biķernieku iela 121A",
+			"name":"Circle K Mežciems"
+		},
+		{
+			"id":51,
+			"company":"Circle K",
+			"latitude":57.0237813,
+			"longitude":24.1380094,
+			"city":"Rīga",
+			"address":"Mīlgrāvja iela 10",
+			"name":"Circle K Mīlgrāvis"
+		},
+		{
+			"id":52,
+			"company":"Circle K",
+			"latitude":56.952768,
+			"longitude":24.100785,
+			"city":"Rīga",
+			"address":"Muitas iela 4",
+			"name":"Circle K Muitas"
+		},
+		{
+			"id":53,
+			"company":"Circle K",
+			"latitude":56.922027,
+			"longitude":24.108274,
+			"city":"Rīga",
+			"address":"Mūkusalas iela 75",
+			"name":"Circle K Mūkusala"
+		},
+		{
+			"id":54,
+			"company":"Circle K",
+			"latitude":56.816337,
+			"longitude":24.587724,
+			"city":"Ogre",
+			"address":"Rīgas iela 19",
+			"name":"Circle K Ogre"
+		},
+		{
+			"id":55,
+			"company":"Circle K",
+			"latitude":56.964339,
+			"longitude":24.15046,
+			"city":"Rīga",
+			"address":"Pērnavas iela 7",
+			"name":"Circle K Pērnavas"
+		},
+		{
+			"id":56,
+			"company":"Circle K",
+			"latitude":56.931255,
+			"longitude":24.19934,
+			"city":"Rīga",
+			"address":"Katlakalna iela 16",
+			"name":"Circle K Pļavnieki 1"
+		},
+		{
+			"id":57,
+			"company":"Circle K",
+			"latitude":56.93232,
+			"longitude":24.202774,
+			"city":"Rīga",
+			"address":"Lubānas iela 119A",
+			"name":"Circle K Pļavnieki 2"
+		},
+		{
+			"id":58,
+			"company":"Circle K",
+			"latitude":56.276115,
+			"longitude":26.719182,
+			"city":"Preiļu pagasts",
+			"address":"Jaunsaimnieki Vega",
+			"name":"Circle K Preiļi"
+		},
+		{
+			"id":59,
+			"company":"Circle K",
+			"latitude":56.9506828,
+			"longitude":24.1852361,
+			"city":"Rīga",
+			"address":"Gunāra Astras iela 17",
+			"name":"Circle K Purvciems"
+		},
+		{
+			"id":60,
+			"company":"Circle K",
+			"latitude":56.524311,
+			"longitude":27.341194,
+			"city":"Rēzekne",
+			"address":"Atbrīvošanas aleja 143B",
+			"name":"Circle K Rēzekne"
+		},
+		{
+			"id":61,
+			"company":"Circle K",
+			"latitude":57.757052,
+			"longitude":24.362397,
+			"city":"Salacgrīva",
+			"address":"Viļņu iela 4",
+			"name":"Circle K Salacgrīva"
+		},
+		{
+			"id":62,
+			"company":"Circle K",
+			"latitude":56.6823091,
+			"longitude":22.4711649,
+			"city":"Saldus",
+			"address":"Apvedceļš 11",
+			"name":"Circle K Saldus"
+		},
+		{
+			"id":63,
+			"company":"Circle K",
+			"latitude":56.993473,
+			"longitude":24.122243,
+			"city":"Rīga",
+			"address":"Tvaika iela 2A",
+			"name":"Circle K Sarkandaugava"
+		},
+		{
+			"id":64,
+			"company":"Circle K",
+			"latitude":57.227005,
+			"longitude":24.419281,
+			"city":"Saulkrastu pagasts",
+			"address":"Kurši (Saulkrastu virziens)",
+			"name":"Circle K Saulkrasti 1"
+		},
+		{
+			"id":65,
+			"company":"Circle K",
+			"latitude":57.229346,
+			"longitude":24.421717,
+			"city":"Saulkrastu pagasts",
+			"address":"Kurši (Rīgas virziens)",
+			"name":"Circle K Saulkrasti 2"
+		},
+		{
+			"id":66,
+			"company":"Circle K",
+			"latitude":56.930604,
+			"longitude":23.5876857,
+			"city":"Jūrmala",
+			"address":"Ventspils šoseja 70-2",
+			"name":"Circle K Sloka"
+		},
+		{
+			"id":67,
+			"company":"Circle K",
+			"latitude":57.4203976,
+			"longitude":25.9166534,
+			"city":"Smiltene",
+			"address":"Dārza iela 36",
+			"name":"Circle K Smiltene"
+		},
+		{
+			"id":68,
+			"company":"Circle K",
+			"latitude":57.2331904,
+			"longitude":22.5840258,
+			"city":"Ģibuļu pagasts",
+			"address":"Jaunratnieki, Jaunzemes",
+			"name":"Circle K, Talsi"
+		},
+		{
+			"id":69,
+			"company":"Circle K",
+			"latitude":56.9791259,
+			"longitude":24.1843282,
+			"city":"Rīga",
+			"address":"Brīvības gatve 265",
+			"name":"Circle K Teika"
+		},
+		{
+			"id":70,
+			"company":"Circle K",
+			"latitude":56.9702727,
+			"longitude":23.1685764,
+			"city":"Tukums",
+			"address":"Meža iela 30",
+			"name":"Circle K Tukums"
+		},
+		{
+			"id":71,
+			"company":"Circle K",
+			"latitude":56.934591,
+			"longitude":24.006307,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 110",
+			"name":"Circle K Ulmanis 1"
+		},
+		{
+			"id":72,
+			"company":"Circle K",
+			"latitude":56.933877,
+			"longitude":24.003797,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 117",
+			"name":"Circle K Ulmanis 2"
+		},
+		{
+			"id":73,
+			"company":"Circle K",
+			"latitude":56.971275,
+			"longitude":24.134324,
+			"city":"Rīga",
+			"address":"Krišjāņa Valdemāra iela 104",
+			"name":"Circle K Valdemāra"
+		},
+		{
+			"id":74,
+			"company":"Circle K",
+			"latitude":57.527103,
+			"longitude":25.435152,
+			"city":"Valmiera",
+			"address":"Stacijas iela 29",
+			"name":"Circle K Valmiera 1"
+		},
+		{
+			"id":75,
+			"company":"Circle K",
+			"latitude":57.530594,
+			"longitude":25.39243,
+			"city":"Valmiera",
+			"address":"Ausekļa iela 26",
+			"name":"Circle K Valmiera 2"
+		},
+		{
+			"id":76,
+			"company":"Circle K",
+			"latitude":56.974035,
+			"longitude":24.168098,
+			"city":"Rīga",
+			"address":"Brīvības gatve 203",
+			"name":"Circle K VEF"
+		},
+		{
+			"id":77,
+			"company":"Circle K",
+			"latitude":57.38539,
+			"longitude":21.585882,
+			"city":"Ventspils",
+			"address":"Rūpniecības iela 4",
+			"name":"Circle K Ventspils"
+		},
+		{
+			"id":78,
+			"company":"Circle K",
+			"latitude":56.909524,
+			"longitude":24.084864,
+			"city":"Rīga",
+			"address":"Vienības gatve 105",
+			"name":"Circle K Vienības gatve"
+		},
+		{
+			"id":79,
+			"company":"Circle K",
+			"latitude":56.912575,
+			"longitude":24.122865,
+			"city":"Rīga",
+			"address":"Ziepniekkalna iela 9",
+			"name":"Circle K Ziepniekkalns"
+		},
+		{
+			"id":80,
+			"company":"Circle K",
+			"latitude":56.8579298,
+			"longitude":24.5639296,
+			"city":"Tīnūžu pagasts",
+			"address":"Aplis",
+			"name":"Circle K Tīnūži"
+		},
+		{
+			"id":81,
+			"company":"Circle K",
+			"latitude":56.8953064,
+			"longitude":23.8012642,
+			"city":"Rīga",
+			"address":"Jāņavārtu iela 21",
+			"name":"Circle K Krustpils"
+		},
+		{
+			"id":82,
+			"company":"Circle K",
+			"latitude":56.856396,
+			"longitude":24.3219227,
+			"city":"Salaspils",
+			"address":"Nometņu iela 1",
+			"name":"Circle K Salaspils"
+		},
+		{
+			"id":83,
+			"company":"Circle K",
+			"latitude":56.9373951,
+			"longitude":24.0478406,
+			"city":"Rīga",
+			"address":"Kalnciema iela 88",
+			"name":"Circle K Kalnciema"
+		},
+		{
+			"id":84,
+			"company":"Circle K",
+			"latitude":57.1451105,
+			"longitude":24.8571754,
+			"city":"Sigulda",
+			"address":"Vidzemes šoseja 12",
+			"name":"Circle K Sigulda Automāts"
+		},
+		{
+			"id":85,
+			"company":"Neste",
+			"latitude":56.9282643,
+			"longitude":24.051925,
+			"city":"Rīga",
+			"address":"Ulmaņa gatve 84",
+			"name":"Neste Ulmaņa gatve"
+		},
+		{
+			"id":86,
+			"company":"Neste",
+			"latitude":56.9864745,
+			"longitude":24.2199082,
+			"city":"Rīga",
+			"address":"Brīvības gatve 386",
+			"name":"Neste Jugla"
+		},
+		{
+			"id":87,
+			"company":"Neste",
+			"latitude":56.9248798,
+			"longitude":24.1107326,
+			"city":"Rīga",
+			"address":"Lucavsalas iela 1",
+			"name":"Neste Lucavsala"
+		},
+		{
+			"id":88,
+			"company":"Neste",
+			"latitude":56.9299581,
+			"longitude":24.1544487,
+			"city":"Rīga",
+			"address":"Krasta iela 68",
+			"name":"Neste Krasta"
+		},
+		{
+			"id":89,
+			"company":"Neste",
+			"latitude":56.897454,
+			"longitude":24.2105951,
+			"city":"Rīga",
+			"address":"Maskavas iela 427B",
+			"name":"Neste Maskavas"
+		},
+		{
+			"id":90,
+			"company":"Neste",
+			"latitude":56.9101162,
+			"longitude":24.0870627,
+			"city":"Rīga",
+			"address":"Vienības gatve 144",
+			"name":"Neste Vienības gatve"
+		},
+		{
+			"id":91,
+			"company":"Neste",
+			"latitude":56.9261809,
+			"longitude":24.0393335,
+			"city":"Mārupe",
+			"address":"Upesgrīvas iela 1",
+			"name":"Neste Mārupe"
+		},
+		{
+			"id":92,
+			"company":"Neste",
+			"latitude":56.9308084,
+			"longitude":24.1841468,
+			"city":"Rīga",
+			"address":"Lubānas iela 64",
+			"name":"Neste Lubānas"
+		},
+		{
+			"id":93,
+			"company":"Neste",
+			"latitude":56.9538471,
+			"longitude":24.0690667,
+			"city":"Rīga",
+			"address":"Kuldīgas iela 1",
+			"name":"Neste Daugavgrīvas"
+		},
+		{
+			"id":94,
+			"company":"Neste",
+			"latitude":56.9880242,
+			"longitude":24.1304977,
+			"city":"Rīga",
+			"address":"Dambja iela 10",
+			"name":"Neste Duntes"
+		},
+		{
+			"id":95,
+			"company":"Neste",
+			"latitude":56.95177,
+			"longitude":24.0346047,
+			"city":"Rīga",
+			"address":"Jūrmalas gatve 46B",
+			"name":"Neste Imanta"
+		},
+		{
+			"id":96,
+			"company":"Neste",
+			"latitude":56.9616134,
+			"longitude":24.0353046,
+			"city":"Rīga",
+			"address":"Kurzemes prospekts 15A",
+			"name":"Neste Imanta II"
+		},
+		{
+			"id":97,
+			"company":"Neste",
+			"latitude":56.9682382,
+			"longitude":24.1446662,
+			"city":"Rīga",
+			"address":"Senču iela 2B",
+			"name":"Neste Senču"
+		},
+		{
+			"id":98,
+			"company":"Neste",
+			"latitude":56.9309839,
+			"longitude":24.0340422,
+			"city":"Rīga",
+			"address":"Lielirbes iela 30",
+			"name":"Neste Lielirbes"
+		},
+		{
+			"id":99,
+			"company":"Neste",
+			"latitude":56.9799082,
+			"longitude":24.1153244,
+			"city":"Rīga",
+			"address":"Rankas iela 2",
+			"name":"Neste Ganību"
+		},
+		{
+			"id":100,
+			"company":"Neste",
+			"latitude":56.9781617,
+			"longitude":24.1819558,
+			"city":"Rīga",
+			"address":"Brīvības gatve 253",
+			"name":"Neste Brīvības"
+		},
+		{
+			"id":101,
+			"company":"Neste",
+			"latitude":56.9645038,
+			"longitude":24.1678078,
+			"city":"Rīga",
+			"address":"Dzelzavas iela 5",
+			"name":"Neste Stārķu"
+		},
+		{
+			"id":102,
+			"company":"Neste",
+			"latitude":56.959038,
+			"longitude":24.2310377,
+			"city":"Rīga",
+			"address":"Biķernieku iela 115A",
+			"name":"Neste Biķernieku"
+		},
+		{
+			"id":103,
+			"company":"Neste",
+			"latitude":56.9509317,
+			"longitude":24.1746176,
+			"city":"Rīga",
+			"address":"A.Deglava iela 51A",
+			"name":"Neste Deglava"
+		},
+		{
+			"id":104,
+			"company":"Neste",
+			"latitude":56.9477345,
+			"longitude":24.125798,
+			"city":"Rīga",
+			"address":"Dzirnavu iela 127",
+			"name":"Neste Dzirnavu"
+		},
+		{
+			"id":105,
+			"company":"Neste",
+			"latitude":56.91679,
+			"longitude":24.0873608,
+			"city":"Rīga",
+			"address":"Vienības gatve 77",
+			"name":"Neste Ģimnastikas"
+		},
+		{
+			"id":106,
+			"company":"Neste",
+			"latitude":56.9654938,
+			"longitude":24.116829,
+			"city":"Rīga",
+			"address":"Skanstes iela 7",
+			"name":"Neste Skanstes"
+		},
+		{
+			"id":107,
+			"company":"Neste",
+			"latitude":56.9407208,
+			"longitude":24.1380293,
+			"city":"Rīga",
+			"address":"Katoļu iela 4",
+			"name":"Neste Katoļu"
+		},
+		{
+			"id":108,
+			"company":"Neste",
+			"latitude":56.9639876,
+			"longitude":23.6041836,
+			"city":"Jūrmala",
+			"address":"Talsu šoseja 66",
+			"name":"Neste Kauguri"
+		},
+		{
+			"id":109,
+			"company":"Neste",
+			"latitude":56.9751786,
+			"longitude":23.8574869,
+			"city":"Jūrmala",
+			"address":"Viestura iela 21-1",
+			"name":"Neste Jūrmala"
+		},
+		{
+			"id":110,
+			"company":"Neste",
+			"latitude":56.9706062,
+			"longitude":23.1575645,
+			"city":"Tukums",
+			"address":"Kurzemes iela 7A",
+			"name":"Neste Tukums 1"
+		},
+		{
+			"id":111,
+			"company":"Neste",
+			"latitude":56.9336948,
+			"longitude":23.2014509,
+			"city":"Tukums",
+			"address":"Lāsītes, Smārdes pag.",
+			"name":"Neste Tukums 2"
+		},
+		{
+			"id":112,
+			"company":"Neste",
+			"latitude":56.5157774,
+			"longitude":21.014211,
+			"city":"Liepāja",
+			"address":"Raiņa iela 2",
+			"name":"Neste Liepāja 1"
+		},
+		{
+			"id":113,
+			"company":"Neste",
+			"latitude":56.5118885,
+			"longitude":21.0185838,
+			"city":"Liepāja",
+			"address":"Kārļa Zāles laukums 7",
+			"name":"Neste Liepāja 2"
+		},
+		{
+			"id":114,
+			"company":"Neste",
+			"latitude":56.5391312,
+			"longitude":21.0329495,
+			"city":"Liepāja",
+			"address":"Pulvera iela 10B",
+			"name":"Neste Liepāja 3"
+		},
+		{
+			"id":115,
+			"company":"Neste",
+			"latitude":56.6708015,
+			"longitude":23.7618801,
+			"city":"Jelgava",
+			"address":"Loka maģistrāle 2A",
+			"name":"Neste Jelgava"
+		},
+		{
+			"id":116,
+			"company":"Neste",
+			"latitude":56.6519777,
+			"longitude":23.6907973,
+			"city":"Jelgava",
+			"address":"Atmodas iela 21B",
+			"name":"Neste Jelgava 2"
+		},
+		{
+			"id":117,
+			"company":"Neste",
+			"latitude":56.6646212,
+			"longitude":23.7041245,
+			"city":"Jelgava",
+			"address":"Meiju ceļš 62",
+			"name":"Neste Jelgava DP"
+		},
+		{
+			"id":118,
+			"company":"Neste",
+			"latitude":56.8126191,
+			"longitude":24.6009986,
+			"city":"Ogre",
+			"address":"Rīgas iela 11A",
+			"name":"Neste Ogre"
+		},
+		{
+			"id":119,
+			"company":"Neste",
+			"latitude":57.5317822,
+			"longitude":25.3932291,
+			"city":"Valmiera",
+			"address":"Rīgas iela 76",
+			"name":"Neste Valmiera 1"
+		},
+		{
+			"id":120,
+			"company":"Neste",
+			"latitude":57.5316751,
+			"longitude":25.4288403,
+			"city":"Valmiera",
+			"address":"Mazā stacijas iela 14",
+			"name":"Neste Valmiera 2"
+		},
+		{
+			"id":121,
+			"company":"Neste",
+			"latitude":57.3156202,
+			"longitude":25.278878,
+			"city":"Cēsis",
+			"address":"Valmieras iela 4",
+			"name":"Neste Cēsis 1"
+		},
+		{
+			"id":122,
+			"company":"Neste",
+			"latitude":57.3123762,
+			"longitude":25.3043187,
+			"city":"Cēsis",
+			"address":"Jāņa Poruka 49",
+			"name":"Neste Cēsis II"
+		},
+		{
+			"id":123,
+			"company":"Neste",
+			"latitude":56.5164063,
+			"longitude":27.3372831,
+			"city":"Rēzekne",
+			"address":"Atbrīvošanas aleja 146",
+			"name":"Neste Rēzekne"
+		},
+		{
+			"id":124,
+			"company":"Neste",
+			"latitude":56.5349202,
+			"longitude":27.3475831,
+			"city":"Rēzekne",
+			"address":"Atbrīvošanas aleja 167C",
+			"name":"Neste Rēzekne DP"
+		},
+		{
+			"id":125,
+			"company":"Neste",
+			"latitude":57.3873911,
+			"longitude":21.5814182,
+			"city":"Ventspils",
+			"address":"Lāčplēša iela 4",
+			"name":"Neste Ventspils 1"
+		},
+		{
+			"id":126,
+			"company":"Neste",
+			"latitude":57.39626,
+			"longitude":21.5918849,
+			"city":"Ventspils",
+			"address":"Kurzemes iela 2",
+			"name":"Neste Ventspils 2"
+		},
+		{
+			"id":127,
+			"company":"Neste",
+			"latitude":56.4934474,
+			"longitude":25.874872,
+			"city":"Jēkabpils",
+			"address":"Vienības iela 1E",
+			"name":"Neste Jēkabpils 1"
+		},
+		{
+			"id":128,
+			"company":"Neste",
+			"latitude":56.5180602,
+			"longitude":25.8521949,
+			"city":"Jēkabpils",
+			"address":"Rīgas iela 247",
+			"name":"Neste Jēkabpils 2"
+		},
+		{
+			"id":129,
+			"company":"Neste",
+			"latitude":56.6046486,
+			"longitude":24.2085271,
+			"city":"Iecava",
+			"address":"Krustiņi",
+			"name":"Neste Iecava"
+		},
+		{
+			"id":130,
+			"company":"Neste",
+			"latitude":56.8604012,
+			"longitude":26.2273994,
+			"city":"Madona",
+			"address":"Rūpniecības iela 47A",
+			"name":"Neste Madona"
+		},
+		{
+			"id":131,
+			"company":"Neste",
+			"latitude":55.8797634,
+			"longitude":26.5424216,
+			"city":"Daugavpils",
+			"address":"Smilšu iela 32",
+			"name":"Neste Daugavpils 1"
+		},
+		{
+			"id":132,
+			"company":"Neste",
+			"latitude":55.8651329,
+			"longitude":26.5017683,
+			"city":"Daugavpils",
+			"address":"Dostojevska iela 6",
+			"name":"Neste Daugavpils II"
+		},
+		{
+			"id":133,
+			"company":"Neste",
+			"latitude":56.4066233,
+			"longitude":24.1883359,
+			"city":"Bauska",
+			"address":"Pionieru iela 2",
+			"name":"Neste Bauska I"
+		},
+		{
+			"id":134,
+			"company":"Neste",
+			"latitude":56.3992463,
+			"longitude":24.1773401,
+			"city":"Bauska",
+			"address":"Elejas iela 1",
+			"name":"Neste Bauska II"
+		},
+		{
+			"id":135,
+			"company":"Neste",
+			"latitude":57.1419855,
+			"longitude":24.8436986,
+			"city":"Sigulda",
+			"address":"Vidzemes šoseja 4",
+			"name":"Neste Sigulda"
+		},
+		{
+			"id":136,
+			"company":"Neste",
+			"latitude":57.2432746,
+			"longitude":22.5822987,
+			"city":"Talsi",
+			"address":"Dundagas iela 1",
+			"name":"Neste Talsi"
+		},
+		{
+			"id":137,
+			"company":"Neste",
+			"latitude":56.9663721,
+			"longitude":21.9575438,
+			"city":"Kuldīga",
+			"address":"Sūru iela 3",
+			"name":"Neste Kuldīga"
+		},
+		{
+			"id":138,
+			"company":"Neste",
+			"latitude":56.9532425,
+			"longitude":21.9914557,
+			"city":"Kuldīga",
+			"address":"Graudu iela 19",
+			"name":"Neste Kuldīga DP"
+		},
+		{
+			"id":139,
+			"company":"Neste",
+			"latitude":57.8496958,
+			"longitude":24.3535138,
+			"city":"Ainaži",
+			"address":"Valdemāra iela 82",
+			"name":"Neste Ainaži"
+		},
+		{
+			"id":140,
+			"company":"Neste",
+			"latitude":56.6832397,
+			"longitude":22.476488,
+			"city":"Saldus",
+			"address":"Apvedceļš 5",
+			"name":"Neste Saldus 1"
+		},
+		{
+			"id":141,
+			"company":"Neste",
+			"latitude":56.6667576,
+			"longitude":22.4954964,
+			"city":"Saldus",
+			"address":"Jelgavas iela 3",
+			"name":"Neste Saldus II"
+		},
+		{
+			"id":142,
+			"company":"Neste",
+			"latitude":57.1752021,
+			"longitude":26.7460378,
+			"city":"Gulbene",
+			"address":"Brīvības iela 68",
+			"name":"Neste Gulbene"
+		},
+		{
+			"id":143,
+			"company":"Neste",
+			"latitude":57.4296644,
+			"longitude":27.0367829,
+			"city":"Alūksne",
+			"address":"Pils iela 9C",
+			"name":"Neste Alūksne"
+		},
+		{
+			"id":144,
+			"company":"Neste",
+			"latitude":56.8514659,
+			"longitude":24.3339399,
+			"city":"Salaspils",
+			"address":"Zviedru iela 1C",
+			"name":"Neste Salaspils"
+		},
+		{
+			"id":145,
+			"company":"Neste",
+			"latitude":57.0704148,
+			"longitude":24.3202697,
+			"city":"Ādaži",
+			"address":"Rīgas gatve 5A",
+			"name":"Neste Ādaži"
+		},
+		{
+			"id":146,
+			"company":"Neste",
+			"latitude":56.8313275,
+			"longitude":24.2338122,
+			"city":"Ķekava",
+			"address":"Rīgas iela 24",
+			"name":"Neste Ķekava"
+		},
+		{
+			"id":147,
+			"company":"Neste",
+			"latitude":56.8877595,
+			"longitude":24.2312697,
+			"city":"Rīga",
+			"address":"Maskavas 448B",
+			"name":"Neste Maskavas DP"
+		},
+		{
+			"id":148,
+			"company":"Neste",
+			"latitude":56.9813712,
+			"longitude":24.1922287,
+			"city":"Rīga",
+			"address":"Brīvības gatve 299",
+			"name":"Neste Teika"
+		},
+		{
+			"id":149,
+			"company":"Neste",
+			"latitude":56.610965,
+			"longitude":24.5146538,
+			"city":"Vecumnieki",
+			"address":"Rīgas iela 1",
+			"name":"Neste Vecumnieki"
+		},
+		{
+			"id":150,
+			"company":"Neste",
+			"latitude":56.791498,
+			"longitude":23.9469929,
+			"city":"Olaine",
+			"address":"Zemgales 1A",
+			"name":"Neste Olaine"
+		},
+		{
+			"id":151,
+			"company":"Neste",
+			"latitude":57.2791423,
+			"longitude":25.4927913,
+			"city":"Bērzkrogs",
+			"address":"Meijas",
+			"name":"Neste Bērzkrogs"
+		},
+		{
+			"id":152,
+			"company":"Neste",
+			"latitude":56.8601258,
+			"longitude":24.5623898,
+			"city":"Tīnūžu pagasts",
+			"address":"Baroni",
+			"name":"Neste Tīnūži"
+		},
+		{
+			"id":153,
+			"company":"Neste",
+			"latitude":57.5553912,
+			"longitude":25.4428425,
+			"city":"Valmiera",
+			"address":"Valdeko, Valmiermuiža",
+			"name":"Neste Valmiera III Valdeko"
+		},
+		{
+			"id":154,
+			"company":"Neste",
+			"latitude":56.9129254,
+			"longitude":24.2483908,
+			"city":"Rumbula",
+			"address":"Granīta 26",
+			"name":"Neste Granīta DP"
+		},
+		{
+			"id":155,
+			"company":"Neste",
+			"latitude":56.9126906,
+			"longitude":24.2403251,
+			"city":"Rumbula",
+			"address":"Granīta 24",
+			"name":"Neste, Granīta 24"
+		},
+		{
+			"id":156,
+			"company":"Neste",
+			"latitude":56.6728054,
+			"longitude":23.0909115,
+			"city":"Annenieki",
+			"address":"Gaismiņas",
+			"name":"Neste Annenieki"
+		},
+		{
+			"id":157,
+			"company":"Neste",
+			"latitude":56.2775512,
+			"longitude":24.3628804,
+			"city":"Grenctāle",
+			"address":"Grenctāles robežkontroles punkts",
+			"name":"Neste Grenctāle"
+		},
+		{
+			"id":158,
+			"company":"Neste",
+			"latitude":56.3423411,
+			"longitude":26.1803252,
+			"city":"Līvāni",
+			"address":"Rīgas iela 2A",
+			"name":"Neste Līvāni"
+		},
+		{
+			"id":159,
+			"company":"Neste",
+			"latitude":56.9574611,
+			"longitude":24.1841373,
+			"city":"Rīga",
+			"address":"Dzelzavas iela 60",
+			"name":"Neste Dzelzavas"
+		},
+		{
+			"id":160,
+			"company":"Neste",
+			"latitude":57.1337854,
+			"longitude":24.7821168,
+			"city":"Lorupe",
+			"address":"Vidzemes šoseja 47. km A",
+			"name":"Neste Lorupe"
+		},
+		{
+			"id":161,
+			"company":"Neste",
+			"latitude":57.5133011,
+			"longitude":24.7234242,
+			"city":"Limbaži",
+			"address":"Stacijas iela 1",
+			"name":"Neste Limbaži"
+		},
+		{
+			"id":162,
+			"company":"Virši",
+			"latitude":57.0789783,
+			"longitude":24.3178596,
+			"city":"Ādaži",
+			"address":"Rīgas gatve 45",
+			"name":"Virši Ādaži"
+		},
+		{
+			"id":163,
+			"company":"Virši",
+			"latitude":56.1353877,
+			"longitude":27.0030067,
+			"city":"Aglona",
+			"address":"Somersētas iela 11A",
+			"name":"Virši Aglona"
+		},
+		{
+			"id":164,
+			"company":"Virši",
+			"latitude":57.4310455,
+			"longitude":27.0229922,
+			"city":"Alūksne",
+			"address":"Rīgas iela 11",
+			"name":"Virši Alūksne"
+		},
+		{
+			"id":165,
+			"company":"Virši",
+			"latitude":56.9384252,
+			"longitude":24.0898649,
+			"city":"Rīga",
+			"address":"Uzvaras bulvāris 16",
+			"name":"Virši Arkādijs"
+		},
+		{
+			"id":166,
+			"company":"Virši",
+			"latitude":57.1269538,
+			"longitude":24.7040696,
+			"city":"Inčukalna pagasts",
+			"address":"Asni",
+			"name":"Virši Asni"
+		},
+		{
+			"id":167,
+			"company":"Virši",
+			"latitude":56.9582446,
+			"longitude":23.9587606,
+			"city":"Babītes pagasts",
+			"address":"Viršvidi, Spilve",
+			"name":"Virši Babīte"
+		},
+		{
+			"id":168,
+			"company":"Virši",
+			"latitude":56.8891791,
+			"longitude":24.1468518,
+			"city":"Ķekavas pagasts",
+			"address":"Cerības, Krustkalni",
+			"name":"Virši Baloži"
+		},
+		{
+			"id":169,
+			"company":"Virši",
+			"latitude":57.1386547,
+			"longitude":27.257783,
+			"city":"Balvi",
+			"address":"Krasta iela 3",
+			"name":"Virši Balvi"
+		},
+		{
+			"id":170,
+			"company":"Virši",
+			"latitude":56.7205031,
+			"longitude":25.4865574,
+			"city":"Bebru pagasts",
+			"address":"Dīķmalas",
+			"name":"Virši Bebri"
+		},
+		{
+			"id":171,
+			"company":"Virši",
+			"latitude":56.9750833,
+			"longitude":24.1735055,
+			"city":"Rīga",
+			"address":"Brīvības gatve 250",
+			"name":"Virši Brīvība"
+		},
+		{
+			"id":172,
+			"company":"Virši",
+			"latitude":56.6848494,
+			"longitude":22.5657692,
+			"city":"Brocēni",
+			"address":"Liepnieku iela 1",
+			"name":"Virši Brocēni"
+		},
+		{
+			"id":173,
+			"company":"Virši",
+			"latitude":57.3119284,
+			"longitude":25.2802485,
+			"city":"Cēsis",
+			"address":"Raiņa iela 32",
+			"name":"Virši Cēsis"
+		},
+		{
+			"id":174,
+			"company":"Virši",
+			"latitude":57.2966102,
+			"longitude":25.3052025,
+			"city":"Cēsis",
+			"address":"Piebalgas 99A",
+			"name":"Virši Cēsis Saulrīti"
+		},
+		{
+			"id":175,
+			"company":"Virši",
+			"latitude":56.9735784,
+			"longitude":24.0737407,
+			"city":"Rīga",
+			"address":"Daugavgrīvas iela 136A",
+			"name":"Virši Daugavgrīva"
+		},
+		{
+			"id":176,
+			"company":"Virši",
+			"latitude":56.642718,
+			"longitude":24.9150226,
+			"city":"Lielvārdes novads",
+			"address":"Dzelmeskrasti, Dzelmes",
+			"name":"Virši Dzelmes"
+		},
+		{
+			"id":177,
+			"company":"Virši",
+			"latitude":57.021278,
+			"longitude":21.6908939,
+			"city":"Ēdole",
+			"address":"Dārza iela 7",
+			"name":"Virši Ēdole"
+		},
+		{
+			"id":178,
+			"company":"Virši",
+			"latitude":56.5988143,
+			"longitude":25.2456336,
+			"city":"Aizkraukle",
+			"address":"Gaismas iela 1",
+			"name":"Virši Gaisma"
+		},
+		{
+			"id":179,
+			"company":"Virši",
+			"latitude":56.9134173,
+			"longitude":24.2376001,
+			"city":"Rumbula",
+			"address":"Granīta iela 13A",
+			"name":"Virši Granīta"
+		},
+		{
+			"id":180,
+			"company":"Virši",
+			"latitude":56.3144444,
+			"longitude":24.3316562,
+			"city":"Brunavas pagasts",
+			"address":"DUS Grenctāle",
+			"name":"Virši-A Grenctāle"
+		},
+		{
+			"id":181,
+			"company":"Virši",
+			"latitude":57.1784959,
+			"longitude":26.7407031,
+			"city":"Gulbene",
+			"address":"Brīvības iela 97B",
+			"name":"Virši Gulbene"
+		},
+		{
+			"id":182,
+			"company":"Virši",
+			"latitude":55.9294856,
+			"longitude":26.6361112,
+			"city":"Daugavpils novads",
+			"address":"Ilgas, Stropica",
+			"name":"Virši Ilgas"
+		},
+		{
+			"id":183,
+			"company":"Virši",
+			"latitude":56.485583,
+			"longitude":25.8799731,
+			"city":"Jēkabpils",
+			"address":"Jāņa Akurātera iela 13",
+			"name":"Virši Jēkabpils"
+		},
+		{
+			"id":184,
+			"company":"Virši",
+			"latitude":56.6255192,
+			"longitude":23.7244956,
+			"city":"Jelgava",
+			"address":"Lietuvas šoseja 70",
+			"name":"Virši, Jelgava"
+		},
+		{
+			"id":185,
+			"company":"Virši",
+			"latitude":56.9695748,
+			"longitude":24.3405016,
+			"city":"Garkalnes novads",
+			"address":"Prauliņi, Amatnieki",
+			"name":"Virši Jugla"
+		},
+		{
+			"id":186,
+			"company":"Virši",
+			"latitude":57.0122085,
+			"longitude":21.3919201,
+			"city":"Jūrkalne",
+			"address":"Krastnieki",
+			"name":"Virši, Jūrkalne"
+		},
+		{
+			"id":187,
+			"company":"Virši",
+			"latitude":56.6151768,
+			"longitude":25.2358118,
+			"city":"Aizkraukle",
+			"address":"Kalna iela 17",
+			"name":"Virši Kalna"
+		},
+		{
+			"id":188,
+			"company":"Virši",
+			"latitude":57.0351893,
+			"longitude":22.7808718,
+			"city":"Kandava",
+			"address":"Abavas iela 4",
+			"name":"Virši Kandava"
+		},
+		{
+			"id":189,
+			"company":"Virši",
+			"latitude":56.7795592,
+			"longitude":27.6966723,
+			"city":"Malnavas pagasts",
+			"address":"Passim",
+			"name":"Virši Kārsava"
+		},
+		{
+			"id":190,
+			"company":"Virši",
+			"latitude":56.7725556,
+			"longitude":24.2421294,
+			"city":"Ķekavas pagasts",
+			"address":"Kursīši",
+			"name":"Virši Ķekava"
+		},
+		{
+			"id":191,
+			"company":"Virši",
+			"latitude":56.5133979,
+			"longitude":25.8687303,
+			"city":"Jēkabpils",
+			"address":"Varoņu iela 10",
+			"name":"Virši Krustpils"
+		},
+		{
+			"id":192,
+			"company":"Virši",
+			"latitude":56.5172803,
+			"longitude":21.0215359,
+			"city":"Liepāja",
+			"address":"Zemnieku iela 24",
+			"name":"Virši Liepāja"
+		},
+		{
+			"id":193,
+			"company":"Virši",
+			"latitude":56.9733217,
+			"longitude":26.0449963,
+			"city":"Liezēres pagasts",
+			"address":"Ceļmalas",
+			"name":"Virši Liezēre"
+		},
+		{
+			"id":194,
+			"company":"Virši",
+			"latitude":56.9353622,
+			"longitude":24.2229879,
+			"city":"Rīga",
+			"address":"Lubānas iela 102A",
+			"name":"Virši Lubāna"
+		},
+		{
+			"id":195,
+			"company":"Virši",
+			"latitude":56.5358626,
+			"longitude":27.6821584,
+			"city":"Cirmas pagasts",
+			"address":"Bērziņi-S",
+			"name":"Virši Ludza"
+		},
+		{
+			"id":196,
+			"company":"Virši",
+			"latitude":56.8589342,
+			"longitude":26.2316502,
+			"city":"Madona",
+			"address":"Rūpniecības iela 49A",
+			"name":"Virši Madona"
+		},
+		{
+			"id":197,
+			"company":"Virši",
+			"latitude":57.0122974,
+			"longitude":24.9655534,
+			"city":"Mālpils",
+			"address":"Skulmes iela 5",
+			"name":"Virši Mālpils"
+		},
+		{
+			"id":198,
+			"company":"Virši",
+			"latitude":56.8809521,
+			"longitude":23.9617531,
+			"city":"Mārupe",
+			"address":"Ikri",
+			"name":"Virši Mārupe"
+		},
+		{
+			"id":199,
+			"company":"Virši",
+			"latitude":56.9209036,
+			"longitude":24.1089971,
+			"city":"Rīga",
+			"address":"Mūkusalas iela 75B",
+			"name":"Virši Mūkusala"
+		},
+		{
+			"id":200,
+			"company":"Virši",
+			"latitude":56.950395,
+			"longitude":24.1537965,
+			"city":"Rīga",
+			"address":"Pērnavas iela 78",
+			"name":"Virši Pērnava"
+		},
+		{
+			"id":201,
+			"company":"Virši",
+			"latitude":56.610578,
+			"longitude":25.6933917,
+			"city":"Pļaviņas",
+			"address":"Rīgas iela 31",
+			"name":"Virši Pļaviņas"
+		},
+		{
+			"id":202,
+			"company":"Virši",
+			"latitude":57.0390715,
+			"longitude":22.9059671,
+			"city":"Pūre",
+			"address":"Daigones iela 13A",
+			"name":"Virši Pūre"
+		},
+		{
+			"id":203,
+			"company":"Virši",
+			"latitude":57.1796356,
+			"longitude":24.7142556,
+			"city":"Ragana",
+			"address":"Tirgus iela 4",
+			"name":"Virši Ragana"
+		},
+		{
+			"id":204,
+			"company":"Virši",
+			"latitude":57.0126917,
+			"longitude":27.143988,
+			"city":"Rugāju novads",
+			"address":"Viršumala, Rugāji",
+			"name":"Virši Rugāji"
+		},
+		{
+			"id":205,
+			"company":"Virši",
+			"latitude":56.883075,
+			"longitude":24.2422165,
+			"city":"Rīga",
+			"address":"Maskavas iela 450K",
+			"name":"Virši Rumbula"
+		},
+		{
+			"id":206,
+			"company":"Virši",
+			"latitude":56.8541103,
+			"longitude":24.3258647,
+			"city":"Salaspils",
+			"address":"Zviedru iela 1A",
+			"name":"Virši Salaspils"
+		},
+		{
+			"id":207,
+			"company":"Virši",
+			"latitude":56.9977886,
+			"longitude":24.1165299,
+			"city":"Rīga",
+			"address":"Tvaika iela 3",
+			"name":"Virši Sarkandaugava"
+		},
+		{
+			"id":208,
+			"company":"Virši",
+			"latitude":56.9189761,
+			"longitude":24.3404345,
+			"city":"Stopiņu novads",
+			"address":"Saurieši",
+			"name":"Virši Saurieši"
+		},
+		{
+			"id":209,
+			"company":"Virši",
+			"latitude":56.574059,
+			"longitude":25.2249949,
+			"city":"Sērenes pagasts",
+			"address":"Kangali",
+			"name":"Virši Sērene"
+		},
+		{
+			"id":210,
+			"company":"Virši",
+			"latitude":56.6278119,
+			"longitude":25.1188769,
+			"city":"Skrīveri",
+			"address":"Zemkopības institūts 2A",
+			"name":"Virši Skrīveri"
+		},
+		{
+			"id":211,
+			"company":"Virši",
+			"latitude":57.4279638,
+			"longitude":25.8982841,
+			"city":"Smiltene",
+			"address":"Stacijas iela 2",
+			"name":"Virši Smiltene"
+		},
+		{
+			"id":212,
+			"company":"Virši",
+			"latitude":56.8931283,
+			"longitude":24.0753658,
+			"city":"Rīga",
+			"address":"Vienības gatve 177",
+			"name":"Virši Tīraine"
+		},
+		{
+			"id":213,
+			"company":"Virši",
+			"latitude":56.9712048,
+			"longitude":23.1394506,
+			"city":"Tukums",
+			"address":"Kurzemes iela 55",
+			"name":"Virši Tukums"
+		},
+		{
+			"id":214,
+			"company":"Virši",
+			"latitude":56.933019,
+			"longitude":23.2026854,
+			"city":"Smārdes pagasts",
+			"address":"Valdaiši",
+			"name":"Virši Tukums Valdaiši"
+		},
+		{
+			"id":215,
+			"company":"Virši",
+			"latitude":57.2743736,
+			"longitude":22.0198617,
+			"city":"Ugāle",
+			"address":"Avenes",
+			"name":"Virši Ugāle"
+		},
+		{
+			"id":216,
+			"company":"Virši",
+			"latitude":56.9894325,
+			"longitude":24.111736,
+			"city":"Rīga",
+			"address":"Uriekstes iela 12A",
+			"name":"Virši Uriekstes"
+		},
+		{
+			"id":217,
+			"company":"Virši",
+			"latitude":57.7592077,
+			"longitude":25.9870871,
+			"city":"Valka",
+			"address":"Rīgas iela 80",
+			"name":"Virši Valka Lugaži"
+		},
+		{
+			"id":218,
+			"company":"Virši",
+			"latitude":57.7872905,
+			"longitude":26.0180766,
+			"city":"Valka",
+			"address":"Rūjienas iela 7",
+			"name":"Virši Valka"
+		},
+		{
+			"id":219,
+			"company":"Virši",
+			"latitude":56.5108113,
+			"longitude":24.7221831,
+			"city":"Valle",
+			"address":"Rīgas iela 2",
+			"name":"Virši Valle"
+		},
+		{
+			"id":220,
+			"company":"Virši",
+			"latitude":57.5470827,
+			"longitude":25.3947345,
+			"city":"Valmiera",
+			"address":"Patversmes iela 12",
+			"name":"Virši Valmiera"
+		},
+		{
+			"id":221,
+			"company":"Virši",
+			"latitude":57.3940734,
+			"longitude":21.6152748,
+			"city":"Ventspils",
+			"address":"Robežu iela 1",
+			"name":"Virši Ventspils"
+		},
+		{
+			"id":222,
+			"company":"Virši",
+			"latitude":57.2951707,
+			"longitude":25.2643532,
+			"city":"Drabešu pagasts",
+			"address":"Katrīnkalns 1",
+			"name":"Virši Žagarkalns"
+		},
+		{
+			"id":223,
+			"company":"Virši",
+			"latitude":56.5131161,
+			"longitude":25.9303939,
+			"city":"Kūku pagasts",
+			"address":"Zīlānu iela 145",
+			"name":"Virši, Zīlāni"
+		},
+		{
+			"id":224,
+			"company":"Viada",
+			"latitude":56.8932155,
+			"longitude":24.2176951,
+			"city":"Rīga",
+			"address":"Maskavas iela 440",
+			"name":"Viada Maskavas"
+		},
+		{
+			"id":225,
+			"company":"Viada",
+			"latitude":56.9304887,
+			"longitude":24.0139496,
+			"city":"Rīga",
+			"address":"Šampētera iela 180",
+			"name":"Viada Šampētera"
+		},
+		{
+			"id":226,
+			"company":"Viada",
+			"latitude":57.089707,
+			"longitude":24.3141926,
+			"city":"Ādaži",
+			"address":"Rīgas gatve 65",
+			"name":"Viada Ādaži"
+		},
+		{
+			"id":227,
+			"company":"Viada",
+			"latitude":55.8648155,
+			"longitude":26.5812226,
+			"city":"Daugavpils",
+			"address":"Nometņu iela 99D",
+			"name":"Viada Daugavpils 1"
+		},
+		{
+			"id":228,
+			"company":"Viada",
+			"latitude":55.8945583,
+			"longitude":26.5206957,
+			"city":"Daugavpils",
+			"address":"Vidzemes iela 1D",
+			"name":"Viada Daugavpils 2"
+		},
+		{
+			"id":229,
+			"company":"Viada",
+			"latitude":56.973824,
+			"longitude":24.0364075,
+			"city":"Rīga",
+			"address":"Buļļu iela 72A",
+			"name":"Viada Buļļu"
+		},
+		{
+			"id":230,
+			"company":"Viada",
+			"latitude":56.5261932,
+			"longitude":27.344232,
+			"city":"Rēzekne",
+			"address":"Atbrīvošanas aleja 174A",
+			"name":"Viada Rēzekne 1"
+		},
+		{
+			"id":231,
+			"company":"Viada",
+			"latitude":56.4946639,
+			"longitude":25.8778017,
+			"city":"Jēkabpils",
+			"address":"Vienības iela 3",
+			"name":"Viada Jēkabpils 1"
+		},
+		{
+			"id":232,
+			"company":"Viada",
+			"latitude":56.9382712,
+			"longitude":24.2160954,
+			"city":"Rīga",
+			"address":"Akadēmiķa Mstislava Keldiša iela 17",
+			"name":"Viada Keldiša"
+		},
+		{
+			"id":233,
+			"company":"Viada",
+			"latitude":56.5342805,
+			"longitude":21.0127881,
+			"city":"Liepāja",
+			"address":"Krūmu iela 56",
+			"name":"Viada Liepāja 1"
+		},
+		{
+			"id":234,
+			"company":"Viada",
+			"latitude":56.9400612,
+			"longitude":24.1829518,
+			"city":"Rīga",
+			"address":"Dārzciema iela 69",
+			"name":"Viada Dārzciema"
+		},
+		{
+			"id":235,
+			"company":"Viada",
+			"latitude":56.9053014,
+			"longitude":25.6530982,
+			"city":"Ērgļi",
+			"address":"Piebalgas iela 79",
+			"name":"Viada Ērgļi"
+		},
+		{
+			"id":236,
+			"company":"Viada",
+			"latitude":56.536285,
+			"longitude":21.1437362,
+			"city":"Grobiņa",
+			"address":"Lielā iela 8",
+			"name":"Viada Grobiņa"
+		},
+		{
+			"id":237,
+			"company":"Viada",
+			"latitude":56.9935423,
+			"longitude":24.1735993,
+			"city":"Rīga",
+			"address":"Ķīšezera iela 31",
+			"name":"Viada Ķīšezers"
+		},
+		{
+			"id":238,
+			"company":"Viada",
+			"latitude":57.0640114,
+			"longitude":25.8075919,
+			"city":"Vecpiebalga",
+			"address":"Zvirbulīši",
+			"name":"Viada Vecpieblga"
+		},
+		{
+			"id":239,
+			"company":"Viada",
+			"latitude":56.9123293,
+			"longitude":24.217062,
+			"city":"Rīga",
+			"address":"Granīta iela 7A",
+			"name":"Viada Granīta"
+		},
+		{
+			"id":240,
+			"company":"Viada",
+			"latitude":57.3513686,
+			"longitude":24.9512847,
+			"city":"Straupe",
+			"address":"Aleta",
+			"name":"Viada Straupe"
+		},
+		{
+			"id":241,
+			"company":"Viada",
+			"latitude":56.9292554,
+			"longitude":24.1066006,
+			"city":"Rīga",
+			"address":"Mūkusalas iela 59",
+			"name":"Viada Mūkusalas 1"
+		},
+		{
+			"id":242,
+			"company":"Viada",
+			"latitude":56.4873745,
+			"longitude":25.8847902,
+			"city":"Jēkabpils",
+			"address":"Brīvības iela 23",
+			"name":"Viada Jēkabpils 2"
+		},
+		{
+			"id":243,
+			"company":"Viada",
+			"latitude":56.6369891,
+			"longitude":23.7120323,
+			"city":"Jelgava",
+			"address":"Rūpniecības iela 20D",
+			"name":"Viada, Jelgava 1"
+		},
+		{
+			"id":244,
+			"company":"Viada",
+			"latitude":56.3468172,
+			"longitude":21.0601018,
+			"city":"Nīca",
+			"address":"Piebalgas",
+			"name":"Viada Nīca"
+		},
+		{
+			"id":245,
+			"company":"Viada",
+			"latitude":56.6323447,
+			"longitude":25.7150704,
+			"city":"Aiviekstes pagasts",
+			"address":"Pie apvedceļa",
+			"name":"Viada Pļaviņas"
+		},
+		{
+			"id":246,
+			"company":"Viada",
+			"latitude":56.8190818,
+			"longitude":24.5628507,
+			"city":"Ogre",
+			"address":"Rīgas iela 116",
+			"name":"Viada Ogre"
+		},
+		{
+			"id":247,
+			"company":"Viada",
+			"latitude":56.9420291,
+			"longitude":24.2410315,
+			"city":"Dreiliņi",
+			"address":"Lubānas iela 129A",
+			"name":"Viada Lubānas"
+		},
+		{
+			"id":248,
+			"company":"Viada",
+			"latitude":56.4181564,
+			"longitude":24.1818815,
+			"city":"Codes pagasts",
+			"address":"Dīči 1, Elektriķi",
+			"name":"Viada Bauska"
+		},
+		{
+			"id":249,
+			"company":"Viada",
+			"latitude":56.8099732,
+			"longitude":24.2469902,
+			"city":"Ķekavas pagasts",
+			"address":"Mazsvilpji",
+			"name":"Viada Ķekava"
+		},
+		{
+			"id":250,
+			"company":"Viada",
+			"latitude":56.8932266,
+			"longitude":24.2177736,
+			"city":"Rumbula",
+			"address":"Daugavpils šoseja 3",
+			"name":"Viada Rumbula"
+		},
+		{
+			"id":251,
+			"company":"Viada",
+			"latitude":56.9163176,
+			"longitude":24.1189722,
+			"city":"Rīga",
+			"address":"Mūkusalas iela 78",
+			"name":"Viada Mūkusalas 2"
+		},
+		{
+			"id":252,
+			"company":"Viada",
+			"latitude":57.0337626,
+			"longitude":24.1177181,
+			"city":"Rīga",
+			"address":"Emmas iela 45",
+			"name":"Viada Vecmīlgrāvis"
+		},
+		{
+			"id":253,
+			"company":"Viada",
+			"latitude":56.9334458,
+			"longitude":24.1456356,
+			"city":"Rīga",
+			"address":"Krasta iela 50",
+			"name":"Viada Krasta"
+		},
+		{
+			"id":254,
+			"company":"Viada",
+			"latitude":56.9576849,
+			"longitude":24.1893289,
+			"city":"Rīga",
+			"address":"Gunāra Astras iela 7",
+			"name":"Viada Astras"
+		},
+		{
+			"id":255,
+			"company":"Viada",
+			"latitude":56.9386335,
+			"longitude":24.1814553,
+			"city":"Rīga",
+			"address":"Dārzciema iela 62",
+			"name":"Viada Dārzciema 2"
+		},
+		{
+			"id":256,
+			"company":"Viada",
+			"latitude":56.9213895,
+			"longitude":23.9918293,
+			"city":"Mārupe",
+			"address":"Dzirnieku iela 1",
+			"name":"Viada Lidosta"
+		},
+		{
+			"id":257,
+			"company":"Viada",
+			"latitude":57.5123444,
+			"longitude":24.7295553,
+			"city":"Limbaži",
+			"address":"Cēsu iela 32",
+			"name":"Viada Limbaži"
+		},
+		{
+			"id":258,
+			"company":"Viada",
+			"latitude":57.1379483,
+			"longitude":24.8244058,
+			"city":"Siguldas pagasts",
+			"address":"Lorēni",
+			"name":"Viada Sigulda"
+		},
+		{
+			"id":259,
+			"company":"Viada",
+			"latitude":56.6242065,
+			"longitude":23.723838,
+			"city":"Jelgava",
+			"address":"Lietuvas šoseja 72",
+			"name":"Viada, Jelgava 2"
+		},
+		{
+			"id":260,
+			"company":"Viada",
+			"latitude":56.6831945,
+			"longitude":22.5690687,
+			"city":"Brocēni",
+			"address":"Skorpions",
+			"name":"Viada Brocēni"
+		},
+		{
+			"id":261,
+			"company":"Viada",
+			"latitude":56.4986386,
+			"longitude":27.3298726,
+			"city":"Rēzekne",
+			"address":"Daugavpils iela 3",
+			"name":"Viada Rēzekne 2"
+		},
+		{
+			"id":262,
+			"company":"Viada",
+			"latitude":56.5647325,
+			"longitude":26.933762,
+			"city":"Viļāni",
+			"address":"Rīgas iela 52",
+			"name":"Viada Viļāni"
+		},
+		{
+			"id":263,
+			"company":"Viada",
+			"latitude":56.8588798,
+			"longitude":26.2059338,
+			"city":"Madona",
+			"address":"Rūpniecības iela 19",
+			"name":"Viada Madona"
+		},
+		{
+			"id":264,
+			"company":"Viada",
+			"latitude":57.319963,
+			"longitude":25.2918301,
+			"city":"Cēsis",
+			"address":"Valmieras iela 12",
+			"name":"Viada Cēsis"
+		},
+		{
+			"id":265,
+			"company":"Viada",
+			"latitude":56.9589586,
+			"longitude":24.0116823,
+			"city":"Rīga",
+			"address":"Anniņmuižas bulvāris 75",
+			"name":"Viada Anniņmuižas"
+		},
+		{
+			"id":266,
+			"company":"Viada",
+			"latitude":57.7435435,
+			"longitude":24.3609446,
+			"city":"Salacgrīva",
+			"address":"Vidzemes iela 29",
+			"name":"Viada Salacgrīva"
+		},
+		{
+			"id":267,
+			"company":"Viada",
+			"latitude":57.3878049,
+			"longitude":24.4295416,
+			"city":"Vārzas",
+			"address":"Laiciemkursīši",
+			"name":"Viada Skulte"
+		},
+		{
+			"id":268,
+			"company":"Viada",
+			"latitude":57.2253899,
+			"longitude":24.390823,
+			"city":"Saulkrastu pagasts",
+			"address":"Mazžvīguļi",
+			"name":"Viada Saulkrasti"
+		},
+		{
+			"id":269,
+			"company":"Viada",
+			"latitude":55.8946227,
+			"longitude":26.5457418,
+			"city":"Daugavpils",
+			"address":"Višķu iela 17L",
+			"name":"Viada Daugavpils 3"
+		},
+		{
+			"id":270,
+			"company":"Viada",
+			"latitude":55.8756314,
+			"longitude":26.5471556,
+			"city":"Daugavpils",
+			"address":"18. novembra iela 119",
+			"name":"Viada Daugavpils 4"
+		},
+		{
+			"id":271,
+			"company":"Viada",
+			"latitude":56.5099296,
+			"longitude":25.8742772,
+			"city":"Jēkabpils",
+			"address":"Latgales iela 42",
+			"name":"Viada Jēkabpils 3"
+		},
+		{
+			"id":272,
+			"company":"Viada",
+			"latitude":57.4137626,
+			"longitude":27.0421716,
+			"city":"Alūksne",
+			"address":"Gulbenes iela 1C",
+			"name":"Viada Alūksne"
+		},
+		{
+			"id":273,
+			"company":"Viada",
+			"latitude":57.1414957,
+			"longitude":27.2451578,
+			"city":"Balvi",
+			"address":"Stacijas iela 13",
+			"name":"Viada Balvi"
+		},
+		{
+			"id":274,
+			"company":"Viada",
+			"latitude":57.1717029,
+			"longitude":26.740938,
+			"city":"Gulbene",
+			"address":"Baložu iela 19",
+			"name":"Viada Gulbene"
+		},
+		{
+			"id":275,
+			"company":"Viada",
+			"latitude":56.9586759,
+			"longitude":21.9860763,
+			"city":"Kuldīga",
+			"address":"Graudu iela 9",
+			"name":"Viada Kuldīga"
+		},
+		{
+			"id":276,
+			"company":"Viada",
+			"latitude":57.3821262,
+			"longitude":21.5673678,
+			"city":"Ventspils",
+			"address":"Inženieru iela 2",
+			"name":"Viada Ventspils 1"
+		},
+		{
+			"id":277,
+			"company":"Viada",
+			"latitude":57.3969375,
+			"longitude":21.6145859,
+			"city":"Ventspils",
+			"address":"Kurzemes iela 59",
+			"name":"Viada Ventspils 2"
+		},
+		{
+			"id":278,
+			"company":"Viada",
+			"latitude":57.5082673,
+			"longitude":25.4604659,
+			"city":"Kauguru pagasts",
+			"address":"Brīvnieki",
+			"name":"Viada Valmiera 2"
+		},
+		{
+			"id":279,
+			"company":"Viada",
+			"latitude":57.029253,
+			"longitude":24.0467791,
+			"city":"Rīga",
+			"address":"Gaigalas iela 19A",
+			"name":"Viada Bolderāja"
+		},
+		{
+			"id":280,
+			"company":"Viada",
+			"latitude":56.9818187,
+			"longitude":24.183683,
+			"city":"Rīga",
+			"address":"Džutas iela 16",
+			"name":"Viada Džutas"
+		},
+		{
+			"id":281,
+			"company":"Viada",
+			"latitude":56.4853239,
+			"longitude":21.0154649,
+			"city":"Liepāja",
+			"address":"Ganību iela 180",
+			"name":"Viada Liepāja 3"
+		},
+		{
+			"id":282,
+			"company":"Viada",
+			"latitude":56.5203465,
+			"longitude":21.0061093,
+			"city":"Liepāja",
+			"address":"Kapsētas iela 24",
+			"name":"Viada Liepāja 4"
+		},
+		{
+			"id":283,
+			"company":"Viada",
+			"latitude":56.9410592,
+			"longitude":24.0214693,
+			"city":"Rīga",
+			"address":"Apuzes iela 47",
+			"name":"Viada Apuzes"
+		},
+		{
+			"id":284,
+			"company":"Viada",
+			"latitude":56.9573468,
+			"longitude":23.176999,
+			"city":"Tukums",
+			"address":"Zemgales iela 25",
+			"name":"Viada Tukums"
+		},
+		{
+			"id":285,
+			"company":"Viada",
+			"latitude":56.9604945,
+			"longitude":23.6210922,
+			"city":"Jūrmala",
+			"address":"Brikšķu iela 2",
+			"name":"Viada Jūrmala"
+		},
+		{
+			"id":286,
+			"company":"Viada",
+			"latitude":56.9383525,
+			"longitude":23.9995843,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 135",
+			"name":"Viada Ulmaņa 2"
+		},
+		{
+			"id":287,
+			"company":"Viada",
+			"latitude":56.9285462,
+			"longitude":24.0625192,
+			"city":"Rīga",
+			"address":"Krūzes iela 53",
+			"name":"Viada Krūzes"
+		},
+		{
+			"id":288,
+			"company":"Viada",
+			"latitude":56.9885418,
+			"longitude":24.1297701,
+			"city":"Rīga",
+			"address":"Dambja iela 11",
+			"name":"Viada Dambja"
+		},
+		{
+			"id":289,
+			"company":"Viada",
+			"latitude":56.9158632,
+			"longitude":24.175361,
+			"city":"Rīga",
+			"address":"Maskavas iela 293A",
+			"name":"Viada Maskavas 2"
+		},
+		{
+			"id":290,
+			"company":"Viada",
+			"latitude":56.9347721,
+			"longitude":24.2029485,
+			"city":"Rīga",
+			"address":"Andreja Saharova iela 10",
+			"name":"Viada Saharova"
+		},
+		{
+			"id":291,
+			"company":"Viada",
+			"latitude":56.9764501,
+			"longitude":24.2552536,
+			"city":"Rīga",
+			"address":"Juglas iela 16C",
+			"name":"Viada Jugla"
+		},
+		{
+			"id":292,
+			"company":"Viada",
+			"latitude":56.5214171,
+			"longitude":21.0270387,
+			"city":"Liepāja",
+			"address":"Zemnieku iela 58",
+			"name":"Viada Liepāja 2"
+		},
+		{
+			"id":293,
+			"company":"Viada",
+			"latitude":57.5369327,
+			"longitude":25.4041961,
+			"city":"Valmiera",
+			"address":"Matīšu šoseja 3",
+			"name":"Viada Valmiera 1"
+		},
+		{
+			"id":294,
+			"company":"Viada",
+			"latitude":56.9583329,
+			"longitude":24.2391908,
+			"city":"Rīga",
+			"address":"Vecā Biķernieku iela 1",
+			"name":"Viada Biķernieku"
+		},
+		{
+			"id":295,
+			"company":"Viada",
+			"latitude":56.92733,
+			"longitude":24.0496662,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 67",
+			"name":"Viada Ulmaņa"
+		},
+		{
+			"id":296,
+			"company":"Viada",
+			"latitude":56.9390418,
+			"longitude":24.0015197,
+			"city":"Rīga",
+			"address":"Valgales iela 1",
+			"name":"Viada Valgales"
+		},
+		{
+			"id":297,
+			"company":"Viada",
+			"latitude":56.9225978,
+			"longitude":24.1798634,
+			"city":"Rīga",
+			"address":"Salaspils iela 4A",
+			"name":"Viada Salaspils"
+		},
+		{
+			"id":298,
+			"company":"Viada",
+			"latitude":56.9102738,
+			"longitude":24.0961315,
+			"city":"Rīga",
+			"address":"Valdeķu iela 34",
+			"name":"Viada Valdeķu"
+		},
+		{
+			"id":299,
+			"company":"Latvijas Nafta",
+			"latitude":56.9504969,
+			"longitude":24.0730896,
+			"city":"Rīga",
+			"address":"Daugavgrīvas iela 29",
+			"name":"Latvijas Nafta Daugavgrīvas"
+		},
+		{
+			"id":300,
+			"company":"Latvijas Nafta",
+			"latitude":56.9639124,
+			"longitude":24.1189327,
+			"city":"Rīga",
+			"address":"Sporta iela 9",
+			"name":"Latvijas Nafta Sporta"
+		},
+		{
+			"id":301,
+			"company":"Latvijas Nafta",
+			"latitude":56.988422,
+			"longitude":24.1179862,
+			"city":"Rīga",
+			"address":"Uriekstes iela 3A",
+			"name":"Latvijas Nafta Uriekstes"
+		},
+		{
+			"id":302,
+			"company":"Latvijas Nafta",
+			"latitude":56.9065193,
+			"longitude":24.0824424,
+			"city":"Rīga",
+			"address":"Vienības gatve 117",
+			"name":"Latvijas Nafta Vienības gatve"
+		},
+		{
+			"id":303,
+			"company":"Latvijas Nafta",
+			"latitude":56.9781114,
+			"longitude":24.0345375,
+			"city":"Rīga",
+			"address":"Kleistu iela 37",
+			"name":"Latvijas Nafta Kleistu"
+		},
+		{
+			"id":304,
+			"company":"Latvijas Nafta",
+			"latitude":56.9302197,
+			"longitude":24.1848764,
+			"city":"Rīga",
+			"address":"Krustpils iela 1",
+			"name":"Latvijas Nafta Krustpils"
+		},
+		{
+			"id":305,
+			"company":"Latvijas Nafta",
+			"latitude":56.9458458,
+			"longitude":24.0330351,
+			"city":"Rīga",
+			"address":"Jūrkalnes iela 6",
+			"name":"Latvijas Nafta Jūrkalnes"
+		},
+		{
+			"id":306,
+			"company":"Latvijas Nafta",
+			"latitude":56.9565355,
+			"longitude":23.6352186,
+			"city":"Jūrmala",
+			"address":"Talsu šoseja 1",
+			"name":"Latvijas Nafta Jūrmala"
+		},
+		{
+			"id":307,
+			"company":"Latvijas Nafta",
+			"latitude":57.0024101,
+			"longitude":24.2857299,
+			"city":"Berģi",
+			"address":"Rīgas-Siguldas šoseja 4A",
+			"name":"Latvijas Nafta Berģi"
+		},
+		{
+			"id":308,
+			"company":"Latvijas Nafta",
+			"latitude":56.9739743,
+			"longitude":24.3413038,
+			"city":"Garkalnes novads",
+			"address":"Ziemeri, Sunīši",
+			"name":"Latvijas Nafta Ziemeri"
+		},
+		{
+			"id":309,
+			"company":"Latvijas Nafta",
+			"latitude":56.954896,
+			"longitude":23.9177119,
+			"city":"Babībes novads",
+			"address":"Dambji, Piņķi",
+			"name":"Latvijas Nafta Brekši"
+		},
+		{
+			"id":310,
+			"company":"Latvijas Nafta",
+			"latitude":56.7944253,
+			"longitude":24.6311913,
+			"city":"Ogre",
+			"address":"Daugavpils iela 55",
+			"name":"Latvijas Nafta Ogre"
+		},
+		{
+			"id":311,
+			"company":"Latvijas Nafta",
+			"latitude":57.148587,
+			"longitude":24.8695933,
+			"city":"Sigulda",
+			"address":"Vidzemes šoseja 67/71",
+			"name":"Latvijas Nafta Sigulda"
+		},
+		{
+			"id":312,
+			"company":"Latvijas Nafta",
+			"latitude":56.7164883,
+			"longitude":24.8269982,
+			"city":"Lielvārde",
+			"address":"Laimdotas iela 23",
+			"name":"Latvijas Nafta Lielvārde"
+		},
+		{
+			"id":313,
+			"company":"Latvijas Nafta",
+			"latitude":57.3077764,
+			"longitude":25.2843188,
+			"city":"Cēsis",
+			"address":"Lapsu iela 36",
+			"name":"Latvijas Nafta Cēsis 2"
+		},
+		{
+			"id":314,
+			"company":"Latvijas Nafta",
+			"latitude":57.8939574,
+			"longitude":25.3521493,
+			"city":"Rūjiena",
+			"address":"Pērnavas iela 23",
+			"name":"Latvijas Nafta Rūjiena"
+		},
+		{
+			"id":315,
+			"company":"Latvijas Nafta",
+			"latitude":57.3773942,
+			"longitude":25.0423429,
+			"city":"Stalbes pagasts",
+			"address":"Baltiņi",
+			"name":"Latvijas Nafta Stalbe"
+		},
+		{
+			"id":316,
+			"company":"Latvijas Nafta",
+			"latitude":57.3874608,
+			"longitude":25.9739546,
+			"city":"Launkalnes pagasts",
+			"address":"Smiltenes pagrieziens",
+			"name":"Latvijas Nafta Smiltene"
+		},
+		{
+			"id":317,
+			"company":"Latvijas Nafta",
+			"latitude":57.5132674,
+			"longitude":25.3401891,
+			"city":"Kocēni",
+			"address":"Degļi, Brandeļi",
+			"name":"Latvijas Nafta, Kocēni"
+		},
+		{
+			"id":318,
+			"company":"Latvijas Nafta",
+			"latitude":56.8608694,
+			"longitude":26.2288595,
+			"city":"Madona",
+			"address":"Saules iela 46",
+			"name":"Latvijas Nafta Madona"
+		},
+		{
+			"id":319,
+			"company":"Latvijas Nafta",
+			"latitude":56.8062802,
+			"longitude":26.0758452,
+			"city":"Sauleskalns",
+			"address":"Sauleskalna iela 2",
+			"name":"Latvijas Nafta Sauleskalns"
+		},
+		{
+			"id":320,
+			"company":"Latvijas Nafta",
+			"latitude":57.7909127,
+			"longitude":26.0307084,
+			"city":"Valka",
+			"address":"Rūjienas iela 31",
+			"name":"Latvijas Nafta Valka"
+		},
+		{
+			"id":321,
+			"company":"Latvijas Nafta",
+			"latitude":57.5218561,
+			"longitude":25.4499736,
+			"city":"Valmiera",
+			"address":"Cempu iela 4A",
+			"name":"Latvijas Nafta, Valmiera"
+		},
+		{
+			"id":322,
+			"company":"Latvijas Nafta",
+			"latitude":57.1817021,
+			"longitude":26.7508969,
+			"city":"Gulbene",
+			"address":"Miera iela 15A",
+			"name":"Latvijas Nafta Gulbene"
+		},
+		{
+			"id":323,
+			"company":"Latvijas Nafta",
+			"latitude":57.431904,
+			"longitude":27.0183863,
+			"city":"Alsviķu pagasts",
+			"address":"Aizupītes 22",
+			"name":"Latvijas Nafta Aizupītes"
+		},
+		{
+			"id":324,
+			"company":"Latvijas Nafta",
+			"latitude":56.8989897,
+			"longitude":25.6490739,
+			"city":"Ērgļi",
+			"address":"Piebalgas iela 2",
+			"name":"Latvijas Nafta Ērgļi"
+		},
+		{
+			"id":325,
+			"company":"Latvijas Nafta",
+			"latitude":57.6255198,
+			"longitude":25.671588,
+			"city":"Streči",
+			"address":"Rīgas iela 35",
+			"name":"Latvijas Nafta Streči"
+		},
+		{
+			"id":326,
+			"company":"Latvijas Nafta",
+			"latitude":57.1392791,
+			"longitude":27.2530066,
+			"city":"Balvi",
+			"address":"Vidzemes iela 6",
+			"name":"Latvijas Nafta Balvi"
+		},
+		{
+			"id":327,
+			"company":"Latvijas Nafta",
+			"latitude":56.9056659,
+			"longitude":26.7079055,
+			"city":"Lubāna",
+			"address":"Stacijas iela 16",
+			"name":"Latvijas Nafta Lubāna"
+		},
+		{
+			"id":328,
+			"company":"Latvijas Nafta",
+			"latitude":57.8739076,
+			"longitude":24.3800536,
+			"city":"Ainaži",
+			"address":"Ainažu robežkontroles punkts",
+			"name":"Latvijas Nafta Ainaži"
+		},
+		{
+			"id":329,
+			"company":"Latvijas Nafta",
+			"latitude":56.5155321,
+			"longitude":27.3531308,
+			"city":"Rēzekne",
+			"address":"Jupatovkas iela 4",
+			"name":"Latvijas Nafta Rēzekne 1"
+		},
+		{
+			"id":330,
+			"company":"Latvijas Nafta",
+			"latitude":56.5192008,
+			"longitude":27.320549,
+			"city":"Rēzekne",
+			"address":"Rīgas iela 47",
+			"name":"Ziemeļu nafta (LN)"
+		},
+		{
+			"id":331,
+			"company":"Latvijas Nafta",
+			"latitude":56.5294706,
+			"longitude":27.7377137,
+			"city":"Ludza",
+			"address":"Latgales iela 255",
+			"name":"Latvijas Nafta Ludza"
+		},
+		{
+			"id":332,
+			"company":"Latvijas Nafta",
+			"latitude":56.0910357,
+			"longitude":27.5223514,
+			"city":"Dagda",
+			"address":"Daugavpils iela 18",
+			"name":"Latvijas Nafta Dagda"
+		},
+		{
+			"id":333,
+			"company":"Latvijas Nafta",
+			"latitude":56.3392207,
+			"longitude":26.1797107,
+			"city":"Līvāni",
+			"address":"Rīgas iela 1",
+			"name":"Latvijas Nafta Līvāni"
+		},
+		{
+			"id":334,
+			"company":"Latvijas Nafta",
+			"latitude":56.5318081,
+			"longitude":25.8231315,
+			"city":"Krustpils pagasts",
+			"address":"Zvidzāni",
+			"name":"Latvijas Nafta Zvidzāni"
+		},
+		{
+			"id":335,
+			"company":"Latvijas Nafta",
+			"latitude":56.6020431,
+			"longitude":26.7533405,
+			"city":"Varakļāni",
+			"address":"Zemgales iela 35",
+			"name":"Latvijas Nafta Varakļāni"
+		},
+		{
+			"id":336,
+			"company":"Latvijas Nafta",
+			"latitude":56.1449254,
+			"longitude":26.3448327,
+			"city":"Nīcgales pagasts",
+			"address":"Salas",
+			"name":"Latvijas Nafta Salas"
+		},
+		{
+			"id":337,
+			"company":"Latvijas Nafta",
+			"latitude":56.5359625,
+			"longitude":21.0691917,
+			"city":"Liepāja",
+			"address":"Brīvības iela 174",
+			"name":"Latvijas Nafta Liepāja 1"
+		},
+		{
+			"id":338,
+			"company":"Latvijas Nafta",
+			"latitude":56.5234014,
+			"longitude":21.0059445,
+			"city":"Liepāja",
+			"address":"Flotes iela 9",
+			"name":"Latvijas Nafta Liepāja 2"
+		},
+		{
+			"id":339,
+			"company":"Latvijas Nafta",
+			"latitude":56.4637463,
+			"longitude":21.012401,
+			"city":"Nīcas pagasts",
+			"address":"Klaipēdas šos. 5. km",
+			"name":"Latvijas Nafta Grīnvalti"
+		},
+		{
+			"id":340,
+			"company":"Latvijas Nafta",
+			"latitude":56.6681735,
+			"longitude":21.981295,
+			"city":"Skrunda",
+			"address":"Grantskalni",
+			"name":"Latvijas Nafta Skrunda"
+		},
+		{
+			"id":341,
+			"company":"Latvijas Nafta",
+			"latitude":57.3843091,
+			"longitude":21.5853213,
+			"city":"Ventspils",
+			"address":"Durbes iela 29",
+			"name":"Latvijas Nafta Durbes"
+		},
+		{
+			"id":342,
+			"company":"Latvijas Nafta",
+			"latitude":57.3978231,
+			"longitude":21.6259451,
+			"city":"Ventspils",
+			"address":"Kurzemes iela 75",
+			"name":"Latvijas Nafta Kurzemes"
+		},
+		{
+			"id":343,
+			"company":"Latvijas Nafta",
+			"latitude":57.2636639,
+			"longitude":22.5786678,
+			"city":"Valdgales pagasts",
+			"address":"Dundagas šoseja",
+			"name":"Latvijas Nafta, Talsi"
+		},
+		{
+			"id":344,
+			"company":"Latvijas Nafta",
+			"latitude":56.2768492,
+			"longitude":24.3632508,
+			"city":"Brunavas pagasts",
+			"address":"Grenctāles robežkontroles punkts",
+			"name":"Latvijas Nafta Grenctāle"
+		},
+		{
+			"id":345,
+			"company":"Astarte",
+			"latitude":56.7049673,
+			"longitude":21.6260393,
+			"city":"Aizpute",
+			"address":"Kalvenes iela 75",
+			"name":"Astarte Nafta Aizpute"
+		},
+		{
+			"id":346,
+			"company":"Astarte",
+			"latitude":56.1554502,
+			"longitude":25.7611007,
+			"city":"Aknīste",
+			"address":"Augšzemes iela 60",
+			"name":"Astarte Nafta Aknīste"
+		},
+		{
+			"id":347,
+			"company":"Astarte",
+			"latitude":56.5921189,
+			"longitude":23.7163465,
+			"city":"Platones pagasts",
+			"address":"Astartes bāze",
+			"name":"Astarte-Nafta, Astartes Bāze"
+		},
+		{
+			"id":348,
+			"company":"Astarte",
+			"latitude":56.7434985,
+			"longitude":24.3554979,
+			"city":"Baldone",
+			"address":"Rīgas iela 2",
+			"name":"Astarte Nafta Baldone"
+		},
+		{
+			"id":349,
+			"company":"Astarte",
+			"latitude":56.4059843,
+			"longitude":25.7734511,
+			"city":"Salas pagasts",
+			"address":"Ceļtekas",
+			"name":"Astarte Nafta Ceļtekas"
+		},
+		{
+			"id":350,
+			"company":"Astarte",
+			"latitude":56.6574372,
+			"longitude":23.8099178,
+			"city":"Cenu pagasts",
+			"address":"Brankstūri",
+			"name":"Astarte Nafta Brankstūri"
+		},
+		{
+			"id":351,
+			"company":"Astarte",
+			"latitude":56.9543737,
+			"longitude":26.3243844,
+			"city":"Cesvaine",
+			"address":"Stacijas iela 22",
+			"name":"Astarte Nafta Cesvaine"
+		},
+		{
+			"id":352,
+			"company":"Astarte",
+			"latitude":56.6277462,
+			"longitude":23.2981806,
+			"city":"Dobele",
+			"address":"Brīvības iela 60",
+			"name":"Astarte Nafta Dobele"
+		},
+		{
+			"id":353,
+			"company":"Astarte",
+			"latitude":56.4166493,
+			"longitude":23.6825675,
+			"city":"Eleja",
+			"address":"Lietuvas iela 28",
+			"name":"Astarte Nafta Eleja"
+		},
+		{
+			"id":354,
+			"company":"Astarte",
+			"latitude":56.592709,
+			"longitude":24.1912628,
+			"city":"Iecava",
+			"address":"Rīgas iela 2B",
+			"name":"Astarte Nafta Iecava"
+		},
+		{
+			"id":355,
+			"company":"Astarte",
+			"latitude":56.4943097,
+			"longitude":25.8849474,
+			"city":"Jēkabpils",
+			"address":"Kļavu iela 4",
+			"name":"Astarte Nafta Jēkabpils"
+		},
+		{
+			"id":356,
+			"company":"Astarte",
+			"latitude":56.6422542,
+			"longitude":23.6973736,
+			"city":"Jelgava",
+			"address":"Dambja iela 25",
+			"name":"Astarte Nafta Jelgava, Dambja iela"
+		},
+		{
+			"id":357,
+			"company":"Astarte",
+			"latitude":56.6508397,
+			"longitude":23.7079804,
+			"city":"Jelgava",
+			"address":"Lielā iela 40",
+			"name":"Astarte Nafta Jelgava"
+		},
+		{
+			"id":358,
+			"company":"Astarte",
+			"latitude":56.6363957,
+			"longitude":23.7077464,
+			"city":"Jelgava",
+			"address":"Rūpniecības iela 75A",
+			"name":"Astarte Nafta Jelgava, Rūpniecības iela"
+		},
+		{
+			"id":359,
+			"company":"Astarte",
+			"latitude":56.7447863,
+			"longitude":24.7196679,
+			"city":"Ķegums",
+			"address":"Ķeguma prospekts 1A",
+			"name":"Astarte Nafta Ķegums"
+		},
+		{
+			"id":360,
+			"company":"Astarte",
+			"latitude":56.6453671,
+			"longitude":25.4361446,
+			"city":"Koknese",
+			"address":"1905. gada iela 14A",
+			"name":"Astarte Nafta Koknese"
+		},
+		{
+			"id":361,
+			"company":"Astarte",
+			"latitude":56.8997234,
+			"longitude":26.1290614,
+			"city":"Kusa",
+			"address":"Aronas pagasts, Dālderi",
+			"name":"Astarte Nafta Kusa"
+		},
+		{
+			"id":362,
+			"company":"Astarte",
+			"latitude":57.5212521,
+			"longitude":24.7423828,
+			"city":"Limbaži",
+			"address":"Meliorācijas iela 23",
+			"name":"Astarte Nafta Limbaži"
+		},
+		{
+			"id":363,
+			"company":"Astarte",
+			"latitude":56.376259,
+			"longitude":26.163546,
+			"city":"Līvāni",
+			"address":"Rīgas iela 312",
+			"name":"Astarte Nafta Līvāni"
+		},
+		{
+			"id":364,
+			"company":"Astarte",
+			"latitude":56.5994758,
+			"longitude":25.650642,
+			"city":"Pļaviņas",
+			"address":"Oliņkalns, Stukmaņi",
+			"name":"Astarte Nafta Pļaviņas"
+		},
+		{
+			"id":365,
+			"company":"Astarte",
+			"latitude":56.282349,
+			"longitude":26.74207,
+			"city":"Preiļi",
+			"address":"Degvielas uzpildes stacija, Jaunsaimnieki",
+			"name":"Astarte Nafta Preiļi"
+		},
+		{
+			"id":366,
+			"company":"Astarte",
+			"latitude":56.9293671,
+			"longitude":24.152231,
+			"city":"Rīga",
+			"address":"Krasta iela 93",
+			"name":"Astarte Nafta Rīga"
+		},
+		{
+			"id":367,
+			"company":"Astarte",
+			"latitude":57.4973854,
+			"longitude":22.8212897,
+			"city":"Roja",
+			"address":"Selgas iela 70",
+			"name":"Astarte Nafta Roja"
+		},
+		{
+			"id":368,
+			"company":"Astarte",
+			"latitude":56.4769148,
+			"longitude":23.3918535,
+			"city":"Tērvete",
+			"address":"Runči",
+			"name":"Astarte Nafta Runči"
+		},
+		{
+			"id":369,
+			"company":"Astarte",
+			"latitude":56.8423633,
+			"longitude":23.5868565,
+			"city":"Tīreļi",
+			"address":"Rīgas iela 3",
+			"name":"Astarte Nafta Tīreļi"
+		},
+		{
+			"id":370,
+			"company":"Astarte",
+			"latitude":56.9501424,
+			"longitude":23.1187977,
+			"city":"Tukums",
+			"address":"Zemītes iela 7",
+			"name":"Astarte Nafta Tukums"
+		},
+		{
+			"id":371,
+			"company":"Astarte",
+			"latitude":57.38749,
+			"longitude":21.5826587,
+			"city":"Ventspils",
+			"address":"Lāčplēša iela 1",
+			"name":"Astarte Nafta Ventspils"
+		},
+		{
+			"id":372,
+			"company":"Astarte",
+			"latitude":56.337863,
+			"longitude":25.5604318,
+			"city":"Viesīte",
+			"address":"Raiņa iela 60A",
+			"name":"Astarte Nafta Viesīte"
+		},
+		{
+			"id":373,
+			"company":"Astarte",
+			"latitude":56.4174025,
+			"longitude":23.5570352,
+			"city":"Vilce",
+			"address":"Blankenfeldes iela 3",
+			"name":"Astarte Nafta Vilce"
+		},
+		{
+			"id":374,
+			"company":"Astarte",
+			"latitude":56.048315,
+			"longitude":26.7283281,
+			"city":"Višķi",
+			"address":"Catlakši",
+			"name":"Astarte Nafta Višķi"
+		},
+		{
+			"id":375,
+			"company":"Dinaz",
+			"latitude":56.9260119,
+			"longitude":24.1614993,
+			"city":"Rīga",
+			"address":"Krasta iela 78",
+			"name":"Dinaz Krasta"
+		},
+		{
+			"id":376,
+			"company":"Dinaz",
+			"latitude":56.7374475,
+			"longitude":24.1095566,
+			"city":"Ķekavas pagasts",
+			"address":"Mellupi",
+			"name":"Dinaz Mellupi"
+		},
+		{
+			"id":377,
+			"company":"Dinaz",
+			"latitude":55.8787401,
+			"longitude":26.5054888,
+			"city":"Daugavpils",
+			"address":"Cietokšņa iela 82",
+			"name":"Dinaz Cietokšņa"
+		},
+		{
+			"id":378,
+			"company":"Dinaz",
+			"latitude":55.9144492,
+			"longitude":26.4833534,
+			"city":"Daugavpils",
+			"address":"Vizbuļu iela 8A",
+			"name":"Dinaz Vizbuļu"
+		},
+		{
+			"id":379,
+			"company":"Dinaz",
+			"latitude":55.8952932,
+			"longitude":26.6045248,
+			"city":"Daugavpils",
+			"address":"18. Novembra iela 335D",
+			"name":"Dinaz Daugavpils"
+		},
+		{
+			"id":380,
+			"company":"Dinaz",
+			"latitude":56.5899827,
+			"longitude":27.2429686,
+			"city":"Audriņu pagasts",
+			"address":"Eskāda, Audriņi",
+			"name":"Dinaz Audriņi"
+		},
+		{
+			"id":381,
+			"company":"Dinaz",
+			"latitude":56.3525611,
+			"longitude":27.1735992,
+			"city":"Lūznavas pagasts",
+			"address":"Maltas uzpildes stacija, Mostovaja",
+			"name":"Dinaz Malta"
+		},
+		{
+			"id":382,
+			"company":"Dinaz",
+			"latitude":56.4836152,
+			"longitude":27.354196,
+			"city":"Griškānu pagasts",
+			"address":"S. Pocelujevka",
+			"name":"Dinaz Pocelujevka"
+		},
+		{
+			"id":383,
+			"company":"Dinaz",
+			"latitude":56.488741,
+			"longitude":27.3142197,
+			"city":"Ozolaines pagasts",
+			"address":"Zakutajevo, Tēviņi",
+			"name":"Dinaz Tēviņi"
+		},
+		{
+			"id":384,
+			"company":"Dinaz",
+			"latitude":56.7750105,
+			"longitude":27.6881728,
+			"city":"Kārsava",
+			"address":"Šosejas iela 5A",
+			"name":"Dinaz Kārsava"
+		},
+		{
+			"id":385,
+			"company":"Dinaz",
+			"latitude":56.8014387,
+			"longitude":24.8684494,
+			"city":"Rembates pagasts",
+			"address":"Glāzšķūnis",
+			"name":"Dinaz Glāzšķūnis"
+		},
+		{
+			"id":386,
+			"company":"Dinaz",
+			"latitude":56.8249018,
+			"longitude":24.5993917,
+			"city":"Ogre",
+			"address":"Mežezera iela 1, Aizupes",
+			"name":"Dinaz Ogre"
+		},
+		{
+			"id":387,
+			"company":"Dinaz",
+			"latitude":56.9287258,
+			"longitude":24.9349177,
+			"city":"Suntažu pagasts",
+			"address":"Suntaži",
+			"name":"Dinaz Ūsiņš"
+		},
+		{
+			"id":388,
+			"company":"Dinaz",
+			"latitude":56.6362548,
+			"longitude":23.7276332,
+			"city":"Jelgava",
+			"address":"Lietuvas šoseja 2B",
+			"name":"Dinaz Jelgava"
+		},
+		{
+			"id":389,
+			"company":"Dinaz",
+			"latitude":56.61185,
+			"longitude":25.249642,
+			"city":"Aizkraukle",
+			"address":"Jaunceltnes iela 16",
+			"name":"Dinaz Aizkraukle"
+		},
+		{
+			"id":390,
+			"company":"Dinaz",
+			"latitude":55.9655735,
+			"longitude":26.2822651,
+			"city":"Pilskalnes pagasts",
+			"address":"Ilūkste",
+			"name":"Dinaz Ilūkste"
+		},
+		{
+			"id":391,
+			"company":"Dinaz",
+			"latitude":55.9056705,
+			"longitude":27.1795564,
+			"city":"Krāslava",
+			"address":"Vasarnieku iela 6",
+			"name":"Dinaz Krāslava"
+		},
+		{
+			"id":392,
+			"company":"Dinaz",
+			"latitude":56.5148325,
+			"longitude":25.8664448,
+			"city":"Jēkabpils",
+			"address":"Varoņu iela 6",
+			"name":"Dinaz Jēkabpils"
+		},
+		{
+			"id":393,
+			"company":"Dinaz",
+			"latitude":56.2982489,
+			"longitude":26.7061054,
+			"city":"Preiļi",
+			"address":"Rīgas iela 8",
+			"name":"Dinaz Preiļi"
+		},
+		{
+			"id":394,
+			"company":"Dinaz",
+			"latitude":56.5388937,
+			"longitude":27.7019688,
+			"city":"Ludza",
+			"address":"Latgales iela 22A",
+			"name":"Dinaz Ludza"
+		},
+		{
+			"id":395,
+			"company":"Metro",
+			"latitude":56.9476158,
+			"longitude":24.2015858,
+			"city":"Rīga",
+			"address":"Augusta Deglava iela 77",
+			"name":"Metro Deglava"
+		},
+		{
+			"id":396,
+			"company":"Metro",
+			"latitude":56.9472866,
+			"longitude":24.1286488,
+			"city":"Rīga",
+			"address":"Satekles iela 2",
+			"name":"Metro Satekles"
+		},
+		{
+			"id":397,
+			"company":"Metro",
+			"latitude":56.92675,
+			"longitude":24.0783472,
+			"city":"Rīga",
+			"address":"Mārupes iela 57",
+			"name":"Metro Mārupes"
+		},
+		{
+			"id":398,
+			"company":"Metro",
+			"latitude":56.946292,
+			"longitude":23.9942238,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 146",
+			"name":"Metro Ulmaņa"
+		},
+		{
+			"id":399,
+			"company":"Metro",
+			"latitude":56.8895897,
+			"longitude":24.2267631,
+			"city":"Rīga",
+			"address":"Maskavas iela 446B",
+			"name":"Metro Maskavas"
+		},
+		{
+			"id":400,
+			"company":"Gotika Auto",
+			"latitude":56.9485872,
+			"longitude":24.1855664,
+			"city":"Rīga",
+			"address":"Jenotu iela 19",
+			"name":"Gotika Auto Deglava"
+		},
+		{
+			"id":401,
+			"company":"Gotika Auto",
+			"latitude":57.0526739,
+			"longitude":24.1547667,
+			"city":"Rīga",
+			"address":"Jaunciema gatve 169A",
+			"name":"Gotika Auto Jaunciema"
+		},
+		{
+			"id":402,
+			"company":"Gotika Auto",
+			"latitude":56.9848919,
+			"longitude":24.1923788,
+			"city":"Rīga",
+			"address":"Krustbaznīcas iela 4",
+			"name":"Gotika Auto Krustabaznīcas"
+		},
+		{
+			"id":403,
+			"company":"Gotika Auto",
+			"latitude":56.890956,
+			"longitude":24.223354,
+			"city":"Rīga",
+			"address":"Strengu iela 2",
+			"name":"Gotika Auto Maskavas"
+		},
+		{
+			"id":404,
+			"company":"Gotika Auto",
+			"latitude":56.889276,
+			"longitude":24.0770939,
+			"city":"Rīga",
+			"address":"Tīraines iela 5B",
+			"name":"Gotika Auto Tīraines"
+		},
+		{
+			"id":405,
+			"company":"Gotika Auto",
+			"latitude":56.9575655,
+			"longitude":24.0717484,
+			"city":"Rīga",
+			"address":"Ūdens iela 29",
+			"name":"Gotika Auto Ūdens"
+		},
+		{
+			"id":406,
+			"company":"Gotika Auto",
+			"latitude":56.9530832,
+			"longitude":23.9818386,
+			"city":"Rīga",
+			"address":"Jūrmalas gatve 144C",
+			"name":"Gotika Auto Vībotņu"
+		},
+		{
+			"id":407,
+			"company":"Gotika Auto",
+			"latitude":56.9548403,
+			"longitude":23.6341606,
+			"city":"Jūrmala",
+			"address":"Staiceles iela 3",
+			"name":"Latimpeks Auto - Gotika"
+		},
+		{
+			"id":408,
+			"company":"Gotika Auto",
+			"latitude":57.1131629,
+			"longitude":24.6230023,
+			"city":"Inčukalna pagasts",
+			"address":"E77, Vairogi, Krustiņi",
+			"name":"Gotika Auto Vairogi"
+		},
+		{
+			"id":409,
+			"company":"Gotika Auto",
+			"latitude":56.8835998,
+			"longitude":23.9328912,
+			"city":"Jaunmārupe",
+			"address":"A5, Mazcenu aleja 20B",
+			"name":"Gotika Auto Jaunmārupe"
+		},
+		{
+			"id":410,
+			"company":"Gotika Auto",
+			"latitude":57.2055444,
+			"longitude":25.1567406,
+			"city":"Ieriķi",
+			"address":"Upkalni",
+			"name":"Gotika Auto Ieriķi"
+		},
+		{
+			"id":411,
+			"company":"Gotika Auto",
+			"latitude":57.757959,
+			"longitude":24.8692596,
+			"city":"Alojas pagasts",
+			"address":"P15, Ceļnieki",
+			"name":"Gotika Auto Ceļinieki"
+		},
+		{
+			"id":412,
+			"company":"Gotika Auto",
+			"latitude":56.481918,
+			"longitude":23.0539037,
+			"city":"Bēne",
+			"address":"Jelgavas iela 1B",
+			"name":"Gotika Auto Bēne"
+		},
+		{
+			"id":413,
+			"company":"Gotika Auto",
+			"latitude":57.1416381,
+			"longitude":27.2465584,
+			"city":"Balvi",
+			"address":"Stacijas iela 32",
+			"name":"Gotika Auto Balvi"
+		},
+		{
+			"id":414,
+			"company":"Gotika Auto",
+			"latitude":56.6471306,
+			"longitude":22.8539559,
+			"city":"Blīdenes pagasts",
+			"address":"A9, Mazblīdene",
+			"name":"Gotika Auto Mazblīdene"
+		},
+		{
+			"id":415,
+			"company":"Gotika Auto",
+			"latitude":56.5655945,
+			"longitude":23.9595523,
+			"city":"Staļģene",
+			"address":"Svirlaukas iela 8",
+			"name":"Gotika Auto Staļģene"
+		},
+		{
+			"id":416,
+			"company":"Gotika Auto",
+			"latitude":56.9240793,
+			"longitude":22.7912219,
+			"city":"Zemītes pagasts",
+			"address":"P121, Zemīte",
+			"name":"Gotika Auto Zemīte"
+		},
+		{
+			"id":417,
+			"company":"Gotika Auto",
+			"latitude":57.5170042,
+			"longitude":24.6647734,
+			"city":"Limbažu pagasts",
+			"address":"P11, Gotika",
+			"name":"Gotika Auto Limbaži"
+		},
+		{
+			"id":418,
+			"company":"Gotika Auto",
+			"latitude":57.3318075,
+			"longitude":25.6220399,
+			"city":"Rauna",
+			"address":"Parka iela 4",
+			"name":"Gotika Auto Rauna"
+		},
+		{
+			"id":419,
+			"company":"Gotika Auto",
+			"latitude":56.9697611,
+			"longitude":24.6374466,
+			"city":"Ropažu pagasts",
+			"address":"P4, Ropaži",
+			"name":"Gotika Auto Ropaži"
+		},
+		{
+			"id":420,
+			"company":"Gotika Auto",
+			"latitude":57.8981978,
+			"longitude":25.3232811,
+			"city":"Rūjiena",
+			"address":"Ganību iela 11",
+			"name":"Gotika Auto Rūjiena"
+		},
+		{
+			"id":421,
+			"company":"Gotika Auto",
+			"latitude":56.8430467,
+			"longitude":23.0405665,
+			"city":"Irlavas pagasts",
+			"address":"P104, Vaski",
+			"name":"Gotika Auto Abava"
+		},
+		{
+			"id":422,
+			"company":"Gotika Auto",
+			"latitude":57.1606126,
+			"longitude":25.6649824,
+			"city":"Taurenes pagasts",
+			"address":"P30, Nēķins",
+			"name":"Gotika Auto Taurene"
+		},
+		{
+			"id":423,
+			"company":"Gotika Auto",
+			"latitude":57.2468552,
+			"longitude":22.1719995,
+			"city":"Usmas pagasts",
+			"address":"A10, Ausmas",
+			"name":"Gotika Auto Ausmas"
+		},
+		{
+			"id":424,
+			"company":"Gotika Auto",
+			"latitude":57.0994192,
+			"longitude":24.3125779,
+			"city":"Ādaži",
+			"address":"Jaunskujiņas",
+			"name":"Gotika Auto Ādaži"
+		},
+		{
+			"id":425,
+			"company":"Gotika Auto",
+			"latitude":56.6146649,
+			"longitude":25.0331823,
+			"city":"Jumpravas pagasts",
+			"address":"Andžāni",
+			"name":"Gotika Auto Jumprava"
+		},
+		{
+			"id":426,
+			"company":"Gotika Auto",
+			"latitude":57.3975005,
+			"longitude":21.6946266,
+			"city":"Platene",
+			"address":"Tārgales pagasts",
+			"name":"DUS Gotika Auto"
+		},
+		{
+			"id":427,
+			"company":"Gotika Auto",
+			"latitude":56.7630543,
+			"longitude":25.0260424,
+			"city":"Lēdmanes pagasts",
+			"address":"Tropmači",
+			"name":"Gotika auto Lēdmane"
+		},
+		{
+			"id":428,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9485754,
+			"longitude":24.185834,
+			"city":"Rīga",
+			"address":"Jenotu iela 19",
+			"name":"LPG Deglava"
+		},
+		{
+			"id":429,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9877766,
+			"longitude":24.1210359,
+			"city":"Rīga",
+			"address":"Ganību dambis 29C",
+			"name":"LPG Ganību dambis"
+		},
+		{
+			"id":430,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9615049,
+			"longitude":24.0349803,
+			"city":"Rīga",
+			"address":"Kurzemes prospekts 15A",
+			"name":"LPG Imanta"
+		},
+		{
+			"id":431,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.928595,
+			"longitude":24.0236702,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 88B",
+			"name":"LPG Ulmaņa"
+		},
+		{
+			"id":432,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.928441,
+			"longitude":24.016607,
+			"city":"Rīga",
+			"address":"Kārļa Ulmaņa gatve 127",
+			"name":"LPG Ulmaņa 2"
+		},
+		{
+			"id":433,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.975874,
+			"longitude":24.1286387,
+			"city":"Rīga",
+			"address":"Skanstes iela 48",
+			"name":"LPG Skanstes"
+		},
+		{
+			"id":434,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9430586,
+			"longitude":24.2513609,
+			"city":"Rīga",
+			"address":"Dreiliņu gāze, Dreiliņi",
+			"name":"LPG Dreiliņi"
+		},
+		{
+			"id":435,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9224539,
+			"longitude":24.1797701,
+			"city":"Rīga",
+			"address":"Salaspils iela 6A",
+			"name":"LPG Ķengarags"
+		},
+		{
+			"id":436,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9951886,
+			"longitude":24.2618806,
+			"city":"Rīga",
+			"address":"Brīvības gatve 438E",
+			"name":"LPG Brīvības"
+		},
+		{
+			"id":437,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9809605,
+			"longitude":24.1355679,
+			"city":"Rīga",
+			"address":"Duntes iela 13",
+			"name":"LPG Duntes"
+		},
+		{
+			"id":438,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.0295094,
+			"longitude":24.1387028,
+			"city":"Rīga",
+			"address":"Mīlgrāvja iela 16B",
+			"name":"LPG Mīlgrāvja"
+		},
+		{
+			"id":439,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9208671,
+			"longitude":24.1090698,
+			"city":"Rīga",
+			"address":"Mūkusalas iela 75B",
+			"name":"LPG Mūkusalas 1"
+		},
+		{
+			"id":440,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.934796,
+			"longitude":24.1756952,
+			"city":"Rīga",
+			"address":"Piedrujas iela 24",
+			"name":"LPG Piedrujas"
+		},
+		{
+			"id":441,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9644755,
+			"longitude":24.1683377,
+			"city":"Rīga",
+			"address":"Gustava Zemgala gatve 13",
+			"name":"LPG Stārķu"
+		},
+		{
+			"id":442,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9590778,
+			"longitude":24.0687606,
+			"city":"Rīga",
+			"address":"Buļļu iela 2A",
+			"name":"LPG Buļļu"
+		},
+		{
+			"id":443,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9290463,
+			"longitude":24.1067008,
+			"city":"Rīga",
+			"address":"Mūkusalas iela 59",
+			"name":"LPG Mūkusalas 2"
+		},
+		{
+			"id":444,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9063843,
+			"longitude":24.0824832,
+			"city":"Rīga",
+			"address":"Vienības gatve 117",
+			"name":"LPG Vienības gatve"
+		},
+		{
+			"id":445,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9546316,
+			"longitude":24.0357358,
+			"city":"Rīga",
+			"address":"Kurzemes prospekts 3",
+			"name":"LPG Kurzemes"
+		},
+		{
+			"id":446,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9465622,
+			"longitude":23.9935007,
+			"city":"Rīga",
+			"address":"Platones iela 13A",
+			"name":"LPG Ulmaņa gatve"
+		},
+		{
+			"id":447,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.6135949,
+			"longitude":25.235684,
+			"city":"Aizkraukle",
+			"address":"Jaunceltnes iela 1",
+			"name":"LPG Aizkraukle"
+		},
+		{
+			"id":448,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.4032422,
+			"longitude":24.1987887,
+			"city":"Bauska",
+			"address":"Upmales iela 6",
+			"name":"LPG Bauska"
+		},
+		{
+			"id":449,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.0060677,
+			"longitude":24.2916714,
+			"city":"Berģi",
+			"address":"Rīgas-Siguldas šoseja 4A",
+			"name":"LPG Berģi 1"
+		},
+		{
+			"id":450,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.0023269,
+			"longitude":24.2852751,
+			"city":"Berģi",
+			"address":"Siguldas šoseja 7",
+			"name":"LPG Berģi 2"
+		},
+		{
+			"id":451,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.3156948,
+			"longitude":25.278566,
+			"city":"Cēsis",
+			"address":"Valmieras iela 4",
+			"name":"LPG Cēsis"
+		},
+		{
+			"id":452,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":55.8791596,
+			"longitude":26.5054479,
+			"city":"Daugavpils",
+			"address":"Cietokšņa iela 82",
+			"name":"LPG Cietokšņa"
+		},
+		{
+			"id":453,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":55.8651308,
+			"longitude":26.5016077,
+			"city":"Daugavpils",
+			"address":"Dostojevska iela 6",
+			"name":"LPG Dostojevska"
+		},
+		{
+			"id":454,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":55.8664351,
+			"longitude":26.572554,
+			"city":"Daugavpils",
+			"address":"Jelgavas iela 2",
+			"name":"LPG Daugavpils"
+		},
+		{
+			"id":455,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.1638964,
+			"longitude":26.7560887,
+			"city":"Gulbene",
+			"address":"Brīvības iela 19",
+			"name":"LPG Gulbene"
+		},
+		{
+			"id":456,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.6030744,
+			"longitude":24.2046893,
+			"city":"Iecava",
+			"address":"Rīgas iela 55C",
+			"name":"LPG Iecava"
+		},
+		{
+			"id":457,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.6527571,
+			"longitude":23.6736804,
+			"city":"Jelgava",
+			"address":"Dobeles šoseja 61",
+			"name":"LPG Jelgava"
+		},
+		{
+			"id":458,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9630358,
+			"longitude":23.7713363,
+			"city":"Jūrmala",
+			"address":"Slokas iela 46",
+			"name":"LPG Jūrmala 2"
+		},
+		{
+			"id":459,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9750258,
+			"longitude":23.8571756,
+			"city":"Jūrmala",
+			"address":"Viestura iela 21",
+			"name":"LPG Jūrmala 1"
+		},
+		{
+			"id":460,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9471238,
+			"longitude":23.6367656,
+			"city":"Jūrmala",
+			"address":"Jūrkalnes iela 6B",
+			"name":"LPG Jūrmala 3"
+		},
+		{
+			"id":461,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":55.8975846,
+			"longitude":27.1873518,
+			"city":"Krāslava",
+			"address":"Sporta iela 14",
+			"name":"LPG Krāslava"
+		},
+		{
+			"id":462,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.953255,
+			"longitude":21.9914956,
+			"city":"Kuldīga",
+			"address":"Graudu iela 19",
+			"name":"LPG Kuldīga"
+		},
+		{
+			"id":463,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.4870763,
+			"longitude":21.0180162,
+			"city":"Liepāja",
+			"address":"Airītes iela 6",
+			"name":"LPG Liepāja 2"
+		},
+		{
+			"id":464,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.5448524,
+			"longitude":21.0581352,
+			"city":"Liepāja",
+			"address":"Grīzupes iela 3",
+			"name":"LPG Liepāja 1"
+		},
+		{
+			"id":465,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.510781,
+			"longitude":24.73013,
+			"city":"Limbaži",
+			"address":"Smilšu iela 8",
+			"name":"LPG Limbaži"
+		},
+		{
+			"id":466,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.8608386,
+			"longitude":26.2287426,
+			"city":"Madona",
+			"address":"Saules iela 46",
+			"name":"LPG Madona"
+		},
+		{
+			"id":467,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.2983581,
+			"longitude":26.7083651,
+			"city":"Preiļi",
+			"address":"Rīgas iela 5",
+			"name":"LPG Preiļi"
+		},
+		{
+			"id":468,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.519636,
+			"longitude":27.3395197,
+			"city":"Rēzekne",
+			"address":"Stacijas iela 2",
+			"name":"LPG Rēzekne 1"
+		},
+		{
+			"id":469,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.5355425,
+			"longitude":27.3470921,
+			"city":"Rēzekne",
+			"address":"Atbrīvošanas aleja 167",
+			"name":"LPG Rēzekne 2"
+		},
+		{
+			"id":470,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.8566637,
+			"longitude":24.3229726,
+			"city":"Salaspils",
+			"address":"Nometņu iela 3",
+			"name":"LPG Salaspils"
+		},
+		{
+			"id":471,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.6809806,
+			"longitude":22.4731558,
+			"city":"Saldus",
+			"address":"Kuldīgas iela 84A",
+			"name":"LPG Saldus"
+		},
+		{
+			"id":472,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.2339794,
+			"longitude":22.5890314,
+			"city":"Talsi",
+			"address":"Stendes iela 8",
+			"name":"LPG Talsi"
+		},
+		{
+			"id":473,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.962539,
+			"longitude":23.1230816,
+			"city":"Tukums",
+			"address":"Kandavas iela 17",
+			"name":"LPG Tukums"
+		},
+		{
+			"id":474,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.9329575,
+			"longitude":23.2029026,
+			"city":"Tukums",
+			"address":"Valdaiši",
+			"name":"LPG Tukums Valdaiši"
+		},
+		{
+			"id":475,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.7677376,
+			"longitude":26.0114386,
+			"city":"Valka",
+			"address":"Vienības gatve 2",
+			"name":"LPG Valka"
+		},
+		{
+			"id":476,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.5294433,
+			"longitude":25.3845468,
+			"city":"Valmiera",
+			"address":"Ķeizari",
+			"name":"LPG Ķeizari"
+		},
+		{
+			"id":477,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.5188605,
+			"longitude":25.4533748,
+			"city":"Valmiera",
+			"address":"Cempu iela 12",
+			"name":"LPG Valmiera"
+		},
+		{
+			"id":478,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":56.6108582,
+			"longitude":24.5145935,
+			"city":"Vecumnieki",
+			"address":"Rīgas iela 1",
+			"name":"LPG Vecumnieki"
+		},
+		{
+			"id":479,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.3966537,
+			"longitude":21.63087,
+			"city":"Ventspils",
+			"address":"Kustes dambis 33",
+			"name":"LPG Ventspils"
+		},
+		{
+			"id":480,
+			"company":"Latvijas Propāna Gāze",
+			"latitude":57.1461262,
+			"longitude":24.8666717,
+			"city":"Sigulda",
+			"address":"Jūdažu iela 4",
+			"name":"LPG Sigulda"
+		},
+		{
+			"id":481,
+			"company":"MC",
+			"latitude":56.9922244,
+			"longitude":23.522519,
+			"city":"Lapmežciems",
+			"address":"Talsu šosejas 7/8 km",
+			"name":"MC Lapmežciems"
+		},
+		{
+			"id":482,
+			"company":"MC",
+			"latitude":57.1710945,
+			"longitude":23.2201915,
+			"city":"Engure",
+			"address":"Jūras iela 116",
+			"name":"MC Engure"
+		},
+		{
+			"id":483,
+			"company":"MC",
+			"latitude":56.9625702,
+			"longitude":23.1381168,
+			"city":"Tukums",
+			"address":"Lielā iela 38A",
+			"name":"MC Tukums"
+		},
+		{
+			"id":484,
+			"company":"MC",
+			"latitude":56.7294736,
+			"longitude":23.0112344,
+			"city":"Jaunpils",
+			"address":"Bikstu-Remtes ceļu krustojums",
+			"name":"MC Jaunpils"
+		},
+		{
+			"id":485,
+			"company":"MC",
+			"latitude":56.7414607,
+			"longitude":23.2459934,
+			"city":"Pienava",
+			"address":"Liepājas šoseja 47. km",
+			"name":"MC Pienava"
+		},
+		{
+			"id":486,
+			"company":"MC",
+			"latitude":57.348218,
+			"longitude":23.1064095,
+			"city":"Mērsrags",
+			"address":"Lielā iela 81",
+			"name":"MC Mērsrags"
+		},
+		{
+			"id":487,
+			"company":"MC",
+			"latitude":57.14478,
+			"longitude":22.5354123,
+			"city":"Stende",
+			"address":"Stacijas iela 2",
+			"name":"MC Stende"
+		},
+		{
+			"id":488,
+			"company":"MC",
+			"latitude":57.4993995,
+			"longitude":22.3539004,
+			"city":"Dundaga",
+			"address":"Talsu iela 23",
+			"name":"MC Dundaga"
+		},
+		{
+			"id":489,
+			"company":"Geksans",
+			"latitude":56.92501,
+			"longitude":24.1871975,
+			"city":"Rīga",
+			"address":"Krustpils iela 6A",
+			"name":"Geksans DUS"
+		},
+		{
+			"id":490,
+			"company":"Intergaz",
+			"latitude":56.4874132,
+			"longitude":25.8826417,
+			"city":"Jēkabpils",
+			"address":"Neretas iela 28",
+			"name":"Intergaz Jēkabpils"
+		},
+		{
+			"id":491,
+			"company":"Intergaz",
+			"latitude":56.6224312,
+			"longitude":23.447344,
+			"city":"Glūdas pagasts",
+			"address":"DUS pie a/c Jelgava-Dobele 24,5. km",
+			"name":"Lats Intergaz (Bairo) Glūdas"
+		},
+		{
+			"id":492,
+			"company":"Intergaz",
+			"latitude":56.5018133,
+			"longitude":27.3258376,
+			"city":"Rēzekne",
+			"address":"Brīvības iela 14A",
+			"name":"Intergaz Rēzekne"
+		},
+		{
+			"id":493,
+			"company":"Intergaz",
+			"latitude":56.9767519,
+			"longitude":21.951568,
+			"city":"Kuldīga",
+			"address":"Lapegļu iela 1",
+			"name":"Intergaz Kuldīga"
+		},
+		{
+			"id":494,
+			"company":"Intergaz",
+			"latitude":55.9070728,
+			"longitude":27.1795183,
+			"city":"Krāslava",
+			"address":"Vasarnieku iela 9",
+			"name":"Intergaz (IVI GĀZE)"
+		},
+		{
+			"id":495,
+			"company":"Intergaz",
+			"latitude":55.878619,
+			"longitude":26.5069435,
+			"city":"Daugavpils",
+			"address":"Cietokšņa iela 80",
+			"name":"Intergaz Cietokšņa"
+		},
+		{
+			"id":496,
+			"company":"Kool",
+			"latitude":56.9331543,
+			"longitude":24.1823656,
+			"city":"Rīga",
+			"address":"Dārzciema iela 127",
+			"name":"KOOL Dārzciema"
+		},
+		{
+			"id":497,
+			"company":"Kool",
+			"latitude":56.9605534,
+			"longitude":24.1739576,
+			"city":"Rīga",
+			"address":"Dzelzavas iela 36",
+			"name":"KOOL Dzelzavas 36"
+		},
+		{
+			"id":498,
+			"company":"Kool",
+			"latitude":56.9525744,
+			"longitude":24.2153508,
+			"city":"Rīga",
+			"address":"Dzelzavas iela 116",
+			"name":"KOOL Dzelzavas 116"
+		},
+		{
+			"id":499,
+			"company":"Kool",
+			"latitude":57.529167,
+			"longitude":25.3861331,
+			"city":"Valmiera",
+			"address":"Rīgas iela 88",
+			"name":"KOOL Valmiera"
+		},
+		{
+			"id":500,
+			"company":"Kool",
+			"latitude":56.9126557,
+			"longitude":24.3670305,
+			"city":"Saurieši",
+			"address":"Lielceļi",
+			"name":"KOOL Saurieši"
+		},
+		{
+			"id":501,
+			"company":"Kool",
+			"latitude":56.9344462,
+			"longitude":23.9168502,
+			"city":"Piņķi",
+			"address":"Vēja ziedi",
+			"name":"KOOL Piņķi"
+		},
+		{
+			"id":502,
+			"company":"Kool",
+			"latitude":57.0942569,
+			"longitude":24.3126202,
+			"city":"Ādaži",
+			"address":"Rīgas gatve 69",
+			"name":"KOOL Ādaži"
+		},
+		{
+			"id":503,
+			"company":"Kool",
+			"latitude":57.1816942,
+			"longitude":25.0295965,
+			"city":"Līgatnes pagasts",
+			"address":"Vigo, Augšlīgatne",
+			"name":"KOOL Līgatne"
+		},
+		{
+			"id":504,
+			"company":"Kool",
+			"latitude":56.6357001,
+			"longitude":23.7276395,
+			"city":"Jelgava",
+			"address":"Lietuvas šoseja 2A",
+			"name":"KOOL Jelgava 1"
+		},
+		{
+			"id":505,
+			"company":"Kool",
+			"latitude":56.955612,
+			"longitude":23.9186563,
+			"city":"Babīte",
+			"address":"Brekši, Piņķi",
+			"name":"KOOL Jūrmalas šoseja"
+		},
+		{
+			"id":506,
+			"company":"Rietumu Nafta",
+			"latitude":56.9584181,
+			"longitude":21.9900085,
+			"city":"Kuldīga",
+			"address":"Ganību iela 31",
+			"name":"Rietumu Nafta Kuldīga"
+		},
+		{
+			"id":507,
+			"company":"Rietumu Nafta",
+			"latitude":56.5336592,
+			"longitude":21.0568216,
+			"city":"Liepāja",
+			"address":"Cukura iela 1A",
+			"name":"Rietumu Nafta Liepāja"
+		},
+		{
+			"id":508,
+			"company":"Straujupīte",
+			"latitude":57.2086081,
+			"longitude":25.1708024,
+			"city":"Ieriķi",
+			"address":"Dzirnas",
+			"name":"Straujupīte Ieriķi DUS"
+		},
+		{
+			"id":509,
+			"company":"Straujupīte",
+			"latitude":57.1136187,
+			"longitude":24.6298398,
+			"city":"Inčukalna pagasts",
+			"address":"Mežvīns",
+			"name":"Straujupīte Inčukalns"
+		},
+		{
+			"id":510,
+			"company":"Straujupīte",
+			"latitude":57.5552418,
+			"longitude":25.443286,
+			"city":"Valmiera",
+			"address":"Valdeko, Valmiermuiža",
+			"name":"GUS Straujupīte, Valmiera"
+		},
+		{
+			"id":511,
+			"company":"Straujupīte",
+			"latitude":56.2107587,
+			"longitude":25.3097778,
+			"city":"Nereta",
+			"address":"Rūpniecības iela 5",
+			"name":"Straujupīte Nereta DUS"
+		},
+		{
+			"id":512,
+			"company":"Kings",
+			"latitude":56.5870405,
+			"longitude":21.1362752,
+			"city":"Kapsēde",
+			"address":"Jūras krasti, Miedzes pagasts",
+			"name":"Kings Kapsēde"
+		},
+		{
+			"id":513,
+			"company":"Kings",
+			"latitude":56.4338859,
+			"longitude":21.5901712,
+			"city":"Priekule",
+			"address":"Dižie",
+			"name":"Kings Priekule"
+		},
+		{
+			"id":514,
+			"company":"Kings",
+			"latitude":56.3600209,
+			"longitude":21.4870054,
+			"city":"Kalēti",
+			"address":"Mazieviņas",
+			"name":"Kings Kalēti"
+		},
+		{
+			"id":515,
+			"company":"Kings",
+			"latitude":56.7193225,
+			"longitude":21.5893415,
+			"city":"Aizpute",
+			"address":"Liepājas iela 30",
+			"name":"Kings Aizpute"
+		},
+		{
+			"id":516,
+			"company":"Kings",
+			"latitude":56.5901657,
+			"longitude":21.419497,
+			"city":"Durbes pagasts",
+			"address":"Jēkuļi 2, Durbes lauku teritorija",
+			"name":"Kings Jēkuļi"
+		},
+		{
+			"id":517,
+			"company":"Kings",
+			"latitude":56.5525487,
+			"longitude":21.0285025,
+			"city":"Liepāja",
+			"address":"Ģenerāļa Baloža iela 33B",
+			"name":"Kings Liepāja"
+		},
+		{
+			"id":518,
+			"company":"Ingrid-A",
+			"latitude":55.8786589,
+			"longitude":26.5221268,
+			"city":"Daugavpils",
+			"address":"Stacijas iela 48B",
+			"name":"Ingrid-A Stacijas"
+		},
+		{
+			"id":519,
+			"company":"Ingrid-A",
+			"latitude":55.8841117,
+			"longitude":26.5656593,
+			"city":"Daugavpils",
+			"address":"18. Novembra iela 203A",
+			"name":"Ingrid-A Novembra"
+		},
+		{
+			"id":520,
+			"company":"Ingrid-A",
+			"latitude":55.855281,
+			"longitude":26.5433865,
+			"city":"Daugavpils",
+			"address":"Silenes iela 1",
+			"name":"Ingrid-A Silenes"
+		},
+		{
+			"id":521,
+			"company":"Ingrid-A",
+			"latitude":55.8741676,
+			"longitude":26.5340016,
+			"city":"Daugavpils",
+			"address":"Varšavas iela 17A",
+			"name":"Ingrid-A Varšavas"
+		},
+		{
+			"id":522,
+			"company":"Ingrid-A",
+			"latitude":56.2991021,
+			"longitude":26.7085979,
+			"city":"Preiļi",
+			"address":"Rīgas iela 4A",
+			"name":"Ingrid-A Preiļi"
+		},
+		{
+			"id":523,
+			"company":"Ingrid-A",
+			"latitude":55.8951939,
+			"longitude":27.1820114,
+			"city":"Krāslava",
+			"address":"Latgales 18/20",
+			"name":"Ingrid-A Krāslava"
+		},
+		{
+			"id":524,
+			"company":"VTU Valmiera",
+			"latitude":57.519132,
+			"longitude":25.3577244,
+			"city":"Valmiera",
+			"address":"Degļi, Brandeļi",
+			"name":"VTU Valmiera DUS"
+		},
+		{
+			"id":525,
+			"company":"Virāža A",
+			"latitude":56.4952264,
+			"longitude":21.0243425,
+			"city":"Liepāja",
+			"address":"Lauku iela 59A",
+			"name":"Virāža A Liepāja"
+		},
+		{
+			"id":526,
+			"company":"Virāža A",
+			"latitude":56.6374116,
+			"longitude":23.7038132,
+			"city":"Jelgava",
+			"address":"Rūpniecības iela 77B",
+			"name":"Virāža A Jelgava 1"
+		},
+		{
+			"id":527,
+			"company":"Virāža A",
+			"latitude":56.668919,
+			"longitude":23.7614163,
+			"city":"Jelgava",
+			"address":"Rīgas iela 48A",
+			"name":"Virāža A Jelgava 2"
+		}
+	]
+}

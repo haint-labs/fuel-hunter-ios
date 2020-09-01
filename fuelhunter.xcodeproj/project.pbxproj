@@ -10,6 +10,7 @@
 		3BC9B30A2A29F3E5DB901B4B /* Pods_fuelhunterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5F516AD4B302A8D0C02462 /* Pods_fuelhunterUITests.framework */; };
 		5C07B07222A4DCA700DA3E9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */; };
 		5C07B07322A4DCA700DA3E9B /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C07B07022A4DCA700DA3E9B /* AppFonts.swift */; };
+		5C0B35CB24AD09BC00E189CE /* stacijas.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C0B35CA24AD09BB00E189CE /* stacijas.json */; };
 		5C114ACA2447315300B4B60E /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C114AC92447315300B4B60E /* UIDeviceExtension.swift */; };
 		5C114B17244B7F8600B4B60E /* SearchTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C114B15244B7F8600B4B60E /* SearchTableViewHeaderView.xib */; };
 		5C114B18244B7F8600B4B60E /* SearchTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C114B16244B7F8600B4B60E /* SearchTableViewHeaderView.swift */; };
@@ -105,6 +106,8 @@
 		5C84440422A7B508003A8752 /* InlineAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84440322A7B508003A8752 /* InlineAlertView.swift */; };
 		5C84444B22ACDF70003A8752 /* FuelListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C84444A22ACDF70003A8752 /* FuelListCell.xib */; };
 		5C84444D22ACE59D003A8752 /* FuelListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C84444C22ACE59D003A8752 /* FuelListCell.swift */; };
+		5C8B4766248FE83C0082D5EB /* TokenUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B4765248FE83C0082D5EB /* TokenUpload.swift */; };
+		5C8B477D2497FE540082D5EB /* TokenRemove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B477C2497FE540082D5EB /* TokenRemove.swift */; };
 		5C95517D22FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C95517B22FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.swift */; };
 		5C95518022FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C95517C22FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.xib */; };
 		5C95518522FEB8D100AF2D90 /* AppLanguageLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C95518322FEB8D100AF2D90 /* AppLanguageLayoutView.swift */; };
@@ -238,6 +241,7 @@
 		1E5F516AD4B302A8D0C02462 /* Pods_fuelhunterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fuelhunterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C07B06D22A4DCA700DA3E9B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C07B07022A4DCA700DA3E9B /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		5C0B35CA24AD09BB00E189CE /* stacijas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stacijas.json; sourceTree = "<group>"; };
 		5C114AC92447315300B4B60E /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		5C114B15244B7F8600B4B60E /* SearchTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTableViewHeaderView.xib; sourceTree = "<group>"; };
 		5C114B16244B7F8600B4B60E /* SearchTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewHeaderView.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 		5C84440322A7B508003A8752 /* InlineAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InlineAlertView.swift; sourceTree = "<group>"; };
 		5C84444A22ACDF70003A8752 /* FuelListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FuelListCell.xib; sourceTree = "<group>"; };
 		5C84444C22ACE59D003A8752 /* FuelListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListCell.swift; sourceTree = "<group>"; };
+		5C8B4765248FE83C0082D5EB /* TokenUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUpload.swift; sourceTree = "<group>"; };
+		5C8B477C2497FE540082D5EB /* TokenRemove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRemove.swift; sourceTree = "<group>"; };
 		5C95517B22FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTypeChooseListLayoutView.swift; sourceTree = "<group>"; };
 		5C95517C22FE8F0300AF2D90 /* FuelTypeChooseListLayoutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FuelTypeChooseListLayoutView.xib; sourceTree = "<group>"; };
 		5C95518322FEB8D100AF2D90 /* AppLanguageLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLanguageLayoutView.swift; sourceTree = "<group>"; };
@@ -655,6 +661,7 @@
 				5C2E667822DD941D00FC71AD /* Scenes */,
 				5C07B08022A4E07400DA3E9B /* CommonViews */,
 				5C11F084229EF4FC00EC7CEC /* Assets.xcassets */,
+				5C0B35CA24AD09BB00E189CE /* stacijas.json */,
 				5C11F089229EF4FC00EC7CEC /* Info.plist */,
 				5C53C2972430E2EA0059CC5A /* GoogleService-Info.plist */,
 			);
@@ -1004,6 +1011,8 @@
 				5CFAE47623B7CBDA009D4A30 /* DataDownloader.swift */,
 				5CB367F123EFEEBE003E5180 /* CompaniesDownloader.swift */,
 				5CB367F723F0013E003E5180 /* PricesDownloader.swift */,
+				5C8B4765248FE83C0082D5EB /* TokenUpload.swift */,
+				5C8B477C2497FE540082D5EB /* TokenRemove.swift */,
 				5CFAE47E23B89DC2009D4A30 /* DataDownloaderModels.swift */,
 				5CB367F323EFEF96003E5180 /* DownloaderState.swift */,
 			);
@@ -1182,6 +1191,7 @@
 				5C2E666D22DCCB2F00FC71AD /* AppAccuracyInfoTableHeaderView.xib in Resources */,
 				5C45BE0922CE29EC00FE53D6 /* FuelCompanyListCell.xib in Resources */,
 				5C84440222A7B4BD003A8752 /* InlineAlertView.xib in Resources */,
+				5C0B35CB24AD09BC00E189CE /* stacijas.json in Resources */,
 				5C2E67C422E18EB500FC71AD /* IntroPageLayoutView.xib in Resources */,
 				5CCC3903230A945A008D3512 /* MapLayoutView.xib in Resources */,
 				5CD096E224542725004DAFAE /* PushNotifSetupLayoutView.xib in Resources */,
@@ -1315,7 +1325,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ruby excel2LangFiles.rb fuelhunter_languages.xls\n";
+			shellScript = "ruby excel2LangFiles.rb fuelhunter_languages.xlsx\n";
 		};
 		6BA35858D597555804ADD600 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1404,6 +1414,7 @@
 				5CB8EC8922E98A54008EA53C /* IntroNotifSetUpWorker.swift in Sources */,
 				5CB8EC6822E96B44008EA53C /* IntroChooseFuelTypeWorker.swift in Sources */,
 				5CCC38F1230A945A008D3512 /* MapModels.swift in Sources */,
+				5C8B477D2497FE540082D5EB /* TokenRemove.swift in Sources */,
 				5CCC38F4230A945A008D3512 /* MapWorker.swift in Sources */,
 				5C8066AA22F3FDA800BD33B4 /* IntroGPSSetUpInteractor.swift in Sources */,
 				5CB9F6A922DAF02E00F47F6B /* AppSettingsWorker.swift in Sources */,
@@ -1509,6 +1520,7 @@
 				5C2E67B222DE60E500FC71AD /* IntroPageViewController.swift in Sources */,
 				5C8066A722F3FDA800BD33B4 /* IntroGPSSetUpViewController.swift in Sources */,
 				5C95518D22FED31200AF2D90 /* AppSavingsInfoLayoutView.swift in Sources */,
+				5C8B4766248FE83C0082D5EB /* TokenUpload.swift in Sources */,
 				5CF17ADB24600D7900A5B3D6 /* LoadedCityExplainPresenter.swift in Sources */,
 				5CB8EC4022E1C510008EA53C /* IntroChooseCompanyViewController.swift in Sources */,
 				5CCC3934230A9470008D3512 /* FuelListToMapViewPushTransitionAnimator.swift in Sources */,
@@ -1714,6 +1726,7 @@
 				CODE_SIGN_ENTITLEMENTS = fuelhunter/fuelhunter.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 355GY66FJT;
 				INFOPLIST_FILE = fuelhunter/Info.plist;
@@ -1737,6 +1750,7 @@
 				CODE_SIGN_ENTITLEMENTS = fuelhunter/fuelhunter.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 355GY66FJT;
 				INFOPLIST_FILE = fuelhunter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

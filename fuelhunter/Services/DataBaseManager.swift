@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import FirebaseCrashlytics
 
 protocol DataBaseManagerLogic {
 	func saveContext()
@@ -42,6 +43,7 @@ class DataBaseManager: NSObject, DataBaseManagerLogic {
 		persistentContainer = NSPersistentContainer(name: "DataBase")
 		persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
+				Crashlytics.crashlytics().record(error: error)
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
 
@@ -61,6 +63,7 @@ class DataBaseManager: NSObject, DataBaseManagerLogic {
             } catch {
                 let error = error as NSError
                 	print("error \(error)")
+                	Crashlytics.crashlytics().record(error: error)
 //                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
@@ -72,7 +75,8 @@ class DataBaseManager: NSObject, DataBaseManagerLogic {
                 try backgroundContext.save()
             } catch {
                 let error = error as NSError
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                Crashlytics.crashlytics().record(error: error)
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
     }

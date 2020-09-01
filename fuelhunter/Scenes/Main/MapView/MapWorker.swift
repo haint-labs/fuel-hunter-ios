@@ -18,23 +18,29 @@ class MapWorker {
 		var newArray = [Map.MapData.ViewModel.DisplayedMapPoint]()
 
 		let userLocation = AppSettingsWorker.shared.userLocation
+		var cheapestPrice = ""
 
 		for (_, item) in priceArray.enumerated() {
 			let allAddresses = item.addresses?.allObjects as! [AddressEntity]
-
+			
 			if let company = companiesArray.first(where: {$0.companyMetaData?.company == item.companyMetaData?.company})
 			{
 				for (subIndex, addressItem) in allAddresses.enumerated() {
 
 					var distanceInMeters: Double = -1
 
-
 					if(AppSettingsWorker.shared.getGPSIsEnabled() && userLocation != nil) {
 						let coordinate = CLLocation(latitude: addressItem.latitude, longitude: addressItem.longitude)
 						distanceInMeters = userLocation!.distance(from: coordinate);
 					}
 
-					newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id!, subId: item.id! + String(subIndex), company: company, price: item.price!, isPriceCheapest: item == priceArray.first ? true : false, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.name!, addressDescription: item.addressDescription!, distanceInMeters: Double(addressItem.distanceInMeters), distanceInMetersStraightLine: distanceInMeters, distanceEstimatedTime: addressItem.estimatedTimeInMinutes))
+
+					if cheapestPrice.isEmpty && item.price != "0" {
+						cheapestPrice = item.price!
+					}
+					
+
+					newArray.append(Map.MapData.ViewModel.DisplayedMapPoint(id: item.id!, subId: item.id! + String(subIndex), company: company, price: item.price!, dateTimestamp: item.date, isPriorityPrice: item.priority, isPriceCheapest: item.price == cheapestPrice, latitude: addressItem.latitude, longitude: addressItem.longitude, addressName: addressItem.address!, addressDescription: item.addressDescription!, distanceInMeters: Double(addressItem.distanceInMeters), distanceInMetersStraightLine: distanceInMeters, distanceEstimatedTime: addressItem.estimatedTimeInMinutes))
 				}
 			}
 		}

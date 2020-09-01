@@ -10,7 +10,7 @@ import UIKit
 import ActiveLabel
 
 protocol FuelListCellViewExtendedInfoViewDisplayLogic {
-    func updateData()
+    func updateData(dateTimestamp: Double, priceWasFromHomepage: Bool, textHidden: Bool)
 }
 
 protocol FuelListCellViewExtendedInfoViewButtonLogic: class {
@@ -65,12 +65,20 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
 
 	// MARK: FuelListCellViewExtendedInfoViewDisplayLogic
 
-	func updateData() {
+	func updateData(dateTimestamp: Double, priceWasFromHomepage: Bool, textHidden: Bool) {
+		if textHidden == true {
+			extendedDescriptionLabel.text = ""
+			return
+		}
+
+		let calendar = Calendar.current
+		let date = Date(timeIntervalSince1970: dateTimestamp)
+
 
 		let patternString = "\\s\("map_price_last_updated_homepage_name".localized())\\b"
 		var lastUpdatedString = ""
 
-		let timestamp = PricesDownloader.lastDownloadTimeStamp()
+		let timestamp = dateTimestamp//PricesDownloader.lastDownloadTimeStamp()
 
 		if timestamp == 0 {
 			lastUpdatedString = "map_price_last_was_updated_more_than_a_day_ago_text".localized()
@@ -80,22 +88,34 @@ class FuelListCellViewExtendedInfoView: UIView, FuelListCellViewExtendedInfoView
 			let minutes = diffSeconds / 60
 			let hours = diffSeconds / 3600
 
-			if hours == 1 { // Hour
-				lastUpdatedString = "map_price_was_updated_hour_ago_text".localized()
-			} else if hours >= 24 { // Too old data..
-				lastUpdatedString = "map_price_last_was_updated_more_than_a_day_ago_text".localized()
-			} else if hours > 1 { // Hours
-				lastUpdatedString = "map_price_last_was_updated_many_hours_ago_text".localized()
-				lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(hours)")
-			} else if minutes <= 1 { // Just now
-				lastUpdatedString = "map_price_last_was_updated_just_ago_text".localized()
-			} else { // Minutes (until 59
-				lastUpdatedString = "map_price_last_was_updated_many_minutes_ago_text".localized()
-				lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(minutes)")
+			if calendar.isDateInYesterday(date) {
+				let hour = calendar.component(.hour, from: date)
+				let minutes = calendar.component(.minute, from: date)
+				lastUpdatedString = "map_price_last_updated_yesterday".localized()
+				lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(hour):\(minutes)")
+			}
+			else {
+				if hours == 1 { // Hour
+					lastUpdatedString = "map_price_was_updated_hour_ago_text".localized()
+				} else if hours >= 24 { // Too old data..
+					lastUpdatedString = "map_price_last_was_updated_more_than_a_day_ago_text".localized()
+				} else if hours > 1 { // Hours
+					lastUpdatedString = "map_price_last_was_updated_many_hours_ago_text".localized()
+					lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(hours)")
+				} else if minutes <= 1 { // Just now
+					lastUpdatedString = "map_price_last_was_updated_just_ago_text".localized()
+				} else { // Minutes (until 59
+					lastUpdatedString = "map_price_last_was_updated_many_minutes_ago_text".localized()
+					lastUpdatedString = lastUpdatedString.replacingOccurrences(of: "^^^", with: "\(minutes)")
+				}
 			}
 		}
 
-		lastUpdatedString.append("\n\("map_price_was_updated_from_homepage".localized())")
+		if !priceWasFromHomepage {
+			lastUpdatedString.append("\n\("map_price_was_updated_from_waze".localized())")
+		} else {
+			lastUpdatedString.append("\n\("map_price_was_updated_from_homepage".localized())")
+		}
 
 		let customType = ActiveType.custom(pattern: patternString)
 		extendedDescriptionLabel.enabledTypes = [customType]

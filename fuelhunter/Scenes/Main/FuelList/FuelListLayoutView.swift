@@ -12,7 +12,7 @@ import SDWebImage
 protocol FuelListLayoutViewLogic: class {
 	func savingsButtonPressed()
 	func accuracyButtonPressed()
-	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType)
+	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType, forSelectedPrice price: PriceEntity)
 	func closestCityNameButtonWasPressed()
 }
 
@@ -62,7 +62,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
-		print("tableView.window \(tableView.window)")
+//		print("tableView.window \(tableView.window)")
 		tableView.layoutSubviews()
 		tableView.layoutIfNeeded()
 		adjustVisibilityOfShadowLines()
@@ -180,38 +180,35 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		   withIdentifier: "cell",
 		   for: indexPath
 		) as? FuelListCell {
-			let aData = self.data[indexPath.section][indexPath.row]
-			cell.titleLabel.text = aData.company.name
-			cell.addressesLabel.text = aData.addressDescription
-			cell.iconImageView.sd_setImage(with: URL.init(string: aData.company.logoName ?? ""), placeholderImage: UIImage.init(named: "fuel_icon_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
-//				if error != nil {
-//					print("Failed: \(error)")
-//				} else {
-//					print("Success")
-//				}
-			}
 
-			cell.priceLabel.text = aData.price
-			
-			if aData.isPriceCheapest == true {
-				cell.priceLabel.textColor = UIColor(named: "CheapPriceColor")
-			} else {
-				cell.priceLabel.textColor = UIColor(named: "TitleColor")
-			}
-			
-			cell.selectionStyle = .none
-				
-			if self.data[indexPath.section].count == 1 {
-				cell.setAsCellType(cellType: .single)
-			} else {
-				if self.data[indexPath.section].first == aData {
-					cell.setAsCellType(cellType: .top)
-				} else if self.data[indexPath.section].last == aData {
-					cell.setAsCellType(cellType: .bottom)
+			if(self.data.count-1 >= indexPath.section && self.data[indexPath.section].count-1 >= indexPath.row) {
+				let aData = self.data[indexPath.section][indexPath.row]
+				cell.titleLabel.text = aData.company.name
+				cell.addressesLabel.text = aData.addressDescription
+				cell.setImageWithName(aData.company.logoName)
+				cell.priceLabel.text = aData.price
+
+				if aData.isPriceCheapest == true {
+					cell.priceLabel.textColor = UIColor(named: "CheapPriceColor")
 				} else {
-					cell.setAsCellType(cellType: .middle)
+					cell.priceLabel.textColor = UIColor(named: "TitleColor")
+				}
+
+				cell.selectionStyle = .none
+
+				if self.data[indexPath.section].count == 1 {
+					cell.setAsCellType(cellType: .single)
+				} else {
+					if self.data[indexPath.section].first == aData {
+						cell.setAsCellType(cellType: .top)
+					} else if self.data[indexPath.section].last == aData {
+						cell.setAsCellType(cellType: .bottom)
+					} else {
+						cell.setAsCellType(cellType: .middle)
+					}
 				}
 			}
+
 			return cell
 		} else {
 			// Problem
@@ -223,8 +220,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 		let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! FuelListHeaderView
 
-		let aData = self.data[section].first!
-		header.titleLabel.text = aData.fuelType.rawValue.localized()
+		if(self.data.count-1 >= section && self.data[section].count-1 >= 0) {
+			let aData = self.data[section].first!
+			header.titleLabel.text = aData.fuelType.rawValue.localized()
+		} else {
+			header.titleLabel.text = " "
+		}
 
         return header
 	}
@@ -250,12 +251,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 				let rectInScreen = tableView.convert(rect, to: self.superview)
 				let cell = tableView.cellForRow(at: indexPath) as! FuelListCell
 
-				self.controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType)
+				self.controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType, forSelectedPrice: aData.actualPrice)
 			}
 		} else {
 			let cell = tableView.cellForRow(at: indexPath) as! FuelListCell
 
-			controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType)
+			controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType, forSelectedPrice: aData.actualPrice)
 		}
 	}
 	
@@ -279,17 +280,21 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	}
 
 	private func adjustNoDataLabelText() {
-		switch PricesDownloader.downloadingState {
-			case .downloading:
-				self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
-			case .downloaded:
-				self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
-			case .parsingError:
-				self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
-			case .serverError:
-				self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
-			case .timeout:
-				self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+		if(PricesDownloader.isAllowedToDownload() == false && PricesDownloader.shouldInitiateDownloadWhenPossible() == true) {
+			self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+		} else {
+			switch PricesDownloader.downloadingState {
+				case .downloading:
+					self.tableViewNoDataView.set(title: "no_data_label_downloading_active".localized(), loadingEnabled: true)
+				case .downloaded:
+					self.tableViewNoDataView.set(title: "no_data_label_no_data_available".localized(), loadingEnabled: false)
+				case .parsingError:
+					self.tableViewNoDataView.set(title: "no_data_label_parsing_problem".localized(), loadingEnabled: false)
+				case .serverError:
+					self.tableViewNoDataView.set(title: "no_data_label_server_error".localized(), loadingEnabled: false)
+				case .timeout:
+					self.tableViewNoDataView.set(title: "no_data_label_timeout".localized(), loadingEnabled: false)
+			}
 		}
 	}
 
@@ -306,12 +311,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int]) {
 
 //		print("data \(data)")
-//		print("insertItems \(insertItems)")
-//		print("deleteItems \(deleteItems)")
-//		print("updateItems \(updateItems)")
-//		print("insertSections \(insertSections)")
-//		print("deleteSections \(deleteSections)")
-//		print("updateSections \(updateSections)")
+		print("insertItems \(insertItems)")
+		print("deleteItems \(deleteItems)")
+		print("updateItems \(updateItems)")
+		print("insertSections \(insertSections)")
+		print("deleteSections \(deleteSections)")
+		print("updateSections \(updateSections)")
 
 		if insertItems.isEmpty && deleteItems.isEmpty && updateItems.isEmpty && insertSections.isEmpty && deleteSections.isEmpty && updateSections.isEmpty {
 			self.data = data
@@ -321,14 +326,23 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		} else {
 			self.data = data
 
+//			UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
+//				self.tableView.reloadData()
+//			}) { (success) in
+//				self.adjustVisibilityOfShadowLines()
+//			}
+
+
 			self.currentScrollPos = self.tableView.contentOffset.y
 
+//			tableView.reloadData()
+			
 			tableView.performBatchUpdates({
-				if !updateItems.isEmpty { tableView.reloadRows(at: updateItems, with: .left) }
 				if !deleteItems.isEmpty { tableView.deleteRows(at: deleteItems, with: .fade) }
 				if !insertItems.isEmpty { tableView.insertRows(at: insertItems, with: .fade) }
-				if !insertSections.isEmpty { tableView.insertSections(IndexSet(insertSections), with: .fade) }
+				if !updateItems.isEmpty { tableView.reloadRows(at: updateItems, with: .fade) }
 				if !deleteSections.isEmpty { tableView.deleteSections(IndexSet(deleteSections), with: .fade) }
+				if !insertSections.isEmpty { tableView.insertSections(IndexSet(insertSections), with: .fade) }
 				if !updateSections.isEmpty { tableView.reloadSections(IndexSet(updateSections), with: .fade) }
 
 			}) { finished in
@@ -354,9 +368,11 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	}
 
 	func updateCity(_ name: String, gpsIconVisible: Bool) {
-		closestCityNameButtonView.setCity(name: name, gpsIconVisible: gpsIconVisible)
-		tableView.tableHeaderView = closestCityNameButtonView
-		self.layoutIfNeeded()
+		let change = closestCityNameButtonView.setCity(name: name, gpsIconVisible: gpsIconVisible)
+		if change {
+			self.tableView.tableHeaderView = self.closestCityNameButtonView
+			self.layoutIfNeeded()
+		}
 	}
 
 	func resetUI() {

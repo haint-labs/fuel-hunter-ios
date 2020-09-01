@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AddressEntity" representedClassName="AddressEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="distanceInMeters" optional="YES" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="companyName" optional="YES" attributeType="String"/>
+        <attribute name="date" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="distance" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="distanceInMeters" optional="YES" attributeType="Integer 32" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="estimatedTimeInMinutes" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notEntered" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="stationName" optional="YES" attributeType="String"/>
         <relationship name="prices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PriceEntity" inverseName="addresses" inverseEntity="PriceEntity"/>
     </entity>
     <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
@@ -34,19 +40,21 @@
     </entity>
     <entity name="PriceEntity" representedClassName="PriceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="addressDescription" optional="YES" attributeType="String"/>
-        <attribute name="city" attributeType="String"/>
+        <attribute name="city" attributeType="String" defaultValueString=""/>
+        <attribute name="date" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fuelSortId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="fuelType" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="isCheapest" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="price" attributeType="String"/>
+        <attribute name="fuelType" attributeType="String" defaultValueString=""/>
+        <attribute name="id" attributeType="String" defaultValueString=""/>
+        <attribute name="notEntered" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="price" attributeType="String" defaultValueString=""/>
+        <attribute name="priority" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="prices" inverseEntity="AddressEntity"/>
         <relationship name="companyMetaData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="prices" inverseEntity="CompanyMetaDataEntity"/>
     </entity>
     <elements>
+        <element name="AddressEntity" positionX="322.59765625" positionY="108.5703125" width="128" height="238"/>
         <element name="CompanyEntity" positionX="-268.45703125" positionY="32.58984375" width="128" height="283"/>
         <element name="CompanyMetaDataEntity" positionX="-95.58984375" positionY="5.15234375" width="159.55078125" height="88"/>
-        <element name="PriceEntity" positionX="125.96484375" positionY="29.5859375" width="128" height="178"/>
-        <element name="AddressEntity" positionX="322.59765625" positionY="108.5703125" width="128" height="148"/>
+        <element name="PriceEntity" positionX="125.96484375" positionY="29.5859375" width="128" height="208"/>
     </elements>
 </model>

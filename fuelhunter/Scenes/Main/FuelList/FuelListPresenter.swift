@@ -40,11 +40,6 @@ class FuelListPresenter: FuelListPresentationLogic {
 			if !typeDDPrices.isEmpty { displayedPrices.append(typeDDPrices) }
 		}
 
-		if fuelTypesStatus.typeDDPro {
-			let typeDDProPrices = FuelListWorker.getPrices(with: .typeDDPro, from: response.fetchedPrices)
-			if !typeDDProPrices.isEmpty { displayedPrices.append(typeDDProPrices) }
-		}
-
 		if fuelTypesStatus.type95 {
 			let type95Prices = FuelListWorker.getPrices(with: .type95, from: response.fetchedPrices)
 			if !type95Prices.isEmpty { displayedPrices.append(type95Prices) }
@@ -67,7 +62,7 @@ class FuelListPresenter: FuelListPresentationLogic {
 
 	func revealMapView(response: FuelList.RevealMap.Response) {
 
-		let viewModel = FuelList.RevealMap.ViewModel(selectedCompany: response.selectedCompany, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
+		let viewModel = FuelList.RevealMap.ViewModel(selectedCompany: response.selectedCompany, selectedPrice: response.selectedPrice, selectedFuelType: response.selectedFuelType, selectedCellYPosition: response.selectedCellYPosition)
 
 		viewController?.revealMapView(viewModel: viewModel)
 	}

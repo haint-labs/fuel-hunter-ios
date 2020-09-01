@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
 
 protocol SettingsDisplayLogic: class {
   	func displaySettingsList(viewModel: Settings.SettingsList.ViewModel)

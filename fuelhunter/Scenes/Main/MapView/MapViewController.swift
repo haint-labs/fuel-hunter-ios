@@ -172,7 +172,6 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		//---
 		scrollBackgroundBottomConstraint = scrollBackgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
 		scrollBackgroundBottomConstraint.isActive = true
-		fuelCellExtendedInfoView.updateData()
 		//===
 
 		//---
@@ -202,7 +201,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 		layoutView.selectedPin(mapPoint)
 		fuelCellView.updateDataWithData(priceData: priceData, mapPointData: mapPoint, andCellType: cellType)
-		fuelCellExtendedInfoView.updateData()
+		let isEmpty = (priceData.price == "0")
+		fuelCellExtendedInfoView.updateData(dateTimestamp: priceData.dateTimestamp, priceWasFromHomepage: priceData.isPriorityPrice, textHidden: isEmpty)
 
 		var animated = true
 
@@ -218,7 +218,16 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
   	func displayData(viewModel: Map.MapData.ViewModel) {
     	self.layoutView.updateMapView(with: viewModel.mapPoints, andOffset:getMapOffset(), andRatio: 1)
-		updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: viewModel.selectedMapPoint, cellType: viewModel.cellType)
+
+    	if let selectedMapPoint = viewModel.selectedMapPoint {
+			updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: selectedMapPoint, cellType: viewModel.cellType)
+		} else {
+//			fuelCellView.isHidden = true
+			scrollView.isHidden = true
+			scrollBackgroundImageView.isHidden = true
+			let newYValue = self.router?.previousViewController?.justSelected(fuelPrice: nil)
+			self.router?.dataStore?.yLocation = newYValue!
+		}
   	}
 
   	func updateToRevealMapPoint(viewModel: Map.MapWasPressed.ViewModel) {
@@ -241,7 +250,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 
 		if layoutView.currentActivePin?.address == viewModel.mapPoint.address {
 			fuelCellView.refreshDataWithData(mapPointData: viewModel.mapPoint)
-			fuelCellExtendedInfoView.updateData()
+//			fuelCellExtendedInfoView.updateData(dateString: priceData.dateString, priceWasFromHomepage: priceData.isPriorityPrice)
+//			fuelCellExtendedInfoView.updateData()
 		}
   	}
   	

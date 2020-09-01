@@ -27,7 +27,7 @@ class IntroChooseFuelTypeInteractor: IntroChooseFuelTypeBusinessLogic, IntroChoo
 
   	func getFuelTypesListData(request: IntroChooseFuelType.FuelCells.Request) {
     	let fuelTypes = AppSettingsWorker.shared.getFuelTypeToggleStatus()
-    	let response = IntroChooseFuelType.FuelCells.Response(statusOfDD: fuelTypes.typeDD, statusOfProDD: fuelTypes.typeDDPro, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas, statusOfNextButton: fuelTypes.isAtLeastOneTypeEnabled())
+    	let response = IntroChooseFuelType.FuelCells.Response(statusOfDD: fuelTypes.typeDD, statusOf95: fuelTypes.type95, statusOf98: fuelTypes.type98, statusOfGas: fuelTypes.typeGas, statusOfNextButton: fuelTypes.isAtLeastOneTypeEnabled())
     	presenter?.presentData(response: response)
   	}
 
@@ -36,7 +36,6 @@ class IntroChooseFuelTypeInteractor: IntroChooseFuelTypeBusinessLogic, IntroChoo
   		if request.fuelType == .type95 { fuelTypes.type95 = request.state }
   		if request.fuelType == .type98 { fuelTypes.type98 = request.state }
   		if request.fuelType == .typeDD { fuelTypes.typeDD = request.state }
-  		if request.fuelType == .typeDDPro { fuelTypes.typeDDPro = request.state }
   		if request.fuelType == .typeGas { fuelTypes.typeGas = request.state }
   		AppSettingsWorker.shared.setFuelTypeToggleStatus(allFuelTypes: fuelTypes)
   		let request = IntroChooseFuelType.FuelCells.Request()

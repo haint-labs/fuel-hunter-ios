@@ -14,7 +14,7 @@ protocol IntroChooseCompanyLayoutViewLogic {
 }
 
 protocol IntroChooseCompanyLayoutViewDataLogic: class {
-	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath])
+	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], enabledCount: Int, insert: [IndexPath], delete: [IndexPath], update: [IndexPath])
 }
 
 class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITableViewDelegate, IntroChooseCompanyLayoutViewDataLogic, FuelCompanyListCellSwitchLogic {
@@ -223,7 +223,7 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 	
   	// MARK: IntroChooseCompanyLayoutViewDataLogic
 
-	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], insert: [IndexPath], delete: [IndexPath], update: [IndexPath]) {
+	func updateData(data: [IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem], enabledCount: Int, insert: [IndexPath], delete: [IndexPath], update: [IndexPath]) {
 
 		if delete.isEmpty && insert.isEmpty && update.isEmpty {
 			self.data = data
@@ -237,12 +237,20 @@ class IntroChooseCompanyLayoutView: FontChangeView, UITableViewDataSource, UITab
 				if !update.isEmpty { tableView.reloadRows(at: update, with: .fade) }
 			}) { finished in self.adjustVisibilityOfShadowLines() }
 
-			tableView.performBatchUpdates({
-				if !update.isEmpty { tableView.reloadRows(at: update, with: .none) }
-			})
+//			tableView.performBatchUpdates({
+//				if !update.isEmpty { tableView.reloadRows(at: update, with: .none) }
+//			})
 		}
 
-		self.nextButton.isEnabled = !self.data.isEmpty
+		if(enabledCount == 0) {
+			self.nextButton.isEnabled = false
+		} else {
+			if self.data.isEmpty {
+				self.nextButton.isEnabled = false
+			} else {
+				self.nextButton.isEnabled = true
+			}
+		}
 
 		if self.data.isEmpty {
 			self.tableViewNoDataView.alpha = 1

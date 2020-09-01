@@ -37,6 +37,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 	@IBOutlet var extendedBackgroundImageView: UIImageView!
 	@IBOutlet var extendedTitleLabel: UILabel!
 	@IBOutlet var extendedAddressLabel: UILabel!
+	@IBOutlet var extendedNoInfoLabel: UILabel!
 	@IBOutlet var mapInfoPriceView: MapInfoButtonView!
 	@IBOutlet var mapInfoDistanceView: MapInfoButtonView!
 
@@ -57,7 +58,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 	var priceLabelBottomConstraint: NSLayoutConstraint!
 	
 	var extendedDescriptionLabelBottomConstraint: NSLayoutConstraint!
-		
+	var extendedNoInfoLabelBottomConstraint: NSLayoutConstraint!
 	
 	// MARK: View lifecycle
 
@@ -74,6 +75,8 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 	private func setup() {
 		Bundle.main.loadNibNamed("FuelListCellView", owner: self, options: nil)
 		addSubview(baseView)
+
+		iconImageView.contentMode = .scaleAspectFit
 		baseView.frame = self.bounds
 		self.clipsToBounds = true
 		self.translatesAutoresizingMaskIntoConstraints = false
@@ -89,6 +92,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
         extendedBackgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         extendedTitleLabel.translatesAutoresizingMaskIntoConstraints = false
        	extendedAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+       	extendedNoInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         mapInfoPriceView.translatesAutoresizingMaskIntoConstraints = false
         mapInfoDistanceView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -113,7 +117,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		iconBottomConstraint = iconImageView.bottomAnchor.constraint(lessThanOrEqualTo: backgroundImageView.bottomAnchor, constant: -11)
 		iconBottomConstraint.priority = .defaultHigh
 		iconBottomConstraint.isActive = true
-
+		
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 20+33).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 		titleLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -6).isActive = true
@@ -155,7 +159,11 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		extendedAddressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 		extendedAddressLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor, constant: -4).isActive = true
 		extendedAddressLabel.topAnchor.constraint(equalTo: extendedTitleLabel.bottomAnchor, constant: 9).isActive = true
-		
+
+		extendedNoInfoLabel.topAnchor.constraint(equalTo: extendedAddressLabel.bottomAnchor, constant: 10).isActive = true
+		extendedNoInfoLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+		extendedNoInfoLabel.widthAnchor.constraint(equalTo: backgroundImageView.widthAnchor, constant: -4).isActive = true
+
 		
 		let infoSpaceLeft = UILayoutGuide()
 		self.addLayoutGuide(infoSpaceLeft)
@@ -186,6 +194,8 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 
 
 		extendedDescriptionLabelBottomConstraint = mapInfoDistanceView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
+
+		extendedNoInfoLabelBottomConstraint = extendedNoInfoLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -15)
 		//===
 		
 		titleLabel.font = Font(.medium, size: .size2).font
@@ -212,11 +222,26 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		iconImageViewHeightConstraint.isActive = true
 		iconBottomConstraint.isActive = true
 		priceLabelBottomConstraint.isActive = true
-		
+
+
 		iconImageViewTopConstraint.constant = 11
 		iconImageViewWidthConstraint.constant = 33
-		iconImageViewHeightConstraint.constant = 33
-		
+
+		self.iconBottomConstraint.constant = -11
+
+		if let image = iconImageView.image {
+			let aspect = image.size.height / image.size.width
+			iconImageViewHeightConstraint.constant = min(33, iconImageViewWidthConstraint.constant * aspect)
+
+
+//			self.iconBottomConstraint.constant = -11 - (self.iconImageViewHeightConstraint.constant - self.iconImageViewHeightConstraint.constant)
+		} else {
+			iconImageViewHeightConstraint.constant = 33
+//			self.iconBottomConstraint.constant = -11
+		}
+
+
+
 		extendedTitleLabel.alpha = 0
 		extendedAddressLabel.alpha = 0
 		mapInfoPriceView.alpha = 0
@@ -228,6 +253,7 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		priceLabel.alpha = 1
 		separatorView.alpha = 1
 		backgroundImageView.alpha = 1
+
 
 		setAsCellType(cellType: cellBgType)
     }
@@ -291,9 +317,11 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		iconImageView.fadeTransition(0.2)
 		priceLabel.fadeTransition(0.2)
 
+		extendedNoInfoLabel.text = "Diemžēl pēdējo 24 h laikā, neviens nav ievadījis cenu šajā stacijā."
 
 		titleLabel.text = priceData.company.name
 		addressesLabel.text = priceData.addressDescription
+
 
 
 		extendedAddressLabel.text = mapPointData.address
@@ -319,6 +347,12 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 
 		priceLabel.text = mapPointData.priceText
 
+		if mapPointData.priceText == "0" {
+			self.setPriceAsHidden(true)
+		} else {
+			self.setPriceAsHidden(false)
+		}
+
 		if cellBgType == .unknown {
 			setAsCellType(cellType: cellType)
 		}
@@ -343,6 +377,15 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 		} else {
 			mapInfoDistanceView.setAsType(.typeDistance, withText: "\(Int(mapPointData.distanceInMeters)) \("map_meters".localized())")
 		}
+	}
+
+	func setPriceAsHidden(_ hidden: Bool) {
+		mapInfoPriceView.isHidden = hidden
+		mapInfoDistanceView.isHidden = hidden
+
+		extendedNoInfoLabel.isHidden = !hidden
+		extendedNoInfoLabelBottomConstraint.isActive = hidden
+		extendedDescriptionLabelBottomConstraint.isActive = !hidden
 	}
 
 	// MARK: MapInfoButtonViewButtonLogic

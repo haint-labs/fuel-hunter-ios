@@ -13,6 +13,7 @@
 import UIKit
 import MapKit
 import CoreData
+import FirebaseCrashlytics
 
 protocol MapBusinessLogic {
   	func getData(request: Map.MapData.Request)
@@ -24,6 +25,7 @@ protocol MapBusinessLogic {
 protocol MapDataStore {
   	var selectedFuelType: FuelType { get set }
   	var selectedCompany: CompanyEntity? { get set }
+  	var selectedPrice: PriceEntity? { get set }
 	var yLocation: CGFloat { get set }
 }
 
@@ -33,6 +35,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
   	var worker = MapWorker()
   	var selectedFuelType: FuelType = .type95
   	var selectedCompany: CompanyEntity?
+  	var selectedPrice: PriceEntity?
 	var yLocation: CGFloat = 0
 
 	var convertedDataArray: [Map.MapData.ViewModel.DisplayedMapPoint] = []
@@ -41,6 +44,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 	var selectedDisplayedPoint: Map.MapData.ViewModel.DisplayedMapPoint?
 	var allValidCompanies: [CompanyEntity]?
 	var allValidPrices: [PriceEntity]?
+	var allValidFilteredPrices: [PriceEntity]?
 	var allAddressesWithoutDistances: [AddressEntity]?
 
 	var addressDistanceCalculatingInProgress = false
@@ -49,14 +53,14 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 
   	func getData(request: Map.MapData.Request) {
 
-		var shouldUseCheapestCompany = false
-		let cheapestCompanyFetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-		cheapestCompanyFetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
-		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(cheapestCompanyFetchRequest) {
-			if !companyObjectArray.isEmpty {
-				shouldUseCheapestCompany = companyObjectArray.first!.isEnabled
-			}
-		}
+//		var shouldUseCheapestCompany = false
+//		let cheapestCompanyFetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+//		cheapestCompanyFetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
+//		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(cheapestCompanyFetchRequest) {
+//			if !companyObjectArray.isEmpty {
+//				shouldUseCheapestCompany = companyObjectArray.first!.isEnabled
+//			}
+//		}
 
 		if request.forcedReload == true {
 			fetchedResultsController = nil
@@ -66,11 +70,12 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 			let context = DataBaseManager.shared.mainManagedObjectContext()
 			let fetchRequest: NSFetchRequest<PriceEntity> = PriceEntity.fetchRequest()
 
-			if shouldUseCheapestCompany == true {
-				fetchRequest.predicate = NSPredicate(format: "(isCheapest == %i || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType == %@", true, true, false, selectedFuelType.rawValue)
-			} else {
-				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType == %@", true, false, selectedFuelType.rawValue)
-			}
+//			if shouldUseCheapestCompany == true {
+//				fetchRequest.predicate = NSPredicate(format: "(isCheapest == %i || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType == %@", true, true, false, selectedFuelType.rawValue)
+//			} else
+//			{
+				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && (fuelType == %@ || notEntered == %i) ", true, false, selectedFuelType.rawValue, true)
+//			}
 
 			let sortPrice = NSSortDescriptor(key: "price", ascending: true)
 			fetchRequest.sortDescriptors = [sortPrice]
@@ -83,8 +88,11 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 			try fetchedResultsController.performFetch()
 
 			allValidPrices = fetchedResultsController.fetchedObjects
+
+			allValidFilteredPrices = allValidPrices?.filter( {$0.notEntered == false})
 		} catch let error {
 			// Something went wrong
+			Crashlytics.crashlytics().record(error: error)
 			print("Something went wrong. \(error)")
 		}
 
@@ -92,7 +100,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 		//--- Get usable companies
 		let context = DataBaseManager.shared.mainManagedObjectContext()
 		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == \(false)")
+//		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == \(false)")
 
 		if let onlyValidEnabledCompanies = try? context.fetch(fetchRequest) {
 			allValidCompanies = onlyValidEnabledCompanies
@@ -119,30 +127,37 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 
 		convertedDataArray = worker.createUsableDataArray(fromPricesArray: allValidPrices!, companiesArray: allValidCompanies ?? [])
 		mapPoints = createMapPoints(from: convertedDataArray)
-		let selectedMapPoint = mapPoints.first(where: {$0.company == selectedCompany}) ?? mapPoints.first
-		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
-		selectedDisplayedPoint = convertedDataArray.first(where: {$0.company == selectedCompany}) ?? convertedDataArray.first
+
+		selectedPriceObject = selectedPrice
+		
+		let selectedMapPoint = mapPoints.first(where: {$0.priceId == selectedPrice?.id}) ?? mapPoints.first
+//		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
+
+		selectedDisplayedPoint = convertedDataArray.first(where: {$0.id == selectedPrice?.id}) ?? convertedDataArray.first
 
 		var cellBackgroundType = CellBackgroundType.middle
 
 		if allValidPrices?.count == 1 {
 			cellBackgroundType = .single
 		} else {
-			if allValidPrices?.first == selectedPriceObject {
+			if allValidFilteredPrices?.first == selectedPriceObject {
 				cellBackgroundType = .top
-			} else if allValidPrices?.last == selectedPriceObject {
+			} else if allValidFilteredPrices?.last == selectedPriceObject {
 				cellBackgroundType = .bottom
 			}
 		}
-
-		let response = Map.MapData.Response(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint!, cellType: cellBackgroundType)
+		
+		let response = Map.MapData.Response(displayedPoints: convertedDataArray, mapPoints: mapPoints, selectedDisplayedPoint: selectedDisplayedPoint, selectedMapPoint: selectedMapPoint, cellType: cellBackgroundType)
 
     	presenter?.presentData(response: response)
   	}
 
   	func userPressedOnMapPin(request: Map.MapWasPressed.Request) {
 		selectedCompany = request.mapPoint.company
-		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
+//		selectedPriceObject = allValidPrices?.first(where: {$0.companyMetaData?.company == selectedCompany}) ?? allValidPrices?.first
+
+		selectedPriceObject = allValidPrices?.first(where: {$0.id == request.mapPoint.priceId}) ?? allValidPrices?.first
+
 		selectedDisplayedPoint = convertedDataArray.first(where: {$0.addressName == request.mapPoint.address}) ?? convertedDataArray.first
 
 		let mapObjects = createMapPoints(from: [selectedDisplayedPoint!])
@@ -152,9 +167,10 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 		if allValidPrices?.count == 1 {
 			cellBackgroundType = .single
 		} else {
-			if allValidPrices?.first == selectedPriceObject {
+
+			if allValidFilteredPrices?.first == selectedPriceObject {
 				cellBackgroundType = .top
-			} else if allValidPrices?.last == selectedPriceObject {
+			} else if allValidFilteredPrices?.last == selectedPriceObject {
 				cellBackgroundType = .bottom
 			}
 		}
@@ -196,20 +212,23 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
   	}
 
 	func updatMapPinFor(address: AddressEntity) {
-		let dataObject = convertedDataArray.first(where: {$0.addressName == address.name})
+		let allConvertedDataArray = worker.createUsableDataArray(fromPricesArray: allValidPrices!, companiesArray: allValidCompanies ?? [])
+		let allMapPoints = createMapPoints(from: allConvertedDataArray)
+
+		let dataObject = convertedDataArray.first(where: {$0.addressName == address.address})
 		if var dataObject = dataObject {
 			dataObject.distanceEstimatedTime = address.estimatedTimeInMinutes
 			dataObject.distanceInMeters = Double(address.distanceInMeters)
 			let mapObjects = createMapPoints(from: [dataObject])
 			if mapObjects.isEmpty == false {
 				//--- Now update convertedDataArray and MapPoints, because they might be used when user switches location (won't refetch data)
-				let index = convertedDataArray.firstIndex(where: {$0.addressName == address.name})
+				let index = convertedDataArray.firstIndex(where: {$0.addressName == address.address})
 				convertedDataArray.remove(at: index!)
 				convertedDataArray.insert(dataObject, at: index!)
 				mapPoints = createMapPoints(from: convertedDataArray)
 				//===
 
-				let response = Map.MapPinRefresh.Response(mapPoint: mapObjects.first!)
+				let response = Map.MapPinRefresh.Response(mapPoint: mapObjects.first!, mapPoints: allMapPoints)
 				presenter?.updateData(response: response)
 			}
 		}
@@ -223,7 +242,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 		}
 
 		if let tmpAllAddresses = allAddressesWithoutDistances, tmpAllAddresses.isEmpty == false {
-			let addressToCalculate = tmpAllAddresses.first(where: {$0.distanceInMeters == -1})
+			let addressToCalculate = tmpAllAddresses.first(where: {$0.distanceInMeters == -1 && $0.notEntered == false})
 			if let addressToCalculate = addressToCalculate {
 				addressDistanceCalculatingInProgress = true
 				AddressesWorker.calculateDistance(for: addressToCalculate) { [weak self] updatedAddress in
@@ -234,7 +253,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore, NSFetchedResultsC
 					
 					if updatedAddress.distanceInMeters > -1 {
 						print("startCalculatingAddress | Remove previous versions and starting again.")
-						self?.allAddressesWithoutDistances?.removeAll(where: {$0.name == addressToCalculate.name})
+						self?.allAddressesWithoutDistances?.removeAll(where: {$0.address == addressToCalculate.address})
 						self?.updatMapPinFor(address: updatedAddress)
 						self?.startCalculatingAddress()
 					}

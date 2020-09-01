@@ -16,7 +16,7 @@ protocol FuelListRoutingLogic {
 	func routeToSettings()
 	func routeToAppAccuracyInfo()
 	func routeToAppSavingsInfo()
-	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType)
+	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType, selectedPrice price: PriceEntity)
 	func revealCompanyChanges()
 	func revealCityNameExplainView()
 }
@@ -47,13 +47,14 @@ class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
   		navigateTo(source: viewController!, destination: AppSavingsInfoViewController())
 	}
 
-	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType) {
+	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType, selectedPrice price: PriceEntity) {
 
 		viewController?.navigationController?.delegate = coordinator
 		let destination = MapViewController()
 		destination.router?.previousViewController = viewController!
 		destination.router?.dataStore?.selectedCompany = company
 		destination.router?.dataStore?.selectedFuelType = fuelType
+		destination.router?.dataStore?.selectedPrice = price
 		destination.router?.dataStore?.yLocation = yLocation
 		navigateTo(source: viewController!, destination: destination)
 	}

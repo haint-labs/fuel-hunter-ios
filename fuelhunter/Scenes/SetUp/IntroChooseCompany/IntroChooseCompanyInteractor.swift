@@ -12,6 +12,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCrashlytics
 
 protocol IntroChooseCompanyBusinessLogic {
   	func getCompaniesListData(request: IntroChooseCompany.CompanyCells.Request)
@@ -52,6 +53,7 @@ class IntroChooseCompanyInteractor: NSObject, IntroChooseCompanyBusinessLogic, I
 			fetchedCompanies = fetchedResultsController.fetchedObjects
 		} catch let error {
 			// Something went wrong
+			Crashlytics.crashlytics().record(error: error)
 			print("Something went wrong. \(error)")
 		}
 
@@ -104,50 +106,51 @@ class IntroChooseCompanyInteractor: NSObject, IntroChooseCompanyBusinessLogic, I
 					// Problem
 				} else {
 					// Now we need to toggle enable status for selected company.
-					// And then check all other companies, and toggle chepest, if needed.
+					// And then check all other companies, and toggle cheapest, if needed.
 					let selectedCompany = fetchedCompanies.first!
 					selectedCompany.isEnabled = request.state
 
-					fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == \(true)")
-					fetchRequest.propertiesToFetch = ["isEnabled"]
-					let cheapestCompaniesArray = try context.fetch(fetchRequest)
-
-
-					if cheapestCompaniesArray.isEmpty {
-						// Problem
-					} else {
-						let cheapestCompany = cheapestCompaniesArray.first!
+//					fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == \(true)")
+//					fetchRequest.propertiesToFetch = ["isEnabled"]
+//					let cheapestCompaniesArray = try context.fetch(fetchRequest)
+//
+//
+//					if cheapestCompaniesArray.isEmpty {
+//						// Problem
+//					} else {
+//						let cheapestCompany = cheapestCompaniesArray.first!
 
 						// If cheapest is disabled, then we need to re-calculate all.
-						if cheapestCompany.isEnabled == false {
-							fetchRequest.predicate = NSPredicate(format: "isHidden == \(false) && isCheapestToggle == \(false)")
-							fetchRequest.propertiesToFetch = ["isEnabled"]
-							let allExceptCheapestCompaniesArray = try context.fetch(fetchRequest)
-
-							if allExceptCheapestCompaniesArray.isEmpty {
-								// Problem
-							} else {
-								var isAtLeastOneEnabled = false
-
-								for aCompany in allExceptCheapestCompaniesArray {
-									if aCompany.isEnabled == true {
-										isAtLeastOneEnabled = true
-										break
-									}
-								}
-								// If none was enabled, then set as true.
-								if isAtLeastOneEnabled == false {
-									cheapestCompany.isEnabled = true
-								}
-							}
-						}
+//						if cheapestCompany.isEnabled == false {
+//							fetchRequest.predicate = NSPredicate(format: "isHidden == \(false)")
+//							fetchRequest.propertiesToFetch = ["isEnabled"]
+//							let allExceptCheapestCompaniesArray = try context.fetch(fetchRequest)
+//
+//							if allExceptCheapestCompaniesArray.isEmpty {
+//								// Problem
+//							} else {
+//								var isAtLeastOneEnabled = false
+//
+//								for aCompany in allExceptCheapestCompaniesArray {
+//									if aCompany.isEnabled == true {
+//										isAtLeastOneEnabled = true
+//										break
+//									}
+//								}
+//								// If none was enabled, then set as true.
+//								if isAtLeastOneEnabled == false {
+//									cheapestCompany.isEnabled = true
+//								}
+//							}
+//						}
 						// else, all is good.
-					}
+//					}
 					
 					DataBaseManager.shared.saveContext()
 				}
 
 			} catch let error {
+				Crashlytics.crashlytics().record(error: error)
 				print("Something went wrong. \(error) Sentry Report!")
 			}
 		}

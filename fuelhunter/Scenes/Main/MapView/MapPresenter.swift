@@ -35,7 +35,7 @@ class MapPresenter: MapPresentationLogic {
 	}
 
 	func updateData(response: Map.MapPinRefresh.Response) {
-		let viewModel = Map.MapPinRefresh.ViewModel(mapPoint: response.mapPoint)
+		let viewModel = Map.MapPinRefresh.ViewModel(mapPoint: response.mapPoint, mapPoints: response.mapPoints)
 		viewController?.justRefreshMapPins(viewModel: viewModel)
 	}
 }

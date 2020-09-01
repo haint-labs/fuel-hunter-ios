@@ -147,6 +147,12 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 	}
 
 	private func zoomOnAllPins(animated: Bool) {
+
+		// For now, override.. because when user starts to mess with map, it sucks when it zooms out again..
+		if self.userDraggedOrZoomedMap == true { return }
+
+
+
 		if !disableMapAdjusting {
 			if self.userDraggedOrZoomedMap == true { disableMapAdjusting = true }
 
@@ -220,7 +226,24 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 	}
 
 	func refreshMapPin(with data: MapPoint) {
-		if let necessaryAccessoryView = usedAccessoryViews.first(where: {$0.address == data.address && $0.title == data.title}) {
+		let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
+		for(_, mapPoint) in actuals.enumerated() {
+		if self.mapView.view(for: mapPoint) != nil {
+				if mapPoint.address == data.address && mapPoint.title == data.title {
+					mapView.removeAnnotation(mapPoint)
+					mapView.addAnnotation(data)
+					break;
+				}
+			}
+		}
+
+		// TODO: Vēl ir tomēr case, ja izscrollē ārpus, tad neatrod to pin, ko refreshh.
+		// TODO: bija iespēja animēti uzlikt pin. varbūt to var izmantot,lai refreshotu bez animācijas, vai izdomātu interesantu animāciju.
+
+		return;
+
+		/*
+		if let necessaryAccessoryView = usedAccessoryViews.first(where: {$0.address == data.address && $0.title == data.title}), let window = necessaryAccessoryView.window {
 
 			var distance: Double = data.distanceInMeters/1000
 			distance = distance.rounded(rule: .down, scale: 1)
@@ -234,9 +257,40 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 				necessaryAccessoryView.distanceLabel.text = "\(Int(data.distanceInMeters)) \("map_meters".localized())"
 				necessaryAccessoryView.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
 			}
+			print("necessaryAccessoryView.window \(necessaryAccessoryView.window)")
 
 			necessaryAccessoryView.layoutIfNeeded()
+		} else { // In case we lost the pin.. Can happen if user drags map zooms while updating distance happens.
+			let actuals = mapView.annotations.compactMap { $0 as? MapPoint }
+
+			for(_, mapPoint) in actuals.enumerated() {
+				if let annotationView = self.mapView.view(for: mapPoint) {
+					if let mapPinAccessoryView = annotationView.viewWithTag(333) as? MapPinAccessoryView {
+						if mapPoint.address == data.address && mapPoint.title == data.title {
+							mapView.removeAnnotation(mapPoint)
+							mapView.addAnnotation(data)
+//							mapView.addAnnotation(mapPoint)
+//							var distance: Double = data.distanceInMeters/1000
+//							distance = distance.rounded(rule: .down, scale: 1)
+//
+//							if data.distanceInMeters < 0 {
+//								mapPinAccessoryView.setDistanceVisible(false)
+//							} else if distance >= 0.2 {
+//								mapPinAccessoryView.distanceLabel.text = "\(distance) \("map_kilometers".localized())"
+//								mapPinAccessoryView.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+//							} else {
+//								mapPinAccessoryView.distanceLabel.text = "\(Int(data.distanceInMeters)) \("map_meters".localized())"
+//								mapPinAccessoryView.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+//							}
+//
+//							mapPinAccessoryView.layoutIfNeeded()
+							break
+						}
+					}
+				}
+			}
 		}
+		*/
 	}
 
 	func selectedPin(_ selectedPin: MapPoint) {
@@ -313,23 +367,28 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 //				}
 			}
 
-			mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
-			mapPinAccessory.address = mapPointAnnotation.address
-			mapPinAccessory.title = mapPointAnnotation.title!
-
-//			if (distance > 3) {
-//				mapPinAccessory.setDistanceVisible(false)
-//			} else
-			if mapPointAnnotation.distanceInMeters < 0 {
-				mapPinAccessory.setDistanceVisible(false)
-			} else if distance >= 0.2 {
-				mapPinAccessory.distanceLabel.text = "\(distance) \("map_kilometers".localized())"
-				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+			if mapPointAnnotation.priceText == "0" {
+				mapPinAccessory.setAsTiny(true)
 			} else {
-				mapPinAccessory.distanceLabel.text = "\(Int(mapPointAnnotation.distanceInMeters)) \("map_meters".localized())"
-				mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
-			}
+				mapPinAccessory.setAsTiny(false)
+				mapPinAccessory.priceLabel.text = mapPointAnnotation.priceText
+				mapPinAccessory.address = mapPointAnnotation.address
+				mapPinAccessory.title = mapPointAnnotation.title!
 
+
+	//			if (distance > 3) {
+	//				mapPinAccessory.setDistanceVisible(false)
+	//			} else
+				if mapPointAnnotation.distanceInMeters < 0 {
+					mapPinAccessory.setDistanceVisible(false)
+				} else if distance >= 0.2 {
+					mapPinAccessory.distanceLabel.text = "\(distance) \("map_kilometers".localized())"
+					mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+				} else {
+					mapPinAccessory.distanceLabel.text = "\(Int(mapPointAnnotation.distanceInMeters)) \("map_meters".localized())"
+					mapPinAccessory.setDistanceVisible(AppSettingsWorker.shared.getGPSIsEnabled())
+				}
+			}
 
 			mapPinAccessory.layoutIfNeeded()
 			mapPinAccessory.tag = 333

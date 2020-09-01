@@ -39,6 +39,7 @@ enum IntroChooseCompany {
 				var toggleStatus: Bool = false
 			}
 			var displayedCompanyCellItems: [DisplayedCompanyCellItem]
+			var enabledCount: Int
 			var insert: [IndexPath]
 			var delete: [IndexPath]
 			var update: [IndexPath]

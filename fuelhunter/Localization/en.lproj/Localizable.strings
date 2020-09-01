@@ -43,7 +43,7 @@
 //=== COMPANY
 
 
-//--- FUEL 
+//--- FUEL
 "fuel_dd" = "DD | Diesel fuel";
 "fuel_dd_pro" = "DD | Pro Diesel fuel";
 "fuel_95" = "95 | Gasoline";
@@ -51,10 +51,10 @@
 "fuel_gas" = "Car Gas";
 "fuel_dd_short" = "DD";
 "fuel_dd_pro_short" = "DD Pro";
-"fuel_95_short" = " 95";
-"fuel_98_short" = " 98";
+"fuel_95_short" = "95";
+"fuel_98_short" = "98";
 "fuel_gas_short" = "Car Gas";
-//=== FUEL 
+//=== FUEL
 
 
 //--- INTRO
@@ -91,11 +91,14 @@
 "settings_about_app_description" = "How it works";
 "settings_about_app_map_title" = "Find out which petrol station has the lowest fuel price.";
 "settings_about_app_notif_title" = "Get notified when the price of fuel drops.";
-"settings_about_app_full_description" = "We currently obtain the lowest price data from the websites of the fuel companies, so for the time being this information is for information only. In addition, the website does not update this information on weekends or holidays.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\nCurrently we are getting data from companies:";
+"settings_about_app_full_description" = "We currently obtain the lowest price data from fuel companies' websites and waze, so at present this data is for information purposes only. In addition, the website does not update its information on weekends and public holidays. Waze, on the other hand, shows the prices obtained in the last 24 hours.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\nCurrently we are getting data from companies:";
 "settings_feedback_title" = "Feedback";
 "settings_feedback_description" = "Have a suggestion? Noticed a bug?\nDrop us an email!";
 "settings_feedback_email_title" = "Feedback on Fuel Hunter (iOS)";
 "settings_feedback_email_info" = "Send us your feedback, suggestions, or encountered problems. Add screenshots, if necessary, by touch and hold in text area and choose \"Insert Photo or Video\"";
+"settings_feedback_enabled_companies" = "Enabled companies";
+"settings_feedback_location_is_disabled" = "Location: off";
+"settings_feedback_location" = "Location";
 "settings_error_email_title" = "Sorry";
 "settings_error_email_description" = "You have not set up any emails (in Settings)";
 "settings_changes_title" = "Changes";
@@ -111,7 +114,7 @@
 "fuel_list_fuel_price_accuracy_button_title" = "Price Accuracy";
 "fuel_list_app_name" = "Fuel Hunter";
 "fuel_list_city_title" = "Why";
-"fuel_list_city_explain_description" = "Fuel Hunter currently only works in Latvian cities.\n\nThe application uses GPS to navigate to the city closest to you.\n\nIf GPS is off, the application will display data from the city you selected when setting Notifications.\n\nIf GPS is off, and notifications are turned off, then the application will show data only from Riga.";
+"fuel_list_city_explain_description" = "Fuel Hunter currently only works in the territory of Latvia.\n\nThe application uses GPS to determine where you are currently.\n\nIf GPS is off, the application will only show data from Riga.";
 //=== FUEL LIST
 
 
@@ -124,6 +127,7 @@
 "map_price_was_updated_from_homepage" = "The price was obtained from the website.";
 "map_price_was_updated_from_waze" = "The price was obtained from the waze.";
 "map_price_last_updated_homepage_name" = "website";
+"map_price_last_updated_yesterday" = "Price was updated yesterday, ^^^";
 "map_directions_button_title" = "Directions";
 "map_kilometers" = "km";
 "map_meters" = "m";
@@ -137,7 +141,7 @@
 
 //--- FUEL ACCURACY
 "fuel_accuracy_title" = "Price Accuracy";
-"fuel_accuracy_description" = "We currently obtain the lowest price data from the websites of the fuel companies, so for the time being this information is for information only. In addition, the website does not update this information on weekends or holidays.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\nCurrently we are getting data from companies:";
+"fuel_accuracy_description" = "We currently obtain the lowest price data from fuel companies' websites and waze, so at present this data is for information purposes only. In addition, the website does not update its information on weekends and public holidays. Waze, on the other hand, shows the prices obtained in the last 24 hours.\n\nHowever, we believe that any car rider will only benefit if they know when a fuel company will drop their fuel prices and where to find the gas station at the cheapest price.\n\nCurrently we are getting data from companies:";
 //=== FUEL ACCURACY
 
 

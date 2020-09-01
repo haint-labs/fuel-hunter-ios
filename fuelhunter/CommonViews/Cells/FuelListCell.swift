@@ -11,6 +11,7 @@ import SDWebImage
 
 protocol FuelListCellDisplayLogic {
     func setAsCellType(cellType: CellBackgroundType)
+    func setImageWithName(_ name: String?)
 }
 
 class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
@@ -28,10 +29,16 @@ class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
 	var bgViewTopAnchorConstraint: NSLayoutConstraint!
 	var iconBottomConstraint: NSLayoutConstraint!
 
+	var iconImageViewHeightConstraint: NSLayoutConstraint!
+	var iconImageViewWidthConstraint: NSLayoutConstraint!
+
 	// MARK: View lifecycle
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
+
+		iconImageView.contentMode = .scaleAspectFit
+
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -48,12 +55,17 @@ class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
 
 		iconImageView.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
 		iconImageView.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 11).isActive = true
-		iconImageView.widthAnchor.constraint(equalToConstant: 33).isActive = true
-		iconImageView.heightAnchor.constraint(equalToConstant: 33).isActive = true
+		iconImageViewWidthConstraint = iconImageView.widthAnchor.constraint(equalToConstant: 33)
+		iconImageViewHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 33)
+
+		iconImageViewWidthConstraint.isActive = true;
+		iconImageViewHeightConstraint.isActive = true;
+
+
 		iconBottomConstraint = iconImageView.bottomAnchor.constraint(lessThanOrEqualTo: backgroundImageView.bottomAnchor, constant: -11)
 		iconBottomConstraint.priority = .defaultHigh
 		iconBottomConstraint.isActive = true
-
+		
 		titleLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10).isActive = true
 		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 6).isActive = true
 		titleLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -6).isActive = true
@@ -124,6 +136,30 @@ class FuelListCell: FontChangeTableViewCell, FuelListCellDisplayLogic {
 				backgroundImageView.image = UIImage(named: "cell_bg_single")
 			default:
 				break
+		}
+	}
+
+	func setImageWithName(_ name: String?) {
+
+		self.iconImageViewHeightConstraint.constant = 33
+		self.iconBottomConstraint.constant = -11
+
+		iconImageView.sd_setImage(with: URL.init(string: name ?? ""), placeholderImage: UIImage.init(named: "fuel_icon_placeholder"), options: .retryFailed) { (image, error, cacheType, url) in
+
+			if let usedImage = image {
+				let aspect = usedImage.size.height / usedImage.size.width
+				self.iconImageViewHeightConstraint.constant = min(33, self.iconImageViewWidthConstraint.constant * aspect)
+//				self.iconBottomConstraint.constant = -11 - (self.iconImageViewHeightConstraint.constant - self.iconImageViewHeightConstraint.constant)
+			} else {
+				self.iconImageViewHeightConstraint.constant = 33
+//				self.iconBottomConstraint.constant = -11
+			}
+
+//			if error != nil {
+//				print("Failed: \(error)")
+//			} else {
+//				print("Success")
+//			}
 		}
 	}
 }

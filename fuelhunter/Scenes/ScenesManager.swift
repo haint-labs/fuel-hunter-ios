@@ -43,10 +43,12 @@ class ScenesManager: NSObject {
 			case .introPageChooseFuelType:
 				destinationVC = IntroChooseFuelTypeViewController()
 			case .introPageGPSAccessAsking:
-				// At this point, we should also try to download prices.
-				DataDownloader.shared.activateProcess()
 				destinationVC = IntroGPSSetUpViewController()
 			case .introPageNotifAccessAsking:
+				// At this point, we should also try to download prices.
+				if(AppSettingsWorker.shared.getGPSIsEnabled() == false) {
+					DataDownloader.shared.activateProcess()
+				}
 				destinationVC = IntroNotifSetUpViewController()
 			default:
 				destinationVC = FuelListViewController()

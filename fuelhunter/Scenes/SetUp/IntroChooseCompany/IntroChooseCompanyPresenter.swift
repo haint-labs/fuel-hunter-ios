@@ -26,6 +26,8 @@ class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
 
 		let language = AppSettingsWorker.shared.getCurrentLanguage()
 
+		var enabledCount = 0
+
 		for company in response.fetchedCompanies {
 			let languageString: String
 
@@ -43,10 +45,13 @@ class IntroChooseCompanyPresenter: IntroChooseCompanyPresentationLogic {
 			let title = company.name ?? ""
 			let imageName = company.logoName ?? ""
 
+			if company.isEnabled {
+				enabledCount += 1
+			}
 			array.append(IntroChooseCompany.CompanyCells.ViewModel.DisplayedCompanyCellItem(title: title, description: languageString, imageName: imageName, toggleStatus: company.isEnabled))
 		}
 
-    	let viewModel = IntroChooseCompany.CompanyCells.ViewModel(displayedCompanyCellItems: array, insert: response.insert, delete: response.delete, update: response.update)
+    	let viewModel = IntroChooseCompany.CompanyCells.ViewModel(displayedCompanyCellItems: array, enabledCount: enabledCount, insert: response.insert, delete: response.delete, update: response.update)
     	viewController?.displayListWithData(viewModel: viewModel)
   	}
 }

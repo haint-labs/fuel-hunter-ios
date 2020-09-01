@@ -43,7 +43,7 @@
 //=== COMPANY
 
 
-//--- FUEL 
+//--- FUEL
 "fuel_dd" = "DD | Dīzeļdegviela";
 "fuel_dd_pro" = "DD | Pro Dīzeļdegviela";
 "fuel_95" = "95 | Benzīns";
@@ -51,10 +51,10 @@
 "fuel_gas" = "Auto Gāze";
 "fuel_dd_short" = "DD";
 "fuel_dd_pro_short" = "DD Pro";
-"fuel_95_short" = " 95";
-"fuel_98_short" = " 98";
+"fuel_95_short" = "95";
+"fuel_98_short" = "98";
 "fuel_gas_short" = "Auto Gāze";
-//=== FUEL 
+//=== FUEL
 
 
 //--- INTRO
@@ -91,11 +91,14 @@
 "settings_about_app_description" = "Kā tas struoduo";
 "settings_about_app_map_title" = "Uzzini kurā degvielas uzpildes stacijā ir zemākā degvielas cena.";
 "settings_about_app_notif_title" = "Saņem paziņojumus kad degvielai krītas cena.";
-"settings_about_app_full_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
+"settings_about_app_full_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām un waze, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās. Savukārt no waze tiek rādītas cenas, kuras iegūtas pēdējo 24 stundu laikā.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
 "settings_feedback_title" = "Atsauksmes";
 "settings_feedback_description" = "Vai jums ir kāds ieteikums? Vai pamanījāt kļūdu? Nosūtiet mums e-pastu!";
 "settings_feedback_email_title" = "Atsauksmes par Fuel Hunter (iOS)";
 "settings_feedback_email_info" = "Sūtiet atsauksmes, ieteikumus vai radušās problēmas. Ja nepieciešams - pievienojiet ekrānuzņēmumus pieskaroties un turot teksta laukā un izvēloties \"Insert Photo or Video\"";
+"settings_feedback_enabled_companies" = "Aktivizētās kompānijas";
+"settings_feedback_location_is_disabled" = "Lokācija: izslēgta";
+"settings_feedback_location" = "Lokācija";
 "settings_error_email_title" = "Problema";
 "settings_error_email_description" = "Jūs neesat iestatījis nevienu e-pasta kontu (Iestatījumos)";
 "settings_changes_title" = "Izmaiņas";
@@ -111,7 +114,7 @@
 "fuel_list_fuel_price_accuracy_button_title" = "Cenu precizitāte";
 "fuel_list_app_name" = "Fuel Hunter";
 "fuel_list_city_title" = "Kāpēc";
-"fuel_list_city_explain_description" = "Fuel Hunter patreiz darbojas tikai Latvijas pilsētās.\n\nAplikācija izmanto GPS lai noteiktu pilsētu, kurai atrodaties vistuvāk.\n\nJa GPS ir izslēgts, tad aplikācija rādīs datus no pilsētas, kuru izvēlējāties uzstādot Paziņojumus.\n\nJa GPS un paziņojumi ir izslēgti, aplikācija rādīs datus tikai no Rīgas.";
+"fuel_list_city_explain_description" = "Fuel Hunter patreiz darbojas tikai Latvijas teritorijā.\n\nAplikācija izmanto GPS lai noteiktu kur patreiz atrodaties un rādīs lētākās atrodamās cenas 10 km rādiusā.\n\nJa GPS ir izslēgts, tad aplikācija rādīs lētākās atrodamās cenas Rīgā.";
 //=== FUEL LIST
 
 
@@ -124,6 +127,7 @@
 "map_price_was_updated_from_homepage" = "Cena tika iegūta no mājaslapas.";
 "map_price_was_updated_from_waze" = "Cena tika iegūta no waze.";
 "map_price_last_updated_homepage_name" = "mājaslapas";
+"map_price_last_updated_yesterday" = "Cena atjaunota vakar, ^^^";
 "map_directions_button_title" = "nūruodis";
 "map_kilometers" = "km";
 "map_meters" = "m";
@@ -137,7 +141,7 @@
 
 //--- FUEL ACCURACY
 "fuel_accuracy_title" = "Cenu precizitate";
-"fuel_accuracy_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
+"fuel_accuracy_description" = "Zemāko cenu datus patreiz iegūstam no degvielas kompāniju mājaslapām un waze, tādēļ patreiz šiem datiem ir tikai informatīva nozīme. Turklāt mājaslapā tā informācija netiek atjaunota brīvdienās un svētku dienās. Savukārt no waze tiek rādītas cenas, kuras iegūtas pēdējo 24 stundu laikā.\n\nTomēr, uzskatām, ka jebkurš autobraucējs būs tikai ieguvējs, ja zinās kad kādai degvielas kompānijai krītas degvielas cenas un kur atrast degvielas uzpildes staciju ar lētāko cenu.\n\nPatreiz iegūstam datus no kompānijām:";
 //=== FUEL ACCURACY
 
 

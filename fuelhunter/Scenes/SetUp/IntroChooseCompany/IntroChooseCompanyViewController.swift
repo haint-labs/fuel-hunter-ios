@@ -78,7 +78,7 @@ class IntroChooseCompanyViewController: UIViewController, IntroChooseCompanyDisp
 	// MARK: IntroChooseCompanyDisplayLogic
 	
   	func displayListWithData(viewModel: IntroChooseCompany.CompanyCells.ViewModel) {
-  		layoutView.updateData(data: viewModel.displayedCompanyCellItems, insert: viewModel.insert, delete: viewModel.delete, update: viewModel.update)
+  		layoutView.updateData(data: viewModel.displayedCompanyCellItems, enabledCount: viewModel.enabledCount, insert: viewModel.insert, delete: viewModel.delete, update: viewModel.update)
   	}
 
   	// MARK: IntroChooseCompanyLayoutViewLogic

@@ -221,9 +221,9 @@ class CompaniesChooseListLayoutView: UIView, UITableViewDataSource, UITableViewD
 				if !update.isEmpty { tableView.reloadRows(at: update, with: .fade) }
 			}) { finished in self.adjustVisibilityOfShadowLines() }
 
-			tableView.performBatchUpdates({
-				if !update.isEmpty { tableView.reloadRows(at: update, with: .none) }
-			})
+//			tableView.performBatchUpdates({
+//				if !update.isEmpty { tableView.reloadRows(at: update, with: .none) }
+//			})
 		}
 
 		if self.data.isEmpty {

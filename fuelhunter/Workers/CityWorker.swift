@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 import MapKit
 import CoreLocation
-
+import FirebaseCrashlytics
 
 struct City {
 	var name: String!
@@ -127,20 +127,53 @@ class CityWorker: NSObject {
 			return rigaCity.name!
 		}
 
-		var closestCity = rigaCity
-	  	var smallestDistance: CLLocationDistance?
+//		if AppSettingsWorker.shared.userLocation == nil {
+//			return rigaCity.name!
+//		}
 
-		if let userLocation = AppSettingsWorker.shared.userLocation {
-			for city in cities {
-				let distance = userLocation.distance(from: city.location)
-				if smallestDistance == nil || (distance - Double(city.radius)) < smallestDistance! {
-					closestCity = city
-					smallestDistance = (distance - Double(city.radius))
-				}
+		var closestCity = rigaCity.name!
+
+		let context = DataBaseManager.shared.mainManagedObjectContext()
+
+		let fetchRequest: NSFetchRequest<AddressEntity> = AddressEntity.fetchRequest()
+		let sort = NSSortDescriptor(key: "distance", ascending: true)
+		fetchRequest.sortDescriptors = [sort]
+
+		do {
+			let addresses = try context.fetch(fetchRequest)
+			if !addresses.isEmpty {
+				closestCity = addresses.first!.city!
 			}
-		}
 
-	  	return closestCity.name!
+			print("closestCity \(closestCity) distance \(addresses.first!.distance)")
+//			for city in addresses {
+//				print("city \(city.city) distance \(city.distance)")
+//			}
+
+			return closestCity;
+		} catch let error {
+			Crashlytics.crashlytics().record(error: error)
+			print("Something went wrong. \(error) Sentry Report!")
+
+			return closestCity;
+		}
+		
+
+
+//		var closestCity = rigaCity
+//	  	var smallestDistance: CLLocationDistance?
+//
+//		if let userLocation = AppSettingsWorker.shared.userLocation {
+//			for city in cities {
+//				let distance = userLocation.distance(from: city.location)
+//				if smallestDistance == nil || (distance - Double(city.radius)) < smallestDistance! {
+//					closestCity = city
+//					smallestDistance = (distance - Double(city.radius))
+//				}
+//			}
+//		}
+//
+//	  	return closestCity.name!
 	}
 
 	class func getCitiesByDistance() -> [CityAndDistance] {

@@ -14,6 +14,7 @@ import FirebaseMessaging
 import UserNotifications
 import FirebaseInstanceID
 import SDWebImage
+import FirebaseCrashlytics
 
 extension Notification.Name {
     static let applicationDidBecomeActiveFromAppSettings = Notification.Name("applicationDidBecomeActiveFromAppSettings")
@@ -71,6 +72,7 @@ class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDele
 	var notificationsAuthorisationStatus: UNAuthorizationStatus = .notDetermined
 	var languageBundle: Bundle!
 
+
 	//--- Used to get specific translation.
 	var ruLanguageBundle = Bundle(path: Bundle.main.path(forResource: "ru", ofType: "lproj")!)!
 	var lvLanguageBundle = Bundle(path: Bundle.main.path(forResource: "lv", ofType: "lproj")!)!
@@ -81,6 +83,7 @@ class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDele
 	private override init() {
 		super.init()
 
+		SDImageCache.shared.config.diskCacheExpireType = .accessDate
 		SDImageCache.shared.config.maxDiskAge = 60*60*24*365//-1
 //		SDImageCache.shared.clearDisk()
 		locationManager.delegate = self
@@ -237,7 +240,7 @@ class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDele
 				var notifEnabled = getNotifIsEnabled()
 				notifEnabled.toggle()
 				setNotifEnabled(enabled: notifEnabled)
-
+				
 				if notifEnabled == false {
 					let cityName = CityWorker.getClosestCityName()
 					self.setStoredLastGPSDetectedCityName(name: cityName)
@@ -356,24 +359,47 @@ class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDele
 
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
+		if userLocation == nil {
+			if let previousLocationEncoded = UserDefaults.standard.object(forKey: "savedLocation") as? Data {
+				let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded) as! CLLocation
+				userLocation = previousLocationDecoded
+				if let lastLocation = locations.last {
+					let distanceInMeters = previousLocationDecoded.distance(from: lastLocation)
+					print("distanceInMeters from previous stored location: \(distanceInMeters)")
+					if distanceInMeters < 40 {
+						// Distance within 40 meters of old stored distance. Doing nothing.
+						return
+					}
+				}
+
+			}
+		}
+
 		if let userLocation = userLocation, let lastLocation = locations.last {
 			let distanceInMeters = userLocation.distance(from: lastLocation)
-
-			print("distanceInMeters \(distanceInMeters)")
-
+			print("distanceInMeters from new location \(distanceInMeters)")
 			if distanceInMeters < 50 {
+				// Distance within 50 meters of previously stored distance. Doing nothing.
 				return
 			}
 		}
 
 		print("Set up user location and reset previous stored distances")
-		
-		userLocation = locations.last
 
+		if let lastLocation = locations.last {
+			userLocation = lastLocation
+			let encodedLocation = NSKeyedArchiver.archivedData(withRootObject: lastLocation)
+			UserDefaults.standard.set(encodedLocation, forKey: "savedLocation")
+		}
+
+		AddressesWorker.sortAllAddresses()
 		let currentDetected = CityWorker.getClosestCityName()
 		setStoredLastGPSDetectedCityName(name: currentDetected)
-
+		NotificationCenter.default.post(name: .cityNameUpdated, object: nil)
+		
 		AddressesWorker.resetAllAddressesDistances()
+		DataDownloader.shared.activateProcess()
+
 	}
 
 	// MARK: UNUserNotificationCenterDelegate
@@ -396,8 +422,10 @@ class AppSettingsWorker: NSObject, AppSettingsWorkerLogic, CLLocationManagerDele
 		let dataDict:[String: String] = ["token": fcmToken]
 		print("dataDict \(dataDict)")
 
+		AppSettingsWorker.shared.setPushNotifToken(fcmToken)
 		InstanceID.instanceID().instanceID { (result, error) in
 		  if let error = error {
+		  	Crashlytics.crashlytics().record(error: error)
 			print("Error fetching remote instance ID: \(error)")
 		  } else if let result = result {
 			print("Remote instance ID token: \(result.token)")

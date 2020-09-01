@@ -12,6 +12,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCrashlytics
 
 protocol AboutAppBusinessLogic {
   	func getListData(request: AboutApp.CompanyCells.Request)
@@ -30,7 +31,7 @@ class AboutAppInteractor: NSObject, AboutAppBusinessLogic, AboutAppDataStore, NS
   		if fetchedResultsController == nil {
 			let context = DataBaseManager.shared.mainManagedObjectContext()
 			let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-			fetchRequest.predicate = NSPredicate(format: "isHidden == \(false) && isCheapestToggle == %i", false)
+			fetchRequest.predicate = NSPredicate(format: "isHidden == \(false)")
 			let sort = NSSortDescriptor(key: "order", ascending: true)
 			fetchRequest.sortDescriptors = [sort]
 			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -46,6 +47,7 @@ class AboutAppInteractor: NSObject, AboutAppBusinessLogic, AboutAppDataStore, NS
 			fetchedCompanies = fetchedResultsController.fetchedObjects
 		} catch let error {
 			// Something went wrong
+			Crashlytics.crashlytics().record(error: error)
 			print("Something went wrong. \(error)")
 		}
 

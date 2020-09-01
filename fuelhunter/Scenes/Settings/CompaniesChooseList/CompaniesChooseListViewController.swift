@@ -45,9 +45,9 @@ class CompaniesChooseListViewController: UIViewController, CompaniesChooseListDi
 
   	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		if interactor?.didUserAddACompany() == true {
+//		if interactor?.didUserAddACompany() == true {
 			PricesDownloader.removeAllPricesAndCallDownloader()
-		}
+//		}
 	}
 
 	// MARK: Set up

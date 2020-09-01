@@ -12,6 +12,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCrashlytics
 
 protocol FuelListBusinessLogic {
 	func updateCityView(request: FuelList.UpdateCityView.Request)
@@ -49,19 +50,24 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 
 		var filteredArray = [String]()
 		if fuelTypesStatus.typeDD { filteredArray.append(FuelType.typeDD.rawValue) }
-		if fuelTypesStatus.typeDDPro { filteredArray.append(FuelType.typeDDPro.rawValue) }
 		if fuelTypesStatus.type95 { filteredArray.append(FuelType.type95.rawValue) }
 		if fuelTypesStatus.type98 { filteredArray.append(FuelType.type98.rawValue) }
 		if fuelTypesStatus.typeGas { filteredArray.append(FuelType.typeGas.rawValue) }
 
-		var shouldUseCheapestCompany = false
-		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
-		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
-			if !companyObjectArray.isEmpty {
-				shouldUseCheapestCompany = companyObjectArray.first!.isEnabled
-			}
-		}
+//		var shouldUseCheapestCompany = false
+//		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+//		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
+//		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
+//			if !companyObjectArray.isEmpty {
+//				shouldUseCheapestCompany = companyObjectArray.first!.isEnabled
+//			}
+//		}
+
+//		if PricesDownloader.isAllowedToDownload() {
+//
+//			print("AAA")
+//			print("BBB")
+//		}
 
 		if request.forcedReload == true {
 			fetchedResultsController = nil
@@ -71,11 +77,12 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 			let context = DataBaseManager.shared.mainManagedObjectContext()
 			let fetchRequest: NSFetchRequest<PriceEntity> = PriceEntity.fetchRequest()
 
-			if shouldUseCheapestCompany == true {
-				fetchRequest.predicate = NSPredicate(format: "((isCheapest == %i && companyMetaData != nil) || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType IN %@", true, true, false, filteredArray)
-			} else {
-				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType IN %@", true, false, filteredArray)
-			}
+//			if shouldUseCheapestCompany == true {
+//				fetchRequest.predicate = NSPredicate(format: "((isCheapest == %i && companyMetaData != nil) || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType IN %@", true, true, false, filteredArray)
+//			} else
+//			{
+				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType IN %@ && notEntered == %i", true, false, filteredArray, false)
+//			}
 
 			let sortOrder = NSSortDescriptor(key: "fuelSortId", ascending: true)
 			let sortPrice = NSSortDescriptor(key: "price", ascending: true)
@@ -90,10 +97,30 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 		do {
 			try fetchedResultsController.performFetch()
 
-			fetchedPrices = fetchedResultsController.fetchedObjects
+			print("PricesDownloader.shouldInitiateDownloadWhenPossible() === \(PricesDownloader.shouldInitiateDownloadWhenPossible())")
+
+			if PricesDownloader.shouldInitiateDownloadWhenPossible() == false {
+				fetchedPrices = fetchedResultsController.fetchedObjects
+			} else {
+				insertItems.removeAll()
+				updateItems.removeAll()
+				deleteItems.removeAll()
+				insertSections.removeAll()
+				updateSections.removeAll()
+				deleteSections.removeAll()
+			}
 		} catch let error {
 			// Something went wrong
+			Crashlytics.crashlytics().record(error: error)
 			print("Something went wrong. \(error)")
+		}
+
+		if let firstPrice = fetchedPrices?.first {
+			let allAddresses = firstPrice.addresses?.allObjects as! [AddressEntity]
+			if allAddresses.isEmpty {
+				print("For some reason (probably addresses updated.. first price does not have addresses. Reset downloader")
+				PricesDownloader.removeAllPricesAndCallDownloader()
+			}
 		}
 
 
@@ -108,14 +135,14 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 	}
 
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request) {
-		let response = FuelList.RevealMap.Response(selectedCompany: request.selectedCompany, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
+		let response = FuelList.RevealMap.Response(selectedCompany: request.selectedCompany, selectedPrice: request.selectedPrice, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
 
 		self.presenter?.revealMapView(response: response)
 	}
 
 	func checkIfThereAreCompanyChangesToPresent() -> Bool {
 		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i && shouldPopUpToUser == %i", false, true)
+		fetchRequest.predicate = NSPredicate(format: "shouldPopUpToUser == %i", true)
 		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
 
 			if !companyObjectArray.isEmpty {

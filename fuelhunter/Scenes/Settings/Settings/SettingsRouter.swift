@@ -12,6 +12,9 @@
 
 import UIKit
 import MessageUI
+import CoreData
+import FirebaseCrashlytics
+import CoreLocation
 
 protocol SettingsRoutingLogic {
   	func routeToCompanyChooseScene()
@@ -60,14 +63,51 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMai
 	func presentMailForm() {
 		if MFMailComposeViewController.canSendMail() {
 			let mail = MFMailComposeViewController()
+
+			if let lastDownloadTimestamp = UserDefaults.standard.data(forKey: "lastDownloadedPricesData") {
+				mail.addAttachmentData(lastDownloadTimestamp, mimeType: "application/json", fileName: "lastDownloadedPricesData")
+			}
+
+			let companyFetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
+			companyFetchRequest.predicate = NSPredicate(format: "isEnabled == YES")
+			var enabledCompaniesArray: [String] = []
+
+			do {
+				let existingCompanyList = try DataBaseManager.shared.mainManagedObjectContext().fetch(companyFetchRequest)
+
+				if !existingCompanyList.isEmpty {
+					for company in existingCompanyList {
+						enabledCompaniesArray.append("\(company.name ?? "Unnamed company")")
+					}
+				}
+
+			} catch let error {
+				print("error \(error)")
+				Crashlytics.crashlytics().record(error: error)
+			}
+
+			var locationString = ""
+
+			if !AppSettingsWorker.shared.getGPSIsEnabled() {
+				locationString = "settings_feedback_location_is_disabled".localized()
+			} else if let previousLocationEncoded = UserDefaults.standard.object(forKey: "savedLocation") as? Data {
+				let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded) as! CLLocation
+				locationString = "\("settings_feedback_location".localized()): \(previousLocationDecoded.coordinate.latitude), \(previousLocationDecoded.coordinate.longitude)"
+
+			}
+
+
 			mail.mailComposeDelegate = self
 			mail.setToRecipients(["fuelhunterlatvia@gmail.com"])
 			mail.setSubject("settings_feedback_email_title".localized())
 			mail.setMessageBody("""
 				\("settings_feedback_email_info".localized()).
 				<br><br><br><br><br><br><br><br><br>\(UIDevice.deviceDescription)
+				<br><br>\("settings_feedback_enabled_companies".localized()): \(enabledCompaniesArray)
+				<br> \(locationString)
 				""", isHTML: true)
 
+			
 			viewController!.present(mail, animated: true) { }
 		} else {
 			let alert = UIAlertController(title: "settings_error_email_title".localized(), message: "settings_error_email_description".localized(), preferredStyle: .alert)

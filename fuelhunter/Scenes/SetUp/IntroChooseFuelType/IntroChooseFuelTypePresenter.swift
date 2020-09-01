@@ -24,7 +24,6 @@ class IntroChooseFuelTypePresenter: IntroChooseFuelTypePresentationLogic {
   	func presentData(response: IntroChooseFuelType.FuelCells.Response) {
     	let array =  [
 			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .typeDD, title: "fuel_dd", toggleStatus: response.statusOfDD),
-			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .typeDDPro, title: "fuel_dd_pro", toggleStatus: response.statusOfProDD),
 			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .type95, title: "fuel_95", toggleStatus: response.statusOf95),
 			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .type98, title: "fuel_98", toggleStatus: response.statusOf98),
 			IntroChooseFuelType.FuelCells.ViewModel.DisplayedFuelCellItem(fuelType: .typeGas, title: "fuel_gas", toggleStatus: response.statusOfGas)

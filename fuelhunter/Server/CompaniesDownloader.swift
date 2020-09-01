@@ -192,6 +192,10 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 //				UserDefaults.standard.synchronize()
 //			}
 
+			string = "http://162.243.16.251/companies_new.json"
+
+//			string = "http://www.mocky.io/v2/5ec3d08e300000e4b039c434"
+			
 			print("url string \(string)")
 			
 			let sessionConfig = URLSessionConfiguration.default
@@ -238,48 +242,48 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 
 							let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 
-							let cheapestCompany: CompanyEntity!
+//							let cheapestCompany: CompanyEntity!
 
-							//--- Add (if needed) cheapest
-							fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
-							let companyObjectArray = try backgroundContext.fetch(fetchRequest)
-							if companyObjectArray.isEmpty {
-								cheapestCompany = CompanyEntity.init(context: backgroundContext)
-								cheapestCompany.isCheapestToggle = true
-								cheapestCompany.order = 0
-								cheapestCompany.isEnabled = true
-								cheapestCompany.isHidden = false
-							} else {
-								cheapestCompany = companyObjectArray.first
-							}
+//							//--- Add (if needed) cheapest
+//							fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", true)
+//							let companyObjectArray = try backgroundContext.fetch(fetchRequest)
+//							if companyObjectArray.isEmpty {
+//								cheapestCompany = CompanyEntity.init(context: backgroundContext)
+//								cheapestCompany.isCheapestToggle = true
+//								cheapestCompany.order = 0
+//								cheapestCompany.isEnabled = true
+//								cheapestCompany.isHidden = false
+//							} else {
+//								cheapestCompany = companyObjectArray.first
+//							}
 
 							// If we update it here, then at one point, if we change translations, it will be updated.
-							let cheapestCompanyTitle = "company_type_cheapest_title"
-							let cheapestCompanyDescriptionLV = "company_type_cheapest_description".localizedToLV()
-							let cheapestCompanyDescriptionEN = "company_type_cheapest_description".localizedToEN()
-							let cheapestCompanyDescriptionRU = "company_type_cheapest_description".localizedToRU()
-							let cheapestCompanyDescriptionLG = "company_type_cheapest_description".localizedToLG()
+//							let cheapestCompanyTitle = "company_type_cheapest_title"
+//							let cheapestCompanyDescriptionLV = "company_type_cheapest_description".localizedToLV()
+//							let cheapestCompanyDescriptionEN = "company_type_cheapest_description".localizedToEN()
+//							let cheapestCompanyDescriptionRU = "company_type_cheapest_description".localizedToRU()
+//							let cheapestCompanyDescriptionLG = "company_type_cheapest_description".localizedToLG()
 
-							if cheapestCompany.name != cheapestCompanyTitle {
-								cheapestCompany.name = cheapestCompanyTitle
-							}
-							if cheapestCompany.descriptionLV != cheapestCompanyDescriptionLV {
-								cheapestCompany.descriptionLV = cheapestCompanyDescriptionLV
-							}
-							if cheapestCompany.descriptionEN != cheapestCompanyDescriptionEN {
-								cheapestCompany.descriptionEN = cheapestCompanyDescriptionEN
-							}
-							if cheapestCompany.descriptionRU != cheapestCompanyDescriptionRU {
-								cheapestCompany.descriptionRU = cheapestCompanyDescriptionRU
-							}
-							if cheapestCompany.descriptionLG != cheapestCompanyDescriptionLG {
-								cheapestCompany.descriptionLG = cheapestCompanyDescriptionLG
-							}
+//							if cheapestCompany.name != cheapestCompanyTitle {
+//								cheapestCompany.name = cheapestCompanyTitle
+//							}
+//							if cheapestCompany.descriptionLV != cheapestCompanyDescriptionLV {
+//								cheapestCompany.descriptionLV = cheapestCompanyDescriptionLV
+//							}
+//							if cheapestCompany.descriptionEN != cheapestCompanyDescriptionEN {
+//								cheapestCompany.descriptionEN = cheapestCompanyDescriptionEN
+//							}
+//							if cheapestCompany.descriptionRU != cheapestCompanyDescriptionRU {
+//								cheapestCompany.descriptionRU = cheapestCompanyDescriptionRU
+//							}
+//							if cheapestCompany.descriptionLG != cheapestCompanyDescriptionLG {
+//								cheapestCompany.descriptionLG = cheapestCompanyDescriptionLG
+//							}
 							//===
 
 
 							//--- Fetch old companies
-							fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", false)
+//							fetchRequest.predicate = NSPredicate(format: "isCheapestToggle == %i", false)
 							var oldCompanies = try backgroundContext.fetch(fetchRequest)
 							let oldCompanyCount = oldCompanies.count
 							print("oldCompanyCount \(oldCompanyCount)")
@@ -289,9 +293,9 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 
 								let key = UIScreen.main.scale == 3 ? "3x" : "2x"
 
-								var atLeastOneNewCompanyIsEnabled = false
+//								var atLeastOneNewCompanyIsEnabled = false
 
-								var atLeastOneNewCompanyIsAdded = false
+//								var atLeastOneNewCompanyIsAdded = false
 
 								//--- Update or enable existing companies
 								for company in decodedResults.companies {
@@ -307,6 +311,7 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 									if companyObjectArray.isEmpty {
 										companyObject = CompanyEntity.init(context: backgroundContext)
 										companyObject.name = company.name
+										companyObject.isEnabled = false
 
 										companyMetaDataObject = CompanyMetaDataEntity.init(context: backgroundContext)
 										companyMetaDataObject.company = companyObject
@@ -320,11 +325,11 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 										}
 									}
 
-									if companyObject.isEnabled {
-										atLeastOneNewCompanyIsEnabled = true
-									}
-
-									atLeastOneNewCompanyIsAdded = true
+//									if companyObject.isEnabled {
+//										atLeastOneNewCompanyIsEnabled = true
+//									}
+//
+//									atLeastOneNewCompanyIsAdded = true
 
 									// If downloaded company.hidden is different than saved state
 									// Then we change state, but also enable pop up value.
@@ -344,26 +349,28 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 										}
 									}
 
-									if let description = company.description {
-										if companyObject.descriptionLV != description["lv"] {
-											companyObject.descriptionLV = description["lv"]
-										}
+//									if let description = company.description {
+//										if companyObject.descriptionLV != description["lv"] {
+//											companyObject.descriptionLV = description["lv"]
+//										}
+//
+//										if companyObject.descriptionRU != description["ru"] {
+//											companyObject.descriptionRU = description["ru"]
+//										}
+//
+//										if companyObject.descriptionEN != description["en"] {
+//											companyObject.descriptionEN = description["en"]
+//										}
+//
+//										if companyObject.descriptionLG != description["lg"] {
+//											companyObject.descriptionLG = description["lg"]
+//										}
+//									}
 
-										if companyObject.descriptionRU != description["ru"] {
-											companyObject.descriptionRU = description["ru"]
+									if let homepage = company.homepage {
+										if companyObject.homePage != homepage {
+											companyObject.homePage = homepage
 										}
-
-										if companyObject.descriptionEN != description["en"] {
-											companyObject.descriptionEN = description["en"]
-										}
-
-										if companyObject.descriptionLG != description["lg"] {
-											companyObject.descriptionLG = description["lg"]
-										}
-									}
-
-									if companyObject.homePage != company.homepage {
-										companyObject.homePage = company.homepage
 									}
 
 									if companyObject.order != Int16(company.order) {
@@ -388,16 +395,16 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 									//===
 								}
 
-								// We have possibly new company set..
-								// If cheapest company is disabled, we need to enable it, if no other is enabled
-								if cheapestCompany.isEnabled == false && atLeastOneNewCompanyIsEnabled == false {
-									cheapestCompany.isEnabled = true
-								}
-
-//								 If there are no companies, then we don't show this one either.
-								if cheapestCompany.isHidden != !atLeastOneNewCompanyIsAdded {
-									cheapestCompany.isHidden = !atLeastOneNewCompanyIsAdded
-								}
+//								// We have possibly new company set..
+//								// If cheapest company is disabled, we need to enable it, if no other is enabled
+//								if cheapestCompany.isEnabled == false && atLeastOneNewCompanyIsEnabled == false {
+//									cheapestCompany.isEnabled = true
+//								}
+//
+////								 If there are no companies, then we don't show this one either.
+//								if cheapestCompany.isHidden != !atLeastOneNewCompanyIsAdded {
+//									cheapestCompany.isHidden = !atLeastOneNewCompanyIsAdded
+//								}
 
 								//--- oldCompanies should contain only those, that were not downloaded anymore.
 								for oldCompany in oldCompanies {
@@ -428,7 +435,8 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 						} catch let error {
 							// Something went wrong
 							print("Companies - Something went wrong. Reseting. \(error)")
-							Analytics.logEvent("downloading - companies", parameters: ["Error": "error \(error.localizedDescription)"])
+							Crashlytics.crashlytics().record(error: error)
+//							Analytics.logEvent("downloading - companies", parameters: ["Error": "error \(error.localizedDescription)"])
 							CompaniesDownloader.resetLastDownloadTime()
 							CompaniesDownloader.lastDownloadResult = .parsingError
 						}

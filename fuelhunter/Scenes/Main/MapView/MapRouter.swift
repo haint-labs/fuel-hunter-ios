@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MapReturnUpdateDataLogic: class {
-  	func justSelected(fuelPrice: PriceEntity) -> CGFloat
+  	func justSelected(fuelPrice: PriceEntity?) -> CGFloat
 }
 
 @objc protocol MapRoutingLogic {

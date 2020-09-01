@@ -53,7 +53,7 @@ enum Map {
 			var displayedPoints: [MapData.ViewModel.DisplayedMapPoint]
 			var mapPoints: [MapPoint]
 			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
-			var selectedMapPoint: MapPoint
+			var selectedMapPoint: MapPoint?
 			var cellType: CellBackgroundType
 		}
 		struct ViewModel {
@@ -62,6 +62,8 @@ enum Map {
 				var subId: String // this is the sub-ID -  which is id + address
 				var company: CompanyEntity
 				var price: String
+				var dateTimestamp: Double
+				var isPriorityPrice: Bool
 				var isPriceCheapest: Bool
 				var latitude: Double
 				var longitude: Double
@@ -75,7 +77,7 @@ enum Map {
 			var displayedPoints: [DisplayedMapPoint]
 			var mapPoints: [MapPoint]
 			var selectedDisplayedPoint: MapData.ViewModel.DisplayedMapPoint?
-			var selectedMapPoint: MapPoint
+			var selectedMapPoint: MapPoint?
 			var cellType: CellBackgroundType
 		}
   	}
@@ -85,9 +87,11 @@ enum Map {
 		}
 		struct Response {
 			var mapPoint: MapPoint
+			var mapPoints: [MapPoint]
 		}
 		struct ViewModel {
 			var mapPoint: MapPoint
+			var mapPoints: [MapPoint]
 		}
   	}
 }

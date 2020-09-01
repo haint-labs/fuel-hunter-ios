@@ -13,6 +13,8 @@ import UIKit
 
 protocol DataDownloaderLogic {
 	func activateProcess()
+	func activateToken()
+	func removeToken()
 }
 
 class DataDownloader: NSObject, DataDownloaderLogic {
@@ -21,12 +23,16 @@ class DataDownloader: NSObject, DataDownloaderLogic {
 
 	public var companiesDownloader: CompaniesDownloader!
 	public var pricesDownloader: PricesDownloader!
+	public var tokenUpload: TokenUpload!
+	public var tokenRemove: TokenRemove!
 
 	private override init() {
 		super.init()
 
 		companiesDownloader = CompaniesDownloader()
 		pricesDownloader = PricesDownloader()
+		tokenUpload = TokenUpload()
+		tokenRemove = TokenRemove()
 
 //		companiesDownloader.resetLastDownloadTime()
 //		pricesDownloader.resetLastDownloadTime()
@@ -42,7 +48,21 @@ class DataDownloader: NSObject, DataDownloaderLogic {
 
 	// MARK: DataDownloaderLogic
 
+	func activateToken() {
+		TokenUpload.resetLastSuccessTime()
+		self.tokenUpload.work { }
+	}
+
+	func removeToken() {
+		TokenRemove.resetLastSuccessTime()
+		self.tokenRemove.work { }
+	}
+
 	func activateProcess() {
+		
+		if(AppSettingsWorker.shared.getGPSIsEnabled() && AppSettingsWorker.shared.userLocation == nil) {
+			print("missing user location. Skip for now");
+		}
 
 		if DataDownloader.shared.downloaderIsActive
 		{
@@ -84,6 +104,10 @@ class DataDownloader: NSObject, DataDownloaderLogic {
 							// Report to Sentry
 						} else {
 							print("All done!")
+							print("Well.. do some token stuff")
+							self.tokenUpload.work {
+								self.tokenRemove.work { }
+							}
 						}
 					}
 				}
@@ -115,12 +139,20 @@ class DataDownloader: NSObject, DataDownloaderLogic {
 							}
 							else {
 								print("All done!")
+								print("Well.. do some token stuff")
+								self.tokenUpload.work {
+									self.tokenRemove.work { }
+								}
 							}
 						}
 					}
 				}
 			} else {
 				print("PricesDownloader.isAllowedToDownload() == false! ");
+				print("Well.. do some token stuff")
+				self.tokenUpload.work {
+					self.tokenRemove.work { }
+				}
 			}
 		}
 	}

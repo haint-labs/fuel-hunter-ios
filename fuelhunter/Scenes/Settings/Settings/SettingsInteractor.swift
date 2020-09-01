@@ -12,7 +12,7 @@
 
 import UIKit
 import CoreData
-
+import FirebaseCrashlytics
 protocol SettingsBusinessLogic {
   	func getSettingsCellsData(request: Settings.SettingsList.Request)
   	func userPressedOnNotifSwitch()
@@ -51,6 +51,7 @@ class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NS
 			fetchedCompanies = fetchedResultsController.fetchedObjects
 		} catch let error {
 			// Something went wrong
+			Crashlytics.crashlytics().record(error: error)
 			print("Something went wrong. \(error)")
 		}
 
@@ -75,10 +76,10 @@ class SettingsInteractor: NSObject, SettingsBusinessLogic, SettingsDataStore, NS
 					let storedCentsCount = AppSettingsWorker.shared.getStoredNotifCentsCount()
 					let response = Settings.PushNotif.Response(storedNotifCentsCount: storedCentsCount)
 					self?.presenter?.showNotifSetUp(response: response)
-				// We disabled, so simply reload table view.
-				} else {
+				} else { // We disabled, so simply reload table view.
 					let request = Settings.SettingsList.Request()
 					self?.getSettingsCellsData(request: request)
+					DataDownloader.shared.removeToken()
 				}
 			} else {
 				// This case it will always return as disabled, and so we only have to open settings and reload table view (to show it turned off if it was on.)

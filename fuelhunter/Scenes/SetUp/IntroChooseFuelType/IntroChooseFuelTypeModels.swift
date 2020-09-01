@@ -24,7 +24,6 @@ enum IntroChooseFuelType {
 		}
 		struct Response {
 			var statusOfDD: Bool
-			var statusOfProDD: Bool
 			var statusOf95: Bool
 			var statusOf98: Bool
 			var statusOfGas: Bool

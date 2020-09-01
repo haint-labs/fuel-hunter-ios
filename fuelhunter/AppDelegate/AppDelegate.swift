@@ -9,6 +9,8 @@
 import UIKit
 import SDWebImage
 import Firebase
+import FirebaseCrashlytics
+
 import CoreData
 import FHClient
 import GRPC
@@ -24,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 
 		FirebaseApp.configure()
+		Crashlytics.crashlytics()
 
 		application.registerForRemoteNotifications()
 
@@ -36,27 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		ScenesManager.shared.setRootViewController(animated: false)
 
 
+		AddressesWorker.readAllAddressesFromFile()
+
 		_ = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(downloaderTestTimer), userInfo: nil, repeats: true)
 
+//		PricesDownloader.resetLastDownloadTime()
 
-//		let group = PlatformSupport.makeEventLoopGroup(loopCount: 1)
-//		let channel = ClientConnection
-//			.insecure(group: group)
-//			.connect(host: "162.243.16.251", port: 50051)
-//		let client = SnapshotServiceClient(channel: channel)
-//		let query = SnapshotQuery.with { _ in }
-//
-//		do {
-//			let response = try client.getSnapshots(query)
-//				.response
-//				.wait()
-//			response.snapshots.forEach { print("printing snapshots \($0)") }
-//			print(response.snapshots.count)
-//		} catch {
-//			print("caught: \(error)")
-////			fatalError()
-//		}
-
+		if PricesDownloader.shouldInitiateDownloadWhenPossible() {
+			PricesDownloader.removeAllPricesAndCallDownloader()
+		}
 
 		return true
 	}
@@ -71,8 +62,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
+		
 		Font.recalculateFontIncreaseSize()
+
+		if PricesDownloader.shouldInitiateDownloadWhenPossible() {
+			PricesDownloader.removeAllPricesAndCallDownloader()
+		}
+
 		DataDownloader.shared.activateProcess()
+
+		AddressesWorker.debugStuff()
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
@@ -85,18 +84,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //		CompaniesDownloader.resetLastDownloadTime()
 //		PricesDownloader.resetLastDownloadTime()
+
 		DataDownloader.shared.activateProcess()
 	}
 
 	// MARK: Token
 
 	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-		AppSettingsWorker.shared.setPushNotifToken(deviceTokenString)
-		print(deviceTokenString)
+//		let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+//		AppSettingsWorker.shared.setPushNotifToken(deviceTokenString)
+//		print(deviceTokenString)
 	}
 	
 	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 	    print("i am not available in simulator \(error)")
+	    Crashlytics.crashlytics().record(error: error)
 	}
 }

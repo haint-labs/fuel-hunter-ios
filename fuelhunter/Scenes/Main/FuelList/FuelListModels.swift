@@ -32,16 +32,19 @@ enum FuelList {
 	enum RevealMap {
 		struct Request {
 			var selectedCompany: CompanyEntity
+			var selectedPrice: PriceEntity
 			var selectedFuelType: FuelType
 			var selectedCellYPosition: CGFloat
 		}
 		struct Response {
 			var selectedCompany: CompanyEntity
+			var selectedPrice: PriceEntity
 			var selectedFuelType: FuelType
 			var selectedCellYPosition: CGFloat
 		}
 		struct ViewModel {
 			var selectedCompany: CompanyEntity
+			var selectedPrice: PriceEntity
 			var selectedFuelType: FuelType
 			var selectedCellYPosition: CGFloat
 		}
@@ -63,7 +66,9 @@ enum FuelList {
 			struct DisplayedPrice: Equatable {
 				var id: String
 				var company: CompanyEntity
+				var actualPrice: PriceEntity
 				var price: String
+				var dateString: String
 				var isPriceCheapest: Bool
 				var fuelType: FuelType
 				var addressDescription: String

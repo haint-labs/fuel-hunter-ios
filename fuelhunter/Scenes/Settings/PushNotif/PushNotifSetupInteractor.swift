@@ -43,6 +43,8 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
   		appSettingsWorker.setStoredNotifCentsCount(count: centsValue)
   		appSettingsWorker.setStoredNotifCity(name: selectedCityName)
 
+		DataDownloader.shared.activateToken()
+
 		// This will give real city OR selected city (if gps is disabled)
 		let cityName = CityWorker.getClosestCityName()
 		appSettingsWorker.setStoredLastGPSDetectedCityName(name: cityName)
@@ -58,7 +60,7 @@ class PushNotifSetupInteractor: PushNotifSetupBusinessLogic, PushNotifSetupDataS
 
   	func cancelButtonPressed() {
   		appSettingsWorker.setNotifEnabled(enabled: false)
-
+		DataDownloader.shared.removeToken()
   		let cityName = CityWorker.getClosestCityName()
 		appSettingsWorker.setStoredNotifCity(name: cityName)
 		appSettingsWorker.setStoredLastGPSDetectedCityName(name: cityName)

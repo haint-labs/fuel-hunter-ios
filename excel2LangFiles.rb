@@ -88,7 +88,11 @@ end
          else
             if row[1] != nil and row[1].length
               # output.write "// #{row[0]}\n"                       # Uncomment this, if you want to also generate comments in generated files.
-              output.write "\"#{row[1]}\" = \"#{row[fileIndex]}\";\n"  # Simply write correct output of first an x line.
+              if row[fileIndex] == "95.0" || row[fileIndex] == "98.0"
+                output.write "\"#{row[1]}\" = \"#{row[fileIndex].to_i}\";\n"  # Simply write correct output of first an x line.
+              else
+                output.write "\"#{row[1]}\" = \"#{row[fileIndex]}\";\n"  # Simply write correct output of first an x line.
+              end
             else
               output.write "\n"                                        #if empty line - simply new line.. (separator.)
             end

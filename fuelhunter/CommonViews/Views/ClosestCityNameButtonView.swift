@@ -13,7 +13,7 @@ protocol ClosestCityNameButtonViewButtonLogic: class {
 }
 
 protocol ClosestCityNameButtonViewDisplayLogic {
-    func setCity(name: String, gpsIconVisible: Bool)
+    func setCity(name: String, gpsIconVisible: Bool) -> Bool
 }
 
 class ClosestCityNameButtonView: FontChangeView, ClosestCityNameButtonViewDisplayLogic {
@@ -72,10 +72,15 @@ class ClosestCityNameButtonView: FontChangeView, ClosestCityNameButtonViewDispla
 
 	// MARK: ClosestCityNameButtonViewDisplayLogic
 
-	func setCity(name: String, gpsIconVisible: Bool) {
-		label.text = name
+	func setCity(name: String, gpsIconVisible: Bool) -> Bool {
+		if self.label.text == name && gpsIconVisible != self.iconImageView.isHidden {
+			// No change!
+			return false
+		}
 
-		iconImageView.isHidden = !gpsIconVisible
+		self.label.text = name
+		self.iconImageView.isHidden = !gpsIconVisible
+		return true
 	}
 
 	// MARK: Functions
