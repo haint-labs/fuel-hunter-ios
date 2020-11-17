@@ -17,11 +17,9 @@ import FirebaseCrashlytics
 import CoreLocation
 
 protocol SettingsRoutingLogic {
-  	func routeToCompanyChooseScene()
   	func routeToFuelTypeScene()
   	func routeToLanguageChooseScene()
   	func routeToAboutScene()
-  	func presentNotifSetUpScene(response: Settings.PushNotif.Response)
   	func presentMailForm()
 }
 
@@ -35,10 +33,6 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMai
 
 	// MARK: SettingsRoutingLogic
 
-	func routeToCompanyChooseScene() {
-  		navigateToScene(source: viewController!, destination: CompaniesChooseListViewController())
-  	}
-
   	func routeToFuelTypeScene() {
   		navigateToScene(source: viewController!, destination: FuelTypeChooseListViewController())
   	}
@@ -49,15 +43,6 @@ class SettingsRouter: NSObject, SettingsRoutingLogic, SettingsDataPassing, MFMai
 
   	func routeToAboutScene() {
   		navigateToScene(source: viewController!, destination: AboutAppViewController())
-  	}
-
-  	func presentNotifSetUpScene(response: Settings.PushNotif.Response) {
-  		let destinationVC = PushNotifSetupViewController()
-  		destinationVC.router?.previousViewController = viewController!
-  		destinationVC.providesPresentationContextTransitionStyle = true
-		destinationVC.definesPresentationContext = true
-		destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
-		viewController!.present(destinationVC, animated: true) { }
   	}
 
 	func presentMailForm() {

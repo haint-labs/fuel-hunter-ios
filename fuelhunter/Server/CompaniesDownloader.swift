@@ -192,9 +192,7 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 //				UserDefaults.standard.synchronize()
 //			}
 
-			string = "http://162.243.16.251/companies_new.json"
-
-//			string = "http://www.mocky.io/v2/5ec3d08e300000e4b039c434"
+			string = "http://www.mocky.io/v2/5ec3d08e300000e4b039c434"
 			
 			print("url string \(string)")
 			
@@ -311,7 +309,7 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 									if companyObjectArray.isEmpty {
 										companyObject = CompanyEntity.init(context: backgroundContext)
 										companyObject.name = company.name
-										companyObject.isEnabled = false
+										companyObject.isEnabled = true
 
 										companyMetaDataObject = CompanyMetaDataEntity.init(context: backgroundContext)
 										companyMetaDataObject.company = companyObject
@@ -481,7 +479,6 @@ class CompaniesDownloader: CompaniesDownloaderLogic {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 					// when background job finished, do something in main thread
 					DataDownloader.shared.downloaderIsActive = false
-					NotificationCenter.default.post(name: .checkForCompanyChanges, object: nil)
 
 					completionHandler()
 				}

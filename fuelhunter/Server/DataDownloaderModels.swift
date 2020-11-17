@@ -55,6 +55,56 @@ struct CompanyCodable: Codable {
 }
 
 
+struct AAA: Codable {
+	let features: [BBB]
+}
+
+struct BBB: Codable {
+	let geometry: [String:CCC]
+}
+
+struct CCC: Codable {
+	let coordinates: [Double]
+	let type: String
+}
+//
+//["features": <__NSArrayI 0x109029200>(
+//{
+//    geometry =     {
+//        coordinates =         (
+//            "-122.713348173023704",
+//            "45.4564372138604"
+//        );
+//        type = Point;
+//    };
+//    id = 0;
+//    properties =     {
+//        AssetID = "2430-0051536";
+//        ElectricMo = 34481;
+//        Electricia = NotAssigned;
+//        Engineer = NotAssigned;
+//        ImagePath = "<null>";
+//        IsMetered = "<null>";
+//        LIP = "<null>";
+//        LampCode = 86;
+//        LampCodeDe = "25,500-L,250-W,HPS,COBRA HEAD - POWER DOOR";
+//        LightID = 198761;
+//        LocationID = BF58671;
+//        MaintResp = PGE;
+//        Manufactur = "<null>";
+//        MastArmLen = 16;
+//        Owner = PDXTRANS;
+//        PoleNumber = 413000054;
+//        PowerSuppl = PGE;
+//        Rotation = 0;
+//        SerialNumb = "<null>";
+//        StLightCir = 0;
+//        SupplyVolt = "<null>";
+//    };
+//    type = Feature;
+//},
+
+
 
 struct AddressRequestCodable: Codable {
 	let items: [AddressCodable]

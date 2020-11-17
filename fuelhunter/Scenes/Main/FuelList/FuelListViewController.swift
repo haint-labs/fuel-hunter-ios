@@ -13,10 +13,14 @@
 import UIKit
 
 
+
 protocol FuelListDisplayLogic: class {
 	func updateCityView(viewModel: FuelList.UpdateCityView.ViewModel)
 	func displayData(viewModel: FuelList.FetchPrices.ViewModel)
 	func revealMapView(viewModel: FuelList.RevealMap.ViewModel)
+	func getForcedData()
+	func getCityViewData()
+	func scrollToTop()
 }
 
 class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLayoutViewLogic, MapReturnUpdateDataLogic, FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol, ClosestCityNameButtonViewButtonLogic {
@@ -44,50 +48,25 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
     	NotificationCenter.default.removeObserver(self, name: .languageWasChanged, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .fontSizeWasChanged, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .settingsUpdated, object: nil)
-    	NotificationCenter.default.removeObserver(self, name: .checkForCompanyChanges, object: nil)
     	NotificationCenter.default.removeObserver(self, name: .cityNameUpdated, object: nil)
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationController!.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(image:
-			UIImage(named: "Settings_icon"), style: .plain, target: router, action:NSSelectorFromString("routeToSettings"))
-		self.navigationController!.navigationBar.topItem?.title = "fuel_list_app_name".localized()
-		self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    	self.navigationController!.navigationBar.shadowImage = UIImage()
-		self.navigationController!.navigationBar.isTranslucent = true
-    	self.view.backgroundColor = .white
-
     	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
     		name: .languageWasChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(fontSizeWasChanged),
     		name: .fontSizeWasChanged, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated),
     		name: .settingsUpdated, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(checkForCompanyChanges),
-			name: .checkForCompanyChanges, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(cityNameUpdated),
 		name: .cityNameUpdated, object: nil)
 
 		setUpView()
-		getData()
-		
-		checkForCompanyChanges()
-
-		// For testing... for now..
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//			let destinationVC = CompanyChangesViewController()
-//			destinationVC.providesPresentationContextTransitionStyle = true
-//			destinationVC.definesPresentationContext = true
-//			destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
-//			self.present(destinationVC, animated: true) { }
-//		}
-
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		getCityViewData()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -118,16 +97,28 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
         layoutView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         layoutView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		layoutView.controller = self
+
 	}
 
 	// MARK: Functions
 
-	private func getData() {
+	func scrollToTop() {
+		layoutView.scrollToTop()
+	}
+
+	func getForcedData() {
+		layoutView.superParentView = self.router?.navigationController?.view
+
+		let request = FuelList.FetchPrices.Request(forcedReload: true)
+		interactor?.fetchPrices(request: request)
+	}
+
+	func getData() {
 		let request = FuelList.FetchPrices.Request(forcedReload: false)
 		interactor?.fetchPrices(request: request)
 	}
 
-	private func getCityViewData() {
+	func getCityViewData() {
 		let request = FuelList.UpdateCityView.Request()
 		interactor?.updateCityView(request: request)
 	}
@@ -139,7 +130,12 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	}
 
 	func displayData(viewModel: FuelList.FetchPrices.ViewModel) {
-		layoutView.updateData(data: viewModel.displayedPrices, insertItems: viewModel.insertItems, deleteItems: viewModel.deleteItems, updateItems: viewModel.updateItems, insertSections: viewModel.insertSections, deleteSections: viewModel.deleteSections, updateSections: viewModel.updateSections)
+
+		DispatchQueue.main.asyncAfter(deadline: .now()) {
+
+			self.layoutView.updateData(data: viewModel.displayedPrices, insertItems: viewModel.insertItems, deleteItems: viewModel.deleteItems, updateItems: viewModel.updateItems, insertSections: viewModel.insertSections, deleteSections: viewModel.deleteSections, updateSections: viewModel.updateSections)
+
+		}
 	}
 
 	func revealMapView(viewModel: FuelList.RevealMap.ViewModel) {
@@ -148,15 +144,14 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 
 	// MARK: FuelListLayoutViewLogic
 
-	func savingsButtonPressed() {
-		router?.routeToAppSavingsInfo()
-	}
-
-	func accuracyButtonPressed() {
-		router?.routeToAppAccuracyInfo()
+	func settingsButtonPressed() {
+		router?.routeToSettings()
 	}
 
 	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType, forSelectedPrice price: PriceEntity) {
+
+//		return
+
 		selectedCell = cell
 		selectedCell?.isHidden = true
 
@@ -217,7 +212,9 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 			if let indexPath = indexPath, let selectedCell = selectedCell {
 				selectedCell.isHidden = true
 				let rect = layoutView.tableView.rectForRow(at: indexPath)
-				let rectInScreen = layoutView.tableView.convert(rect, to: self.view)
+
+				let rectInScreen = layoutView.tableView.convert(rect, to: layoutView.superParentView)
+
 				return rectInScreen.origin.y
 			}
 		}
@@ -240,12 +237,6 @@ class FuelListViewController: UIViewController, FuelListDisplayLogic, FuelListLa
 	@objc private func settingsUpdated() {
 		let request = FuelList.FetchPrices.Request(forcedReload: true)
 		interactor?.fetchPrices(request: request)
-	}
-
-	@objc private func checkForCompanyChanges() {
-		if interactor?.checkIfThereAreCompanyChangesToPresent() == true {
-			router?.revealCompanyChanges()
-		}
 	}
 
 	@objc private func cityNameUpdated() {

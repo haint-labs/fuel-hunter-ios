@@ -148,15 +148,7 @@ class MapPinAccessoryView: UIView, MapPinAccessoryViewDisplayLogic {
 			iconNormal.contentMode = .scaleAspectFit
 			self.priceLabel.isHidden = true
 			self.distanceLabel.isHidden = true
-//			self.backgroundImageView.image = UIImage.init(named: "map_tiny_pin")
-//			self.backgroundBubbleArrowImageView.isHidden = true
-
-//			iconGrayWidthConstraint.constant = 14+increaseIconSize
-//			iconGrayHeightConstraint.constant = 14+increaseIconSize
-//
-//			iconNormalWidthConstraint.constant = 14+increaseIconSize
-//			iconNormalHeightConstraint.constant = 14+increaseIconSize
-
+			
 			priceLabelBottomConstraint.isActive = false
 			distanceLabelBottomConstraint.isActive = false
 

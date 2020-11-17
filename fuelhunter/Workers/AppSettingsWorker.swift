@@ -27,8 +27,6 @@ extension Notification.Name {
 
     static let dataDownloaderStateChange = Notification.Name("dataDownloaderStateChange")
 
-    static let checkForCompanyChanges = Notification.Name("checkForCompanyChanges")
-
     static let cityNameUpdated = Notification.Name("cityNameUpdated")
 }
 

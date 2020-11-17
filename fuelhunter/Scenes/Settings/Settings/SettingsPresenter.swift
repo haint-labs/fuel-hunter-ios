@@ -14,7 +14,6 @@ import UIKit
 
 protocol SettingsPresentationLogic {
   	func presentSettingsListWithData(response: Settings.SettingsList.Response)
-  	func showNotifSetUp(response: Settings.PushNotif.Response)
 }
 
 class SettingsPresenter: SettingsPresentationLogic {
@@ -22,43 +21,22 @@ class SettingsPresenter: SettingsPresentationLogic {
 	weak var router: SettingsRouter?
 
   	// MARK: SettingsPresentationLogic
-  	
-	func showNotifSetUp(response: Settings.PushNotif.Response) {
-		router?.presentNotifSetUpScene(response: response)
-	} 
 
   	func presentSettingsListWithData(response: Settings.SettingsList.Response) {
-  		let companyNames = response.companyNames
-		let fuelTypeNames = response.fuelTypeNames
+  		let fuelTypeNames = response.fuelTypeNames
 		let gpsIsEnabledStatus = response.gpsIsEnabledStatus
-		let pushNotifIsEnabledStatus = response.pushNotifIsEnabledStatus
-		var descriptionString = "settings_receive_notif_if_price_drops_by_title".localized()
 
-  		if response.notifCentsValue == 1 {
-  			descriptionString.append(" \(response.notifCentsValue) \("settings_1_cent".localized())")
-  		} else {
-  			descriptionString.append(" \(response.notifCentsValue) \("settings_more_cents".localized())")
-  		}
+		let settingsItem1 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "settings_fuel_type_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		if pushNotifIsEnabledStatus == true {
-			descriptionString.append("\n\("settings_city_title".localized()) - \(response.notifSelectedCityName.localized()).")
-		}
+		let settingsItem2 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .gpsCell, title: "settings_gps_title", description: "settings_gps_description", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus)
 
-		let settingsItem1 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .fuelCompanyCell, title: companyNames, description: "settings_fuel_company_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem3 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .appLanguageCell, title: "settings_app_language_title", description: "settings_app_language_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem2 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .fuelTypeCell, title: fuelTypeNames, description: "settings_fuel_type_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
+		let settingsItem4 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .feedbackCell, title: "settings_feedback_title", description: "settings_feedback_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem3 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .gpsCell, title: "settings_gps_title", description: "settings_gps_description", shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: gpsIsEnabledStatus)
+		let settingsItem5 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .aboutAppCell, title: "settings_about_app_title", description: "settings_about_app_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
 
-		let settingsItem4 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .pushNotifCell, title: "settings_notif_title", description: descriptionString, shouldShowToggle: true, shouldShowAccessory: false, toggleStatus: pushNotifIsEnabledStatus)
-
-		let settingsItem5 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .appLanguageCell, title: "settings_app_language_title", description: "settings_app_language_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
-
-		let settingsItem6 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .feedbackCell, title: "settings_feedback_title", description: "settings_feedback_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
-
-		let settingsItem7 = Settings.SettingsList.ViewModel.DisplayedSettingsCell(settingsListCellType: .aboutAppCell, title: "settings_about_app_title", description: "settings_about_app_description", shouldShowToggle: false, shouldShowAccessory: true, toggleStatus: false)
-
-		let array = [settingsItem1, settingsItem2, settingsItem3, settingsItem4, settingsItem5, settingsItem6, settingsItem7]
+		let array = [settingsItem1, settingsItem2, settingsItem3, settingsItem4, settingsItem5]
 
     	let viewModel = Settings.SettingsList.ViewModel(displayedSettingsCells: array)
     	viewController?.displaySettingsList(viewModel: viewModel)

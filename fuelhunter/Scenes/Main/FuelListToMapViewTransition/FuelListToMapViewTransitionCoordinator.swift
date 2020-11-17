@@ -17,7 +17,8 @@ class FuelListToMapViewTransitionCoordinator: NSObject, UINavigationControllerDe
     var interactionController: UIPercentDrivenInteractiveTransition?
 	var sideSwipeRecognizerAdded: Bool = false
 	weak var navController: UINavigationController?
-	
+	weak var customOriginalViewController: FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol?
+
 	func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
     	if !sideSwipeRecognizerAdded {
@@ -30,7 +31,9 @@ class FuelListToMapViewTransitionCoordinator: NSObject, UINavigationControllerDe
         case .push:
             return FuelListToMapViewPushTransitionAnimator()
         case .pop:
-            return FuelListToMapViewPopTransitionAnimator()
+        	let vc = FuelListToMapViewPopTransitionAnimator()
+			vc.customOriginalViewController = customOriginalViewController
+            return vc
         default:
             return nil
         }

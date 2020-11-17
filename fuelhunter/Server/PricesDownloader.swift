@@ -856,6 +856,8 @@ class PricesDownloader: PricesDownloaderLogic {
 									} else {
 										priceObject.companyMetaData = company.first!.companyMetaData
 									}
+
+//									company.first!.isEnabled = true
 									//===
 
 									//--- Address
@@ -1058,7 +1060,7 @@ class PricesDownloader: PricesDownloaderLogic {
 								for address in allCloseAddresses {
 									counter += 1
 
-									print("allCloseAddresses count \(allCloseAddresses.count)")
+//									print("allCloseAddresses count \(allCloseAddresses.count)")
 
 									let companyFetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
 

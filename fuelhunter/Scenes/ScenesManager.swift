@@ -10,11 +10,9 @@ import UIKit
 
 enum AppSceneState: Int {
 	case introPageFirstView = 0
-	case introPageChooseCompany = 1
-	case introPageChooseFuelType = 2
-	case introPageGPSAccessAsking = 3
-	case introPageNotifAccessAsking = 4
-	case mainList = 5
+	case introPageChooseFuelType = 1
+	case introPageGPSAccessAsking = 2
+	case mainList = 3
 }
 
 class ScenesManager: NSObject {
@@ -38,20 +36,15 @@ class ScenesManager: NSObject {
   		switch sceneState {
 			case .introPageFirstView:
 				destinationVC = IntroPageViewController()
-			case .introPageChooseCompany:
-				destinationVC = IntroChooseCompanyViewController()
 			case .introPageChooseFuelType:
 				destinationVC = IntroChooseFuelTypeViewController()
 			case .introPageGPSAccessAsking:
 				destinationVC = IntroGPSSetUpViewController()
-			case .introPageNotifAccessAsking:
-				// At this point, we should also try to download prices.
+			default:
 				if(AppSettingsWorker.shared.getGPSIsEnabled() == false) {
 					DataDownloader.shared.activateProcess()
 				}
-				destinationVC = IntroNotifSetUpViewController()
-			default:
-				destinationVC = FuelListViewController()
+				destinationVC = MainViewsListViewController()
 		}
 
   		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController  		

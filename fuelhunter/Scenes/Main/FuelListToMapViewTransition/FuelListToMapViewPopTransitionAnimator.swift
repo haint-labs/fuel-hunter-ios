@@ -25,7 +25,9 @@ class FuelListToMapViewPopTransitionAnimator: NSObject, UIViewControllerAnimated
 	
 	weak var context: UIViewControllerContextTransitioning?
 	weak var fromViewController: FuelListToMapViewPopTransitionAnimatorHelperProtocol?
-	
+	weak var customOriginalViewController: FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol?
+
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
     }
@@ -41,7 +43,8 @@ class FuelListToMapViewPopTransitionAnimator: NSObject, UIViewControllerAnimated
 
     	guard let fromView = transitionContext.view(forKey: .from),
 			  let toView = transitionContext.view(forKey: .to),
-			  let toViewController = transitionContext.viewController(forKey: .to) as? FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol,
+//			  let toViewController = self.customOriginalViewController, //transitionContext.viewController(forKey: .to) as? FuelListToMapViewPopTransitionAnimatorFinaliseHelperProtocol,
+
 			  let fromViewController = transitionContext.viewController(forKey: .from) as? FuelListToMapViewPopTransitionAnimatorHelperProtocol else { return }
 
 
@@ -61,7 +64,12 @@ class FuelListToMapViewPopTransitionAnimator: NSObject, UIViewControllerAnimated
 
 		fromViewController.hide(withDuration: duration) { status in
 			if !transitionContext.transitionWasCancelled {
-				toViewController.customTransitionWasFinished()
+//				if let customOriginalViewController = self.customOriginalViewController {
+				self.customOriginalViewController!.customTransitionWasFinished()
+//				}
+//				else {
+//					toViewController.customTransitionWasFinished()
+//				}
 				container.addSubview(toView)
 			}
 			transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

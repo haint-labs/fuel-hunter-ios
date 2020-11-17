@@ -124,9 +124,9 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 
 		addressesLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 20+33).isActive = true
 		addressesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 1).isActive = true
-		addressesLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -6).isActive = true
-		
 		addressesLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -9).isActive = true
+		addressesLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -6).isActive = true
+
 		
 //		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: titleLabel.rightAnchor, constant: 6).isActive = true
 //		priceLabel.leftAnchor.constraint(greaterThanOrEqualTo: addressesLabel.rightAnchor, constant: 6).isActive = true
@@ -143,7 +143,11 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 
 		//TODO: Calculate width of normal price, and provide it as minimum
 //		priceLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
-		priceLabel.widthAnchor.constraint(equalToConstant:priceLabel.intrinsicContentSize.width).isActive = true
+//		priceLabel.widthAnchor.constraint(equalToConstant:priceLabel.intrinsicContentSize.width).isActive = true
+		priceLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+//		addressesLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+
+		addressesLabel.setContentCompressionResistancePriority(.required, for: .vertical)
 
 
 		//--- second type
@@ -321,6 +325,8 @@ class FuelListCellView: UIView, MapInfoButtonViewButtonLogic, FuelListCellViewDi
 
 		titleLabel.text = priceData.company.name
 		addressesLabel.text = priceData.addressDescription
+
+//		addressesLabel.text = "\(priceData.addressDescription)\n\(priceData.addressDescription)"
 
 
 

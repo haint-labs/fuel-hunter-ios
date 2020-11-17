@@ -50,6 +50,12 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
     	self.view.backgroundColor = .white
     	setUpView()
 
+
+		self.navigationController!.interactivePopGestureRecognizer?.delegate = nil
+		self.navigationController!.interactivePopGestureRecognizer?.isEnabled = true
+		
+    	self.navigationController!.setNavigationBarHidden(false, animated: true)
+
     	NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive),
     		name: .applicationDidBecomeActiveFromAppSettings, object: nil)
     	NotificationCenter.default.addObserver(self, selector: #selector(languageWasChanged),
@@ -93,8 +99,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 
 	func userPressedOnCellType(cellType: Settings.SettingsListCellType) {
 		switch cellType {
-			case .fuelCompanyCell: 
-				router?.routeToCompanyChooseScene()
 			case .fuelTypeCell:
 				router?.routeToFuelTypeScene()
 			case .appLanguageCell:
@@ -105,8 +109,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic, PushNotifR
 				interactor?.userPressedOnGpsSwitch()
 			case .feedbackCell:
 				router?.presentMailForm()
-			case .pushNotifCell:
-				interactor?.userPressedOnNotifSwitch()
 		}
 	}
 

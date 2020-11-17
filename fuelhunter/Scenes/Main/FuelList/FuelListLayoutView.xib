@@ -4,19 +4,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FuelListLayoutView" customModule="fuelhunter" customModuleProvider="target">
             <connections>
-                <outlet property="accuracyIconButton" destination="0N7-tI-hqr" id="2Qv-57-1Fg"/>
-                <outlet property="accuracyLabelButton" destination="FNr-pv-HRy" id="nmH-nm-gPE"/>
                 <outlet property="baseView" destination="iN0-l3-epB" id="qsM-IW-VS0"/>
-                <outlet property="closestCityNameButtonView" destination="Df1-rO-jHN" id="F2L-5r-hCn"/>
-                <outlet property="inlineAlertView" destination="zTW-tY-OlJ" id="Vi0-yb-cVI"/>
-                <outlet property="savingsIconButton" destination="V51-E5-lta" id="pNG-OP-cIB"/>
-                <outlet property="savingsLabelButton" destination="dBa-KY-BAB" id="Pc6-Vy-5cU"/>
+                <outlet property="cityNameView" destination="tSo-cU-Ve2" id="8fG-JY-jXd"/>
                 <outlet property="tableView" destination="A1O-7A-o4w" id="rM4-5S-M9n"/>
                 <outlet property="tableViewBottomShadow" destination="kBi-YL-PXL" id="a9s-Do-Phz"/>
                 <outlet property="tableViewNoDataView" destination="c9E-jc-WyX" id="NtW-SD-BSv"/>
@@ -28,6 +22,11 @@
             <rect key="frame" x="0.0" y="0.0" width="372" height="677"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tSo-cU-Ve2" customClass="ClosestCityNameButtonView" customModule="fuelhunter" customModuleProvider="target">
+                    <rect key="frame" x="66" y="274" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9E-jc-WyX" customClass="TableViewNoDataView" customModule="fuelhunter" customModuleProvider="target">
                     <rect key="frame" x="66" y="274" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,40 +48,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBa-KY-BAB" userLabel="savingsLabelButton">
-                    <rect key="frame" x="67" y="535" width="339" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
-                        <color key="titleColor" name="TitleColor"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V51-E5-lta" userLabel="savingsIconButton">
-                    <rect key="frame" x="24" y="586" width="25" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="ietaupijums_icon"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNr-pv-HRy" userLabel="accuracyLabelButton">
-                    <rect key="frame" x="74" y="584" width="339" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
-                        <color key="titleColor" name="TitleColor"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0N7-tI-hqr" userLabel="accuracyIconButton">
-                    <rect key="frame" x="24" y="537" width="25" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="accuracy_icon"/>
-                </button>
-                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zTW-tY-OlJ" customClass="InlineAlertView" customModule="fuelhunter" customModuleProvider="target">
-                    <rect key="frame" x="-22" y="47" width="414" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Df1-rO-jHN" customClass="ClosestCityNameButtonView" customModule="fuelhunter" customModuleProvider="target">
-                    <rect key="frame" x="66" y="274" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -92,12 +57,7 @@
         </view>
     </objects>
     <resources>
-        <image name="accuracy_icon" width="26" height="26"/>
         <image name="bottom_tableView_shadow" width="15" height="3"/>
-        <image name="ietaupijums_icon" width="24" height="25"/>
         <image name="nav_bar_shadow" width="15" height="3"/>
-        <namedColor name="TitleColor">
-            <color red="0.25900000333786011" green="0.36500000953674316" blue="0.57300001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

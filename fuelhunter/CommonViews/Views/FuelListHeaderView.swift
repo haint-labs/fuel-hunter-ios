@@ -35,7 +35,7 @@ class FuelListHeaderView: FontChangeHeaderFooterView, FuelListHeaderViewDisplayL
 		titleLabelBottomConstraint = titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3)
 		titleLabelBottomConstraint.priority = .defaultLow
 		titleLabelBottomConstraint.isActive = true
-		titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24)
+		titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20) //24
 		titleLabelTopConstraint.isActive = true
 
 		titleLabel.textColor = UIColor(named: "TitleColor")
@@ -57,7 +57,7 @@ class FuelListHeaderView: FontChangeHeaderFooterView, FuelListHeaderViewDisplayL
 	
 	func setSectionIndex(_ sectionIndex: Int) {
 		if sectionIndex > 0 {
-			titleLabelTopConstraint.constant = 10
+			titleLabelTopConstraint.constant = 20
 		} else {
 			titleLabelTopConstraint.constant = 6
 		}

@@ -85,24 +85,24 @@ PODS:
   - GoogleDataTransportCCTSupport (3.0.0):
     - GoogleDataTransport (~> 6.0)
     - nanopb (~> 0.3.901)
-  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.6.0):
+  - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (6.6.0):
+  - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.6.0):
+  - GoogleUtilities/MethodSwizzler (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.6.0):
+  - GoogleUtilities/Network (6.7.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.6.0)"
-  - GoogleUtilities/Reachability (6.6.0):
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.6.0):
+  - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - gRPC-Swift (1.0.0-alpha.11):
     - CGRPCZlib (= 1.0.0-alpha.11)
@@ -113,16 +113,13 @@ PODS:
     - SwiftNIOTransportServices (= 1.3.0)
     - SwiftProtobuf (= 1.8.0)
   - Logging (1.2.0)
-  - Mixpanel-swift (2.6.2):
-    - Mixpanel-swift/Complete (= 2.6.2)
-  - Mixpanel-swift/Complete (2.6.2)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - PromisesObjC (1.2.9)
-  - Protobuf (3.12.0)
+  - PromisesObjC (1.2.10)
+  - Protobuf (3.13.0)
   - SDWebImage (5.0.2):
     - SDWebImage/Core (= 5.0.2)
   - SDWebImage/Core (5.0.2)
@@ -173,7 +170,6 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Crashlytics
   - Firebase/Messaging
-  - Mixpanel-swift (= 2.6.2)
   - SDWebImage (= 5.0.2)
   - SwiftLint (= 0.32.0)
 
@@ -204,7 +200,6 @@ SPEC REPOS:
     - GoogleUtilities
     - gRPC-Swift
     - Logging
-    - Mixpanel-swift
     - nanopb
     - PromisesObjC
     - Protobuf
@@ -227,7 +222,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FHClient:
-    :commit: b14c49d8d9afc56ef66d416ecfe8e77bbaca96af
+    :commit: edb91e23b572f5243c116ca00c08ef9424f32e49
     :git: https://github.com/haint-labs/fuel-hunter-client-swift
 
 SPEC CHECKSUMS:
@@ -254,13 +249,12 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 6e68a94d0eaeb1d73ef6b0ed4f7334e29d63ae29
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
-  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   gRPC-Swift: 79f04da038f9a62005271d5b638611ce1bb31304
   Logging: 7838d379d234d7e5ae1265fa02804a9084caf04c
-  Mixpanel-swift: eea98bb65fd80e992a9ecb3a0a421eca542ea72f
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
-  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
   SwiftNIO: c9889dcd8aed2655af9163b42fc11ebd4ce94252
@@ -274,6 +268,6 @@ SPEC CHECKSUMS:
   SwiftNIOTransportServices: 26d40c589fc8fe667af51b06ef0aa49fbc9ae7f2
   SwiftProtobuf: 2cbd9409689b7df170d82a92a33443c8e3e14a70
 
-PODFILE CHECKSUM: db9cf4c480ef99d92ac2008a7065625beca35887
+PODFILE CHECKSUM: 0374e721f11cd6e7bff98bda937e7a5af0d85c52
 
 COCOAPODS: 1.9.1

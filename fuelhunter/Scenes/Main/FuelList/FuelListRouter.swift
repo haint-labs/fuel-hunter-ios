@@ -14,21 +14,20 @@ import UIKit
 
 protocol FuelListRoutingLogic {
 	func routeToSettings()
-	func routeToAppAccuracyInfo()
-	func routeToAppSavingsInfo()
 	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType, selectedPrice price: PriceEntity)
-	func revealCompanyChanges()
 	func revealCityNameExplainView()
 }
 
 protocol FuelListDataPassing {
-	var dataStore: FuelListDataStore? { get }
+	var dataStore: FuelListDataStore? { get set }
+	var navigationController: UINavigationController? { get set }
 }
 
 class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
 	weak var viewController: FuelListViewController?
 	var dataStore: FuelListDataStore?
-	let coordinator = FuelListToMapViewTransitionCoordinator()
+	var navigationController: UINavigationController?
+	var coordinator = FuelListToMapViewTransitionCoordinator()
 	
   	// MARK: FuelListRoutingLogic
 
@@ -36,20 +35,12 @@ class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
 		viewController?.navigationController?.delegate = nil
   		navigateTo(source: viewController!, destination: SettingsViewController())
   	}
-  	
-  	func routeToAppAccuracyInfo() {
-  		viewController?.navigationController?.delegate = nil
-  		navigateTo(source: viewController!, destination: AppAccuracyInfoViewController())
-  	}
-
-	func routeToAppSavingsInfo() {
-		viewController?.navigationController?.delegate = nil
-  		navigateTo(source: viewController!, destination: AppSavingsInfoViewController())
-	}
 
 	func routeToMapView(atYLocation yLocation: CGFloat, selectedFuelCompany company: CompanyEntity, selectedFuelType fuelType: FuelType, selectedPrice price: PriceEntity) {
 
-		viewController?.navigationController?.delegate = coordinator
+		coordinator.customOriginalViewController = viewController
+		navigationController?.delegate = coordinator
+
 		let destination = MapViewController()
 		destination.router?.previousViewController = viewController!
 		destination.router?.dataStore?.selectedCompany = company
@@ -57,14 +48,6 @@ class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
 		destination.router?.dataStore?.selectedPrice = price
 		destination.router?.dataStore?.yLocation = yLocation
 		navigateTo(source: viewController!, destination: destination)
-	}
-
-	func revealCompanyChanges() {
-		let destinationVC = CompanyChangesViewController()
-		destinationVC.providesPresentationContextTransitionStyle = true
-		destinationVC.definesPresentationContext = true
-		destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
-		viewController!.present(destinationVC, animated: true) { }
 	}
 
 	func revealCityNameExplainView() {
@@ -78,8 +61,20 @@ class FuelListRouter: NSObject, FuelListRoutingLogic, FuelListDataPassing {
   	// MARK: Functions
 
 	private func navigateTo(source: FuelListViewController, destination: UIViewController) {
-		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-		source.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-		source.show(destination, sender: nil)
+//		source.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//		source.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+		navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+		navigationController?.show(destination, sender: nil)
+		navigationController?.setNavigationBarHidden(false, animated: true)
+
+		//		let rootVc = ScenesManager.shared.window?.rootViewController as! UINavigationController
+		//		rootVc.setNavigationBarHidden(false, animated: true)
+		//
+		//		rootVc.viewControllers.last!.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		//		rootVc.viewControllers.last!.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		//		rootVc.show(destination, sender: nil)
   	}
 }

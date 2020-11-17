@@ -45,7 +45,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" name="CellSeparatorColor"/>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-Lf-LPI">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cell_arrow_darker" translatesAutoresizingMaskIntoConstraints="NO" id="LZg-Lf-LPI">
                         <rect key="frame" x="409" y="85" width="37" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -65,7 +65,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cell_arrow" width="10.5" height="16.5"/>
+        <image name="cell_arrow_darker" width="10.5" height="16.5"/>
         <namedColor name="CellSeparatorColor">
             <color red="0.84313725490196079" green="0.8666666666666667" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

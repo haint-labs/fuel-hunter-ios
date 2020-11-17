@@ -78,7 +78,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		NotificationCenter.default.addObserver(self, selector: #selector(settingsUpdated),
 		name: .settingsUpdated, object: nil)
   	}
-	
+
+
 	override func viewSafeAreaInsetsDidChange() {
 		super.viewSafeAreaInsetsDidChange()
 		scrollViewFrontViewTopConstraint.constant = -self.view.safeAreaInsets.bottom
@@ -222,7 +223,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
     	if let selectedMapPoint = viewModel.selectedMapPoint {
 			updateData(to: viewModel.selectedDisplayedPoint!, mapPoint: selectedMapPoint, cellType: viewModel.cellType)
 		} else {
-//			fuelCellView.isHidden = true
+//			fuelCellView.isHidden = true // was hidden
 			scrollView.isHidden = true
 			scrollBackgroundImageView.isHidden = true
 			let newYValue = self.router?.previousViewController?.justSelected(fuelPrice: nil)
@@ -258,6 +259,8 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	// MARK: FuelListToMapViewPushTransitionAnimatorHelperProtocol
   	
   	func reveal(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
+  		self.navigationController!.setNavigationBarHidden(false, animated: true)
+
   		if let location = router?.dataStore?.yLocation {
   			scrollView.contentInset = UIEdgeInsets(top: location-yOffSetConstraint.constant, left: 0, bottom: 0, right: 0)
 		}
@@ -289,6 +292,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   	// MARK: FuelListToMapViewPopTransitionAnimatorHelperProtocol
   	
   	func hide(withDuration duration: TimeInterval, completionHandler: @escaping ((CustomNavigationTransitionResult<Bool>) -> Void)) {
+
 		tempYOffset = self.scrollView.contentOffset.y
 		self.scrollView.clipsToBounds = false
 		self.scrollView.delegate = nil
@@ -297,6 +301,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 		UIView.animate(withDuration: 0.05) {
 			self.fuelCellExtendedInfoView.alpha = 0
 			self.scrollViewFrontView.alpha = 0
+			self.navigationController?.navigationBar.alpha = 0.1
 			self.view.layoutIfNeeded()
 		}
 
@@ -309,7 +314,7 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
 			self.scrollBackgroundImageView.alpha = 0
 			if let location = self.router?.dataStore?.yLocation {
 				if location != -1 {
-					self.scrollView.contentInset = UIEdgeInsets(top: location-self.yOffSetConstraint.constant, left: 0, bottom: 0, right: 0)
+					self.scrollView.contentInset = UIEdgeInsets(top: location-self.yOffSetConstraint.constant, left: 0, bottom: -500, right: 0)
 					self.scrollBackgroundYOffSetConstraint.constant = location-self.yOffSetConstraint.constant
 					self.fuelCellView.setUpConstraintsAsCell()
 				} else { // Means we did not find location, means we can't animate to return. So, just fade.
@@ -333,6 +338,10 @@ class MapViewController: UIViewController, MapDisplayLogic, FuelListToMapViewPus
   		self.scrollView.delegate = self
   		self.scrollView.clipsToBounds = true
 		self.scrollView.isPagingEnabled = false
+
+//		print("self.navigationController \(self.navigationController)")
+
+		self.navigationController?.navigationBar.alpha = 0.5
   	}
 
   	// MARK: MapLayoutViewViewLogic

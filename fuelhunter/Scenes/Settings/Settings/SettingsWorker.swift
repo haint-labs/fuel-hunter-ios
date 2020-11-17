@@ -14,23 +14,4 @@ import UIKit
 import CoreData
 
 class SettingsWorker {
-
-	func getCompanyNames(fromFetchedCompanies: [CompanyEntity]) -> String {
-
-		if fromFetchedCompanies.isEmpty {
-			// Problem, because at least Cheapest should be returned.
-			return ""
-		} else {
-			var combinedString = ""
-			for aCompany in fromFetchedCompanies {
-				let companyName = aCompany.name ?? " "
-				combinedString.append("\(companyName.localized()), ")
-			}
-
-			if combinedString.count > 0 { combinedString.removeLast() }
-			if combinedString.count > 0 { combinedString.removeLast() }
-
-			return combinedString
-		}
-	}
 }

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.0'
+platform :ios, '11.1'
 
 target 'fuelhunter' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -8,7 +8,6 @@ target 'fuelhunter' do
   # Pods for fuelhunter
 
   pod 'SwiftLint' => '0.32.0'
-  pod 'Mixpanel-swift' => '2.6.2'
   pod 'ActiveLabel' => '1.1.0'
   pod 'SDWebImage' => '5.0.2'
   pod 'Firebase' => '6.21.0'

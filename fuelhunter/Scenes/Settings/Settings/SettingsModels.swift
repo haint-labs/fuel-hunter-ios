@@ -17,10 +17,8 @@ enum Settings {
   	// MARK: Use cases
 
 	enum SettingsListCellType {
-		case fuelCompanyCell
 		case fuelTypeCell
 		case gpsCell
-		case pushNotifCell
 		case appLanguageCell
 		case feedbackCell
 		case aboutAppCell
@@ -40,12 +38,8 @@ enum Settings {
 		struct Request {
 		}
 		struct Response {
-			let companyNames: String
 			let fuelTypeNames: String
 			let gpsIsEnabledStatus: Bool
-			let pushNotifIsEnabledStatus: Bool
-			let notifCentsValue: Int
-			let notifSelectedCityName: String
 		}
 		struct ViewModel {
 			struct DisplayedSettingsCell: Equatable {

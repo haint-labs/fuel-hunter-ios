@@ -58,7 +58,7 @@ class IntroChooseFuelTypeLayoutView: FontChangeView, UITableViewDataSource, UITa
 
 		topTitleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 30).isActive = true
 		topTitleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -30).isActive = true
-		topTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+		topTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
 
 		tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true

@@ -10,10 +10,8 @@ import UIKit
 import SDWebImage
 
 protocol FuelListLayoutViewLogic: class {
-	func savingsButtonPressed()
-	func accuracyButtonPressed()
+	func settingsButtonPressed()
 	func pressedOnACell(atYLocation yLocation: CGFloat, forCell cell: FuelListCell, forCompany company: CompanyEntity, forSelectedFuelType fuelType: FuelType, forSelectedPrice price: PriceEntity)
-	func closestCityNameButtonWasPressed()
 }
 
 protocol FuelListLayoutViewDataLogic: class {
@@ -21,26 +19,22 @@ protocol FuelListLayoutViewDataLogic: class {
 	func updateData(data: [[FuelList.FetchPrices.ViewModel.DisplayedPrice]], insertItems: [IndexPath], deleteItems: [IndexPath], updateItems: [IndexPath], insertSections: [Int], deleteSections: [Int], updateSections: [Int])
 	func updateCity(_ name: String, gpsIconVisible: Bool)
 	func resetUI()
+	func scrollToTop()
 }
 
-class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic, InlineAlertViewLogic, ClosestCityNameButtonViewButtonLogic {
+class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, FuelListLayoutViewDataLogic {
 
 	var currentScrollPos : CGFloat?
 
 	weak var controller: FuelListLayoutViewLogic?
+	weak var superParentView: UIView!
 
 	@IBOutlet var baseView: UIView!
-	@IBOutlet weak var inlineAlertView: InlineAlertView!
 	@IBOutlet weak var tableViewNoDataView: TableViewNoDataView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var tableViewTopShadow: UIImageView!
 	@IBOutlet weak var tableViewBottomShadow: UIImageView!
-	@IBOutlet weak var savingsIconButton: UIButton!
-	@IBOutlet weak var savingsLabelButton: UIButton!
-	@IBOutlet weak var accuracyIconButton: UIButton!
-	@IBOutlet weak var accuracyLabelButton: UIButton!
-
-	@IBOutlet var closestCityNameButtonView: ClosestCityNameButtonView!
+	@IBOutlet var cityNameView: ClosestCityNameButtonView!
 
 	var data = [[FuelList.FetchPrices.ViewModel.DisplayedPrice]]()
 
@@ -73,96 +67,58 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		addSubview(baseView)
 		baseView.frame = self.bounds
 
-		inlineAlertView.controller = self
-
 		self.translatesAutoresizingMaskIntoConstraints = false
 		baseView.translatesAutoresizingMaskIntoConstraints = false
-		inlineAlertView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewNoDataView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableViewTopShadow.translatesAutoresizingMaskIntoConstraints = false
 		tableViewBottomShadow.translatesAutoresizingMaskIntoConstraints = false
-		savingsIconButton.translatesAutoresizingMaskIntoConstraints = false
-		savingsLabelButton.translatesAutoresizingMaskIntoConstraints = false
-		accuracyIconButton.translatesAutoresizingMaskIntoConstraints = false
-		accuracyLabelButton.translatesAutoresizingMaskIntoConstraints = false
-		inlineAlertView.translatesAutoresizingMaskIntoConstraints = false
-		inlineAlertView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-		inlineAlertView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		inlineAlertView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		cityNameView.translatesAutoresizingMaskIntoConstraints = false
 
-		closestCityNameButtonView.translatesAutoresizingMaskIntoConstraints = false
-
-		closestCityNameButtonView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		cityNameView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		cityNameView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 
 		tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		tableView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor).isActive = true
-		tableView.bottomAnchor.constraint(equalTo: savingsIconButton.topAnchor, constant: -15).isActive = true
+		tableView.topAnchor.constraint(equalTo: cityNameView.bottomAnchor, constant: 20).isActive = true
+		tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1).isActive = true
 
 		tableViewNoDataView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableViewNoDataView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		tableViewNoDataView.topAnchor.constraint(equalTo: inlineAlertView.bottomAnchor, constant: 60).isActive = true
+		tableViewNoDataView.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
 
 		tableViewTopShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewTopShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableViewTopShadow.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		tableViewTopShadow.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		tableViewTopShadow.topAnchor.constraint(equalTo: cityNameView.bottomAnchor, constant: 20).isActive = true
 
 		tableViewBottomShadow.heightAnchor.constraint(equalToConstant: 3).isActive = true
 		tableViewBottomShadow.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		tableViewBottomShadow.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		tableViewBottomShadow.bottomAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 1).isActive = true
-
-		savingsLabelButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-
-		savingsIconButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-		savingsIconButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-
-		savingsIconButton.bottomAnchor.constraint(equalTo: accuracyIconButton.topAnchor, constant: -15).isActive = true
-		savingsLabelButton.bottomAnchor.constraint(equalTo: accuracyIconButton.topAnchor, constant: -15).isActive = true
-
-		savingsIconButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-		savingsLabelButton.leftAnchor.constraint(equalTo: savingsIconButton.rightAnchor, constant: 20).isActive = true
-
-		accuracyLabelButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-
-		accuracyIconButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-		accuracyIconButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-
-		accuracyIconButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
-		accuracyLabelButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
-
-		accuracyIconButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-		accuracyLabelButton.leftAnchor.constraint(equalTo: accuracyIconButton.rightAnchor, constant: 20).isActive = true
+		tableViewBottomShadow.bottomAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
 
 		baseView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
 		baseView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 
 		tableView.delegate = self
     	tableView.dataSource = self
-    	tableView.contentInset = UIEdgeInsets(top: -2, left: 0, bottom: -9, right: 0)
+    	tableView.contentInset = UIEdgeInsets(top: -2, left: 0, bottom: -17, right: 0)
     	let nib = UINib(nibName: "FuelListCell", bundle: nil)
     	tableView.register(nib, forCellReuseIdentifier: "cell")
     	let nibHeader = UINib(nibName: "FuelListHeaderView", bundle: nil)
 		self.tableView.register(nibHeader, forHeaderFooterViewReuseIdentifier: "header")
     	tableView.backgroundColor = UIColor.clear
+
     	
-    	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
-		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
-
-		savingsIconButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
-		accuracyIconButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
-		savingsLabelButton.addTarget(self, action: NSSelectorFromString("savingsButtonPressed"), for: .touchUpInside)
-		accuracyLabelButton.addTarget(self, action: NSSelectorFromString("accuracyButtonPressed"), for: .touchUpInside)
-
 		NotificationCenter.default.addObserver(self, selector: #selector(dataDownloaderStateChange),
 			name: .dataDownloaderStateChange, object: nil)
 
 		tableViewNoDataView.alpha = 0
 		adjustNoDataLabelText()
 
-		closestCityNameButtonView.controller = self
+		
+		
+//		_  = cityNameView.setCity(name: "Rīga", gpsIconVisible: true)
   	}
 
   	// MARK: Table view
@@ -227,6 +183,8 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			header.titleLabel.text = " "
 		}
 
+		header.setSectionIndex(section)
+		
         return header
 	}
 
@@ -239,7 +197,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 		let aData = self.data[indexPath.section][indexPath.row]
 
 		let rect = tableView.rectForRow(at: indexPath)
-		let rectInScreen = tableView.convert(rect, to: self.superview)
+		let rectInScreen = tableView.convert(rect, to: self.superParentView)
 		
 		if !tableView.bounds.contains(rect) {
 			// Cell is partly visible. So we scroll to reveal it fully. Just a nicety
@@ -248,7 +206,7 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { 
 				let rect = tableView.rectForRow(at: indexPath)
-				let rectInScreen = tableView.convert(rect, to: self.superview)
+				let rectInScreen = tableView.convert(rect, to: self.superParentView)
 				let cell = tableView.cellForRow(at: indexPath) as! FuelListCell
 
 				self.controller?.pressedOnACell(atYLocation: rectInScreen.origin.y, forCell: cell, forCompany: aData.company, forSelectedFuelType: aData.fuelType, forSelectedPrice: aData.actualPrice)
@@ -270,14 +228,6 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	}
 
 	// MARK: Functions
-
-	@objc private func savingsButtonPressed() {
-		controller?.savingsButtonPressed()
-	}
-
-	@objc private func accuracyButtonPressed() {
-		controller?.accuracyButtonPressed()
-	}
 
 	private func adjustNoDataLabelText() {
 		if(PricesDownloader.isAllowedToDownload() == false && PricesDownloader.shouldInitiateDownloadWhenPossible() == true) {
@@ -301,10 +251,12 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 	// MARK: FuelListLayoutViewDataLogic
 
 	func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y-15))/50.0
+		let alfa = min(25, max(0, tableView.contentOffset.y-15+12))/25
 		tableViewTopShadow.alpha = alfa
+
+//		print("alfa \(alfa)")
 		let value = tableView.contentOffset.y+tableView.frame.size.height-tableView.contentInset.bottom-tableView.contentInset.top
-		let alfa2 = min(50, max(0, tableView.contentSize.height-value+5))/50.0
+		let alfa2 = min(25, max(0, tableView.contentSize.height-value))/25
 		tableViewBottomShadow.alpha = alfa2
 	}
 
@@ -351,11 +303,6 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			}
 		}
 
-		savingsLabelButton.setTitle("fuel_list_savings_button_title".localized(), for: .normal)
-		accuracyLabelButton.setTitle("fuel_list_fuel_price_accuracy_button_title".localized(), for: .normal)
-		accuracyLabelButton.layoutIfNeeded()
-		savingsLabelButton.layoutIfNeeded()
-
 		if self.data.isEmpty {
 			self.tableViewNoDataView.alpha = 1
 			self.tableView.isScrollEnabled = false
@@ -364,38 +311,27 @@ class FuelListLayoutView: UIView, UITableViewDataSource, UITableViewDelegate, Fu
 			self.tableView.isScrollEnabled = true
 		}
 
-		adjustVisibilityOfShadowLines()
+		DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+			self.adjustVisibilityOfShadowLines()
+		}
 	}
 
 	func updateCity(_ name: String, gpsIconVisible: Bool) {
-		let change = closestCityNameButtonView.setCity(name: name, gpsIconVisible: gpsIconVisible)
-		if change {
-			self.tableView.tableHeaderView = self.closestCityNameButtonView
-			self.layoutIfNeeded()
-		}
+		_ = cityNameView.setCity(name: name, gpsIconVisible: gpsIconVisible)
 	}
 
 	func resetUI() {
 		tableView.reloadData()
-    	savingsLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
-		accuracyLabelButton.titleLabel!.font = Font(.medium, size: .size3).font
+	}
+
+
+	func scrollToTop() {
+		tableView.setContentOffset(CGPoint.init(x: 0, y: tableView.contentInset.top * -1), animated: false)
 	}
 
 	// MARK: Notifications
 
 	@objc private func dataDownloaderStateChange() {
 		adjustNoDataLabelText()
-	}
-
-	// MARK: InlineAlertViewLogic
-
-	func inlineAlertViewFrameChanged() {
-		adjustVisibilityOfShadowLines()
-	}
-
-	// MARK: ClosestCityNameButtonViewButtonLogic
-
-	func closestCityNameButtonWasPressed() {
-		controller?.closestCityNameButtonWasPressed()
 	}
 }

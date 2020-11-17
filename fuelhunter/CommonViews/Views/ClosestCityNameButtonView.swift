@@ -42,7 +42,7 @@ class ClosestCityNameButtonView: FontChangeView, ClosestCityNameButtonViewDispla
 		addSubview(baseView)
 		baseView.frame = self.bounds
 		self.clipsToBounds = true
-		self.backgroundColor = .clear
+		self.backgroundColor = .red
 
 		button.translatesAutoresizingMaskIntoConstraints = false
 		iconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,13 +53,14 @@ class ClosestCityNameButtonView: FontChangeView, ClosestCityNameButtonViewDispla
 		button.topAnchor.constraint(equalTo: topAnchor).isActive = true
 		button.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-		iconImageView.heightAnchor.constraint(equalToConstant: 9).isActive = true
+//		iconImageView.heightAnchor.constraint(equalToConstant: 9).isActive = true
+		iconImageView.heightAnchor.constraint(equalToConstant: 12).isActive = true
 		iconImageView.centerYAnchor.constraint(equalTo: label.centerYAnchor, constant: 1).isActive = true
 		iconImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 
 		label.topAnchor.constraint(equalTo: topAnchor, constant: 14).isActive = true
 		label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-		label.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 5).isActive = true
+		label.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 8).isActive = true
 		label.rightAnchor.constraint(equalTo: rightAnchor, constant: -14).isActive = true
 
 		label.isUserInteractionEnabled = false
@@ -68,11 +69,14 @@ class ClosestCityNameButtonView: FontChangeView, ClosestCityNameButtonViewDispla
 
 		button.addTarget(self, action: NSSelectorFromString("buttonPressed"), for: .touchUpInside)
 		button.backgroundColor = .clear
+
+//		label.backgroundColor = .red
 	}
 
 	// MARK: ClosestCityNameButtonViewDisplayLogic
 
 	func setCity(name: String, gpsIconVisible: Bool) -> Bool {
+
 		if self.label.text == name && gpsIconVisible != self.iconImageView.isHidden {
 			// No change!
 			return false
@@ -90,7 +94,7 @@ class ClosestCityNameButtonView: FontChangeView, ClosestCityNameButtonViewDispla
 	}
 
 	private func updateFonts() {
-		label.font = Font(.normal, size: .size3).font
+		label.font = Font(.normal, size: .size1).font
 	}
 
 	override func fontSizeWasChanged() {

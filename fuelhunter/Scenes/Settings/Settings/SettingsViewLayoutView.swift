@@ -133,14 +133,7 @@ class SettingsViewLayoutView: UIView, UITableViewDataSource, UITableViewDelegate
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		// Let nothing happen when we press gps or notif cell.
 		let aData = self.data[indexPath.row]
-		switch aData.settingsListCellType {
-			case .gpsCell:
-				controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
-			case .pushNotifCell:
-				break
-			default:
-				controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
-		}
+		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
 	}
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {

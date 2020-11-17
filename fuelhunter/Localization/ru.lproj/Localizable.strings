@@ -22,6 +22,8 @@
 "activate_button_title" = "Активизировать";
 "cancel_button_title" = "Отмена";
 "ok_button_title" = "Ну ладно";
+"yes_button_title" = "Jā";
+"hey_alert_title" = "Uzmanību";
 "no_data_label_downloading_active" = "Пожалуйста, подождите .. \ nЗагрузка данных";
 "no_data_label_no_data_available" = "В настоящее время нет доступных данных. Проверьте позже.";
 "no_data_label_parsing_problem" = "Возникла проблема с анализом данных с сервера. Проверьте позже.";
@@ -116,6 +118,29 @@
 "fuel_list_city_title" = "Почему";
 "fuel_list_city_explain_description" = "Fuel Hunter в настоящее время работает только на территории Латвии.\n\nПриложение использует GPS, чтобы определить, где вы находитесь.\n\nЕсли GPS выключен, приложение будет показывать только данные из Риги.";
 //=== FUEL LIST
+
+
+//--- AREAS
+"areas_title" = "Vietas";
+"areas_gps_calculated_location" = "GPS noteiktā lokācija";
+"areas_create_new_area" = "Jauna vieta";
+"areas_create_new_area_description" = "Izveido jaunu vietu";
+"areas_delete_alert_text" = "Vai tiešām vēlaties dzēst šo vietu?";
+"areas_fuel_companies" = "degvielas uzpildes kompānijas";
+"areas_fuel_company" = "degvielas uzpildes kompānija";
+"areas_name_title_description" = "Nosaukums";
+"areas_cheapest_only_title" = "Tikai lētākās cenas";
+"areas_cheapest_only_description" = "Sarakstā tiks rādītas tikai lētākās cenas no atzīmētajām kompānijām";
+"areas_notifs_title" = "Paziņojumi";
+"areas_notifs_descriptions_disabled" = "Получить уведомление, когда цена топлива падает.";
+"areas_notifs_descriptions_enabled" = "Получать уведомления, когда цена на топливо падает на";
+"areas_notif_1_cent" = "цент";
+"areas_notif_more_cents" = "центов";
+"areas_delete_title" = "Dzēst";
+"areas_delete_description" = "Ja vairs nav aktuāli..";
+"areas_section_companies_in_radius" = "Rādiusā atrodamās kompānijas";
+"areas_section_other_options" = "Citas iespējas";
+//=== AREAS
 
 
 //--- MAP

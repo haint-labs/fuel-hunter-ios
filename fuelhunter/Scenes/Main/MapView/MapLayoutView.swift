@@ -185,15 +185,15 @@ class MapLayoutView: UIView, MKMapViewDelegate, MapLayoutViewDataLogic, UIGestur
 
 	// MARK: MapLayoutViewDataLogic
 
-	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-		if let overlay = overlay as? MKCircle {
-			let circleRenderer = MKCircleRenderer(circle: overlay)
-			circleRenderer.fillColor = UIColor.red
-			circleRenderer.alpha = 0.5
-			return circleRenderer
-		}
-		return MKOverlayRenderer.init()
-	}
+//	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//		if let overlay = overlay as? MKCircle {
+//			let circleRenderer = MKCircleRenderer(circle: overlay)
+//			circleRenderer.fillColor = UIColor.red
+//			circleRenderer.alpha = 0.5
+//			return circleRenderer
+//		}
+//		return MKOverlayRenderer.init()
+//	}
 
 	func updateMapView(with data: [MapPoint], andOffset offset: CGFloat, andRatio ratio: Double) {
 		usedAccessoryViews.removeAll()

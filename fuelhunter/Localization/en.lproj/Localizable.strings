@@ -22,6 +22,8 @@
 "activate_button_title" = "Activate";
 "cancel_button_title" = "Cancel";
 "ok_button_title" = "Ok";
+"yes_button_title" = "Yes";
+"hey_alert_title" = "Hey";
 "no_data_label_downloading_active" = "Please wait..\nDownloading data";
 "no_data_label_no_data_available" = "Currently there is no data available. Check again later.";
 "no_data_label_parsing_problem" = "There was a problem parsing the data from the server. Check again later.";
@@ -116,6 +118,29 @@
 "fuel_list_city_title" = "Why";
 "fuel_list_city_explain_description" = "Fuel Hunter currently only works in the territory of Latvia.\n\nThe application uses GPS to determine where you are currently.\n\nIf GPS is off, the application will only show data from Riga.";
 //=== FUEL LIST
+
+
+//--- AREAS
+"areas_title" = "Areas";
+"areas_gps_calculated_location" = "GPS calculated location";
+"areas_create_new_area" = "New Area";
+"areas_create_new_area_description" = "Create new area";
+"areas_delete_alert_text" = "Do you really want to delete this Area?";
+"areas_fuel_companies" = "fuel companies";
+"areas_fuel_company" = "fuel company";
+"areas_name_title_description" = "Name";
+"areas_cheapest_only_title" = "Cheapest prices only";
+"areas_cheapest_only_description" = "Only the cheapest prices will be shown";
+"areas_notifs_title" = "Notifications";
+"areas_notifs_descriptions_disabled" = "Get notified when the price of fuel drops";
+"areas_notifs_descriptions_enabled" = "Get notified when fuel price drops by";
+"areas_notif_1_cent" = "cent";
+"areas_notif_more_cents" = "cents";
+"areas_delete_title" = "Delete";
+"areas_delete_description" = "If not necessary anymore..";
+"areas_section_companies_in_radius" = "Companies found in radius";
+"areas_section_other_options" = "Other options";
+//=== AREAS
 
 
 //--- MAP

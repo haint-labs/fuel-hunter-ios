@@ -18,16 +18,20 @@ protocol FuelListBusinessLogic {
 	func updateCityView(request: FuelList.UpdateCityView.Request)
 	func fetchPrices(request: FuelList.FetchPrices.Request)
 	func prepareToRevealMapWithRequest(request: FuelList.RevealMap.Request)
-	func checkIfThereAreCompanyChangesToPresent() -> Bool
 }
 
 protocol FuelListDataStore {
+	var areaName: String!  { get set }
+	var areaType: AreaType!  { get set }
 }
 
 class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NSFetchedResultsControllerDelegate {
 	
 	var presenter: FuelListPresentationLogic?
 	var fetchedResultsController: NSFetchedResultsController<PriceEntity>!
+	var areaName: String!
+	var areaType: AreaType!
+
 	var insertItems = [IndexPath]()
 	var deleteItems = [IndexPath]()
 	var updateItems = [IndexPath]()
@@ -38,8 +42,8 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 	// MARK: FuelListBusinessLogic
 
 	func updateCityView(request: FuelList.UpdateCityView.Request) {
-		let currentCityName = AppSettingsWorker.shared.getStoredLastGPSDetectedCityName()
-		let gpsIconShouldBeEnabled = AppSettingsWorker.shared.getGPSIsEnabled()
+		let currentCityName = areaName ?? "Rīga" //AppSettingsWorker.shared.getStoredLastGPSDetectedCityName()
+		let gpsIconShouldBeEnabled = (areaType == AreaType.areaTypeGPS) //AppSettingsWorker.shared.getGPSIsEnabled()
 
 		let response = FuelList.UpdateCityView.Response(currentCityName: currentCityName, currentCityGPSIconEnabled: gpsIconShouldBeEnabled)
     	presenter?.updateCityView(response: response)
@@ -81,8 +85,29 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 //				fetchRequest.predicate = NSPredicate(format: "((isCheapest == %i && companyMetaData != nil) || (companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i)) && fuelType IN %@", true, true, false, filteredArray)
 //			} else
 //			{
-				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType IN %@ && notEntered == %i", true, false, filteredArray, false)
+//				fetchRequest.predicate = NSPredicate(format: "companyMetaData.company.isEnabled = %i && companyMetaData.company.isHidden = %i && fuelType IN %@ && notEntered == %i", true, false, filteredArray, false)
+//			fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i", filteredArray, false)
 //			}
+
+			if areaType == AreaType.areaTypeGPS {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i", filteredArray, false)
+			} else if areaName == "Neste" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Neste")
+			} else if areaName == "Circle K" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Circle K")
+			} else if areaName == "Dinaz" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Dinaz")
+			} else if areaName == "Gotika Auto" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Gotika Auto")
+			} else if areaName == "Viada" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Viada")
+			} else if areaName == "Metro" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Metro")
+			} else if areaName == "Latvijas Nafta" {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && companyMetaData.company.name == %@", filteredArray, false, "Latvijas Nafta")
+			} else {
+				fetchRequest.predicate = NSPredicate(format: "fuelType IN %@ && notEntered == %i && (companyMetaData.company.name == %@ || companyMetaData.company.name == %@) ", filteredArray, false, "Circle K", "Neste")
+			}
 
 			let sortOrder = NSSortDescriptor(key: "fuelSortId", ascending: true)
 			let sortPrice = NSSortDescriptor(key: "price", ascending: true)
@@ -138,19 +163,6 @@ class FuelListInteractor: NSObject, FuelListBusinessLogic, FuelListDataStore, NS
 		let response = FuelList.RevealMap.Response(selectedCompany: request.selectedCompany, selectedPrice: request.selectedPrice, selectedFuelType: request.selectedFuelType, selectedCellYPosition: request.selectedCellYPosition)
 
 		self.presenter?.revealMapView(response: response)
-	}
-
-	func checkIfThereAreCompanyChangesToPresent() -> Bool {
-		let fetchRequest: NSFetchRequest<CompanyEntity> = CompanyEntity.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "shouldPopUpToUser == %i", true)
-		if let companyObjectArray = try? DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest) {
-
-			if !companyObjectArray.isEmpty {
-				return true
-			}
-		}
-
-		return false
 	}
 
 	// MARK: NSFetchedResultsControllerDelegate

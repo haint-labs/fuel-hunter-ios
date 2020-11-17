@@ -49,9 +49,9 @@ class FuelTypeListCell: FontChangeTableViewCell, FuelTypeListCellDisplayLogic {
 		bgViewBottomAnchorConstraint.isActive = true
 
 		titleLabel.leftAnchor.constraint(equalTo: backgroundImageView.leftAnchor, constant: 10).isActive = true
-		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 8).isActive = true
+		titleLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 8+2).isActive = true
 		titleLabel.rightAnchor.constraint(equalTo: aSwitch.leftAnchor, constant: 10).isActive = true
-		titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -11).isActive = true
+		titleLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -11-2).isActive = true
 
 		aSwitch.rightAnchor.constraint(equalTo: backgroundImageView.rightAnchor, constant: -10).isActive = true
 		aSwitch.centerYAnchor.constraint(equalTo: backgroundImageView.centerYAnchor).isActive = true
