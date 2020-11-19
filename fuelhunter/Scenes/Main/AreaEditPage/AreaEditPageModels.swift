@@ -20,7 +20,16 @@ enum Area {
 		struct Request {
 		}
 		struct Response {
+			struct CompanyEntry: Equatable {
+				var name: String = ""
+				var imageName: String = ""
+				var stationCount: Int = 0
+				var addresses = [AddressEntity]()
+				var enabled: Bool = true
+			}
+			var companyEntries: [CompanyEntry]
 			var fetchedArea: AreasEntity
+			
 		}
 		struct ViewModel {
 			struct DisplayedCell: Equatable {

@@ -13,9 +13,11 @@ class TinyMapPoint: NSObject, MKAnnotation {
 	var coordinate: CLLocationCoordinate2D
 
     var imageName: String
-    
-    init(imageName: String, coordinate: CLLocationCoordinate2D) {
+	var address: AddressEntity!
+
+    init(imageName: String, address: AddressEntity, coordinate: CLLocationCoordinate2D) {
     	self.imageName = imageName
     	self.coordinate = coordinate
+    	self.address = address
     }
 }

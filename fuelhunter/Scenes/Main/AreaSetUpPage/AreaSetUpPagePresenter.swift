@@ -14,6 +14,7 @@ import UIKit
 
 protocol AreaSetUpPagePresentationLogic {
   	func presentData(response: AreaSetUpPage.SetUp.Response)
+  	func presentSecondData(response: AreaSetUpPage.UserSelectedNext.Response)
   	func returnBackToPreviousViewController()
 }
 
@@ -25,58 +26,30 @@ class AreaSetUpPagePresenter: AreaSetUpPagePresentationLogic {
 
   	func presentData(response: AreaSetUpPage.SetUp.Response) {
 
-//  		var descriptionString = "settings_receive_notif_if_price_drops_by_title".localized()
-//
-//  		if response.value == 1 {
-//  			descriptionString.append(" \(response.convertedValue) \("settings_1_cent".localized())")
-//  		} else {
-//  			descriptionString.append(" \(response.convertedValue) \("settings_more_cents".localized())")
-//  		}
-//
-//  		let displayItem = AreaSetUpPage.SetUp.ViewModel.DisplayedItem(description: descriptionString, value: response.value, minValue: response.minValue, maxValue: response.maxValue, sortedCities: response.sortedCities, selectedCityName: response.selectedCityName)
-//    	let viewModel = AreaSetUpPage.SetUp.ViewModel(displayedItem: displayItem)
-//    	viewController?.updateData(viewModel: viewModel)
+		let viewModelFirst = AreaSetUpPage.SetUp.ViewModel.init(displayedItem: AreaSetUpPage.SetUp.ViewModel.DisplayedItem.init())
+    	viewController?.updateFirstViewData(viewModel: viewModelFirst)
+  	}
+
+  	func presentSecondData(response: AreaSetUpPage.UserSelectedNext.Response) {
 
 		var arrayBasics: [AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell] = []
 		var arrayCompanies: [AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell] = []
 
-		arrayBasics.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "Jauna vieta", toggleOrCheckmarkIsOn: false, iconName:"", description: "areas_name_title_description".localized(), accessoryType: .cellAccessoryTypeName, functionalityType: .cellFunctionalityTypeName))
+		arrayBasics.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: response.areaName, toggleOrCheckmarkIsOn: false, iconName:"", description: "areas_name_title_description".localized(), accessoryType: .cellAccessoryTypeName, functionalityType: .cellFunctionalityTypeName))
 
-		arrayBasics.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "areas_cheapest_only_title".localized(), toggleOrCheckmarkIsOn: true, iconName:"", description: "areas_cheapest_only_description".localized(), accessoryType: .cellAccessoryTypeToggle, functionalityType: .cellFunctionalityTypeCheapestOnly))
+		arrayBasics.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "areas_cheapest_only_title".localized(), toggleOrCheckmarkIsOn: response.cheapestPriceIsOn, iconName:"", description: "areas_cheapest_only_description".localized(), accessoryType: .cellAccessoryTypeToggle, functionalityType: .cellFunctionalityTypeCheapestOnly))
 
 
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "Viada", toggleOrCheckmarkIsOn: false, iconName:"", description: "3 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
+		for companyEntry in response.companyEntries {
+			let name = companyEntry.stationCount == 1 ? "1 degvielas uzpildes stacija" : "\(companyEntry.stationCount) degvielas uzpildes stacijas"
+			
+			arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: companyEntry.name, toggleOrCheckmarkIsOn: companyEntry.enabled, iconName:companyEntry.imageName, description: name, accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
+		}
 
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "Gotika Auto", toggleOrCheckmarkIsOn: false, iconName:"", description: "2 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
+		let resultArray: [[AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell]] = [arrayBasics, arrayCompanies];
 
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE2", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE3", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE4", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE5", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE6", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE7", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE8", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE9", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		arrayCompanies.append(AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE10", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-		var resultArray: [[AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell]] = [arrayBasics, arrayCompanies];
-
-    	let viewModel = AreaSetUpPage.AreaEditPage.ViewModel(displayedCells: resultArray)
+    	let viewModel = AreaSetUpPage.AreaEditPage.ViewModel(displayedCells: resultArray, newAreaName: response.areaName)
     	viewController?.updateSecondViewData(viewModel: viewModel)
-
-		let viewModelFirst = AreaSetUpPage.SetUp.ViewModel.init(displayedItem: AreaSetUpPage.SetUp.ViewModel.DisplayedItem.init())
-    	viewController?.updateFirstViewData(viewModel: viewModelFirst)
-
   	}
 
   	func returnBackToPreviousViewController() {

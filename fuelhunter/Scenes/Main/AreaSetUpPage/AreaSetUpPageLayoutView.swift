@@ -14,7 +14,7 @@ protocol AreaSetUpPageLayoutViewLogic: class {
 	func nextButtonPressed()
 	func cancelButtonPressed()
 	func stepperPressed(value: Int)
-	func chooseCityButtonPressed(with frame: CGRect)
+	func chooseCityButtonPressed(with frame: CGRect, addresses: [AddressEntity], cityName: String)
 }
 
 protocol AreaSetUpPageLayoutViewDataLogic: class {
@@ -172,99 +172,103 @@ class AreaSetUpPageLayoutView: UIView, AreaSetUpPageLayoutViewDataLogic, MKMapVi
   	// MARK: Functions
 
   	@objc private func nextButtonPressed() {
-  		controller?.chooseCityButtonPressed(with: frontView.frame)
+
+		var inRadiusAddresses = [AddressEntity]()
+		var closestStationCityName = ""
+		var closestStationDistance: CLLocationDistance = 0
+
+		for annotation in self.mapView!.annotations {
+
+			guard !(annotation is MKUserLocation) else {
+				continue
+			}
+
+
+			if let annotationPoint = annotation as? TinyMapPoint {
+
+				if let annotationView = self.mapView.view(for: annotationPoint) as? TinyMapPinAccessoryView {
+					if annotationView.inRadius == true {
+						let point = CLLocation(latitude: annotationPoint.coordinate.latitude, longitude: annotationPoint.coordinate.longitude)
+						let distance = self.centerLocation.distance(from: point)
+						if(closestStationDistance == 0 || distance < closestStationDistance) {
+							closestStationDistance = distance
+							closestStationCityName = annotationPoint.address.city!
+						}
+
+						inRadiusAddresses.append(annotationPoint.address)
+					}
+				}
+			}
+		}
+
+  		controller?.chooseCityButtonPressed(with: frontView.frame, addresses: inRadiusAddresses, cityName: closestStationCityName)
   	}
 
   	@objc private func cancelButtonPressed() {
   		controller?.cancelButtonPressed()
   	}
 
-  	@objc private func stepperPressed() {
-//		controller?.stepperPressed(value: Int(stepper.value))
-  	}
 
-	@objc private func chooseCityButtonPressed() {
-//		controller?.chooseCityButtonPressed(with: frontView.frame)
-  	}
 
-//	- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-//		if ([overlay isKindOfClass:PVParkMapOverlay.class]) {
-//			UIImage *magicMountainImage = [UIImage imageNamed:@"overlay_park"];
-//			PVParkMapOverlayView *overlayView = [[PVParkMapOverlayView alloc] initWithOverlay:overlay overlayImage:magicMountainImage];
+
+//	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//		if let overlay = overlay as? CompanyMapOverlay {
 //
-//			return overlayView;
+////			overlay.radius = 100
+//			let circleRenderer = NesteMapOverlay.init(overlay: overlay)//MKCircleRenderer(circle: overlay)
+////			circleRenderer.fillColor = UIColor.red
+////			circleRenderer.icon =
+////			circleRenderer.alpha = 0.9
+//
+//
+//			if(overlay.imageNameString.contains("Neste")) {
+//				circleRenderer.icon = UIImage(named: "neste_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Circle K")) {
+//				circleRenderer.icon = UIImage(named: "circle_k_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Kool")) {
+//				circleRenderer.icon = UIImage(named: "kool_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Ingrid")) {
+//				circleRenderer.icon = UIImage(named: "ingrida_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Kings")) {
+//				circleRenderer.icon = UIImage(named: "kings_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Astarte")) {
+//				circleRenderer.icon = UIImage(named: "astarte_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("VTU")) {
+//				circleRenderer.icon = UIImage(named: "vtu_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Viada")) {
+//				circleRenderer.icon = UIImage(named: "viada_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Gotika")) {
+//				circleRenderer.icon = UIImage(named: "gotika_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Dinaz")) {
+//				circleRenderer.icon = UIImage(named: "dinaz_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Rietumu")) {
+//				circleRenderer.icon = UIImage(named: "rn_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Metro")) {
+//				circleRenderer.icon = UIImage(named: "metro_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Virši")) {
+//				circleRenderer.icon = UIImage(named: "virshi_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Virāža")) {
+//				circleRenderer.icon = UIImage(named: "viraza_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Intergaz")) {
+//				circleRenderer.icon = UIImage(named: "intergaz_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("MC")) {
+//				circleRenderer.icon = UIImage(named: "mc_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Geksans")) {
+//				circleRenderer.icon = UIImage(named: "geksans_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Latvijas Nafta")) {
+//				circleRenderer.icon = UIImage(named: "ln_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Straujupīte")) {
+//				circleRenderer.icon = UIImage(named: "totals_big_logo@3x")
+//			} else if(overlay.imageNameString.contains("Latvijas Propāna Gāze")) {
+//				circleRenderer.icon = UIImage(named: "lpg_big_logo@3x")
+//			} else {
+//				circleRenderer.icon = UIImage(named: "Intro_icon")
+//			}
+//
+//			return circleRenderer
 //		}
-//
-//		return nil;
+//		return MKOverlayRenderer.init()
 //	}
-//
-//	func renderer(for overlay: MKOverlay) -> MKOverlayRenderer? {
-////		let image = UIImage.init(named: "Intro_icon")
-//
-//		print("render!");
-//
-//		let overlay = NesteMapOverlay.init(overlay: overlay)
-//		return overlay
-//	}
-
-	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-		if let overlay = overlay as? CompanyMapOverlay {
-
-//			overlay.radius = 100
-			let circleRenderer = NesteMapOverlay.init(overlay: overlay)//MKCircleRenderer(circle: overlay)
-//			circleRenderer.fillColor = UIColor.red
-//			circleRenderer.icon = 
-//			circleRenderer.alpha = 0.9
-
-
-			if(overlay.imageNameString.contains("Neste")) {
-				circleRenderer.icon = UIImage(named: "neste_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Circle K")) {
-				circleRenderer.icon = UIImage(named: "circle_k_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Kool")) {
-				circleRenderer.icon = UIImage(named: "kool_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Ingrid")) {
-				circleRenderer.icon = UIImage(named: "ingrida_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Kings")) {
-				circleRenderer.icon = UIImage(named: "kings_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Astarte")) {
-				circleRenderer.icon = UIImage(named: "astarte_big_logo@3x")
-			} else if(overlay.imageNameString.contains("VTU")) {
-				circleRenderer.icon = UIImage(named: "vtu_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Viada")) {
-				circleRenderer.icon = UIImage(named: "viada_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Gotika")) {
-				circleRenderer.icon = UIImage(named: "gotika_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Dinaz")) {
-				circleRenderer.icon = UIImage(named: "dinaz_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Rietumu")) {
-				circleRenderer.icon = UIImage(named: "rn_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Metro")) {
-				circleRenderer.icon = UIImage(named: "metro_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Virši")) {
-				circleRenderer.icon = UIImage(named: "virshi_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Virāža")) {
-				circleRenderer.icon = UIImage(named: "viraza_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Intergaz")) {
-				circleRenderer.icon = UIImage(named: "intergaz_big_logo@3x")
-			} else if(overlay.imageNameString.contains("MC")) {
-				circleRenderer.icon = UIImage(named: "mc_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Geksans")) {
-				circleRenderer.icon = UIImage(named: "geksans_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Latvijas Nafta")) {
-				circleRenderer.icon = UIImage(named: "ln_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Straujupīte")) {
-				circleRenderer.icon = UIImage(named: "totals_big_logo@3x")
-			} else if(overlay.imageNameString.contains("Latvijas Propāna Gāze")) {
-				circleRenderer.icon = UIImage(named: "lpg_big_logo@3x")
-			} else {
-				circleRenderer.icon = UIImage(named: "Intro_icon")
-			}
-
-			return circleRenderer
-		}
-		return MKOverlayRenderer.init()
-	}
 
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -296,8 +300,10 @@ class AreaSetUpPageLayoutView: UIView, AreaSetUpPageLayoutViewDataLogic, MKMapVi
 				let furthest = CLLocation(latitude: self.mapView.region.center.latitude,
 					longitude: self.mapView.region.center.longitude + (self.mapView.region.span.longitudeDelta/2))
 
+				let ratio = 1 - ((1 - (self.selectedMapRadiusImageView.frame.size.width / self.baseView.frame.size.width)) / 2)
+
 				self.selectedRadius = self.centerLocation.distance(from: furthest)
-				print("self.selectedRadius %f", self.selectedRadius)
+				self.selectedRadius = self.selectedRadius * Double(ratio)
 			} else {
 				self.selectedMapRadiusImageView.alpha = 0
 			}
@@ -316,6 +322,8 @@ class AreaSetUpPageLayoutView: UIView, AreaSetUpPageLayoutViewDataLogic, MKMapVi
 	func setCorespondingZoomLevelBasedOnCenterLocationFor(annotation: MKAnnotation) {
 		let zoomWidth = self.mapView.visibleMapRect.size.width
 		var level = 0
+		var inRadius = false
+
 		if let annotationView = self.mapView.view(for: annotation) as? TinyMapPinAccessoryView {
 			if(Float(log2(zoomWidth)) - 9 <= 3 ) {
 				level = 3
@@ -328,9 +336,10 @@ class AreaSetUpPageLayoutView: UIView, AreaSetUpPageLayoutViewDataLogic, MKMapVi
 			if(self.selectedMapRadiusImageView.alpha > 0 &&
 				CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude).distance(from: centerLocation) < self.selectedRadius) {
 				level = level + 1
+				inRadius = true
 			}
 
-			annotationView.setAsLevel(level)
+			annotationView.setAsLevel(level, inRadius: inRadius)
 			annotationView.setNeedsDisplay()
 		}
 	}
@@ -358,7 +367,10 @@ class AreaSetUpPageLayoutView: UIView, AreaSetUpPageLayoutViewDataLogic, MKMapVi
 				let furthest = CLLocation(latitude: self.mapView.region.center.latitude,
 					longitude: self.mapView.region.center.longitude + (self.mapView.region.span.longitudeDelta/2))
 
+				let ratio = 1 - ((1 - (self.selectedMapRadiusImageView.frame.size.width / self.baseView.frame.size.width)) / 2)
+
 				self.selectedRadius = self.centerLocation.distance(from: furthest)
+				self.selectedRadius = self.selectedRadius * Double(ratio)
 				print("self.selectedRadius %f", self.selectedRadius)
 			} else {
 				self.selectedMapRadiusImageView.alpha = 0
@@ -437,7 +449,7 @@ class AreaSetUpPageLayoutView: UIView, AreaSetUpPageLayoutViewDataLogic, MKMapVi
 					imageName = "Intro_icon"
 				}
 
-				let a = TinyMapPoint.init(imageName: imageName, coordinate: CLLocation.init(latitude: address.latitude, longitude: address.longitude).coordinate)
+				let a = TinyMapPoint.init(imageName: imageName, address: address, coordinate: CLLocation.init(latitude: address.latitude, longitude: address.longitude).coordinate)
 				
 //				a.coordinate = CLLocation.init(latitude: address.latitude, longitude: address.longitude).coordinate
 				annotations.add(a)

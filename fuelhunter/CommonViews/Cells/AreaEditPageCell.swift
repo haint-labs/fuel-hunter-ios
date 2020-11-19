@@ -57,7 +57,7 @@ class AreaEditPageCell: FontChangeTableViewCell, AreaEditPageCellDisplayLogic, U
 		aSwitch.translatesAutoresizingMaskIntoConstraints = false
 
 		iconImageView.contentMode = .scaleAspectFit
-		iconImageView.backgroundColor = .gray
+		iconImageView.backgroundColor = .clear
 
 		titleTextField.delegate = self
 		titleTextField.textContentType = .name
@@ -270,9 +270,9 @@ class AreaEditPageCell: FontChangeTableViewCell, AreaEditPageCellDisplayLogic, U
 				titleLeftImageAnchorConstraint.isActive = true
 				titleLabel.textColor = UIColor(named: "TitleColor")!
 				if toggleOrCheckmarkIsOn == true {
-					accessoryIconImageView.alpha = 0
-				} else {
 					accessoryIconImageView.alpha = 1
+				} else {
+					accessoryIconImageView.alpha = 0
 				}
 		}
 	}

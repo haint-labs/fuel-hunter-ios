@@ -200,8 +200,6 @@
 		5CBE72BE244044CF00559D7D /* CityWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE72BD244044CF00559D7D /* CityWorker.swift */; };
 		5CBEF1202370C6BA0052D289 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBEF11F2370C6BA0052D289 /* MapKit.framework */; };
 		5CBFF5D223891062004CFEDE /* PassThroughScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBFF5D123891062004CFEDE /* PassThroughScrollView.swift */; };
-		5CC93968255592C200B2A2C2 /* 1000.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 5CC93966255592C200B2A2C2 /* 1000.geojson */; };
-		5CC93969255592C200B2A2C2 /* 3000.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 5CC93967255592C200B2A2C2 /* 3000.geojson */; };
 		5CCC38E1230A7797008D3512 /* FuelListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC38E0230A7797008D3512 /* FuelListCellView.swift */; };
 		5CCC38E5230A77B5008D3512 /* FuelListCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CCC38E4230A77B4008D3512 /* FuelListCellView.xib */; };
 		5CCC38F1230A945A008D3512 /* MapModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCC38E9230A945A008D3512 /* MapModels.swift */; };
@@ -511,8 +509,6 @@
 		5CBE72BD244044CF00559D7D /* CityWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWorker.swift; sourceTree = "<group>"; };
 		5CBEF11F2370C6BA0052D289 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5CBFF5D123891062004CFEDE /* PassThroughScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassThroughScrollView.swift; sourceTree = "<group>"; };
-		5CC93966255592C200B2A2C2 /* 1000.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1000.geojson; sourceTree = "<group>"; };
-		5CC93967255592C200B2A2C2 /* 3000.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3000.geojson; sourceTree = "<group>"; };
 		5CCC38E0230A7797008D3512 /* FuelListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelListCellView.swift; sourceTree = "<group>"; };
 		5CCC38E4230A77B4008D3512 /* FuelListCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FuelListCellView.xib; sourceTree = "<group>"; };
 		5CCC38E9230A945A008D3512 /* MapModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModels.swift; sourceTree = "<group>"; };
@@ -1359,8 +1355,6 @@
 		5CF4A07A253ABD58008AAC8C /* AreaSetUpPage */ = {
 			isa = PBXGroup;
 			children = (
-				5CC93966255592C200B2A2C2 /* 1000.geojson */,
-				5CC93967255592C200B2A2C2 /* 3000.geojson */,
 				5CF4A084253ABDA2008AAC8C /* AreaSetUpPageViewController.swift */,
 				5CF4A07F253ABDA2008AAC8C /* AreaSetUpPageInteractor.swift */,
 				5CF4A081253ABDA2008AAC8C /* AreaSetUpPagePresenter.swift */,
@@ -1582,14 +1576,12 @@
 				5C485B8A254C7647000F3F44 /* ln_big_logo@2x.png in Resources */,
 				5CE7FBEE24B8250B00009F4D /* FuelListBottomPageView.xib in Resources */,
 				5C485B87254C7647000F3F44 /* mc_big_logo@3x.png in Resources */,
-				5CC93969255592C200B2A2C2 /* 3000.geojson in Resources */,
 				5C95518822FEB8D100AF2D90 /* AppLanguageLayoutView.xib in Resources */,
 				5C485B78254C7647000F3F44 /* dinaz_big_logo@2x.png in Resources */,
 				5C11F085229EF4FC00EC7CEC /* Assets.xcassets in Resources */,
 				5C485B8B254C7647000F3F44 /* ln_big_logo@3x.png in Resources */,
 				5CE7FBF324B8373300009F4D /* CustomPageControl.xib in Resources */,
 				5C485B82254C7647000F3F44 /* circle_k_big_logo@2x.png in Resources */,
-				5CC93968255592C200B2A2C2 /* 1000.geojson in Resources */,
 				5C85819D24F9518F00EFC7CD /* AreaEditPageCell.xib in Resources */,
 				5C485B70254C7647000F3F44 /* astarte_big_logo@2x.png in Resources */,
 				5C45BE9722CF793500FE53D6 /* LanguageListCell.xib in Resources */,

@@ -114,7 +114,7 @@ class AreaEditPageViewLayoutView: UIView, UITableViewDataSource, UITableViewDele
 			cell.titleTextField.text = aData.name
 			cell.titleLabel.text = aData.name
 			cell.descriptionLabel.text = aData.description
-
+			cell.iconImageView.image = UIImage.init(named: aData.iconName)
 			cell.setAccessoryIconType(type: aData.accessoryType, toggleOrCheckmarkIsOn: aData.toggleOrCheckmarkIsOn)
 
 			if aDataSection.count == 1 {

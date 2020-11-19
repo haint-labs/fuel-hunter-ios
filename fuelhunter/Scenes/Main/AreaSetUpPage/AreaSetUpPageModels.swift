@@ -54,7 +54,57 @@ enum AreaSetUpPage {
 				var functionalityType: CellFunctionalityType
 			}
 			var displayedCells: [[DisplayedCell]]
-//			var areaName: String
+			var newAreaName: String
+		}
+  	}
+
+  	enum UserSelectedNext {
+		struct Request {
+			var addresses: [AddressEntity]
+			var areaName: String
+		}
+		struct Response {
+			struct CompanyEntry: Equatable {
+				var name: String = ""
+				var imageName: String = ""
+				var stationCount: Int = 0
+				var addresses = [AddressEntity]()
+				var enabled: Bool = true
+			}
+			var companyEntries: [CompanyEntry]
+			var areaName: String
+			var cheapestPriceIsOn: Bool
+		}
+  	}
+
+  	enum ToggleCompanyStatus {
+		struct Request {
+			var companyName: String
+			var state: Bool
+		}
+  	}
+
+  	enum ChangeAreaName {
+		struct Request {
+			var areaName: String
+		}
+  	}
+
+  	enum ToggleCheapestPrice {
+		struct Request {
+			var cheapestPriceIsOn: Bool
+		}
+  	}
+
+  	enum SavingData {
+		struct Request {
+			var areaName: String
+			var cheapestPriceIsOn: Bool
+			var notifToggleIsOn: Bool
+			var radiusCompanies: [CompanyEntity]
+			var enabledCompanies: [CompanyEntity]
+			var radiusStations: [AddressEntity]
+			var enabledStations: [AddressEntity]
 		}
   	}
 }

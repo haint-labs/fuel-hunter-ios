@@ -10,11 +10,14 @@ import UIKit
 
 protocol AreaSetUpPage2LayoutViewLogic: class {
 	func backButtonPressed()
+	func saveButtonPressed()
 	func selectedCityWithName(_ name: String)
+	func toggleCompanyNamed(name: String, state: Bool)
+	func userToggledCheapestPrice(to state: Bool)
 }
 
 protocol AreaSetUpPage2LayoutViewDataLogic: class {
-	func updateData(data: [[AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell]])
+	func updateData(data: [[AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell]], name: String)
 	func updateFrontFrame(to frame: CGRect)
 }
 
@@ -144,6 +147,8 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
 
 		saveButton.setTitle("Saglabāt".localized(), for: .normal)
 
+  		saveButton.addTarget(self, action: NSSelectorFromString("saveButtonPressed"), for: .touchUpInside)
+
 		tableView.delegate = self
     	tableView.dataSource = self
 
@@ -186,7 +191,7 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
 			cell.titleTextField.text = aData.name
 			cell.titleLabel.text = aData.name
 			cell.descriptionLabel.text = aData.description
-
+			cell.iconImageView.image = UIImage.init(named: aData.iconName)
 			cell.setAccessoryIconType(type: aData.accessoryType, toggleOrCheckmarkIsOn: aData.toggleOrCheckmarkIsOn)
 
 			if aDataSection.count == 1 {
@@ -232,23 +237,21 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		// Let nothing happen when we press gps or notif cell.
 		let aData = self.data[indexPath.section][indexPath.row]
+		if let cell = tableView.cellForRow(at: indexPath) as? AreaEditPageCell {
 
-		if aData.functionalityType == .cellFunctionalityTypeName {
-			let cell = self.tableView.cellForRow(at: indexPath) as! AreaEditPageCell
-			cell.activateTextField()
-		} else if aData.functionalityType == .cellFunctionalityTypeDelete {
-//			controller?.deleteWasPressed()
+			if aData.functionalityType == .cellFunctionalityTypeName {
+				let cell = self.tableView.cellForRow(at: indexPath) as! AreaEditPageCell
+				cell.activateTextField()
+			} else if aData.functionalityType == .cellFunctionalityTypeCompany {
+				self.controller?.toggleCompanyNamed(name: aData.name, state: !aData.toggleOrCheckmarkIsOn)
+				cell.setAccessoryIconType(type: aData.accessoryType, toggleOrCheckmarkIsOn: !aData.toggleOrCheckmarkIsOn)
+			}
 		}
 	}
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		adjustVisibilityOfShadowLines()
 	}
-
-//	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//		controller?.selectedCityWithName(filteredSortedCities[indexPath.row].name)
-//		resignTextField()
-//	}
 
   	// MARK: Functions
 
@@ -265,6 +268,11 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
   		resignTextField()
   	}
 
+	@objc private func saveButtonPressed() {
+  		controller?.saveButtonPressed()
+  		resignTextField()
+  	}
+
 	private func updateTableViewOffset() {
 
 		let calculatedOffset = (ScenesManager.shared.window!.rootViewController!.view.frame.size.height - tableView.frame.maxY - ScenesManager.shared.window!.safeAreaInsets.top - frontView.frame.minY)
@@ -274,9 +282,6 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
 	}
 
 	private func resignTextField() {
-//		shouldRiseKeyboard = false
-//		headerView?.deactivateTextField()
-
 		self.tableView.layoutSubviews()
 		self.tableView.layoutIfNeeded()
 		self.tableView.setContentOffset(.zero, animated: true)
@@ -284,76 +289,37 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
 
 	// MARK: AreaSetUpPage2LayoutViewDataLogic
 
-	func updateData(data: [[AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell]]) {
+	func updateData(data: [[AreaSetUpPage.AreaEditPage.ViewModel.DisplayedCell]], name: String) {
 		if self.data.isEmpty {
 			self.data = data
 			tableView.reloadData()
   		} else {
 			self.data = data
   		}
-//		sortedCities = data.displayedItem.sortedCities
-//		filteredSortedCities = sortedCities
+
+  		descriptionCityLabel.text = name
 	}
 
 	func updateFrontFrame(to frame: CGRect) {
-//		shouldRiseKeyboard = true
 
 		keyboardHeight = 0;
-
-		descriptionCityLabel.text = "Jauna vieta".localized()
-
-		print("frame.origin.y %f", frame.origin.y);
-
 
 		frontViewTopConstraint.constant = frame.origin.y
 		frontViewLeftConstraint.constant = frame.origin.x
 		frontViewWidthConstraint.constant = frame.size.width
 		frontViewHeightConstraint.constant = frame.size.height
 
-//		filteredSortedCities = sortedCities
-
-//		tableViewHeightConstraint.constant = frame.size.height-tableView.frame.origin.y
-
 		self.tableView.layoutSubviews()
 		self.tableView.layoutIfNeeded()
 		tableView.reloadData()
 
-//		let calculatedOffset = (self.frame.height - frame.size.height - frame.origin.y)
-//		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight - calculatedOffset + 12, right: 0)
-//		tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight - calculatedOffset, right: 0)
-
 		self.tableView.contentInset = UIEdgeInsets(top: -4, left: 0, bottom: -36, right: 0)
 		self.tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-
 	}
-
-	// MARK: SearchTableViewHeaderViewLogic
-
-//	func textFieldValueWasChanged(textField: UITextField) {
-//		if let text = textField.text, text.isEmpty == false {
-//			filteredSortedCities = sortedCities.filter({$0.name.localized().range(of: text, options: [.caseInsensitive, .diacriticInsensitive]) != nil})
-//		} else {
-//			filteredSortedCities = sortedCities
-//		}
-//
-//		if filteredSortedCities.isEmpty {
-//			self.tableViewNoDataView.alpha = 1
-//			self.tableView.isScrollEnabled = false
-//		} else {
-//			self.tableViewNoDataView.alpha = 0
-//			self.tableView.isScrollEnabled = true
-//		}
-//
-//		// simple reloadData, but with a tinsy fade animation. We can't reload section with animation, because textfield in section header.
-//		UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() })
-//	}
 
 	// MARK: AreaEditPageCellDataLogic
 
 	func textFieldShouldResign(cell: AreaEditPageCell) {
-		print("Int(-self.tableView.contentOffset.y) %f", Int(-self.tableView.contentOffset.y));
-		print("Int(self.tableView.contentInset.top) %f", Int(self.tableView.contentInset.top));
-
 
 		if Int(-self.tableView.contentOffset.y) != Int(self.tableView.contentInset.top) {
 			UIView.animate (withDuration: 0.3, animations: {
@@ -366,16 +332,17 @@ class AreaSetUpPage2LayoutView: UIView, AreaSetUpPage2LayoutViewDataLogic, UITab
 		}
 
 		descriptionCityLabel.text = cell.titleTextField.text!
-
-//		controller?.userJustChangedAreaName(cell.titleTextField.text!)
+		controller?.selectedCityWithName(descriptionCityLabel.text ?? "Jauna vieta")
 	}
 
 	func switchWasPressedOnTableViewCell(cell: AreaEditPageCell, withState state: Bool) {
-//		let indexPath = self.tableView.indexPath(for: cell)!
-//		let aData = self.data[indexPath.section][indexPath.row]
-//
-//		if aData.functionalityType == .cellFunctionalityTypeCheapestOnly {
-//			controller?.userJustToggledCheapestOnlySwitch(withState: state)
+
+		let indexPath = self.tableView.indexPath(for: cell)!
+		let aData = self.data[indexPath.section][indexPath.row]
+
+		if aData.functionalityType == .cellFunctionalityTypeCheapestOnly {
+			controller?.userToggledCheapestPrice(to: state)
+		}
 //		} else if aData.functionalityType == .cellFunctionalityTypePushNotif {
 //			controller?.userJustToggledPushNotifSwitch(withState: state)
 //		}

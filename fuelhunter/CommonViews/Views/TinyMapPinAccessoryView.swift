@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 protocol TinyMapPinAccessoryViewDisplayLogic {
-	func setAsLevel(_ tiny: Int)
+	func setAsLevel(_ tiny: Int, inRadius: Bool)
 }
 
 class TinyMapPinAccessoryView: MKAnnotationView, TinyMapPinAccessoryViewDisplayLogic {
@@ -19,6 +19,8 @@ class TinyMapPinAccessoryView: MKAnnotationView, TinyMapPinAccessoryViewDisplayL
 	@IBOutlet var iconNormal: UIImageView!
 
 	var isLevel: Int = 1
+	var inRadius: Bool = false
+	var company: CompanyEntity!
 
 	var iconTopConstraint: NSLayoutConstraint!
 	var iconLeftConstraint: NSLayoutConstraint!
@@ -93,8 +95,10 @@ class TinyMapPinAccessoryView: MKAnnotationView, TinyMapPinAccessoryViewDisplayL
 
 	// MARK: TinyMapPinAccessoryViewDisplayLogic
 
-	func setAsLevel(_ level: Int) {
+	func setAsLevel(_ level: Int, inRadius: Bool) {
 
+		self.inRadius = inRadius
+		
 //		if(level == isLevel) {
 //			return
 //		}

@@ -32,6 +32,7 @@ class AreaEditPageInteractor: NSObject, AreaEditPageBusinessLogic, AreaEditPageD
   	var worker = AreaEditPageWorker()
 	var area: AreasEntity!
 	var areaId: Int!
+	var companyEntries = [Area.AreaEditPage.Response.CompanyEntry]()
 
 	// MARK: AreaEditPageBusinessLogic
 
@@ -44,7 +45,85 @@ class AreaEditPageInteractor: NSObject, AreaEditPageBusinessLogic, AreaEditPageD
 
 			area = areasObjectArray.first!
 
-			let response = Area.AreaEditPage.Response(fetchedArea: area)
+
+			var companiesDict = [String: Area.AreaEditPage.Response.CompanyEntry]()
+
+			let radiusStations = area.radiusStations?.allObjects ?? [AddressEntity]()
+			let enabledStations = area.enabledStations?.allObjects ?? [AddressEntity]()
+
+			for address in radiusStations as! [AddressEntity] {
+				var imageName = ""
+
+				if(address.companyName!.contains("Neste")) {
+					imageName = "neste_big_logo@3x"
+				} else if(address.companyName!.contains("Circle K")) {
+					imageName = "circle_k_big_logo@3x"
+				} else if(address.companyName!.contains("Kool")) {
+					imageName = "kool_big_logo@3x"
+				} else if(address.companyName!.contains("Ingrid")) {
+					imageName = "ingrida_big_logo@3x"
+				} else if(address.companyName!.contains("Kings")) {
+					imageName = "kings_big_logo@3x"
+				} else if(address.companyName!.contains("Astarte")) {
+					imageName = "astarte_big_logo@3x"
+				} else if(address.companyName!.contains("VTU")) {
+					imageName = "vtu_big_logo@3x"
+				} else if(address.companyName!.contains("Viada")) {
+					imageName = "viada_big_logo@3x"
+				} else if(address.companyName!.contains("Gotika")) {
+					imageName = "gotika_big_logo@3x"
+				} else if(address.companyName!.contains("Dinaz")) {
+					imageName = "dinaz_big_logo@3x"
+				} else if(address.companyName!.contains("Rietumu")) {
+					imageName = "rn_big_logo@3x"
+				} else if(address.companyName!.contains("Metro")) {
+					imageName = "metro_big_logo@3x"
+				} else if(address.companyName!.contains("Virši")) {
+					imageName = "virshi_big_logo@3x"
+				} else if(address.companyName!.contains("Virāža")) {
+					imageName = "viraza_big_logo@3x"
+				} else if(address.companyName!.contains("Intergaz")) {
+					imageName = "intergaz_big_logo@3x"
+				} else if(address.companyName!.contains("MC")) {
+					imageName = "mc_big_logo@3x"
+				} else if(address.companyName!.contains("Geksans")) {
+					imageName = "geksans_big_logo@3x"
+				} else if(address.companyName!.contains("Latvijas Nafta")) {
+					imageName = "ln_big_logo@3x"
+				} else if(address.companyName!.contains("Straujupīte")) {
+					imageName = "totals_big_logo@3x"
+				} else if(address.companyName!.contains("Latvijas Propāna Gāze")) {
+					imageName = "lpg_big_logo@3x"
+				}
+
+				var value = companiesDict[address.companyName!] ?? Area.AreaEditPage.Response.CompanyEntry.init()
+				value.stationCount = value.stationCount + 1
+				value.addresses.append(address)
+				value.name = address.companyName!
+				value.imageName = imageName
+				value.enabled = false
+				companiesDict[address.companyName!] = value
+			}
+
+			for address in enabledStations as! [AddressEntity] {
+				var value = companiesDict[address.companyName!] ?? Area.AreaEditPage.Response.CompanyEntry.init()
+				value.enabled = true
+				companiesDict[address.companyName!] = value
+			}
+
+
+			companyEntries.removeAll()
+
+			for item in companiesDict.values {
+				companyEntries.append(item)
+			}
+
+			companyEntries.sort(by: { $0.stationCount > $1.stationCount })
+
+
+
+
+			let response = Area.AreaEditPage.Response(companyEntries: companyEntries, fetchedArea: area)
 			presenter?.presentAreaEditPageWithData(response: response)
 
 		} catch let error {
@@ -95,7 +174,7 @@ class AreaEditPageInteractor: NSObject, AreaEditPageBusinessLogic, AreaEditPageD
   	//MARK: Functions
 
   	internal func updateData() {
-		let response = Area.AreaEditPage.Response(fetchedArea: area)
+		let response = Area.AreaEditPage.Response(companyEntries: companyEntries, fetchedArea: area)
 		presenter?.presentAreaEditPageWithData(response: response)
   	}
 

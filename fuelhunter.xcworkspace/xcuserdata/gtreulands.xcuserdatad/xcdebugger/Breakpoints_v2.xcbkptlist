@@ -62,22 +62,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A50E704A-03AB-4C60-A106-A2F64E34707D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fuelhunter/Scenes/Main/AreaSetUpPage/AreaSetUpPageLayoutView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "AreaSetUpPageLayoutView"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "2D7FFF2D-E44D-4E7C-B4DE-3267C7743387"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -85,8 +69,8 @@
             filePath = "fuelhunter/Scenes/Main/AreaSetUpPage/AreaSetUpPageLayoutView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "460"
-            endingLineNumber = "460"
+            startingLineNumber = "472"
+            endingLineNumber = "472"
             landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -101,9 +85,25 @@
             filePath = "fuelhunter/Scenes/Main/AreaSetUpPage/AreaSetUpPageLayoutView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482"
+            startingLineNumber = "494"
+            endingLineNumber = "494"
             landmarkName = "setupAnnotation(for:on:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5B7D020-8664-448D-B373-2179ACE602D5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "fuelhunter/Scenes/Main/AreaSetUpPage/AreaSetUpPageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "userToggledCheapestPrice(to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

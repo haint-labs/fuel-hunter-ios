@@ -43,29 +43,12 @@ class AreaEditPagePresenter: AreaEditPagePresentationLogic {
 		}
 
 		if fetchedArea.isGPSArea == false {
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "Viada", toggleOrCheckmarkIsOn: false, iconName:"", description: "3 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
 
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "Gotika Auto", toggleOrCheckmarkIsOn: false, iconName:"", description: "2 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
+			for companyEntry in response.companyEntries {
+				let name = companyEntry.stationCount == 1 ? "1 degvielas uzpildes stacija" : "\(companyEntry.stationCount) degvielas uzpildes stacijas"
 
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE2", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE3", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE4", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE5", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE6", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE7", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE8", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE9", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
-
-			arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: "ASTARTE10", toggleOrCheckmarkIsOn: false, iconName:"", description: "4 degvielas uzpildes stacijas", accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
+				arrayCompanies.append(Area.AreaEditPage.ViewModel.DisplayedCell.init(name: companyEntry.name, toggleOrCheckmarkIsOn: companyEntry.enabled, iconName:companyEntry.imageName, description: name, accessoryType: .cellAccessoryTypeCheckMark, functionalityType: .cellFunctionalityTypeCompany))
+			}
 		}
 
 

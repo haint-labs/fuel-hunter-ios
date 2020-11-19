@@ -36,7 +36,10 @@ class AreasEditListPresenter: AreasEditListPresentationLogic {
 
 					// if 1
 					//"areas_fuel_company".localized()
-					
+
+					// Description needs to be
+
+					//  enabled company count + localized String
 				array.append(Areas.AreasEditList.ViewModel.DisplayedCell(id: Int(area.id), name: area.name!, description: "Rīga - 2 degvielas uzpildes kompānijas".localized(), type: AreaType.areaTypeAdded))
 			}
 		}

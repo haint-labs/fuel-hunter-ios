@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17189" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AddressEntity" representedClassName="AddressEntity" syncable="YES" codeGenerationType="class">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="city" optional="YES" attributeType="String"/>
@@ -13,9 +13,9 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="notEntered" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="stationName" optional="YES" attributeType="String"/>
-        <relationship name="enabledAreas" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="enabledStations" inverseEntity="AreasEntity"/>
+        <relationship name="enabledAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="enabledStations" inverseEntity="AreasEntity"/>
         <relationship name="prices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PriceEntity" inverseName="addresses" inverseEntity="PriceEntity"/>
-        <relationship name="radiusAreas" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="radiusStations" inverseEntity="AreasEntity"/>
+        <relationship name="radiusAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="radiusStations" inverseEntity="AreasEntity"/>
     </entity>
     <entity name="AreasEntity" representedClassName="AreasEntity" syncable="YES" codeGenerationType="class">
         <attribute name="cheapPricesOnly" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -26,10 +26,10 @@
         <attribute name="pushCents" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="pushIsOn" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="subDescription" attributeType="String" defaultValueString=""/>
-        <relationship name="enabledCompanies" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="enabledAreas" inverseEntity="CompanyMetaDataEntity"/>
-        <relationship name="enabledStations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="enabledAreas" inverseEntity="AddressEntity"/>
-        <relationship name="radiusCompanies" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="radiusAreas" inverseEntity="CompanyMetaDataEntity"/>
-        <relationship name="radiusStations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="radiusAreas" inverseEntity="AddressEntity"/>
+        <relationship name="enabledCompanies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="enabledAreas" inverseEntity="CompanyMetaDataEntity"/>
+        <relationship name="enabledStations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="enabledAreas" inverseEntity="AddressEntity"/>
+        <relationship name="radiusCompanies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CompanyMetaDataEntity" inverseName="radiusAreas" inverseEntity="CompanyMetaDataEntity"/>
+        <relationship name="radiusStations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AddressEntity" inverseName="radiusAreas" inverseEntity="AddressEntity"/>
     </entity>
     <entity name="CompanyEntity" representedClassName="CompanyEntity" syncable="YES" codeGenerationType="class">
         <attribute name="descriptionEN" optional="YES" attributeType="String"/>
@@ -52,9 +52,9 @@
     <entity name="CompanyMetaDataEntity" representedClassName="CompanyMetaDataEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="company" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CompanyEntity" inverseName="companyMetaData" inverseEntity="CompanyEntity"/>
-        <relationship name="enabledAreas" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="enabledCompanies" inverseEntity="AreasEntity"/>
+        <relationship name="enabledAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="enabledCompanies" inverseEntity="AreasEntity"/>
         <relationship name="prices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PriceEntity" inverseName="companyMetaData" inverseEntity="PriceEntity"/>
-        <relationship name="radiusAreas" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="radiusCompanies" inverseEntity="AreasEntity"/>
+        <relationship name="radiusAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AreasEntity" inverseName="radiusCompanies" inverseEntity="AreasEntity"/>
     </entity>
     <entity name="PriceEntity" representedClassName="PriceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="addressDescription" optional="YES" attributeType="String"/>

@@ -11,13 +11,18 @@
 //
 
 import UIKit
+import CoreData
+import FirebaseCrashlytics
 
 protocol AreaSetUpPageBusinessLogic {
   	func getDataToShow(request: AreaSetUpPage.SetUp.Request)
     func nextButtonPressed()
   	func cancelButtonPressed()
-//  	func stepperValueChangedTo(_ value: Int)
-//  	func selectedCityWithName(_ name: String)
+  	func saveButtonPressed()
+  	func userSelectedRadiusWithAddresses(request: AreaSetUpPage.UserSelectedNext.Request)
+  	func toggleCompanyNamed(request: AreaSetUpPage.ToggleCompanyStatus.Request)
+  	func userUpdatedAreaName(request: AreaSetUpPage.ChangeAreaName.Request)
+  	func userToggledCheapestPrice(request: AreaSetUpPage.ToggleCheapestPrice.Request)
 }
 
 protocol AreaSetUpPageDataStore {
@@ -27,67 +32,182 @@ protocol AreaSetUpPageDataStore {
 class AreaSetUpPageInteractor: AreaSetUpPageBusinessLogic, AreaSetUpPageDataStore {
   	var presenter: AreaSetUpPagePresentationLogic?
   	var appSettingsWorker = AppSettingsWorker.shared
-//	var centsValue: Int = 0
-//	var sortedCities = CityWorker.getCitiesByDistance()
-//	var selectedCityName = CityWorker.getClosestCityName()
-	
+
+	var companyEntries = [AreaSetUpPage.UserSelectedNext.Response.CompanyEntry]()
+	var areaName: String = ""
+	var cityName: String = ""
+	var userEdited: Bool = false // If user changes value, then don't change area Name automatically.
+	var cheapestPriceIsOn: Bool = true
+
 	// MARK: AreaSetUpPageBusinessLogic
 
   	func getDataToShow(request: AreaSetUpPage.SetUp.Request) {
-//  		centsValue = appSettingsWorker.getStoredNotifCentsCount()
 		callPresenter()
   	}
 
   	func nextButtonPressed() {
-//  		appSettingsWorker.setNotifEnabled(enabled: true)
-//  		appSettingsWorker.setStoredNotifCentsCount(count: centsValue)
-//  		appSettingsWorker.setStoredNotifCity(name: selectedCityName)
-
-//		DataDownloader.shared.activateToken()
-//
-//		// This will give real city OR selected city (if gps is disabled)
-//		let cityName = CityWorker.getClosestCityName()
-//		appSettingsWorker.setStoredLastGPSDetectedCityName(name: cityName)
-//
-//		// Needed for FuelListViewController - to show correct city,
-//		// if gps is disabled, show push notif chosen city name.
-//  		if AppSettingsWorker.shared.getGPSIsEnabled() == false {
-//			NotificationCenter.default.post(name: .settingsUpdated, object: nil)
-//		}
-//
   		presenter?.returnBackToPreviousViewController()
   	}
 
   	func cancelButtonPressed() {
-//  		appSettingsWorker.setNotifEnabled(enabled: false)
-//		DataDownloader.shared.removeToken()
-//  		let cityName = CityWorker.getClosestCityName()
-//		appSettingsWorker.setStoredNotifCity(name: cityName)
-//		appSettingsWorker.setStoredLastGPSDetectedCityName(name: cityName)
-//
   		presenter?.returnBackToPreviousViewController()
   	}
 
-  	func stepperValueChangedTo(_ value: Int) {
-//  		centsValue = value
-//		callPresenter()
+  	func saveButtonPressed() {
+		do {
+			let fetchRequest: NSFetchRequest<AreasEntity> = AreasEntity.fetchRequest()
+
+			let areasObjectArray = try DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest)
+
+			var radiusStations = Set<AddressEntity>()
+			var enabledStations = Set<AddressEntity>()
+
+			for aCompanyEntry in companyEntries {
+
+				for addressItem in aCompanyEntry.addresses {
+					if aCompanyEntry.enabled {
+						enabledStations.insert(addressItem)
+					}
+					radiusStations.insert(addressItem)
+				}
+			}
+
+			let task = { [self] in
+				let areaObject = AreasEntity.init(context: DataBaseManager.shared.mainManagedObjectContext())
+				areaObject.orderId = Int16(areasObjectArray.count)
+				areaObject.isGPSArea = false
+				areaObject.cheapPricesOnly = self.cheapestPriceIsOn
+				areaObject.pushCents = 1
+				areaObject.pushIsOn = false
+				areaObject.name = self.areaName
+				areaObject.id = Int16(areasObjectArray.count)
+				areaObject.enabledStations = enabledStations as NSSet
+				areaObject.radiusStations = radiusStations as NSSet
+				areaObject.subDescription = "\(self.cityName) - \(enabledStations.count) \(enabledStations.count > 1 ? "degvielas uzpildes stacijas" : "degvielas uzpildes stacija")"
+				DataBaseManager.shared.saveContext()
+
+				self.presenter?.returnBackToPreviousViewController()
+			}
+
+			DataBaseManager.shared.addATask(action: task)
+		} catch let error {
+			print("fetch error %@", error)
+		}
+  	}
+	
+	func userSelectedRadiusWithAddresses(request: AreaSetUpPage.UserSelectedNext.Request) {
+
+		var companiesDict = [String: AreaSetUpPage.UserSelectedNext.Response.CompanyEntry]()
+
+		for address in request.addresses {
+			var imageName = ""
+
+			if(address.companyName!.contains("Neste")) {
+				imageName = "neste_big_logo@3x"
+			} else if(address.companyName!.contains("Circle K")) {
+				imageName = "circle_k_big_logo@3x"
+			} else if(address.companyName!.contains("Kool")) {
+				imageName = "kool_big_logo@3x"
+			} else if(address.companyName!.contains("Ingrid")) {
+				imageName = "ingrida_big_logo@3x"
+			} else if(address.companyName!.contains("Kings")) {
+				imageName = "kings_big_logo@3x"
+			} else if(address.companyName!.contains("Astarte")) {
+				imageName = "astarte_big_logo@3x"
+			} else if(address.companyName!.contains("VTU")) {
+				imageName = "vtu_big_logo@3x"
+			} else if(address.companyName!.contains("Viada")) {
+				imageName = "viada_big_logo@3x"
+			} else if(address.companyName!.contains("Gotika")) {
+				imageName = "gotika_big_logo@3x"
+			} else if(address.companyName!.contains("Dinaz")) {
+				imageName = "dinaz_big_logo@3x"
+			} else if(address.companyName!.contains("Rietumu")) {
+				imageName = "rn_big_logo@3x"
+			} else if(address.companyName!.contains("Metro")) {
+				imageName = "metro_big_logo@3x"
+			} else if(address.companyName!.contains("Virši")) {
+				imageName = "virshi_big_logo@3x"
+			} else if(address.companyName!.contains("Virāža")) {
+				imageName = "viraza_big_logo@3x"
+			} else if(address.companyName!.contains("Intergaz")) {
+				imageName = "intergaz_big_logo@3x"
+			} else if(address.companyName!.contains("MC")) {
+				imageName = "mc_big_logo@3x"
+			} else if(address.companyName!.contains("Geksans")) {
+				imageName = "geksans_big_logo@3x"
+			} else if(address.companyName!.contains("Latvijas Nafta")) {
+				imageName = "ln_big_logo@3x"
+			} else if(address.companyName!.contains("Straujupīte")) {
+				imageName = "totals_big_logo@3x"
+			} else if(address.companyName!.contains("Latvijas Propāna Gāze")) {
+				imageName = "lpg_big_logo@3x"
+			}
+
+			var value = companiesDict[address.companyName!] ?? AreaSetUpPage.UserSelectedNext.Response.CompanyEntry.init()
+			value.stationCount = value.stationCount + 1
+			value.addresses.append(address)
+			value.name = address.companyName!
+			value.imageName = imageName
+
+			companiesDict[address.companyName!] = value
+		}
+
+		companyEntries.removeAll()
+
+		for item in companiesDict.values {
+			companyEntries.append(item)
+		}
+
+		companyEntries.sort(by: { $0.stationCount > $1.stationCount })
+
+		if self.userEdited == false {
+			self.areaName = request.areaName
+		}
+
+		self.cityName = request.areaName
+
+		let response = AreaSetUpPage.UserSelectedNext.Response.init(companyEntries: companyEntries, areaName: areaName, cheapestPriceIsOn: cheapestPriceIsOn)
+		self.presenter?.presentSecondData(response: response)
   	}
 
-  	func selectedCityWithName(_ name: String) {
-//		selectedCityName = name
-//		callPresenter()
-  	}
+	func toggleCompanyNamed(request: AreaSetUpPage.ToggleCompanyStatus.Request) {
+		for (index, var item) in companyEntries.enumerated() {
+			if(item.name == request.companyName) {
+				item.enabled = request.state
+				companyEntries.remove(at: index)
+				companyEntries.append(item)
+				break;
+			}
+		}
+
+		companyEntries.sort(by: { $0.stationCount > $1.stationCount })
+
+		let response = AreaSetUpPage.UserSelectedNext.Response.init(companyEntries: companyEntries, areaName: areaName, cheapestPriceIsOn: cheapestPriceIsOn)
+		self.presenter?.presentSecondData(response: response)
+	}
+
+	func userUpdatedAreaName(request: AreaSetUpPage.ChangeAreaName.Request) {
+		self.areaName = request.areaName
+		self.userEdited = true
+
+		let response = AreaSetUpPage.UserSelectedNext.Response.init(companyEntries: companyEntries, areaName: areaName, cheapestPriceIsOn: cheapestPriceIsOn)
+		self.presenter?.presentSecondData(response: response)
+	}
+
+	func userToggledCheapestPrice(request: AreaSetUpPage.ToggleCheapestPrice.Request) {
+		self.cheapestPriceIsOn = request.cheapestPriceIsOn
+
+		print("self.cheapestPriceIsOn \(self.cheapestPriceIsOn)")
+
+		let response = AreaSetUpPage.UserSelectedNext.Response.init(companyEntries: companyEntries, areaName: areaName, cheapestPriceIsOn: cheapestPriceIsOn)
+		self.presenter?.presentSecondData(response: response)
+	}
 
   	// MARK: Functions
 
   	private func callPresenter() {
 
   		presenter?.presentData(response: AreaSetUpPage.SetUp.Response.init())
-//		let minimumValue = AppSettingsWorker.minimumNotifCents
-//		let maximumValue = AppSettingsWorker.maximumNotifCents
-//		let convertedValue = appSettingsWorker.getCentsSymbolBasedOnValue(value: centsValue)
-//
-//		let response = PushNotifSetup.SetUp.Response(value: centsValue, convertedValue: convertedValue, minValue: minimumValue, maxValue: maximumValue, sortedCities: sortedCities, selectedCityName: selectedCityName)
-//		presenter?.presentData(response: response)
   	}
 }

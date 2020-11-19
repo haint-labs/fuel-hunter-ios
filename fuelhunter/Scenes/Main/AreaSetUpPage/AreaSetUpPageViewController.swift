@@ -129,7 +129,7 @@ class AreaSetUpPageViewController: UIViewController, AreaSetUpPageDisplayLogic, 
 
   	func updateSecondViewData(viewModel: AreaSetUpPage.AreaEditPage.ViewModel) {
 //  		mainLayoutView.updateData(data: nil)
-  		secondLayoutView.updateData(data: viewModel.displayedCells)
+  		secondLayoutView.updateData(data: viewModel.displayedCells, name: viewModel.newAreaName)
   	}
 
 	// MARK: AreaSetUpPageLayoutView
@@ -146,8 +146,10 @@ class AreaSetUpPageViewController: UIViewController, AreaSetUpPageDisplayLogic, 
 //  		interactor?.stepperValueChangedTo(value)
   	}
 
-  	func chooseCityButtonPressed(with frame: CGRect) {
-
+  	func chooseCityButtonPressed(with frame: CGRect, addresses: [AddressEntity], cityName: String) {
+		let request = AreaSetUpPage.UserSelectedNext.Request(addresses: addresses, areaName: cityName)
+		interactor?.userSelectedRadiusWithAddresses(request: request)
+		
 		secondLayoutView.updateFrontFrame(to: frame)
 
 		let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews]
@@ -162,8 +164,18 @@ class AreaSetUpPageViewController: UIViewController, AreaSetUpPageDisplayLogic, 
   	// MARK: AreaSetUpPageLayoutViewLogic
 
   	func selectedCityWithName(_ name: String) {
-//  		interactor?.selectedCityWithName(name)
-//		backButtonPressed()
+		let request = AreaSetUpPage.ChangeAreaName.Request(areaName: name)
+  		interactor?.userUpdatedAreaName(request: request)
+	}
+
+	func toggleCompanyNamed(name: String, state: Bool) {
+		let request = AreaSetUpPage.ToggleCompanyStatus.Request(companyName: name, state: state)
+		interactor?.toggleCompanyNamed(request: request)
+	}
+
+	func userToggledCheapestPrice(to state: Bool) {
+		let request = AreaSetUpPage.ToggleCheapestPrice.Request(cheapestPriceIsOn: state)
+		interactor?.userToggledCheapestPrice(request: request)
 	}
 
   	func backButtonPressed() {
@@ -174,5 +186,9 @@ class AreaSetUpPageViewController: UIViewController, AreaSetUpPageDisplayLogic, 
 		UIView.transition(with: secondLayoutView, duration: 0.6, options: transitionOptions, animations: { self.mainLayoutView.frontViewContainer.alpha = 1 })
 
 		UIView.transition(with: mainLayoutView.frontViewContainer, duration: 0.6, options: transitionOptions, animations: { })
+  	}
+
+  	func saveButtonPressed() {
+		interactor?.saveButtonPressed()
   	}
 }
