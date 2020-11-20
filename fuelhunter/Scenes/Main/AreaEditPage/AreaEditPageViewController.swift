@@ -86,6 +86,11 @@ class AreaEditPageViewController: UIViewController, AreaEditPageDisplayLogic, Ar
 
 	// MARK: AreaEditPageViewLayoutViewLogic
 
+	func toggleCompanyNamed(name: String, state: Bool) {
+		let request = Area.ToggleCompanyStatus.Request(companyName: name, state: state)
+		interactor?.toggleCompanyNamed(request: request)
+	}
+
 	func userJustChangedAreaName(_ name: String) {
 		let request = Area.ChangeName.Request(newName: name)
     	interactor?.updateName(request: request)

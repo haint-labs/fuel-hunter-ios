@@ -18,6 +18,7 @@ import CoreLocation
 
 protocol AreasEditListRoutingLogic {
 	func userPressedOnAreaWithId(withItemId id: Int)
+	func routeToSetUp()
 }
 
 protocol AreasEditListDataPassing {
@@ -30,11 +31,20 @@ class AreasEditListRouter: NSObject, AreasEditListRoutingLogic, AreasEditListDat
 
 	// MARK: AreasEditListRoutingLogic
 
-		func userPressedOnAreaWithId(withItemId id: Int) {
-			let page = AreaEditPageViewController()
-			page.router?.dataStore?.areaId = id
-			navigateToScene(source: viewController!, destination: page)
-		}
+	func userPressedOnAreaWithId(withItemId id: Int) {
+		let page = AreaEditPageViewController()
+		page.router?.dataStore?.areaId = id
+		navigateToScene(source: viewController!, destination: page)
+	}
+
+	func routeToSetUp() {
+		let destinationVC = AreaSetUpPageViewController()
+//		destinationVC.router?.previousViewController = self
+  		destinationVC.providesPresentationContextTransitionStyle = true
+		destinationVC.definesPresentationContext = true
+		destinationVC.modalPresentationStyle=UIModalPresentationStyle.overCurrentContext
+		viewController!.present(destinationVC, animated: true) { }
+	}
 
 	// MARK: Functions
 

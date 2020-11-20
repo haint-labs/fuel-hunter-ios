@@ -16,28 +16,33 @@ import FirebaseCrashlytics
 
 protocol AreasEditListBusinessLogic {
   	func getAreasData(request: Areas.AreasEditList.Request)
-  	func createNewEmptyArea()
 }
 
 protocol AreasEditListDataStore {
 }
 
-class AreasEditListInteractor: NSObject, AreasEditListBusinessLogic, AreasEditListDataStore {
+class AreasEditListInteractor: NSObject, AreasEditListBusinessLogic, AreasEditListDataStore, NSFetchedResultsControllerDelegate {
   	var presenter: AreasEditListPresentationLogic?
+	var fetchedResultsController: NSFetchedResultsController<AreasEntity>!
   	var worker = AreasEditListWorker()
 
 	// MARK: AreasEditListBusinessLogic
 
   	func getAreasData(request: Areas.AreasEditList.Request) {
 
-		do {
+		if fetchedResultsController == nil {
+			let context = DataBaseManager.shared.mainManagedObjectContext()
 			let fetchRequest: NSFetchRequest<AreasEntity> = AreasEntity.fetchRequest()
-			let sort = NSSortDescriptor(key: "orderId", ascending: true)
-			fetchRequest.sortDescriptors = [sort]
+			let sortId = NSSortDescriptor(key: "orderId", ascending: true)
+			fetchRequest.sortDescriptors = [sortId]
+			fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context,
+				sectionNameKeyPath: nil, cacheName: nil)
+			fetchedResultsController.delegate = self
+		}
 
-			let areasObjectArray = try DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest)
-
-			let response = Areas.AreasEditList.Response(fetchedAreas: areasObjectArray)
+		do {
+			try fetchedResultsController.performFetch()
+			let response = Areas.AreasEditList.Response(fetchedAreas: fetchedResultsController.fetchedObjects ?? [])
 			presenter?.presentAreasListWithData(response: response)
 
 		} catch let error {
@@ -45,50 +50,10 @@ class AreasEditListInteractor: NSObject, AreasEditListBusinessLogic, AreasEditLi
 		}
   	}
 
-  	func createNewEmptyArea() {
-		/*
-			Real scenario would be - open set up pop up, and then create new area only if all parameters created.
+	// MARK: NSFetchedResultsControllerDelegate
 
-		*/
-		do {
-			let fetchRequest: NSFetchRequest<AreasEntity> = AreasEntity.fetchRequest()
-
-			let areasObjectArray = try DataBaseManager.shared.mainManagedObjectContext().fetch(fetchRequest)
-
-			var name = "areas_create_new_area".localized()
-
-			if areasObjectArray.count == 1 {
-				name = "Neste"
-			} else if areasObjectArray.count == 2 {
-				name = "Circle K"
-			} else if areasObjectArray.count == 3 {
-				name = "Dinaz"
-			} else if areasObjectArray.count == 4 {
-				name = "Latvijas Nafta"
-			} else if areasObjectArray.count == 5 {
-				name = "Viada"
-			} else if areasObjectArray.count == 6 {
-				name = "Rīga 2"
-			}
-			
-
-			let task = {
-				let areaObject = AreasEntity.init(context: DataBaseManager.shared.mainManagedObjectContext())
-				areaObject.orderId = Int16(areasObjectArray.count)
-				areaObject.isGPSArea = false
-				areaObject.cheapPricesOnly = true
-				areaObject.pushCents = 1
-				areaObject.pushIsOn = false
-				areaObject.name = name
-				areaObject.id = Int16(areasObjectArray.count)
-				DataBaseManager.shared.saveContext()
-				self.getAreasData(request: Areas.AreasEditList.Request.init())
-			}
-
-			DataBaseManager.shared.addATask(action: task)
-		} catch let error {
-			print("fetch error %@", error)
-		}
-  	}
-
+  	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+  		let response = Areas.AreasEditList.Response(fetchedAreas: fetchedResultsController.fetchedObjects ?? [])
+		presenter?.presentAreasListWithData(response: response)
+	}
 }

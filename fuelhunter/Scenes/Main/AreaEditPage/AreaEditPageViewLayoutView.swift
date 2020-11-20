@@ -13,6 +13,7 @@ protocol AreaEditPageViewLayoutViewLogic: class {
 	func userJustToggledCheapestOnlySwitch(withState state: Bool)
 	func userJustToggledPushNotifSwitch(withState state: Bool)
 	func deleteWasPressed()
+	func toggleCompanyNamed(name: String, state: Bool)
 }
 
 protocol AreaEditPageViewLayoutViewDataLogic: class {
@@ -160,12 +161,15 @@ class AreaEditPageViewLayoutView: UIView, UITableViewDataSource, UITableViewDele
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		// Let nothing happen when we press gps or notif cell.
 		let aData = self.data[indexPath.section][indexPath.row]
-
+		let cell = self.tableView.cellForRow(at: indexPath) as! AreaEditPageCell
+		
 		if aData.functionalityType == .cellFunctionalityTypeName {
-			let cell = self.tableView.cellForRow(at: indexPath) as! AreaEditPageCell
 			cell.activateTextField()
 		} else if aData.functionalityType == .cellFunctionalityTypeDelete {
 			controller?.deleteWasPressed()
+		} else if aData.functionalityType == .cellFunctionalityTypeCompany {
+			self.controller?.toggleCompanyNamed(name: aData.name, state: !aData.toggleOrCheckmarkIsOn)
+			cell.setAccessoryIconType(type: aData.accessoryType, toggleOrCheckmarkIsOn: !aData.toggleOrCheckmarkIsOn)
 		}
 	}
 
@@ -176,7 +180,7 @@ class AreaEditPageViewLayoutView: UIView, UITableViewDataSource, UITableViewDele
 	// MARK: Functions
 
 	private func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
+		let alfa = min(40, max(0, tableView.contentOffset.y+10))/40.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top
 		let alfa2 = min(50, max(0, tableView.contentSize.height-value-15))/50.0

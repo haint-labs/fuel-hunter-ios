@@ -127,7 +127,6 @@ class AreasEditListViewLayoutView: UIView, UITableViewDataSource, UITableViewDel
 		} else {
 			controller?.userPressedOnItem(withItemId: aData.id)
 		}
-//		controller?.userPressedOnCellType(cellType: aData.settingsListCellType)
 	}
 
   	func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -137,7 +136,7 @@ class AreasEditListViewLayoutView: UIView, UITableViewDataSource, UITableViewDel
 	// MARK: Functions
 
 	private func adjustVisibilityOfShadowLines() {
-		let alfa = min(50, max(0, tableView.contentOffset.y+15))/50.0
+		let alfa = min(40, max(0, tableView.contentOffset.y+10))/40.0
 		tableViewTopShadow.alpha = alfa
 		let value = tableView.contentOffset.y + tableView.frame.size.height - tableView.contentInset.bottom - tableView.contentInset.top
 		let alfa2 = min(50, max(0, tableView.contentSize.height-value-15))/50.0

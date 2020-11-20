@@ -45,6 +45,13 @@ enum Area {
 		}
   	}
 
+	enum ToggleCompanyStatus {
+		struct Request {
+			var companyName: String
+			var state: Bool
+		}
+  	}
+  	
   	enum ChangeName {
 		struct Request {
 			var newName: String

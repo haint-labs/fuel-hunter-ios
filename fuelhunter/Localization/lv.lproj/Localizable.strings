@@ -128,6 +128,7 @@
 "areas_delete_alert_text" = "Vai tiešām vēlaties dzēst šo vietu?";
 "areas_fuel_companies" = "degvielas uzpildes kompānijas";
 "areas_fuel_company" = "degvielas uzpildes kompānija";
+"areas_fuel_company_empty_description" = "Nav ieslēgta neviena degvielas uzpildes kompānija";
 "areas_name_title_description" = "Nosaukums";
 "areas_cheapest_only_title" = "Tikai lētākās cenas";
 "areas_cheapest_only_description" = "Sarakstā tiks rādītas tikai lētākās cenas no atzīmētajām kompānijām";

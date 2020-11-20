@@ -49,13 +49,12 @@ class AreasEditListViewController: UIViewController, AreasEditListDisplayLogic, 
 
 		self.navigationController!.interactivePopGestureRecognizer?.delegate = nil
 		self.navigationController!.interactivePopGestureRecognizer?.isEnabled = true
-		
     	self.navigationController!.setNavigationBarHidden(false, animated: true)
+    	getData()
   	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		getData()
 	}
 
 	// MARK: Set up
@@ -87,7 +86,7 @@ class AreasEditListViewController: UIViewController, AreasEditListDisplayLogic, 
 	// MARK: AreasEditListViewLayoutViewLogic
 
 	func userPressedOnANewCell() {
-		interactor?.createNewEmptyArea()
+		router?.routeToSetUp()
 	}
 
 	func userPressedOnItem(withItemId id: Int) {

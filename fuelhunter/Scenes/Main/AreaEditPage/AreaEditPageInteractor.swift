@@ -19,6 +19,7 @@ protocol AreaEditPageBusinessLogic {
   	func updateName(request: Area.ChangeName.Request)
   	func toggleCheapest(request: Area.ToggleCheapest.Request)
   	func togglePushNotif(request: Area.ToggleNotif.Request)
+  	func toggleCompanyNamed(request: Area.ToggleCompanyStatus.Request)
   	func deletePressed()
 }
 
@@ -160,6 +161,37 @@ class AreaEditPageInteractor: NSObject, AreaEditPageBusinessLogic, AreaEditPageD
 
 		DataBaseManager.shared.addATask(action: task)
   	}
+
+	func toggleCompanyNamed(request: Area.ToggleCompanyStatus.Request) {
+		var enabledStations = Set<AddressEntity>()
+
+		for (index, var item) in companyEntries.enumerated() {
+			if(item.name == request.companyName) {
+				item.enabled = request.state
+				companyEntries.remove(at: index)
+				companyEntries.append(item)
+				break;
+			}
+		}
+
+		companyEntries.sort(by: { $0.stationCount > $1.stationCount })
+
+		for item in companyEntries {
+			if(item.enabled) {
+				for station in item.addresses {
+					enabledStations.insert(station)
+				}
+			}
+		}
+
+		let task = { [weak self] in
+			self?.area.enabledStations = enabledStations as NSSet
+			DataBaseManager.shared.saveContext()
+			self?.updateData()
+		}
+
+		DataBaseManager.shared.addATask(action: task)
+	}
 
 	func deletePressed() {
 		let task = {

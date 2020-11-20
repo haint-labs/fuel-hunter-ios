@@ -40,11 +40,30 @@ class AreasEditListPresenter: AreasEditListPresentationLogic {
 					// Description needs to be
 
 					//  enabled company count + localized String
-				array.append(Areas.AreasEditList.ViewModel.DisplayedCell(id: Int(area.id), name: area.name!, description: "Rīga - 2 degvielas uzpildes kompānijas".localized(), type: AreaType.areaTypeAdded))
+
+
+				var companies = Set<String>()
+				let enabledStations = area.enabledStations?.allObjects ?? [AddressEntity]()
+
+				for address in enabledStations as! [AddressEntity] {
+					companies.insert("\(address.companyName ?? "")")
+				}
+
+				var description = ""
+
+				if(companies.count == 0) {
+					description = "areas_fuel_company_empty_description".localized()
+				} else if(companies.count == 1) {
+					description = "\(area.cityName!) - 1 \("areas_fuel_company".localized())"
+				} else {
+					description = "\(area.cityName!) - \(companies.count) \("areas_fuel_companies".localized())"
+				}
+
+				array.append(Areas.AreasEditList.ViewModel.DisplayedCell(id: Int(area.id), name: area.name!, description: description, type: AreaType.areaTypeAdded))
 			}
 		}
 
-		array.append(Areas.AreasEditList.ViewModel.DisplayedCell(id: 100, name: "areas_create_new_area".localized(), description: "areas_create_new_area_description".localized(), type: AreaType.areaTypeNew))
+		array.append(Areas.AreasEditList.ViewModel.DisplayedCell(id: 900, name: "areas_create_new_area".localized(), description: "areas_create_new_area_description".localized(), type: AreaType.areaTypeNew))
 
     	let viewModel = Areas.AreasEditList.ViewModel(displayedCells: array)
     	viewController?.displayList(viewModel: viewModel)

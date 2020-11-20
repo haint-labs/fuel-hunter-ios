@@ -83,7 +83,7 @@ class AreaSetUpPageInteractor: AreaSetUpPageBusinessLogic, AreaSetUpPageDataStor
 				areaObject.id = Int16(areasObjectArray.count)
 				areaObject.enabledStations = enabledStations as NSSet
 				areaObject.radiusStations = radiusStations as NSSet
-				areaObject.subDescription = "\(self.cityName) - \(enabledStations.count) \(enabledStations.count > 1 ? "degvielas uzpildes stacijas" : "degvielas uzpildes stacija")"
+				areaObject.cityName = "\(self.cityName)"
 				DataBaseManager.shared.saveContext()
 
 				self.presenter?.returnBackToPreviousViewController()

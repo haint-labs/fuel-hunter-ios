@@ -128,6 +128,7 @@
 "areas_delete_alert_text" = "Do you really want to delete this Area?";
 "areas_fuel_companies" = "fuel companies";
 "areas_fuel_company" = "fuel company";
+"areas_fuel_company_empty_description" = "No fuel companies";
 "areas_name_title_description" = "Name";
 "areas_cheapest_only_title" = "Cheapest prices only";
 "areas_cheapest_only_description" = "Only the cheapest prices will be shown";
